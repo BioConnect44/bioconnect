@@ -60,7 +60,7 @@ export default function ResearchPage() {
 
       {/* Search */}
       <div style={{ position: "relative", marginBottom: "16px" }}>
-        <input type="text" placeholder="How does CRISPR affect..." value={search} onChange={e => setSearch(e.target.value)} style={{ width: "100%", padding: "13px 48px 13px 18px", border: "1.5px solid #E2EEF0", borderRadius: "12px", fontSize: "14px", fontFamily: "inherit", outline: "none", background: "#fff", color: "#1B2B3A" }}/>
+        <input type="text" placeholder="How does CRISPR affect..." value={search} onChange={e => setSearch(e.target.value)} style={{ width: "100%", padding: "13px 48px 13px 18px", border: "1.5px solid #E2EEF0", borderRadius: "12px", fontSize: "14px", fontFamily: "inherit", outline: "none", background: "#fff", color: "#1B2B3A" }} />
         <span style={{ position: "absolute", right: "16px", top: "50%", transform: "translateY(-50%)", color: "#14B8A6", fontSize: "18px" }}>🔍</span>
       </div>
 
@@ -76,13 +76,13 @@ export default function ResearchPage() {
         <div style={{ background: "#fff", borderRadius: "16px", padding: "24px", border: "1px solid #E2EEF0", marginBottom: "20px" }}>
           <h3 style={{ fontSize: "16px", fontWeight: 600, color: "#1B2B3A", marginBottom: "16px" }}>Add Research Paper</h3>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
-            <div style={{ gridColumn: "1/-1" }}><label style={L}>Title *</label><input value={form.title} onChange={e => setForm({...form, title: e.target.value})} style={I} placeholder="e.g. CRISPR-Cas9 editing efficiency..."/></div>
-            <div><label style={L}>Authors</label><input value={form.authors} onChange={e => setForm({...form, authors: e.target.value})} style={I} placeholder="J. Doudna, et al."/></div>
-            <div><label style={L}>Journal</label><input value={form.journal} onChange={e => setForm({...form, journal: e.target.value})} style={I} placeholder="Nature Genetics"/></div>
-            <div><label style={L}>Topic</label><input value={form.topic} onChange={e => setForm({...form, topic: e.target.value})} style={I} placeholder="Molecular Biology"/></div>
-            <div><label style={L}>Date</label><input type="date" value={form.published_date} onChange={e => setForm({...form, published_date: e.target.value})} style={I}/></div>
-            <div style={{ gridColumn: "1/-1" }}><label style={L}>Paper URL</label><input value={form.paper_url} onChange={e => setForm({...form, paper_url: e.target.value})} style={I} placeholder="https://doi.org/..."/></div>
-            <div style={{ gridColumn: "1/-1" }}><label style={L}>Abstract</label><textarea value={form.abstract} onChange={e => setForm({...form, abstract: e.target.value})} rows={3} style={{...I, resize: "vertical"}} placeholder="Brief summary..."/></div>
+            <div style={{ gridColumn: "1/-1" }}><label style={L}>Title *</label><input value={form.title} onChange={e => setForm({ ...form, title: e.target.value })} style={I} placeholder="e.g. CRISPR-Cas9 editing efficiency..." /></div>
+            <div><label style={L}>Authors</label><input value={form.authors} onChange={e => setForm({ ...form, authors: e.target.value })} style={I} placeholder="J. Doudna, et al." /></div>
+            <div><label style={L}>Journal</label><input value={form.journal} onChange={e => setForm({ ...form, journal: e.target.value })} style={I} placeholder="Nature Genetics" /></div>
+            <div><label style={L}>Topic</label><input value={form.topic} onChange={e => setForm({ ...form, topic: e.target.value })} style={I} placeholder="Molecular Biology" /></div>
+            <div><label style={L}>Date</label><input type="date" value={form.published_date} onChange={e => setForm({ ...form, published_date: e.target.value })} style={I} /></div>
+            <div style={{ gridColumn: "1/-1" }}><label style={L}>Paper URL</label><input value={form.paper_url} onChange={e => setForm({ ...form, paper_url: e.target.value })} style={I} placeholder="https://doi.org/..." /></div>
+            <div style={{ gridColumn: "1/-1" }}><label style={L}>Abstract</label><textarea value={form.abstract} onChange={e => setForm({ ...form, abstract: e.target.value })} rows={3} style={{ ...I, resize: "vertical" }} placeholder="Brief summary..." /></div>
             <div style={{ gridColumn: "1/-1" }}><button onClick={handleAdd} disabled={saving || !form.title} style={{ background: "#14B8A6", color: "#fff", border: "none", padding: "11px 24px", borderRadius: "10px", fontSize: "14px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit", opacity: saving || !form.title ? 0.6 : 1 }}>{saving ? "Adding..." : "Add Paper"}</button></div>
           </div>
         </div>
@@ -93,8 +93,15 @@ export default function ResearchPage() {
         {/* Left - paper list */}
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           {filtered.length === 0 ? (
-            <div style={{ textAlign: "center", padding: "60px 20px", color: "#9CA3AF" }}>
-              <p>No papers yet. {isEducator && "Add the first one!"}</p>
+            <div style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "40vh", /* Adjust this value to fill your desired empty space */
+              padding: "20px",
+              color: "#9CA3AF"
+            }}>
+              <p>No papers yet. {isEducator && " Add the first one!"}</p>
             </div>
           ) : filtered.map(paper => (
             <div key={paper.id} onClick={() => setSelected(paper)} style={{ background: selected?.id === paper.id ? "#F0FCFB" : "#fff", border: selected?.id === paper.id ? "2px solid #14B8A6" : "1.5px solid #E2EEF0", borderRadius: "14px", padding: "18px 20px", cursor: "pointer", transition: "all .2s" }}>
