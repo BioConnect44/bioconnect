@@ -36,7 +36,7 @@ export default function AppShell({ children, active }) {
   }
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "#EEF7F7", fontFamily: "'Poppins', sans-serif" }}>
+    <div className="shell-wrapper" style={{ display: "flex", height: "100vh", background: "#132D35", fontFamily: "'Poppins', sans-serif" }}>
       <style>{SHELL_CSS}</style>
 
       {/* Sidebar */}
@@ -80,40 +80,39 @@ export { NAV };
 const SHELL_CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: #EEF7F7; }
+body { background: #132D35; }
 a { text-decoration: none; color: inherit; }
 
 .shell-sidebar {
-  width: 200px; min-height: 100vh; background: #132D35;
-  display: flex; flex-direction: column; justify-content: space-between;
-  padding: 24px 12px; position: fixed; top: 0; left: 0; bottom: 0; z-index: 50;
+  width: 220px; display: flex; flex-direction: column; justify-content: space-between;
+  padding: 24px 12px; position: relative; color: #fff;
 }
 .shell-logo {
-  display: block; padding: 4px 12px; margin-bottom: 32px;
+  display: block; padding: 4px 12px; margin-bottom: 40px;
 }
-.shell-nav { display: flex; flex-direction: column; gap: 2px; }
+.shell-nav { display: flex; flex-direction: column; gap: 8px; }
 .shell-nav-item {
-  display: flex; align-items: center; gap: 10px; padding: 10px 12px;
-  border-radius: 10px; font-size: 13.5px; color: rgba(255,255,255,0.55);
-  transition: all 0.15s; font-weight: 400; cursor: pointer;
+  display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+  border-radius: 12px; font-size: 14px; color: rgba(255,255,255,0.55);
+  transition: all 0.15s; font-weight: 500; cursor: pointer;
 }
 .shell-nav-item:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.06); }
 .shell-nav-active {
   color: #fff !important; background: rgba(20,184,166,0.18) !important;
-  font-weight: 500;
 }
 .shell-nav-active .shell-nav-icon { color: #14B8A6; }
 .shell-nav-icon { opacity: 0.7; display: flex; align-items: center; }
 .shell-nav-active .shell-nav-icon { opacity: 1; }
 .shell-logout {
-  display: flex; align-items: center; gap: 10px; padding: 10px 12px;
-  border-radius: 10px; font-size: 13.5px; color: #EF4444;
+  display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+  border-radius: 12px; font-size: 14px; color: #EF4444; font-weight: 500;
   background: none; border: none; cursor: pointer; width: 100%; font-family: inherit;
   transition: all 0.15s;
 }
 .shell-logout:hover { background: rgba(239,68,68,0.1); }
 .shell-main {
-  margin-left: 200px; flex: 1; padding: 32px 36px;
-  min-height: 100vh; overflow-y: auto;
+  flex: 1; padding: 40px 48px;
+  background: #F0FDF9;
+  height: 100vh; overflow-y: auto;
 }
 `;
