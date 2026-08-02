@@ -131,15 +131,15 @@ export default function LandingPage() {
         boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.07)" : "none",
         transition: "box-shadow 0.3s",
       }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ maxWidth: 1360, margin: "0 auto", padding: "0 40px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontSize: "1.4rem", fontWeight: 800, color: "#2AB4B4", letterSpacing: "-0.3px", cursor: "pointer" }}>BioConnect</span>
           <ul style={{ display: "flex", gap: 36, listStyle: "none" }}>
-            {["Features", "For You", "Contact"].map(link => (
-              <li key={link}>
-                <a href="#" style={{ textDecoration: "none", fontSize: "0.95rem", fontWeight: 500, color: "#444", transition: "color 0.2s" }}
+            {[["Features", "#features"], ["For You", "#roles"], ["Contact", "#contact"]].map(([title, href]) => (
+              <li key={title}>
+                <a href={href} style={{ textDecoration: "none", fontSize: "0.95rem", fontWeight: 500, color: "#444", transition: "color 0.2s" }}
                   onMouseEnter={e => e.currentTarget.style.color = "#2AB4B4"}
                   onMouseLeave={e => e.currentTarget.style.color = "#444"}>
-                  {link}
+                  {title}
                 </a>
               </li>
             ))}
@@ -161,7 +161,7 @@ export default function LandingPage() {
 
       {/* HERO */}
       <section style={{ background: "#eef6f8", paddingTop: 90 }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "60px 40px 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
+        <div style={{ maxWidth: 1360, margin: "0 auto", padding: "60px 40px 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
           {/* Left */}
           <div>
             <FadeUp delay={0}>
@@ -205,7 +205,7 @@ export default function LandingPage() {
 
         {/* STATS — full width below both columns */}
         <FadeUp delay={0.4}>
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 40px 48px" }}>
+          <div style={{ maxWidth: 1360, margin: "0 auto", padding: "28px 40px 48px" }}>
             <div style={{ background: "rgba(203,232,236,0.45)", border: "1px solid #c4dde2", borderRadius: 16, padding: "22px 0", display: "flex" }}>
               {STATS.map(([num, label], i) => (
                 <div key={i} style={{ flex: 1, textAlign: "center", padding: "0 12px", borderRight: i < STATS.length - 1 ? "1px solid #b8d5da" : "none" }}>
@@ -219,8 +219,8 @@ export default function LandingPage() {
       </section>
 
       {/* FEATURES */}
-      <section style={{ background: "#eef6f8", padding: "80px 40px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <section id="features" style={{ background: "#eef6f8", padding: "80px 40px" }}>
+        <div style={{ maxWidth: 1360, margin: "0 auto" }}>
           <FadeUp>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
               <div style={{ fontSize: "2.2rem", fontWeight: 800, color: "#2AB4B4" }}>Everything you need.</div>
@@ -245,8 +245,8 @@ export default function LandingPage() {
       </section>
 
       {/* ROLES */}
-      <section style={{ background: "#eef6f8", padding: "80px 40px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <section id="roles" style={{ background: "#eef6f8", padding: "80px 40px" }}>
+        <div style={{ maxWidth: 1360, margin: "0 auto" }}>
           <FadeUp>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
               <h2 style={{ fontSize: "2rem", fontWeight: 800, margin: "0 0 10px" }}>
@@ -330,7 +330,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA */}
-      <section style={{
+      <section id="contact" style={{
         backgroundImage: `linear-gradient(rgba(15,50,58,0.95), rgba(15,50,58,0.95)), url(${CTA_BG})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -352,7 +352,7 @@ export default function LandingPage() {
 
       {/* FOOTER */}
       <footer style={{ background: "linear-gradient(160deg,#0f2e38 0%,#1A4A55 50%,#0f2e38 100%)", padding: "64px 40px 0" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1360, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1fr", gap: 40, paddingBottom: 48 }}>
             <div>
               <span style={{ fontSize: "1.4rem", fontWeight: 800, color: "#2AB4B4", display: "block", marginBottom: 20 }}>BioConnect</span>
