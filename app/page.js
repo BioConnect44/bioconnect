@@ -145,12 +145,12 @@ export default function LandingPage() {
             ))}
           </ul>
           <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-            <button style={{ background: "none", border: "none", cursor: "pointer", fontSize: "0.95rem", color: "#444", fontWeight: 500, padding: "8px 4px", transition: "color 0.2s" }}
+            <button onClick={() => window.location.assign('/login')} style={{ background: "none", border: "none", cursor: "pointer", fontSize: "0.95rem", color: "#444", fontWeight: 500, padding: "8px 4px", transition: "color 0.2s" }}
               onMouseEnter={e => e.currentTarget.style.color = "#2AB4B4"}
               onMouseLeave={e => e.currentTarget.style.color = "#444"}>
               Log in
             </button>
-            <button style={{ background: "#2AB4B4", color: "#fff", border: "none", borderRadius: 10, padding: "10px 22px", fontSize: "0.95rem", fontWeight: 700, cursor: "pointer", transition: "all 0.2s", boxShadow: "0 2px 8px rgba(42,180,180,0.3)" }}
+            <button onClick={() => window.location.assign('/signup')} style={{ background: "#2AB4B4", color: "#fff", border: "none", borderRadius: 10, padding: "10px 22px", fontSize: "0.95rem", fontWeight: 700, cursor: "pointer", transition: "all 0.2s", boxShadow: "0 2px 8px rgba(42,180,180,0.3)" }}
               onMouseEnter={e => { e.currentTarget.style.background = "#1f9e9e"; e.currentTarget.style.transform = "translateY(-1px)"; }}
               onMouseLeave={e => { e.currentTarget.style.background = "#2AB4B4"; e.currentTarget.style.transform = "none"; }}>
               Sign Up
@@ -182,12 +182,12 @@ export default function LandingPage() {
             </FadeUp>
             <FadeUp delay={0.3}>
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-                <button style={{ background: "#2AB4B4", color: "#fff", border: "none", borderRadius: 8, padding: "14px 28px", fontSize: "1rem", fontWeight: 700, cursor: "pointer", transition: "all 0.25s" }}
+                <button onClick={() => window.location.assign('/signup')} style={{ background: "#2AB4B4", color: "#fff", border: "none", borderRadius: 8, padding: "14px 28px", fontSize: "1rem", fontWeight: 700, cursor: "pointer", transition: "all 0.25s" }}
                   onMouseEnter={e => { e.currentTarget.style.background = "#1f9e9e"; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(42,180,180,0.35)"; }}
                   onMouseLeave={e => { e.currentTarget.style.background = "#2AB4B4"; e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
                   Get Started →
                 </button>
-                <button style={{ background: "transparent", border: "1.5px solid #c8d8dc", color: "#1a2b3c", borderRadius: 8, padding: "14px 28px", fontSize: "1rem", fontWeight: 500, cursor: "pointer", transition: "all 0.25s" }}
+                <button onClick={() => window.location.assign('/login')} style={{ background: "transparent", border: "1.5px solid #c8d8dc", color: "#1a2b3c", borderRadius: 8, padding: "14px 28px", fontSize: "1rem", fontWeight: 500, cursor: "pointer", transition: "all 0.25s" }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = "#2AB4B4"; e.currentTarget.style.color = "#2AB4B4"; }}
                   onMouseLeave={e => { e.currentTarget.style.borderColor = "#c8d8dc"; e.currentTarget.style.color = "#1a2b3c"; }}>
                   Already have an account? Log in
@@ -341,7 +341,7 @@ export default function LandingPage() {
             <h2 style={{ fontSize: "2.1rem", fontWeight: 800, color: "#fff", margin: "0 0 32px", lineHeight: 1.3 }}>
               Ready to start your biotech journey?
             </h2>
-            <button style={{ background: "#fff", color: "#1A4A55", border: "none", borderRadius: 8, padding: "14px 32px", fontSize: "0.95rem", fontWeight: 700, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 10, transition: "all 0.25s" }}
+            <button onClick={() => window.location.assign('/signup')} style={{ background: "#fff", color: "#1A4A55", border: "none", borderRadius: 8, padding: "14px 32px", fontSize: "0.95rem", fontWeight: 700, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 10, transition: "all 0.25s" }}
               onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.2)"; }}
               onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
               Create Free Profile →
