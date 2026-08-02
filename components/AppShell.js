@@ -42,7 +42,7 @@ export default function AppShell({ children, active }) {
       {/* Sidebar */}
       <aside className="shell-sidebar">
         <div>
-          <a href="/" className="shell-logo">
+          <a href="/dashboard" className="shell-logo">
             <span style={{ color: "#14B8A6", fontWeight: 700, fontSize: "20px", letterSpacing: "-0.5px" }}>BioConnect</span>
           </a>
           <nav className="shell-nav">
