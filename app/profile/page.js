@@ -57,7 +57,7 @@ export default function ProfilePage() {
             {/* Header banner */}
             <div style={{ height: "80px", background: `linear-gradient(135deg, ${rc}22 0%, ${rc}11 100%)` }}></div>
             {/* Avatar */}
-            <div style={{ padding: "0 24px 24px", marginTop: "-32px" }}>
+            <div style={{ padding: "0 24px 24px", marginTop: "-32px", position: "relative" }}>
               <div style={{ width: 64, height: 64, borderRadius: "50%", background: `${rc}20`, border: `3px solid #fff`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "26px", fontWeight: 700, color: rc, marginBottom: "12px" }}>
                 {profile?.full_name?.charAt(0)?.toUpperCase() || "U"}
               </div>
