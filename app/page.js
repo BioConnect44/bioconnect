@@ -237,7 +237,7 @@ export default function Home() {
             <p>Connecting India's biotech community — students, educators, researchers, and industry.</p>
           </div>
           {[
-            { h: "Platform", links: [["Learning Hub", "/learning"], ["Research Papers", "/research"], ["Events", "/event"]] },
+            { h: "Platform", links: [["Learning Hub", "/learning"], ["Research Papers", "/research"], ["Events", "/events"]] },
             { h: "Account", links: [["Sign Up", "/signup"], ["Login", "/login"], ["Dashboard", "/dashboard"]] },
             { h: "Support", links: [["Help Center", "#"], ["Privacy Policy", "#"], ["Terms of Service", "#"]] },
           ].map(col => (

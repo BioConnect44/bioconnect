@@ -57,7 +57,7 @@ function StudentDashboard({ profile }) {
         <div style={C.card}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <h3 style={C.cardTitle}>Upcoming Events</h3>
-            <a href="/eventss" style={{ fontSize: "12px", color: "#14B8A6", fontWeight: 500 }}>View full calendar →</a>
+            <a href="/events" style={{ fontSize: "12px", color: "#14B8A6", fontWeight: 500 }}>View full calendar →</a>
           </div>
           {[
             { month: "AUG", day: "14", title: "Annual Biotech Symposium", loc: "Main Auditorium • 10:00 AM" },
