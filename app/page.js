@@ -78,6 +78,11 @@ export default function Home() {
     <main>
       <style>{CSS}</style>
 
+      {/* ── TEST BANNER ── */}
+      <div style={{ background: "#F97316", color: "#fff", textAlign: "center", padding: "10px", fontSize: "14px", fontWeight: 600, letterSpacing: "0.5px" }}>
+        🚀 TEST BANNER — If you see this, Vercel is deploying correctly!
+      </div>
+
       {/* ── NAV ── */}
       <nav className="nav">
         <a href="/" className="n-logo">
