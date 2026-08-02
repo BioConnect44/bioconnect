@@ -106,7 +106,7 @@ export default function ProfilePage() {
                 {profile?.university && <span style={{ fontSize: "13px", color: "#6B8A9A" }}>🏛️ {profile.university}</span>}
                 {profile?.email && <span style={{ fontSize: "13px", color: "#6B8A9A" }}>✉️ {profile.email}</span>}
               </div>
-              {profile?.bio && <p style={{ fontSize: "13px", color: "#9CA3AF", marginTop: "6px", fontStyle: "italic", maxWidth: "480px" }}>"{profile.bio}"</p>}
+              {profile?.bio && <p style={{ fontSize: "13px", color: "#9CA3AF", marginTop: "6px", fontStyle: "italic", maxWidth: "480px" }}>&quot;{profile.bio}&quot;</p>}
             </div>
             <div style={{ display: "flex", gap: "10px" }}>
               {!editing ? (

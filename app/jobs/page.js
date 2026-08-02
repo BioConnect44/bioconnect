@@ -32,10 +32,9 @@ export default function JobsPage() {
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({ title: "", company: "", location: "India", job_type: "Full-time", experience: "", salary: "", description: "", skills: "", apply_url: "", category: "Research" });
 
-  useEffect(() => { loadAll(); }, []);
-
   async function loadAll() {
     const { data: { user } } = await supabase.auth.getUser();
+    // eslint-disable-next-line no-restricted-globals
     if (!user) { window.location.href = "/login"; return; }
     const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
     setProfile(data);
@@ -51,6 +50,8 @@ export default function JobsPage() {
     setAllJobs([...manualJobs, ...scraped]);
     setLoading(false);
   }
+
+  useEffect(() => { loadAll(); }, []);
 
   async function handleAddJob(e) {
     e.preventDefault(); setSaving(true);

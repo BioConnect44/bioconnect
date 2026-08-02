@@ -37,6 +37,11 @@ export default function EventsPage() {
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({ title: "", description: "", event_type: "conference", location: "", event_date: "", end_date: "", registration_url: "" });
 
+  async function loadEvents() {
+    const { data } = await supabase.from("events").select("*, profiles(full_name)").order("event_date", { ascending: true });
+    setEvents(data || []);
+  }
+
   useEffect(() => {
     async function load() {
       const { data: { user } } = await supabase.auth.getUser();
@@ -48,10 +53,7 @@ export default function EventsPage() {
     load();
   }, []);
 
-  async function loadEvents() {
-    const { data } = await supabase.from("events").select("*, profiles(full_name)").order("event_date", { ascending: true });
-    setEvents(data || []);
-  }
+
 
   async function handleAdd(e) {
     e.preventDefault(); setSaving(true);

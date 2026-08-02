@@ -13,6 +13,12 @@ export default function ResearchPage() {
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({ title: "", authors: "", abstract: "", topic: "", journal: "", published_date: "", paper_url: "" });
 
+  async function loadPapers() {
+    const { data } = await supabase.from("research_papers").select("*, profiles(full_name)").order("created_at", { ascending: false });
+    setPapers(data || []);
+    if (data?.length > 0) setSelected(data[0]);
+  }
+
   useEffect(() => {
     async function load() {
       const { data: { user } } = await supabase.auth.getUser();
@@ -24,11 +30,7 @@ export default function ResearchPage() {
     load();
   }, []);
 
-  async function loadPapers() {
-    const { data } = await supabase.from("research_papers").select("*, profiles(full_name)").order("created_at", { ascending: false });
-    setPapers(data || []);
-    if (data?.length > 0) setSelected(data[0]);
-  }
+
 
   async function handleAdd(e) {
     e.preventDefault(); setSaving(true);

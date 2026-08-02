@@ -20,17 +20,19 @@ function StudentView({ supabase, profile }) {
   const [flipped, setFlipped] = useState(false);
   const isResearcher = profile?.role === "researcher";
 
-  useEffect(() => { loadNotes(); }, []);
-
   async function loadNotes() {
     const r = {};
     for (const sub of SUBJECTS) { const { data } = await supabase.storage.from("course-materials").list(sub.id); r[sub.id] = data || []; }
     setNotes(r);
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { loadNotes(); }, []);
+
   async function handleUpload(sid, file) {
     if (!file?.name.endsWith(".pdf")) { alert("Please upload a PDF"); return; }
     setUploading(true);
+    // eslint-disable-next-line react-hooks/purity
     const fn = `${profile.id.slice(0,8)}_${Date.now()}_${file.name}`;
     const { error } = await supabase.storage.from("course-materials").upload(`${sid}/${fn}`, file);
     if (error) alert("Upload failed: " + error.message);
@@ -160,17 +162,19 @@ function EducatorView({ supabase, profile }) {
   const [showAddMCQ, setShowAddMCQ] = useState(false);
   const [mcqForm, setMcqForm] = useState({ subject: "genetics", question: "", options: ["","","",""], answer: 0, xp: "20" });
 
-  useEffect(() => { loadNotes(); }, []);
-
   async function loadNotes() {
     const r = {};
     for (const sub of SUBJECTS) { const { data } = await supabase.storage.from("course-materials").list(sub.id); r[sub.id] = data || []; }
     setNotes(r);
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { loadNotes(); }, []);
+
   async function handleUpload(sid, file) {
     if (!file?.name.endsWith(".pdf")) { alert("Please upload a PDF"); return; }
     setUploading(true);
+    // eslint-disable-next-line react-hooks/purity
     const fn = `${profile.id.slice(0,8)}_${Date.now()}_${file.name}`;
     const { error } = await supabase.storage.from("course-materials").upload(`${sid}/${fn}`, file);
     if (error) alert("Upload failed: " + error.message);
