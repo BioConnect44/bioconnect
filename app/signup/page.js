@@ -1,6 +1,10 @@
 "use client";
 import { useState } from "react";
 import { createClient } from "@/utils/supabase/client";
+<<<<<<< HEAD
+=======
+import Link from "next/link";
+>>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
 
 export default function SignupPage() {
   const supabase = createClient();
@@ -42,7 +46,11 @@ export default function SignupPage() {
         </div>
         {/* Right */}
         <div style={S.formPanel}>
+<<<<<<< HEAD
           <a href="/" style={S.brand}>BioConnect</a>
+=======
+          <Link href="/" style={S.brand}>BioConnect</Link>
+>>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
           <h1 style={S.h1}>Create an Account</h1>
           <p style={S.sub}>Start your biotech journey today</p>
           {error && <div style={S.err}>{error}</div>}

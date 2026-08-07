@@ -32,10 +32,16 @@ export default function JobsPage() {
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({ title: "", company: "", location: "India", job_type: "Full-time", experience: "", salary: "", description: "", skills: "", apply_url: "", category: "Research" });
 
+<<<<<<< HEAD
   useEffect(() => { loadAll(); }, []);
 
   async function loadAll() {
     const { data: { user } } = await supabase.auth.getUser();
+=======
+  async function loadAll() {
+    const { data: { user } } = await supabase.auth.getUser();
+    // eslint-disable-next-line no-restricted-globals
+>>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
     if (!user) { window.location.href = "/login"; return; }
     const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
     setProfile(data);
@@ -52,6 +58,11 @@ export default function JobsPage() {
     setLoading(false);
   }
 
+<<<<<<< HEAD
+=======
+  useEffect(() => { loadAll(); }, []);
+
+>>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
   async function handleAddJob(e) {
     e.preventDefault(); setSaving(true);
     const skills = form.skills.split(",").map(s => s.trim()).filter(Boolean);

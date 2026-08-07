@@ -4,7 +4,11 @@
 
 BioConnect is a SaaS-based web platform designed to connect biotechnology students, educators, and researchers in a single ecosystem. It simplifies access to learning resources and research content while enabling academic collaboration.
 
+<<<<<<< HEAD
 > 🔗 **Live:** [bioconnect-lemon.vercel.app](https://bioconnect-lemon.vercel.app)
+=======
+> 🔗 **Live:** [bioconnect-lemon.vercel.app](https://bio-connect-phi.vercel.app/)
+>>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
 
 ---
 

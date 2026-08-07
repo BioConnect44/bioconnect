@@ -59,7 +59,11 @@ export default function BioMinutePage() {
     <AppShell active="/biominute">
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "24px" }}>
         <div>
+<<<<<<< HEAD
           <h1 style={{ fontSize: "24px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>Today's Bio-Minute ⏱</h1>
+=======
+          <h1 style={{ fontSize: "24px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>Today&apos;s Bio-Minute ⏱</h1>
+>>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
           <p style={{ fontSize: "13px", color: "#6B8A9A" }}>{art.date} • {art.readTime}</p>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "8px", background: "#FFF3E8", border: "1px solid #FFD4A3", borderRadius: "10px", padding: "8px 16px" }}>

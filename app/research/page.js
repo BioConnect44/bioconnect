@@ -13,6 +13,15 @@ export default function ResearchPage() {
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({ title: "", authors: "", abstract: "", topic: "", journal: "", published_date: "", paper_url: "" });
 
+<<<<<<< HEAD
+=======
+  async function loadPapers() {
+    const { data } = await supabase.from("research_papers").select("*, profiles(full_name)").order("created_at", { ascending: false });
+    setPapers(data || []);
+    if (data?.length > 0) setSelected(data[0]);
+  }
+
+>>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
   useEffect(() => {
     async function load() {
       const { data: { user } } = await supabase.auth.getUser();
@@ -24,11 +33,15 @@ export default function ResearchPage() {
     load();
   }, []);
 
+<<<<<<< HEAD
   async function loadPapers() {
     const { data } = await supabase.from("research_papers").select("*, profiles(full_name)").order("created_at", { ascending: false });
     setPapers(data || []);
     if (data?.length > 0) setSelected(data[0]);
   }
+=======
+
+>>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
 
   async function handleAdd(e) {
     e.preventDefault(); setSaving(true);

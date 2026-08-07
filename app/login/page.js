@@ -2,6 +2,10 @@
 import { useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
+<<<<<<< HEAD
+=======
+import Link from "next/link";
+>>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
 
 export default function LoginPage() {
   const supabase = createClient();
@@ -28,7 +32,11 @@ export default function LoginPage() {
         </div>
         {/* Right — form */}
         <div style={S.formPanel}>
+<<<<<<< HEAD
           <a href="/" style={S.brand}>BioConnect</a>
+=======
+          <Link href="/" style={S.brand}>BioConnect</Link>
+>>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
           <h1 style={S.h1}>Welcome Back!</h1>
           <p style={S.sub}>Enter your details below</p>
           {error && <div style={S.err}>{error}</div>}
@@ -48,7 +56,11 @@ export default function LoginPage() {
               Log in with Google
             </button>
           </form>
+<<<<<<< HEAD
           <p style={{ fontSize: "13px", color: "#6B8A9A", marginTop: "16px", textAlign: "center" }}>Don't have an account? <a href="/signup" style={{ color: "#0D9488", fontWeight: 600 }}>Sign Up</a></p>
+=======
+          <p style={{ fontSize: "13px", color: "#6B8A9A", marginTop: "16px", textAlign: "center" }}>Don&apos;t have an account? <Link href="/signup" style={{ color: "#0D9488", fontWeight: 600 }}>Sign Up</Link></p>
+>>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
         </div>
       </div>
     </main>
