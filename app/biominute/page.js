@@ -59,11 +59,7 @@ export default function BioMinutePage() {
     <AppShell active="/biominute">
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "24px" }}>
         <div>
-<<<<<<< HEAD
-          <h1 style={{ fontSize: "24px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>Today's Bio-Minute ⏱</h1>
-=======
           <h1 style={{ fontSize: "24px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>Today&apos;s Bio-Minute ⏱</h1>
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
           <p style={{ fontSize: "13px", color: "#6B8A9A" }}>{art.date} • {art.readTime}</p>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "8px", background: "#FFF3E8", border: "1px solid #FFD4A3", borderRadius: "10px", padding: "8px 16px" }}>
@@ -113,11 +109,13 @@ export default function BioMinutePage() {
               {art.quiz.options.map((opt, i) => (
                 <button key={i} onClick={() => !submitted && setSelected(i)} style={{
                   display: "flex", alignItems: "center", gap: "12px", padding: "13px 16px", borderRadius: "10px", border: "1.5px solid",
-                  cursor: submitted ? "default" : "pointer", fontFamily: "inherit", background:
-                    submitted ? (i === art.quiz.answer ? "#F0FCFB" : i === selected ? "#FEF2F2" : "#fff") :
-                    selected === i ? "#F0FCFB" : "#fff",
-                  borderColor: submitted ? (i === art.quiz.answer ? "#14B8A6" : i === selected ? "#EF4444" : "#E2EEF0") :
-                    selected === i ? "#14B8A6" : "#E2EEF0",
+                  cursor: submitted ? "default" : "pointer", fontFamily: "inherit",
+                  background: submitted
+                    ? (i === art.quiz.answer ? "#F0FCFB" : i === selected ? "#FEF2F2" : "#fff")
+                    : selected === i ? "#F0FCFB" : "#fff",
+                  borderColor: submitted
+                    ? (i === art.quiz.answer ? "#14B8A6" : i === selected ? "#EF4444" : "#E2EEF0")
+                    : selected === i ? "#14B8A6" : "#E2EEF0",
                   textAlign: "left",
                 }}>
                   <div style={{ width: 20, height: 20, borderRadius: "50%", border: `2px solid ${selected === i || (submitted && i === art.quiz.answer) ? "#14B8A6" : "#E2EEF0"}`, background: selected === i || (submitted && i === art.quiz.answer) ? "#14B8A6" : "#fff", flexShrink: 0 }}></div>
@@ -127,10 +125,14 @@ export default function BioMinutePage() {
             </div>
             {submitted ? (
               <div style={{ padding: "12px", borderRadius: "10px", background: correct ? "#F0FCFB" : "#FEF2F2", textAlign: "center" }}>
-                <p style={{ fontSize: "14px", fontWeight: 600, color: correct ? "#14B8A6" : "#EF4444" }}>{correct ? "✅ Correct! " + art.quiz.xp + " earned!" : "❌ Not quite. The answer is: " + art.quiz.options[art.quiz.answer]}</p>
+                <p style={{ fontSize: "14px", fontWeight: 600, color: correct ? "#14B8A6" : "#EF4444" }}>
+                  {correct ? `✅ Correct! ${art.quiz.xp} earned!` : `❌ Not quite. The answer is: ${art.quiz.options[art.quiz.answer]}`}
+                </p>
               </div>
             ) : (
-              <button onClick={handleSubmit} disabled={selected === null} style={{ width: "100%", padding: "13px", background: selected !== null ? "#14B8A6" : "#E2EEF0", color: "#fff", border: "none", borderRadius: "10px", fontSize: "15px", fontWeight: 600, cursor: selected !== null ? "pointer" : "default", fontFamily: "inherit" }}>Submit Answer</button>
+              <button onClick={handleSubmit} disabled={selected === null} style={{ width: "100%", padding: "13px", background: selected !== null ? "#14B8A6" : "#E2EEF0", color: "#fff", border: "none", borderRadius: "10px", fontSize: "15px", fontWeight: 600, cursor: selected !== null ? "pointer" : "default", fontFamily: "inherit" }}>
+                Submit Answer
+              </button>
             )}
           </div>
 
@@ -140,7 +142,10 @@ export default function BioMinutePage() {
             {art.missed.map((m, i) => (
               <div key={i} style={{ display: "flex", gap: "12px", padding: "10px 0", borderBottom: i < art.missed.length - 1 ? "1px solid #F0F7F8" : "none", cursor: "pointer" }}>
                 <img src={m.img} alt="" style={{ width: 52, height: 44, borderRadius: "8px", objectFit: "cover", flexShrink: 0 }}/>
-                <div><p style={{ fontSize: "11px", color: "#14B8A6", fontWeight: 600, marginBottom: "2px" }}>{m.date}</p><p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A", lineHeight: "1.4" }}>{m.title}</p></div>
+                <div>
+                  <p style={{ fontSize: "11px", color: "#14B8A6", fontWeight: 600, marginBottom: "2px" }}>{m.date}</p>
+                  <p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A", lineHeight: "1.4" }}>{m.title}</p>
+                </div>
               </div>
             ))}
           </div>
