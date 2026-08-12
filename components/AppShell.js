@@ -1,37 +1,34 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
-const NAV = [
-  { label: "Dashboard", href: "/dashboard", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg> },
-  { label: "Learning", href: "/learning", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> },
-  { label: "Research", href: "/research", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> },
-  { label: "Jobs", href: "/jobs", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> },
-<<<<<<< HEAD
-  { label: "Events", href: "/eventss", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> },
-=======
-  { label: "Events", href: "/events", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> },
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
-  { label: "Bio-Minute", href: "/biominute", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> },
-  { label: "Profile", href: "/profile", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
+const NAV_ITEMS = [
+  { href: "/dashboard", icon: "🏠", label: "Dashboard" },
+  { href: "/learning", icon: "📚", label: "Learning" },
+  { href: "/research", icon: "🔬", label: "Research" },
+  { href: "/jobs", icon: "💼", label: "Jobs" },
+  { href: "/eventss", icon: "📅", label: "Events" },
+  { href: "/biominute", icon: "⚡", label: "Bio-Minute" },
+  { href: "/profile", icon: "👤", label: "Profile" },
 ];
 
 export default function AppShell({ children, active }) {
   const supabase = createClient();
   const router = useRouter();
+  const pathname = usePathname();
   const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   useEffect(() => {
-    async function load() {
+    async function loadProfile() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) { router.push("/login"); return; }
       const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
       setProfile(data);
-      setLoading(false);
     }
-    load();
+    loadProfile();
   }, []);
 
   async function handleLogout() {
@@ -39,125 +36,103 @@ export default function AppShell({ children, active }) {
     router.push("/login");
   }
 
+  const currentPath = active || pathname;
+
   return (
-<<<<<<< HEAD
-    <div style={{ display: "flex", minHeight: "100vh", background: "#EEF7F7", fontFamily: "'Poppins', sans-serif" }}>
-=======
-    <div className="shell-wrapper" style={{ display: "flex", height: "100vh", background: "#132D35", fontFamily: "'Poppins', sans-serif" }}>
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
-      <style>{SHELL_CSS}</style>
+    <div style={{ display: "flex", minHeight: "100vh", background: "#F0F7F8", fontFamily: "'Poppins', sans-serif" }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F0F7F8; }
+        ::-webkit-scrollbar-thumb { background: #C0D8DC; border-radius: 3px; }
+        .nav-item { 
+          display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+          border-radius: 10px; text-decoration: none; font-size: 14px; font-weight: 500;
+          transition: all 0.18s ease; cursor: pointer; border: none; background: none;
+          width: 100%; text-align: left; font-family: 'Poppins', sans-serif;
+        }
+        .nav-item:hover { background: rgba(20,184,166,0.08); color: #14B8A6; transform: translateX(2px); }
+        .nav-item.active { background: rgba(20,184,166,0.12); color: #14B8A6; font-weight: 600; }
+        .nav-item.active .nav-dot { background: #14B8A6; }
+        .logout-btn {
+          display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+          border-radius: 10px; font-size: 14px; font-weight: 500; cursor: pointer;
+          border: none; background: none; width: 100%; text-align: left;
+          color: #EF4444; transition: all 0.18s; font-family: 'Poppins', sans-serif;
+        }
+        .logout-btn:hover { background: #FEF2F2; }
+        .main-content { flex: 1; overflow-y: auto; padding: 28px 32px; }
+        @media (max-width: 768px) {
+          .sidebar { display: none !important; }
+          .main-content { padding: 16px; }
+        }
+      `}</style>
 
-      {/* Sidebar */}
-      <aside className="shell-sidebar">
-        <div>
-<<<<<<< HEAD
-          <a href="/" className="shell-logo">
-=======
-          <a href="/dashboard" className="shell-logo">
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
-            <span style={{ color: "#14B8A6", fontWeight: 700, fontSize: "20px", letterSpacing: "-0.5px" }}>BioConnect</span>
-          </a>
-          <nav className="shell-nav">
-            {NAV.map((item) => {
-              const isActive = active === item.href || (typeof window !== "undefined" && window.location.pathname === item.href);
-              return (
-                <a key={item.label} href={item.href} className={`shell-nav-item ${isActive ? "shell-nav-active" : ""}`}>
-                  <span className="shell-nav-icon">{item.icon}</span>
-                  <span>{item.label}</span>
-                </a>
-              );
-            })}
-          </nav>
+      {/* SIDEBAR */}
+      <div className="sidebar" style={{
+        width: sidebarOpen ? 240 : 72, flexShrink: 0,
+        background: "#fff", borderRight: "1px solid #E2EEF0",
+        display: "flex", flexDirection: "column",
+        transition: "width 0.25s ease", overflow: "hidden",
+        position: "sticky", top: 0, height: "100vh",
+      }}>
+        {/* Logo */}
+        <div style={{ padding: "22px 16px 16px", borderBottom: "1px solid #F0F7F8", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          {sidebarOpen && (
+            <span style={{ fontSize: "18px", fontWeight: 800, color: "#14B8A6", letterSpacing: "-0.3px" }}>BioConnect</span>
+          )}
+          <button onClick={() => setSidebarOpen(!sidebarOpen)} style={{ background: "none", border: "none", cursor: "pointer", padding: 6, borderRadius: 8, color: "#6B8A9A", fontSize: 18, lineHeight: 1 }}>
+            {sidebarOpen ? "←" : "→"}
+          </button>
         </div>
-        <button onClick={handleLogout} className="shell-logout">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-          Logout
-        </button>
-      </aside>
 
-      {/* Main */}
-      <main className="shell-main">
-        {loading ? (
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100vh", color: "#6B8A9A", fontSize: "16px" }}>Loading...</div>
-        ) : (
-          typeof children === "function" ? children({ profile, supabase }) : children
-        )}
+        {/* Nav items */}
+        <nav style={{ flex: 1, padding: "12px 10px", display: "flex", flexDirection: "column", gap: 2, overflowY: "auto" }}>
+          {NAV_ITEMS.map(item => {
+            const isActive = currentPath === item.href;
+            return (
+              <a key={item.href} href={item.href} className={`nav-item${isActive ? " active" : ""}`}
+                style={{ color: isActive ? "#14B8A6" : "#4B5563", whiteSpace: "nowrap" }}>
+                <span style={{ fontSize: 20, flexShrink: 0 }}>{item.icon}</span>
+                {sidebarOpen && <span>{item.label}</span>}
+                {isActive && sidebarOpen && (
+                  <span style={{ marginLeft: "auto", width: 6, height: 6, borderRadius: "50%", background: "#14B8A6" }} />
+                )}
+              </a>
+            );
+          })}
+        </nav>
+
+        {/* Profile + logout */}
+        <div style={{ padding: "12px 10px", borderTop: "1px solid #F0F7F8" }}>
+          {profile && sidebarOpen && (
+            <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", marginBottom: 4, background: "#F8FCFC", borderRadius: 10 }}>
+              <div style={{ width: 34, height: 34, borderRadius: "50%", background: "linear-gradient(135deg,#14B8A6,#0D9488)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 13, fontWeight: 700, flexShrink: 0 }}>
+                {profile.full_name?.charAt(0)?.toUpperCase() || "U"}
+              </div>
+              <div style={{ overflow: "hidden" }}>
+                <p style={{ fontSize: 13, fontWeight: 600, color: "#1B2B3A", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{profile.full_name}</p>
+                <p style={{ fontSize: 11, color: "#9CA3AF", textTransform: "capitalize" }}>{profile.role}</p>
+              </div>
+            </div>
+          )}
+          {!sidebarOpen && profile && (
+            <div style={{ width: 34, height: 34, borderRadius: "50%", background: "linear-gradient(135deg,#14B8A6,#0D9488)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 13, fontWeight: 700, margin: "0 auto 6px" }}>
+              {profile.full_name?.charAt(0)?.toUpperCase() || "U"}
+            </div>
+          )}
+          <button className="logout-btn" onClick={handleLogout}>
+            <span style={{ fontSize: 18, flexShrink: 0 }}>🚪</span>
+            {sidebarOpen && <span>Log out</span>}
+          </button>
+        </div>
+      </div>
+
+      {/* MAIN CONTENT */}
+      <main className="main-content">
+        {children}
       </main>
     </div>
   );
 }
-
-export { NAV };
-
-const SHELL_CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-<<<<<<< HEAD
-body { background: #EEF7F7; }
-a { text-decoration: none; color: inherit; }
-
-.shell-sidebar {
-  width: 200px; min-height: 100vh; background: #132D35;
-  display: flex; flex-direction: column; justify-content: space-between;
-  padding: 24px 12px; position: fixed; top: 0; left: 0; bottom: 0; z-index: 50;
-}
-.shell-logo {
-  display: block; padding: 4px 12px; margin-bottom: 32px;
-}
-.shell-nav { display: flex; flex-direction: column; gap: 2px; }
-.shell-nav-item {
-  display: flex; align-items: center; gap: 10px; padding: 10px 12px;
-  border-radius: 10px; font-size: 13.5px; color: rgba(255,255,255,0.55);
-  transition: all 0.15s; font-weight: 400; cursor: pointer;
-=======
-body { background: #132D35; }
-a { text-decoration: none; color: inherit; }
-
-.shell-sidebar {
-  width: 220px; display: flex; flex-direction: column; justify-content: space-between;
-  padding: 24px 12px; position: relative; color: #fff;
-}
-.shell-logo {
-  display: block; padding: 4px 12px; margin-bottom: 40px;
-}
-.shell-nav { display: flex; flex-direction: column; gap: 8px; }
-.shell-nav-item {
-  display: flex; align-items: center; gap: 12px; padding: 12px 16px;
-  border-radius: 12px; font-size: 14px; color: rgba(255,255,255,0.55);
-  transition: all 0.15s; font-weight: 500; cursor: pointer;
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
-}
-.shell-nav-item:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.06); }
-.shell-nav-active {
-  color: #fff !important; background: rgba(20,184,166,0.18) !important;
-<<<<<<< HEAD
-  font-weight: 500;
-=======
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
-}
-.shell-nav-active .shell-nav-icon { color: #14B8A6; }
-.shell-nav-icon { opacity: 0.7; display: flex; align-items: center; }
-.shell-nav-active .shell-nav-icon { opacity: 1; }
-.shell-logout {
-<<<<<<< HEAD
-  display: flex; align-items: center; gap: 10px; padding: 10px 12px;
-  border-radius: 10px; font-size: 13.5px; color: #EF4444;
-=======
-  display: flex; align-items: center; gap: 10px; padding: 12px 16px;
-  border-radius: 12px; font-size: 14px; color: #EF4444; font-weight: 500;
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
-  background: none; border: none; cursor: pointer; width: 100%; font-family: inherit;
-  transition: all 0.15s;
-}
-.shell-logout:hover { background: rgba(239,68,68,0.1); }
-.shell-main {
-<<<<<<< HEAD
-  margin-left: 200px; flex: 1; padding: 32px 36px;
-  min-height: 100vh; overflow-y: auto;
-=======
-  flex: 1; padding: 40px 48px;
-  background: #F0FDF9;
-  height: 100vh; overflow-y: auto;
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
-}
-`;
