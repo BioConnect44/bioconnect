@@ -8,34 +8,6 @@ function StudentDashboard({ profile }) {
   return (
     <div>
       {/* Hero banner */}
-<<<<<<< HEAD
-      <div style={{ background: "linear-gradient(135deg, #FFF8F0 0%, #FFF3E8 100%)", borderRadius: "20px", padding: "32px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px", border: "1px solid #FFE8CC" }}>
-        <div>
-          <h1 style={{ fontSize: "28px", fontWeight: 700, color: "#1B2B3A", marginBottom: "6px" }}>Welcome Back, {profile?.full_name?.split(" ")[0]}!</h1>
-          <p style={{ fontSize: "14px", color: "#6B8A9A", marginBottom: "20px" }}>Your academic journey continues here</p>
-          <a href="/profile" style={{ display: "inline-block", background: "#1B2B3A", color: "#fff", padding: "10px 22px", borderRadius: "10px", fontSize: "14px", fontWeight: 500 }}>View Profile</a>
-        </div>
-        <div style={{ fontSize: "80px", opacity: 0.8 }}>🔬</div>
-      </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "20px", marginBottom: "24px" }}>
-        {/* Learning Progress */}
-        <div style={C.card}>
-          <h3 style={C.cardTitle}>Learning Progress</h3>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "16px 0" }}>
-            <div style={{ position: "relative", width: 100, height: 100 }}>
-              <svg width="100" height="100" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" fill="none" stroke="#E2EEF0" strokeWidth="8"/>
-                <circle cx="50" cy="50" r="40" fill="none" stroke="#14B8A6" strokeWidth="8" strokeLinecap="round" strokeDasharray={`${2 * Math.PI * 40 * 0.68} ${2 * Math.PI * 40 * 0.32}`} strokeDashoffset={2 * Math.PI * 40 * 0.25} transform="rotate(-90 50 50)"/>
-              </svg>
-              <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", fontWeight: 700, color: "#1B2B3A" }}>68%</div>
-            </div>
-          </div>
-          {[{ label: "Biochemistry", pct: 80 }, { label: "Genetics", pct: 55 }].map(s => (
-            <div key={s.label} style={{ marginBottom: "8px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#6B8A9A", marginBottom: "4px" }}><span>{s.label}</span></div>
-              <div style={{ height: 4, background: "#E2EEF0", borderRadius: "4px" }}><div style={{ height: 4, width: `${s.pct}%`, background: "#14B8A6", borderRadius: "4px" }}></div></div>
-=======
       <div style={{ background: "#FDF6E3", borderRadius: "24px", padding: "40px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px", position: "relative" }}>
         <div>
           <h1 style={{ fontSize: "32px", fontWeight: 800, color: "#132D35", marginBottom: "8px" }}>Welcome Back, {profile?.full_name?.split(" ")[0] || "Name"}!</h1>
@@ -64,24 +36,11 @@ function StudentDashboard({ profile }) {
             <div key={s.label} style={{ marginBottom: i === 0 ? "16px" : "0" }}>
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", fontWeight: 700, color: "#132D35", marginBottom: "8px" }}><span>{s.label}</span></div>
               <div style={{ height: 6, background: "#E2EEF0", borderRadius: "6px" }}><div style={{ height: 6, width: `${s.pct}%`, background: "#14B8A6", borderRadius: "6px" }}></div></div>
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
             </div>
           ))}
         </div>
 
         {/* Quick Updates */}
-<<<<<<< HEAD
-        <div style={C.card}>
-          <h3 style={C.cardTitle}>Quick Updates</h3>
-          {[
-            { title: "ECoRI Enzyme Guide", time: "2-mark summary uploaded • 1h ago" },
-            { title: "Protein Purification", time: "5-mark detailed notes • 3h ago" },
-            { title: "Microbial Growth Curves", time: "One-paragraph revision • 1d ago" },
-          ].map((u, i) => (
-            <div key={i} style={{ display: "flex", gap: "12px", padding: "10px 0", borderBottom: i < 2 ? "1px solid #F0F7F8" : "none" }}>
-              <div style={{ width: 36, height: 36, background: "#EEF7F7", borderRadius: "8px", flexShrink: 0 }}></div>
-              <div><p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A" }}>{u.title}</p><p style={{ fontSize: "12px", color: "#9CA3AF" }}>{u.time}</p></div>
-=======
         <div style={{ background: "#fff", borderRadius: "16px", padding: "32px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)" }}>
           <h3 style={{ ...C.cardTitle, marginBottom: "24px", fontSize: "16px", color: "#132D35" }}>Quick Updates</h3>
           {[
@@ -92,32 +51,11 @@ function StudentDashboard({ profile }) {
             <div key={i} style={{ display: "flex", gap: "16px", marginBottom: "24px" }}>
               <div style={{ width: 40, height: 40, background: "#E0F2FE", borderRadius: "8px", flexShrink: 0 }}></div>
               <div><p style={{ fontSize: "14px", fontWeight: 700, color: "#132D35", marginBottom: "4px" }}>{u.title}</p><p style={{ fontSize: "12px", color: "#9CA3AF" }}>{u.time}</p></div>
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
             </div>
           ))}
         </div>
 
         {/* Upcoming Events */}
-<<<<<<< HEAD
-        <div style={C.card}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-            <h3 style={C.cardTitle}>Upcoming Events</h3>
-            <a href="/eventss" style={{ fontSize: "12px", color: "#14B8A6", fontWeight: 500 }}>View full calendar →</a>
-          </div>
-          {[
-            { month: "AUG", day: "14", title: "Annual Biotech Symposium", loc: "Main Auditorium • 10:00 AM" },
-            { month: "SEP", day: "05", title: "National Case Competition", loc: "Group-stage format" },
-            { month: "SEP", day: "12", title: "Lab Skills Workshop", loc: "Registration closes tomorrow", urgent: true },
-          ].map((ev, i) => (
-            <div key={i} style={{ display: "flex", gap: "12px", padding: "8px 0", borderBottom: i < 2 ? "1px solid #F0F7F8" : "none" }}>
-              <div style={{ width: 40, textAlign: "center", flexShrink: 0 }}>
-                <div style={{ fontSize: "10px", color: "#14B8A6", fontWeight: 600, textTransform: "uppercase" }}>{ev.month}</div>
-                <div style={{ fontSize: "20px", fontWeight: 700, color: "#1B2B3A" }}>{ev.day}</div>
-              </div>
-              <div><p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A" }}>{ev.title}</p><p style={{ fontSize: "12px", color: ev.urgent ? "#F97316" : "#9CA3AF" }}>{ev.loc}</p></div>
-            </div>
-          ))}
-=======
         <div style={{ background: "#fff", borderRadius: "16px", padding: "32px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)" }}>
           <h3 style={{ ...C.cardTitle, marginBottom: "24px", fontSize: "16px", color: "#132D35" }}>Upcoming Events</h3>
           {[
@@ -134,34 +72,10 @@ function StudentDashboard({ profile }) {
             </div>
           ))}
           <a href="/events" style={{ display: "block", textAlign: "right", fontSize: "13px", color: "#14B8A6", fontWeight: 600, marginTop: "24px" }}>View full calendar →</a>
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
         </div>
       </div>
 
       {/* Daily Bio-Challenge */}
-<<<<<<< HEAD
-      <div style={{ background: "#fff", borderRadius: "16px", padding: "24px 28px", border: "1px solid #E2EEF0" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <span style={{ fontSize: "20px" }}>🎯</span>
-            <span style={{ fontSize: "16px", fontWeight: 600, color: "#1B2B3A" }}>Daily Bio-Challenge</span>
-            <span style={{ fontSize: "12px", background: "#FFF3E8", color: "#F97316", padding: "3px 10px", borderRadius: "100px", fontWeight: 500 }}>Expires in 4h</span>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ fontSize: "14px", color: "#1B2B3A", fontWeight: 600 }}>Current Streak 🔥 4 Days</span>
-            <div style={{ display: "flex", gap: "4px" }}>
-              {["M","T","W","T","F","S","S"].map((d, i) => (
-                <div key={i} style={{ width: 28, height: 28, borderRadius: "50%", background: i < 4 ? "#14B8A6" : "#E2EEF0", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 600, color: i < 4 ? "#fff" : "#6B8A9A" }}>{i < 4 ? "✓" : d}</div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <p style={{ fontSize: "14px", color: "#1B2B3A", margin: "16px 0" }}>What type of DNA overhang is produced by the EcoRI restriction enzyme?</p>
-        <div style={{ display: "flex", gap: "12px" }}>
-          {["5' Sticky", "3' Sticky", "Blunt End"].map((opt) => (
-            <button key={opt} style={{ padding: "10px 24px", border: "1.5px solid #E2EEF0", borderRadius: "10px", background: "#fff", fontSize: "14px", fontWeight: 500, color: "#1B2B3A", cursor: "pointer", fontFamily: "inherit" }}>{opt}</button>
-          ))}
-=======
       <div style={{ background: "#fff", borderRadius: "16px", padding: "32px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", display: "flex", flexDirection: "column", gap: "24px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -191,7 +105,6 @@ function StudentDashboard({ profile }) {
                </div>
              ))}
            </div>
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
         </div>
       </div>
     </div>
@@ -208,24 +121,15 @@ function EducatorDashboard({ profile }) {
   ];
   return (
     <div>
-<<<<<<< HEAD
-      <div style={{ background: "linear-gradient(135deg, #F0FDF9 0%, #E8F9F5 100%)", borderRadius: "20px", padding: "32px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px", border: "1px solid #B2EDE1" }}>
-        <div>
-=======
       <div style={{ background: "linear-gradient(135deg, #F0FDF9 0%, #E8F9F5 100%)", borderRadius: "20px", padding: "32px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px", border: "1px solid #B2EDE1", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "relative", zIndex: 2 }}>
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
           <h1 style={{ fontSize: "28px", fontWeight: 700, color: "#1B2B3A", marginBottom: "6px" }}>Welcome Back, Professor!</h1>
           <p style={{ fontSize: "14px", color: "#6B8A9A", marginBottom: "20px" }}>You have 24 new submissions to grade across 3 active courses.</p>
           <a href="/profile" style={{ display: "inline-block", background: "#1B2B3A", color: "#fff", padding: "10px 22px", borderRadius: "10px", fontSize: "14px", fontWeight: 500 }}>View Profile</a>
         </div>
-<<<<<<< HEAD
-        <div style={{ fontSize: "80px", opacity: 0.8 }}>📚</div>
-=======
         <div style={{ position: "absolute", right: "0px", top: "50%", transform: "translateY(-50%)", width: "280px", height: "280px", mixBlendMode: "multiply", zIndex: 1 }}>
           <img src="/educator-illustration.png" alt="Educator Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
         </div>
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr", gap: "20px" }}>
@@ -314,24 +218,15 @@ function ResearcherDashboard({ profile, supabase }) {
 
   return (
     <div>
-<<<<<<< HEAD
-      <div style={{ background: "linear-gradient(135deg, #F0FDF9 0%, #EBF9F6 100%)", borderRadius: "20px", padding: "32px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px", border: "1px solid #B2EDE1" }}>
-        <div>
-=======
       <div style={{ background: "linear-gradient(135deg, #F0FDF9 0%, #EBF9F6 100%)", borderRadius: "20px", padding: "32px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px", border: "1px solid #B2EDE1", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "relative", zIndex: 2 }}>
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
           <h1 style={{ fontSize: "28px", fontWeight: 700, color: "#1B2B3A", marginBottom: "6px" }}>Welcome Back, Dr. {profile?.full_name?.split(" ")[0]}!</h1>
           <p style={{ fontSize: "14px", color: "#6B8A9A", marginBottom: "20px" }}>Continue your Research Journey here</p>
           <a href="/profile" style={{ display: "inline-block", background: "#1B2B3A", color: "#fff", padding: "10px 22px", borderRadius: "10px", fontSize: "14px", fontWeight: 500 }}>View Profile</a>
         </div>
-<<<<<<< HEAD
-        <div style={{ fontSize: "80px", opacity: 0.8 }}>🧬</div>
-=======
         <div style={{ position: "absolute", right: "-10px", top: "50%", transform: "translateY(-50%)", width: "320px", height: "320px", mixBlendMode: "multiply", zIndex: 1 }}>
           <img src="/researcher-illustration.png" alt="Researcher Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
         </div>
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr", gap: "20px" }}>
