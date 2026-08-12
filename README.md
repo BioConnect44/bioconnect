@@ -4,11 +4,7 @@
 
 BioConnect is a SaaS-based web platform designed to connect biotechnology students, educators, and researchers in a single ecosystem. It simplifies access to learning resources and research content while enabling academic collaboration.
 
-<<<<<<< HEAD
-> 🔗 **Live:** [bioconnect-lemon.vercel.app](https://bioconnect-lemon.vercel.app)
-=======
 > 🔗 **Live:** [bioconnect-lemon.vercel.app](https://bio-connect-phi.vercel.app/)
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
 
 ---
 
@@ -26,14 +22,14 @@ BioConnect is a SaaS-based web platform designed to connect biotechnology studen
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | Next.js 16, React 19, Tailwind CSS 4 |
-| Backend & Database | Supabase (PostgreSQL) |
-| Authentication | Supabase Auth (Email/Password) |
-| File Storage | Supabase Storage |
-| Hosting | Vercel |
-| Version Control | GitHub |
+| Layer              | Technology                           |
+| ------------------ | ------------------------------------ |
+| Frontend           | Next.js 16, React 19, Tailwind CSS 4 |
+| Backend & Database | Supabase (PostgreSQL)                |
+| Authentication     | Supabase Auth (Email/Password)       |
+| File Storage       | Supabase Storage                     |
+| Hosting            | Vercel                               |
+| Version Control    | GitHub                               |
 
 ---
 
@@ -76,17 +72,20 @@ bioconnect/
 ### Setup
 
 1. **Clone the repo**
+
    ```bash
    git clone https://github.com/Neer0212/bioconnect.git
    cd bioconnect
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Create `.env.local`** in the project root
+
    ```
    NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
@@ -95,6 +94,7 @@ bioconnect/
 4. **Run the database migration** — Copy the SQL schema into Supabase SQL Editor and run it
 
 5. **Start the dev server**
+
    ```bash
    npm run dev
    ```
@@ -105,16 +105,16 @@ bioconnect/
 
 ## Database Schema
 
-| Table | Purpose |
-|-------|---------|
-| profiles | User details, role, university, bio |
-| research_papers | Scientific publications with metadata |
-| events | Conferences, webinars, workshops |
-| event_registrations | User RSVP tracking |
-| courses | Learning resources created by educators |
-| enrollments | Student course enrollment + progress |
-| saved_papers | Bookmarked research papers |
-| connections | User follow/network relationships |
+| Table               | Purpose                                 |
+| ------------------- | --------------------------------------- |
+| profiles            | User details, role, university, bio     |
+| research_papers     | Scientific publications with metadata   |
+| events              | Conferences, webinars, workshops        |
+| event_registrations | User RSVP tracking                      |
+| courses             | Learning resources created by educators |
+| enrollments         | Student course enrollment + progress    |
+| saved_papers        | Bookmarked research papers              |
+| connections         | User follow/network relationships       |
 
 All tables have Row Level Security (RLS) enabled.
 

@@ -40,10 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-<<<<<<< HEAD
-*.db
-=======
 *.db
 .vercel
 .env*
->>>>>>> fa1d966cb33a4fbd1b30a38ad7981ae6c5ca9a1c
