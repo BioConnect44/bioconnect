@@ -13,12 +13,12 @@ const STATS = [
 ];
 
 const FEATURES = [
-  { icon: "📗", title: "Master your syllabus", desc: "High-yield, unit-wise study guides, 5-mark question banks, Previous year MCQs." },
-  { icon: "🧬", title: "Research Papers", desc: "AI-summarized PubMed papers and quick-reference compliance checklists." },
-  { icon: "💼", title: "Jobs & Internships", desc: "Real-time vacancies and fresher internships from top biotech firms." },
-  { icon: "👤", title: "Role-Based Profiles", desc: "Tailored dashboards and experiences for students, educators, and researchers." },
-  { icon: "📅", title: "Events", desc: "Stay updated on conferences, webinars, and networking events." },
-  { icon: "⚡", title: "The Daily Bio-Minute", desc: "Stay ahead of the curve with a curated 2-minute morning summary." },
+  { icon: "", title: "Master your syllabus", desc: "High-yield, unit-wise study guides, 5-mark question banks, Previous year MCQs." },
+  { icon: "", title: "Research Papers", desc: "AI-summarized PubMed papers and quick-reference compliance checklists." },
+  { icon: "", title: "Jobs & Internships", desc: "Real-time vacancies and fresher internships from top biotech firms." },
+  { icon: "", title: "Role-Based Profiles", desc: "Tailored dashboards and experiences for students, educators, and researchers." },
+  { icon: "", title: "Events", desc: "Stay updated on conferences, webinars, and networking events." },
+  { icon: "", title: "The Daily Bio-Minute", desc: "Stay ahead of the curve with a curated 2-minute morning summary." },
 ];
 
 const ROLES = [
