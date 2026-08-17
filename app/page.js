@@ -174,8 +174,8 @@ export default function LandingPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "60px 40px 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
           <div>
             <FadeUp delay={0}>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.7)", border: "1px solid #d0e8eb", borderRadius: 999, padding: "6px 14px", fontSize: "0.82rem", color: "#1a2b3c", fontWeight: 500, marginBottom: 20 }}>
-                <span className="badge-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "#2AB4B4", display: "inline-block" }} />
+              <div className="live-badge">
+                <span className="live-dot" />
                 India&apos;s Biotech Academic Platform
               </div>
             </FadeUp>
