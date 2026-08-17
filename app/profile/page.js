@@ -388,35 +388,44 @@ export default function ProfilePage() {
         ))}
       </div>
 
-      {/* Tabs */}
+      {/* Tabs - Curved Rectangles */}
       <div
         style={{
-          display: "flex",
-          gap: "0",
-          borderBottom: "2px solid #E2EEF0",
+          display: "inline-flex",
+          gap: "8px",
+          background: "#F0F7F8",
+          borderRadius: "14px",
+          padding: "6px",
+          border: "1px solid #E2EEF0",
           marginBottom: "24px",
         }}
       >
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`tab-btn ${activeTab === tab ? "active" : ""}`}
-            style={{
-              padding: "12px 24px",
-              fontSize: "14px",
-              fontWeight: activeTab === tab ? 600 : 400,
-              color: activeTab === tab ? rc : "#9CA3AF",
-              background: "none",
-              borderBottom:
-                activeTab === tab ? `2px solid ${rc}` : "2px solid transparent",
-              marginBottom: "-2px",
-              textTransform: "capitalize",
-            }}
-          >
-            {tab}
-          </button>
-        ))}
+        {tabs.map((tab) => {
+          const isActive = activeTab === tab;
+          return (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              style={{
+                padding: "10px 24px",
+                fontSize: "14px",
+                fontWeight: isActive ? 600 : 500,
+                color: isActive ? rc : "#6B8A9A",
+                background: isActive ? "#ffffff" : "transparent",
+                borderRadius: "10px",
+                border: isActive ? "1px solid #E2EEF0" : "1px solid transparent",
+                boxShadow: isActive ? "0 4px 14px rgba(0,0,0,0.06)" : "none",
+                cursor: "pointer",
+                fontFamily: "inherit",
+                transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+                textTransform: "capitalize",
+                outline: "none",
+              }}
+            >
+              {tab}
+            </button>
+          );
+        })}
       </div>
 
       {/* Tab content */}

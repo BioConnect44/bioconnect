@@ -139,10 +139,10 @@ export default function EventsPage() {
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "24px" }}>
         <div>
-          {/* Tabs */}
-          <div style={{ display: "flex", gap: "4px", marginBottom: "20px", background: "#fff", borderRadius: "12px", padding: "4px", border: "1px solid #E2EEF0", width: "fit-content" }}>
+          {/* Tabs - Curved Rectangles */}
+          <div style={{ display: "inline-flex", gap: "6px", marginBottom: "20px", background: "#F0F7F8", borderRadius: "14px", padding: "6px", border: "1px solid #E2EEF0" }}>
             {["upcoming", "past"].map(f => (
-              <button key={f} onClick={() => setFilter(f)} style={{ padding: "8px 20px", borderRadius: "8px", fontSize: "14px", fontWeight: 500, border: "none", cursor: "pointer", fontFamily: "inherit", background: filter === f ? "#1B2B3A" : "transparent", color: filter === f ? "#fff" : "#6B8A9A" }}>{f.charAt(0).toUpperCase() + f.slice(1)}</button>
+              <button key={f} onClick={() => setFilter(f)} style={{ padding: "10px 22px", borderRadius: "10px", fontSize: "14px", fontWeight: filter === f ? 600 : 500, border: filter === f ? "1px solid #E2EEF0" : "1px solid transparent", cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)", background: filter === f ? "#ffffff" : "transparent", color: filter === f ? "#14B8A6" : "#6B8A9A", boxShadow: filter === f ? "0 4px 14px rgba(0,0,0,0.06)" : "none" }}>{f.charAt(0).toUpperCase() + f.slice(1)}</button>
             ))}
           </div>
 
