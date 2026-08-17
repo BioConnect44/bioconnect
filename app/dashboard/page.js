@@ -19,20 +19,84 @@ function StudentDashboard({ profile }) {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "24px", marginBottom: "32px" }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          gap: "24px",
+          marginBottom: "32px",
+        }}
+      >
         {/* Learning Progress */}
-        <div style={{ background: "#fff", borderRadius: "16px", padding: "32px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)" }}>
-          <h3 style={{ ...C.cardTitle, marginBottom: "24px", fontSize: "16px", color: "#132D35" }}>Learning Progress</h3>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "32px 0 40px" }}>
+        <div
+          style={{
+            background: "#fff",
+            borderRadius: "16px",
+            padding: "32px",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.03)",
+          }}
+        >
+          <h3
+            style={{
+              ...C.cardTitle,
+              marginBottom: "24px",
+              fontSize: "16px",
+              color: "#132D35",
+            }}
+          >
+            Learning Progress
+          </h3>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "32px 0 40px",
+            }}
+          >
             <div style={{ position: "relative", width: 120, height: 120 }}>
               <svg width="120" height="120" viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="48" fill="none" stroke="#E2EEF0" strokeWidth="12"/>
-                <circle cx="60" cy="60" r="48" fill="none" stroke="#14B8A6" strokeWidth="12" strokeLinecap="round" strokeDasharray={`${2 * Math.PI * 48 * 0.68} ${2 * Math.PI * 48 * 0.32}`} strokeDashoffset={2 * Math.PI * 48 * 0.25} transform="rotate(-90 60 60)"/>
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="48"
+                  fill="none"
+                  stroke="#E2EEF0"
+                  strokeWidth="12"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="48"
+                  fill="none"
+                  stroke="#14B8A6"
+                  strokeWidth="12"
+                  strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 48 * 0.68} ${2 * Math.PI * 48 * 0.32}`}
+                  strokeDashoffset={2 * Math.PI * 48 * 0.25}
+                  transform="rotate(-90 60 60)"
+                />
               </svg>
-              <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "24px", fontWeight: 800, color: "#132D35" }}>68%</div>
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "24px",
+                  fontWeight: 800,
+                  color: "#132D35",
+                }}
+              >
+                68%
+              </div>
             </div>
           </div>
-          {[{ label: "Biochemistry", pct: 80 }, { label: "Genetics", pct: 55 }].map((s, i) => (
+          {[
+            { label: "Biochemistry", pct: 80 },
+            { label: "Genetics", pct: 55 },
+          ].map((s, i) => (
             <div key={s.label} style={{ marginBottom: i === 0 ? "16px" : "0" }}>
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", fontWeight: 700, color: "#132D35", marginBottom: "8px" }}><span>{s.label}</span></div>
               <div style={{ height: 6, background: "#E2EEF0", borderRadius: "6px" }}><div style={{ height: 6, width: `${s.pct}%`, background: "#14B8A6", borderRadius: "6px" }}></div></div>
@@ -80,11 +144,30 @@ function StudentDashboard({ profile }) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
             <span style={{ fontSize: "24px" }}>🎯</span>
-            <span style={{ fontSize: "18px", fontWeight: 800, color: "#132D35" }}>Daily Bio-Challenge</span>
-            <span style={{ fontSize: "12px", background: "#FFF3E8", color: "#F97316", padding: "4px 12px", borderRadius: "100px", fontWeight: 700 }}>Expires in 4h</span>
+            <span
+              style={{ fontSize: "18px", fontWeight: 800, color: "#132D35" }}
+            >
+              Daily Bio-Challenge
+            </span>
+            <span
+              style={{
+                fontSize: "12px",
+                background: "#FFF3E8",
+                color: "#F97316",
+                padding: "4px 12px",
+                borderRadius: "100px",
+                fontWeight: 700,
+              }}
+            >
+              Expires in 4h
+            </span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <span style={{ fontSize: "15px", color: "#132D35", fontWeight: 800 }}>Current Streak 🔥 4 Days</span>
+            <span
+              style={{ fontSize: "15px", color: "#132D35", fontWeight: 800 }}
+            >
+              Current Streak 🔥 4 Days
+            </span>
           </div>
         </div>
 
@@ -114,10 +197,34 @@ function StudentDashboard({ profile }) {
 /* ── Educator Dashboard ── */
 function EducatorDashboard({ profile }) {
   const submissions = [
-    { initials: "KT", name: "Krish Topiwala", task: "Lab Report 3 - CRISPR Editing", status: "Due Today", statusColor: "#F97316" },
-    { initials: "NM", name: "Neer Marvaniya", task: "Bioinformatics Report", status: "Submitted 1d ago", statusColor: "#6B8A9A" },
-    { initials: "VP", name: "Veer Parsaniya", task: "Microbiology PYQ Quiz", status: "Submitted 2d ago", statusColor: "#6B8A9A" },
-    { initials: "HM", name: "Hemang Mistry", task: "Genetic Engineering Quiz", status: "Due Today", statusColor: "#F97316" },
+    {
+      initials: "KT",
+      name: "Krish Topiwala",
+      task: "Lab Report 3 - CRISPR Editing",
+      status: "Due Today",
+      statusColor: "#F97316",
+    },
+    {
+      initials: "NM",
+      name: "Neer Marvaniya",
+      task: "Bioinformatics Report",
+      status: "Submitted 1d ago",
+      statusColor: "#6B8A9A",
+    },
+    {
+      initials: "VP",
+      name: "Veer Parsaniya",
+      task: "Microbiology PYQ Quiz",
+      status: "Submitted 2d ago",
+      statusColor: "#6B8A9A",
+    },
+    {
+      initials: "HM",
+      name: "Hemang Mistry",
+      task: "Genetic Engineering Quiz",
+      status: "Due Today",
+      statusColor: "#F97316",
+    },
   ];
   return (
     <div>
@@ -132,66 +239,286 @@ function EducatorDashboard({ profile }) {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr", gap: "20px" }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1.6fr 1fr",
+          gap: "20px",
+        }}
+      >
         {/* Needs Grading */}
         <div style={C.card}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "16px",
+            }}
+          >
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <span style={{ fontSize: "18px" }}>📋</span>
-              <h3 style={{ fontSize: "16px", fontWeight: 600, color: "#1B2B3A" }}>Needs Grading</h3>
+              <h3
+                style={{ fontSize: "16px", fontWeight: 600, color: "#1B2B3A" }}
+              >
+                Needs Grading
+              </h3>
             </div>
-            <span style={{ fontSize: "12px", background: "#FFF3E8", color: "#F97316", padding: "4px 12px", borderRadius: "100px", fontWeight: 600 }}>24 Pending</span>
+            <span
+              style={{
+                fontSize: "12px",
+                background: "#FFF3E8",
+                color: "#F97316",
+                padding: "4px 12px",
+                borderRadius: "100px",
+                fontWeight: 600,
+              }}
+            >
+              24 Pending
+            </span>
           </div>
           <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
             {["All (24)", "Bio 101 (14)", "Genetics 202 (10)"].map((t, i) => (
-              <button key={t} style={{ padding: "6px 14px", borderRadius: "8px", fontSize: "13px", border: "1.5px solid", cursor: "pointer", fontFamily: "inherit", background: i === 0 ? "#14B8A6" : "#fff", color: i === 0 ? "#fff" : "#6B8A9A", borderColor: i === 0 ? "#14B8A6" : "#E2EEF0" }}>{t}</button>
+              <button
+                key={t}
+                style={{
+                  padding: "6px 14px",
+                  borderRadius: "8px",
+                  fontSize: "13px",
+                  border: "1.5px solid",
+                  cursor: "pointer",
+                  fontFamily: "inherit",
+                  background: i === 0 ? "#14B8A6" : "#fff",
+                  color: i === 0 ? "#fff" : "#6B8A9A",
+                  borderColor: i === 0 ? "#14B8A6" : "#E2EEF0",
+                }}
+              >
+                {t}
+              </button>
             ))}
           </div>
           {submissions.map((s, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: "12px", padding: "12px 0", borderBottom: i < submissions.length - 1 ? "1px solid #F0F7F8" : "none" }}>
-              <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#E2EEF0", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: 600, color: "#1B2B3A", flexShrink: 0 }}>{s.initials}</div>
+            <div
+              key={i}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                padding: "12px 0",
+                borderBottom:
+                  i < submissions.length - 1 ? "1px solid #F0F7F8" : "none",
+              }}
+            >
+              <div
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  background: "#E2EEF0",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  color: "#1B2B3A",
+                  flexShrink: 0,
+                }}
+              >
+                {s.initials}
+              </div>
               <div style={{ flex: 1 }}>
-                <p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A" }}>{s.name}</p>
+                <p
+                  style={{
+                    fontSize: "13px",
+                    fontWeight: 500,
+                    color: "#1B2B3A",
+                  }}
+                >
+                  {s.name}
+                </p>
                 <p style={{ fontSize: "12px", color: "#9CA3AF" }}>{s.task}</p>
               </div>
-              <span style={{ fontSize: "11px", color: s.statusColor, background: s.statusColor + "15", padding: "3px 10px", borderRadius: "100px", fontWeight: 500, whiteSpace: "nowrap" }}>{s.status}</span>
-              <button style={{ padding: "7px 14px", background: "#fff", border: "1.5px solid #14B8A6", borderRadius: "8px", fontSize: "12px", fontWeight: 600, color: "#14B8A6", cursor: "pointer", fontFamily: "inherit" }}>Grade Now</button>
+              <span
+                style={{
+                  fontSize: "11px",
+                  color: s.statusColor,
+                  background: s.statusColor + "15",
+                  padding: "3px 10px",
+                  borderRadius: "100px",
+                  fontWeight: 500,
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {s.status}
+              </span>
+              <button
+                style={{
+                  padding: "7px 14px",
+                  background: "#fff",
+                  border: "1.5px solid #14B8A6",
+                  borderRadius: "8px",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  color: "#14B8A6",
+                  cursor: "pointer",
+                  fontFamily: "inherit",
+                }}
+              >
+                Grade Now
+              </button>
             </div>
           ))}
-          <a href="/learning" style={{ display: "block", fontSize: "13px", color: "#14B8A6", fontWeight: 500, marginTop: "16px" }}>View All Submissions →</a>
+          <a
+            href="/learning"
+            style={{
+              display: "block",
+              fontSize: "13px",
+              color: "#14B8A6",
+              fontWeight: 500,
+              marginTop: "16px",
+            }}
+          >
+            View All Submissions →
+          </a>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           {/* Courses Progress */}
           <div style={C.card}>
-            <h3 style={{ ...C.cardTitle, marginBottom: "16px" }}>Courses Progress</h3>
-            {[{ name: "Biology 101", pct: 75 }, { name: "Genetics 202", pct: 40 }].map((c, i) => (
+            <h3 style={{ ...C.cardTitle, marginBottom: "16px" }}>
+              Courses Progress
+            </h3>
+            {[
+              { name: "Biology 101", pct: 75 },
+              { name: "Genetics 202", pct: 40 },
+            ].map((c, i) => (
               <div key={i} style={{ marginBottom: "16px" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
-                  <span style={{ fontSize: "14px", fontWeight: 500, color: "#1B2B3A" }}>{c.name}</span>
-                  <span style={{ fontSize: "14px", fontWeight: 600, color: "#14B8A6" }}>{c.pct}%</span>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginBottom: "6px",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: 500,
+                      color: "#1B2B3A",
+                    }}
+                  >
+                    {c.name}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      color: "#14B8A6",
+                    }}
+                  >
+                    {c.pct}%
+                  </span>
                 </div>
-                <div style={{ height: 6, background: "#E2EEF0", borderRadius: "4px" }}><div style={{ height: 6, width: `${c.pct}%`, background: "#14B8A6", borderRadius: "4px" }}></div></div>
-                <p style={{ fontSize: "11px", color: "#9CA3AF", marginTop: "4px" }}>Last updated {i === 0 ? "2" : "3"} hours ago</p>
+                <div
+                  style={{
+                    height: 6,
+                    background: "#E2EEF0",
+                    borderRadius: "4px",
+                  }}
+                >
+                  <div
+                    style={{
+                      height: 6,
+                      width: `${c.pct}%`,
+                      background: "#14B8A6",
+                      borderRadius: "4px",
+                    }}
+                  ></div>
+                </div>
+                <p
+                  style={{
+                    fontSize: "11px",
+                    color: "#9CA3AF",
+                    marginTop: "4px",
+                  }}
+                >
+                  Last updated {i === 0 ? "2" : "3"} hours ago
+                </p>
               </div>
             ))}
-            <a href="/learning" style={{ fontSize: "13px", color: "#14B8A6", fontWeight: 500 }}>View my Course →</a>
+            <a
+              href="/learning"
+              style={{ fontSize: "13px", color: "#14B8A6", fontWeight: 500 }}
+            >
+              View my Course →
+            </a>
           </div>
 
           {/* Events */}
           <div style={C.card}>
             <h3 style={{ ...C.cardTitle, marginBottom: "16px" }}>Events</h3>
             {[
-              { month: "OCT", day: "13", title: "Advanced Genetics Workshop", loc: "10:00 AM • IAR" },
-              { month: "NOV", day: "10", title: "Bioinformatics Workshop", loc: "12:00 PM • IAR" },
-              { month: "DEC", day: "30", title: "Cell and Microbiology", loc: "14:00 PM • IAR" },
+              {
+                month: "OCT",
+                day: "13",
+                title: "Advanced Genetics Workshop",
+                loc: "10:00 AM • IAR",
+              },
+              {
+                month: "NOV",
+                day: "10",
+                title: "Bioinformatics Workshop",
+                loc: "12:00 PM • IAR",
+              },
+              {
+                month: "DEC",
+                day: "30",
+                title: "Cell and Microbiology",
+                loc: "14:00 PM • IAR",
+              },
             ].map((ev, i) => (
-              <div key={i} style={{ display: "flex", gap: "12px", padding: "8px 0", borderBottom: i < 2 ? "1px solid #F0F7F8" : "none" }}>
+              <div
+                key={i}
+                style={{
+                  display: "flex",
+                  gap: "12px",
+                  padding: "8px 0",
+                  borderBottom: i < 2 ? "1px solid #F0F7F8" : "none",
+                }}
+              >
                 <div style={{ width: 40, textAlign: "center", flexShrink: 0 }}>
-                  <div style={{ fontSize: "10px", color: "#14B8A6", fontWeight: 600, textTransform: "uppercase" }}>{ev.month}</div>
-                  <div style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A" }}>{ev.day}</div>
+                  <div
+                    style={{
+                      fontSize: "10px",
+                      color: "#14B8A6",
+                      fontWeight: 600,
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {ev.month}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: 700,
+                      color: "#1B2B3A",
+                    }}
+                  >
+                    {ev.day}
+                  </div>
                 </div>
-                <div><p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A" }}>{ev.title}</p><p style={{ fontSize: "12px", color: "#9CA3AF" }}>{ev.loc}</p></div>
+                <div>
+                  <p
+                    style={{
+                      fontSize: "13px",
+                      fontWeight: 500,
+                      color: "#1B2B3A",
+                    }}
+                  >
+                    {ev.title}
+                  </p>
+                  <p style={{ fontSize: "12px", color: "#9CA3AF" }}>{ev.loc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -208,9 +535,18 @@ function ResearcherDashboard({ profile, supabase }) {
 
   useEffect(() => {
     async function load() {
-      const { data: p } = await supabase.from("research_papers").select("*").order("created_at", { ascending: false }).limit(3);
+      const { data: p } = await supabase
+        .from("research_papers")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(3);
       setPapers(p || []);
-      const { data: e } = await supabase.from("events").select("*").gte("event_date", new Date().toISOString()).order("event_date").limit(3);
+      const { data: e } = await supabase
+        .from("events")
+        .select("*")
+        .gte("event_date", new Date().toISOString())
+        .order("event_date")
+        .limit(3);
       setEvents(e || []);
     }
     load();
@@ -229,69 +565,318 @@ function ResearcherDashboard({ profile, supabase }) {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr", gap: "20px" }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1.6fr 1fr",
+          gap: "20px",
+        }}
+      >
         {/* Research Papers */}
         <div style={C.card}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "16px",
+            }}
+          >
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <span>📄</span>
-              <h3 style={{ fontSize: "16px", fontWeight: 600, color: "#1B2B3A" }}>Research Papers</h3>
+              <h3
+                style={{ fontSize: "16px", fontWeight: 600, color: "#1B2B3A" }}
+              >
+                Research Papers
+              </h3>
             </div>
-            <span style={{ fontSize: "12px", background: "#EEF7F7", color: "#14B8A6", padding: "4px 12px", borderRadius: "100px", fontWeight: 600 }}>5 Unread</span>
+            <span
+              style={{
+                fontSize: "12px",
+                background: "#EEF7F7",
+                color: "#14B8A6",
+                padding: "4px 12px",
+                borderRadius: "100px",
+                fontWeight: 600,
+              }}
+            >
+              5 Unread
+            </span>
           </div>
-          {papers.length === 0 ? <p style={{ fontSize: "14px", color: "#9CA3AF", padding: "20px 0" }}>No papers yet. <a href="/research" style={{ color: "#14B8A6" }}>Browse research →</a></p> : papers.map((p, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: "12px", padding: "12px 0", borderBottom: i < papers.length - 1 ? "1px solid #F0F7F8" : "none" }}>
-              <div style={{ width: 36, height: 36, background: "#EEF7F7", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>📄</div>
-              <div style={{ flex: 1 }}>
-                <p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A" }}>{p.title?.slice(0, 40)}{p.title?.length > 40 ? "..." : ""}</p>
-                <p style={{ fontSize: "12px", color: "#9CA3AF" }}>{p.journal || "BioConnect"}</p>
+          {papers.length === 0 ? (
+            <p
+              style={{ fontSize: "14px", color: "#9CA3AF", padding: "20px 0" }}
+            >
+              No papers yet.{" "}
+              <a href="/research" style={{ color: "#14B8A6" }}>
+                Browse research →
+              </a>
+            </p>
+          ) : (
+            papers.map((p, i) => (
+              <div
+                key={i}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                  padding: "12px 0",
+                  borderBottom:
+                    i < papers.length - 1 ? "1px solid #F0F7F8" : "none",
+                }}
+              >
+                <div
+                  style={{
+                    width: 36,
+                    height: 36,
+                    background: "#EEF7F7",
+                    borderRadius: "8px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  📄
+                </div>
+                <div style={{ flex: 1 }}>
+                  <p
+                    style={{
+                      fontSize: "13px",
+                      fontWeight: 500,
+                      color: "#1B2B3A",
+                    }}
+                  >
+                    {p.title?.slice(0, 40)}
+                    {p.title?.length > 40 ? "..." : ""}
+                  </p>
+                  <p style={{ fontSize: "12px", color: "#9CA3AF" }}>
+                    {p.journal || "BioConnect"}
+                  </p>
+                </div>
+                <a
+                  href="/research"
+                  style={{
+                    padding: "6px 14px",
+                    border: "1.5px solid #14B8A6",
+                    borderRadius: "8px",
+                    fontSize: "12px",
+                    fontWeight: 600,
+                    color: "#14B8A6",
+                  }}
+                >
+                  Read Now
+                </a>
               </div>
-              <a href="/research" style={{ padding: "6px 14px", border: "1.5px solid #14B8A6", borderRadius: "8px", fontSize: "12px", fontWeight: 600, color: "#14B8A6" }}>Read Now</a>
-            </div>
-          ))}
-          <a href="/research" style={{ display: "block", fontSize: "13px", color: "#14B8A6", fontWeight: 500, marginTop: "16px" }}>View All Research Papers →</a>
+            ))
+          )}
+          <a
+            href="/research"
+            style={{
+              display: "block",
+              fontSize: "13px",
+              color: "#14B8A6",
+              fontWeight: 500,
+              marginTop: "16px",
+            }}
+          >
+            View All Research Papers →
+          </a>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           {/* Opportunities */}
           <div style={C.card}>
-            <h3 style={{ ...C.cardTitle, marginBottom: "16px" }}>Opportunities & Jobs</h3>
+            <h3 style={{ ...C.cardTitle, marginBottom: "16px" }}>
+              Opportunities & Jobs
+            </h3>
             {[
-              { title: "Postdoctoral Fellow - Genomics", org: "Broad Institute • Surat, Gujarat" },
-              { title: "Lead CRISPR Researcher", org: "National Science Foundation • Surat" },
+              {
+                title: "Postdoctoral Fellow - Genomics",
+                org: "Broad Institute • Surat, Gujarat",
+              },
+              {
+                title: "Lead CRISPR Researcher",
+                org: "National Science Foundation • Surat",
+              },
             ].map((j, i) => (
-              <div key={i} style={{ display: "flex", gap: "12px", padding: "10px 0", borderBottom: i === 0 ? "1px solid #F0F7F8" : "none" }}>
-                <div style={{ width: 32, height: 32, background: "#EEF7F7", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", flexShrink: 0 }}>🔬</div>
-                <div><p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A" }}>{j.title}</p><p style={{ fontSize: "12px", color: "#9CA3AF" }}>{j.org}</p></div>
+              <div
+                key={i}
+                style={{
+                  display: "flex",
+                  gap: "12px",
+                  padding: "10px 0",
+                  borderBottom: i === 0 ? "1px solid #F0F7F8" : "none",
+                }}
+              >
+                <div
+                  style={{
+                    width: 32,
+                    height: 32,
+                    background: "#EEF7F7",
+                    borderRadius: "8px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "14px",
+                    flexShrink: 0,
+                  }}
+                >
+                  🔬
+                </div>
+                <div>
+                  <p
+                    style={{
+                      fontSize: "13px",
+                      fontWeight: 500,
+                      color: "#1B2B3A",
+                    }}
+                  >
+                    {j.title}
+                  </p>
+                  <p style={{ fontSize: "12px", color: "#9CA3AF" }}>{j.org}</p>
+                </div>
               </div>
             ))}
-            <a href="/jobs" style={{ display: "block", fontSize: "13px", color: "#14B8A6", fontWeight: 500, marginTop: "12px" }}>View my Opportunities & Jobs →</a>
+            <a
+              href="/jobs"
+              style={{
+                display: "block",
+                fontSize: "13px",
+                color: "#14B8A6",
+                fontWeight: 500,
+                marginTop: "12px",
+              }}
+            >
+              View my Opportunities & Jobs →
+            </a>
           </div>
 
           {/* Academic Events */}
           <div style={C.card}>
-            <h3 style={{ ...C.cardTitle, marginBottom: "16px" }}>Academic Events</h3>
-            {events.length === 0 ? [
-              { month: "OCT", day: "13", title: "Genomics Symposium 2026", loc: "Main Auditorium • 10:00 AM" },
-              { month: "NOV", day: "10", title: "Lab Equipment Orientation", loc: "Wing B • 2:00 PM" },
-              { month: "DEC", day: "30", title: "Data Publishing Workshop", loc: "Virtual • 1:00 PM" },
-            ].map((ev, i) => (
-              <div key={i} style={{ display: "flex", gap: "12px", padding: "8px 0", borderBottom: i < 2 ? "1px solid #F0F7F8" : "none" }}>
-                <div style={{ width: 40, textAlign: "center", flexShrink: 0 }}>
-                  <div style={{ fontSize: "10px", color: "#14B8A6", fontWeight: 600, textTransform: "uppercase" }}>{ev.month}</div>
-                  <div style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A" }}>{ev.day}</div>
-                </div>
-                <div><p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A" }}>{ev.title}</p><p style={{ fontSize: "12px", color: "#9CA3AF" }}>{ev.loc}</p></div>
-              </div>
-            )) : events.map((ev, i) => (
-              <div key={i} style={{ display: "flex", gap: "12px", padding: "8px 0", borderBottom: i < events.length - 1 ? "1px solid #F0F7F8" : "none" }}>
-                <div style={{ width: 40, textAlign: "center", flexShrink: 0 }}>
-                  <div style={{ fontSize: "10px", color: "#14B8A6", fontWeight: 600 }}>{new Date(ev.event_date).toLocaleString("en", { month: "short" }).toUpperCase()}</div>
-                  <div style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A" }}>{new Date(ev.event_date).getDate()}</div>
-                </div>
-                <div><p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A" }}>{ev.title}</p><p style={{ fontSize: "12px", color: "#9CA3AF" }}>{ev.location}</p></div>
-              </div>
-            ))}
+            <h3 style={{ ...C.cardTitle, marginBottom: "16px" }}>
+              Academic Events
+            </h3>
+            {events.length === 0
+              ? [
+                  {
+                    month: "OCT",
+                    day: "13",
+                    title: "Genomics Symposium 2026",
+                    loc: "Main Auditorium • 10:00 AM",
+                  },
+                  {
+                    month: "NOV",
+                    day: "10",
+                    title: "Lab Equipment Orientation",
+                    loc: "Wing B • 2:00 PM",
+                  },
+                  {
+                    month: "DEC",
+                    day: "30",
+                    title: "Data Publishing Workshop",
+                    loc: "Virtual • 1:00 PM",
+                  },
+                ].map((ev, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      gap: "12px",
+                      padding: "8px 0",
+                      borderBottom: i < 2 ? "1px solid #F0F7F8" : "none",
+                    }}
+                  >
+                    <div
+                      style={{ width: 40, textAlign: "center", flexShrink: 0 }}
+                    >
+                      <div
+                        style={{
+                          fontSize: "10px",
+                          color: "#14B8A6",
+                          fontWeight: 600,
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {ev.month}
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "18px",
+                          fontWeight: 700,
+                          color: "#1B2B3A",
+                        }}
+                      >
+                        {ev.day}
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        style={{
+                          fontSize: "13px",
+                          fontWeight: 500,
+                          color: "#1B2B3A",
+                        }}
+                      >
+                        {ev.title}
+                      </p>
+                      <p style={{ fontSize: "12px", color: "#9CA3AF" }}>
+                        {ev.loc}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              : events.map((ev, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      gap: "12px",
+                      padding: "8px 0",
+                      borderBottom:
+                        i < events.length - 1 ? "1px solid #F0F7F8" : "none",
+                    }}
+                  >
+                    <div
+                      style={{ width: 40, textAlign: "center", flexShrink: 0 }}
+                    >
+                      <div
+                        style={{
+                          fontSize: "10px",
+                          color: "#14B8A6",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {new Date(ev.event_date)
+                          .toLocaleString("en", { month: "short" })
+                          .toUpperCase()}
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "18px",
+                          fontWeight: 700,
+                          color: "#1B2B3A",
+                        }}
+                      >
+                        {new Date(ev.event_date).getDate()}
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        style={{
+                          fontSize: "13px",
+                          fontWeight: 500,
+                          color: "#1B2B3A",
+                        }}
+                      >
+                        {ev.title}
+                      </p>
+                      <p style={{ fontSize: "12px", color: "#9CA3AF" }}>
+                        {ev.location}
+                      </p>
+                    </div>
+                  </div>
+                ))}
           </div>
         </div>
       </div>
@@ -307,9 +892,18 @@ export default function DashboardPage() {
 
   useEffect(() => {
     async function load() {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) { window.location.href = "/login"; return; }
-      const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) {
+        window.location.href = "/login";
+        return;
+      }
+      const { data } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single();
       setProfile(data);
       setLoading(false);
     }
@@ -318,9 +912,17 @@ export default function DashboardPage() {
 
   return (
     <AppShell active="/dashboard">
-      {loading ? <div style={{ padding: "100px", textAlign: "center", color: "#9CA3AF" }}>Loading...</div> : (
-        profile?.role === "educator" ? <EducatorDashboard profile={profile} /> :
-        profile?.role === "researcher" ? <ResearcherDashboard profile={profile} supabase={supabase} /> :
+      {loading ? (
+        <div
+          style={{ padding: "100px", textAlign: "center", color: "#9CA3AF" }}
+        >
+          Loading...
+        </div>
+      ) : profile?.role === "educator" ? (
+        <EducatorDashboard profile={profile} />
+      ) : profile?.role === "researcher" ? (
+        <ResearcherDashboard profile={profile} supabase={supabase} />
+      ) : (
         <StudentDashboard profile={profile} />
       )}
     </AppShell>
@@ -328,6 +930,11 @@ export default function DashboardPage() {
 }
 
 const C = {
-  card: { background: "#fff", borderRadius: "16px", padding: "24px", border: "1px solid #E2EEF0" },
+  card: {
+    background: "#fff",
+    borderRadius: "16px",
+    padding: "24px",
+    border: "1px solid #E2EEF0",
+  },
   cardTitle: { fontSize: "15px", fontWeight: 600, color: "#1B2B3A" },
 };
