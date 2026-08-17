@@ -96,6 +96,129 @@ function MockCard() {
   );
 }
 
+function ScrollStepItem({ step, index, total }) {
+  const [ref, visible] = useInView(0.3);
+  const isLeft = step.side === "left";
+
+  return (
+    <div ref={ref}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 1fr", alignItems: "center", minHeight: 100 }}>
+        {isLeft ? (
+          <>
+            <div
+              style={{
+                padding: "0 24px",
+                textAlign: "right",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateX(0) translateY(0)" : "translateX(-40px) translateY(15px)",
+                transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
+            >
+              <div style={{ fontWeight: 800, fontSize: "1.05rem", color: "#1a2b3c", marginBottom: 6 }}>{step.title}</div>
+              <div style={{ fontSize: "0.875rem", color: "#6b8a9a", lineHeight: 1.6 }}>{step.desc}</div>
+            </div>
+
+            <div
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: "50%",
+                background: visible ? "#b8dce8" : "#e2f0f4",
+                border: visible ? "6px solid #2AB4B4" : "6px solid #d6ecf2",
+                boxShadow: visible ? "0 0 0 8px rgba(42, 180, 180, 0.2)" : "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: "0 auto",
+                opacity: visible ? 1 : 0.4,
+                transform: visible ? "scale(1.15)" : "scale(0.6)",
+                transition: "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s, border-color 0.4s ease 0.15s, opacity 0.4s ease 0.15s, box-shadow 0.5s ease 0.15s",
+              }}
+            >
+              <div
+                style={{
+                  width: 10,
+                  height: 10,
+                  borderRadius: "50%",
+                  background: "#2AB4B4",
+                  transform: visible ? "scale(1)" : "scale(0)",
+                  transition: "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s",
+                }}
+              />
+            </div>
+
+            <div />
+          </>
+        ) : (
+          <>
+            <div />
+
+            <div
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: "50%",
+                background: visible ? "#b8dce8" : "#e2f0f4",
+                border: visible ? "6px solid #2AB4B4" : "6px solid #d6ecf2",
+                boxShadow: visible ? "0 0 0 8px rgba(42, 180, 180, 0.2)" : "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: "0 auto",
+                opacity: visible ? 1 : 0.4,
+                transform: visible ? "scale(1.15)" : "scale(0.6)",
+                transition: "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s, border-color 0.4s ease 0.15s, opacity 0.4s ease 0.15s, box-shadow 0.5s ease 0.15s",
+              }}
+            >
+              <div
+                style={{
+                  width: 10,
+                  height: 10,
+                  borderRadius: "50%",
+                  background: "#2AB4B4",
+                  transform: visible ? "scale(1)" : "scale(0)",
+                  transition: "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s",
+                }}
+              />
+            </div>
+
+            <div
+              style={{
+                padding: "0 24px",
+                textAlign: "left",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateX(0) translateY(0)" : "translateX(40px) translateY(15px)",
+                transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
+            >
+              <div style={{ fontWeight: 800, fontSize: "1.05rem", color: "#1a2b3c", marginBottom: 6 }}>{step.title}</div>
+              <div style={{ fontSize: "0.875rem", color: "#6b8a9a", lineHeight: 1.6 }}>{step.desc}</div>
+            </div>
+          </>
+        )}
+      </div>
+
+      {index < total - 1 && (
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 1fr", height: 70 }}>
+          <div />
+          <div
+            style={{
+              borderLeft: "2px dashed #2AB4B4",
+              margin: "0 auto",
+              height: "100%",
+              opacity: visible ? 1 : 0.2,
+              transform: visible ? "scaleY(1)" : "scaleY(0)",
+              transformOrigin: "top center",
+              transition: "transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, opacity 0.65s ease 0.35s",
+            }}
+          />
+          <div />
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
   const [hovFeat, setHovFeat] = useState(null);
@@ -301,40 +424,7 @@ export default function LandingPage() {
             </h2>
           </FadeUp>
           {STEPS.map((step, i) => (
-            <FadeUp key={i} delay={i * 0.15}>
-              <div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 1fr", alignItems: "center", minHeight: 100 }}>
-                  {step.side === "left" ? (
-                    <>
-                      <div style={{ padding: "0 24px", textAlign: "right" }}>
-                        <div style={{ fontWeight: 800, fontSize: "1.05rem", color: "#1a2b3c", marginBottom: 6 }}>{step.title}</div>
-                        <div style={{ fontSize: "0.875rem", color: "#6b8a9a", lineHeight: 1.6 }}>{step.desc}</div>
-                      </div>
-                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#b8dce8", border: "6px solid #d6ecf2", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto" }}>
-                        <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#2AB4B4" }} />
-                      </div>
-                      <div />
-                    </>
-                  ) : (
-                    <>
-                      <div />
-                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#b8dce8", border: "6px solid #d6ecf2", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto" }}>
-                        <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#2AB4B4" }} />
-                      </div>
-                      <div style={{ padding: "0 24px" }}>
-                        <div style={{ fontWeight: 800, fontSize: "1.05rem", color: "#1a2b3c", marginBottom: 6 }}>{step.title}</div>
-                        <div style={{ fontSize: "0.875rem", color: "#6b8a9a", lineHeight: 1.6 }}>{step.desc}</div>
-                      </div>
-                    </>
-                  )}
-                </div>
-                {i < STEPS.length - 1 && (
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 1fr", height: 70 }}>
-                    <div /><div style={{ borderLeft: "2px dashed #b0cdd8", margin: "0 auto" }} /><div />
-                  </div>
-                )}
-              </div>
-            </FadeUp>
+            <ScrollStepItem key={i} step={step} index={i} total={STEPS.length} />
           ))}
         </div>
       </section>
