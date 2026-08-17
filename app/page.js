@@ -133,12 +133,23 @@ export default function LandingPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontSize: "1.4rem", fontWeight: 800, color: "#2AB4B4", letterSpacing: "-0.3px", cursor: "pointer" }}>BioConnect</span>
           <ul style={{ display: "flex", gap: 36, listStyle: "none" }}>
-            {["Features", "For You", "Contact"].map(link => (
-              <li key={link}>
-                <a href="#" style={{ textDecoration: "none", fontSize: "0.95rem", fontWeight: 500, color: "#444", transition: "color 0.2s" }}
+            {[
+              { name: "Features", target: "features" },
+              { name: "For You", target: "roles" },
+              { name: "Contact", target: "contact" },
+            ].map(link => (
+              <li key={link.name}>
+                <a
+                  href={`#${link.target}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const el = document.getElementById(link.target);
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  style={{ textDecoration: "none", fontSize: "0.95rem", fontWeight: 500, color: "#444", transition: "color 0.2s" }}
                   onMouseEnter={e => { e.currentTarget.style.color = "#2AB4B4"; }}
                   onMouseLeave={e => { e.currentTarget.style.color = "#444"; }}>
-                  {link}
+                  {link.name}
                 </a>
               </li>
             ))}
@@ -216,7 +227,7 @@ export default function LandingPage() {
       </section>
 
       {/* FEATURES */}
-      <section style={{ background: "#eef6f8", padding: "80px 40px" }}>
+      <section id="features" style={{ background: "#eef6f8", padding: "80px 40px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <FadeUp>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
@@ -243,7 +254,7 @@ export default function LandingPage() {
       </section>
 
       {/* ROLES */}
-      <section style={{ background: "#eef6f8", padding: "80px 40px" }}>
+      <section id="roles" style={{ background: "#eef6f8", padding: "80px 40px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <FadeUp>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
@@ -350,7 +361,7 @@ export default function LandingPage() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ background: "linear-gradient(160deg,#0f2e38 0%,#1A4A55 50%,#0f2e38 100%)", padding: "64px 40px 0" }}>
+      <footer id="contact" style={{ background: "linear-gradient(160deg,#0f2e38 0%,#1A4A55 50%,#0f2e38 100%)", padding: "64px 40px 0" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1fr", gap: 40, paddingBottom: 48 }}>
             <div>
