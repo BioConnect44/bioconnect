@@ -5,8 +5,44 @@ import AppShell from "@/components/AppShell";
 
 /* ── Student Dashboard ── */
 function StudentDashboard({ profile }) {
+  const [selectedOpt, setSelectedOpt] = useState(null);
+
   return (
     <div>
+      <style>{`
+        .challenge-opt-btn {
+          padding: 10px 24px;
+          border: 1.5px solid #E2EEF0;
+          border-radius: 12px;
+          background: #ffffff;
+          font-size: 14px;
+          font-weight: 600;
+          color: #132D35;
+          cursor: pointer;
+          font-family: inherit;
+          transition: all 0.2s ease-in-out;
+          outline: none;
+        }
+        .challenge-opt-btn:hover {
+          border-color: #14B8A6 !important;
+          color: #14B8A6 !important;
+          background: #F0FCFB !important;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 14px rgba(20, 184, 166, 0.15);
+        }
+        .challenge-opt-btn.correct {
+          border-color: #22C55E !important;
+          color: #15803D !important;
+          background: #F0FDF4 !important;
+          box-shadow: 0 4px 14px rgba(34, 197, 94, 0.18) !important;
+        }
+        .challenge-opt-btn.wrong {
+          border-color: #EF4444 !important;
+          color: #B91C1C !important;
+          background: #FEF2F2 !important;
+        }
+      `}</style>
+
       {/* Hero banner */}
       <div style={{ background: "#FDF6E3", borderRadius: "24px", padding: "40px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px", position: "relative" }}>
         <div>
@@ -174,10 +210,29 @@ function StudentDashboard({ profile }) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
            <div>
              <p style={{ fontSize: "14px", color: "#6B8A9A", marginBottom: "16px" }}>What type of DNA overhang is produced by the EcoRI restriction enzyme?</p>
-             <div style={{ display: "flex", gap: "12px" }}>
-               {["5' Sticky", "3' Sticky", "Blunt End"].map((opt) => (
-                 <button key={opt} style={{ padding: "10px 24px", border: "1.5px solid #E2EEF0", borderRadius: "12px", background: "#fff", fontSize: "14px", fontWeight: 600, color: "#6B8A9A", cursor: "pointer", fontFamily: "inherit" }}>{opt}</button>
-               ))}
+             <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+               {["5' Sticky", "3' Sticky", "Blunt End"].map((opt) => {
+                 const isSelected = selectedOpt === opt;
+                 const isCorrect = opt === "5' Sticky";
+                 let btnClass = "challenge-opt-btn";
+                 if (isSelected) {
+                   btnClass += isCorrect ? " correct" : " wrong";
+                 }
+                 return (
+                   <button
+                     key={opt}
+                     onClick={() => setSelectedOpt(opt)}
+                     className={btnClass}
+                   >
+                     {opt} {isSelected && (isCorrect ? " ✓" : " ✕")}
+                   </button>
+                 );
+               })}
+               {selectedOpt && (
+                 <span style={{ fontSize: "13px", fontWeight: 700, color: selectedOpt === "5' Sticky" ? "#16A34A" : "#DC2626", marginLeft: "6px" }}>
+                   {selectedOpt === "5' Sticky" ? "🎉 Correct! +50 XP" : "❌ Try again!"}
+                 </span>
+               )}
              </div>
            </div>
            
