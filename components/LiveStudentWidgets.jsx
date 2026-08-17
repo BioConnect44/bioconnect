@@ -201,32 +201,36 @@ function AutoBioMinute({ userId }) {
   return (
     <div style={{ width: "100%", perspective: 1000 }}>
       <style>{`
-        .bio-flip-inner { position:relative; width:100%; transition:transform 0.55s cubic-bezier(0.4,0,0.2,1); transform-style:preserve-3d; min-height:240px; }
+        .bio-flip-inner { position:relative; width:100%; transition:transform 0.55s cubic-bezier(0.4,0,0.2,1); transform-style:preserve-3d; min-height:330px; height:330px; }
         .bio-flip-inner.flipped { transform:rotateY(180deg); }
-        .bio-face { position:absolute; width:100%; top:0; left:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:20px; padding:28px 24px; min-height:240px; box-sizing:border-box; }
+        .bio-face { position:absolute; width:100%; height:100%; top:0; left:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:20px; padding:24px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between; }
         .bio-back { transform:rotateY(180deg); }
-        .bio-btn { width:100%; padding:12px; border-radius:12px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; margin-top:18px; transition:all 0.2s; }
+        .bio-btn { width:100%; padding:12px; border-radius:12px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; margin-top:12px; transition:all 0.2s; }
         .bio-btn:hover { opacity:0.88; transform:translateY(-1px); }
       `}</style>
       <div className={`bio-flip-inner${isFlipped ? " flipped" : ""}`}>
         {/* FRONT */}
-        <div className="bio-face" style={{ background: "#3AA8C1", display: "flex", flexDirection: "column" }}>
-          <span style={{ background: "rgba(255,255,255,0.2)", color: "white", fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999, display: "inline-block", marginBottom: 14, textTransform: "uppercase", letterSpacing: "0.1em", width: "fit-content" }}>
-            ⏱️ Daily Bio-Minute · {card.tag}
-          </span>
-          <p style={{ color: "white", fontSize: 16, fontWeight: 600, lineHeight: 1.55, flex: 1 }}>{card.question}</p>
+        <div className="bio-face" style={{ background: "#3AA8C1" }}>
+          <div>
+            <span style={{ background: "rgba(255,255,255,0.2)", color: "white", fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999, display: "inline-block", marginBottom: 14, textTransform: "uppercase", letterSpacing: "0.1em", width: "fit-content" }}>
+              ⏱️ Daily Bio-Minute · {card.tag}
+            </span>
+            <p style={{ color: "white", fontSize: 16, fontWeight: 600, lineHeight: 1.55 }}>{card.question}</p>
+          </div>
           <button className="bio-btn" onClick={handleFlip} style={{ background: "rgba(255,255,255,0.15)", color: "white", border: "1.5px solid rgba(255,255,255,0.5)" }}>
             Tap to flip ↺
           </button>
         </div>
         {/* BACK */}
-        <div className="bio-face bio-back" style={{ background: "#fff", border: "2px solid #3AA8C1", display: "flex", flexDirection: "column" }}>
-          <span style={{ background: "#E0F2FE", color: "#3AA8C1", fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999, display: "inline-block", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.1em", width: "fit-content" }}>
-            Answer
-          </span>
-          <h3 style={{ color: "#3AA8C1", fontSize: 22, fontWeight: 800, marginBottom: 10 }}>{card.answer}</h3>
-          <p style={{ color: "#64748B", fontSize: 13, lineHeight: 1.7, flex: 1 }}>{card.explanation}</p>
-          <div style={{ display: "flex", gap: 10, marginTop: 18 }}>
+        <div className="bio-face bio-back" style={{ background: "#fff", border: "2px solid #3AA8C1" }}>
+          <div>
+            <span style={{ background: "#E0F2FE", color: "#3AA8C1", fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999, display: "inline-block", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.1em", width: "fit-content" }}>
+              Answer
+            </span>
+            <h3 style={{ color: "#3AA8C1", fontSize: 18, fontWeight: 800, marginBottom: 8, lineHeight: 1.35 }}>{card.answer}</h3>
+            <p style={{ color: "#64748B", fontSize: 13, lineHeight: 1.6, overflowY: "auto", maxHeight: "140px" }}>{card.explanation}</p>
+          </div>
+          <div style={{ display: "flex", gap: 10, marginTop: 12 }}>
             <button className="bio-btn" onClick={() => setIsFlipped(false)} style={{ flex: 1, background: "#fff", color: "#102A30", border: "1.5px solid #E2EEF0" }}>
               Need review
             </button>
