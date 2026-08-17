@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-teal: #14B8A6;
+  --primary-teal-hover: #0D9488;
+  --accent-cyan: #00C2B2;
 }
 
 @theme inline {
@@ -22,5 +25,129 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+/* ==========================================================================
+   UNIVERSAL HOVER EFFECTS & MICRO-ANIMATIONS FOR ALL BUTTONS & OPTIONS
+   ========================================================================== */
+
+/* 1. Universal Button Hover, Focus & Click Scale Animations */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.btn {
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover:not(:disabled),
+input[type="button"]:hover:not(:disabled),
+input[type="submit"]:hover:not(:disabled),
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(20, 184, 166, 0.18);
+  filter: brightness(1.05);
+}
+
+button:active:not(:disabled),
+input[type="button"]:active:not(:disabled),
+input[type="submit"]:active:not(:disabled),
+.btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.98) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* 2. Anchor Links & Action Button Links Hover Effects */
+a {
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a:hover {
+  filter: brightness(1.1);
+}
+
+a[style*="background"],
+a[style*="border"] {
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+a[style*="background"]:hover,
+a[style*="border"]:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+a[style*="background"]:active,
+a[style*="border"]:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* 3. Form Inputs, Selects, & Textareas Hover & Glow Ring */
+input,
+select,
+textarea {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
+}
+
+input:hover:not(:disabled),
+select:hover:not(:disabled),
+textarea:hover:not(:disabled) {
+  border-color: #14B8A6 !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #14B8A6 !important;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2) !important;
+  outline: none !important;
+}
+
+/* 4. Interactive Cards & Container Lift Animations */
+.job-card,
+.paper-card,
+.course-card,
+.stat-card,
+.card {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease !important;
+}
+
+.job-card:hover,
+.paper-card:hover,
+.course-card:hover,
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(20, 184, 166, 0.4) !important;
+}
+
+/* 5. Radio Buttons, Checkboxes & Option Selectors */
+.radio-opt,
+label:has(input[type="checkbox"]),
+label:has(input[type="radio"]) {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.radio-opt:hover,
+label:has(input[type="checkbox"]):hover,
+label:has(input[type="radio"]):hover {
+  color: #14B8A6 !important;
+  transform: translateX(3px);
+}
+
+/* 6. Filter Pills, Badges & Tabs */
+.filter-badge,
+.tab-btn {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer;
+}
+
+.filter-badge:hover,
+.tab-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
 }
