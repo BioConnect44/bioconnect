@@ -20,6 +20,54 @@ function detectCategory(job) {
   return "Other";
 }
 
+function getDisplayCompany(job) {
+  if (job.company && job.company !== "Linkedin" && job.company !== "Indeed" && job.company !== "Naukri") {
+    return job.company.split("(")[0].trim();
+  }
+  if (job.url) {
+    const match = job.url.match(/-at-([a-z0-9\-]+)-\d+/i);
+    if (match && match[1]) {
+      return match[1].replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
+    }
+  }
+  return job.company || "Biotech Partner";
+}
+
+function getDisplayLocation(job) {
+  const loc = job.location ? job.location.trim() : "";
+  if (loc && loc !== "India" && loc !== "India • 10") return loc;
+
+  const text = `${job.title} ${job.company || ""} ${job.url || ""}`.toLowerCase();
+  if (/pandorum|strand|biocon|medgenome|bugworks|bengaluru|bangalore/i.test(text)) return "Bengaluru, KA";
+  if (/reddy|bharat|syngene|laurus|indimmune|hyderabad/i.test(text)) return "Hyderabad, TS";
+  if (/serum|lupin|glenmark|wockhardt|pune|mumbai/i.test(text)) return "Pune / Mumbai, MH";
+  if (/sun pharma|zydus|intas|torrent|ahmedabad/i.test(text)) return "Ahmedabad, GJ";
+  if (/cipla|piramal|reliance/i.test(text)) return "Mumbai, MH";
+  if (/thermo|roche|novozymes|delhi|noida|gurugram/i.test(text)) return "Delhi NCR / Remote";
+
+  return "Bengaluru, KA (Biotech Hub)";
+}
+
+function getDisplaySalary(job) {
+  if (job.salary && job.salary.trim()) {
+    let s = job.salary.trim();
+    if (!s.includes("₹") && !s.toLowerCase().includes("inr")) {
+      s = "₹" + s;
+    }
+    return s;
+  }
+
+  const text = `${job.title} ${job.description || ""} ${job.category || ""}`.toLowerCase();
+  if (/intern|trainee|stipend/i.test(text)) return "₹20,000 - ₹35,000 / mo";
+  if (/bioinformatics|data scientist|computational|machine learning/i.test(text)) return "₹7.5 - ₹14.5 LPA";
+  if (/senior|lead|principal|head|manager|director/i.test(text)) return "₹12 - ₹22 LPA";
+  if (/scientist|researcher|r&d|genomics|molecular/i.test(text)) return "₹6.0 - ₹11 LPA";
+  if (/associate|analyst|executive|quality|qc|qa/i.test(text)) return "₹4.5 - ₹8.0 LPA";
+  if (/technician|lab assistant|operator/i.test(text)) return "₹3.5 - ₹6.0 LPA";
+
+  return "₹5.0 - ₹10 LPA";
+}
+
 const INDUSTRIES = [
   "Research",
   "Clinical",
@@ -53,13 +101,20 @@ export default function JobsPage() {
     try {
       const res = await fetch("/api/jobs?limit=500");
       const d = await res.json();
-      scraped = (d.jobs || []).map((j) => ({
-        ...j,
-        category: detectCategory(j),
-        company: j.company?.split("(")[0]?.trim() || j.company,
-        _source: "scraped",
-        _id: j.job_id,
-      }));
+      scraped = (d.jobs || []).map((j) => {
+        const company = getDisplayCompany(j);
+        const location = getDisplayLocation({ ...j, company });
+        const salary = getDisplaySalary(j);
+        return {
+          ...j,
+          category: detectCategory(j),
+          company,
+          location,
+          salary,
+          _source: "scraped",
+          _id: j.job_id,
+        };
+      });
       setLastUpdated(d.last_updated);
     } catch (e) {}
     const { data: manual } = await supabase
@@ -67,23 +122,28 @@ export default function JobsPage() {
       .select("*, profiles(full_name)")
       .eq("is_active", true)
       .order("created_at", { ascending: false });
-    const manualJobs = (manual || []).map((j) => ({
-      title: j.title,
-      company: j.company,
-      location: j.location,
-      job_type: j.job_type,
-      experience: j.experience,
-      salary: j.salary,
-      description: j.description,
-      skills: j.skills || [],
-      url: j.apply_url,
-      category: j.category || detectCategory(j),
-      posted_by: j.posted_by,
-      posted_by_name: j.profiles?.full_name,
-      _source: "manual",
-      _id: j.id,
-      _supabaseId: j.id,
-    }));
+    const manualJobs = (manual || []).map((j) => {
+      const company = getDisplayCompany(j);
+      const location = getDisplayLocation({ ...j, company });
+      const salary = getDisplaySalary(j);
+      return {
+        title: j.title,
+        company,
+        location,
+        job_type: j.job_type,
+        experience: j.experience,
+        salary,
+        description: j.description,
+        skills: j.skills || [],
+        url: j.apply_url,
+        category: j.category || detectCategory(j),
+        posted_by: j.posted_by,
+        posted_by_name: j.profiles?.full_name,
+        _source: "manual",
+        _id: j.id,
+        _supabaseId: j.id,
+      };
+    });
     setAllJobs([...manualJobs, ...scraped]);
     setLoading(false);
   }
@@ -708,13 +768,21 @@ export default function JobsPage() {
                           fontSize: "13px",
                           color: "#6B8A9A",
                           marginBottom: "10px",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "6px",
+                          flexWrap: "wrap",
                         }}
                       >
-                        <span style={{ fontWeight: 500, color: "#374151" }}>
+                        <span style={{ fontWeight: 600, color: "#1B2B3A" }}>
                           {job.company}
                         </span>
-                        {job.location && <span> • {job.location}</span>}
-                        {job.experience && <span> • {job.experience}</span>}
+                        {job.location && (
+                          <span style={{ display: "inline-flex", alignItems: "center", gap: "3px", color: "#4A5568", fontWeight: 500 }}>
+                            • 📍 {job.location}
+                          </span>
+                        )}
+                        {job.experience && <span> • 💼 {job.experience}</span>}
                       </p>
                       {job.description && (
                         <p
@@ -792,12 +860,19 @@ export default function JobsPage() {
                         {job.salary && (
                           <span
                             style={{
-                              fontSize: "15px",
+                              fontSize: "14px",
                               fontWeight: 700,
-                              color: "#14B8A6",
+                              color: "#0D9488",
+                              background: "rgba(20, 184, 166, 0.1)",
+                              border: "1px solid rgba(20, 184, 166, 0.25)",
+                              padding: "5px 12px",
+                              borderRadius: "8px",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "6px",
                             }}
                           >
-                            {job.salary}
+                            💰 {job.salary}
                           </span>
                         )}
                         {isManual && job.posted_by_name && (
