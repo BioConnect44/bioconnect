@@ -96,6 +96,124 @@ function MockCard() {
   );
 }
 
+function AnimatedStep({ step, index, total }) {
+  const [ref, visible] = useInView(0.25);
+  const isLeft = step.side === "left";
+
+  return (
+    <div ref={ref}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 70px 1fr", alignItems: "center", minHeight: 110 }}>
+        {isLeft ? (
+          <>
+            <div
+              style={{
+                padding: "22px 28px",
+                textAlign: "right",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateX(0) translateY(0)" : "translateX(-50px) translateY(10px)",
+                transition: "opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1), transform 0.75s cubic-bezier(0.4, 0, 0.2, 1)",
+                background: "#ffffff",
+                borderRadius: "18px",
+                border: "1.5px solid #daeaed",
+                boxShadow: visible ? "0 10px 28px rgba(42, 180, 180, 0.1)" : "0 2px 8px rgba(0,0,0,0.03)",
+              }}
+            >
+              <div style={{ fontSize: "0.75rem", fontWeight: 700, color: "#2AB4B4", textTransform: "uppercase", letterSpacing: "1.2px", marginBottom: 4 }}>Step 0{index + 1}</div>
+              <div style={{ fontWeight: 800, fontSize: "1.1rem", color: "#1a2b3c", marginBottom: 6 }}>{step.title}</div>
+              <div style={{ fontSize: "0.875rem", color: "#6b8a9a", lineHeight: 1.65 }}>{step.desc}</div>
+            </div>
+
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
+              <div
+                style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: "50%",
+                  background: visible ? "#ffffff" : "#c2e4ee",
+                  border: visible ? "3px solid #2AB4B4" : "5px solid #d6ecf2",
+                  boxShadow: visible ? "0 0 0 8px rgba(42, 180, 180, 0.18), 0 6px 18px rgba(42, 180, 180, 0.25)" : "none",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transform: visible ? "scale(1.12)" : "scale(0.75)",
+                  transition: "all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                  zIndex: 2,
+                }}
+              >
+                <span style={{ fontSize: "15px", fontWeight: 800, color: visible ? "#2AB4B4" : "#6b8a9a" }}>{index + 1}</span>
+              </div>
+            </div>
+
+            <div />
+          </>
+        ) : (
+          <>
+            <div />
+
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
+              <div
+                style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: "50%",
+                  background: visible ? "#ffffff" : "#c2e4ee",
+                  border: visible ? "3px solid #2AB4B4" : "5px solid #d6ecf2",
+                  boxShadow: visible ? "0 0 0 8px rgba(42, 180, 180, 0.18), 0 6px 18px rgba(42, 180, 180, 0.25)" : "none",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transform: visible ? "scale(1.12)" : "scale(0.75)",
+                  transition: "all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                  zIndex: 2,
+                }}
+              >
+                <span style={{ fontSize: "15px", fontWeight: 800, color: visible ? "#2AB4B4" : "#6b8a9a" }}>{index + 1}</span>
+              </div>
+            </div>
+
+            <div
+              style={{
+                padding: "22px 28px",
+                textAlign: "left",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateX(0) translateY(0)" : "translateX(50px) translateY(10px)",
+                transition: "opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1), transform 0.75s cubic-bezier(0.4, 0, 0.2, 1)",
+                background: "#ffffff",
+                borderRadius: "18px",
+                border: "1.5px solid #daeaed",
+                boxShadow: visible ? "0 10px 28px rgba(42, 180, 180, 0.1)" : "0 2px 8px rgba(0,0,0,0.03)",
+              }}
+            >
+              <div style={{ fontSize: "0.75rem", fontWeight: 700, color: "#2AB4B4", textTransform: "uppercase", letterSpacing: "1.2px", marginBottom: 4 }}>Step 0{index + 1}</div>
+              <div style={{ fontWeight: 800, fontSize: "1.1rem", color: "#1a2b3c", marginBottom: 6 }}>{step.title}</div>
+              <div style={{ fontSize: "0.875rem", color: "#6b8a9a", lineHeight: 1.65 }}>{step.desc}</div>
+            </div>
+          </>
+        )}
+      </div>
+
+      {index < total - 1 && (
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 70px 1fr", height: 75 }}>
+          <div />
+          <div style={{ position: "relative", width: "100%", height: "100%", display: "flex", justifyContent: "center" }}>
+            <div
+              style={{
+                borderLeft: "3px dashed #2AB4B4",
+                height: "100%",
+                opacity: visible ? 0.85 : 0.25,
+                transform: visible ? "scaleY(1)" : "scaleY(0)",
+                transformOrigin: "top center",
+                transition: "transform 0.65s cubic-bezier(0.4, 0, 0.2, 1) 0.3s, opacity 0.65s ease 0.3s",
+              }}
+            />
+          </div>
+          <div />
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
   const [hovFeat, setHovFeat] = useState(null);
@@ -293,48 +411,18 @@ export default function LandingPage() {
       </section>
 
       {/* STEPS */}
-      <section style={{ background: "#eef6f8", padding: "80px 40px" }}>
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+      <section style={{ background: "#eef6f8", padding: "90px 40px" }}>
+        <div style={{ maxWidth: 960, margin: "0 auto" }}>
           <FadeUp>
-            <h2 style={{ textAlign: "center", fontSize: "2rem", fontWeight: 800, color: "#1a2b3c", marginBottom: 60 }}>
-              Join the Platform in 3 Easy Steps
-            </h2>
+            <div style={{ textAlign: "center", marginBottom: 64 }}>
+              <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "#2AB4B4", textTransform: "uppercase", letterSpacing: "1.5px", marginBottom: 8 }}>GET STARTED FAST</div>
+              <h2 style={{ fontSize: "2.2rem", fontWeight: 800, color: "#1a2b3c" }}>
+                Join the Platform in 3 Easy Steps
+              </h2>
+            </div>
           </FadeUp>
           {STEPS.map((step, i) => (
-            <FadeUp key={i} delay={i * 0.12}>
-              <div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 1fr", alignItems: "center", minHeight: 100 }}>
-                  {step.side === "left" ? (
-                    <>
-                      <div style={{ padding: "0 24px", textAlign: "right" }}>
-                        <div style={{ fontWeight: 800, fontSize: "1.05rem", color: "#1a2b3c", marginBottom: 6 }}>{step.title}</div>
-                        <div style={{ fontSize: "0.875rem", color: "#6b8a9a", lineHeight: 1.6 }}>{step.desc}</div>
-                      </div>
-                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#b8dce8", border: "6px solid #d6ecf2", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto" }}>
-                        <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#2AB4B4" }} />
-                      </div>
-                      <div />
-                    </>
-                  ) : (
-                    <>
-                      <div />
-                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#b8dce8", border: "6px solid #d6ecf2", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto" }}>
-                        <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#2AB4B4" }} />
-                      </div>
-                      <div style={{ padding: "0 24px" }}>
-                        <div style={{ fontWeight: 800, fontSize: "1.05rem", color: "#1a2b3c", marginBottom: 6 }}>{step.title}</div>
-                        <div style={{ fontSize: "0.875rem", color: "#6b8a9a", lineHeight: 1.6 }}>{step.desc}</div>
-                      </div>
-                    </>
-                  )}
-                </div>
-                {i < STEPS.length - 1 && (
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 1fr", height: 70 }}>
-                    <div /><div style={{ borderLeft: "2px dashed #b0cdd8", margin: "0 auto" }} /><div />
-                  </div>
-                )}
-              </div>
-            </FadeUp>
+            <AnimatedStep key={i} step={step} index={i} total={STEPS.length} />
           ))}
         </div>
       </section>
