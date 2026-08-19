@@ -1098,8 +1098,7 @@ function StudentView({ supabase, profile, onXPUpdate }) {
               </div>
 
               <div style={{ flex: 1 }}>
-                <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", margin: "0 0 3px" }}>{topic.name}</h3>
-                <p style={{ fontSize: "12px", color: "#6B8A9A", margin: 0 }}>{topic.notesCount}</p>
+                <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>{topic.name}</h3>
               </div>
 
               <div style={{ width: "120px", flexShrink: 0 }}>
@@ -1195,7 +1194,7 @@ function EducatorView({ supabase, profile, onXPUpdate }) {
                   <span style={{ fontSize: "20px" }}>{topic.icon}</span>
                   <div>
                     <p style={{ fontSize: "14px", fontWeight: 600, color: "#1B2B3A", margin: 0 }}>{topic.name}</p>
-                    <p style={{ fontSize: "12px", color: "#6B8A9A", margin: 0 }}>{topic.notesCount} • {topic.pdfTitle}</p>
+                    <p style={{ fontSize: "12px", color: "#6B8A9A", margin: 0 }}>{topic.pdfTitle}</p>
                   </div>
                 </div>
                 <button onClick={() => setActiveTopic(topic)} style={{ background: topic.color + "15", color: topic.color, border: `1px solid ${topic.color}30`, padding: "6px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: 700, cursor: "pointer" }}>
