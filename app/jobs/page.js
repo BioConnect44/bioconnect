@@ -705,13 +705,14 @@ export default function JobsPage() {
                   className="job-card"
                   style={{
                     background: "#fff",
-                    border: isManual
-                      ? `2px solid #14B8A6`
-                      : "1.5px solid #E2EEF0",
+                    border: "1.5px solid #E2EEF0",
+                    borderLeft: `5px solid ${isManual ? "#F97316" : cc}`,
                     borderRadius: "16px",
                     padding: "22px 26px",
-                    transition: "all .2s",
-                    borderLeft: isManual ? "4px solid #14B8A6" : undefined,
+                    transition: "all 0.25s ease",
+                    boxShadow: "0 2px 10px rgba(0,0,0,0.03)",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
                 >
                   {isManual && (
