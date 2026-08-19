@@ -496,12 +496,56 @@ const COURSE_TOPICS = [
     ],
     pyqs: [
       {
+        id: 1,
+        question: "GAT-B 2020: Animal cell culture requires:",
+        options: ["High salt only", "Growth factors and sterile conditions", "Anaerobic environment only", "Soil nutrients"],
+        correct: 1,
+        explanation: "Animal cell culture requires growth factors (provided by serum like FBS) and strict sterile aseptic conditions."
+      },
+      {
+        id: 2,
+        question: "GAT-B 2020: The commonly used medium for animal cell culture is:",
+        options: ["MS medium", "LB broth", "DMEM", "Nutrient agar"],
+        correct: 2,
+        explanation: "Dulbecco's Modified Eagle Medium (DMEM) is one of the most widely used synthetic basal media for animal cell culture."
+      },
+      {
+        id: 3,
+        question: "GAT-B 2020: Trypsinization is used for:",
+        options: ["DNA isolation", "Cell detachment", "Protein sequencing", "Electrophoresis"],
+        correct: 1,
+        explanation: "Trypsin is a proteolytic enzyme used to detach anchorage-dependent cells from culture vessel surfaces during subculturing."
+      },
+      {
+        id: 4,
+        question: "GAT-B 2021: Primary cell cultures are derived directly from:",
+        options: ["Immortal cell lines", "Fresh tissues", "Hybridomas", "Plasmids"],
+        correct: 1,
+        explanation: "Primary cell cultures are established directly from fresh animal or human tissues via mechanical/enzymatic dissociation."
+      },
+      {
+        id: 5,
+        question: "GAT-B 2021: CO2 incubators in animal tissue culture generally maintain:",
+        options: ["100% oxygen", "5% CO2", "Nitrogen only", "Vacuum"],
+        correct: 1,
+        explanation: "CO2 incubators maintain 5% CO2 to regulate the bicarbonate buffer system, keeping medium pH strictly at 7.2–7.4."
+      },
+      {
+        id: 6,
+        question: "GAT-B 2021: HeLa cells are an example of:",
+        options: ["Plant cells", "Continuous cell line", "Stem cells only", "Hybrid cells"],
+        correct: 1,
+        explanation: "HeLa cells are an immortalized continuous human epithelial cell line derived from cervical cancer."
+      },
+      {
+        id: 7,
         question: "What is the primary role of 10% DMSO in cell cryopreservation?",
         options: ["Nutrient source", "Cryoprotectant preventing intracellular ice crystal formation", "Antibiotic", "pH buffer"],
         correct: 1,
         explanation: "DMSO penetrates cell membranes and prevents intracellular ice crystal formation during freezing."
       },
       {
+        id: 8,
         question: "Anoikis refers to programmed cell death triggered by:",
         options: ["High CO2 levels", "Loss of cell attachment to extracellular matrix", "Trypsin toxicity", "Thermal shock"],
         correct: 1,
