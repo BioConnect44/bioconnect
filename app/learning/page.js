@@ -55,22 +55,144 @@ const COURSE_TOPICS = [
     ],
     pyqs: [
       {
-        question: "In enzyme kinetics, what does a low Michaelis constant (Km) indicate?",
-        options: ["Low substrate affinity", "High substrate affinity", "Low Vmax", "Zero catalytic activity"],
-        correct: 1,
-        explanation: "Km is inversely related to substrate affinity; a lower Km means the enzyme reaches half-maximal velocity at a lower substrate concentration (higher affinity)."
+        id: 1,
+        question: "GAT-B 2020: Which of the following interactions are involved in stabilising protein structure?",
+        options: ["Hydrophobic interactions", "Ionic bonds", "Hydrogen bonds", "All of the above"],
+        correct: 3,
+        explanation: "Protein tertiary and quaternary structures are stabilized by non-covalent interactions including hydrophobic interactions, ionic bonds, hydrogen bonds, and disulfide bridges."
       },
       {
-        question: "Which of the following bonds joins individual amino acids in a polypeptide chain?",
-        options: ["Glycosidic bond", "Phosphodiester bond", "Peptide bond", "Ester bond"],
+        id: 2,
+        question: "GAT-B 2020: The bond length of peptide bond is approximately:",
+        options: ["1.32 Å", "2.01 Å", "1.49 Å", "1.80 Å"],
+        correct: 0,
+        explanation: "The C-N peptide bond length is approximately 1.32 Å, which is shorter than a standard C-N single bond (1.47 Å) due to partial double-bond character."
+      },
+      {
+        id: 3,
+        question: "GAT-B 2020: Denaturation of proteins causes loss of biological activity mainly due to:",
+        options: ["Loss of primary structure", "Loss of peptide bond", "Loss of secondary and tertiary structure", "Hydrolysis of amino acids"],
         correct: 2,
-        explanation: "Peptide bonds covalently link the carboxyl group of one amino acid to the amino group of another."
+        explanation: "Denaturation disrupts secondary, tertiary, and quaternary structures without breaking primary covalent peptide bonds."
       },
       {
-        question: "What is the net ATP yield produced per molecule of glucose during glycolysis?",
-        options: ["4 ATP", "2 ATP", "32 ATP", "36 ATP"],
+        id: 4,
+        question: "GAT-B 2020: Which amino acid is most likely to disrupt α-helix?",
+        options: ["Alanine", "Leucine", "Proline", "Methionine"],
+        correct: 2,
+        explanation: "Proline acts as an alpha-helix breaker because its rigid cyclic side chain creates steric hindrance and lacks an N-H hydrogen bond donor."
+      },
+      {
+        id: 5,
+        question: "GAT-B 2020: Which of the following is NOT a reducing sugar?",
+        options: ["Maltose", "Lactose", "Glucose", "Sucrose"],
+        correct: 3,
+        explanation: "Sucrose is a non-reducing disaccharide because both of its anomeric carbons (C1 of glucose and C2 of fructose) are involved in the glycosidic bond."
+      },
+      {
+        id: 6,
+        question: "GAT-B 2021: Competitive inhibition can be overcome by:",
+        options: ["Decreasing substrate concentration", "Increasing substrate concentration", "Increasing inhibitor concentration", "Decreasing enzyme concentration"],
         correct: 1,
-        explanation: "Glycolysis produces 4 ATP gross but consumes 2 ATP in the investment phase, resulting in a net yield of 2 ATP per glucose."
+        explanation: "Increasing substrate concentration outcompetes the inhibitor for binding at the active site, restoring maximum velocity Vmax."
+      },
+      {
+        id: 7,
+        question: "GAT-B 2021: Which enzyme parameter remains unchanged in competitive inhibition?",
+        options: ["Km", "Vmax", "Both Km and Vmax", "Turnover number"],
+        correct: 1,
+        explanation: "In competitive inhibition, Vmax remains unchanged because high substrate concentration can outcompete the inhibitor, whereas apparent Km increases."
+      },
+      {
+        id: 8,
+        question: "GAT-B 2021: Cholesterol in plasma membrane mainly helps in:",
+        options: ["Protein synthesis", "Membrane fluidity regulation", "ATP synthesis", "Cell wall formation"],
+        correct: 1,
+        explanation: "Cholesterol regulates membrane fluidity by preventing fatty acid chains from packing tightly at low temperatures and restricting excessive movement at high temperatures."
+      },
+      {
+        id: 9,
+        question: "GAT-B 2021: Which RNA possesses catalytic activity?",
+        options: ["mRNA", "tRNA", "rRNA", "hnRNA"],
+        correct: 2,
+        explanation: "23S rRNA (in prokaryotes) or 28S rRNA (in eukaryotes) functions as a peptidyl transferase ribozyme that catalyzes peptide bond formation."
+      },
+      {
+        id: 10,
+        question: "GAT-B 2021: Which amino acid contains imidazole ring?",
+        options: ["Lysine", "Histidine", "Arginine", "Tryptophan"],
+        correct: 1,
+        explanation: "Histidine contains an aromatic imidazole side chain ring with a pKa ~6.0, allowing it to act as a general acid-base catalyst at physiological pH."
+      },
+      {
+        id: 11,
+        question: "GAT-B 2022: Which polysaccharide is highly branched?",
+        options: ["Amylose", "Cellulose", "Glycogen", "Chitin"],
+        correct: 2,
+        explanation: "Glycogen is a highly branched glucose polymer with α-1,4 glycosidic bonds and α-1,6 branch points occurring every 8-12 glucose residues."
+      },
+      {
+        id: 12,
+        question: "GAT-B 2022: Base pairing in DNA is stabilised by:",
+        options: ["Ionic bonds", "Covalent bonds", "Hydrogen bonds", "Peptide bonds"],
+        correct: 2,
+        explanation: "Complementary base pairs (A-T with 2 hydrogen bonds, G-C with 3 hydrogen bonds) stabilize the double-stranded DNA helix."
+      },
+      {
+        id: 13,
+        question: "GAT-B 2022: Which vitamin acts as antioxidant?",
+        options: ["Vitamin C", "Vitamin D", "Vitamin K", "Vitamin B12"],
+        correct: 0,
+        explanation: "Vitamin C (ascorbic acid) and Vitamin E act as powerful water-soluble and lipid-soluble antioxidants, scavenging free radicals."
+      },
+      {
+        id: 14,
+        question: "GAT-B 2022: The phosphodiester bond in nucleic acid is formed between:",
+        options: ["2' OH and 3' phosphate", "1' carbon and base", "3' OH and 5' phosphate", "Nitrogenous bases"],
+        correct: 2,
+        explanation: "Phosphodiester bonds link the 3'-OH group of one sugar molecule to the 5'-phosphate group of the adjacent sugar in nucleic acids."
+      },
+      {
+        id: 15,
+        question: "GAT-B 2022: Which of the following is a ketose sugar?",
+        options: ["Glucose", "Galactose", "Fructose", "Ribose"],
+        correct: 2,
+        explanation: "Fructose is a ketohexose containing a ketone group at C2, whereas glucose and galactose are aldohexoses."
+      },
+      {
+        id: 16,
+        question: "GAT-B 2023: Apoenzyme together with cofactor forms:",
+        options: ["Isoenzyme", "Ribozyme", "Holoenzyme", "Zymogen"],
+        correct: 2,
+        explanation: "An apoenzyme (inactive protein part) plus its required cofactor/coenzyme forms a catalytically active holoenzyme."
+      },
+      {
+        id: 17,
+        question: "GAT-B 2023: Which amino acid contains sulfur atom?",
+        options: ["Glycine", "Serine", "Methionine", "Proline"],
+        correct: 2,
+        explanation: "Methionine and Cysteine are the two standard sulfur-containing amino acids."
+      },
+      {
+        id: 18,
+        question: "GAT-B 2023: Which nitrogenous base is absent in RNA?",
+        options: ["Adenine", "Guanine", "Cytosine", "Thymine"],
+        correct: 3,
+        explanation: "RNA contains Uracil (U) instead of Thymine (T)."
+      },
+      {
+        id: 19,
+        question: "GAT-B 2023: The major structural component of biological membrane is:",
+        options: ["Steroid", "Cholesterol", "Phospholipid", "Triglyceride"],
+        correct: 2,
+        explanation: "Phospholipids form the fundamental structural lipid bilayer matrix of all biological membranes."
+      },
+      {
+        id: 20,
+        question: "GAT-B 2023: Which amino acid does NOT possess chiral carbon?",
+        options: ["Alanine", "Glycine", "Valine", "Threonine"],
+        correct: 1,
+        explanation: "Glycine has two hydrogen atoms attached to its alpha carbon, making it achiral (non-optically active)."
       }
     ]
   },
@@ -245,50 +367,174 @@ const COURSE_TOPICS = [
 
 const CHALLENGES = {
   genetics: {
-    title: "Molecular Biology & Genetics PYQs",
-    subject: "Molecular Biology (GAT-B 2020-2024)",
+    title: "Biomolecules & Bioenergetics PYQs",
+    subject: "Biomolecules & Bioenergetics (GAT-B 2020-2023)",
     color: "#F97316",
     bg: "#FFF3E8",
-    xp: 150,
+    xp: 200,
     timeLimit: 900,
-    questions: COURSE_TOPICS[1].pyqs.concat([
-      {
-        id: 1,
-        question: "GAT-B 2020: The enzyme responsible for unwinding DNA during replication is:",
-        options: ["DNA ligase", "Helicase", "Primase", "Topoisomerase"],
-        correct: 1,
-        explanation: "Helicase unwinds the double-stranded DNA helix by breaking hydrogen bonds between base pairs."
-      },
-      {
-        id: 2,
-        question: "GAT-B 2020: Okazaki fragments are formed during synthesis of:",
-        options: ["Leading strand", "Lagging strand", "mRNA", "tRNA"],
-        correct: 1,
-        explanation: "Okazaki fragments are short DNA fragments synthesized discontinuously on the lagging strand during replication."
-      },
-      {
-        id: 3,
-        question: "GAT-B 2021: The start codon in mRNA is:",
-        options: ["UAA", "AUG", "UAG", "UGA"],
-        correct: 1,
-        explanation: "AUG is the universal start codon in mRNA that codes for Methionine."
-      }
-    ])
+    questions: COURSE_TOPICS[0].pyqs
   },
   mock: {
-    title: "Genetic Engineering PYQs",
-    subject: "Genetic Engineering (GAT-B 2020-2024)",
+    title: "Molecular Biology & Genetics PYQs",
+    subject: "Genetics & Molecular Biology (GAT-B 2020-2024)",
     color: "#8B5CF6",
     bg: "#F3F0FF",
     xp: 150,
     timeLimit: 900,
-    questions: COURSE_TOPICS[0].pyqs.concat(COURSE_TOPICS[2].pyqs).concat(COURSE_TOPICS[3].pyqs)
+    questions: COURSE_TOPICS[1].pyqs.concat(COURSE_TOPICS[2].pyqs).concat(COURSE_TOPICS[3].pyqs)
   }
 };
+
+/* ── Interactive PDF Document Reader Viewer Component ── */
+function PdfDocumentViewer({ topic, onClose }) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 4;
+
+  return (
+    <div style={{
+      background: "#1E293B",
+      borderRadius: "16px",
+      padding: "20px",
+      color: "#fff",
+      boxShadow: "0 12px 36px rgba(0,0,0,0.3)",
+      marginBottom: "24px"
+    }}>
+      {/* Toolbar */}
+      <div style={{
+        display: "flex", justifyContent: "space-between", alignItems: "center",
+        paddingBottom: "14px", borderBottom: "1px solid rgba(255,255,255,0.15)",
+        marginBottom: "16px"
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <span style={{ fontSize: "20px" }}>📖</span>
+          <span style={{ fontSize: "14px", fontWeight: 700 }}>{topic.pdfTitle}</span>
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+            style={{
+              background: "rgba(255,255,255,0.15)", color: "#fff", border: "none",
+              padding: "5px 12px", borderRadius: "6px", fontSize: "12px", fontWeight: 600,
+              cursor: currentPage === 1 ? "not-allowed" : "pointer", opacity: currentPage === 1 ? 0.4 : 1
+            }}
+          >
+            ← Prev
+          </button>
+          <span style={{ fontSize: "12px", fontWeight: 600 }}>Page {currentPage} of {totalPages}</span>
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+            style={{
+              background: "rgba(255,255,255,0.15)", color: "#fff", border: "none",
+              padding: "5px 12px", borderRadius: "6px", fontSize: "12px", fontWeight: 600,
+              cursor: currentPage === totalPages ? "not-allowed" : "pointer", opacity: currentPage === totalPages ? 0.4 : 1
+            }}
+          >
+            Next →
+          </button>
+          <button
+            onClick={onClose}
+            style={{
+              background: "#EF4444", color: "#fff", border: "none",
+              padding: "5px 12px", borderRadius: "6px", fontSize: "12px", fontWeight: 700,
+              cursor: "pointer", marginLeft: "8px"
+            }}
+          >
+            Close Viewer ✕
+          </button>
+        </div>
+      </div>
+
+      {/* PDF Page Paper View */}
+      <div style={{
+        background: "#ffffff",
+        color: "#1e293b",
+        borderRadius: "12px",
+        padding: "32px",
+        minHeight: "440px",
+        boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+        fontSize: "14px",
+        lineHeight: "1.6"
+      }}>
+        <div style={{ borderBottom: "2px solid " + topic.color, paddingBottom: "12px", marginBottom: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div>
+            <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
+            <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
+          </div>
+          <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b" }}>PAGE {currentPage} OF {totalPages}</span>
+        </div>
+
+        {/* Page Content based on currentPage */}
+        {currentPage === 1 && (
+          <div>
+            <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>1. Key Concepts & Core Principles</h3>
+            <p style={{ fontStyle: "italic", color: "#475569", marginBottom: "16px" }}>"{topic.tagline}"</p>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "20px" }}>
+              {topic.sections.slice(0, 2).map((sec, idx) => (
+                <div key={idx} style={{ background: "#f8fafc", padding: "16px", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
+                  <h4 style={{ fontSize: "14px", fontWeight: 700, margin: "0 0 8px", color: "#0f172a" }}>{sec.title}</h4>
+                  <div style={{ whiteSpace: "pre-line", fontSize: "13px", color: "#334155" }}>{sec.content}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {currentPage === 2 && (
+          <div>
+            <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>2. Equations, Kinetics & Balances</h3>
+            {topic.sections.slice(2, 4).map((sec, idx) => (
+              <div key={idx} style={{ background: "#f8fafc", padding: "16px", borderRadius: "10px", border: "1px solid #e2e8f0", marginBottom: "16px" }}>
+                <h4 style={{ fontSize: "14px", fontWeight: 700, margin: "0 0 8px", color: "#0f172a" }}>{sec.title}</h4>
+                <div style={{ whiteSpace: "pre-line", fontSize: "13.5px", color: "#334155" }}>{sec.content}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {currentPage === 3 && (
+          <div>
+            <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#dc2626", marginBottom: "12px" }}>3. Common Exam Traps & High-Yield Rules</h3>
+            <div style={{ background: "#fef2f2", border: "1.5px solid #fca5a5", borderRadius: "12px", padding: "20px", marginBottom: "20px" }}>
+              <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#991b1b", margin: "0 0 10px" }}>⚠️ CRITICAL EXAM TRAPS</h4>
+              <ul style={{ paddingLeft: "20px", margin: 0 }}>
+                {topic.examTraps.map((trap, idx) => (
+                  <li key={idx} style={{ marginBottom: "8px", color: "#7f1d1d", fontSize: "13.5px" }}>{trap}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {currentPage === 4 && (
+          <div>
+            <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>4. Topic Exam MCQs ({topic.pyqs.length} Questions)</h3>
+            <div style={{ background: "#f0fdf4", border: "1.5px solid #86efac", borderRadius: "12px", padding: "20px" }}>
+              <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#166534", margin: "0 0 10px" }}>📝 AUTHENTIC GAT-B PAST YEAR QUESTIONS</h4>
+              <p style={{ fontSize: "13.5px", color: "#14532d" }}>
+                This topic includes <strong>{topic.pyqs.length} authentic GAT-B questions</strong> with complete answer keys and detailed explanations. Switch to the <strong>"Topic PYQ MCQs ({topic.pyqs.length})"</strong> tab above to practice!
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div style={{ marginTop: "24px", paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
+          <span>BioConnect Platform · GATE Biotech Notes</span>
+          <span>End of Page {currentPage}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /* ── Interactive Course / Topic Viewer Modal ── */
 function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
   const [activeTab, setActiveTab] = useState("notes"); // "notes" | "pyq"
+  const [showPdfViewer, setShowPdfViewer] = useState(false);
   const [currentQ, setCurrentQ] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [submitted, setSubmitted] = useState({});
@@ -318,7 +564,7 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
       if (selectedAnswers[idx] === q.correct) correctCount += 1;
     });
 
-    const earned = Math.round((correctCount / topic.pyqs.length) * 50);
+    const earned = Math.round((correctCount / topic.pyqs.length) * 100);
     setXpEarned(earned);
 
     if (profile?.id && earned > 0) {
@@ -413,7 +659,7 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
         <div style={{ padding: "32px", flex: 1 }}>
           {activeTab === "notes" ? (
             <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-              {/* PDF Info Card */}
+              {/* PDF Info Card with Open PDF Viewer button */}
               <div style={{ background: topic.color + "10", border: `1.5px solid ${topic.color}30`, borderRadius: "16px", padding: "18px 22px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
                   <span style={{ fontSize: "28px" }}>📄</span>
@@ -422,10 +668,27 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
                     <p style={{ fontSize: "12px", color: "#6B8A9A", margin: "2px 0 0" }}>B.Tech Biotechnology • GATE & Academic Study Notes</p>
                   </div>
                 </div>
-                <span style={{ background: topic.color, color: "#fff", fontSize: "12px", fontWeight: 700, padding: "6px 14px", borderRadius: "8px" }}>
-                  Verified GATE Notes
-                </span>
+                <div style={{ display: "flex", gap: "10px" }}>
+                  <button
+                    onClick={() => setShowPdfViewer(!showPdfViewer)}
+                    style={{
+                      background: topic.color, color: "#fff",
+                      border: "none", fontSize: "13px", fontWeight: 700,
+                      padding: "8px 18px", borderRadius: "10px", cursor: "pointer",
+                      display: "flex", alignItems: "center", gap: "6px",
+                      boxShadow: "0 2px 10px " + topic.color + "40"
+                    }}
+                  >
+                    <span>📖</span>
+                    <span>{showPdfViewer ? "Close PDF Viewer" : "Open PDF Viewer"}</span>
+                  </button>
+                </div>
               </div>
+
+              {/* Inline PDF Viewer Component */}
+              {showPdfViewer && (
+                <PdfDocumentViewer topic={topic} onClose={() => setShowPdfViewer(false)} />
+              )}
 
               {/* Sections Breakdown */}
               {topic.sections.map((sec, idx) => (
@@ -454,7 +717,7 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
                   onClick={() => setActiveTab("pyq")}
                   style={{ background: topic.color, color: "#fff", border: "none", padding: "12px 24px", borderRadius: "10px", fontSize: "14px", fontWeight: 700, cursor: "pointer" }}
                 >
-                  Practice Topic PYQs →
+                  Practice Topic PYQs ({topic.pyqs.length}) →
                 </button>
               </div>
             </div>
@@ -468,7 +731,7 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
                       Question {currentQ + 1} of {topic.pyqs.length}
                     </span>
                     <span style={{ fontSize: "12px", color: "#6B8A9A" }}>
-                      Instant Solution Feedback
+                      Authentic GAT-B Exam Questions
                     </span>
                   </div>
 
@@ -690,7 +953,7 @@ function ChallengeModal({ challengeKey, onClose, supabase, profile, onXPUpdate }
           borderTopLeftRadius: "24px", borderTopRightRadius: "24px"
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <span style={{ fontSize: "22px" }}>{challenge.subject === "Genetics" ? "🔬" : "⏱️"}</span>
+            <span style={{ fontSize: "22px" }}>{challenge.subject.includes("Biomolecules") ? "🧪" : "⏱️"}</span>
             <div>
               <h3 style={{ fontSize: "17px", fontWeight: 800, color: "#1B2B3A", margin: 0 }}>{challenge.title}</h3>
               <p style={{ fontSize: "12px", color: "#6B8A9A", margin: 0 }}>{challenge.subject} • {questions.length} MCQs</p>
@@ -1068,14 +1331,14 @@ function StudentView({ supabase, profile, onXPUpdate }) {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px", marginBottom: "28px" }}>
           <div style={{ background: "#FFF3E8", borderRadius: "14px", padding: "20px 24px", display: "flex", justifyContent: "space-between", alignItems: "center", border: "1px solid #FFD4A3" }}>
             <div>
-              <p style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>Genetics & MolBio PYQs</p>
-              <p style={{ fontSize: "12px", color: "#6B8A9A" }}>15 MCQs • <span style={{ color: "#F97316", fontWeight: 600 }}>+150 XP</span></p>
+              <p style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>Biomolecules & Bioenergetics PYQs</p>
+              <p style={{ fontSize: "12px", color: "#6B8A9A" }}>20 MCQs • <span style={{ color: "#F97316", fontWeight: 600 }}>+200 XP</span></p>
             </div>
             <button onClick={() => setActiveChallenge("genetics")} style={{ background: "#F97316", color: "#fff", border: "none", padding: "8px 16px", borderRadius: "8px", fontSize: "13px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Start Challenge</button>
           </div>
           <div style={{ background: "#F3F0FF", borderRadius: "14px", padding: "20px 24px", display: "flex", justifyContent: "space-between", alignItems: "center", border: "1px solid #DDD6FE" }}>
             <div>
-              <p style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>Genetic Engineering PYQs</p>
+              <p style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>Genetics & MolBio PYQs</p>
               <p style={{ fontSize: "12px", color: "#6B8A9A" }}>15 MCQs • <span style={{ color: "#8B5CF6", fontWeight: 600 }}>+150 XP</span></p>
             </div>
             <button onClick={() => setActiveChallenge("mock")} style={{ background: "#8B5CF6", color: "#fff", border: "none", padding: "8px 16px", borderRadius: "8px", fontSize: "13px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Start Challenge</button>
@@ -1168,7 +1431,7 @@ function EducatorView({ supabase, profile, onXPUpdate }) {
           { label: "Total Materials", value: "4 Topic Sets", icon: "📚", color: "#14B8A6" },
           { label: "Subjects", value: "4 Modules", icon: "🧬", color: "#8B5CF6" },
           { label: "Students Enrolled", value: "250+", icon: "👥", color: "#F97316" },
-          { label: "PYQ Sets", value: "30 MCQs", icon: "📝", color: "#3B82F6" },
+          { label: "PYQ Sets", value: "50+ MCQs", icon: "📝", color: "#3B82F6" },
         ].map(s => (
           <div key={s.label} style={{ background: "#fff", borderRadius: "14px", padding: "18px 20px", border: "1px solid #E2EEF0", display: "flex", gap: "12px", alignItems: "center" }}>
             <div style={{ width: 40, height: 40, borderRadius: "10px", background: s.color + "15", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", flexShrink: 0 }}>{s.icon}</div>
@@ -1212,8 +1475,8 @@ function EducatorView({ supabase, profile, onXPUpdate }) {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
             {[
-              { title: "Genetics & MolBio PYQs", count: 15, xp: 150, subject: "GAT-B 2020-2024", color: "#F97316", bg: "#FFF3E8", key: "genetics" },
-              { title: "Genetic Engineering PYQs", count: 15, xp: 150, subject: "GAT-B 2020-2024", color: "#8B5CF6", bg: "#F3F0FF", key: "mock" },
+              { title: "Biomolecules & Bioenergetics PYQs", count: 20, xp: 200, subject: "GAT-B 2020-2023", color: "#F97316", bg: "#FFF3E8", key: "genetics" },
+              { title: "Genetics & MolBio PYQs", count: 15, xp: 150, subject: "GAT-B 2020-2024", color: "#8B5CF6", bg: "#F3F0FF", key: "mock" },
             ].map(q => (
               <div key={q.title} style={{ background: q.bg, borderRadius: "14px", padding: "18px 20px", border: `1px solid ${q.color}20` }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
