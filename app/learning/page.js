@@ -654,28 +654,392 @@ const CHALLENGES = {
   }
 };
 
+/* ── 23-Page Master Textbook Pages for Advanced Genetics ── */
+const FULL_GENETICS_23_PAGES = [
+  // Page 1
+  `<h1 style="font-size:22px; color:#1e3a8a; margin:0 0 10px; border-bottom:2px solid #1e3a8a; padding-bottom:8px;">MASTER ENGINEERING COURSE GUIDE:<br/>ADVANCED GENETICS & MOLECULAR BIOLOGY</h1>
+  <p style="font-style:italic; color:#475569; font-size:13px; margin-bottom:24px;">The Definitive High-Yield Textbook and Exam Prep Syllabus Framework for B.Tech Undergraduate University Examinations and the Graduate Aptitude Test in Engineering (GATE)</p>
+  <div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+    MODULE 1: MOLECULAR STRUCTURE OF GENES AND CHROMOSOMES
+  </div>
+  <h3 style="font-size:16px; color:#0f172a; margin:16px 0 8px;">1.1 Structural Foundations and Biochemical Architecture</h3>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    The precise definition of a gene has transitioned significantly from a simple abstract hereditary unit into a chemically explicit, highly complex macromolecular layout. Modern molecular biotechnology defines a gene as the complete sequence of chromosomal nucleotides located across specific structural loci that contains the necessary coded instructions for the synthesis of a functional product, whether it be a specialized structural RNA molecule (such as rRNA, tRNA, snRNA, or miRNA) or a polypeptide sequence destined for structural or enzymatic deployment.
+  </p>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    The operational constraints of storing extended genomic text within a microscopic cell dictate that DNA cannot exist as an uncoiled macromolecule. For example, the total linear length of human genomic DNA across a single diploid cell nucleus is approximately two meters, yet it must be packed into a sphere with a diameter of only a few micrometers. This massive condensation is accomplished via sequential structural compaction tiers.
+  </p>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    In eukaryotic cells, the primary unit of packing is the <strong>nucleosome core particle</strong>. This complex consists of 146 base pairs of double-stranded DNA wound exactly 1.65 times in a left-handed superhelical turn around a core octamer of basic histone proteins. The histone core is a structured complex consisting of two copies each of histones H2A, H2B, H3, and H4. The basic residues (primarily rich in the amino acids lysine and arginine) carry strong positive charges, allowing them to form tight electrostatic interactions with the negatively charged oxygen atoms on the phosphate backbone of DNA.
+  </p>`,
+
+  // Page 2
+  `<h3 style="font-size:16px; color:#0f172a; margin:0 0 12px;">1.2 Higher-Order Packaging Hierarchies</h3>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">Compaction beyond the basic nucleosome level proceeds systematically to establish high-density chromosomes:</p>
+  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+    <li><strong>The 11 nm Fiber:</strong> Often described as the "beads-on-a-string" architecture. Features nucleosome cores separated by linker DNA (20–80 bp). Linker histone H1 binds directly where DNA enters/leaves the core, clamping it in place.</li>
+    <li><strong>The 30 nm Solenoid Fiber:</strong> The 11 nm string undergoes helical coiling (~6 nucleosomes per turn), increasing packaging density by roughly 40-fold.</li>
+    <li><strong>Loop Domains and Mitotic Scaffolding:</strong> The 30 nm fiber folds into extensive loop domains (20 to 100 kb) anchored to a central chromosome scaffold. Key scaffold proteins: <strong>Topoisomerase II</strong> (resolves torsional stress) and <strong>Condensin complex</strong> (dimeric ring driving condensed folding). Mitotic thickness: 700 to 1400 nm.</li>
+  </ul>
+  <h3 style="font-size:16px; color:#0f172a; margin:20px 0 12px;">1.3 Compartmentalized Epigenetic States: Euchromatin and Heterochromatin</h3>
+  <ol style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+    <li><strong>Euchromatin:</strong> Loose, open organization allowing transcription factors and RNA Polymerase ready access. Biochemically distinguished by high <strong>histone tail acetylation</strong> by Histone Acetyltransferases (HATs e.g., H3K9ac, H3K14ac), neutralizing positive charges.</li>
+    <li><strong>Heterochromatin:</strong> Highly condensed, transcriptionally silent. Characterized by <strong>histone lysine methylations</strong> (H3K9me3, H3K27me3) by Histone Methyltransferases (HMTs), recruiting Heterochromatin Protein 1 (HP1). Divided into <em>Constitutive Heterochromatin</em> (permanently silent at centromeres/telomeres) and...</li>
+  </ol>`,
+
+  // Page 3
+  `<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    ...<em>Facultative Heterochromatin</em>, which can dynamically switch between silent and active states in response to developmental signals.
+  </p>
+  <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:20px; margin-top:24px;">
+    <h4 style="margin:0 0 10px; color:#1e293b; font-size:14px;">💡 Module 1 High-Yield Epigenetics Summary</h4>
+    <table style="width:100%; border-collapse:collapse; font-size:13px;">
+      <thead>
+        <tr style="background:#f1f5f9; text-align:left;">
+          <th style="padding:8px; border:1px solid #cbd5e1;">Feature</th>
+          <th style="padding:8px; border:1px solid #cbd5e1;">Euchromatin</th>
+          <th style="padding:8px; border:1px solid #cbd5e1;">Heterochromatin</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:8px; border:1px solid #cbd5e1;">Structure</td><td style="padding:8px; border:1px solid #cbd5e1;">Open, 11 nm fiber</td><td style="padding:8px; border:1px solid #cbd5e1;">Condensed 30 nm / loops</td></tr>
+        <tr><td style="padding:8px; border:1px solid #cbd5e1;">Activity</td><td style="padding:8px; border:1px solid #cbd5e1;">Active transcription</td><td style="padding:8px; border:1px solid #cbd5e1;">Transcriptionally silent</td></tr>
+        <tr><td style="padding:8px; border:1px solid #cbd5e1;">Mark</td><td style="padding:8px; border:1px solid #cbd5e1;">Acetylation (HATs)</td><td style="padding:8px; border:1px solid #cbd5e1;">H3K9me3 / H3K27me3 (HMTs)</td></tr>
+      </tbody>
+    </table>
+  </div>`,
+
+  // Page 4
+  `<div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+    MODULE 2: NUCLEIC ACID REPLICATION, TRANSCRIPTION, AND TRANSLATION
+  </div>
+  <h3 style="font-size:16px; color:#0f172a; margin:0 0 12px;">2.1 Bidirectional Replication Fork Dynamics</h3>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    DNA replication is a highly coordinated, semi-conservative process ensuring high-fidelity transmission of genetic material during S phase. Because DNA polymerases only add nucleotides to a pre-existing 3'-OH group, elongation proceeds exclusively 5' to 3', creating an asymmetric fork.
+  </p>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    In prokaryotes (<em>E. coli</em>), replication initiates at a single origin (<strong>oriC</strong>). Initiator proteins (<strong>DnaA</strong>) bind 9-mer and 13-mer repeats. <strong>DnaB Helicase</strong> is loaded by DnaC to unwind strands. Positive supercoils ahead of the fork are relieved by <strong>DNA Gyrase</strong> (type II topoisomerase).
+  </p>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    Unwound single strands are stabilized by <strong>Single-Stranded Binding Proteins (SSBs)</strong>. Leading strand synthesis runs continuously, while lagging strand synthesis produces short <strong>Okazaki fragments</strong> (1000–2000 bp) primed by <strong>DnaG Primase</strong> and extended by <strong>DNA Polymerase III Holoenzyme</strong> with a homodimeric <strong>beta-2 sliding clamp</strong>.
+  </p>`,
+
+  // Page 5
+  `<h4 style="font-size:14px; color:#0f172a; margin:0 0 10px;">Prokaryotic vs. Eukaryotic Replication Machinery</h4>
+  <table style="width:100%; border-collapse:collapse; font-size:12.5px; margin-bottom:20px;">
+    <thead>
+      <tr style="background:#1e293b; color:#fff; text-align:left;">
+        <th style="padding:8px;">Function</th>
+        <th style="padding:8px;">Prokaryotic (E. coli)</th>
+        <th style="padding:8px;">Eukaryotic (Mammalian)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0;">Origin Recognition</td><td style="padding:8px; border:1px solid #e2e8f0;">DnaA Protein (9-mer/13-mer)</td><td style="padding:8px; border:1px solid #e2e8f0;">ORC 1–6 Complex</td></tr>
+      <tr><td style="padding:8px; border:1px solid #e2e8f0;">Helicase Activation</td><td style="padding:8px; border:1px solid #e2e8f0;">DnaB Helicase (5' to 3')</td><td style="padding:8px; border:1px solid #e2e8f0;">CMG Complex (Mcm2-7/GINS/Cdc45)</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0;">Primer Synthesis</td><td style="padding:8px; border:1px solid #e2e8f0;">DnaG Primase</td><td style="padding:8px; border:1px solid #e2e8f0;">Pol α / Primase complex</td></tr>
+      <tr><td style="padding:8px; border:1px solid #e2e8f0;">Elongation Enzymes</td><td style="padding:8px; border:1px solid #e2e8f0;">Pol III Core (α, ε, θ)</td><td style="padding:8px; border:1px solid #e2e8f0;">Pol ε (leading), Pol δ (lagging)</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0;">Primer Removal</td><td style="padding:8px; border:1px solid #e2e8f0;">Pol I (5' to 3' exonuclease)</td><td style="padding:8px; border:1px solid #e2e8f0;">FEN1 & Dna2</td></tr>
+    </tbody>
+  </table>
+  <h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">2.2 Transcription Processing and Regulatory Mechanisms</h3>
+  <p style="font-size:13px; color:#334155; line-height:1.6;">
+    Prokaryotes use a single core RNA polymerase (α2ββ'ω) + <strong>sigma factor (σ)</strong> binding consensus sequences at <strong>-10 (Pribnow box, 5'-TATAAT-3')</strong> and <strong>-35 (5'-TTGACA-3')</strong>. Eukaryotes segregate work across three polymerases: Pol I (45S rRNA), Pol II (mRNA with core <strong>TATA box</strong> at -25 bp recruiting TFIID/TFIIB/TFIIE/TFIIH), Pol III (tRNA, 5S rRNA).
+  </p>`,
+
+  // Page 6
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:18px; margin-bottom:20px;">
+    <h4 style="margin:0 0 10px; color:#166534; font-size:14px;">STEP-BY-STEP EUKARYOTIC MRNA POST-TRANSCRIPTIONAL PROCESSING CHAIN</h4>
+    <ol style="font-size:13px; color:#14532d; line-height:1.7; padding-left:20px; margin:0;">
+      <li><strong>5' Capping:</strong> Addition of <strong>7-methylguanosine cap</strong> via 5'-to-5' triphosphate bridge. Protects 5' end and recruits ribosome.</li>
+      <li><strong>3' Cleavage & Polyadenylation:</strong> Following 5'-AAUAAA-3' signal, endonuclease cleaves pre-mRNA and <strong>Poly(A) Polymerase (PAP)</strong> adds 150–250 adenine residues.</li>
+      <li><strong>Spliceosome Splicing:</strong> Introns removed by <strong>Spliceosome</strong> (U1, U2, U4, U5, U6 snRNAs + 150 proteins). Follows 5' splice site (GU), branch point (A), and 3' splice site (AG).</li>
+    </ol>
+  </div>`,
+
+  // Page 7
+  `<div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+    MODULE 3: MUTATIONS, MUTAGENESIS, DNA DAMAGE, AND REPAIR PATHWAYS
+  </div>
+  <h3 style="font-size:16px; color:#0f172a; margin:0 0 12px;">3.1 Molecular Classification of Mutations</h3>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    Point mutations: <strong>Transitions</strong> (purine ↔ purine [A ↔ G] or pyrimidine ↔ pyrimidine [C ↔ T]) vs <strong>Transversions</strong> (purine ↔ pyrimidine [A ↔ C, G ↔ T]).
+  </p>
+  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+    <li><strong>Silent Mutations:</strong> Codon changes but amino acid remains same due to code degeneracy (GUA → GUG Val).</li>
+    <li><strong>Missense Mutations:</strong> Codon specifies a different amino acid (GAG [Glu] → GTG [Val] in Sickle Cell).</li>
+    <li><strong>Nonsense Mutations:</strong> Converts codon into premature stop codon (UAA, UAG, UGA), producing truncated protein.</li>
+    <li><strong>Frameshift Mutations:</strong> Indels not a multiple of 3, shifting triplet reading frame.</li>
+  </ul>
+  <h3 style="font-size:16px; color:#0f172a; margin:20px 0 12px;">3.2 Mechanics of Environmental Mutagenesis</h3>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    1. <strong>Physical Mutagens:</strong> UV radiation forms intrastrand <strong>cyclobutane pyrimidine dimers (CPDs)</strong> & [6-4] photoproducts. X-rays create ROS and strand breaks.
+  </p>`,
+
+  // Page 8
+  `<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    2. <strong>Chemical Mutagens:</strong> EMS alkylating agent; <strong>5-Bromouracil (5-BU)</strong> base analogue mimics T and undergoes tautomeric shifts to enol form, pairing with G (T·A → C·G transition).
+  </p>
+  <h3 style="font-size:16px; color:#0f172a; margin:20px 0 12px;">3.3 DNA Repair Cascades and Enzymatic Pathways</h3>
+  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+    <li><strong>A. Mismatch Repair (MMR):</strong> <strong>MutS-MutL-MutH</strong> complex scans hemi-methylated 5'-GATC-3' (methylated by <strong>Dam Methylase</strong>). MutH nicks unmethylated strand.</li>
+    <li><strong>B. Base Excision Repair (BER):</strong> <strong>DNA Glycosylase</strong> removes base leaving <strong>AP site</strong>. <strong>AP Endonuclease</strong> cuts backbone, Pol I & Ligase repair.</li>
+    <li><strong>C. Nucleotide Excision Repair (NER):</strong> <strong>UvrABC excinuclease</strong> (UvrA/B scan, UvrC cuts 8 nt 5' & 4-5 nt 3'), <strong>UvrD Helicase</strong> removes 12-13 nt fragment. Defects cause <strong>Xeroderma Pigmentosum</strong>.</li>
+  </ul>`,
+
+  // Page 9
+  `<div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+    MODULE 4: CLASSICAL TRANSMISSION GENETICS, GENE INTERACTIONS, LINKAGE, AND MAPPING
+  </div>
+  <h3 style="font-size:16px; color:#0f172a; margin:0 0 12px;">4.1 Mendelian Inheritance and Post-Mendelian Extensions</h3>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    Law of Segregation & Law of Independent Assortment (9:3:3:1 ratio). Epistatic non-allelic interactions modify standard dihybrid ratio:
+  </p>
+  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+    <li><strong>Complementary Gene Interaction (9:7 Ratio):</strong> Both functional genes required for wild-type.</li>
+    <li><strong>Recessive Epistasis (9:3:4 Ratio):</strong> Recessive allele masks second locus (e.g. Labrador coat color <em>ee</em> masking <em>B/b</em>).</li>
+    <li><strong>Dominant Epistasis (12:3:1 Ratio):</strong> Single dominant allele suppresses alternative locus.</li>
+    <li><strong>Duplicate Dominant Epistasis (15:1 Ratio):</strong> Dominant allele at either locus gives wild-type.</li>
+  </ul>`,
+
+  // Page 10
+  `<h3 style="font-size:16px; color:#0f172a; margin:0 0 12px;">4.2 Recombination Linkage and Three-Point Testcross Mapping</h3>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    1 centimorgan (cM) = 1% recombination frequency. <strong>Three-Point Testcross</strong> (AaBbCc × aabbcc) workflow:
+  </p>
+  <ol style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+    <li><strong>Group Progeny:</strong> Parental classes (highest frequency) vs Double Crossover DCO (lowest frequency).</li>
+    <li><strong>Determine Gene Order:</strong> The locus flipped in DCO relative to parentals is the <strong>middle gene</strong>.</li>
+    <li><strong>Calculate Recombination Distances:</strong><br/>
+      <div style="background:#f1f5f9; padding:10px; border-radius:6px; font-weight:700; text-align:center; margin:8px 0;">
+        RF = [(Σ Single Crossovers + Σ Double Crossovers) / Total Progeny] × 100
+      </div>
+    </li>
+    <li><strong>Evaluate Interference:</strong> Interference $I = 1 - C$, where $C = \text{Observed DCO} / \text{Expected DCO}$.</li>
+  </ol>`,
+
+  // Page 11
+  `<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    An interference value $I = 0$ indicates independent crossovers, while $I = 1$ indicates complete suppression of adjacent crossovers.
+  </p>
+  <div style="background:#fffbe6; border:1px solid #ffe58f; border-radius:10px; padding:16px; margin-top:20px;">
+    <h4 style="margin:0 0 8px; color:#d48806; font-size:14px;">📌 Quick Rule for 3-Point Mapping</h4>
+    <p style="margin:0; font-size:13px; color:#8c6b00;">Compare parental pair [A B C / a b c] with DCO pair [A b C / a B c]. Notice 'b' has flipped! Therefore, gene order is <strong>A – B – C</strong>.</p>
+  </div>`,
+
+  // Page 12
+  `<div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+    MODULE 5: BACTERIAL GENETICS, HORIZONTAL GENE TRANSFER, AND RNA INTERFERENCE
+  </div>
+  <h3 style="font-size:16px; color:#0f172a; margin:0 0 12px;">5.1 Mechanisms of Horizontal Gene Transfer (HGT)</h3>
+  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+    <li><strong>A. Transformation:</strong> Direct uptake of cell-free naked DNA by competent cells (Com machinery & RecA). Induced by $\text{CaCl}_2$ heat shock or electroporation.</li>
+    <li><strong>B. Transduction:</strong> Bacteriophage-mediated. <em>Generalized Transduction</em> (lytic P22/P1 random bacterial DNA packaging) vs <em>Specialized Transduction</em> (lysogenic Lambda phage integrating at <em>attλ</em> transferring flanking <em>gal/bio</em> genes).</li>
+  </ul>`,
+
+  // Page 13
+  `<ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px; margin-top:0;">
+    <li><strong>C. Conjugation:</strong> Direct contact via sex pilus, F-plasmid nicked at <em>oriT</em> pumped from $\text{F}^+$ to $\text{F}^-$. <strong>Hfr strain</strong> has F integrated into host chromosome; 100 min transfer bridge breaks early leaving recipient $\text{F}^-$.</li>
+  </ul>
+  <h3 style="font-size:16px; color:#0f172a; margin:20px 0 12px;">5.2 Transposable Elements ("Jumping Genes")</h3>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    <strong>Insertion Sequences (IS)</strong> encode transposase flanked by inverted repeats. Complex transposons carry antibiotic markers (Tn10 tetracycline resistance). Modes: Conservative ("cut-and-paste") vs Replicative ("copy-and-paste").
+  </p>
+  <h3 style="font-size:16px; color:#0f172a; margin:20px 0 12px;">5.3 Post-Transcriptional Silencing via RNA Interference (RNAi)</h3>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    Cytoplasmic dsRNA is cleaved by <strong>Dicer</strong> into 21–23 bp <strong>siRNAs</strong>, loaded into <strong>RISC</strong>. The catalytic subunit <strong>Argonaute</strong> cleaves complementary target mRNA, silencing gene expression.
+  </p>`,
+
+  // Page 14
+  `<div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+    MODULE 6: CHROMOSOMAL VARIATIONS AND THE MOLECULAR BASIS OF GENETIC DISEASES
+  </div>
+  <h3 style="font-size:16px; color:#0f172a; margin:0 0 12px;">6.1 Large-Scale Numerical and Structural Chromosomal Aberrations</h3>
+  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
+    1. <strong>Numerical Aberrations:</strong> Aneuploidy ($2n-1$ monosomy, $2n+1$ trisomy) from meiotic <strong>Nondisjunction</strong>. Polyploidy ($3n, 4n$).<br/>
+    2. <strong>Structural Aberrations:</strong> Deletions (pseudo-dominance), Duplications (gene families), Inversions (Paracentric vs Pericentric), Translocations (Robertsonian Fusion).
+  </p>
+  <h3 style="font-size:16px; color:#0f172a; margin:20px 0 12px;">6.2 Molecular Basis of Representative Genetic Diseases</h3>`,
+
+  // Page 15
+  `<table style="width:100%; border-collapse:collapse; font-size:12.5px; margin-bottom:20px;">
+    <thead>
+      <tr style="background:#1e293b; color:#fff; text-align:left;">
+        <th style="padding:8px;">Disease Condition</th>
+        <th style="padding:8px;">Inheritance</th>
+        <th style="padding:8px;">Molecular Defect & Pathological Basis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:#f8fafc;">
+        <td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Sickle Cell Anemia</td>
+        <td style="padding:8px; border:1px solid #e2e8f0;">Autosomal Recessive</td>
+        <td style="padding:8px; border:1px solid #e2e8f0;">Transversion (A→T) in 6th codon of β-globin (GAG → GTG, Glu6Val). HbS polymerizes under hypoxia into sickle shapes.</td>
+      </tr>
+      <tr>
+        <td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Huntington Disease</td>
+        <td style="padding:8px; border:1px solid #e2e8f0;">Autosomal Dominant</td>
+        <td style="padding:8px; border:1px solid #e2e8f0;">Trinucleotide repeat expansion (>40 CAG repeats) in HTT gene exon 1, polyglutamine toxicity, displays <strong>Anticipation</strong>.</td>
+      </tr>
+      <tr style="background:#f8fafc;">
+        <td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">CML (Leukemia)</td>
+        <td style="padding:8px; border:1px solid #e2e8f0;">Somatic Rearrangement</td>
+        <td style="padding:8px; border:1px solid #e2e8f0;">Translocation t(9;22)(q34;q11) forming <strong>Philadelphia Chromosome</strong> (BCR-ABL fusion kinase). Treated with <strong>Imatinib (Gleevec)</strong>.</td>
+      </tr>
+      <tr>
+        <td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Down Syndrome</td>
+        <td style="padding:8px; border:1px solid #e2e8f0;">Chromosomal Aneuploidy</td>
+        <td style="padding:8px; border:1px solid #e2e8f0;">Trisomy 21 ($47, XX/XY, +21$) from maternal meiotic nondisjunction, overexpressing SOD1 and APP.</td>
+      </tr>
+    </tbody>
+  </table>`,
+
+  // Page 16
+  `<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:20px;">
+    <h4 style="margin:0 0 10px; color:#0f172a; font-size:14px;">📌 Summary of Clinical Chromosomal Pathology</h4>
+    <p style="font-size:13px; color:#334155; line-height:1.6; margin:0;">
+      Key GATE exam takeaway: Robertsonian Translocations involve acrocentric chromosomes (13, 14, 15, 21, 22) fusing at centromeres. Trisomy 21 rate increases exponentially with maternal age due to prolonged dictyate arrest in oocytes.
+    </p>
+  </div>`,
+
+  // Page 17
+  `<div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+    MODULE 7: EXAM-FOCUSED EVALUATIVE QUESTIONS AND SOLVED QUANTITATIVE BANK
+  </div>
+  <h3 style="font-size:15px; color:#dc2626; margin:0 0 12px;">7.1 High-Yield 5-Mark Descriptive Questions & Model Answers</h3>
+  <p style="font-size:13.5px; color:#0f172a; font-weight:700;">
+    Question 1: Elaborate on the molecular regulation of the lac operon in E. coli under varying nutrient conditions.
+  </p>
+  <div style="background:#f8fafc; padding:16px; border-radius:10px; border:1px solid #e2e8f0; font-size:13px; color:#334155; line-height:1.7;">
+    <strong>Model Answer:</strong> Polycistronic system encoding <em>lacZ</em> (β-gal), <em>lacY</em> (permease), and <em>lacA</em> (transacetylase).<br/>
+    • <strong>Negative Regulation:</strong> LacI tetrameric repressor binds operator site $O_1$. Allolactose inducer binds repressor causing dissociation.<br/>
+    • <strong>Positive CAP Coordination:</strong> Low glucose activates Adenylyl Cyclase → high cAMP → cAMP-CAP complex binds upstream promoter, bending DNA to boost RNA Pol binding >50-fold.<br/>
+    • <em>Summary:</em> +Glc/-Lac (OFF), +Glc/+Lac (Basal ON), -Glc/+Lac (Maximal Fully ON).
+  </div>`,
+
+  // Page 18
+  `<p style="font-size:13.5px; color:#0f172a; font-weight:700; margin-top:0;">
+    Question 2: Explain genetic complementation versus recombination, and the Cis-Trans test.
+  </p>
+  <div style="background:#f8fafc; padding:16px; border-radius:10px; border:1px solid #e2e8f0; font-size:13px; color:#334155; line-height:1.7;">
+    <strong>Model Answer:</strong> Complementation occurs when two mutant genomes restore wild-type phenotype in shared cytoplasm without altering nucleotide sequence. Recombination physically breaks and rejoins DNA.<br/>
+    • <strong>Trans Test ($m_1 + / + m_2$):</strong> Wild-type = complementation (different genes/intergenic). Mutant = same gene (intragenic).<br/>
+    • <strong>Cis Test ($m_1 m_2 / + +$):</strong> Essential control proving mutations are recessive.
+  </div>`,
+
+  // Page 19
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:18px;">
+    <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">💡 Cis-Trans Test Rule of Thumb</h4>
+    <p style="margin:0; font-size:13px; color:#14532d;">If trans configuration gives WILD-TYPE → <strong>COMPLEMENTATION = DIFFERENT GENES</strong>. If trans configuration gives MUTANT → <strong>NO COMPLEMENTATION = SAME GENE</strong>.</p>
+  </div>`,
+
+  // Page 20
+  `<h3 style="font-size:16px; color:#0f172a; margin:0 0 12px;">7.2 Frequently Asked GATE Quantitative Problems & Solved Analytical Bank</h3>
+  <div style="background:#eff6ff; border-left:4px solid #3b82f6; padding:14px; margin-bottom:16px; font-weight:700; color:#1e40af;">
+    GATE Quantitative Practice & Worked Solutions
+  </div>`,
+
+  // Page 21
+  `<p style="font-size:13.5px; color:#0f172a; font-weight:700;">
+    FAQ 1 (Three-Point Testcross Mapping Numerical): Maize cross data for 1000 progeny:
+  </p>
+  <pre style="background:#f1f5f9; padding:12px; border-radius:8px; font-size:12.5px; color:#0f172a;">
+[p q r] = 398    [+ + +] = 402
+[p + +] = 42     [+ q r] = 38
+[p q +] = 54     [+ + r] = 56
+[p + r] = 6      [+ q +] = 4
+  </pre>
+  <div style="font-size:13px; color:#334155; line-height:1.7;">
+    <strong>Step 1: Group Progeny:</strong> Parentals = 398+402 = 800; DCO = 6+4 = 10.<br/>
+    <strong>Step 2: Determine Order:</strong> Comparing parentals [p q r] with DCO [p + r], <strong>q locus flipped</strong> → Order is <strong>p – q – r</strong>.<br/>
+    <strong>Step 3: Distance p-q (Region 1):</strong> $[(42 + 38 + 6 + 4)/1000] \times 100 = 90/1000 \times 100 = 9.0\text{ cM}$.
+  </div>`,
+
+  // Page 22
+  `<div style="font-size:13px; color:#334155; line-height:1.7;">
+    <strong>Step 4: Distance q-r (Region 2):</strong> $[(54 + 56 + 6 + 4)/1000] \times 100 = 120/1000 \times 100 = 12.0\text{ cM}$.<br/>
+    <strong>Step 5: Genetic Interference ($I$):</strong><br/>
+    • Expected DCO = $0.090 \times 0.120 = 0.0108$ ($1.08\%$).<br/>
+    • Observed DCO = $10 / 1000 = 0.0100$ ($1.00\%$).<br/>
+    • Coefficient of Coincidence ($C$) = $0.0100 / 0.0108 = 0.9259$.<br/>
+    • Interference ($I$) = $1 - C = 1 - 0.9259 = 0.0741$ ($7.41\%$).
+  </div>
+  <div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:14px; margin-top:16px;">
+    <strong>Final Answer Matrix:</strong> Gene order: <strong>p – q – r</strong> | Map Distances: <strong>p–q = 9.0 cM</strong>, <strong>q–r = 12.0 cM</strong> | Interference: <strong>7.41%</strong>.
+  </div>`,
+
+  // Page 23
+  `<p style="font-size:13.5px; color:#0f172a; font-weight:700;">
+    FAQ 2 (Polymerase Chain Reaction Growth Kinetics): Initial template $N_0 = 500$, efficiency $E = 0.94$, cycles $n = 28$. Calculate total molecules $N_t$.
+  </p>
+  <div style="background:#f8fafc; padding:16px; border-radius:10px; border:1px solid #e2e8f0; font-size:13px; color:#334155; line-height:1.7;">
+    <strong>Formula:</strong> $N_t = N_0 \times (1 + E)^n = 500 \times (1.94)^{28}$<br/>
+    $\log(1.94^{28}) = 28 \times \log(1.94) \approx 28 \times 0.2878 = 8.0584$<br/>
+    $1.94^{28} = 10^{8.0584} \approx 114,393,243$<br/>
+    $N_t = 500 \times 114,393,243 = 57,196,621,500$
+  </div>
+  <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:10px; padding:14px; margin-top:16px; color:#166534; font-weight:700;">
+    Answer: Total target DNA molecules after 28 cycles = $57,196,621,500 \approx 5.72 \times 10^{10}$ molecules.
+  </div>`
+];
+
 /* ── Continuous Scroll PDF Document Viewer Component ── */
 function ContinuousPdfViewer({ topic }) {
   function handleOpenNewWindow() {
     const newWin = window.open("", "_blank");
     if (!newWin) return;
-    
-    const sectionsHtml = topic.sections.map((sec, idx) => `
-      <div class="page">
-        <div class="header">
-          <div>
-            <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
-            <h2 class="title">${topic.name}</h2>
+
+    let pagesHtml = "";
+    if (topic.id === "topic-02") {
+      pagesHtml = FULL_GENETICS_23_PAGES.map((pgContent, idx) => `
+        <div class="page">
+          <div class="header">
+            <div>
+              <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
+              <h2 class="title">${topic.name}</h2>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${idx + 1} OF 23</span>
           </div>
-          <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${idx + 1} OF ${topic.sections.length + 1}</span>
+          ${pgContent}
+          <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 23</span></div>
         </div>
-        <h3 style="font-size: 16px; font-weight: 700; color: ${topic.color}; margin-bottom: 12px;">${sec.title}</h3>
-        <div class="card">
-          <div class="card-body">${sec.content}</div>
+      `).join("");
+    } else {
+      pagesHtml = topic.sections.map((sec, idx) => `
+        <div class="page">
+          <div class="header">
+            <div>
+              <div class="badge">B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</div>
+              <h2 class="title">${topic.name}</h2>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${idx + 1} OF ${topic.sections.length + 1}</span>
+          </div>
+          <h3 style="font-size: 16px; font-weight: 700; color: ${topic.color}; margin-bottom: 12px;">${sec.title}</h3>
+          <div class="card">
+            <div class="card-body">${sec.content}</div>
+          </div>
+          <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1}</span></div>
         </div>
-        <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1}</span></div>
-      </div>
-    `).join("");
+      `).join("") + `
+        <div class="page">
+          <div class="header">
+            <div>
+              <div class="badge">B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</div>
+              <h2 class="title">${topic.name}</h2>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${topic.sections.length + 1} OF ${topic.sections.length + 1}</span>
+          </div>
+          <h3 style="font-size: 15px; font-weight: 700; color: #dc2626; margin-bottom: 12px;">Exam Traps & High-Yield Summary</h3>
+          <div class="trap">
+            <h4 style="font-size: 14px; font-weight: 700; color: #991b1b; margin: 0 0 10px;">⚠️ CRITICAL EXAM TRAPS</h4>
+            <ul style="padding-left: 20px; margin: 0;">
+              ${topic.examTraps.map(trap => `<li style="margin-bottom: 8px;">${trap}</li>`).join("")}
+            </ul>
+          </div>
+          <div class="footer"><span>BioConnect Academic Series</span><span>End of Document</span></div>
+        </div>
+      `;
+    }
 
     const pageHtml = `<!DOCTYPE html>
 <html>
@@ -700,35 +1064,12 @@ function ContinuousPdfViewer({ topic }) {
   <div class="toolbar">
     <div>
       <h3 style="margin:0; font-size: 16px;">📄 ${topic.pdfTitle}</h3>
-      <p style="margin:2px 0 0; font-size: 12px; color: #94a3b8;">B.Tech Biotechnology · Complete Master Study Guide (${topic.sections.length + 1} Pages)</p>
+      <p style="margin:2px 0 0; font-size: 12px; color: #94a3b8;">B.Tech Biotechnology · Complete Master Study Guide (${topic.id === "topic-02" ? 23 : topic.sections.length + 1} Pages)</p>
     </div>
     <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
   </div>
 
-  ${sectionsHtml}
-
-  <!-- Final Page: Exam Traps & PYQ Summary -->
-  <div class="page">
-    <div class="header">
-      <div>
-        <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
-        <h2 class="title">${topic.name}</h2>
-      </div>
-      <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${topic.sections.length + 1} OF ${topic.sections.length + 1}</span>
-    </div>
-    <h3 style="font-size: 15px; font-weight: 700; color: #dc2626; margin-bottom: 12px;">Exam Traps & High-Yield Summary</h3>
-    <div class="trap">
-      <h4 style="font-size: 14px; font-weight: 700; color: #991b1b; margin: 0 0 10px;">⚠️ CRITICAL EXAM TRAPS</h4>
-      <ul style="padding-left: 20px; margin: 0;">
-        ${topic.examTraps.map(trap => `<li style="margin-bottom: 8px;">${trap}</li>`).join("")}
-      </ul>
-    </div>
-    <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px; padding: 20px; color: #14532d;">
-      <h4 style="font-size: 14px; font-weight: 700; color: #166534; margin: 0 0 10px;">📝 TOPIC PYQ SUMMARY (${topic.pyqs.length} MCQs)</h4>
-      <p style="margin:0; font-size: 13.5px;">This topic includes ${topic.pyqs.length} authentic GAT-B questions covering past papers from 2020 to 2024 with complete solution keys.</p>
-    </div>
-    <div class="footer"><span>BioConnect Academic Series</span><span>Page ${topic.sections.length + 1} · End of Document</span></div>
-  </div>
+  ${pagesHtml}
 </body>
 </html>`;
 
@@ -756,7 +1097,9 @@ function ContinuousPdfViewer({ topic }) {
           <span style={{ fontSize: "24px" }}>📄</span>
           <div>
             <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#fff" }}>{topic.pdfTitle}</h3>
-            <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>Continuous Straight Scroll View • Complete Master Study Guide ({topic.sections.length + 1} Pages)</p>
+            <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>
+              {topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
+            </p>
           </div>
         </div>
 
@@ -769,14 +1112,14 @@ function ContinuousPdfViewer({ topic }) {
             cursor: "pointer", display: "flex", alignItems: "center", gap: "6px",
             boxShadow: "0 3px 12px " + topic.color + "40", transition: "all 0.2s"
           }}
-          title="Click to open full PDF document in a new browser tab/window"
+          title="Click to open full 23-page PDF document in a new browser tab/window"
         >
           <span>↗️</span>
-          <span>Open PDF in New Window</span>
+          <span>Open Full 23-Page PDF</span>
         </button>
       </div>
 
-      {/* CONTINUOUS STRAIGHT SCROLL CONTAINER FOR ALL PAGES (Also Clickable) */}
+      {/* IN-APP STUDY NOTES SUMMARY VIEWER */}
       <div
         onClick={handleOpenNewWindow}
         style={{
@@ -788,7 +1131,7 @@ function ContinuousPdfViewer({ topic }) {
           paddingRight: "8px",
           cursor: "pointer"
         }}
-        title="Click anywhere on the PDF viewer to open full document in new window"
+        title="Click anywhere on the study notes viewer to open full 23-page PDF document in new window"
       >
         {topic.sections.map((sec, idx) => (
           <div key={idx} style={{
@@ -800,7 +1143,7 @@ function ContinuousPdfViewer({ topic }) {
                 <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</span>
                 <h2 style={{ fontSize: "17px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
               </div>
-              <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>PAGE {idx + 1} OF {topic.sections.length + 1} ↗️</span>
+              <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>SUMMARY MODULE {idx + 1} OF {topic.sections.length} ↗️</span>
             </div>
 
             <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "14px" }}>{sec.title}</h3>
@@ -809,8 +1152,8 @@ function ContinuousPdfViewer({ topic }) {
             </div>
 
             <div style={{ marginTop: "24px", paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
-              <span>BioConnect Academic Series · Click to open in new tab</span>
-              <span>Page {idx + 1}</span>
+              <span>BioConnect Academic Series · Click to open full 23-page PDF in new tab</span>
+              <span>Module {idx + 1}</span>
             </div>
           </div>
         ))}
@@ -825,7 +1168,7 @@ function ContinuousPdfViewer({ topic }) {
               <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</span>
               <h2 style={{ fontSize: "17px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
             </div>
-            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>PAGE {topic.sections.length + 1} OF {topic.sections.length + 1} ↗️</span>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>EXAM TRAPS ↗️</span>
           </div>
 
           <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#dc2626", marginBottom: "12px" }}>Exam Traps & High-Yield Summary</h3>
@@ -846,6 +1189,14 @@ function ContinuousPdfViewer({ topic }) {
           </div>
 
           <div style={{ marginTop: "24px", paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
+            <span>BioConnect Academic Series · Click to open full 23-page PDF in new tab</span>
+            <span>End of Syllabus Summary</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}x solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
             <span>BioConnect Academic Series · Click to open in new tab</span>
             <span>Page {topic.sections.length + 1} · End of Document</span>
           </div>
