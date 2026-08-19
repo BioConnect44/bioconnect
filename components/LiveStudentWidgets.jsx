@@ -7,6 +7,20 @@ function useSupabase() {
   return createClient();
 }
 
+// ─── Global Quest Completion Helper ───────────────────────────────
+export function markQuestCompleted(questKey) {
+  if (typeof window !== "undefined") {
+    const today = new Date().toISOString().split("T")[0];
+    const storageKey = `bioconnect_quests_${today}`;
+    try {
+      const existing = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      existing[questKey] = true;
+      localStorage.setItem(storageKey, JSON.stringify(existing));
+    } catch (e) {}
+    window.dispatchEvent(new CustomEvent("bioconnect_quest_completed", { detail: { questKey } }));
+  }
+}
+
 // ─── STREAK WIDGET ────────────────────────────────────────────────
 function SmartStudyStreak({ userId }) {
   const supabase = useSupabase();
@@ -65,20 +79,16 @@ function SmartStudyStreak({ userId }) {
 
       let newStreak = streakData.streak_count;
       if (diff === 0) {
-        // already counted today
         newStreak = streakData.streak_count;
       } else if (diff === 1) {
-        // consecutive day
         newStreak = streakData.streak_count + 1;
         await supabase.from("user_streaks").update({ streak_count: newStreak, last_active: today }).eq("user_id", userId);
       } else {
-        // streak broken
         newStreak = 1;
         await supabase.from("user_streaks").update({ streak_count: 1, last_active: today }).eq("user_id", userId);
       }
       setStreakCount(newStreak);
     } else {
-      // First time — create streak row
       await supabase.from("user_streaks").insert({ user_id: userId, streak_count: 1, last_active: today });
       setStreakCount(1);
     }
@@ -108,7 +118,6 @@ function SmartStudyStreak({ userId }) {
             {weekDays.map((letter, i) => {
               const isPast = activeDays.includes(i) && i < todayIndex;
               const isToday = i === todayIndex;
-              const isFuture = i > todayIndex;
               return (
                 <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
                   <div style={{
@@ -149,7 +158,6 @@ function AutoBioMinute({ userId }) {
     async function fetchCard() {
       const today = new Date().toISOString().split("T")[0];
 
-      // Try to get today's question
       const { data } = await supabase
         .from("biominute_questions")
         .select("*")
@@ -159,7 +167,6 @@ function AutoBioMinute({ userId }) {
       if (data) {
         setCard(data);
       } else {
-        // Fallback: get question by day-of-year rotation
         const now = new Date();
         const start = new Date(now.getFullYear(), 0, 0);
         const dayOfYear = Math.floor((now - start) / (1000 * 60 * 60 * 24));
@@ -181,6 +188,7 @@ function AutoBioMinute({ userId }) {
   // Mark Bio-Minute quest as completed when user flips
   async function handleFlip() {
     setIsFlipped(true);
+    markQuestCompleted("biominute");
     if (userId) {
       const today = new Date().toISOString().split("T")[0];
       await supabase.from("user_quests").upsert(
@@ -260,30 +268,55 @@ function InteractiveQuests({ userId }) {
   ]);
   const [loading, setLoading] = useState(true);
 
-  // Load today's quest completion state from Supabase
-  useEffect(() => {
-    async function loadQuests() {
-      if (!userId) { setLoading(false); return; }
-      const today = new Date().toISOString().split("T")[0];
+  // Load today's quest completion state from Supabase & LocalStorage
+  const loadQuests = useCallback(async () => {
+    const today = new Date().toISOString().split("T")[0];
+    const storageKey = `bioconnect_quests_${today}`;
+    let localSaved = {};
+    try {
+      localSaved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+    } catch (e) {}
+
+    let dbData = [];
+    if (userId) {
       const { data } = await supabase
         .from("user_quests")
         .select("quest_key, completed")
         .eq("user_id", userId)
         .eq("quest_date", today);
-
-      if (data && data.length > 0) {
-        setQuests(prev => prev.map(q => {
-          const found = data.find(d => d.quest_key === q.key);
-          return found ? { ...q, completed: found.completed } : q;
-        }));
-      }
-      setLoading(false);
+      if (data) dbData = data;
     }
-    loadQuests();
+
+    setQuests(prev => prev.map(q => {
+      const dbMatch = dbData.find(d => d.quest_key === q.key);
+      const isCompleted = (dbMatch && dbMatch.completed) || !!localSaved[q.key];
+      return { ...q, completed: isCompleted };
+    }));
+    setLoading(false);
   }, [userId, supabase]);
 
+  useEffect(() => {
+    loadQuests();
+
+    function handleQuestEvent(e) {
+      const key = e.detail?.questKey;
+      if (key) {
+        setQuests(prev => prev.map(q => q.key === key ? { ...q, completed: true } : q));
+        if (userId) {
+          const today = new Date().toISOString().split("T")[0];
+          supabase.from("user_quests").upsert(
+            { user_id: userId, quest_date: today, quest_key: key, completed: true },
+            { onConflict: "user_id,quest_date,quest_key" }
+          );
+        }
+      }
+    }
+
+    window.addEventListener("bioconnect_quest_completed", handleQuestEvent);
+    return () => window.removeEventListener("bioconnect_quest_completed", handleQuestEvent);
+  }, [userId, supabase, loadQuests]);
+
   async function toggleQuest(key) {
-    if (!userId) return;
     const today = new Date().toISOString().split("T")[0];
     const quest = quests.find(q => q.key === key);
     const newCompleted = !quest.completed;
@@ -291,11 +324,21 @@ function InteractiveQuests({ userId }) {
     // Optimistic update
     setQuests(prev => prev.map(q => q.key === key ? { ...q, completed: newCompleted } : q));
 
-    // Persist to Supabase
-    await supabase.from("user_quests").upsert(
-      { user_id: userId, quest_date: today, quest_key: key, completed: newCompleted },
-      { onConflict: "user_id,quest_date,quest_key" }
-    );
+    // Save to LocalStorage
+    try {
+      const storageKey = `bioconnect_quests_${today}`;
+      const existing = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      existing[key] = newCompleted;
+      localStorage.setItem(storageKey, JSON.stringify(existing));
+    } catch (e) {}
+
+    // Persist to Supabase if logged in
+    if (userId) {
+      await supabase.from("user_quests").upsert(
+        { user_id: userId, quest_date: today, quest_key: key, completed: newCompleted },
+        { onConflict: "user_id,quest_date,quest_key" }
+      );
+    }
   }
 
   const completedCount = quests.filter(q => q.completed).length;

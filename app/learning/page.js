@@ -2,15 +2,245 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import AppShell from "@/components/AppShell";
-import LiveStudentWidgets from "@/components/LiveStudentWidgets";
+import LiveStudentWidgets, { markQuestCompleted } from "@/components/LiveStudentWidgets";
 
-const SUBJECTS = [
-  { id: "molecular-biology", name: "Molecular Biology", icon: "🧬", color: "#14B8A6" },
-  { id: "biochemistry", name: "Biochemistry", icon: "⚗️", color: "#F97316" },
-  { id: "microbiology", name: "Microbiology", icon: "🦠", color: "#EF4444" },
-  { id: "genetics", name: "Genetics", icon: "🔬", color: "#8B5CF6" },
-  { id: "bioinformatics", name: "Bioinformatics", icon: "💻", color: "#3B82F6" },
-  { id: "bioprocess-engineering", name: "Bioprocess Engineering", icon: "🏭", color: "#EC4899" },
+const COURSE_TOPICS = [
+  {
+    id: "topic-01",
+    topicNum: "TOPIC 01",
+    name: "Biomolecules, Membranes, Enzymes, Metabolism & Bioenergetics",
+    shortName: "Biomolecules & Bioenergetics",
+    icon: "🧪",
+    color: "#14B8A6",
+    notesCount: "5 notes",
+    module: "Module 1 of 4",
+    progress: 85,
+    tagline: "Molecular structure determines function: carbohydrates, lipids, proteins, enzymes & metabolic pathways.",
+    pdfTitle: "Topic 01 - Biomolecules, Membranes, Enzymes & Bioenergetics.pdf",
+    sections: [
+      {
+        title: "1. The Four Classes of Biomolecules",
+        content: `• Carbohydrates: Polyhydroxy aldehydes/ketones. Mono (glucose, ribose), Di (sucrose, lactose), Poly (starch, glycogen, cellulose, chitin). Joined by glycosidic bonds; cellulose β-1,4 is indigestible to humans.
+• Lipids: Hydrophobic/amphipathic. Simple (fats), compound (phospholipids), derived (steroids). Phospholipids = polar head + 2 hydrophobic tails → membranes. Steroids = 4-ring structure.
+• Proteins: Amino-acid polymers joined by peptide bonds. Primary → Secondary (α-helix, β-sheet) → Tertiary → Quaternary.
+• Nucleic Acids: Nucleotide polymers linked by phosphodiester bonds. Nucleotide = base + pentose sugar + phosphate. Purines (A,G), Pyrimidines (C,T,U).`
+      },
+      {
+        title: "2. Biological Membranes & Transport",
+        content: `• Fluid Mosaic Model: Phospholipid bilayer with embedded lateral proteins. Cholesterol regulates fluidity.
+• Passive Transport: Simple diffusion, Facilitated diffusion, Osmosis (water).
+• Active Transport: Primary (ATP, e.g. Na+/K+-ATPase), Secondary (electrochemical gradient).
+• Nernst Equation (at 25°C): E = (0.0591/z) · log([ion]out/[ion]in).`
+      },
+      {
+        title: "3. Enzymes & Kinetics",
+        content: `• Michaelis-Menten: v = Vmax[S] / (Km + [S]). Lower Km = higher affinity.
+• Lineweaver-Burk: 1/v = (Km/Vmax)(1/[S]) + 1/Vmax.
+• Competitive Inhibition: Km increases, Vmax unchanged (beaten by excess S).
+• Non-competitive Inhibition: Km unchanged, Vmax decreases.
+• Uncompetitive Inhibition: Both Km and Vmax decrease.`
+      },
+      {
+        title: "4. Metabolism & Bioenergetics",
+        content: `• Glycolysis: Glucose → 2 pyruvate (cytosol). Net ATP = 2 ATP, 2 NADH. Key regulator: PFK-1.
+• TCA Cycle: Per acetyl-CoA → 3 NADH, 1 FADH2, 1 GTP.
+• ATP Yield: ~30-32 ATP per glucose under aerobic respiration.
+• ΔG = ΔH - TΔS. Spontaneous when ΔG < 0.`
+      }
+    ],
+    examTraps: [
+      "A catalyst changes the rate, NEVER the equilibrium position or ΔG of a reaction.",
+      "Km is an inverse proxy for affinity — low Km = high affinity.",
+      "Competitive inhibition raises apparent Km but leaves Vmax unchanged."
+    ],
+    pyqs: [
+      {
+        question: "In enzyme kinetics, what does a low Michaelis constant (Km) indicate?",
+        options: ["Low substrate affinity", "High substrate affinity", "Low Vmax", "Zero catalytic activity"],
+        correct: 1,
+        explanation: "Km is inversely related to substrate affinity; a lower Km means the enzyme reaches half-maximal velocity at a lower substrate concentration (higher affinity)."
+      },
+      {
+        question: "Which of the following bonds joins individual amino acids in a polypeptide chain?",
+        options: ["Glycosidic bond", "Phosphodiester bond", "Peptide bond", "Ester bond"],
+        correct: 2,
+        explanation: "Peptide bonds covalently link the carboxyl group of one amino acid to the amino group of another."
+      },
+      {
+        question: "What is the net ATP yield produced per molecule of glucose during glycolysis?",
+        options: ["4 ATP", "2 ATP", "32 ATP", "36 ATP"],
+        correct: 1,
+        explanation: "Glycolysis produces 4 ATP gross but consumes 2 ATP in the investment phase, resulting in a net yield of 2 ATP per glucose."
+      }
+    ]
+  },
+  {
+    id: "topic-02",
+    topicNum: "TOPIC 02",
+    name: "Advanced Genetics & Molecular Biology",
+    shortName: "Genetics & Molecular Biology",
+    icon: "🧬",
+    color: "#8B5CF6",
+    notesCount: "4 notes",
+    module: "Module 2 of 4",
+    progress: 75,
+    tagline: "DNA compaction, replication machinery, repair pathways & lac operon regulation.",
+    pdfTitle: "Topic 02 - Advanced Genetics & Molecular Biology.pdf",
+    sections: [
+      {
+        title: "1. Genome Structure & Chromatin",
+        content: `• Tiers of Compaction: 146 bp DNA wound 1.65x around histone octamer (2x H2A, H2B, H3, H4) → 11 nm 'beads on a string' (linker H1) → 30 nm solenoid (~6 nucleosomes/turn) → Loop domains & scaffold (Topoisomerase II & condensin).
+• Euchromatin: Open, active; high histone acetylation (HATs).
+• Heterochromatin: Condensed, silent; H3K9me3 / H3K27me3.`
+      },
+      {
+        title: "2. Replication, Transcription & Translation",
+        content: `• Helicase: DnaB (prokaryote) | CMG complex (eukaryote).
+• Elongation: Pol III core (prokaryote) | Pol ε (leading) & Pol δ (lagging, eukaryote).
+• mRNA Processing: 5' 7-methylguanosine cap, 3' poly(A) tail (150-250 A residues), Spliceosome intron removal.`
+      },
+      {
+        title: "3. Mutations & DNA Repair Pathways",
+        content: `• Point Mutations: Silent, Missense (GAG → GTG), Nonsense (stop codon), Frameshift.
+• Repair Pathways: MMR (MutS-MutL-MutH), BER (glycosylase → AP site), NER (UvrABC removes bulky lesions, defects → Xeroderma Pigmentosum).`
+      },
+      {
+        title: "4. Bacterial Genetics & Operons",
+        content: `• Transformation (naked DNA uptake), Transduction (phage-mediated), Conjugation (F-pilus contact).
+• Lac Operon: Negative control via lacI repressor (inducer: allolactose). Positive control via CAP-cAMP complex.`
+      }
+    ],
+    examTraps: [
+      "DNA polymerase needs a primer and only extends 5' → 3'; it cannot start de novo.",
+      "In lac operon, the true inducer is ALLOLACTOSE, not lactose itself.",
+      "Transformation vs Transduction vs Conjugation: ONLY conjugation requires cell-to-cell contact (pilus)."
+    ],
+    pyqs: [
+      {
+        question: "Which histone protein acts as the linker clamping DNA to the nucleosome core?",
+        options: ["H2A", "H2B", "H1", "H3"],
+        correct: 2,
+        explanation: "Histone H1 binds to the linker DNA entering and exiting the nucleosome core particle."
+      },
+      {
+        question: "Which repair pathway uses UvrABC endonuclease to remove bulky UV-induced pyrimidine dimers?",
+        options: ["Base Excision Repair (BER)", "Nucleotide Excision Repair (NER)", "Mismatch Repair (MMR)", "Homologous Recombination"],
+        correct: 1,
+        explanation: "NER removes bulky DNA lesions like thymine dimers using the UvrABC endonuclease complex."
+      }
+    ]
+  },
+  {
+    id: "topic-04",
+    topicNum: "TOPIC 04",
+    name: "Animal Cell Culture & Biomanufacturing",
+    shortName: "Animal Cell Culture",
+    icon: "🧫",
+    color: "#F97316",
+    notesCount: "3 notes",
+    module: "Module 3 of 4",
+    progress: 60,
+    tagline: "Cell-line types, media chemistry, cryopreservation, anchorage & growth kinetics.",
+    pdfTitle: "Topic 04 - Animal Cell Culture & Biomanufacturing.pdf",
+    sections: [
+      {
+        title: "1. Cell-Line Types",
+        content: `• Primary: Fresh tissue; normal diploid; finite lifespan (telomere shortening).
+• Finite Line: Subcultured primary; 20-80 divisions then senescence (Hayflick limit).
+• Continuous Line: Tumor / oncogene-immortalized (SV40 T-antigen, hTERT); infinite lifespan, aneuploid (CHO, HeLa, Vero). Doubling time: ~18-24 h.`
+      },
+      {
+        title: "2. Media & Buffer Chemistry",
+        content: `• Synthetic Media: DMEM, RPMI-1640, Ham's F12.
+• Serum-free Media (SFM): Insulin/transferrin added; removes prion/virus risk.
+• Fetal Bovine Serum (FBS): Supplies growth factors (insulin, PDGF, EGF), adhesion factors (fibronectin) & shear protection.
+• Bicarbonate-CO2 Buffer: H2O + CO2 ⇌ H2CO3 ⇌ H+ + HCO3-. 5-10% CO2 maintains pH 7.2-7.4. Phenol red turns yellow as it acidifies.`
+      },
+      {
+        title: "3. Cryopreservation & Anchorage Biology",
+        content: `• Cryopreservation: Store at -196°C (LN2). Cool SLOW at -1°C/min with 10% DMSO; thaw FAST at 37°C.
+• Anchorage-dependent: Must attach or die by anoikis. Scale up with microcarriers; harvest by trypsinization.
+• Suspension: Grow free in stirred tanks (CHO, HeLa-S); add Pluronic F-68 for shear protection.`
+      },
+      {
+        title: "4. Growth Kinetics",
+        content: `• Growth equation: dX/dt = μX → Xt = X0 · e^(μt).
+• Specific growth rate: μ = (ln Xt - ln X0) / t.
+• Doubling time: td = 0.693 / μ.`
+      }
+    ],
+    examTraps: [
+      "Cool slow, thaw fast — the golden rule of cryopreservation (-1°C/min in, 37°C out).",
+      "DMSO is protective when frozen but toxic at room temperature — dilute quickly after thawing.",
+      "Phenol red is only a pH indicator, NOT a buffer; the actual buffering is bicarbonate/CO2."
+    ],
+    pyqs: [
+      {
+        question: "What is the primary role of 10% DMSO in cell cryopreservation?",
+        options: ["Nutrient source", "Cryoprotectant preventing intracellular ice crystal formation", "Antibiotic", "pH buffer"],
+        correct: 1,
+        explanation: "DMSO penetrates cell membranes and prevents intracellular ice crystal formation during freezing."
+      },
+      {
+        question: "Anoikis refers to programmed cell death triggered by:",
+        options: ["High CO2 levels", "Loss of cell attachment to extracellular matrix", "Trypsin toxicity", "Thermal shock"],
+        correct: 1,
+        explanation: "Anoikis is apoptosis induced when anchorage-dependent cells detach from the extracellular matrix."
+      }
+    ]
+  },
+  {
+    id: "topic-05",
+    topicNum: "TOPIC 05",
+    name: "Bioprocess Engineering",
+    shortName: "Bioprocess Engineering",
+    icon: "🏭",
+    color: "#EC4899",
+    notesCount: "3 notes",
+    module: "Module 4 of 4",
+    progress: 40,
+    tagline: "Reactor design, stoichiometry, oxygen mass transfer & sterilization kinetics.",
+    pdfTitle: "Topic 05 - Bioprocess Engineering.pdf",
+    sections: [
+      {
+        title: "1. Material & Electron Balances",
+        content: `• Biomass Formula: CHaObNc.
+• Degree of Reductance (γ): γ = 4 + a - 2b - 3c (for NH3 nitrogen source).
+• If nitrogen source is HNO3 (N is +5): γ = 4 + a - 2b + 5c.`
+      },
+      {
+        title: "2. Ideal & Non-Ideal Reactors",
+        content: `• Batch: Closed system; dX/dt = μX.
+• CSTR / Chemostat: Open, steady state. Dilution rate D = F/V. At steady state, μ = D. Washout occurs when D > μmax.
+• PFR: Plug flow reactor, no axial mixing; τ = V/F = ∫dS/(-rS).`
+      },
+      {
+        title: "3. Mass Transfer & Sterilization Kinetics",
+        content: `• Oxygen Transfer Rate (OTR): OTR = kLa(C* - CL) ≥ OUR = qO2 · X.
+• Sterilization Del Factor (∇): ∇ = ln(N0/Nt) = ∫kd dt.
+• HTST (High-Temperature Short-Time): 140°C for seconds sterilizes media while preserving heat-labile nutrients.`
+      }
+    ],
+    examTraps: [
+      "Chemostat golden rule: the culture grows exactly as fast as you feed it — μ = D at steady state.",
+      "At chemostat steady state, residual substrate S is set by dilution rate D, NOT by feed concentration Sin.",
+      "Washout occurs when dilution rate D exceeds the maximum achievable growth rate μmax."
+    ],
+    pyqs: [
+      {
+        question: "In a chemostat operated at steady state, the specific growth rate (μ) of the microorganism is equal to:",
+        options: ["Maximum growth rate (μmax)", "Dilution rate (D)", "Volumetric productivity", "Zero"],
+        correct: 1,
+        explanation: "At steady state in a chemostat, cell growth balances cell washout, so μ = D."
+      },
+      {
+        question: "Which parameter describes volumetric oxygen mass transfer capability in a fermenter?",
+        options: ["kLa", "Re (Reynolds number)", "N (Impeller speed)", "Kd"],
+        correct: 0,
+        explanation: "kLa (volumetric oxygen mass transfer coefficient) measures gas-liquid mass transfer in bioreactors."
+      }
+    ]
+  }
 ];
 
 const CHALLENGES = {
@@ -20,8 +250,8 @@ const CHALLENGES = {
     color: "#F97316",
     bg: "#FFF3E8",
     xp: 150,
-    timeLimit: 900, // 15 mins
-    questions: [
+    timeLimit: 900,
+    questions: COURSE_TOPICS[1].pyqs.concat([
       {
         id: 1,
         question: "GAT-B 2020: The enzyme responsible for unwinding DNA during replication is:",
@@ -38,96 +268,12 @@ const CHALLENGES = {
       },
       {
         id: 3,
-        question: "GAT-B 2020: Which RNA carries amino acids to ribosome?",
-        options: ["rRNA", "snRNA", "tRNA", "mRNA"],
-        correct: 2,
-        explanation: "tRNA (transfer RNA) carries specific amino acids to the ribosome during protein translation."
-      },
-      {
-        id: 4,
         question: "GAT-B 2021: The start codon in mRNA is:",
         options: ["UAA", "AUG", "UAG", "UGA"],
         correct: 1,
         explanation: "AUG is the universal start codon in mRNA that codes for Methionine."
-      },
-      {
-        id: 5,
-        question: "GAT-B 2021: Which enzyme synthesizes RNA from DNA template?",
-        options: ["DNA polymerase", "RNA polymerase", "Reverse transcriptase", "Ligase"],
-        correct: 1,
-        explanation: "RNA polymerase synthesizes RNA strands by transcribing DNA templates."
-      },
-      {
-        id: 6,
-        question: "GAT-B 2021: In eukaryotes, mRNA processing includes:",
-        options: ["Splicing", "5' capping", "Polyadenylation", "All of the above"],
-        correct: 3,
-        explanation: "Eukaryotic pre-mRNA undergoes 5' capping, splicing (intron removal), and 3' polyadenylation to become mature mRNA."
-      },
-      {
-        id: 7,
-        question: "GAT-B 2022: The central dogma of molecular biology is:",
-        options: ["Protein → RNA → DNA", "DNA → Protein → RNA", "DNA → RNA → Protein", "RNA → DNA → Protein"],
-        correct: 2,
-        explanation: "Central dogma describes the genetic information flow: DNA is transcribed into RNA, which is translated into Protein."
-      },
-      {
-        id: 8,
-        question: "GAT-B 2022: The operator region in lac operon functions as:",
-        options: ["Binding site for ribosome", "Binding site for repressor protein", "Site of DNA replication", "Terminator sequence"],
-        correct: 1,
-        explanation: "The operator is a DNA sequence to which the lac repressor protein binds to inhibit transcription of structural genes."
-      },
-      {
-        id: 9,
-        question: "GAT-B 2022: Which enzyme joins Okazaki fragments?",
-        options: ["Helicase", "Primase", "Ligase", "Gyrase"],
-        correct: 2,
-        explanation: "DNA ligase joins Okazaki fragments by creating phosphodiester bonds between adjacent sugar-phosphate backbones."
-      },
-      {
-        id: 10,
-        question: "GAT-B 2023: The process of synthesis of RNA from DNA is called:",
-        options: ["Translation", "Replication", "Transcription", "Mutation"],
-        correct: 2,
-        explanation: "Transcription is the biological process of creating RNA from a DNA template."
-      },
-      {
-        id: 11,
-        question: "GAT-B 2023: Which of the following is NOT a stop codon?",
-        options: ["UAA", "UAG", "UGA", "AUG"],
-        correct: 3,
-        explanation: "AUG is the start codon for translation (Methionine), whereas UAA, UAG, and UGA are stop codons."
-      },
-      {
-        id: 12,
-        question: "GAT-B 2023: Histone proteins are associated with:",
-        options: ["Prokaryotic DNA only", "Eukaryotic chromatin", "Ribosomes", "Plasmids"],
-        correct: 1,
-        explanation: "Histones are basic proteins that package eukaryotic DNA into structural nucleosomes within chromatin."
-      },
-      {
-        id: 13,
-        question: "GAT-B 2024: DNA replication is described as semiconservative because:",
-        options: ["One strand is completely new", "One parental and one new strand are present in daughter DNA", "DNA is synthesized only in one direction", "Replication occurs conservatively"],
-        correct: 1,
-        explanation: "Semiconservative replication means each newly formed double-stranded DNA contains one original parental strand and one newly synthesized strand."
-      },
-      {
-        id: 14,
-        question: "GAT-B 2024: Which RNA molecule forms the structural component of ribosome?",
-        options: ["mRNA", "tRNA", "rRNA", "siRNA"],
-        correct: 2,
-        explanation: "rRNA (ribosomal RNA) combines with proteins to form the structural catalytic subunits of ribosomes."
-      },
-      {
-        id: 15,
-        question: "GAT-B 2024: Alternative splicing results in:",
-        options: ["DNA replication", "Multiple proteins from one gene", "Protein degradation", "Mutation repair"],
-        correct: 1,
-        explanation: "Alternative splicing allows a single gene to encode multiple distinct protein isoforms by selecting different exon combinations."
       }
-    ]
+    ])
   },
   mock: {
     title: "Genetic Engineering PYQs",
@@ -135,116 +281,310 @@ const CHALLENGES = {
     color: "#8B5CF6",
     bg: "#F3F0FF",
     xp: 150,
-    timeLimit: 900, // 15 mins
-    questions: [
-      {
-        id: 16,
-        question: "GAT-B 2020: Restriction enzymes are also known as:",
-        options: ["Ligases", "Molecular scissors", "Polymerases", "Primases"],
-        correct: 1,
-        explanation: "Restriction enzymes act as molecular scissors by cutting double-stranded DNA at specific recognition sequences."
-      },
-      {
-        id: 17,
-        question: "GAT-B 2020: Which enzyme synthesizes complementary DNA (cDNA)?",
-        options: ["DNA polymerase", "RNA polymerase", "Reverse transcriptase", "Ligase"],
-        correct: 2,
-        explanation: "Reverse transcriptase synthesizes single-stranded cDNA using an RNA template."
-      },
-      {
-        id: 18,
-        question: "GAT-B 2020: Plasmids are commonly used as:",
-        options: ["Antibiotics", "Vectors", "Enzymes", "Ribosomes"],
-        correct: 1,
-        explanation: "Plasmids serve as cloning vectors to carry foreign DNA fragments into host cells."
-      },
-      {
-        id: 19,
-        question: "GAT-B 2021: EcoRI recognizes the sequence:",
-        options: ["5'-AAGCTT-3'", "5'-GGATCC-3'", "5'-GAATTC-3'", "5'-CTGCAG-3'"],
-        correct: 2,
-        explanation: "EcoRI restriction endonuclease specifically recognizes the palindromic hexanucleotide sequence 5'-GAATTC-3'."
-      },
-      {
-        id: 20,
-        question: "GAT-B 2021: Polymerase Chain Reaction (PCR) was invented by:",
-        options: ["James Watson", "Kary Mullis", "Francis Crick", "Matthew Meselson"],
-        correct: 1,
-        explanation: "Kary Mullis invented the Polymerase Chain Reaction (PCR) in 1983, earning the Nobel Prize in Chemistry."
-      },
-      {
-        id: 21,
-        question: "GAT-B 2021: The enzyme used in PCR is:",
-        options: ["DNA ligase", "Taq polymerase", "Reverse transcriptase", "Primase"],
-        correct: 1,
-        explanation: "Taq polymerase (isolated from Thermus aquaticus) is a thermostable enzyme used to extend DNA primers during thermal cycling."
-      },
-      {
-        id: 22,
-        question: "GAT-B 2022: The sticky ends generated by restriction enzymes are useful because they:",
-        options: ["Destroy DNA", "Prevent ligation", "Facilitate joining of complementary DNA fragments", "Replicate DNA"],
-        correct: 2,
-        explanation: "Single-stranded sticky overhangs allow base-pairing with complementary cohesive ends, facilitating DNA ligation."
-      },
-      {
-        id: 23,
-        question: "GAT-B 2022: Southern blotting is used for detection of:",
-        options: ["Protein", "DNA", "RNA", "Lipids"],
-        correct: 1,
-        explanation: "Southern blotting transfers DNA fragments to a membrane for hybridization and specific sequence detection."
-      },
-      {
-        id: 24,
-        question: "GAT-B 2022: A cloning vector must contain:",
-        options: ["Origin of replication", "Selectable marker", "Cloning site", "All of the above"],
-        correct: 3,
-        explanation: "An effective cloning vector requires an ori, a selectable marker (e.g. antibiotic resistance), and multiple cloning sites (MCS)."
-      },
-      {
-        id: 25,
-        question: "GAT-B 2023: Transformation in bacteria refers to:",
-        options: ["Viral infection", "Uptake of naked foreign DNA", "Cell division", "Protein synthesis"],
-        correct: 1,
-        explanation: "Bacterial transformation is the process by which a competent cell takes up extracellular, naked DNA from its surroundings."
-      },
-      {
-        id: 26,
-        question: "GAT-B 2023: Which blotting technique is used to detect RNA?",
-        options: ["Southern blot", "Northern blot", "Western blot", "Eastern blot"],
-        correct: 1,
-        explanation: "Northern blotting is the molecular laboratory method used for RNA detection and expression analysis."
-      },
-      {
-        id: 27,
-        question: "GAT-B 2023: Reporter genes are used to:",
-        options: ["Replicate plasmids", "Identify and quantify transformed cells", "Destroy vectors", "Synthesize structural proteins"],
-        correct: 1,
-        explanation: "Reporter genes (such as GFP or LacZ) indicate successful transformation and gene expression."
-      },
-      {
-        id: 28,
-        question: "GAT-B 2024: CRISPR-Cas9 is mainly used for:",
-        options: ["DNA sequencing", "Genome editing", "Protein purification", "Southern blotting"],
-        correct: 1,
-        explanation: "CRISPR-Cas9 is an advanced RNA-guided technology used for targeted genome editing in living organisms."
-      },
-      {
-        id: 29,
-        question: "GAT-B 2024: Which of the following acts as selectable marker in plasmids?",
-        options: ["Ampicillin resistance gene", "Helicase", "Primase", "Histone"],
-        correct: 0,
-        explanation: "Antibiotic resistance genes (like Ampicillin resistance - ampR) allow selection of host bacteria that successfully took up the plasmid."
-      },
-      {
-        id: 30,
-        question: "GAT-B 2024: The denaturation step in PCR generally occurs at:",
-        options: ["37°C", "55°C", "72°C", "95°C"],
-        correct: 3,
-        explanation: "Denaturation of double-stranded DNA into single strands during PCR is performed at high temperatures, typically 94°C–98°C (95°C)."
-      }
-    ]
+    timeLimit: 900,
+    questions: COURSE_TOPICS[0].pyqs.concat(COURSE_TOPICS[2].pyqs).concat(COURSE_TOPICS[3].pyqs)
   }
 };
+
+/* ── Interactive Course / Topic Viewer Modal ── */
+function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
+  const [activeTab, setActiveTab] = useState("notes"); // "notes" | "pyq"
+  const [currentQ, setCurrentQ] = useState(0);
+  const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [submitted, setSubmitted] = useState({});
+  const [isFinished, setIsFinished] = useState(false);
+  const [xpEarned, setXpEarned] = useState(0);
+
+  useEffect(() => {
+    // Automatically complete "Read 4 pages" quest when opening topic course
+    markQuestCompleted("read_pages");
+  }, []);
+
+  function handleSelectOption(optIdx) {
+    if (submitted[currentQ] || isFinished) return;
+    setSelectedAnswers(prev => ({ ...prev, [currentQ]: optIdx }));
+  }
+
+  function handleSubmitAnswer() {
+    if (selectedAnswers[currentQ] === undefined) return;
+    setSubmitted(prev => ({ ...prev, [currentQ]: true }));
+  }
+
+  async function handleFinishPYQ() {
+    setIsFinished(true);
+    markQuestCompleted("pyq_challenge");
+    let correctCount = 0;
+    topic.pyqs.forEach((q, idx) => {
+      if (selectedAnswers[idx] === q.correct) correctCount += 1;
+    });
+
+    const earned = Math.round((correctCount / topic.pyqs.length) * 50);
+    setXpEarned(earned);
+
+    if (profile?.id && earned > 0) {
+      try {
+        const currentXP = profile.xp || 0;
+        await supabase
+          .from("profiles")
+          .update({ xp: currentXP + earned })
+          .eq("id", profile.id);
+        if (onXPUpdate) onXPUpdate(currentXP + earned);
+      } catch (e) {}
+    }
+  }
+
+  return (
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 1000,
+      background: "rgba(11, 25, 33, 0.85)",
+      backdropFilter: "blur(10px)",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      padding: "20px"
+    }}>
+      <div style={{
+        background: "#ffffff",
+        borderRadius: "24px",
+        width: "100%", maxWidth: "880px",
+        maxHeight: "92vh", overflowY: "auto",
+        boxShadow: "0 24px 60px rgba(0,0,0,0.25)",
+        border: "1px solid #E2EEF0",
+        display: "flex", flexDirection: "column"
+      }}>
+        {/* Header */}
+        <div style={{
+          padding: "24px 32px",
+          borderBottom: "1.5px solid #E2EEF0",
+          display: "flex", justifyContent: "space-between", alignItems: "center",
+          background: "#F8FCFC",
+          borderTopLeftRadius: "24px", borderTopRightRadius: "24px"
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            <div style={{ width: 48, height: 48, borderRadius: "14px", background: topic.color + "18", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "24px", flexShrink: 0 }}>
+              {topic.icon}
+            </div>
+            <div>
+              <span style={{ fontSize: "11px", fontWeight: 800, color: topic.color, letterSpacing: "1px", textTransform: "uppercase" }}>{topic.topicNum}</span>
+              <h2 style={{ fontSize: "19px", fontWeight: 800, color: "#1B2B3A", margin: "2px 0 0" }}>{topic.name}</h2>
+              <p style={{ fontSize: "13px", color: "#6B8A9A", margin: "3px 0 0" }}>{topic.tagline}</p>
+            </div>
+          </div>
+
+          <button
+            onClick={onClose}
+            style={{
+              background: "#E2EEF0", color: "#4A5568", border: "none",
+              width: "38px", height: "38px", borderRadius: "50%",
+              fontSize: "16px", fontWeight: 700, cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              flexShrink: 0
+            }}
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Tab Switcher */}
+        <div style={{ display: "flex", borderBottom: "1px solid #E2EEF0", background: "#ffffff", padding: "0 32px" }}>
+          <button
+            onClick={() => setActiveTab("notes")}
+            style={{
+              padding: "14px 20px", background: "none", border: "none",
+              borderBottom: activeTab === "notes" ? `3px solid ${topic.color}` : "3px solid transparent",
+              color: activeTab === "notes" ? topic.color : "#6B8A9A",
+              fontWeight: 700, fontSize: "14px", cursor: "pointer", fontFamily: "inherit"
+            }}
+          >
+            📚 Study Notes & PDF Content
+          </button>
+          <button
+            onClick={() => setActiveTab("pyq")}
+            style={{
+              padding: "14px 20px", background: "none", border: "none",
+              borderBottom: activeTab === "pyq" ? `3px solid ${topic.color}` : "3px solid transparent",
+              color: activeTab === "pyq" ? topic.color : "#6B8A9A",
+              fontWeight: 700, fontSize: "14px", cursor: "pointer", fontFamily: "inherit",
+              display: "flex", alignItems: "center", gap: "6px"
+            }}
+          >
+            📝 Topic PYQ MCQs ({topic.pyqs.length})
+          </button>
+        </div>
+
+        {/* Modal Content */}
+        <div style={{ padding: "32px", flex: 1 }}>
+          {activeTab === "notes" ? (
+            <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+              {/* PDF Info Card */}
+              <div style={{ background: topic.color + "10", border: `1.5px solid ${topic.color}30`, borderRadius: "16px", padding: "18px 22px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                  <span style={{ fontSize: "28px" }}>📄</span>
+                  <div>
+                    <h4 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>{topic.pdfTitle}</h4>
+                    <p style={{ fontSize: "12px", color: "#6B8A9A", margin: "2px 0 0" }}>B.Tech Biotechnology • GATE & Academic Study Notes</p>
+                  </div>
+                </div>
+                <span style={{ background: topic.color, color: "#fff", fontSize: "12px", fontWeight: 700, padding: "6px 14px", borderRadius: "8px" }}>
+                  Verified GATE Notes
+                </span>
+              </div>
+
+              {/* Sections Breakdown */}
+              {topic.sections.map((sec, idx) => (
+                <div key={idx} style={{ background: "#F8FCFC", borderRadius: "16px", padding: "20px 24px", border: "1px solid #E2EEF0" }}>
+                  <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#1B2B3A", marginBottom: "12px" }}>{sec.title}</h3>
+                  <div style={{ whiteSpace: "pre-line", fontSize: "14px", color: "#334155", lineHeight: "1.7" }}>
+                    {sec.content}
+                  </div>
+                </div>
+              ))}
+
+              {/* Common Exam Traps */}
+              <div style={{ background: "#FEF2F2", border: "1.5px solid #FCA5A5", borderRadius: "16px", padding: "20px 24px" }}>
+                <h4 style={{ fontSize: "15px", fontWeight: 700, color: "#991B1B", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
+                  <span>⚠️ COMMON EXAM TRAPS</span>
+                </h4>
+                <ul style={{ margin: 0, paddingLeft: "20px", display: "flex", flexDirection: "column", gap: "8px" }}>
+                  {topic.examTraps.map((trap, idx) => (
+                    <li key={idx} style={{ fontSize: "13.5px", color: "#7F1D1D", lineHeight: "1.5" }}>{trap}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <button
+                  onClick={() => setActiveTab("pyq")}
+                  style={{ background: topic.color, color: "#fff", border: "none", padding: "12px 24px", borderRadius: "10px", fontSize: "14px", fontWeight: 700, cursor: "pointer" }}
+                >
+                  Practice Topic PYQs →
+                </button>
+              </div>
+            </div>
+          ) : (
+            /* PYQ MCQ Section for Topic */
+            <div>
+              {!isFinished ? (
+                <div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+                    <span style={{ fontSize: "13px", fontWeight: 700, color: topic.color, textTransform: "uppercase" }}>
+                      Question {currentQ + 1} of {topic.pyqs.length}
+                    </span>
+                    <span style={{ fontSize: "12px", color: "#6B8A9A" }}>
+                      Instant Solution Feedback
+                    </span>
+                  </div>
+
+                  {/* Question */}
+                  <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A", marginBottom: "20px", lineHeight: "1.4" }}>
+                    {topic.pyqs[currentQ].question}
+                  </h3>
+
+                  {/* Options */}
+                  <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "24px" }}>
+                    {topic.pyqs[currentQ].options.map((optText, optIdx) => {
+                      const isSelectedOpt = selectedAnswers[currentQ] === optIdx;
+                      const isCorrectOpt = topic.pyqs[currentQ].correct === optIdx;
+                      const isAnsSubmitted = submitted[currentQ];
+
+                      let optBg = "#ffffff";
+                      let optBorder = "#E2EEF0";
+                      let optColor = "#1B2B3A";
+
+                      if (isAnsSubmitted) {
+                        if (isCorrectOpt) {
+                          optBg = "#F0FDF4";
+                          optBorder = "#22C55E";
+                          optColor = "#15803D";
+                        } else if (isSelectedOpt && !isCorrectOpt) {
+                          optBg = "#FEF2F2";
+                          optBorder = "#EF4444";
+                          optColor = "#991B1B";
+                        }
+                      } else if (isSelectedOpt) {
+                        optBg = topic.color + "15";
+                        optBorder = topic.color;
+                      }
+
+                      return (
+                        <div
+                          key={optIdx}
+                          onClick={() => handleSelectOption(optIdx)}
+                          style={{
+                            padding: "14px 18px", borderRadius: "12px",
+                            background: optBg, border: `2px solid ${optBorder}`, color: optColor,
+                            cursor: isAnsSubmitted ? "default" : "pointer",
+                            display: "flex", alignItems: "center", gap: "12px", fontSize: "14.5px"
+                          }}
+                        >
+                          <span style={{ fontWeight: 700, opacity: 0.7 }}>{String.fromCharCode(65 + optIdx)}.</span>
+                          <span style={{ flex: 1 }}>{optText}</span>
+                          {isAnsSubmitted && isCorrectOpt && <span>✅</span>}
+                          {isAnsSubmitted && isSelectedOpt && !isCorrectOpt && <span>❌</span>}
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Solution Box */}
+                  {submitted[currentQ] && (
+                    <div style={{ background: "#F0F9FF", border: "1.5px solid #BAE6FD", borderRadius: "12px", padding: "16px", marginBottom: "24px" }}>
+                      <div style={{ fontSize: "13px", fontWeight: 700, color: "#0284C7", marginBottom: "4px" }}>💡 Solution & Explanation</div>
+                      <p style={{ fontSize: "13.5px", color: "#334155", margin: 0 }}>{topic.pyqs[currentQ].explanation}</p>
+                    </div>
+                  )}
+
+                  {/* Next / Submit Buttons */}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <button
+                      disabled={currentQ === 0}
+                      onClick={() => setCurrentQ(prev => prev - 1)}
+                      style={{ background: "#F0F7F8", border: "1px solid #D0E5E8", color: "#4A5568", padding: "9px 18px", borderRadius: "8px", fontWeight: 600, fontSize: "13px", cursor: currentQ === 0 ? "not-allowed" : "pointer", opacity: currentQ === 0 ? 0.4 : 1 }}
+                    >
+                      ← Previous
+                    </button>
+
+                    {!submitted[currentQ] ? (
+                      <button
+                        disabled={selectedAnswers[currentQ] === undefined}
+                        onClick={handleSubmitAnswer}
+                        style={{ background: topic.color, color: "#fff", border: "none", padding: "10px 22px", borderRadius: "8px", fontWeight: 700, fontSize: "13.5px", cursor: selectedAnswers[currentQ] !== undefined ? "pointer" : "not-allowed", opacity: selectedAnswers[currentQ] !== undefined ? 1 : 0.4 }}
+                      >
+                        Submit Answer
+                      </button>
+                    ) : currentQ < topic.pyqs.length - 1 ? (
+                      <button
+                        onClick={() => setCurrentQ(prev => prev + 1)}
+                        style={{ background: "#14B8A6", color: "#fff", border: "none", padding: "10px 22px", borderRadius: "8px", fontWeight: 700, fontSize: "13.5px", cursor: "pointer" }}
+                      >
+                        Next Question →
+                      </button>
+                    ) : (
+                      <button
+                        onClick={handleFinishPYQ}
+                        style={{ background: "#22C55E", color: "#fff", border: "none", padding: "10px 24px", borderRadius: "8px", fontWeight: 700, fontSize: "13.5px", cursor: "pointer" }}
+                      >
+                        Finish Topic Quiz 🏆
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                /* Topic Quiz Result */
+                <div style={{ textAlign: "center", padding: "20px 0" }}>
+                  <div style={{ fontSize: "40px", marginBottom: "12px" }}>🎉</div>
+                  <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#1B2B3A" }}>Topic Practice Completed!</h3>
+                  <p style={{ color: "#6B8A9A", fontSize: "14px", marginTop: "4px" }}>You scored +{xpEarned} XP on {topic.shortName}</p>
+                  <button onClick={onClose} style={{ background: topic.color, color: "#fff", border: "none", padding: "12px 28px", borderRadius: "10px", fontWeight: 700, marginTop: "20px", cursor: "pointer" }}>
+                    Close & Continue Learning
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /* ── Interactive Challenge / Quiz Modal ── */
 function ChallengeModal({ challengeKey, onClose, supabase, profile, onXPUpdate }) {
@@ -291,6 +631,7 @@ function ChallengeModal({ challengeKey, onClose, supabase, profile, onXPUpdate }
 
   async function handleFinish() {
     setIsFinished(true);
+    markQuestCompleted("pyq_challenge");
     let correctCount = 0;
     questions.forEach((q, idx) => {
       if (selectedAnswers[idx] === q.correct) {
@@ -310,9 +651,7 @@ function ChallengeModal({ challengeKey, onClose, supabase, profile, onXPUpdate }
           .update({ xp: currentXP + earned })
           .eq("id", profile.id);
         if (onXPUpdate) onXPUpdate(currentXP + earned);
-      } catch (e) {
-        console.error("Error updating XP:", e);
-      }
+      } catch (e) {}
       setSavingXP(false);
     }
   }
@@ -657,36 +996,6 @@ function ChallengeModal({ challengeKey, onClose, supabase, profile, onXPUpdate }
                 </div>
               </div>
 
-              {/* Review Questions Accordion */}
-              <div style={{ textAlign: "left", marginBottom: "32px", background: "#F8FCFC", borderRadius: "16px", padding: "24px", border: "1px solid #E2EEF0" }}>
-                <h4 style={{ fontSize: "16px", fontWeight: 700, color: "#1B2B3A", marginBottom: "16px" }}>Question Breakdown</h4>
-                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                  {questions.map((item, idx) => {
-                    const isRight = selectedAnswers[idx] === item.correct;
-                    return (
-                      <div key={idx} style={{ background: "#ffffff", padding: "14px 18px", borderRadius: "12px", border: `1px solid ${isRight ? "#86EFAC" : "#FCA5A5"}` }}>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px" }}>
-                          <div>
-                            <span style={{ fontSize: "13px", fontWeight: 700, color: isRight ? "#15803D" : "#B91C1C" }}>
-                              Q{idx + 1}: {item.question}
-                            </span>
-                            <p style={{ fontSize: "12px", color: "#6B8A9A", marginTop: "4px", margin: 0 }}>
-                              Your Answer: <strong>{item.options[selectedAnswers[idx]] !== undefined ? item.options[selectedAnswers[idx]] : "Skipped"}</strong>
-                            </p>
-                            {!isRight && (
-                              <p style={{ fontSize: "12px", color: "#15803D", marginTop: "2px", margin: 0 }}>
-                                Correct Answer: <strong>{item.options[item.correct]}</strong>
-                              </p>
-                            )}
-                          </div>
-                          <span style={{ fontSize: "16px" }}>{isRight ? "✅" : "❌"}</span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
               {/* Finish Actions */}
               <div style={{ display: "flex", gap: "14px", justifyContent: "center" }}>
                 <button
@@ -727,42 +1036,9 @@ function ChallengeModal({ challengeKey, onClose, supabase, profile, onXPUpdate }
 
 /* ── Student / Researcher View ── */
 function StudentView({ supabase, profile, onXPUpdate }) {
-  const [notes, setNotes] = useState({});
-  const [openSubject, setOpenSubject] = useState(null);
-  const [uploading, setUploading] = useState(false);
   const [activeChallenge, setActiveChallenge] = useState(null);
+  const [activeTopic, setActiveTopic] = useState(null);
   const isResearcher = profile?.role === "researcher";
-
-  useEffect(() => { loadNotes(); }, []);
-
-  async function loadNotes() {
-    const r = {};
-    for (const sub of SUBJECTS) {
-      const { data } = await supabase.storage.from("course-materials").list(sub.id);
-      r[sub.id] = data || [];
-    }
-    setNotes(r);
-  }
-
-  async function handleUpload(sid, file) {
-    if (!file?.name.endsWith(".pdf")) { alert("Please upload a PDF"); return; }
-    setUploading(true);
-    const fn = `${profile.id.slice(0,8)}_${Date.now()}_${file.name}`;
-    const { error } = await supabase.storage.from("course-materials").upload(`${sid}/${fn}`, file);
-    if (error) alert("Upload failed: " + error.message);
-    else await loadNotes();
-    setUploading(false);
-  }
-
-  function getUrl(sid, fn) {
-    return supabase.storage.from("course-materials").getPublicUrl(`${sid}/${fn}`).data.publicUrl;
-  }
-
-  async function handleDelete(sid, fn) {
-    if (!confirm("Delete?")) return;
-    await supabase.storage.from("course-materials").remove([`${sid}/${fn}`]);
-    await loadNotes();
-  }
 
   return (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "24px" }}>
@@ -772,9 +1048,9 @@ function StudentView({ supabase, profile, onXPUpdate }) {
         <div style={{ background: "linear-gradient(135deg, #132D35 0%, #1B4A5A 100%)", borderRadius: "20px", padding: "28px 32px", marginBottom: "28px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ flex: 1 }}>
             <span style={{ fontSize: "11px", color: "#14B8A6", fontWeight: 600, textTransform: "uppercase", letterSpacing: "1px", background: "rgba(20,184,166,0.15)", padding: "4px 10px", borderRadius: "6px" }}>UP NEXT</span>
-            <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#fff", margin: "10px 0 6px" }}>Chapter 4: CRISPR & Gene Editing</h2>
+            <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#fff", margin: "10px 0 6px" }}>TOPIC 02: Advanced Genetics & Molecular Biology</h2>
             <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.55)", marginBottom: "20px" }}>Genetics • 4 pages remaining</p>
-            <button onClick={() => setActiveChallenge("genetics")} style={{ background: "#fff", color: "#132D35", border: "none", padding: "10px 22px", borderRadius: "10px", fontSize: "14px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Continue Learning →</button>
+            <button onClick={() => { setActiveTopic(COURSE_TOPICS[1]); markQuestCompleted("read_pages"); }} style={{ background: "#fff", color: "#132D35", border: "none", padding: "10px 22px", borderRadius: "10px", fontSize: "14px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Continue Learning →</button>
           </div>
           <div style={{ position: "relative", width: 100, height: 100, flexShrink: 0 }}>
             <svg width="100" height="100" viewBox="0 0 100 100">
@@ -793,83 +1069,68 @@ function StudentView({ supabase, profile, onXPUpdate }) {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px", marginBottom: "28px" }}>
           <div style={{ background: "#FFF3E8", borderRadius: "14px", padding: "20px 24px", display: "flex", justifyContent: "space-between", alignItems: "center", border: "1px solid #FFD4A3" }}>
             <div>
-              <p style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>Genetics PYQs</p>
-              <p style={{ fontSize: "12px", color: "#6B8A9A" }}>10 MCQs • <span style={{ color: "#F97316", fontWeight: 600 }}>+100 XP</span></p>
+              <p style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>Genetics & MolBio PYQs</p>
+              <p style={{ fontSize: "12px", color: "#6B8A9A" }}>15 MCQs • <span style={{ color: "#F97316", fontWeight: 600 }}>+150 XP</span></p>
             </div>
             <button onClick={() => setActiveChallenge("genetics")} style={{ background: "#F97316", color: "#fff", border: "none", padding: "8px 16px", borderRadius: "8px", fontSize: "13px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Start Challenge</button>
           </div>
           <div style={{ background: "#F3F0FF", borderRadius: "14px", padding: "20px 24px", display: "flex", justifyContent: "space-between", alignItems: "center", border: "1px solid #DDD6FE" }}>
             <div>
-              <p style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>Timed Mock Exam</p>
-              <p style={{ fontSize: "12px", color: "#6B8A9A" }}>20 MCQs • <span style={{ color: "#8B5CF6", fontWeight: 600 }}>+100 XP</span></p>
+              <p style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>Genetic Engineering PYQs</p>
+              <p style={{ fontSize: "12px", color: "#6B8A9A" }}>15 MCQs • <span style={{ color: "#8B5CF6", fontWeight: 600 }}>+150 XP</span></p>
             </div>
             <button onClick={() => setActiveChallenge("mock")} style={{ background: "#8B5CF6", color: "#fff", border: "none", padding: "8px 16px", borderRadius: "8px", fontSize: "13px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Start Challenge</button>
           </div>
         </div>
 
-        {/* Researcher add course option */}
-        {isResearcher && (
-          <div style={{ background: "#F0FCFB", border: "1.5px dashed #14B8A6", borderRadius: "14px", padding: "18px 22px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
-            <div>
-              <p style={{ fontSize: "15px", fontWeight: 600, color: "#1B2B3A" }}>Share your expertise</p>
-              <p style={{ fontSize: "13px", color: "#6B8A9A" }}>Upload your research notes or course materials</p>
-            </div>
-            <a href="/learning" style={{ background: "#14B8A6", color: "#fff", padding: "9px 18px", borderRadius: "10px", fontSize: "13px", fontWeight: 600, textDecoration: "none" }}>+ Add Course</a>
-          </div>
-        )}
+        {/* Active Courses — Updated with PDF topics */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
+          <h2 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>Active Courses & Topic Modules</h2>
+          <span style={{ fontSize: "12px", fontWeight: 600, color: "#14B8A6", background: "#E6F4F1", padding: "4px 10px", borderRadius: "6px" }}>
+            GATE & Academic Notes
+          </span>
+        </div>
 
-        {/* Active Courses */}
-        <h2 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A", marginBottom: "14px" }}>Active Courses</h2>
-        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          {SUBJECTS.map(sub => {
-            const isOpen = openSubject === sub.id;
-            const pdfs = (notes[sub.id] || []).filter(f => f.name?.endsWith(".pdf"));
-            return (
-              <div key={sub.id} style={{ background: "#fff", borderRadius: "14px", border: "1px solid #E2EEF0", overflow: "hidden" }}>
-                <button onClick={() => setOpenSubject(isOpen ? null : sub.id)} style={{ width: "100%", display: "flex", alignItems: "center", gap: "14px", padding: "16px 20px", background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", textAlign: "left" }}>
-                  <div style={{ width: 42, height: 42, borderRadius: "10px", background: sub.color + "15", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", flexShrink: 0 }}>{sub.icon}</div>
-                  <div style={{ flex: 1 }}>
-                    <p style={{ fontSize: "14px", fontWeight: 600, color: "#1B2B3A" }}>{sub.name}</p>
-                    <p style={{ fontSize: "12px", color: "#6B8A9A" }}>{pdfs.length} notes • Module 1 of 3</p>
-                  </div>
-                  <div style={{ width: "120px", margin: "0 12px" }}>
-                    <div style={{ height: 4, background: "#E2EEF0", borderRadius: "4px" }}>
-                      <div style={{ height: 4, width: "30%", background: sub.color, borderRadius: "4px" }}></div>
-                    </div>
-                  </div>
-                  <a href="#" onClick={(e) => { e.preventDefault(); setActiveChallenge(sub.id === "genetics" ? "genetics" : "mock"); }} style={{ fontSize: "13px", color: "#14B8A6", fontWeight: 500 }}>View Course →</a>
-                  <span style={{ fontSize: "16px", color: "#C0CDD5", marginLeft: "8px", transform: isOpen ? "rotate(180deg)" : "none", display: "block" }}>▾</span>
-                </button>
-                {isOpen && (
-                  <div style={{ padding: "0 20px 20px", borderTop: "1px solid #F0F7F8" }}>
-                    {pdfs.length === 0 ? (
-                      <p style={{ fontSize: "13px", color: "#9CA3AF", padding: "14px 0 8px" }}>No notes uploaded yet.</p>
-                    ) : (
-                      <div style={{ display: "flex", flexDirection: "column", gap: "8px", padding: "12px 0 8px" }}>
-                        {pdfs.map(f => (
-                          <div key={f.name} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", background: "#F8FCFC", borderRadius: "10px" }}>
-                            <span>📄</span>
-                            <span style={{ flex: 1, fontSize: "13px", color: "#1B2B3A", fontWeight: 500 }}>{f.name.replace(/^[^_]+_\d+_/, "")}</span>
-                            <a href={getUrl(sub.id, f.name)} target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#14B8A6", fontWeight: 600, padding: "5px 12px", background: "rgba(20,184,166,0.08)", borderRadius: "6px" }}>View</a>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    {isResearcher && (
-                      <label style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#14B8A6", color: "#fff", padding: "9px 18px", borderRadius: "10px", fontSize: "13px", fontWeight: 600, cursor: uploading ? "wait" : "pointer", opacity: uploading ? 0.7 : 1, marginTop: "8px" }}>
-                        {uploading ? "Uploading..." : "📤 Upload PDF"}
-                        <input type="file" accept=".pdf" hidden disabled={uploading} onChange={e => handleUpload(sub.id, e.target.files?.[0])}/>
-                      </label>
-                    )}
-                  </div>
-                )}
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          {COURSE_TOPICS.map(topic => (
+            <div key={topic.id} style={{ background: "#fff", borderRadius: "16px", border: "1px solid #E2EEF0", padding: "18px 22px", display: "flex", alignItems: "center", gap: "16px", transition: "all 0.2s" }}>
+              <div style={{ width: 44, height: 44, borderRadius: "12px", background: topic.color + "15", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "22px", flexShrink: 0 }}>
+                {topic.icon}
               </div>
-            );
-          })}
+
+              <div style={{ flex: 1 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "3px" }}>
+                  <span style={{ fontSize: "10px", fontWeight: 800, color: topic.color, background: topic.color + "15", padding: "2px 6px", borderRadius: "4px" }}>{topic.topicNum}</span>
+                  <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>{topic.name}</h3>
+                </div>
+                <p style={{ fontSize: "12px", color: "#6B8A9A", margin: 0 }}>{topic.notesCount} • {topic.module}</p>
+              </div>
+
+              <div style={{ width: "120px", flexShrink: 0 }}>
+                <div style={{ height: 5, background: "#E2EEF0", borderRadius: "4px" }}>
+                  <div style={{ height: 5, width: `${topic.progress}%`, background: topic.color, borderRadius: "4px" }}></div>
+                </div>
+              </div>
+
+              <button
+                onClick={() => { setActiveTopic(topic); markQuestCompleted("read_pages"); }}
+                style={{
+                  background: topic.color + "12", color: topic.color,
+                  border: `1.5px solid ${topic.color}30`,
+                  padding: "8px 16px", borderRadius: "10px",
+                  fontSize: "13px", fontWeight: 700, cursor: "pointer",
+                  fontFamily: "inherit", transition: "all 0.2s",
+                  flexShrink: 0
+                }}
+              >
+                View Course →
+              </button>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* RIGHT SIDEBAR — LiveStudentWidgets handles streak, bio-minute & quests */}
+      {/* RIGHT SIDEBAR — LiveStudentWidgets */}
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <LiveStudentWidgets />
       </div>
@@ -884,61 +1145,35 @@ function StudentView({ supabase, profile, onXPUpdate }) {
           onXPUpdate={onXPUpdate}
         />
       )}
+
+      {/* Active Course Topic Viewer Modal */}
+      {activeTopic && (
+        <CourseTopicModal
+          topic={activeTopic}
+          onClose={() => setActiveTopic(null)}
+          supabase={supabase}
+          profile={profile}
+          onXPUpdate={onXPUpdate}
+        />
+      )}
     </div>
   );
 }
 
 /* ── Educator View ── */
 function EducatorView({ supabase, profile, onXPUpdate }) {
-  const [notes, setNotes] = useState({});
-  const [openSubject, setOpenSubject] = useState(null);
-  const [uploading, setUploading] = useState(false);
-  const [showAddMCQ, setShowAddMCQ] = useState(false);
   const [activeChallenge, setActiveChallenge] = useState(null);
-  const [mcqForm, setMcqForm] = useState({ subject: "genetics", question: "", options: ["","","",""], answer: 0, xp: "20" });
-
-  useEffect(() => { loadNotes(); }, []);
-
-  async function loadNotes() {
-    const r = {};
-    for (const sub of SUBJECTS) {
-      const { data } = await supabase.storage.from("course-materials").list(sub.id);
-      r[sub.id] = data || [];
-    }
-    setNotes(r);
-  }
-
-  async function handleUpload(sid, file) {
-    if (!file?.name.endsWith(".pdf")) { alert("Please upload a PDF"); return; }
-    setUploading(true);
-    const fn = `${profile.id.slice(0,8)}_${Date.now()}_${file.name}`;
-    const { error } = await supabase.storage.from("course-materials").upload(`${sid}/${fn}`, file);
-    if (error) alert("Upload failed: " + error.message);
-    else await loadNotes();
-    setUploading(false);
-  }
-
-  function getUrl(sid, fn) {
-    return supabase.storage.from("course-materials").getPublicUrl(`${sid}/${fn}`).data.publicUrl;
-  }
-
-  async function handleDelete(sid, fn) {
-    if (!confirm("Delete?")) return;
-    await supabase.storage.from("course-materials").remove([`${sid}/${fn}`]);
-    await loadNotes();
-  }
-
-  const totalNotes = Object.values(notes).reduce((acc, arr) => acc + arr.filter(f => f.name?.endsWith(".pdf")).length, 0);
+  const [activeTopic, setActiveTopic] = useState(null);
 
   return (
     <div>
       {/* Stats bar */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "14px", marginBottom: "28px" }}>
         {[
-          { label: "Total Materials", value: totalNotes, icon: "📚", color: "#14B8A6" },
-          { label: "Subjects", value: SUBJECTS.length, icon: "🧬", color: "#8B5CF6" },
-          { label: "Students (approx)", value: "—", icon: "👥", color: "#F97316" },
-          { label: "MCQ Sets", value: "2", icon: "📝", color: "#3B82F6" },
+          { label: "Total Materials", value: "4 Topic Sets", icon: "📚", color: "#14B8A6" },
+          { label: "Subjects", value: "4 Modules", icon: "🧬", color: "#8B5CF6" },
+          { label: "Students Enrolled", value: "250+", icon: "👥", color: "#F97316" },
+          { label: "PYQ Sets", value: "30 MCQs", icon: "📝", color: "#3B82F6" },
         ].map(s => (
           <div key={s.label} style={{ background: "#fff", borderRadius: "14px", padding: "18px 20px", border: "1px solid #E2EEF0", display: "flex", gap: "12px", alignItems: "center" }}>
             <div style={{ width: 40, height: 40, borderRadius: "10px", background: s.color + "15", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", flexShrink: 0 }}>{s.icon}</div>
@@ -954,101 +1189,36 @@ function EducatorView({ supabase, profile, onXPUpdate }) {
         {/* My Courses */}
         <div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-            <h2 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A" }}>My Courses</h2>
-            <span style={{ fontSize: "13px", color: "#14B8A6", fontWeight: 500 }}>Manage Materials</span>
+            <h2 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A" }}>Topic Courses & PDF Notes</h2>
+            <span style={{ fontSize: "13px", color: "#14B8A6", fontWeight: 500 }}>Active Syllabus</span>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            {SUBJECTS.map(sub => {
-              const isOpen = openSubject === sub.id;
-              const pdfs = (notes[sub.id] || []).filter(f => f.name?.endsWith(".pdf"));
-              return (
-                <div key={sub.id} style={{ background: "#fff", borderRadius: "14px", border: "1px solid #E2EEF0", overflow: "hidden" }}>
-                  <button onClick={() => setOpenSubject(isOpen ? null : sub.id)} style={{ width: "100%", display: "flex", alignItems: "center", gap: "14px", padding: "14px 18px", background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", textAlign: "left" }}>
-                    <div style={{ width: 38, height: 38, borderRadius: "10px", background: sub.color + "15", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", flexShrink: 0 }}>{sub.icon}</div>
-                    <div style={{ flex: 1 }}>
-                      <p style={{ fontSize: "14px", fontWeight: 600, color: "#1B2B3A" }}>{sub.name}</p>
-                      <p style={{ fontSize: "12px", color: "#6B8A9A" }}>{pdfs.length} PDFs uploaded</p>
-                    </div>
-                    <span style={{ fontSize: "13px", fontWeight: 600, color: "#14B8A6", background: "rgba(20,184,166,0.08)", padding: "4px 10px", borderRadius: "6px" }}>{pdfs.length > 0 ? `${pdfs.length} files` : "Empty"}</span>
-                    <span style={{ fontSize: "16px", color: "#C0CDD5", marginLeft: "8px", transform: isOpen ? "rotate(180deg)" : "none" }}>▾</span>
-                  </button>
-                  {isOpen && (
-                    <div style={{ padding: "0 18px 18px", borderTop: "1px solid #F0F7F8" }}>
-                      {pdfs.length === 0 ? (
-                        <p style={{ fontSize: "13px", color: "#9CA3AF", padding: "12px 0 8px" }}>No files yet</p>
-                      ) : (
-                        <div style={{ display: "flex", flexDirection: "column", gap: "6px", padding: "10px 0 8px" }}>
-                          {pdfs.map(f => (
-                            <div key={f.name} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "9px 12px", background: "#F8FCFC", borderRadius: "8px" }}>
-                              <span>📄</span>
-                              <span style={{ flex: 1, fontSize: "13px", color: "#1B2B3A", fontWeight: 500 }}>{f.name.replace(/^[^_]+_\d+_/, "")}</span>
-                              <a href={getUrl(sub.id, f.name)} target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px", color: "#14B8A6", fontWeight: 600, padding: "4px 10px", background: "rgba(20,184,166,0.08)", borderRadius: "6px" }}>View</a>
-                              <button onClick={() => handleDelete(sub.id, f.name)} style={{ fontSize: "12px", color: "#EF4444", background: "#FEF2F2", border: "none", padding: "4px 8px", borderRadius: "6px", cursor: "pointer", fontFamily: "inherit" }}>Delete</button>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                      <label style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#14B8A6", color: "#fff", padding: "8px 16px", borderRadius: "9px", fontSize: "13px", fontWeight: 600, cursor: uploading ? "wait" : "pointer", opacity: uploading ? 0.7 : 1, marginTop: "8px" }}>
-                        {uploading ? "Uploading..." : "📤 Upload PDF"}
-                        <input type="file" accept=".pdf" hidden disabled={uploading} onChange={e => handleUpload(sub.id, e.target.files?.[0])}/>
-                      </label>
-                    </div>
-                  )}
+            {COURSE_TOPICS.map(topic => (
+              <div key={topic.id} style={{ background: "#fff", borderRadius: "14px", border: "1px solid #E2EEF0", padding: "16px 18px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                  <span style={{ fontSize: "20px" }}>{topic.icon}</span>
+                  <div>
+                    <p style={{ fontSize: "14px", fontWeight: 600, color: "#1B2B3A", margin: 0 }}>{topic.name}</p>
+                    <p style={{ fontSize: "12px", color: "#6B8A9A", margin: 0 }}>{topic.notesCount} • {topic.pdfTitle}</p>
+                  </div>
                 </div>
-              );
-            })}
+                <button onClick={() => setActiveTopic(topic)} style={{ background: topic.color + "15", color: topic.color, border: `1px solid ${topic.color}30`, padding: "6px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: 700, cursor: "pointer" }}>
+                  Preview
+                </button>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* PYQ MCQs */}
         <div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-            <h2 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A" }}>PYQ MCQs</h2>
-            <button onClick={() => setShowAddMCQ(!showAddMCQ)} style={{ background: "#F97316", color: "#fff", border: "none", padding: "8px 16px", borderRadius: "8px", fontSize: "13px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
-              {showAddMCQ ? "Cancel" : "+ Add MCQ"}
-            </button>
+            <h2 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A" }}>PYQ Challenge Sets</h2>
           </div>
-          {showAddMCQ && (
-            <div style={{ background: "#fff", borderRadius: "14px", padding: "20px", border: "1px solid #E2EEF0", marginBottom: "14px" }}>
-              <h4 style={{ fontSize: "15px", fontWeight: 600, color: "#1B2B3A", marginBottom: "16px" }}>Add MCQ Question</h4>
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                <div>
-                  <label style={L}>Subject</label>
-                  <select value={mcqForm.subject} onChange={e => setMcqForm({...mcqForm, subject: e.target.value})} style={I}>
-                    {SUBJECTS.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label style={L}>Question *</label>
-                  <textarea value={mcqForm.question} onChange={e => setMcqForm({...mcqForm, question: e.target.value})} rows={2} style={{...I, resize: "vertical"}} placeholder="Enter your MCQ question..."/>
-                </div>
-                {mcqForm.options.map((opt, i) => (
-                  <div key={i} style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-                    <input type="radio" name="answer" checked={mcqForm.answer === i} onChange={() => setMcqForm({...mcqForm, answer: i})} style={{ accentColor: "#14B8A6", width: 16, height: 16, flexShrink: 0 }}/>
-                    <input value={opt} onChange={e => { const opts = [...mcqForm.options]; opts[i] = e.target.value; setMcqForm({...mcqForm, options: opts}); }} style={{ ...I, flex: 1 }} placeholder={`Option ${i + 1}${i === mcqForm.answer ? " (correct)" : ""}`}/>
-                  </div>
-                ))}
-                <p style={{ fontSize: "12px", color: "#9CA3AF" }}>Select the radio button next to the correct answer</p>
-                <div>
-                  <label style={L}>XP Reward</label>
-                  <input value={mcqForm.xp} onChange={e => setMcqForm({...mcqForm, xp: e.target.value})} style={I} placeholder="20"/>
-                </div>
-                <button onClick={() => {
-                  if (!mcqForm.question || mcqForm.options.some(o => !o)) { alert("Fill all fields"); return; }
-                  alert("MCQ saved!");
-                  setShowAddMCQ(false);
-                  setMcqForm({ subject: "genetics", question: "", options: ["","","",""], answer: 0, xp: "20" });
-                }} style={{ background: "#F97316", color: "#fff", border: "none", padding: "11px 20px", borderRadius: "10px", fontSize: "14px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
-                  Save MCQ
-                </button>
-              </div>
-            </div>
-          )}
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
             {[
-              { title: "Genetics PYQs", count: 10, xp: 100, subject: "Genetics", color: "#F97316", bg: "#FFF3E8", key: "genetics" },
-              { title: "Biochemistry MCQs", count: 15, xp: 150, subject: "Biochemistry", color: "#8B5CF6", bg: "#F3F0FF", key: "mock" },
-              { title: "Timed Mock Exam", count: 20, xp: 200, subject: "All Subjects", color: "#14B8A6", bg: "#F0FCFB", key: "mock" },
+              { title: "Genetics & MolBio PYQs", count: 15, xp: 150, subject: "GAT-B 2020-2024", color: "#F97316", bg: "#FFF3E8", key: "genetics" },
+              { title: "Genetic Engineering PYQs", count: 15, xp: 150, subject: "GAT-B 2020-2024", color: "#8B5CF6", bg: "#F3F0FF", key: "mock" },
             ].map(q => (
               <div key={q.title} style={{ background: q.bg, borderRadius: "14px", padding: "18px 20px", border: `1px solid ${q.color}20` }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -1056,10 +1226,9 @@ function EducatorView({ supabase, profile, onXPUpdate }) {
                     <p style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>{q.title}</p>
                     <p style={{ fontSize: "12px", color: "#6B8A9A" }}>{q.count} MCQs • {q.subject} • <span style={{ color: q.color, fontWeight: 600 }}>+{q.xp} XP</span></p>
                   </div>
-                  <div style={{ display: "flex", gap: "8px" }}>
-                    <button style={{ background: "#fff", color: q.color, border: `1.5px solid ${q.color}`, padding: "7px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Edit</button>
-                    <button onClick={() => setActiveChallenge(q.key)} style={{ background: q.color, color: "#fff", border: "none", padding: "7px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Preview</button>
-                  </div>
+                  <button onClick={() => setActiveChallenge(q.key)} style={{ background: q.color, color: "#fff", border: "none", padding: "7px 16px", borderRadius: "8px", fontSize: "12px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
+                    Preview Quiz
+                  </button>
                 </div>
               </div>
             ))}
@@ -1072,6 +1241,17 @@ function EducatorView({ supabase, profile, onXPUpdate }) {
         <ChallengeModal
           challengeKey={activeChallenge}
           onClose={() => setActiveChallenge(null)}
+          supabase={supabase}
+          profile={profile}
+          onXPUpdate={onXPUpdate}
+        />
+      )}
+
+      {/* Active Course Topic Viewer Modal */}
+      {activeTopic && (
+        <CourseTopicModal
+          topic={activeTopic}
+          onClose={() => setActiveTopic(null)}
           supabase={supabase}
           profile={profile}
           onXPUpdate={onXPUpdate}
@@ -1112,6 +1292,3 @@ export default function LearningPage() {
     </AppShell>
   );
 }
-
-const L = { display: "block", fontSize: "12px", fontWeight: 600, color: "#6B8A9A", marginBottom: "6px" };
-const I = { width: "100%", padding: "10px 14px", border: "1.5px solid #E2EEF0", borderRadius: "10px", fontSize: "14px", fontFamily: "inherit", outline: "none", background: "#fff", color: "#1B2B3A" };
