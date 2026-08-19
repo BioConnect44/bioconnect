@@ -386,145 +386,152 @@ const CHALLENGES = {
   }
 };
 
-/* ── Interactive PDF Document Reader Viewer Component ── */
-function PdfDocumentViewer({ topic, onClose }) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 4;
-
+/* ── Continuous Scroll PDF Document Viewer Component ── */
+function ContinuousPdfViewer({ topic }) {
   return (
     <div style={{
       background: "#1E293B",
       borderRadius: "16px",
-      padding: "20px",
+      padding: "24px",
       color: "#fff",
       boxShadow: "0 12px 36px rgba(0,0,0,0.3)",
-      marginBottom: "24px"
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px"
     }}>
-      {/* Toolbar */}
+      {/* PDF Header / Toolbar */}
       <div style={{
         display: "flex", justifyContent: "space-between", alignItems: "center",
-        paddingBottom: "14px", borderBottom: "1px solid rgba(255,255,255,0.15)",
-        marginBottom: "16px"
+        paddingBottom: "16px", borderBottom: "1px solid rgba(255,255,255,0.15)"
       }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <span style={{ fontSize: "20px" }}>📖</span>
-          <span style={{ fontSize: "14px", fontWeight: 700 }}>{topic.pdfTitle}</span>
-        </div>
-
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <button
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-            style={{
-              background: "rgba(255,255,255,0.15)", color: "#fff", border: "none",
-              padding: "5px 12px", borderRadius: "6px", fontSize: "12px", fontWeight: 600,
-              cursor: currentPage === 1 ? "not-allowed" : "pointer", opacity: currentPage === 1 ? 0.4 : 1
-            }}
-          >
-            ← Prev
-          </button>
-          <span style={{ fontSize: "12px", fontWeight: 600 }}>Page {currentPage} of {totalPages}</span>
-          <button
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-            style={{
-              background: "rgba(255,255,255,0.15)", color: "#fff", border: "none",
-              padding: "5px 12px", borderRadius: "6px", fontSize: "12px", fontWeight: 600,
-              cursor: currentPage === totalPages ? "not-allowed" : "pointer", opacity: currentPage === totalPages ? 0.4 : 1
-            }}
-          >
-            Next →
-          </button>
-          <button
-            onClick={onClose}
-            style={{
-              background: "#EF4444", color: "#fff", border: "none",
-              padding: "5px 12px", borderRadius: "6px", fontSize: "12px", fontWeight: 700,
-              cursor: "pointer", marginLeft: "8px"
-            }}
-          >
-            Close Viewer ✕
-          </button>
+          <span style={{ fontSize: "24px" }}>📄</span>
+          <div>
+            <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#fff" }}>{topic.pdfTitle}</h3>
+            <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>Continuous Straight Scroll View • Complete 4-Page GATE & B.Tech Biotech Study PDF</p>
+          </div>
         </div>
+        <span style={{ background: topic.color, color: "#fff", fontSize: "12px", fontWeight: 700, padding: "6px 14px", borderRadius: "8px" }}>
+          Full PDF Viewer
+        </span>
       </div>
 
-      {/* PDF Page Paper View */}
+      {/* CONTINUOUS STRAIGHT SCROLL CONTAINER FOR ALL PAGES */}
       <div style={{
-        background: "#ffffff",
-        color: "#1e293b",
-        borderRadius: "12px",
-        padding: "32px",
-        minHeight: "440px",
-        boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
-        fontFamily: "system-ui, -apple-system, sans-serif",
-        fontSize: "14px",
-        lineHeight: "1.6"
+        maxHeight: "680px",
+        overflowY: "auto",
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+        paddingRight: "8px"
       }}>
-        <div style={{ borderBottom: "2px solid " + topic.color, paddingBottom: "12px", marginBottom: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div>
-            <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
-            <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
-          </div>
-          <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b" }}>PAGE {currentPage} OF {totalPages}</span>
-        </div>
-
-        {/* Page Content based on currentPage */}
-        {currentPage === 1 && (
-          <div>
-            <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>1. Key Concepts & Core Principles</h3>
-            <p style={{ fontStyle: "italic", color: "#475569", marginBottom: "16px" }}>"{topic.tagline}"</p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "20px" }}>
-              {topic.sections.slice(0, 2).map((sec, idx) => (
-                <div key={idx} style={{ background: "#f8fafc", padding: "16px", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
-                  <h4 style={{ fontSize: "14px", fontWeight: 700, margin: "0 0 8px", color: "#0f172a" }}>{sec.title}</h4>
-                  <div style={{ whiteSpace: "pre-line", fontSize: "13px", color: "#334155" }}>{sec.content}</div>
-                </div>
-              ))}
+        {/* Page 1 */}
+        <div style={{
+          background: "#ffffff", color: "#1e293b", borderRadius: "12px", padding: "36px",
+          boxShadow: "0 8px 24px rgba(0,0,0,0.2)", fontFamily: "system-ui, -apple-system, sans-serif"
+        }}>
+          <div style={{ borderBottom: "2px solid " + topic.color, paddingBottom: "12px", marginBottom: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div>
+              <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
+              <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
             </div>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b" }}>PAGE 1 OF 4</span>
           </div>
-        )}
 
-        {currentPage === 2 && (
-          <div>
-            <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>2. Equations, Kinetics & Balances</h3>
-            {topic.sections.slice(2, 4).map((sec, idx) => (
-              <div key={idx} style={{ background: "#f8fafc", padding: "16px", borderRadius: "10px", border: "1px solid #e2e8f0", marginBottom: "16px" }}>
+          <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>1. Key Concepts & Core Principles</h3>
+          <p style={{ fontStyle: "italic", color: "#475569", marginBottom: "16px" }}>"{topic.tagline}"</p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "20px" }}>
+            {topic.sections.slice(0, 2).map((sec, idx) => (
+              <div key={idx} style={{ background: "#f8fafc", padding: "16px", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
                 <h4 style={{ fontSize: "14px", fontWeight: 700, margin: "0 0 8px", color: "#0f172a" }}>{sec.title}</h4>
-                <div style={{ whiteSpace: "pre-line", fontSize: "13.5px", color: "#334155" }}>{sec.content}</div>
+                <div style={{ whiteSpace: "pre-line", fontSize: "13px", color: "#334155" }}>{sec.content}</div>
               </div>
             ))}
           </div>
-        )}
-
-        {currentPage === 3 && (
-          <div>
-            <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#dc2626", marginBottom: "12px" }}>3. Common Exam Traps & High-Yield Rules</h3>
-            <div style={{ background: "#fef2f2", border: "1.5px solid #fca5a5", borderRadius: "12px", padding: "20px", marginBottom: "20px" }}>
-              <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#991b1b", margin: "0 0 10px" }}>⚠️ CRITICAL EXAM TRAPS</h4>
-              <ul style={{ paddingLeft: "20px", margin: 0 }}>
-                {topic.examTraps.map((trap, idx) => (
-                  <li key={idx} style={{ marginBottom: "8px", color: "#7f1d1d", fontSize: "13.5px" }}>{trap}</li>
-                ))}
-              </ul>
-            </div>
+          <div style={{ paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
+            <span>BioConnect Platform · GATE Biotech Notes</span>
+            <span>Page 1</span>
           </div>
-        )}
+        </div>
 
-        {currentPage === 4 && (
-          <div>
-            <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>4. Topic Exam MCQs ({topic.pyqs.length} Questions)</h3>
-            <div style={{ background: "#f0fdf4", border: "1.5px solid #86efac", borderRadius: "12px", padding: "20px" }}>
-              <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#166534", margin: "0 0 10px" }}>📝 AUTHENTIC GAT-B PAST YEAR QUESTIONS</h4>
-              <p style={{ fontSize: "13.5px", color: "#14532d" }}>
-                This topic includes <strong>{topic.pyqs.length} authentic GAT-B questions</strong> with complete answer keys and detailed explanations. Switch to the <strong>"Topic PYQ MCQs ({topic.pyqs.length})"</strong> tab above to practice!
-              </p>
+        {/* Page 2 */}
+        <div style={{
+          background: "#ffffff", color: "#1e293b", borderRadius: "12px", padding: "36px",
+          boxShadow: "0 8px 24px rgba(0,0,0,0.2)", fontFamily: "system-ui, -apple-system, sans-serif"
+        }}>
+          <div style={{ borderBottom: "2px solid " + topic.color, paddingBottom: "12px", marginBottom: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div>
+              <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
+              <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
             </div>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b" }}>PAGE 2 OF 4</span>
           </div>
-        )}
 
-        <div style={{ marginTop: "24px", paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
-          <span>BioConnect Platform · GATE Biotech Notes</span>
-          <span>End of Page {currentPage}</span>
+          <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>2. Equations, Kinetics & Balances</h3>
+          {topic.sections.slice(2, 4).map((sec, idx) => (
+            <div key={idx} style={{ background: "#f8fafc", padding: "16px", borderRadius: "10px", border: "1px solid #e2e8f0", marginBottom: "16px" }}>
+              <h4 style={{ fontSize: "14px", fontWeight: 700, margin: "0 0 8px", color: "#0f172a" }}>{sec.title}</h4>
+              <div style={{ whiteSpace: "pre-line", fontSize: "13.5px", color: "#334155" }}>{sec.content}</div>
+            </div>
+          ))}
+          <div style={{ paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
+            <span>BioConnect Platform · GATE Biotech Notes</span>
+            <span>Page 2</span>
+          </div>
+        </div>
+
+        {/* Page 3 */}
+        <div style={{
+          background: "#ffffff", color: "#1e293b", borderRadius: "12px", padding: "36px",
+          boxShadow: "0 8px 24px rgba(0,0,0,0.2)", fontFamily: "system-ui, -apple-system, sans-serif"
+        }}>
+          <div style={{ borderBottom: "2px solid " + topic.color, paddingBottom: "12px", marginBottom: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div>
+              <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
+              <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
+            </div>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b" }}>PAGE 3 OF 4</span>
+          </div>
+
+          <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#dc2626", marginBottom: "12px" }}>3. Common Exam Traps & High-Yield Rules</h3>
+          <div style={{ background: "#fef2f2", border: "1.5px solid #fca5a5", borderRadius: "12px", padding: "20px", marginBottom: "20px" }}>
+            <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#991b1b", margin: "0 0 10px" }}>⚠️ CRITICAL EXAM TRAPS</h4>
+            <ul style={{ paddingLeft: "20px", margin: 0 }}>
+              {topic.examTraps.map((trap, idx) => (
+                <li key={idx} style={{ marginBottom: "8px", color: "#7f1d1d", fontSize: "13.5px" }}>{trap}</li>
+              ))}
+            </ul>
+          </div>
+          <div style={{ paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
+            <span>BioConnect Platform · GATE Biotech Notes</span>
+            <span>Page 3</span>
+          </div>
+        </div>
+
+        {/* Page 4 */}
+        <div style={{
+          background: "#ffffff", color: "#1e293b", borderRadius: "12px", padding: "36px",
+          boxShadow: "0 8px 24px rgba(0,0,0,0.2)", fontFamily: "system-ui, -apple-system, sans-serif"
+        }}>
+          <div style={{ borderBottom: "2px solid " + topic.color, paddingBottom: "12px", marginBottom: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div>
+              <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
+              <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
+            </div>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b" }}>PAGE 4 OF 4</span>
+          </div>
+
+          <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>4. Authentic GAT-B Past Year Questions Overview</h3>
+          <div style={{ background: "#f0fdf4", border: "1.5px solid #86efac", borderRadius: "12px", padding: "20px" }}>
+            <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#166534", margin: "0 0 10px" }}>📝 TOPIC PYQ SUMMARY ({topic.pyqs.length} MCQs)</h4>
+            <p style={{ fontSize: "13.5px", color: "#14532d" }}>
+              This topic includes <strong>{topic.pyqs.length} authentic GAT-B questions</strong> with complete answer keys and detailed explanations. Switch to the <strong>"Topic PYQ MCQs ({topic.pyqs.length})"</strong> tab above to practice!
+            </p>
+          </div>
+          <div style={{ marginTop: "24px", paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
+            <span>BioConnect Platform · GATE Biotech Notes</span>
+            <span>Page 4 · End of PDF Document</span>
+          </div>
         </div>
       </div>
     </div>
@@ -534,7 +541,6 @@ function PdfDocumentViewer({ topic, onClose }) {
 /* ── Interactive Course / Topic Viewer Modal ── */
 function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
   const [activeTab, setActiveTab] = useState("notes"); // "notes" | "pyq"
-  const [showPdfViewer, setShowPdfViewer] = useState(false);
   const [currentQ, setCurrentQ] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [submitted, setSubmitted] = useState({});
@@ -656,61 +662,11 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
         </div>
 
         {/* Modal Content */}
-        <div style={{ padding: "32px", flex: 1 }}>
+        <div style={{ padding: "28px 32px", flex: 1 }}>
           {activeTab === "notes" ? (
-            <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-              {/* PDF Info Card with Open PDF Viewer button */}
-              <div style={{ background: topic.color + "10", border: `1.5px solid ${topic.color}30`, borderRadius: "16px", padding: "18px 22px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-                  <span style={{ fontSize: "28px" }}>📄</span>
-                  <div>
-                    <h4 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>{topic.pdfTitle}</h4>
-                    <p style={{ fontSize: "12px", color: "#6B8A9A", margin: "2px 0 0" }}>B.Tech Biotechnology • GATE & Academic Study Notes</p>
-                  </div>
-                </div>
-                <div style={{ display: "flex", gap: "10px" }}>
-                  <button
-                    onClick={() => setShowPdfViewer(!showPdfViewer)}
-                    style={{
-                      background: topic.color, color: "#fff",
-                      border: "none", fontSize: "13px", fontWeight: 700,
-                      padding: "8px 18px", borderRadius: "10px", cursor: "pointer",
-                      display: "flex", alignItems: "center", gap: "6px",
-                      boxShadow: "0 2px 10px " + topic.color + "40"
-                    }}
-                  >
-                    <span>📖</span>
-                    <span>{showPdfViewer ? "Close PDF Viewer" : "Open PDF Viewer"}</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Inline PDF Viewer Component */}
-              {showPdfViewer && (
-                <PdfDocumentViewer topic={topic} onClose={() => setShowPdfViewer(false)} />
-              )}
-
-              {/* Sections Breakdown */}
-              {topic.sections.map((sec, idx) => (
-                <div key={idx} style={{ background: "#F8FCFC", borderRadius: "16px", padding: "20px 24px", border: "1px solid #E2EEF0" }}>
-                  <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#1B2B3A", marginBottom: "12px" }}>{sec.title}</h3>
-                  <div style={{ whiteSpace: "pre-line", fontSize: "14px", color: "#334155", lineHeight: "1.7" }}>
-                    {sec.content}
-                  </div>
-                </div>
-              ))}
-
-              {/* Common Exam Traps */}
-              <div style={{ background: "#FEF2F2", border: "1.5px solid #FCA5A5", borderRadius: "16px", padding: "20px 24px" }}>
-                <h4 style={{ fontSize: "15px", fontWeight: 700, color: "#991B1B", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
-                  <span>⚠️ COMMON EXAM TRAPS</span>
-                </h4>
-                <ul style={{ margin: 0, paddingLeft: "20px", display: "flex", flexDirection: "column", gap: "8px" }}>
-                  {topic.examTraps.map((trap, idx) => (
-                    <li key={idx} style={{ fontSize: "13.5px", color: "#7F1D1D", lineHeight: "1.5" }}>{trap}</li>
-                  ))}
-                </ul>
-              </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+              {/* Continuous Straight Scroll PDF Viewer */}
+              <ContinuousPdfViewer topic={topic} />
 
               <div style={{ display: "flex", justifyContent: "flex-end" }}>
                 <button
