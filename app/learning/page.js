@@ -1443,26 +1443,6 @@ function ContinuousPdfViewer({ topic }) {
           cursor: "pointer"
         }}
         title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
-      >e="Click to open full 23-page PDF document in a new browser tab/window"
-        >
-          <span>↗️</span>
-          <span>Open Full 23-Page PDF</span>
-        </button>
-      </div>
-
-      {/* IN-APP STUDY NOTES SUMMARY VIEWER */}
-      <div
-        onClick={handleOpenNewWindow}
-        style={{
-          maxHeight: "680px",
-          overflowY: "auto",
-          display: "flex",
-          flexDirection: "column",
-          gap: "24px",
-          paddingRight: "8px",
-          cursor: "pointer"
-        }}
-        title="Click anywhere on the study notes viewer to open full 23-page PDF document in new window"
       >
         {topic.sections.map((sec, idx) => (
           <div key={idx} style={{
