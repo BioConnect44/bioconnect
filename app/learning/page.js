@@ -363,8 +363,7 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
               {topic.icon}
             </div>
             <div>
-              <span style={{ fontSize: "11px", fontWeight: 800, color: topic.color, letterSpacing: "1px", textTransform: "uppercase" }}>{topic.topicNum}</span>
-              <h2 style={{ fontSize: "19px", fontWeight: 800, color: "#1B2B3A", margin: "2px 0 0" }}>{topic.name}</h2>
+              <h2 style={{ fontSize: "19px", fontWeight: 800, color: "#1B2B3A", margin: 0 }}>{topic.name}</h2>
               <p style={{ fontSize: "13px", color: "#6B8A9A", margin: "3px 0 0" }}>{topic.tagline}</p>
             </div>
           </div>
@@ -1048,7 +1047,7 @@ function StudentView({ supabase, profile, onXPUpdate }) {
         <div style={{ background: "linear-gradient(135deg, #132D35 0%, #1B4A5A 100%)", borderRadius: "20px", padding: "28px 32px", marginBottom: "28px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ flex: 1 }}>
             <span style={{ fontSize: "11px", color: "#14B8A6", fontWeight: 600, textTransform: "uppercase", letterSpacing: "1px", background: "rgba(20,184,166,0.15)", padding: "4px 10px", borderRadius: "6px" }}>UP NEXT</span>
-            <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#fff", margin: "10px 0 6px" }}>TOPIC 02: Advanced Genetics & Molecular Biology</h2>
+            <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#fff", margin: "10px 0 6px" }}>Advanced Genetics & Molecular Biology</h2>
             <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.55)", marginBottom: "20px" }}>Genetics • 4 pages remaining</p>
             <button onClick={() => { setActiveTopic(COURSE_TOPICS[1]); markQuestCompleted("read_pages"); }} style={{ background: "#fff", color: "#132D35", border: "none", padding: "10px 22px", borderRadius: "10px", fontSize: "14px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Continue Learning →</button>
           </div>
@@ -1099,11 +1098,8 @@ function StudentView({ supabase, profile, onXPUpdate }) {
               </div>
 
               <div style={{ flex: 1 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "3px" }}>
-                  <span style={{ fontSize: "10px", fontWeight: 800, color: topic.color, background: topic.color + "15", padding: "2px 6px", borderRadius: "4px" }}>{topic.topicNum}</span>
-                  <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>{topic.name}</h3>
-                </div>
-                <p style={{ fontSize: "12px", color: "#6B8A9A", margin: 0 }}>{topic.notesCount} • {topic.module}</p>
+                <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", margin: "0 0 3px" }}>{topic.name}</h3>
+                <p style={{ fontSize: "12px", color: "#6B8A9A", margin: 0 }}>{topic.notesCount}</p>
               </div>
 
               <div style={{ width: "120px", flexShrink: 0 }}>
