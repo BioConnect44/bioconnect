@@ -15,142 +15,232 @@ const SUBJECTS = [
 
 const CHALLENGES = {
   genetics: {
-    title: "Genetics PYQs",
-    subject: "Genetics",
+    title: "Molecular Biology & Genetics PYQs",
+    subject: "Molecular Biology (GAT-B 2020-2024)",
     color: "#F97316",
     bg: "#FFF3E8",
-    xp: 100,
-    timeLimit: 600, // 10 mins
-    questions: [
-      {
-        id: 1,
-        question: "In Mendel's dihybrid cross involving pea plants, what is the expected phenotypic ratio in the F2 generation?",
-        options: [
-          "9 : 3 : 3 : 1",
-          "3 : 1",
-          "1 : 2 : 1",
-          "9 : 7"
-        ],
-        correct: 0,
-        explanation: "In a classic Mendelian dihybrid cross involving two independently assorting traits (e.g. RrYy x RrYy), the F2 phenotypic ratio is 9 (Round Yellow) : 3 (Round Green) : 3 (Wrinkled Yellow) : 1 (Wrinkled Green)."
-      },
-      {
-        id: 2,
-        question: "Which enzyme is primarily responsible for unwinding double-stranded DNA during replication?",
-        options: [
-          "DNA Polymerase III",
-          "DNA Helicase",
-          "Topoisomerase / Gyrase",
-          "RNA Primase"
-        ],
-        correct: 1,
-        explanation: "DNA Helicase breaks hydrogen bonds between nitrogenous base pairs to separate the two strands of DNA at the replication fork."
-      },
-      {
-        id: 3,
-        question: "Which inheritance pattern is observed when an affected father passes a genetic trait to all of his daughters but none of his sons?",
-        options: [
-          "Autosomal Recessive",
-          "X-Linked Dominant",
-          "Y-Linked (Holandric)",
-          "Mitochondrial"
-        ],
-        correct: 1,
-        explanation: "A father contributes his single X chromosome to all daughters (making them affected under X-linked dominant inheritance) and his Y chromosome to all sons."
-      },
-      {
-        id: 4,
-        question: "A single nucleotide substitution that converts an amino acid coding codon into a stop codon (UAA, UAG, or UGA) is called a:",
-        options: [
-          "Missense mutation",
-          "Nonsense mutation",
-          "Silent mutation",
-          "Frameshift mutation"
-        ],
-        correct: 1,
-        explanation: "Nonsense mutations result in premature translation termination, shortening the polypeptide product."
-      },
-      {
-        id: 5,
-        question: "Which enzyme joins discontinuous Okazaki fragments on the lagging strand during DNA synthesis?",
-        options: [
-          "DNA Ligase",
-          "DNA Polymerase I",
-          "Reverse Transcriptase",
-          "Exonuclease III"
-        ],
-        correct: 0,
-        explanation: "DNA Ligase catalyzes the formation of a phosphodiester bond between the 3'-OH end of one fragment and the 5'-phosphate end of another."
-      }
-    ]
-  },
-  mock: {
-    title: "Timed Mock Exam",
-    subject: "Biotechnology Comprehensive",
-    color: "#8B5CF6",
-    bg: "#F3F0FF",
-    xp: 100,
+    xp: 150,
     timeLimit: 900, // 15 mins
     questions: [
       {
         id: 1,
-        question: "What is the primary mechanism of action of the CRISPR-Cas9 genome editing system?",
-        options: [
-          "RNA interference and degradation",
-          "Guide-RNA directed site-specific double-strand DNA cleavage",
-          "Histone acetylation and chromatin opening",
-          "DNA methylation inhibition"
-        ],
+        question: "GAT-B 2020: The enzyme responsible for unwinding DNA during replication is:",
+        options: ["DNA ligase", "Helicase", "Primase", "Topoisomerase"],
         correct: 1,
-        explanation: "Cas9 endonuclease forms a complex with single guide RNA (sgRNA) to recognize a specific 20-bp genomic sequence and introduce a double-strand break (DSB)."
+        explanation: "Helicase unwinds the double-stranded DNA helix by breaking hydrogen bonds between base pairs."
       },
       {
         id: 2,
-        question: "During Polymerase Chain Reaction (PCR), at what temperature step do primers anneal to single-stranded template DNA?",
-        options: [
-          "94°C – 98°C",
-          "50°C – 65°C",
-          "72°C",
-          "37°C"
-        ],
+        question: "GAT-B 2020: Okazaki fragments are formed during synthesis of:",
+        options: ["Leading strand", "Lagging strand", "mRNA", "tRNA"],
         correct: 1,
-        explanation: "Annealing occurs typically between 50°C and 65°C depending on primer melting temperature (Tm)."
+        explanation: "Okazaki fragments are short DNA fragments synthesized discontinuously on the lagging strand during replication."
       },
       {
         id: 3,
-        question: "In SDS-PAGE gel electrophoresis, what is the principal role of Sodium Dodecyl Sulfate (SDS)?",
-        options: [
-          "Denatures proteins and imparts a uniform negative charge-to-mass ratio",
-          "Binds DNA fragments for fluorescent visualization",
-          "Cleaves disulfide bonds between cysteine residues",
-          "Polymerizes acrylamide into a matrix"
-        ],
-        correct: 0,
-        explanation: "SDS unfolds protein tertiary structures and coats them with negative charges, allowing migration based solely on molecular weight."
+        question: "GAT-B 2020: Which RNA carries amino acids to ribosome?",
+        options: ["rRNA", "snRNA", "tRNA", "mRNA"],
+        correct: 2,
+        explanation: "tRNA (transfer RNA) carries specific amino acids to the ribosome during protein translation."
       },
       {
         id: 4,
-        question: "Which antibody type is directly conjugated to a reporter enzyme (e.g. HRP) in a direct ELISA assay?",
-        options: [
-          "Primary antibody against target antigen",
-          "Secondary antibody against primary species",
-          "IgM pentamer",
-          "Capture antibody only"
-        ],
-        correct: 0,
-        explanation: "In direct ELISA, the primary antibody itself is conjugated to a detector enzyme like Horseradish Peroxidase (HRP)."
+        question: "GAT-B 2021: The start codon in mRNA is:",
+        options: ["UAA", "AUG", "UAG", "UGA"],
+        correct: 1,
+        explanation: "AUG is the universal start codon in mRNA that codes for Methionine."
       },
       {
         id: 5,
-        question: "What parameter measures the substrate concentration at which an enzyme operates at half of its maximum velocity (Vmax)?",
-        options: [
-          "Kcat (Turnover number)",
-          "Michaelis constant (Km)",
-          "Hill coefficient (n)",
-          "Specific activity"
-        ],
+        question: "GAT-B 2021: Which enzyme synthesizes RNA from DNA template?",
+        options: ["DNA polymerase", "RNA polymerase", "Reverse transcriptase", "Ligase"],
         correct: 1,
-        explanation: "Km (Michaelis-Menten constant) equals the substrate concentration [S] at which the reaction velocity v = Vmax / 2."
+        explanation: "RNA polymerase synthesizes RNA strands by transcribing DNA templates."
+      },
+      {
+        id: 6,
+        question: "GAT-B 2021: In eukaryotes, mRNA processing includes:",
+        options: ["Splicing", "5' capping", "Polyadenylation", "All of the above"],
+        correct: 3,
+        explanation: "Eukaryotic pre-mRNA undergoes 5' capping, splicing (intron removal), and 3' polyadenylation to become mature mRNA."
+      },
+      {
+        id: 7,
+        question: "GAT-B 2022: The central dogma of molecular biology is:",
+        options: ["Protein → RNA → DNA", "DNA → Protein → RNA", "DNA → RNA → Protein", "RNA → DNA → Protein"],
+        correct: 2,
+        explanation: "Central dogma describes the genetic information flow: DNA is transcribed into RNA, which is translated into Protein."
+      },
+      {
+        id: 8,
+        question: "GAT-B 2022: The operator region in lac operon functions as:",
+        options: ["Binding site for ribosome", "Binding site for repressor protein", "Site of DNA replication", "Terminator sequence"],
+        correct: 1,
+        explanation: "The operator is a DNA sequence to which the lac repressor protein binds to inhibit transcription of structural genes."
+      },
+      {
+        id: 9,
+        question: "GAT-B 2022: Which enzyme joins Okazaki fragments?",
+        options: ["Helicase", "Primase", "Ligase", "Gyrase"],
+        correct: 2,
+        explanation: "DNA ligase joins Okazaki fragments by creating phosphodiester bonds between adjacent sugar-phosphate backbones."
+      },
+      {
+        id: 10,
+        question: "GAT-B 2023: The process of synthesis of RNA from DNA is called:",
+        options: ["Translation", "Replication", "Transcription", "Mutation"],
+        correct: 2,
+        explanation: "Transcription is the biological process of creating RNA from a DNA template."
+      },
+      {
+        id: 11,
+        question: "GAT-B 2023: Which of the following is NOT a stop codon?",
+        options: ["UAA", "UAG", "UGA", "AUG"],
+        correct: 3,
+        explanation: "AUG is the start codon for translation (Methionine), whereas UAA, UAG, and UGA are stop codons."
+      },
+      {
+        id: 12,
+        question: "GAT-B 2023: Histone proteins are associated with:",
+        options: ["Prokaryotic DNA only", "Eukaryotic chromatin", "Ribosomes", "Plasmids"],
+        correct: 1,
+        explanation: "Histones are basic proteins that package eukaryotic DNA into structural nucleosomes within chromatin."
+      },
+      {
+        id: 13,
+        question: "GAT-B 2024: DNA replication is described as semiconservative because:",
+        options: ["One strand is completely new", "One parental and one new strand are present in daughter DNA", "DNA is synthesized only in one direction", "Replication occurs conservatively"],
+        correct: 1,
+        explanation: "Semiconservative replication means each newly formed double-stranded DNA contains one original parental strand and one newly synthesized strand."
+      },
+      {
+        id: 14,
+        question: "GAT-B 2024: Which RNA molecule forms the structural component of ribosome?",
+        options: ["mRNA", "tRNA", "rRNA", "siRNA"],
+        correct: 2,
+        explanation: "rRNA (ribosomal RNA) combines with proteins to form the structural catalytic subunits of ribosomes."
+      },
+      {
+        id: 15,
+        question: "GAT-B 2024: Alternative splicing results in:",
+        options: ["DNA replication", "Multiple proteins from one gene", "Protein degradation", "Mutation repair"],
+        correct: 1,
+        explanation: "Alternative splicing allows a single gene to encode multiple distinct protein isoforms by selecting different exon combinations."
+      }
+    ]
+  },
+  mock: {
+    title: "Genetic Engineering PYQs",
+    subject: "Genetic Engineering (GAT-B 2020-2024)",
+    color: "#8B5CF6",
+    bg: "#F3F0FF",
+    xp: 150,
+    timeLimit: 900, // 15 mins
+    questions: [
+      {
+        id: 16,
+        question: "GAT-B 2020: Restriction enzymes are also known as:",
+        options: ["Ligases", "Molecular scissors", "Polymerases", "Primases"],
+        correct: 1,
+        explanation: "Restriction enzymes act as molecular scissors by cutting double-stranded DNA at specific recognition sequences."
+      },
+      {
+        id: 17,
+        question: "GAT-B 2020: Which enzyme synthesizes complementary DNA (cDNA)?",
+        options: ["DNA polymerase", "RNA polymerase", "Reverse transcriptase", "Ligase"],
+        correct: 2,
+        explanation: "Reverse transcriptase synthesizes single-stranded cDNA using an RNA template."
+      },
+      {
+        id: 18,
+        question: "GAT-B 2020: Plasmids are commonly used as:",
+        options: ["Antibiotics", "Vectors", "Enzymes", "Ribosomes"],
+        correct: 1,
+        explanation: "Plasmids serve as cloning vectors to carry foreign DNA fragments into host cells."
+      },
+      {
+        id: 19,
+        question: "GAT-B 2021: EcoRI recognizes the sequence:",
+        options: ["5'-AAGCTT-3'", "5'-GGATCC-3'", "5'-GAATTC-3'", "5'-CTGCAG-3'"],
+        correct: 2,
+        explanation: "EcoRI restriction endonuclease specifically recognizes the palindromic hexanucleotide sequence 5'-GAATTC-3'."
+      },
+      {
+        id: 20,
+        question: "GAT-B 2021: Polymerase Chain Reaction (PCR) was invented by:",
+        options: ["James Watson", "Kary Mullis", "Francis Crick", "Matthew Meselson"],
+        correct: 1,
+        explanation: "Kary Mullis invented the Polymerase Chain Reaction (PCR) in 1983, earning the Nobel Prize in Chemistry."
+      },
+      {
+        id: 21,
+        question: "GAT-B 2021: The enzyme used in PCR is:",
+        options: ["DNA ligase", "Taq polymerase", "Reverse transcriptase", "Primase"],
+        correct: 1,
+        explanation: "Taq polymerase (isolated from Thermus aquaticus) is a thermostable enzyme used to extend DNA primers during thermal cycling."
+      },
+      {
+        id: 22,
+        question: "GAT-B 2022: The sticky ends generated by restriction enzymes are useful because they:",
+        options: ["Destroy DNA", "Prevent ligation", "Facilitate joining of complementary DNA fragments", "Replicate DNA"],
+        correct: 2,
+        explanation: "Single-stranded sticky overhangs allow base-pairing with complementary cohesive ends, facilitating DNA ligation."
+      },
+      {
+        id: 23,
+        question: "GAT-B 2022: Southern blotting is used for detection of:",
+        options: ["Protein", "DNA", "RNA", "Lipids"],
+        correct: 1,
+        explanation: "Southern blotting transfers DNA fragments to a membrane for hybridization and specific sequence detection."
+      },
+      {
+        id: 24,
+        question: "GAT-B 2022: A cloning vector must contain:",
+        options: ["Origin of replication", "Selectable marker", "Cloning site", "All of the above"],
+        correct: 3,
+        explanation: "An effective cloning vector requires an ori, a selectable marker (e.g. antibiotic resistance), and multiple cloning sites (MCS)."
+      },
+      {
+        id: 25,
+        question: "GAT-B 2023: Transformation in bacteria refers to:",
+        options: ["Viral infection", "Uptake of naked foreign DNA", "Cell division", "Protein synthesis"],
+        correct: 1,
+        explanation: "Bacterial transformation is the process by which a competent cell takes up extracellular, naked DNA from its surroundings."
+      },
+      {
+        id: 26,
+        question: "GAT-B 2023: Which blotting technique is used to detect RNA?",
+        options: ["Southern blot", "Northern blot", "Western blot", "Eastern blot"],
+        correct: 1,
+        explanation: "Northern blotting is the molecular laboratory method used for RNA detection and expression analysis."
+      },
+      {
+        id: 27,
+        question: "GAT-B 2023: Reporter genes are used to:",
+        options: ["Replicate plasmids", "Identify and quantify transformed cells", "Destroy vectors", "Synthesize structural proteins"],
+        correct: 1,
+        explanation: "Reporter genes (such as GFP or LacZ) indicate successful transformation and gene expression."
+      },
+      {
+        id: 28,
+        question: "GAT-B 2024: CRISPR-Cas9 is mainly used for:",
+        options: ["DNA sequencing", "Genome editing", "Protein purification", "Southern blotting"],
+        correct: 1,
+        explanation: "CRISPR-Cas9 is an advanced RNA-guided technology used for targeted genome editing in living organisms."
+      },
+      {
+        id: 29,
+        question: "GAT-B 2024: Which of the following acts as selectable marker in plasmids?",
+        options: ["Ampicillin resistance gene", "Helicase", "Primase", "Histone"],
+        correct: 0,
+        explanation: "Antibiotic resistance genes (like Ampicillin resistance - ampR) allow selection of host bacteria that successfully took up the plasmid."
+      },
+      {
+        id: 30,
+        question: "GAT-B 2024: The denaturation step in PCR generally occurs at:",
+        options: ["37°C", "55°C", "72°C", "95°C"],
+        correct: 3,
+        explanation: "Denaturation of double-stranded DNA into single strands during PCR is performed at high temperatures, typically 94°C–98°C (95°C)."
       }
     ]
   }
