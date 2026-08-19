@@ -207,35 +207,66 @@ const COURSE_TOPICS = [
     module: "Module 2 of 4",
     progress: 75,
     tagline: "DNA compaction, replication machinery, repair pathways & lac operon regulation.",
-    pdfTitle: "Topic 02 - Advanced Genetics & Molecular Biology.pdf",
+    pdfTitle: "Master Engineering Course Guide - Advanced Genetics & Molecular Biology.pdf",
+    tagline: "Definitive High-Yield Textbook & Exam Prep Syllabus Framework for B.Tech Undergraduate & GATE Examinations.",
     sections: [
       {
-        title: "1. Genome Structure & Chromatin",
-        content: `• Tiers of Compaction: 146 bp DNA wound 1.65x around histone octamer (2x H2A, H2B, H3, H4) → 11 nm 'beads on a string' (linker H1) → 30 nm solenoid (~6 nucleosomes/turn) → Loop domains & scaffold (Topoisomerase II & condensin).
-• Euchromatin: Open, active; high histone acetylation (HATs).
-• Heterochromatin: Condensed, silent; H3K9me3 / H3K27me3.`
+        title: "MODULE 1: Molecular Structure of Genes and Chromosomes",
+        content: `• Gene Definition: Complete sequence of chromosomal nucleotides located across specific loci containing instructions for functional RNA (rRNA, tRNA, snRNA, miRNA) or polypeptide.
+• Compaction Tiers: Nucleosome core particle (146 bp DNA wound 1.65x left-handed superhelical turn around histone octamer 2x H2A, H2B, H3, H4 rich in Lys & Arg).
+• Packaging Hierarchy: 11 nm 'beads-on-a-string' (linker H1 20-80 bp) → 30 nm Solenoid (~6 nucleosomes/turn, 40x denser) → Loop Domains (20-100 kb) anchored to central scaffold (Topoisomerase II & Condensin ring) → 700-1400 nm mitotic chromosome.
+• Epigenetics: Euchromatin (open, active, high histone tail acetylation by HATs e.g. H3K9ac/H3K14ac neutralizing positive charge) vs Heterochromatin (condensed, silent, H3K9me3 & H3K27me3 by HMTs recruiting HP1; Constitutive vs Facultative).`
       },
       {
-        title: "2. Replication, Transcription & Translation",
-        content: `• Helicase: DnaB (prokaryote) | CMG complex (eukaryote).
-• Elongation: Pol III core (prokaryote) | Pol ε (leading) & Pol δ (lagging, eukaryote).
-• mRNA Processing: 5' 7-methylguanosine cap, 3' poly(A) tail (150-250 A residues), Spliceosome intron removal.`
+        title: "MODULE 2: Nucleic Acid Replication, Transcription, and Translation",
+        content: `• Replication Fork Dynamics: 5' to 3' direction from 3'-OH. Prokaryotic oriC initiated by DnaA binding 9-mer/13-mer repeats; DnaB Helicase loaded via DnaC; positive supercoils relieved by DNA Gyrase (type II topoisomerase); SSBs prevent reannealing; Leading strand continuous, Lagging strand discontinuous via 1000-2000 bp Okazaki fragments primed by DnaG Primase. Processivity driven by homodimeric beta-2 sliding clamp.
+• Machinery Table: Origin (prokaryote DnaA vs eukaryote ORC 1-6); Helicase (DnaB vs CMG Mcm2-7/GINS/Cdc45); Primase (DnaG vs Pol α/Primase); Elongation (Pol III core vs Pol ε leading & Pol δ lagging); Primer removal (Pol I 5'->3' exo vs FEN1 & Dna2).
+• Transcription: Prokaryotic core RNA pol (α2ββ'ω) + sigma factor (σ) binds consensus -10 Pribnow box (5'-TATAAT-3') and -35 (5'-TTGACA-3'). Termination: Intrinsic (GC stem-loop + uracils) vs Rho-dependent (ATP hexameric helicase Rho).
+• Eukaryotic Polymerases: Pol I (45S precursor -> 28S, 18S, 5.8S rRNA), Pol II (mRNA, snRNA, miRNA with core TATA box at -25 bp recruiting TFIID/TFIIB/TFIIE/TFIIH), Pol III (tRNA, 5S rRNA).
+• mRNA Post-Transcriptional Chain: 1. 5' Capping (7-methylguanosine 5'-to-5' triphosphate bridge). 2. 3' Polyadenylation (AAUAAA signal -> endonuclease cleavage -> Poly(A) Polymerase PAP adds 150-250 adenines). 3. Spliceosome Splicing (U1, U2, U4, U5, U6 snRNAs + 150 proteins; 5' splice site GU, branch point A, 3' splice site AG).`
       },
       {
-        title: "3. Mutations & DNA Repair Pathways",
-        content: `• Point Mutations: Silent, Missense (GAG → GTG), Nonsense (stop codon), Frameshift.
-• Repair Pathways: MMR (MutS-MutL-MutH), BER (glycosylase → AP site), NER (UvrABC removes bulky lesions, defects → Xeroderma Pigmentosum).`
+        title: "MODULE 3: Mutations, Mutagenesis, DNA Damage, and Repair Pathways",
+        content: `• Classification: Transitions (purine<->purine A<->G, pyrimidine<->pyrimidine C<->T) vs Transversions (purine<->pyrimidine A<->C, G<->T).
+• Consequences: Silent (degeneracy, e.g. GUA->GUG Val), Missense (GAG Glu -> GTG Val), Nonsense (premature stop UAA/UAG/UGA), Frameshift (indel not multiple of 3).
+• Environmental Mutagens: Physical (UV creates intrastrand pyrimidine dimers CPDs & [6-4] photoproducts; X-rays/gamma generate ROS causing strand breaks); Chemical (EMS alkylating agent; 5-BU base analogue mimics T, enol shifts pair with G causing T·A -> C·G transitions).
+• Repair Cascades: MMR (MutS-MutL-MutH scans hemi-methylated 5'-GATC-3' by Dam Methylase, nicks unmethylated strand); BER (DNA Glycosylase cuts glycosidic bond -> AP site -> AP Endonuclease cuts 5' backbone -> Pol I & Ligase); NER (UvrABC excinuclease: UvrA/B scan, UvrC cuts 8 nt upstream & 4-5 nt downstream, UvrD Helicase removes 12-13 nt fragment; defects cause Xeroderma Pigmentosum).`
       },
       {
-        title: "4. Bacterial Genetics & Operons",
-        content: `• Transformation (naked DNA uptake), Transduction (phage-mediated), Conjugation (F-pilus contact).
-• Lac Operon: Negative control via lacI repressor (inducer: allolactose). Positive control via CAP-cAMP complex.`
+        title: "MODULE 4: Classical Transmission Genetics & Chromosomal Mapping",
+        content: `• Mendelian & Epistasis: Segregation & Independent Assortment (9:3:3:1). Epistatic deviations: Complementary (9:7), Recessive Epistasis (9:3:4 e.g. Labrador coat color *ee* masking *B/b*), Dominant Epistasis (12:3:1 summer squash), Duplicate Dominant (15:1).
+• Three-Point Testcross (AaBbCc x aabbcc): 1. Group progeny: Parentals (highest frequency, sum=800) vs DCO (lowest frequency, sum=10). 2. Gene Order: Single locus flipped in DCO relative to parentals is the middle gene (e.g. p-q-r). 3. Recombination Frequencies: RF = [(Σ Single Crossovers + Σ Double Crossovers) / Total Progeny] * 100. (Region 1 p-q = 9.0 cM, Region 2 q-r = 12.0 cM). 4. Interference: Expected DCO = 0.090 * 0.120 = 0.0108; Observed DCO = 10/1000 = 0.0100; Coefficient of Coincidence C = 0.0100 / 0.0108 = 0.9259; Interference I = 1 - C = 1 - 0.9259 = 0.0741 (7.41%).`
+      },
+      {
+        title: "MODULE 5: Bacterial Genetics, Horizontal Gene Transfer & RNAi",
+        content: `• HGT Mechanisms: Transformation (naked DNA uptake by competent cells via Com machinery & RecA; induced artificially by CaCl2 heat shock or Electroporation); Transduction (bacteriophage-mediated: Generalized lytic P22/P1 random host packaging vs Specialized lysogenic Lambda phage integrating at attλ site transferring flanking gal/bio genes); Conjugation (direct contact via sex pilus, F-plasmid nicked at oriT pumped into F- cell; Hfr strain has F integrated in chromosome, transfers host genes via rolling circle; bridge breaks before 100 min transfer completes).
+• Transposable Elements: Insertion Sequences IS (encodes transposase flanked by inverted terminal repeats); Complex transposons (Tn10 tetracycline resistance); Modes: Conservative ('cut-and-paste') vs Replicative ('copy-and-paste').
+• RNA Interference (RNAi): Dicer cleaves dsRNA into 21-23 bp siRNAs -> loaded into RISC complex -> unwound -> Argonaute protein cleaves complementary target mRNA, silencing translation.`
+      },
+      {
+        title: "MODULE 6: Chromosomal Variations & Molecular Basis of Genetic Diseases",
+        content: `• Aberrations: Numerical Aneuploidy (monosomy 2n-1, trisomy 2n+1 from meiotic nondisjunction); Structural (Deletions pseudo-dominance, Duplications gene families, Inversions paracentric vs pericentric suppressing recombination loops, Translocations Robertsonian fusion).
+• Disease Matrix:
+  1. Sickle Cell Anemia (Autosomal Recessive): A->T transversion in 6th codon of beta-globin on chr 11 (GAG -> GTG), substituting hydrophilic Glutamic Acid with hydrophobic Valine at position 6. Hypoxia causes HbS tetramers to polymerize into rigid sickle shapes clogging capillaries.
+  2. Huntington Disease (Autosomal Dominant): CAG trinucleotide repeat expansion (>40 repeats) in exon 1 of HTT gene on chr 4 encoding long polyglutamine tract, forming toxic striatal aggregates. Displays Anticipation.
+  3. Chronic Myelogenous Leukemia (CML) (Somatic Rearrangement): Reciprocal translocation t(9;22)(q34;q11) generating Philadelphia Chromosome, fusing BCR with ABL proto-oncogene to form constitutively active BCR-ABL tyrosine kinase. Treated with Imatinib (Gleevec).
+  4. Down Syndrome (Chromosomal Aneuploidy): Trisomy 21 (47, XX/XY, +21) from maternal meiotic nondisjunction, overexpressing SOD1 and APP.`
+      },
+      {
+        title: "MODULE 7: Exam-Focused Evaluative Questions & Solved Quantitative Bank",
+        content: `• Lac Operon Model Answer (5-Mark): Polycistronic lacZ (β-gal), lacY (permease), lacA (transacetylase). Negative control: LacI tetrameric repressor binds O1 operator site blocking RNA Pol. Allolactose inducer binds repressor causing dissociation. Positive control: Low glucose -> active Adenylyl Cyclase -> high cAMP -> cAMP-CAP complex binds upstream promoter bending DNA 50x to boost RNA Pol.
+• Complementation & Cis-Trans Test: Complementation restores wild-type phenotype when mutations are in different genes (intergenic). Cis-trans test: Trans (m1+/+m2) wild-type = complementation (different genes); mutant = same gene (intragenic). Cis (m1m2/++) control verifies non-dominance.
+• Solved FAQ 1 (3-Point Testcross Numerical): Progeny: [p q r]=398, [+++]=402, [p++]=42, [+qr]=38, [pq+]=54, [++r]=56, [p+r]=6, [+q+]=4. Gene order: p-q-r (q flipped in DCO). Distance p-q = (42+38+6+4)/1000 * 100 = 9.0 cM. Distance q-r = (54+56+6+4)/1000 * 100 = 12.0 cM. Interference I = 1 - C = 1 - (0.0100/0.0108) = 7.41%.
+• Solved FAQ 2 (PCR Kinetics Numerical): Initial template N0 = 500 copies, efficiency E = 0.94, cycles n = 28. Formula: Nt = N0 * (1 + E)^n = 500 * (1.94)^28. log(1.94^28) = 28 * 0.2878 = 8.0584 -> 1.94^28 ≈ 114,393,243. Nt = 500 * 114,393,243 = 57,196,621,500 ≈ 5.72 × 10^10 target DNA molecules.`
       }
     ],
     examTraps: [
       "DNA polymerase needs a primer and only extends 5' → 3'; it cannot start de novo.",
       "In lac operon, the true inducer is ALLOLACTOSE, not lactose itself.",
-      "Transformation vs Transduction vs Conjugation: ONLY conjugation requires cell-to-cell contact (pilus)."
+      "Transformation vs Transduction vs Conjugation: ONLY conjugation requires cell-to-cell contact (pilus).",
+      "Recombination frequency saturates at 50% for genes far apart or on different chromosomes.",
+      "Sickle Cell Anemia is a transversion (A->T) substituting Glutamic Acid with Valine at position 6.",
+      "CML Philadelphia chromosome is a reciprocal translocation t(9;22) forming BCR-ABL tyrosine kinase targeted by Imatinib."
     ],
     pyqs: [
       {
@@ -593,11 +624,6 @@ const COURSE_TOPICS = [
     pyqs: [
       {
         question: "In a chemostat operated at steady state, the specific growth rate (μ) of the microorganism is equal to:",
-        options: ["Maximum growth rate (μmax)", "Dilution rate (D)", "Volumetric productivity", "Zero"],
-        correct: 1,
-        explanation: "At steady state in a chemostat, cell growth balances cell washout, so μ = D."
-      },
-      {
         question: "Which parameter describes volumetric oxygen mass transfer capability in a fermenter?",
         options: ["kLa", "Re (Reynolds number)", "N (Impeller speed)", "Kd"],
         correct: 0,
@@ -618,13 +644,13 @@ const CHALLENGES = {
     questions: COURSE_TOPICS[0].pyqs
   },
   mock: {
-    title: "Molecular Biology & Genetics PYQs",
+    title: "Genetics & MolBio PYQs",
     subject: "Genetics & Molecular Biology (GAT-B 2020-2024)",
     color: "#8B5CF6",
     bg: "#F3F0FF",
-    xp: 150,
-    timeLimit: 900,
-    questions: COURSE_TOPICS[1].pyqs.concat(COURSE_TOPICS[2].pyqs).concat(COURSE_TOPICS[3].pyqs)
+    xp: 300,
+    timeLimit: 1200,
+    questions: COURSE_TOPICS[1].pyqs
   }
 };
 
@@ -634,6 +660,23 @@ function ContinuousPdfViewer({ topic }) {
     const newWin = window.open("", "_blank");
     if (!newWin) return;
     
+    const sectionsHtml = topic.sections.map((sec, idx) => `
+      <div class="page">
+        <div class="header">
+          <div>
+            <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
+            <h2 class="title">${topic.name}</h2>
+          </div>
+          <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${idx + 1} OF ${topic.sections.length + 1}</span>
+        </div>
+        <h3 style="font-size: 16px; font-weight: 700; color: ${topic.color}; margin-bottom: 12px;">${sec.title}</h3>
+        <div class="card">
+          <div class="card-body">${sec.content}</div>
+        </div>
+        <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1}</span></div>
+      </div>
+    `).join("");
+
     const pageHtml = `<!DOCTYPE html>
 <html>
 <head>
@@ -647,10 +690,8 @@ function ContinuousPdfViewer({ topic }) {
     .header { border-bottom: 2px solid ${topic.color}; padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
     .title { font-size: 19px; font-weight: 800; color: #0f172a; margin: 4px 0 0; }
     .badge { font-size: 11px; font-weight: 700; color: ${topic.color}; letter-spacing: 1px; text-transform: uppercase; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
-    .card { background: #f8fafc; padding: 18px; border-radius: 10px; border: 1px solid #e2e8f0; }
-    .card-title { font-size: 14px; font-weight: 700; color: #0f172a; margin: 0 0 8px; }
-    .card-body { white-space: pre-line; font-size: 13.5px; color: #334155; line-height: 1.6; }
+    .card { background: #f8fafc; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; }
+    .card-body { white-space: pre-line; font-size: 13.5px; color: #334155; line-height: 1.7; }
     .trap { background: #fef2f2; border: 1.5px solid #fca5a5; border-radius: 12px; padding: 20px; color: #7f1d1d; margin-bottom: 20px; }
     .footer { margin-top: 24px; padding-top: 12px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; }
   </style>
@@ -659,90 +700,34 @@ function ContinuousPdfViewer({ topic }) {
   <div class="toolbar">
     <div>
       <h3 style="margin:0; font-size: 16px;">📄 ${topic.pdfTitle}</h3>
-      <p style="margin:2px 0 0; font-size: 12px; color: #94a3b8;">B.Tech Biotechnology · Complete GATE Study Document</p>
+      <p style="margin:2px 0 0; font-size: 12px; color: #94a3b8;">B.Tech Biotechnology · Complete Master Study Guide (${topic.sections.length + 1} Pages)</p>
     </div>
     <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
   </div>
 
-  <!-- Page 1 -->
-  <div class="page">
-    <div class="header">
-      <div>
-        <div class="badge">B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</div>
-        <h2 class="title">${topic.name}</h2>
-      </div>
-      <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE 1 OF 4</span>
-    </div>
-    <h3 style="font-size: 15px; font-weight: 700; color: ${topic.color}; margin-bottom: 12px;">1. Key Concepts & Core Principles</h3>
-    <p style="font-style: italic; color: #475569; margin-bottom: 16px;">"${topic.tagline}"</p>
-    <div class="grid">
-      <div class="card">
-        <div class="card-title">${topic.sections[0]?.title || ""}</div>
-        <div class="card-body">${topic.sections[0]?.content || ""}</div>
-      </div>
-      <div class="card">
-        <div class="card-title">${topic.sections[1]?.title || ""}</div>
-        <div class="card-body">${topic.sections[1]?.content || ""}</div>
-      </div>
-    </div>
-    <div class="footer"><span>BioConnect Ecosystem</span><span>Page 1</span></div>
-  </div>
+  ${sectionsHtml}
 
-  <!-- Page 2 -->
+  <!-- Final Page: Exam Traps & PYQ Summary -->
   <div class="page">
     <div class="header">
       <div>
-        <div class="badge">B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</div>
+        <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
         <h2 class="title">${topic.name}</h2>
       </div>
-      <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE 2 OF 4</span>
+      <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${topic.sections.length + 1} OF ${topic.sections.length + 1}</span>
     </div>
-    <h3 style="font-size: 15px; font-weight: 700; color: ${topic.color}; margin-bottom: 12px;">2. Equations, Kinetics & Balances</h3>
-    <div class="card" style="margin-bottom: 16px;">
-      <div class="card-title">${topic.sections[2]?.title || ""}</div>
-      <div class="card-body">${topic.sections[2]?.content || ""}</div>
-    </div>
-    <div class="card" style="margin-bottom: 16px;">
-      <div class="card-title">${topic.sections[3]?.title || ""}</div>
-      <div class="card-body">${topic.sections[3]?.content || ""}</div>
-    </div>
-    <div class="footer"><span>BioConnect Ecosystem</span><span>Page 2</span></div>
-  </div>
-
-  <!-- Page 3 -->
-  <div class="page">
-    <div class="header">
-      <div>
-        <div class="badge">B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</div>
-        <h2 class="title">${topic.name}</h2>
-      </div>
-      <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE 3 OF 4</span>
-    </div>
-    <h3 style="font-size: 15px; font-weight: 700; color: #dc2626; margin-bottom: 12px;">3. Common Exam Traps & High-Yield Rules</h3>
+    <h3 style="font-size: 15px; font-weight: 700; color: #dc2626; margin-bottom: 12px;">Exam Traps & High-Yield Summary</h3>
     <div class="trap">
       <h4 style="font-size: 14px; font-weight: 700; color: #991b1b; margin: 0 0 10px;">⚠️ CRITICAL EXAM TRAPS</h4>
       <ul style="padding-left: 20px; margin: 0;">
         ${topic.examTraps.map(trap => `<li style="margin-bottom: 8px;">${trap}</li>`).join("")}
       </ul>
     </div>
-    <div class="footer"><span>BioConnect Ecosystem</span><span>Page 3</span></div>
-  </div>
-
-  <!-- Page 4 -->
-  <div class="page">
-    <div class="header">
-      <div>
-        <div class="badge">B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</div>
-        <h2 class="title">${topic.name}</h2>
-      </div>
-      <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE 4 OF 4</span>
-    </div>
-    <h3 style="font-size: 15px; font-weight: 700; color: ${topic.color}; margin-bottom: 12px;">4. Authentic GAT-B Past Year Questions (${topic.pyqs.length} MCQs)</h3>
     <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px; padding: 20px; color: #14532d;">
-      <h4 style="font-size: 14px; font-weight: 700; color: #166534; margin: 0 0 10px;">📝 TOPIC PYQ SUMMARY</h4>
+      <h4 style="font-size: 14px; font-weight: 700; color: #166534; margin: 0 0 10px;">📝 TOPIC PYQ SUMMARY (${topic.pyqs.length} MCQs)</h4>
       <p style="margin:0; font-size: 13.5px;">This topic includes ${topic.pyqs.length} authentic GAT-B questions covering past papers from 2020 to 2024 with complete solution keys.</p>
     </div>
-    <div class="footer"><span>BioConnect Ecosystem</span><span>Page 4 · End of PDF Document</span></div>
+    <div class="footer"><span>BioConnect Academic Series</span><span>Page ${topic.sections.length + 1} · End of Document</span></div>
   </div>
 </body>
 </html>`;
@@ -765,13 +750,13 @@ function ContinuousPdfViewer({ topic }) {
       {/* PDF Header / Toolbar */}
       <div style={{
         display: "flex", justifyContent: "space-between", alignItems: "center",
-        paddingBottom: "16px", borderBottom: "1px solid rgba(255,255,255,0.15)"
+        paddingBottom: "16px", borderBottom: "1.5px solid rgba(255,255,255,0.15)"
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <span style={{ fontSize: "24px" }}>📄</span>
           <div>
             <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#fff" }}>{topic.pdfTitle}</h3>
-            <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>Continuous Straight Scroll View • Complete 4-Page GATE & B.Tech Biotech Study PDF</p>
+            <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>Continuous Straight Scroll View • Complete Master Study Guide ({topic.sections.length + 1} Pages)</p>
           </div>
         </div>
 
@@ -805,75 +790,45 @@ function ContinuousPdfViewer({ topic }) {
         }}
         title="Click anywhere on the PDF viewer to open full document in new window"
       >
-        {/* Page 1 */}
-        <div style={{
-          background: "#ffffff", color: "#1e293b", borderRadius: "12px", padding: "36px",
-          boxShadow: "0 8px 24px rgba(0,0,0,0.2)", fontFamily: "system-ui, -apple-system, sans-serif"
-        }}>
-          <div style={{ borderBottom: "2px solid " + topic.color, paddingBottom: "12px", marginBottom: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div>
-              <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
-              <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
-            </div>
-            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>PAGE 1 OF 4 ↗️</span>
-          </div>
-
-          <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>1. Key Concepts & Core Principles</h3>
-          <p style={{ fontStyle: "italic", color: "#475569", marginBottom: "16px" }}>"{topic.tagline}"</p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "20px" }}>
-            {topic.sections.slice(0, 2).map((sec, idx) => (
-              <div key={idx} style={{ background: "#f8fafc", padding: "16px", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
-                <h4 style={{ fontSize: "14px", fontWeight: 700, margin: "0 0 8px", color: "#0f172a" }}>{sec.title}</h4>
-                <div style={{ whiteSpace: "pre-line", fontSize: "13px", color: "#334155" }}>{sec.content}</div>
+        {topic.sections.map((sec, idx) => (
+          <div key={idx} style={{
+            background: "#ffffff", color: "#1e293b", borderRadius: "12px", padding: "32px 36px",
+            boxShadow: "0 8px 24px rgba(0,0,0,0.2)", fontFamily: "system-ui, -apple-system, sans-serif"
+          }}>
+            <div style={{ borderBottom: "2px solid " + topic.color, paddingBottom: "12px", marginBottom: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div>
+                <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</span>
+                <h2 style={{ fontSize: "17px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
               </div>
-            ))}
-          </div>
-          <div style={{ paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
-            <span>BioConnect Platform · Click to open in new tab</span>
-            <span>Page 1</span>
-          </div>
-        </div>
+              <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>PAGE {idx + 1} OF {topic.sections.length + 1} ↗️</span>
+            </div>
 
-        {/* Page 2 */}
+            <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "14px" }}>{sec.title}</h3>
+            <div style={{ background: "#f8fafc", borderRadius: "10px", padding: "20px", border: "1px solid #e2e8f0", whiteSpace: "pre-line", fontSize: "13.5px", color: "#334155", lineHeight: "1.7" }}>
+              {sec.content}
+            </div>
+
+            <div style={{ marginTop: "24px", paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
+              <span>BioConnect Academic Series · Click to open in new tab</span>
+              <span>Page {idx + 1}</span>
+            </div>
+          </div>
+        ))}
+
+        {/* Final Summary Page */}
         <div style={{
-          background: "#ffffff", color: "#1e293b", borderRadius: "12px", padding: "36px",
+          background: "#ffffff", color: "#1e293b", borderRadius: "12px", padding: "32px 36px",
           boxShadow: "0 8px 24px rgba(0,0,0,0.2)", fontFamily: "system-ui, -apple-system, sans-serif"
         }}>
           <div style={{ borderBottom: "2px solid " + topic.color, paddingBottom: "12px", marginBottom: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div>
-              <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
-              <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
+              <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</span>
+              <h2 style={{ fontSize: "17px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
             </div>
-            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>PAGE 2 OF 4 ↗️</span>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>PAGE {topic.sections.length + 1} OF {topic.sections.length + 1} ↗️</span>
           </div>
 
-          <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>2. Equations, Kinetics & Balances</h3>
-          {topic.sections.slice(2, 4).map((sec, idx) => (
-            <div key={idx} style={{ background: "#f8fafc", padding: "16px", borderRadius: "10px", border: "1px solid #e2e8f0", marginBottom: "16px" }}>
-              <h4 style={{ fontSize: "14px", fontWeight: 700, margin: "0 0 8px", color: "#0f172a" }}>{sec.title}</h4>
-              <div style={{ whiteSpace: "pre-line", fontSize: "13.5px", color: "#334155" }}>{sec.content}</div>
-            </div>
-          ))}
-          <div style={{ paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
-            <span>BioConnect Platform · Click to open in new tab</span>
-            <span>Page 2</span>
-          </div>
-        </div>
-
-        {/* Page 3 */}
-        <div style={{
-          background: "#ffffff", color: "#1e293b", borderRadius: "12px", padding: "36px",
-          boxShadow: "0 8px 24px rgba(0,0,0,0.2)", fontFamily: "system-ui, -apple-system, sans-serif"
-        }}>
-          <div style={{ borderBottom: "2px solid " + topic.color, paddingBottom: "12px", marginBottom: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div>
-              <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
-              <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
-            </div>
-            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>PAGE 3 OF 4 ↗️</span>
-          </div>
-
-          <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#dc2626", marginBottom: "12px" }}>3. Common Exam Traps & High-Yield Rules</h3>
+          <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#dc2626", marginBottom: "12px" }}>Exam Traps & High-Yield Summary</h3>
           <div style={{ background: "#fef2f2", border: "1.5px solid #fca5a5", borderRadius: "12px", padding: "20px", marginBottom: "20px" }}>
             <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#991b1b", margin: "0 0 10px" }}>⚠️ CRITICAL EXAM TRAPS</h4>
             <ul style={{ paddingLeft: "20px", margin: 0 }}>
@@ -882,35 +837,17 @@ function ContinuousPdfViewer({ topic }) {
               ))}
             </ul>
           </div>
-          <div style={{ paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
-            <span>BioConnect Platform · Click to open in new tab</span>
-            <span>Page 3</span>
-          </div>
-        </div>
 
-        {/* Page 4 */}
-        <div style={{
-          background: "#ffffff", color: "#1e293b", borderRadius: "12px", padding: "36px",
-          boxShadow: "0 8px 24px rgba(0,0,0,0.2)", fontFamily: "system-ui, -apple-system, sans-serif"
-        }}>
-          <div style={{ borderBottom: "2px solid " + topic.color, paddingBottom: "12px", marginBottom: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div>
-              <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
-              <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
-            </div>
-            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>PAGE 4 OF 4 ↗️</span>
-          </div>
-
-          <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>4. Authentic GAT-B Past Year Questions Overview</h3>
           <div style={{ background: "#f0fdf4", border: "1.5px solid #86efac", borderRadius: "12px", padding: "20px" }}>
             <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#166534", margin: "0 0 10px" }}>📝 TOPIC PYQ SUMMARY ({topic.pyqs.length} MCQs)</h4>
-            <p style={{ fontSize: "13.5px", color: "#14532d" }}>
+            <p style={{ fontSize: "13.5px", color: "#14532d", margin: 0 }}>
               This topic includes <strong>{topic.pyqs.length} authentic GAT-B questions</strong> with complete answer keys and detailed explanations. Switch to the <strong>"Topic PYQ MCQs ({topic.pyqs.length})"</strong> tab above to practice!
             </p>
           </div>
+
           <div style={{ marginTop: "24px", paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
-            <span>BioConnect Platform · Click to open in new tab</span>
-            <span>Page 4 · End of PDF Document</span>
+            <span>BioConnect Academic Series · Click to open in new tab</span>
+            <span>Page {topic.sections.length + 1} · End of Document</span>
           </div>
         </div>
       </div>
