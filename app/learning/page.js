@@ -239,16 +239,214 @@ const COURSE_TOPICS = [
     ],
     pyqs: [
       {
-        question: "Which histone protein acts as the linker clamping DNA to the nucleosome core?",
-        options: ["H2A", "H2B", "H1", "H3"],
-        correct: 2,
-        explanation: "Histone H1 binds to the linker DNA entering and exiting the nucleosome core particle."
+        id: 1,
+        question: "GAT-B 2020: The enzyme responsible for unwinding DNA during replication is:",
+        options: ["DNA ligase", "Helicase", "Primase", "Topoisomerase"],
+        correct: 1,
+        explanation: "Helicase unwinds the double-stranded DNA helix by breaking hydrogen bonds between base pairs."
       },
       {
-        question: "Which repair pathway uses UvrABC endonuclease to remove bulky UV-induced pyrimidine dimers?",
-        options: ["Base Excision Repair (BER)", "Nucleotide Excision Repair (NER)", "Mismatch Repair (MMR)", "Homologous Recombination"],
+        id: 2,
+        question: "GAT-B 2020: Okazaki fragments are formed during synthesis of:",
+        options: ["Leading strand", "Lagging strand", "mRNA", "tRNA"],
         correct: 1,
-        explanation: "NER removes bulky DNA lesions like thymine dimers using the UvrABC endonuclease complex."
+        explanation: "Okazaki fragments are short DNA fragments synthesized discontinuously on the lagging strand."
+      },
+      {
+        id: 3,
+        question: "GAT-B 2020: Which RNA carries amino acids to ribosome?",
+        options: ["rRNA", "snRNA", "tRNA", "mRNA"],
+        correct: 2,
+        explanation: "tRNA (transfer RNA) carries specific amino acids to the ribosome during translation."
+      },
+      {
+        id: 4,
+        question: "GAT-B 2021: The start codon in mRNA is:",
+        options: ["UAA", "AUG", "UAG", "UGA"],
+        correct: 1,
+        explanation: "AUG is the universal start codon coding for Methionine."
+      },
+      {
+        id: 5,
+        question: "GAT-B 2021: Which enzyme synthesizes RNA from DNA template?",
+        options: ["DNA polymerase", "RNA polymerase", "Reverse transcriptase", "Ligase"],
+        correct: 1,
+        explanation: "RNA polymerase transcribes RNA using a DNA strand as a template."
+      },
+      {
+        id: 6,
+        question: "GAT-B 2021: In eukaryotes, mRNA processing includes:",
+        options: ["Splicing", "5' capping", "Polyadenylation", "All of the above"],
+        correct: 3,
+        explanation: "Eukaryotic pre-mRNA undergoes 5' 7-methylguanosine capping, 3' polyadenylation, and intron splicing."
+      },
+      {
+        id: 7,
+        question: "GAT-B 2022: The central dogma of molecular biology is:",
+        options: ["Protein → RNA → DNA", "DNA → Protein → RNA", "DNA → RNA → Protein", "RNA → DNA → Protein"],
+        correct: 2,
+        explanation: "The central dogma states that genetic information flows from DNA to RNA (transcription) and from RNA to protein (translation)."
+      },
+      {
+        id: 8,
+        question: "GAT-B 2022: The operator region in lac operon functions as:",
+        options: ["Binding site for ribosome", "Binding site for repressor protein", "Site of DNA replication", "Terminator sequence"],
+        correct: 1,
+        explanation: "The operator is a regulatory DNA sequence bound by the LacI repressor protein to block transcription."
+      },
+      {
+        id: 9,
+        question: "GAT-B 2022: Which enzyme joins Okazaki fragments?",
+        options: ["Helicase", "Primase", "Ligase", "Gyrase"],
+        correct: 2,
+        explanation: "DNA ligase seals nicks in the phosphodiester backbone between lagging strand Okazaki fragments."
+      },
+      {
+        id: 10,
+        question: "GAT-B 2023: The process of synthesis of RNA from DNA is called:",
+        options: ["Translation", "Replication", "Transcription", "Mutation"],
+        correct: 2,
+        explanation: "Transcription is the synthesis of RNA molecules from a DNA template."
+      },
+      {
+        id: 11,
+        question: "GAT-B 2023: Which of the following is NOT a stop codon?",
+        options: ["UAA", "UAG", "UGA", "AUG"],
+        correct: 3,
+        explanation: "AUG is the start codon; UAA, UAG, and UGA are the three stop codons."
+      },
+      {
+        id: 12,
+        question: "GAT-B 2023: Histone proteins are associated with:",
+        options: ["Prokaryotic DNA only", "Eukaryotic chromatin", "Ribosomes", "Plasmids"],
+        correct: 1,
+        explanation: "Histone octamers compact eukaryotic DNA into nucleosomes and chromatin structure."
+      },
+      {
+        id: 13,
+        question: "GAT-B 2024: DNA replication is described as semiconservative because:",
+        options: ["One strand is completely new", "One parental and one new strand are present", "DNA is synthesized only in one direction", "Replication occurs conservatively"],
+        correct: 1,
+        explanation: "In semiconservative replication, each daughter DNA double helix consists of one original parental strand and one newly synthesized strand."
+      },
+      {
+        id: 14,
+        question: "GAT-B 2024: Which RNA molecule forms the structural component of ribosome?",
+        options: ["mRNA", "tRNA", "rRNA", "siRNA"],
+        correct: 2,
+        explanation: "rRNA (ribosomal RNA) combines with proteins to form ribosomal subunits."
+      },
+      {
+        id: 15,
+        question: "GAT-B 2024: Alternative splicing results in:",
+        options: ["DNA replication", "Multiple proteins from one gene", "Protein degradation", "Mutation repair"],
+        correct: 1,
+        explanation: "Alternative splicing allows a single pre-mRNA to produce different protein isoforms by including/excluding distinct exons."
+      },
+      {
+        id: 16,
+        question: "GAT-B 2020: Restriction enzymes are also known as:",
+        options: ["Ligases", "Molecular scissors", "Polymerases", "Primases"],
+        correct: 1,
+        explanation: "Restriction endonucleases cleave DNA at specific palindrome recognition sequences, acting as molecular scissors."
+      },
+      {
+        id: 17,
+        question: "GAT-B 2020: Which enzyme synthesizes complementary DNA (cDNA)?",
+        options: ["DNA polymerase", "RNA polymerase", "Reverse transcriptase", "Ligase"],
+        correct: 2,
+        explanation: "Reverse transcriptase synthesizes single-stranded cDNA using an RNA template."
+      },
+      {
+        id: 18,
+        question: "GAT-B 2020: Plasmids are commonly used as:",
+        options: ["Antibiotics", "Vectors", "Enzymes", "Ribosomes"],
+        correct: 1,
+        explanation: "Plasmids are extrachromosomal circular DNA molecules widely used as vectors to clone and express foreign genes."
+      },
+      {
+        id: 19,
+        question: "GAT-B 2021: EcoRI recognizes the sequence:",
+        options: ["AAGCTT", "GGATCC", "GAATTC", "CTGCAG"],
+        correct: 2,
+        explanation: "EcoRI cuts at the palindromic hexanucleotide sequence 5'-GAATTC-3'."
+      },
+      {
+        id: 20,
+        question: "GAT-B 2021: PCR was invented by:",
+        options: ["Watson", "Mullis", "Crick", "Meselson"],
+        correct: 1,
+        explanation: "Kary Mullis invented the Polymerase Chain Reaction (PCR) in 1983."
+      },
+      {
+        id: 21,
+        question: "GAT-B 2021: The enzyme used in PCR is:",
+        options: ["DNA ligase", "Taq polymerase", "Reverse transcriptase", "Primase"],
+        correct: 1,
+        explanation: "Taq DNA polymerase from Thermus aquaticus is thermostable and withstands high PCR denaturation temperatures (95°C)."
+      },
+      {
+        id: 22,
+        question: "GAT-B 2022: The sticky ends generated by restriction enzymes are useful because they:",
+        options: ["Destroy DNA", "Prevent ligation", "Facilitate joining of DNA fragments", "Replicate DNA"],
+        correct: 2,
+        explanation: "Overhanging single-stranded sticky ends form complementary base pairs, aiding ligation with target DNA fragments."
+      },
+      {
+        id: 23,
+        question: "GAT-B 2022: Southern blotting is used for detection of:",
+        options: ["Protein", "DNA", "RNA", "Lipids"],
+        correct: 1,
+        explanation: "Southern blotting detects specific DNA sequences; Northern detects RNA; Western detects proteins."
+      },
+      {
+        id: 24,
+        question: "GAT-B 2022: A cloning vector must contain:",
+        options: ["Origin of replication", "Selectable marker", "Cloning site", "All of the above"],
+        correct: 3,
+        explanation: "Functional cloning vectors require an ori, selectable marker (e.g. antibiotic resistance), and multiple cloning site (MCS)."
+      },
+      {
+        id: 25,
+        question: "GAT-B 2023: Transformation in bacteria refers to:",
+        options: ["Viral infection", "Uptake of naked DNA", "Cell division", "Protein synthesis"],
+        correct: 1,
+        explanation: "Transformation is the uptake and incorporation of exogenous naked DNA from the surrounding medium into competent bacterial cells."
+      },
+      {
+        id: 26,
+        question: "GAT-B 2023: Which blotting technique is used to detect RNA?",
+        options: ["Southern blot", "Northern blot", "Western blot", "Eastern blot"],
+        correct: 1,
+        explanation: "Northern blotting isolates and identifies specific RNA transcripts using labeled nucleic acid probes."
+      },
+      {
+        id: 27,
+        question: "GAT-B 2023: Reporter genes are used to:",
+        options: ["Replicate plasmids", "Identify transformed cells", "Destroy vectors", "Synthesize proteins"],
+        correct: 1,
+        explanation: "Reporter genes (such as lacZ or GFP) produce easily detectable assays to identify transformed cells or track promoter activity."
+      },
+      {
+        id: 28,
+        question: "GAT-B 2024: CRISPR-Cas9 is mainly used for:",
+        options: ["DNA sequencing", "Genome editing", "Protein purification", "Southern blotting"],
+        correct: 1,
+        explanation: "CRISPR-Cas9 uses guide RNA to induce double-stranded DNA breaks for precise site-specific genome editing."
+      },
+      {
+        id: 29,
+        question: "GAT-B 2024: Which of the following acts as selectable marker in plasmids?",
+        options: ["Ampicillin resistance gene", "Helicase", "Primase", "Histone"],
+        correct: 0,
+        explanation: "Antibiotic resistance genes (like ampR) select host bacteria that successfully took up the plasmid on antibiotic media."
+      },
+      {
+        id: 30,
+        question: "GAT-B 2024: The denaturation step in PCR generally occurs at:",
+        options: ["37°C", "55°C", "72°C", "95°C"],
+        correct: 3,
+        explanation: "Thermal denaturation of double-stranded DNA during PCR occurs at 94°C–98°C (commonly 95°C)."
       }
     ]
   },
