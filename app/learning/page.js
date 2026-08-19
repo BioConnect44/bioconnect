@@ -388,6 +388,127 @@ const CHALLENGES = {
 
 /* ── Continuous Scroll PDF Document Viewer Component ── */
 function ContinuousPdfViewer({ topic }) {
+  function handleOpenNewWindow() {
+    const newWin = window.open("", "_blank");
+    if (!newWin) return;
+    
+    const pageHtml = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>${topic.pdfTitle}</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; color: #fff; margin: 0; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; }
+    .toolbar { max-width: 820px; width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .print-btn { background: ${topic.color}; color: #fff; border: none; padding: 10px 22px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; }
+    .page { background: #ffffff; color: #1e293b; border-radius: 14px; padding: 40px; max-width: 820px; width: 100%; box-shadow: 0 12px 36px rgba(0,0,0,0.4); margin-bottom: 32px; box-sizing: border-box; }
+    .header { border-bottom: 2px solid ${topic.color}; padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+    .title { font-size: 19px; font-weight: 800; color: #0f172a; margin: 4px 0 0; }
+    .badge { font-size: 11px; font-weight: 700; color: ${topic.color}; letter-spacing: 1px; text-transform: uppercase; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .card { background: #f8fafc; padding: 18px; border-radius: 10px; border: 1px solid #e2e8f0; }
+    .card-title { font-size: 14px; font-weight: 700; color: #0f172a; margin: 0 0 8px; }
+    .card-body { white-space: pre-line; font-size: 13.5px; color: #334155; line-height: 1.6; }
+    .trap { background: #fef2f2; border: 1.5px solid #fca5a5; border-radius: 12px; padding: 20px; color: #7f1d1d; margin-bottom: 20px; }
+    .footer { margin-top: 24px; padding-top: 12px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <div>
+      <h3 style="margin:0; font-size: 16px;">📄 ${topic.pdfTitle}</h3>
+      <p style="margin:2px 0 0; font-size: 12px; color: #94a3b8;">B.Tech Biotechnology · Complete GATE Study Document</p>
+    </div>
+    <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+  </div>
+
+  <!-- Page 1 -->
+  <div class="page">
+    <div class="header">
+      <div>
+        <div class="badge">B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</div>
+        <h2 class="title">${topic.name}</h2>
+      </div>
+      <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE 1 OF 4</span>
+    </div>
+    <h3 style="font-size: 15px; font-weight: 700; color: ${topic.color}; margin-bottom: 12px;">1. Key Concepts & Core Principles</h3>
+    <p style="font-style: italic; color: #475569; margin-bottom: 16px;">"${topic.tagline}"</p>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">${topic.sections[0]?.title || ""}</div>
+        <div class="card-body">${topic.sections[0]?.content || ""}</div>
+      </div>
+      <div class="card">
+        <div class="card-title">${topic.sections[1]?.title || ""}</div>
+        <div class="card-body">${topic.sections[1]?.content || ""}</div>
+      </div>
+    </div>
+    <div class="footer"><span>BioConnect Ecosystem</span><span>Page 1</span></div>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page">
+    <div class="header">
+      <div>
+        <div class="badge">B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</div>
+        <h2 class="title">${topic.name}</h2>
+      </div>
+      <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE 2 OF 4</span>
+    </div>
+    <h3 style="font-size: 15px; font-weight: 700; color: ${topic.color}; margin-bottom: 12px;">2. Equations, Kinetics & Balances</h3>
+    <div class="card" style="margin-bottom: 16px;">
+      <div class="card-title">${topic.sections[2]?.title || ""}</div>
+      <div class="card-body">${topic.sections[2]?.content || ""}</div>
+    </div>
+    <div class="card" style="margin-bottom: 16px;">
+      <div class="card-title">${topic.sections[3]?.title || ""}</div>
+      <div class="card-body">${topic.sections[3]?.content || ""}</div>
+    </div>
+    <div class="footer"><span>BioConnect Ecosystem</span><span>Page 2</span></div>
+  </div>
+
+  <!-- Page 3 -->
+  <div class="page">
+    <div class="header">
+      <div>
+        <div class="badge">B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</div>
+        <h2 class="title">${topic.name}</h2>
+      </div>
+      <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE 3 OF 4</span>
+    </div>
+    <h3 style="font-size: 15px; font-weight: 700; color: #dc2626; margin-bottom: 12px;">3. Common Exam Traps & High-Yield Rules</h3>
+    <div class="trap">
+      <h4 style="font-size: 14px; font-weight: 700; color: #991b1b; margin: 0 0 10px;">⚠️ CRITICAL EXAM TRAPS</h4>
+      <ul style="padding-left: 20px; margin: 0;">
+        ${topic.examTraps.map(trap => `<li style="margin-bottom: 8px;">${trap}</li>`).join("")}
+      </ul>
+    </div>
+    <div class="footer"><span>BioConnect Ecosystem</span><span>Page 3</span></div>
+  </div>
+
+  <!-- Page 4 -->
+  <div class="page">
+    <div class="header">
+      <div>
+        <div class="badge">B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</div>
+        <h2 class="title">${topic.name}</h2>
+      </div>
+      <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE 4 OF 4</span>
+    </div>
+    <h3 style="font-size: 15px; font-weight: 700; color: ${topic.color}; margin-bottom: 12px;">4. Authentic GAT-B Past Year Questions (${topic.pyqs.length} MCQs)</h3>
+    <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px; padding: 20px; color: #14532d;">
+      <h4 style="font-size: 14px; font-weight: 700; color: #166534; margin: 0 0 10px;">📝 TOPIC PYQ SUMMARY</h4>
+      <p style="margin:0; font-size: 13.5px;">This topic includes ${topic.pyqs.length} authentic GAT-B questions covering past papers from 2020 to 2024 with complete solution keys.</p>
+    </div>
+    <div class="footer"><span>BioConnect Ecosystem</span><span>Page 4 · End of PDF Document</span></div>
+  </div>
+</body>
+</html>`;
+
+    newWin.document.write(pageHtml);
+    newWin.document.close();
+  }
+
   return (
     <div style={{
       background: "#1E293B",
@@ -411,20 +532,37 @@ function ContinuousPdfViewer({ topic }) {
             <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>Continuous Straight Scroll View • Complete 4-Page GATE & B.Tech Biotech Study PDF</p>
           </div>
         </div>
-        <span style={{ background: topic.color, color: "#fff", fontSize: "12px", fontWeight: 700, padding: "6px 14px", borderRadius: "8px" }}>
-          Full PDF Viewer
-        </span>
+
+        {/* Clickable Button to Open PDF in New Window */}
+        <button
+          onClick={handleOpenNewWindow}
+          style={{
+            background: topic.color, color: "#fff", border: "none",
+            padding: "8px 18px", borderRadius: "10px", fontSize: "12.5px", fontWeight: 700,
+            cursor: "pointer", display: "flex", alignItems: "center", gap: "6px",
+            boxShadow: "0 3px 12px " + topic.color + "40", transition: "all 0.2s"
+          }}
+          title="Click to open full PDF document in a new browser tab/window"
+        >
+          <span>↗️</span>
+          <span>Open PDF in New Window</span>
+        </button>
       </div>
 
-      {/* CONTINUOUS STRAIGHT SCROLL CONTAINER FOR ALL PAGES */}
-      <div style={{
-        maxHeight: "680px",
-        overflowY: "auto",
-        display: "flex",
-        flexDirection: "column",
-        gap: "24px",
-        paddingRight: "8px"
-      }}>
+      {/* CONTINUOUS STRAIGHT SCROLL CONTAINER FOR ALL PAGES (Also Clickable) */}
+      <div
+        onClick={handleOpenNewWindow}
+        style={{
+          maxHeight: "680px",
+          overflowY: "auto",
+          display: "flex",
+          flexDirection: "column",
+          gap: "24px",
+          paddingRight: "8px",
+          cursor: "pointer"
+        }}
+        title="Click anywhere on the PDF viewer to open full document in new window"
+      >
         {/* Page 1 */}
         <div style={{
           background: "#ffffff", color: "#1e293b", borderRadius: "12px", padding: "36px",
@@ -435,7 +573,7 @@ function ContinuousPdfViewer({ topic }) {
               <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
               <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
             </div>
-            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b" }}>PAGE 1 OF 4</span>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>PAGE 1 OF 4 ↗️</span>
           </div>
 
           <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>1. Key Concepts & Core Principles</h3>
@@ -449,7 +587,7 @@ function ContinuousPdfViewer({ topic }) {
             ))}
           </div>
           <div style={{ paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
-            <span>BioConnect Platform · GATE Biotech Notes</span>
+            <span>BioConnect Platform · Click to open in new tab</span>
             <span>Page 1</span>
           </div>
         </div>
@@ -464,7 +602,7 @@ function ContinuousPdfViewer({ topic }) {
               <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
               <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
             </div>
-            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b" }}>PAGE 2 OF 4</span>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>PAGE 2 OF 4 ↗️</span>
           </div>
 
           <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>2. Equations, Kinetics & Balances</h3>
@@ -475,7 +613,7 @@ function ContinuousPdfViewer({ topic }) {
             </div>
           ))}
           <div style={{ paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
-            <span>BioConnect Platform · GATE Biotech Notes</span>
+            <span>BioConnect Platform · Click to open in new tab</span>
             <span>Page 2</span>
           </div>
         </div>
@@ -490,7 +628,7 @@ function ContinuousPdfViewer({ topic }) {
               <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
               <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
             </div>
-            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b" }}>PAGE 3 OF 4</span>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>PAGE 3 OF 4 ↗️</span>
           </div>
 
           <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#dc2626", marginBottom: "12px" }}>3. Common Exam Traps & High-Yield Rules</h3>
@@ -503,7 +641,7 @@ function ContinuousPdfViewer({ topic }) {
             </ul>
           </div>
           <div style={{ paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
-            <span>BioConnect Platform · GATE Biotech Notes</span>
+            <span>BioConnect Platform · Click to open in new tab</span>
             <span>Page 3</span>
           </div>
         </div>
@@ -518,18 +656,18 @@ function ContinuousPdfViewer({ topic }) {
               <span style={{ fontSize: "11px", fontWeight: 700, color: topic.color, letterSpacing: "1px" }}>B.TECH BIOTECHNOLOGY · GATE STUDY NOTES</span>
               <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "4px 0 0" }}>{topic.name}</h2>
             </div>
-            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b" }}>PAGE 4 OF 4</span>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b", background: "#f1f5f9", padding: "4px 10px", borderRadius: "6px" }}>PAGE 4 OF 4 ↗️</span>
           </div>
 
           <h3 style={{ fontSize: "15px", fontWeight: 700, color: topic.color, marginBottom: "12px" }}>4. Authentic GAT-B Past Year Questions Overview</h3>
           <div style={{ background: "#f0fdf4", border: "1.5px solid #86efac", borderRadius: "12px", padding: "20px" }}>
-            <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#166534", margin: "0 0 10px" }}>📝 TOPIC PYQ SUMMARY ({topic.pyqs.length} MCQs)</h4>
+            <h4 style={{ fontSize: "14px", fontWeight 700, color: "#166534", margin: "0 0 10px" }}>📝 TOPIC PYQ SUMMARY ({topic.pyqs.length} MCQs)</h4>
             <p style={{ fontSize: "13.5px", color: "#14532d" }}>
               This topic includes <strong>{topic.pyqs.length} authentic GAT-B questions</strong> with complete answer keys and detailed explanations. Switch to the <strong>"Topic PYQ MCQs ({topic.pyqs.length})"</strong> tab above to practice!
             </p>
           </div>
           <div style={{ marginTop: "24px", paddingTop: "12px", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
-            <span>BioConnect Platform · GATE Biotech Notes</span>
+            <span>BioConnect Platform · Click to open in new tab</span>
             <span>Page 4 · End of PDF Document</span>
           </div>
         </div>
@@ -1416,7 +1554,7 @@ function EducatorView({ supabase, profile, onXPUpdate }) {
                     <p style={{ fontSize: "12px", color: "#6B8A9A", margin: 0 }}>{topic.pdfTitle}</p>
                   </div>
                 </div>
-                <button onClick={() => setActiveTopic(topic)} style={{ background: topic.color + "15", color: topic.color, border: `1px solid ${topic.color}30`, padding: "6px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: 700, cursor: "pointer" }}>
+                <button onClick={() => setActiveTopic(topic)} style={{ background: topic.color + "15", color: topic.color, border: `1.5px solid ${topic.color}30`, padding: "6px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: 700, cursor: "pointer" }}>
                   Preview
                 </button>
               </div>
