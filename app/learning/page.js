@@ -1196,14 +1196,6 @@ function ContinuousPdfViewer({ topic }) {
       </div>
     </div>
   );
-}x solid #e2e8f0", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#94a3b8" }}>
-            <span>BioConnect Academic Series · Click to open in new tab</span>
-            <span>Page {topic.sections.length + 1} · End of Document</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 }
 
 /* ── Interactive Course / Topic Viewer Modal ── */
