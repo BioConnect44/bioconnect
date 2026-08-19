@@ -656,678 +656,302 @@ const CHALLENGES = {
 
 /* ── 19-Page Master Textbook Pages for Biomolecules, Membranes, Enzymes, Metabolism & Bioenergetics ── */
 const FULL_BIOMOLECULES_19_PAGES = [
-  // Page 1
   `<h1 style="font-size:22px; color:#0f766e; margin:0 0 10px; border-bottom:2px solid #0f766e; padding-bottom:8px;">Biomolecules, Membranes, Enzymes, Metabolism and Bioenergetics</h1>
-  <p style="font-style:italic; color:#475569; font-size:13px; margin-bottom:24px;">A high-yield, exam-focused study guide for undergraduate B.Tech Biotechnology students, designed for university examinations and GATE preparation.</p>
-  <div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0f766e;">
-    1. Biomolecules: Structure and Functions
-  </div>
-  <h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Definition</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Biomolecules are the naturally occurring chemical compounds of living organisms that form cellular structure, store and release energy, regulate biological processes and carry hereditary information.<br/>
-    The four major classes are carbohydrates, lipids, proteins and nucleic acids.
-  </p>
-  <h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Core Concept</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Living systems are built from a small number of recurring chemical units, but the arrangement of these units gives rise to a remarkable diversity of biological functions. For examinations and GATE, the central principle is that <strong>molecular structure determines molecular function</strong>, so every biomolecule must be studied with its building blocks, bonds, properties and biological role.
-  </p>
-  <h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Working Principle</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Biomolecules function through specific chemical interactions such as covalent bonding, hydrogen bonding, ionic interactions, hydrophobic effects and molecular recognition. Their three-dimensional arrangement determines stability, reactivity and biological specificity.
-  </p>
-  <h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Types — Carbohydrates</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Carbohydrates are polyhydroxy aldehydes or ketones, or compounds that yield them on hydrolysis. They function in energy supply, energy storage, structural support and cell recognition.<br/>
-    • <strong>Monosaccharides:</strong> glucose, fructose, galactose, ribose, deoxyribose.<br/>
-    • <strong>Oligosaccharides:</strong> disaccharides such as sucrose, lactose and maltose.
-  </p>`,
-
-  // Page 2
+<p style="font-style:italic; color:#475569; font-size:13px; margin-bottom:24px;">A high-yield, exam-focused study guide for undergraduate B.Tech Biotechnology students, designed for university examinations and GATE preparation.</p>
+<div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0f766e;">
+  1. Biomolecules: Structure and Functions
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Definition</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Biomolecules are the naturally occurring chemical compounds of living organisms that form cellular structure, store and release energy, regulate biological processes and carry hereditary information.<br/>
+  The four major classes are carbohydrates, lipids, proteins and nucleic acids.
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Core Concept</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Living systems are built from a small number of recurring chemical units, but the arrangement of these units gives rise to a remarkable diversity of biological functions. For examinations and GATE, the central principle is that <strong>molecular structure determines molecular function</strong>, so every biomolecule must be studied with its building blocks, bonds, properties and biological role.
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Working Principle</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Biomolecules function through specific chemical interactions such as covalent bonding, hydrogen bonding, ionic interactions, hydrophobic effects and molecular recognition. Their three-dimensional arrangement determines stability, reactivity and biological specificity.
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Types — Carbohydrates</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Carbohydrates are polyhydroxy aldehydes or ketones, or compounds that yield them on hydrolysis. They function in energy supply, energy storage, structural support and cell recognition.<br/>
+  • <strong>Monosaccharides:</strong> glucose, fructose, galactose, ribose, deoxyribose.<br/>
+  • <strong>Oligosaccharides:</strong> disaccharides such as sucrose, lactose and maltose.
+</p>`,
   `<p style="font-size:13.5px; color:#334155; line-height:1.7; margin-top:0;">
-    • <strong>Polysaccharides:</strong> starch, glycogen, cellulose and chitin.
-  </p>
-  <h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Important Structural Points (Carbohydrates)</h4>
-  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-    <li>Monosaccharides may exist in linear or cyclic form (glucose in pyranose form).</li>
-    <li>Alpha and beta anomers differ in orientation at the anomeric carbon.</li>
-    <li>Glycosidic bonds join sugar units together.</li>
-    <li>Starch contains amylose and amylopectin; glycogen is more highly branched.</li>
-    <li>Cellulose has beta-1,4 glycosidic bonds, which humans cannot digest.</li>
-  </ul>
-  <h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Types — Lipids</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Lipids are hydrophobic or amphipathic biomolecules that are insoluble in water but soluble in non-polar solvents. They serve as energy reserves, membrane components, signaling molecules and protective substances.<br/>
-    • <strong>Simple lipids:</strong> fats and oils.<br/>
-    • <strong>Compound lipids:</strong> phospholipids, glycolipids, lipoproteins.<br/>
-    • <strong>Derived lipids:</strong> fatty acids, steroids, terpenes, eicosanoids.
-  </p>
-  <h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Important Structural Points (Lipids)</h4>
-  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-    <li>Fatty acids may be saturated or unsaturated (double bonds increase fluidity).</li>
-    <li>Triacylglycerols are esters of glycerol with three fatty acids.</li>
-    <li>Phospholipids contain a polar head group and two hydrophobic tails.</li>
-    <li>Steroids possess a characteristic four-ring structure.</li>
-  </ul>`,
-
-  // Page 3
+  • <strong>Polysaccharides:</strong> starch, glycogen, cellulose and chitin.
+</p>
+<h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Important Structural Points (Carbohydrates)</h4>
+<ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+  <li>Monosaccharides may exist in linear or cyclic form (glucose in pyranose form).</li>
+  <li>Alpha and beta anomers differ in orientation at the anomeric carbon.</li>
+  <li>Glycosidic bonds join sugar units together.</li>
+  <li>Starch contains amylose and amylopectin; glycogen is more highly branched.</li>
+  <li>Cellulose has beta-1,4 glycosidic bonds, which humans cannot digest.</li>
+</ul>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Types — Lipids</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Lipids are hydrophobic or amphipathic biomolecules that are insoluble in water but soluble in non-polar solvents. They serve as energy reserves, membrane components, signaling molecules and protective substances.<br/>
+  • <strong>Simple lipids:</strong> fats and oils.<br/>
+  • <strong>Compound lipids:</strong> phospholipids, glycolipids, lipoproteins.<br/>
+  • <strong>Derived lipids:</strong> fatty acids, steroids, terpenes, eicosanoids.
+</p>
+<h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Important Structural Points (Lipids)</h4>
+<ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+  <li>Fatty acids may be saturated or unsaturated (double bonds increase fluidity).</li>
+  <li>Triacylglycerols are esters of glycerol with three fatty acids.</li>
+  <li>Phospholipids contain a polar head group and two hydrophobic tails.</li>
+  <li>Steroids possess a characteristic four-ring structure.</li>
+</ul>`,
   `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Types — Proteins</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Proteins are polymers of amino acids linked by peptide bonds and are the most functionally versatile biomolecules in cells.<br/>
-    • <strong>By Shape:</strong> Fibrous (collagen, keratin, elastin) vs Globular (enzymes, hemoglobin, myoglobin, antibodies).<br/>
-    • <strong>By Composition:</strong> Simple (yield only amino acids) vs Conjugated (prosthetic group e.g. glycoproteins, lipoproteins, metalloproteins).
-  </p>
-  <h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Structural Levels of Proteins</h4>
-  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-    <li><strong>Primary:</strong> amino acid sequence.</li>
-    <li><strong>Secondary:</strong> alpha-helix and beta-pleated sheet stabilized by hydrogen bonds.</li>
-    <li><strong>Tertiary:</strong> three-dimensional folding due to side-chain interactions.</li>
-    <li><strong>Quaternary:</strong> association of two or more polypeptide chains.</li>
-  </ul>
-  <h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Types — Nucleic Acids</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Nucleic acids are polymers of nucleotides and store, transmit and express genetic information.<br/>
-    • <strong>DNA:</strong> deoxyribonucleic acid, the main hereditary material.<br/>
-    • <strong>RNA:</strong> ribonucleic acid, involved in gene expression and regulation.<br/>
-    Components of nucleotide: Nitrogenous base + Pentose sugar + Phosphate group.
-  </p>`,
-
-  // Page 4
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Proteins are polymers of amino acids linked by peptide bonds and are the most functionally versatile biomolecules in cells.<br/>
+  • <strong>By Shape:</strong> Fibrous (collagen, keratin, elastin) vs Globular (enzymes, hemoglobin, myoglobin, antibodies).<br/>
+  • <strong>By Composition:</strong> Simple (yield only amino acids) vs Conjugated (prosthetic group e.g. glycoproteins, lipoproteins, metalloproteins).
+</p>
+<h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Structural Levels of Proteins</h4>
+<ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+  <li><strong>Primary:</strong> amino acid sequence.</li>
+  <li><strong>Secondary:</strong> alpha-helix and beta-pleated sheet stabilized by hydrogen bonds.</li>
+  <li><strong>Tertiary:</strong> three-dimensional folding due to side-chain interactions.</li>
+  <li><strong>Quaternary:</strong> association of two or more polypeptide chains.</li>
+</ul>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Types — Nucleic Acids</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Nucleic acids are polymers of nucleotides and store, transmit and express genetic information.<br/>
+  • <strong>DNA:</strong> deoxyribonucleic acid, the main hereditary material.<br/>
+  • <strong>RNA:</strong> ribonucleic acid, involved in gene expression and regulation.<br/>
+  Components of nucleotide: Nitrogenous base + Pentose sugar + Phosphate group.
+</p>`,
   `<h4 style="font-size:14px; color:#0f172a; margin:0 0 10px;">Structure-Function Relationship Table</h4>
-  <table style="width:100%; border-collapse:collapse; font-size:12.5px; margin-bottom:20px;">
-    <thead>
-      <tr style="background:#1e293b; color:#fff; text-align:left;">
-        <th style="padding:8px;">Biomolecule</th>
-        <th style="padding:8px;">Building unit</th>
-        <th style="padding:8px;">Characteristic bond</th>
-        <th style="padding:8px;">Major function</th>
-        <th style="padding:8px;">High-yield example</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Carbohydrates</td><td style="padding:8px; border:1px solid #e2e8f0;">Monosaccharides</td><td style="padding:8px; border:1px solid #e2e8f0;">Glycosidic bond</td><td style="padding:8px; border:1px solid #e2e8f0;">Energy and structure</td><td style="padding:8px; border:1px solid #e2e8f0;">Glycogen for storage</td></tr>
-      <tr><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Lipids</td><td style="padding:8px; border:1px solid #e2e8f0;">Fatty acids & glycerol</td><td style="padding:8px; border:1px solid #e2e8f0;">Ester bond</td><td style="padding:8px; border:1px solid #e2e8f0;">Membrane & energy storage</td><td style="padding:8px; border:1px solid #e2e8f0;">Phospholipid bilayer</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Proteins</td><td style="padding:8px; border:1px solid #e2e8f0;">Amino acids</td><td style="padding:8px; border:1px solid #e2e8f0;">Peptide bond</td><td style="padding:8px; border:1px solid #e2e8f0;">Catalysis and structure</td><td style="padding:8px; border:1px solid #e2e8f0;">Enzymes and collagen</td></tr>
-      <tr><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Nucleic acids</td><td style="padding:8px; border:1px solid #e2e8f0;">Nucleotides</td><td style="padding:8px; border:1px solid #e2e8f0;">Phosphodiester bond</td><td style="padding:8px; border:1px solid #e2e8f0;">Genetic information</td><td style="padding:8px; border:1px solid #e2e8f0;">DNA and RNA</td></tr>
-    </tbody>
-  </table>
-  <h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Key Equations & Derivations</h4>
-  <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:12px; borderRadius:8px; font-size:13px; line-height:1.7;">
-    1. Carbohydrates empirical formula: (CH2O)n<br/>
-    2. Peptide bond formation: Amino acid 1 + Amino acid 2 -> Dipeptide + H2O<br/>
-    3. Ester bond in triacylglycerol: Glycerol + 3 Fatty acids -> Triacylglycerol + 3 H2O<br/>
-    4. Nucleotide assembly: Nitrogenous base + Pentose sugar + Phosphate -> Nucleotide
-  </div>`,
-
-  // Page 5
+<table style="width:100%; border-collapse:collapse; font-size:12.5px; margin-bottom:20px;">
+  <thead>
+    <tr style="background:#1e293b; color:#fff; text-align:left;">
+      <th style="padding:8px;">Biomolecule</th>
+      <th style="padding:8px;">Building unit</th>
+      <th style="padding:8px;">Characteristic bond</th>
+      <th style="padding:8px;">Major function</th>
+      <th style="padding:8px;">High-yield example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Carbohydrates</td><td style="padding:8px; border:1px solid #e2e8f0;">Monosaccharides</td><td style="padding:8px; border:1px solid #e2e8f0;">Glycosidic bond</td><td style="padding:8px; border:1px solid #e2e8f0;">Energy and structure</td><td style="padding:8px; border:1px solid #e2e8f0;">Glycogen for storage</td></tr>
+    <tr><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Lipids</td><td style="padding:8px; border:1px solid #e2e8f0;">Fatty acids & glycerol</td><td style="padding:8px; border:1px solid #e2e8f0;">Ester bond</td><td style="padding:8px; border:1px solid #e2e8f0;">Membrane & energy storage</td><td style="padding:8px; border:1px solid #e2e8f0;">Phospholipid bilayer</td></tr>
+    <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Proteins</td><td style="padding:8px; border:1px solid #e2e8f0;">Amino acids</td><td style="padding:8px; border:1px solid #e2e8f0;">Peptide bond</td><td style="padding:8px; border:1px solid #e2e8f0;">Catalysis and structure</td><td style="padding:8px; border:1px solid #e2e8f0;">Enzymes and collagen</td></tr>
+    <tr><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Nucleic acids</td><td style="padding:8px; border:1px solid #e2e8f0;">Nucleotides</td><td style="padding:8px; border:1px solid #e2e8f0;">Phosphodiester bond</td><td style="padding:8px; border:1px solid #e2e8f0;">Genetic information</td><td style="padding:8px; border:1px solid #e2e8f0;">DNA and RNA</td></tr>
+  </tbody>
+</table>
+<h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Key Equations & Derivations</h4>
+<div style="background:#f8fafc; border:1px solid #e2e8f0; padding:12px; border-radius:8px; font-size:13px; line-height:1.7;">
+  1. Carbohydrates empirical formula: (CH2O)n<br/>
+  2. Peptide bond formation: Amino acid 1 + Amino acid 2 -&gt; Dipeptide + H2O<br/>
+  3. Ester bond in triacylglycerol: Glycerol + 3 Fatty acids -&gt; Triacylglycerol + 3 H2O<br/>
+  4. Nucleotide assembly: Nitrogenous base + Pentose sugar + Phosphate -&gt; Nucleotide
+</div>`,
   `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
-    <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Typical 5-Mark Exam Question & Model Answer</h4>
-    <p style="font-weight:700; color:#14532d; font-size:13px; margin-bottom:6px;">Question: Explain the structure and functions of major biomolecules in living cells.</p>
-    <div style="font-size:13px; color:#14532d; line-height:1.6;">
-      <strong>Model Answer:</strong> Biomolecules are chemical compounds of living systems classified into carbohydrates, lipids, proteins and nucleic acids.<br/>
-      • <strong>Carbohydrates</strong> (monosaccharide units) function in energy supply, storage (glycogen/starch) and structural support (cellulose).<br/>
-      • <strong>Lipids</strong> (fatty acids & glycerol) form cell membranes (phospholipids), long-term energy storage (TAGs) and cell signaling.<br/>
-      • <strong>Proteins</strong> (amino acid polymers) perform catalytic (enzymes), structural (collagen), transport (hemoglobin) and defense (antibodies) roles.<br/>
-      • <strong>Nucleic Acids</strong> (nucleotide polymers) store and transmit genetic information (DNA & RNA).
-    </div>
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Typical 5-Mark Exam Question & Model Answer</h4>
+  <p style="font-weight:700; color:#14532d; font-size:13px; margin-bottom:6px;">Question: Explain the structure and functions of major biomolecules in living cells.</p>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Model Answer:</strong> Biomolecules are chemical compounds of living systems classified into carbohydrates, lipids, proteins and nucleic acids.<br/>
+    • <strong>Carbohydrates</strong> (monosaccharide units) function in energy supply, storage (glycogen/starch) and structural support (cellulose).<br/>
+    • <strong>Lipids</strong> (fatty acids & glycerol) form cell membranes (phospholipids), long-term energy storage (TAGs) and cell signaling.<br/>
+    • <strong>Proteins</strong> (amino acid polymers) perform catalytic (enzymes), structural (collagen), transport (hemoglobin) and defense (antibodies) roles.<br/>
+    • <strong>Nucleic Acids</strong> (nucleotide polymers) store and transmit genetic information (DNA & RNA).
   </div>
-  <div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:16px; font-weight:700; color:#0f766e;">
-    2. Biological Membranes, Structure, Action Potential and Transport Processes
-  </div>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    A biological membrane is a selectively permeable boundary composed mainly of lipids, proteins and carbohydrates that separates the internal and external environments of cells and organelles.
-  </p>`,
-
-  // Page 6
+</div>
+<div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:16px; font-weight:700; color:#0f766e;">
+  2. Biological Membranes, Structure, Action Potential and Transport Processes
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  A biological membrane is a selectively permeable boundary composed mainly of lipids, proteins and carbohydrates that separates the internal and external environments of cells and organelles.
+</p>`,
   `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Working Principle & Membrane Types</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    According to the <strong>fluid mosaic model</strong>, the membrane consists of a phospholipid bilayer in which proteins are embedded and move laterally. Hydrophobic lipid tails face inward, while hydrophilic heads face the aqueous environment.<br/>
-    • Integral proteins (transport, receptors) vs Peripheral proteins (signaling, support).<br/>
-    • Cholesterol regulates membrane fluidity in animal cells.
-  </p>
-  <h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Transport Processes across Membranes</h3>
-  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-    <li><strong>Simple diffusion:</strong> movement along concentration gradient without energy or carrier.</li>
-    <li><strong>Facilitated diffusion:</strong> movement along gradient with transport proteins.</li>
-    <li><strong>Osmosis:</strong> movement of water across a semipermeable membrane.</li>
-    <li><strong>Active transport:</strong> movement against gradient using ATP (e.g. Na+/K+-ATPase).</li>
-    <li><strong>Secondary active transport:</strong> driven by electrochemical gradients.</li>
-  </ul>
-  <h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Action Potential Kinetics</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Depolarization occurs mainly due to Na+ influx; repolarization due to K+ efflux. Nernst equation at 25°C: E = (0.0591/z) * log([ion]out / [ion]in).
-  </p>`,
-
-  // Page 7
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  According to the <strong>fluid mosaic model</strong>, the membrane consists of a phospholipid bilayer in which proteins are embedded and move laterally. Hydrophobic lipid tails face inward, while hydrophilic heads face the aqueous environment.<br/>
+  • Integral proteins (transport, receptors) vs Peripheral proteins (signaling, support).<br/>
+  • Cholesterol regulates membrane fluidity in animal cells.
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Transport Processes across Membranes</h3>
+<ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+  <li><strong>Simple diffusion:</strong> movement along concentration gradient without energy or carrier.</li>
+  <li><strong>Facilitated diffusion:</strong> movement along gradient with transport proteins.</li>
+  <li><strong>Osmosis:</strong> movement of water across a semipermeable membrane.</li>
+  <li><strong>Active transport:</strong> movement against gradient using ATP (e.g. Na+/K+-ATPase).</li>
+  <li><strong>Secondary active transport:</strong> driven by electrochemical gradients.</li>
+</ul>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Action Potential Kinetics</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Depolarization occurs mainly due to Na+ influx; repolarization due to K+ efflux. Nernst equation at 25°C: E = (0.0591/z) * log([ion]out / [ion]in).
+</p>`,
   `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
-    <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Typical 5-Mark Exam Question & Model Answer</h4>
-    <p style="font-weight:700; color:#14532d; font-size:13px; margin-bottom:6px;">Question: Explain the fluid mosaic model of membrane structure and transport processes across the membrane.</p>
-    <div style="font-size:13px; color:#14532d; line-height:1.6;">
-      <strong>Model Answer:</strong> The fluid mosaic model states that biological membranes consist of a fluid phospholipid bilayer with mobile embedded proteins.<br/>
-      Hydrophilic heads face external/internal aqueous phases, while hydrophobic fatty acid tails form the core.<br/>
-      Membrane proteins function as channels, carriers, receptors, and enzymes.<br/>
-      Transport occurs via passive mechanisms (simple diffusion, facilitated diffusion, osmosis) and active mechanisms (Na+/K+ pump, vesicular endo/exocytosis).
-    </div>
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Typical 5-Mark Exam Question & Model Answer</h4>
+  <p style="font-weight:700; color:#14532d; font-size:13px; margin-bottom:6px;">Question: Explain the fluid mosaic model of membrane structure and transport processes across the membrane.</p>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Model Answer:</strong> The fluid mosaic model states that biological membranes consist of a fluid phospholipid bilayer with mobile embedded proteins.<br/>
+    Hydrophilic heads face external/internal aqueous phases, while hydrophobic fatty acid tails form the core.<br/>
+    Membrane proteins function as channels, carriers, receptors, and enzymes.<br/>
+    Transport occurs via passive mechanisms (simple diffusion, facilitated diffusion, osmosis) and active mechanisms (Na+/K+ pump, vesicular endo/exocytosis).
   </div>
-  <div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:16px; font-weight:700; color:#0f766e;">
-    3. Enzymes: Classification, Kinetics and Mechanism of Action
-  </div>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Enzymes are biological catalysts (mainly proteins, or catalytic RNA ribozymes) that accelerate chemical reactions by lowering activation energy and stabilizing transition states without altering reaction equilibrium (ΔG).
-  </p>`,
-
-  // Page 8
+</div>
+<div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:16px; font-weight:700; color:#0f766e;">
+  3. Enzymes: Classification, Kinetics and Mechanism of Action
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Enzymes are biological catalysts (mainly proteins, or catalytic RNA ribozymes) that accelerate chemical reactions by lowering activation energy and stabilizing transition states without altering reaction equilibrium (ΔG).
+</p>`,
   `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">IUBMB Classification of Enzymes (6 Classes)</h3>
-  <ol style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-    <li><strong>Oxidoreductases:</strong> catalyze oxidation-reduction reactions (e.g. dehydrogenases).</li>
-    <li><strong>Transferases:</strong> transfer functional groups from one molecule to another (e.g. kinases).</li>
-    <li><strong>Hydrolases:</strong> catalyze bond cleavage by adding water (e.g. phosphatases, lipases).</li>
-    <li><strong>Lyases:</strong> add/remove groups to double bonds without hydrolysis (e.g. decarboxylases).</li>
-    <li><strong>Isomerases:</strong> catalyze intramolecular rearrangements (e.g. isomerases, mutases).</li>
-    <li><strong>Ligases:</strong> join two molecules using ATP hydrolysis (e.g. synthetases, DNA ligase).</li>
-  </ol>
-  <h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Associated Terms</h4>
-  <p style="font-size:13px; color:#334155; line-height:1.6;">
-    • <strong>Apoenzyme:</strong> inactive protein component alone.<br/>
-    • <strong>Holoenzyme:</strong> complete catalytically active enzyme (Apoenzyme + Cofactor).<br/>
-    • <strong>Coenzyme:</strong> organic non-protein cofactor (vitamin-derived e.g. NAD+, FAD).<br/>
-    • <strong>Prosthetic group:</strong> tightly or covalently bound cofactor (e.g. heme).
-  </p>`,
-
-  // Page 9
+<ol style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+  <li><strong>Oxidoreductases:</strong> catalyze oxidation-reduction reactions (e.g. dehydrogenases).</li>
+  <li><strong>Transferases:</strong> transfer functional groups from one molecule to another (e.g. kinases).</li>
+  <li><strong>Hydrolases:</strong> catalyze bond cleavage by adding water (e.g. phosphatases, lipases).</li>
+  <li><strong>Lyases:</strong> add/remove groups to double bonds without hydrolysis (e.g. decarboxylases).</li>
+  <li><strong>Isomerases:</strong> catalyze intramolecular rearrangements (e.g. isomerases, mutases).</li>
+  <li><strong>Ligases:</strong> join two molecules using ATP hydrolysis (e.g. synthetases, DNA ligase).</li>
+</ol>
+<h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Associated Terms</h4>
+<p style="font-size:13px; color:#334155; line-height:1.6;">
+  • <strong>Apoenzyme:</strong> inactive protein component alone.<br/>
+  • <strong>Holoenzyme:</strong> complete catalytically active enzyme (Apoenzyme + Cofactor).<br/>
+  • <strong>Coenzyme:</strong> organic non-protein cofactor (vitamin-derived e.g. NAD+, FAD).<br/>
+  • <strong>Prosthetic group:</strong> tightly or covalently bound cofactor (e.g. heme).
+</p>`,
   `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Enzyme Kinetics & Michaelis-Menten Equation</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Basic scheme: E + S <-> ES -> E + P<br/>
-    Michaelis-Menten Equation: v = (Vmax * [S]) / (Km + [S])<br/>
-    Lineweaver-Burk Double Reciprocal Plot: 1/v = (Km/Vmax)*(1/[S]) + 1/Vmax
-  </p>
-  <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px; margin-top:14px;">
-    <h4 style="margin:0 0 8px; color:#0f172a; font-size:14px;">Meaning of Kinetic Parameters</h4>
-    <ul style="font-size:13px; color:#334155; line-height:1.6; padding-left:20px; margin:0;">
-      <li><strong>Vmax:</strong> maximum reaction velocity at enzyme saturation.</li>
-      <li><strong>Km:</strong> substrate concentration at half-Vmax. Lower Km indicates higher enzyme affinity.</li>
-      <li><strong>kcat:</strong> turnover number (kcat = Vmax / [E]t), molecules converted per second.</li>
-      <li><strong>kcat/Km:</strong> catalytic efficiency index.</li>
-    </ul>
-  </div>`,
-
-  // Page 10
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Basic scheme: E + S &lt;-&gt; ES -&gt; E + P<br/>
+  Michaelis-Menten Equation: v = (Vmax * [S]) / (Km + [S])<br/>
+  Lineweaver-Burk Double Reciprocal Plot: 1/v = (Km/Vmax)*(1/[S]) + 1/Vmax
+</p>
+<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px; margin-top:14px;">
+  <h4 style="margin:0 0 8px; color:#0f172a; font-size:14px;">Meaning of Kinetic Parameters</h4>
+  <ul style="font-size:13px; color:#334155; line-height:1.6; padding-left:20px; margin:0;">
+    <li><strong>Vmax:</strong> maximum reaction velocity at enzyme saturation.</li>
+    <li><strong>Km:</strong> substrate concentration at half-Vmax. Lower Km indicates higher enzyme affinity.</li>
+    <li><strong>kcat:</strong> turnover number (kcat = Vmax / [E]t), molecules converted per second.</li>
+    <li><strong>kcat/Km:</strong> catalytic efficiency index.</li>
+  </ul>
+</div>`,
   `<h4 style="font-size:14px; color:#0f172a; margin:0 0 8px;">Derivation Outline of Michaelis-Menten Equation</h4>
-  <ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px;">
-    <li>Reaction: E + S <-> ES -> E + P</li>
-    <li>Steady-state assumption: Rate of ES formation = Rate of ES breakdown -> k1[E][S] = (k_-1 + k2)[ES]</li>
-    <li>Define Michaelis constant: Km = (k_-1 + k2) / k1</li>
-    <li>Conservation of enzyme: [E]t = [E] + [ES] -> [E] = [E]t - [ES]</li>
-    <li>Substitute [E]: k1([E]t - [ES])[S] = (k_-1 + k2)[ES]</li>
-    <li>Simplify for [ES] and velocity v = k2[ES]: v = (Vmax * [S]) / (Km + [S])</li>
-  </ol>`,
-
-  // Page 11
+<ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px;">
+  <li>Reaction: E + S &lt;-&gt; ES -&gt; E + P</li>
+  <li>Steady-state assumption: Rate of ES formation = Rate of ES breakdown -&gt; k1[E][S] = (k_-1 + k2)[ES]</li>
+  <li>Define Michaelis constant: Km = (k_-1 + k2) / k1</li>
+  <li>Conservation of enzyme: [E]t = [E] + [ES] -&gt; [E] = [E]t - [ES]</li>
+  <li>Substitute [E]: k1([E]t - [ES])[S] = (k_-1 + k2)[ES]</li>
+  <li>Simplify for [ES] and velocity v = k2[ES]: v = (Vmax * [S]) / (Km + [S])</li>
+</ol>`,
   `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Enzyme Inhibition Modes</h3>
-  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-    <li><strong>Competitive Inhibition:</strong> Inhibitor binds active site. Km increases, Vmax unchanged. Overcome by excess [S].</li>
-    <li><strong>Non-Competitive Inhibition:</strong> Inhibitor binds separate site. Km unchanged, Vmax decreases. Not reversed by [S].</li>
-    <li><strong>Uncompetitive Inhibition:</strong> Inhibitor binds only to ES complex. Both Km and Vmax decrease.</li>
-    <li><strong>Irreversible Inhibition:</strong> Covalent or tight permanent binding (e.g. aspirin inhibiting COX).</li>
-  </ul>
-  <h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Allosteric Regulation</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Allosteric enzymes feature regulatory sites distinct from the active site and exhibit sigmoidal kinetics (e.g. phosphofructokinase-1 in glycolysis).
-  </p>`,
-
-  // Page 12
+<ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+  <li><strong>Competitive Inhibition:</strong> Inhibitor binds active site. Km increases, Vmax unchanged. Overcome by excess [S].</li>
+  <li><strong>Non-Competitive Inhibition:</strong> Inhibitor binds separate site. Km unchanged, Vmax decreases. Not reversed by [S].</li>
+  <li><strong>Uncompetitive Inhibition:</strong> Inhibitor binds only to ES complex. Both Km and Vmax decrease.</li>
+  <li><strong>Irreversible Inhibition:</strong> Covalent or tight permanent binding (e.g. aspirin inhibiting COX).</li>
+</ul>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Allosteric Regulation</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Allosteric enzymes feature regulatory sites distinct from the active site and exhibit sigmoidal kinetics (e.g. phosphofructokinase-1 in glycolysis).
+</p>`,
   `<h4 style="font-size:14px; color:#0f172a; margin:0 0 10px;">Quick Comparison Table of Enzyme Inhibition</h4>
-  <table style="width:100%; border-collapse:collapse; font-size:12.5px; margin-bottom:20px;">
-    <thead>
-      <tr style="background:#1e293b; color:#fff; text-align:left;">
-        <th style="padding:8px;">Inhibition Type</th>
-        <th style="padding:8px;">Binding Site</th>
-        <th style="padding:8px;">Effect on Km</th>
-        <th style="padding:8px;">Effect on Vmax</th>
-        <th style="padding:8px;">Reversed by [S]?</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Competitive</td><td style="padding:8px; border:1px solid #e2e8f0;">Active site</td><td style="padding:8px; border:1px solid #e2e8f0;">Increases (Km up)</td><td style="padding:8px; border:1px solid #e2e8f0;">No change</td><td style="padding:8px; border:1px solid #e2e8f0;">Yes</td></tr>
-      <tr><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Non-competitive</td><td style="padding:8px; border:1px solid #e2e8f0;">Separate site on E/ES</td><td style="padding:8px; border:1px solid #e2e8f0;">No change</td><td style="padding:8px; border:1px solid #e2e8f0;">Decreases (Vmax down)</td><td style="padding:8px; border:1px solid #e2e8f0;">No</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Uncompetitive</td><td style="padding:8px; border:1px solid #e2e8f0;">ES complex only</td><td style="padding:8px; border:1px solid #e2e8f0;">Decreases (Km down)</td><td style="padding:8px; border:1px solid #e2e8f0;">Decreases (Vmax down)</td><td style="padding:8px; border:1px solid #e2e8f0;">No</td></tr>
-    </tbody>
-  </table>
-  <div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:16px; font-weight:700; color:#0f766e;">
-    4. Basic Concepts and Design of Metabolism
-  </div>`,
-
-  // Page 13
+<table style="width:100%; border-collapse:collapse; font-size:12.5px; margin-bottom:20px;">
+  <thead>
+    <tr style="background:#1e293b; color:#fff; text-align:left;">
+      <th style="padding:8px;">Inhibition Type</th>
+      <th style="padding:8px;">Binding Site</th>
+      <th style="padding:8px;">Effect on Km</th>
+      <th style="padding:8px;">Effect on Vmax</th>
+      <th style="padding:8px;">Reversed by [S]?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Competitive</td><td style="padding:8px; border:1px solid #e2e8f0;">Active site</td><td style="padding:8px; border:1px solid #e2e8f0;">Increases (Km up)</td><td style="padding:8px; border:1px solid #e2e8f0;">No change</td><td style="padding:8px; border:1px solid #e2e8f0;">Yes</td></tr>
+    <tr><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Non-competitive</td><td style="padding:8px; border:1px solid #e2e8f0;">Separate site on E/ES</td><td style="padding:8px; border:1px solid #e2e8f0;">No change</td><td style="padding:8px; border:1px solid #e2e8f0;">Decreases (Vmax down)</td><td style="padding:8px; border:1px solid #e2e8f0;">No</td></tr>
+    <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Uncompetitive</td><td style="padding:8px; border:1px solid #e2e8f0;">ES complex only</td><td style="padding:8px; border:1px solid #e2e8f0;">Decreases (Km down)</td><td style="padding:8px; border:1px solid #e2e8f0;">Decreases (Vmax down)</td><td style="padding:8px; border:1px solid #e2e8f0;">No</td></tr>
+  </tbody>
+</table>
+<div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:16px; font-weight:700; color:#0f766e;">
+  4. Basic Concepts and Design of Metabolism
+</div>`,
   `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Metabolic Architecture: Catabolism vs. Anabolism</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    • <strong>Catabolism:</strong> oxidative breakdown of complex molecules releasing energy (ATP, NADH).<br/>
-    • <strong>Anabolism:</strong> reductive synthesis of complex macromolecules requiring energy input.<br/>
-    • <strong>Amphibolic Pathways:</strong> dual role in breakdown and synthesis (e.g. Citric Acid Cycle).<br/>
-    Central interconnecting hubs: pyruvate, acetyl-CoA, oxaloacetate, ATP, NADH, NADPH.
-  </p>`,
-
-  // Page 14
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Catabolism:</strong> oxidative breakdown of complex molecules releasing energy (ATP, NADH).<br/>
+  • <strong>Anabolism:</strong> reductive synthesis of complex macromolecules requiring energy input.<br/>
+  • <strong>Amphibolic Pathways:</strong> dual role in breakdown and synthesis (e.g. Citric Acid Cycle).<br/>
+  Central interconnecting hubs: pyruvate, acetyl-CoA, oxaloacetate, ATP, NADH, NADPH.
+</p>`,
   `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Carbohydrate Metabolism — Glycolysis</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Glycolysis is the cytosolic 10-step pathway converting 1 glucose into 2 pyruvate.<br/>
-    Key regulatory enzyme: <strong>Phosphofructokinase-1 (PFK-1)</strong>.<br/>
-    Overall reaction:<br/>
-    Glucose + 2 ADP + 2 Pi + 2 NAD+ -> 2 Pyruvate + 2 ATP + 2 NADH + 2 H+ + 2 H2O<br/>
-    Net ATP yield = 4 (produced) - 2 (invested) = 2 ATP.
-  </p>`,
-
-  // Page 15
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Glycolysis is the cytosolic 10-step pathway converting 1 glucose into 2 pyruvate.<br/>
+  Key regulatory enzyme: <strong>Phosphofructokinase-1 (PFK-1)</strong>.<br/>
+  Overall reaction:<br/>
+  Glucose + 2 ADP + 2 Pi + 2 NAD+ -&gt; 2 Pyruvate + 2 ATP + 2 NADH + 2 H+ + 2 H2O<br/>
+  Net ATP yield = 4 (produced) - 2 (invested) = 2 ATP.
+</p>`,
   `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Central Metabolic Pathways Overview</h3>
-  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-    <li><strong>Gluconeogenesis:</strong> Glucose synthesis from non-carbohydrates (lactate, glycerol, amino acids) in liver/kidney. Bypasses 3 irreversible steps of glycolysis.</li>
-    <li><strong>Citric Acid Cycle (TCA):</strong> Mitochondrial matrix oxidation of acetyl-CoA. Per acetyl-CoA yields 3 NADH + 1 FADH2 + 1 GTP.</li>
-    <li><strong>Beta Oxidation:</strong> Mitochondrial matrix degradation of fatty acids into 2-carbon acetyl-CoA units.</li>
-    <li><strong>Fatty Acid Synthesis:</strong> Cytosolic assembly catalyzed by acetyl-CoA carboxylase (ACC).</li>
-    <li><strong>Urea Cycle:</strong> Hepatic detoxification of ammonia into urea.</li>
-  </ul>`,
-
-  // Page 16
+<ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+  <li><strong>Gluconeogenesis:</strong> Glucose synthesis from non-carbohydrates (lactate, glycerol, amino acids) in liver/kidney. Bypasses 3 irreversible steps of glycolysis.</li>
+  <li><strong>Citric Acid Cycle (TCA):</strong> Mitochondrial matrix oxidation of acetyl-CoA. Per acetyl-CoA yields 3 NADH + 1 FADH2 + 1 GTP.</li>
+  <li><strong>Beta Oxidation:</strong> Mitochondrial matrix degradation of fatty acids into 2-carbon acetyl-CoA units.</li>
+  <li><strong>Fatty Acid Synthesis:</strong> Cytosolic assembly catalyzed by acetyl-CoA carboxylase (ACC).</li>
+  <li><strong>Urea Cycle:</strong> Hepatic detoxification of ammonia into urea.</li>
+</ul>`,
   `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Photosynthesis, Respiration & Electron Transport Chain</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    • <strong>Photosynthesis:</strong> Light reactions generate ATP and NADPH; Calvin cycle fixes CO2.<br/>
-    • <strong>Respiration & ETC:</strong> Electron transfer from NADH/FADH2 through Complexes I–IV to O2 creates a proton gradient across inner mitochondrial membrane, driving ATP synthesis via F1F0-ATP synthase (chemiosmotic theory).
-  </p>
-  <div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-top:20px; font-weight:700; color:#0f766e;">
-    5. Bioenergetics & Thermodynamics
-  </div>`,
-
-  // Page 17
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Photosynthesis:</strong> Light reactions generate ATP and NADPH; Calvin cycle fixes CO2.<br/>
+  • <strong>Respiration & ETC:</strong> Electron transfer from NADH/FADH2 through Complexes I–IV to O2 creates a proton gradient across inner mitochondrial membrane, driving ATP synthesis via F1F0-ATP synthase (chemiosmotic theory).
+</p>
+<div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-top:20px; font-weight:700; color:#0f766e;">
+  5. Bioenergetics & Thermodynamics
+</div>`,
   `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Thermodynamics & Free Energy Equations</h3>
-  <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:14px; borderRadius:8px; font-size:13px; line-height:1.8;">
-    1. Gibbs free energy relation: ΔG = ΔH - T*ΔS<br/>
-    2. Standard free energy relation: ΔG = ΔG° + RT*ln(Q)<br/>
-    3. Equilibrium constant relation: ΔG° = -RT*ln(Keq)<br/>
-    4. ATP hydrolysis: ATP + H2O -> ADP + Pi + energy (ΔG° = -30.5 kJ/mol)<br/>
-    5. Free energy and redox potential: ΔG° = -nF*ΔE°
-  </div>
-  <p style="font-size:13px; color:#334155; margin-top:10px;">
-    Spontaneous reactions proceed when ΔG < 0 (exergonic). Endergonic reactions (ΔG > 0) are driven by coupling with ATP hydrolysis.
-  </p>`,
-
-  // Page 18
+<div style="background:#f8fafc; border:1px solid #e2e8f0; padding:14px; border-radius:8px; font-size:13px; line-height:1.8;">
+  1. Gibbs free energy relation: ΔG = ΔH - T*ΔS<br/>
+  2. Standard free energy relation: ΔG = ΔG° + RT*ln(Q)<br/>
+  3. Equilibrium constant relation: ΔG° = -RT*ln(Keq)<br/>
+  4. ATP hydrolysis: ATP + H2O -&gt; ADP + Pi + energy (ΔG° = -30.5 kJ/mol)<br/>
+  5. Free energy and redox potential: ΔG° = -nF*ΔE°
+</div>
+<p style="font-size:13px; color:#334155; margin-top:10px;">
+  Spontaneous reactions proceed when ΔG &lt; 0 (exergonic). Endergonic reactions (ΔG &gt; 0) are driven by coupling with ATP hydrolysis.
+</p>`,
   `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
-    <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Typical 5-Mark Exam Question & Model Answer</h4>
-    <p style="font-weight:700; color:#14532d; font-size:13px; margin-bottom:6px;">Question: What is bioenergetics? Explain the importance of ATP in cellular energy transactions.</p>
-    <div style="font-size:13px; color:#14532d; line-height:1.6;">
-      <strong>Model Answer:</strong> Bioenergetics studies energy flow and transformations in biological systems.<br/>
-      ATP acts as the universal energy currency of cells because hydrolysis of its phosphoanhydride bonds releases usable free energy (ΔG° = -30.5 kJ/mol).<br/>
-      Cells couple exergonic ATP hydrolysis to endergonic processes such as active transport (Na+/K+ pump), mechanical work (muscle contraction) and anabolic biosynthesis.
-    </div>
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Typical 5-Mark Exam Question & Model Answer</h4>
+  <p style="font-weight:700; color:#14532d; font-size:13px; margin-bottom:6px;">Question: What is bioenergetics? Explain the importance of ATP in cellular energy transactions.</p>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Model Answer:</strong> Bioenergetics studies energy flow and transformations in biological systems.<br/>
+    ATP acts as the universal energy currency of cells because hydrolysis of its phosphoanhydride bonds releases usable free energy (ΔG° = -30.5 kJ/mol).<br/>
+    Cells couple exergonic ATP hydrolysis to endergonic processes such as active transport (Na+/K+ pump), mechanical work (muscle contraction) and anabolic biosynthesis.
   </div>
-  <h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Rapid Comparison Table of Core Syllabus Topics</h4>
-  <table style="width:100%; border-collapse:collapse; font-size:12px;">
-    <thead>
-      <tr style="background:#1e293b; color:#fff; text-align:left;">
-        <th style="padding:6px;">Topic</th>
-        <th style="padding:6px;">Most Important Point</th>
-        <th style="padding:6px;">Frequent Exam Focus</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="background:#f8fafc;"><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Biomolecules</td><td style="padding:6px; border:1px solid #e2e8f0;">Structure determines function</td><td style="padding:6px; border:1px solid #e2e8f0;">Building blocks, glycosidic/peptide/ester bonds</td></tr>
-      <tr><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Membranes</td><td style="padding:6px; border:1px solid #e2e8f0;">Fluid mosaic model & selective permeability</td><td style="padding:6px; border:1px solid #e2e8f0;">Active vs passive transport, Nernst equation</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Enzymes</td><td style="padding:6px; border:1px solid #e2e8f0;">Catalysts lower activation energy</td><td style="padding:6px; border:1px solid #e2e8f0;">Michaelis-Menten (Km, Vmax), inhibition patterns</td></tr>
-      <tr><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Metabolism</td><td style="padding:6px; border:1px solid #e2e8f0;">Interconnected regulated pathways</td><td style="padding:6px; border:1px solid #e2e8f0;">Glycolysis net yield, TCA cycle, beta-oxidation</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Bioenergetics</td><td style="padding:6px; border:1px solid #e2e8f0;">ATP couples energy release & use</td><td style="padding:6px; border:1px solid #e2e8f0;">ΔG = ΔH - T*ΔS, redox ΔG° = -nF*ΔE°</td></tr>
-    </tbody>
-  </table>`,
-
-  // Page 19
+</div>
+<h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Rapid Comparison Table of Core Syllabus Topics</h4>
+<table style="width:100%; border-collapse:collapse; font-size:12px;">
+  <thead>
+    <tr style="background:#1e293b; color:#fff; text-align:left;">
+      <th style="padding:6px;">Topic</th>
+      <th style="padding:6px;">Most Important Point</th>
+      <th style="padding:6px;">Frequent Exam Focus</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f8fafc;"><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Biomolecules</td><td style="padding:6px; border:1px solid #e2e8f0;">Structure determines function</td><td style="padding:6px; border:1px solid #e2e8f0;">Building blocks, glycosidic/peptide/ester bonds</td></tr>
+    <tr><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Membranes</td><td style="padding:6px; border:1px solid #e2e8f0;">Fluid mosaic model &amp; selective permeability</td><td style="padding:6px; border:1px solid #e2e8f0;">Active vs passive transport, Nernst equation</td></tr>
+    <tr style="background:#f8fafc;"><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Enzymes</td><td style="padding:6px; border:1px solid #e2e8f0;">Catalysts lower activation energy</td><td style="padding:6px; border:1px solid #e2e8f0;">Michaelis-Menten (Km, Vmax), inhibition patterns</td></tr>
+    <tr><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Metabolism</td><td style="padding:6px; border:1px solid #e2e8f0;">Interconnected regulated pathways</td><td style="padding:6px; border:1px solid #e2e8f0;">Glycolysis net yield, TCA cycle, beta-oxidation</td></tr>
+    <tr style="background:#f8fafc;"><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Bioenergetics</td><td style="padding:6px; border:1px solid #e2e8f0;">ATP couples energy release &amp; use</td><td style="padding:6px; border:1px solid #e2e8f0;">ΔG = ΔH - T*ΔS, redox ΔG° = -nF*ΔE°</td></tr>
+  </tbody>
+</table>`,
   `<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:20px;">
-    <h4 style="margin:0 0 10px; color:#0f172a; font-size:14px;">🎓 Final Exam Preparation Protocol</h4>
-    <ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px; margin:0;">
-      <li>Draw pathways (Glycolysis, TCA cycle, beta-oxidation) at least three times from memory.</li>
-      <li>Memorize all major equations (ΔG = ΔH - T*ΔS, v = Vmax*[S]/(Km+[S]), Nernst equation) and define every variable.</li>
-      <li>Solve previous GATE and university questions topic-wise.</li>
-      <li>Practice writing compact 5-mark model answers within one page.</li>
-      <li>Revise regulatory enzymes (PFK-1, ACC) and ATP yield repeatedly.</li>
-    </ol>
-  </div>`
-];
-```
-
-Now let's check `ContinuousPdfViewer` in `app/learning/page.js` to see how `handleOpenNewWindow()` and the in-modal view are handled.
-
-Let's view lines 980 to 1050 of `app/learning/page.js`.` view_file`.js. Or replace the block starting at `/* ── 23-Page Master Textbook Pages for Advanced Genetics ── */` down to `ContinuousPdfViewer`.
-
-Let's view lines 980 to 1050 in `app/learning/page.js`.00.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.057:   /* ── 19-Page Master Textbook Pages for Biomolecules, Membranes, Enzymes, Metabolism & Bioenergetics ── */
-558: const FULL_BIOMOLECULES_19_PAGES = [
-559:   // Page 1
-560:   `<h1 style="font-size:22px; color:#0f766e; margin:0 0 10px; border-bottom:2px solid #0f766e; padding-bottom:8px;">Biomolecules, Membranes, Enzymes, Metabolism and Bioenergetics</h1>
-561:   <p style="font-style:italic; color:#475569; font-size:13px; margin-bottom:24px;">A high-yield, exam-focused study guide for undergraduate B.Tech Biotechnology students, designed for university examinations and GATE preparation.</p>
-562:   <div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0f766e;">
-563:     1. Biomolecules: Structure and Functions
-564:   </div>
-565:   <h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Definition</h3>
-566:   <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-567:     Biomolecules are the naturally occurring chemical compounds of living organisms that form cellular structure, store and release energy, regulate biological processes and carry hereditary information.<br/>
-568:     The four major classes are carbohydrates, lipids, proteins and nucleic acids.
-569:   </p>
-570:   <h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Core Concept</h3>
-571:   <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-572:     Living systems are built from a small number of recurring chemical units, but the arrangement of these units gives rise to a remarkable diversity of biological functions. For examinations and GATE, the central principle is that <strong>molecular structure determines molecular function</strong>, so every biomolecule must be studied with its building blocks, bonds, properties and biological role.
-573:   </p>
-574:   <h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Working Principle</h3>
-575:   <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-576:     Biomolecules function through specific chemical interactions such as covalent bonding, hydrogen bonding, ionic interactions, hydrophobic effects and molecular recognition. Their three-dimensional arrangement determines stability, reactivity and biological specificity.
-577:   </p>
-578:   <h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Types — Carbohydrates</h3>
-579:   <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-580:     Carbohydrates are polyhydroxy aldehydes or ketones, or compounds that yield them on hydrolysis. They function in energy supply, energy storage, structural support and cell recognition.<br/>
-581:     • <strong>Monosaccharides:</strong> glucose, fructose, galactose, ribose, deoxyribose.<br/>
-582:     • <strong>Oligosaccharides:</strong> disaccharides such as sucrose, lactose and maltose.
-583:   </p>`,
-584: 
-585:   // Page 2
-586:   `<p style="font-size:13.5px; color:#334155; line-height:1.7; margin-top:0;">
-587:     • <strong>Polysaccharides:</strong> starch, glycogen, cellulose and chitin.
-588:   </p>
-589:   <h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Important Structural Points (Carbohydrates)</h4>
-590:   <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-591:     <li>Monosaccharides may exist in linear or cyclic form (glucose in pyranose form).</li>
-592:     <li>Alpha and beta anomers differ in orientation at the anomeric carbon.</li>
-593:     <li>Glycosidic bonds join sugar units together.</li>
-594:     <li>Starch contains amylose and amylopectin; glycogen is more highly branched.</li>
-595:     <li>Cellulose has beta-1,4 glycosidic bonds, which humans cannot digest.</li>
-596:   </ul>
-597:   <h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Types — Lipids</h3>
-598:   <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-599:     Lipids are hydrophobic or amphipathic biomolecules that are insoluble in water but soluble in non-polar solvents. They serve as energy reserves, membrane components, signaling molecules and protective substances.<br/>
-600:     • <strong>Simple lipids:</strong> fats and oils.<br/>
-601:     • <strong>Compound lipids:</strong> phospholipids, glycolipids, lipoproteins.<br/>
-602:     • <strong>Derived lipids:</strong> fatty acids, steroids, terpenes, eicosanoids.
-603:   </p>
-604:   <h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Important Structural Points (Lipids)</h4>
-605:   <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-606:     <li>Fatty acids may be saturated or unsaturated (double bonds increase fluidity).</li>
-607:     <li>Triacylglycerols are esters of glycerol with three fatty acids.</li>
-608:     <li>Phospholipids contain a polar head group and two hydrophobic tails.</li>
-609:     <li>Steroids possess a characteristic four-ring structure.</li>
-610:   </ul>`,
-611: 
-612:   // Page 3
-613:   `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Types — Proteins</h3>
-614:   <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-615:     Proteins are polymers of amino acids linked by peptide bonds and are the most functionally versatile biomolecules in cells.<br/>
-616:     • <strong>By Shape:</strong> Fibrous (collagen, keratin, elastin) vs Globular (enzymes, hemoglobin, myoglobin, antibodies).<br/>
-617:     • <strong>By Composition:</strong> Simple (yield only amino acids) vs Conjugated (prosthetic group e.g. glycoproteins, lipoproteins, metalloproteins).
-618:   </p>
-619:   <h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Structural Levels of Proteins</h4>
-620:   <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-621:     <li><strong>Primary:</strong> amino acid sequence.</li>
-622:     <li><strong>Secondary:</strong> alpha-helix and beta-pleated sheet stabilized by hydrogen bonds.</li>
-623:     <li><strong>Tertiary:</strong> three-dimensional folding due to side-chain interactions.</li>
-624:     <li><strong>Quaternary:</strong> association of two or more polypeptide chains.</li>
-625:   </ul>
-626:   <h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Types — Nucleic Acids</h3>
-627:   <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-628:     Nucleic acids are polymers of nucleotides and store, transmit and express genetic information.<br/>
-629:     • <strong>DNA:</strong> deoxyribonucleic acid, the main hereditary material.<br/>
-630:     • <strong>RNA:</strong> ribonucleic acid, involved in gene expression and regulation.<br/>
-631:     Components of nucleotide: Nitrogenous base + Pentose sugar + Phosphate group.
-632:   </p>`,
-633: 
-634:   // Page 4
-635:   `<h4 style="font-size:14px; color:#0f172a; margin:0 0 10px;">Structure-Function Relationship Table</h4>
-636:   <table style="width:100%; border-collapse:collapse; font-size:12.5px; margin-bottom:20px;">
-637:     <thead>
-638:       <tr style="background:#1e293b; color:#fff; text-align:left;">
-639:         <th style="padding:8px;">Biomolecule</th>
-640:         <th style="padding:8px;">Building unit</th>
-641:         <th style="padding:8px;">Characteristic bond</th>
-642:         <th style="padding:8px;">Major function</th>
-643:         <th style="padding:8px;">High-yield example</th>
-644:       </tr>
-645:     </thead>
-646:     <tbody>
-647:       <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Carbohydrates</td><td style="padding:8px; border:1px solid #e2e8f0;">Monosaccharides</td><td style="padding:8px; border:1px solid #e2e8f0;">Glycosidic bond</td><td style="padding:8px; border:1px solid #e2e8f0;">Energy and structure</td><td style="padding:8px; border:1px solid #e2e8f0;">Glycogen for storage</td></tr>
-648:       <tr><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Lipids</td><td style="padding:8px; border:1px solid #e2e8f0;">Fatty acids & glycerol</td><td style="padding:8px; border:1px solid #e2e8f0;">Ester bond</td><td style="padding:8px; border:1px solid #e2e8f0;">Membrane & energy storage</td><td style="padding:8px; border:1px solid #e2e8f0;">Phospholipid bilayer</td></tr>
-649:       <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Proteins</td><td style="padding:8px; border:1px solid #e2e8f0;">Amino acids</td><td style="padding:8px; border:1px solid #e2e8f0;">Peptide bond</td><td style="padding:8px; border:1px solid #e2e8f0;">Catalysis and structure</td><td style="padding:8px; border:1px solid #e2e8f0;">Enzymes and collagen</td></tr>
-650:       <tr><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Nucleic acids</td><td style="padding:8px; border:1px solid #e2e8f0;">Nucleotides</td><td style="padding:8px; border:1px solid #e2e8f0;">Phosphodiester bond</td><td style="padding:8px; border:1px solid #e2e8f0;">Genetic information</td><td style="padding:8px; border:1px solid #e2e8f0;">DNA and RNA</td></tr>
-651:     </tbody>
-652:   </table>
-653:   <h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Key Equations & Derivations</h4>
-654:   <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:12px; borderRadius:8px; font-size:13px; line-height:1.7;">
-655:     1. Carbohydrates empirical formula: (CH2O)n<br/>
-656:     2. Peptide bond formation: Amino acid 1 + Amino acid 2 -> Dipeptide + H2O<br/>
-657:     3. Ester bond in triacylglycerol: Glycerol + 3 Fatty acids -> Triacylglycerol + 3 H2O<br/>
-658:     4. Nucleotide assembly: Nitrogenous base + Pentose sugar + Phosphate -> Nucleotide
-659:   </div>`,
-
-  // Page 5
-  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
-    <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Typical 5-Mark Exam Question & Model Answer</h4>
-    <p style="font-weight:700; color:#14532d; font-size:13px; margin-bottom:6px;">Question: Explain the structure and functions of major biomolecules in living cells.</p>
-    <div style="font-size:13px; color:#14532d; line-height:1.6;">
-      <strong>Model Answer:</strong> Biomolecules are chemical compounds of living systems classified into carbohydrates, lipids, proteins and nucleic acids.<br/>
-      • <strong>Carbohydrates</strong> (monosaccharide units) function in energy supply, storage (glycogen/starch) and structural support (cellulose).<br/>
-      • <strong>Lipids</strong> (fatty acids & glycerol) form cell membranes (phospholipids), long-term energy storage (TAGs) and cell signaling.<br/>
-      • <strong>Proteins</strong> (amino acid polymers) perform catalytic (enzymes), structural (collagen), transport (hemoglobin) and defense (antibodies) roles.<br/>
-      • <strong>Nucleic Acids</strong> (nucleotide polymers) store and transmit genetic information (DNA & RNA).
-    </div>
-  </div>
-  <div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:16px; font-weight:700; color:#0f766e;">
-    2. Biological Membranes, Structure, Action Potential and Transport Processes
-  </div>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    A biological membrane is a selectively permeable boundary composed mainly of lipids, proteins and carbohydrates that separates the internal and external environments of cells and organelles.
-  </p>`,
-
-  // Page 6
-  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Working Principle & Membrane Types</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    According to the <strong>fluid mosaic model</strong>, the membrane consists of a phospholipid bilayer in which proteins are embedded and move laterally. Hydrophobic lipid tails face inward, while hydrophilic heads face the aqueous environment.<br/>
-    • Integral proteins (transport, receptors) vs Peripheral proteins (signaling, support).<br/>
-    • Cholesterol regulates membrane fluidity in animal cells.
-  </p>
-  <h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Transport Processes across Membranes</h3>
-  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-    <li><strong>Simple diffusion:</strong> movement along concentration gradient without energy or carrier.</li>
-    <li><strong>Facilitated diffusion:</strong> movement along gradient with transport proteins.</li>
-    <li><strong>Osmosis:</strong> movement of water across a semipermeable membrane.</li>
-    <li><strong>Active transport:</strong> movement against gradient using ATP (e.g. Na+/K+-ATPase).</li>
-    <li><strong>Secondary active transport:</strong> driven by electrochemical gradients.</li>
-  </ul>
-  <h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Action Potential Kinetics</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Depolarization occurs mainly due to Na+ influx; repolarization due to K+ efflux. Nernst equation at 25°C: E = (0.0591/z) * log([ion]out / [ion]in).
-  </p>`,
-
-  // Page 7
-  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
-    <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Typical 5-Mark Exam Question & Model Answer</h4>
-    <p style="font-weight:700; color:#14532d; font-size:13px; margin-bottom:6px;">Question: Explain the fluid mosaic model of membrane structure and transport processes across the membrane.</p>
-    <div style="font-size:13px; color:#14532d; line-height:1.6;">
-      <strong>Model Answer:</strong> The fluid mosaic model states that biological membranes consist of a fluid phospholipid bilayer with mobile embedded proteins.<br/>
-      Hydrophilic heads face external/internal aqueous phases, while hydrophobic fatty acid tails form the core.<br/>
-      Membrane proteins function as channels, carriers, receptors, and enzymes.<br/>
-      Transport occurs via passive mechanisms (simple diffusion, facilitated diffusion, osmosis) and active mechanisms (Na+/K+ pump, vesicular endo/exocytosis).
-    </div>
-  </div>
-  <div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:16px; font-weight:700; color:#0f766e;">
-    3. Enzymes: Classification, Kinetics and Mechanism of Action
-  </div>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Enzymes are biological catalysts (mainly proteins, or catalytic RNA ribozymes) that accelerate chemical reactions by lowering activation energy and stabilizing transition states without altering reaction equilibrium (ΔG).
-  </p>`,
-
-  // Page 8
-  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">IUBMB Classification of Enzymes (6 Classes)</h3>
-  <ol style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-    <li><strong>Oxidoreductases:</strong> catalyze oxidation-reduction reactions (e.g. dehydrogenases).</li>
-    <li><strong>Transferases:</strong> transfer functional groups from one molecule to another (e.g. kinases).</li>
-    <li><strong>Hydrolases:</strong> catalyze bond cleavage by adding water (e.g. phosphatases, lipases).</li>
-    <li><strong>Lyases:</strong> add/remove groups to double bonds without hydrolysis (e.g. decarboxylases).</li>
-    <li><strong>Isomerases:</strong> catalyze intramolecular rearrangements (e.g. isomerases, mutases).</li>
-    <li><strong>Ligases:</strong> join two molecules using ATP hydrolysis (e.g. synthetases, DNA ligase).</li>
+  <h4 style="margin:0 0 10px; color:#0f172a; font-size:14px;">🎓 Final Exam Preparation Protocol</h4>
+  <ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px; margin:0;">
+    <li>Draw pathways (Glycolysis, TCA cycle, beta-oxidation) at least three times from memory.</li>
+    <li>Memorize all major equations (ΔG = ΔH - T*ΔS, v = Vmax*[S]/(Km+[S]), Nernst equation) and define every variable.</li>
+    <li>Solve previous GATE and university questions topic-wise.</li>
+    <li>Practice writing compact 5-mark model answers within one page.</li>
+    <li>Revise regulatory enzymes (PFK-1, ACC) and ATP yield repeatedly.</li>
   </ol>
-  <h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Associated Terms</h4>
-  <p style="font-size:13px; color:#334155; line-height:1.6;">
-    • <strong>Apoenzyme:</strong> inactive protein component alone.<br/>
-    • <strong>Holoenzyme:</strong> complete catalytically active enzyme (Apoenzyme + Cofactor).<br/>
-    • <strong>Coenzyme:</strong> organic non-protein cofactor (vitamin-derived e.g. NAD+, FAD).<br/>
-    • <strong>Prosthetic group:</strong> tightly or covalently bound cofactor (e.g. heme).
-  </p>`,
-
-  // Page 9
-  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Enzyme Kinetics & Michaelis-Menten Equation</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Basic scheme: E + S <-> ES -> E + P<br/>
-    Michaelis-Menten Equation: v = (Vmax * [S]) / (Km + [S])<br/>
-    Lineweaver-Burk Double Reciprocal Plot: 1/v = (Km/Vmax)*(1/[S]) + 1/Vmax
-  </p>
-  <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px; margin-top:14px;">
-    <h4 style="margin:0 0 8px; color:#0f172a; font-size:14px;">Meaning of Kinetic Parameters</h4>
-    <ul style="font-size:13px; color:#334155; line-height:1.6; padding-left:20px; margin:0;">
-      <li><strong>Vmax:</strong> maximum reaction velocity at enzyme saturation.</li>
-      <li><strong>Km:</strong> substrate concentration at half-Vmax. Lower Km indicates higher enzyme affinity.</li>
-      <li><strong>kcat:</strong> turnover number (kcat = Vmax / [E]t), molecules converted per second.</li>
-      <li><strong>kcat/Km:</strong> catalytic efficiency index.</li>
-    </ul>
-  </div>`,
-
-  // Page 10
-  `<h4 style="font-size:14px; color:#0f172a; margin:0 0 8px;">Derivation Outline of Michaelis-Menten Equation</h4>
-  <ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px;">
-    <li>Reaction: E + S <-> ES -> E + P</li>
-    <li>Steady-state assumption: Rate of ES formation = Rate of ES breakdown -> k1[E][S] = (k_-1 + k2)[ES]</li>
-    <li>Define Michaelis constant: Km = (k_-1 + k2) / k1</li>
-    <li>Conservation of enzyme: [E]t = [E] + [ES] -> [E] = [E]t - [ES]</li>
-    <li>Substitute [E]: k1([E]t - [ES])[S] = (k_-1 + k2)[ES]</li>
-    <li>Simplify for [ES] and velocity v = k2[ES]: v = (Vmax * [S]) / (Km + [S])</li>
-  </ol>`,
-
-  // Page 11
-  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Enzyme Inhibition Modes</h3>
-  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-    <li><strong>Competitive Inhibition:</strong> Inhibitor binds active site. Km increases, Vmax unchanged. Overcome by excess [S].</li>
-    <li><strong>Non-Competitive Inhibition:</strong> Inhibitor binds separate site. Km unchanged, Vmax decreases. Not reversed by [S].</li>
-    <li><strong>Uncompetitive Inhibition:</strong> Inhibitor binds only to ES complex. Both Km and Vmax decrease.</li>
-    <li><strong>Irreversible Inhibition:</strong> Covalent or tight permanent binding (e.g. aspirin inhibiting COX).</li>
-  </ul>
-  <h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Allosteric Regulation</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Allosteric enzymes feature regulatory sites distinct from the active site and exhibit sigmoidal kinetics (e.g. phosphofructokinase-1 in glycolysis).
-  </p>`,
-
-  // Page 12
-  `<h4 style="font-size:14px; color:#0f172a; margin:0 0 10px;">Quick Comparison Table of Enzyme Inhibition</h4>
-  <table style="width:100%; border-collapse:collapse; font-size:12.5px; margin-bottom:20px;">
-    <thead>
-      <tr style="background:#1e293b; color:#fff; text-align:left;">
-        <th style="padding:8px;">Inhibition Type</th>
-        <th style="padding:8px;">Binding Site</th>
-        <th style="padding:8px;">Effect on Km</th>
-        <th style="padding:8px;">Effect on Vmax</th>
-        <th style="padding:8px;">Reversed by [S]?</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Competitive</td><td style="padding:8px; border:1px solid #e2e8f0;">Active site</td><td style="padding:8px; border:1px solid #e2e8f0;">Increases (Km up)</td><td style="padding:8px; border:1px solid #e2e8f0;">No change</td><td style="padding:8px; border:1px solid #e2e8f0;">Yes</td></tr>
-      <tr><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Non-competitive</td><td style="padding:8px; border:1px solid #e2e8f0;">Separate site on E/ES</td><td style="padding:8px; border:1px solid #e2e8f0;">No change</td><td style="padding:8px; border:1px solid #e2e8f0;">Decreases (Vmax down)</td><td style="padding:8px; border:1px solid #e2e8f0;">No</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:8px; border:1px solid #e2e8f0; font-weight:700;">Uncompetitive</td><td style="padding:8px; border:1px solid #e2e8f0;">ES complex only</td><td style="padding:8px; border:1px solid #e2e8f0;">Decreases (Km down)</td><td style="padding:8px; border:1px solid #e2e8f0;">Decreases (Vmax down)</td><td style="padding:8px; border:1px solid #e2e8f0;">No</td></tr>
-    </tbody>
-  </table>
-  <div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:16px; font-weight:700; color:#0f766e;">
-    4. Basic Concepts and Design of Metabolism
-  </div>`,
-
-  // Page 13
-  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Metabolic Architecture: Catabolism vs. Anabolism</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    • <strong>Catabolism:</strong> oxidative breakdown of complex molecules releasing energy (ATP, NADH).<br/>
-    • <strong>Anabolism:</strong> reductive synthesis of complex macromolecules requiring energy input.<br/>
-    • <strong>Amphibolic Pathways:</strong> dual role in breakdown and synthesis (e.g. Citric Acid Cycle).<br/>
-    Central interconnecting hubs: pyruvate, acetyl-CoA, oxaloacetate, ATP, NADH, NADPH.
-  </p>`,
-
-  // Page 14
-  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Carbohydrate Metabolism — Glycolysis</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    Glycolysis is the cytosolic 10-step pathway converting 1 glucose into 2 pyruvate.<br/>
-    Key regulatory enzyme: <strong>Phosphofructokinase-1 (PFK-1)</strong>.<br/>
-    Overall reaction:<br/>
-    Glucose + 2 ADP + 2 Pi + 2 NAD+ -> 2 Pyruvate + 2 ATP + 2 NADH + 2 H+ + 2 H2O<br/>
-    Net ATP yield = 4 (produced) - 2 (invested) = 2 ATP.
-  </p>`,
-
-  // Page 15
-  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Central Metabolic Pathways Overview</h3>
-  <ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
-    <li><strong>Gluconeogenesis:</strong> Glucose synthesis from non-carbohydrates (lactate, glycerol, amino acids) in liver/kidney. Bypasses 3 irreversible steps of glycolysis.</li>
-    <li><strong>Citric Acid Cycle (TCA):</strong> Mitochondrial matrix oxidation of acetyl-CoA. Per acetyl-CoA yields 3 NADH + 1 FADH2 + 1 GTP.</li>
-    <li><strong>Beta Oxidation:</strong> Mitochondrial matrix degradation of fatty acids into 2-carbon acetyl-CoA units.</li>
-    <li><strong>Fatty Acid Synthesis:</strong> Cytosolic assembly catalyzed by acetyl-CoA carboxylase (ACC).</li>
-    <li><strong>Urea Cycle:</strong> Hepatic detoxification of ammonia into urea.</li>
-  </ul>`,
-
-  // Page 16
-  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Photosynthesis, Respiration & Electron Transport Chain</h3>
-  <p style="font-size:13.5px; color:#334155; line-height:1.7;">
-    • <strong>Photosynthesis:</strong> Light reactions generate ATP and NADPH; Calvin cycle fixes CO2.<br/>
-    • <strong>Respiration & ETC:</strong> Electron transfer from NADH/FADH2 through Complexes I–IV to O2 creates a proton gradient across inner mitochondrial membrane, driving ATP synthesis via F1F0-ATP synthase (chemiosmotic theory).
-  </p>
-  <div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-top:20px; font-weight:700; color:#0f766e;">
-    5. Bioenergetics & Thermodynamics
-  </div>`,
-
-  // Page 17
-  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Thermodynamics & Free Energy Equations</h3>
-  <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:14px; borderRadius:8px; font-size:13px; line-height:1.8;">
-    1. Gibbs free energy relation: ΔG = ΔH - T*ΔS<br/>
-    2. Standard free energy relation: ΔG = ΔG° + RT*ln(Q)<br/>
-    3. Equilibrium constant relation: ΔG° = -RT*ln(Keq)<br/>
-    4. ATP hydrolysis: ATP + H2O -> ADP + Pi + energy (ΔG° = -30.5 kJ/mol)<br/>
-    5. Free energy and redox potential: ΔG° = -nF*ΔE°
-  </div>
-  <p style="font-size:13px; color:#334155; margin-top:10px;">
-    Spontaneous reactions proceed when ΔG < 0 (exergonic). Endergonic reactions (ΔG > 0) are driven by coupling with ATP hydrolysis.
-  </p>`,
-
-  // Page 18
-  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
-    <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Typical 5-Mark Exam Question & Model Answer</h4>
-    <p style="font-weight:700; color:#14532d; font-size:13px; margin-bottom:6px;">Question: What is bioenergetics? Explain the importance of ATP in cellular energy transactions.</p>
-    <div style="font-size:13px; color:#14532d; line-height:1.6;">
-      <strong>Model Answer:</strong> Bioenergetics studies energy flow and transformations in biological systems.<br/>
-      ATP acts as the universal energy currency of cells because hydrolysis of its phosphoanhydride bonds releases usable free energy (ΔG° = -30.5 kJ/mol).<br/>
-      Cells couple exergonic ATP hydrolysis to endergonic processes such as active transport (Na+/K+ pump), mechanical work (muscle contraction) and anabolic biosynthesis.
-    </div>
-  </div>
-  <h4 style="font-size:14px; color:#0f172a; margin:14px 0 8px;">Rapid Comparison Table of Core Syllabus Topics</h4>
-  <table style="width:100%; border-collapse:collapse; font-size:12px;">
-    <thead>
-      <tr style="background:#1e293b; color:#fff; text-align:left;">
-        <th style="padding:6px;">Topic</th>
-        <th style="padding:6px;">Most Important Point</th>
-        <th style="padding:6px;">Frequent Exam Focus</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="background:#f8fafc;"><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Biomolecules</td><td style="padding:6px; border:1px solid #e2e8f0;">Structure determines function</td><td style="padding:6px; border:1px solid #e2e8f0;">Building blocks, glycosidic/peptide/ester bonds</td></tr>
-      <tr><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Membranes</td><td style="padding:6px; border:1px solid #e2e8f0;">Fluid mosaic model & selective permeability</td><td style="padding:6px; border:1px solid #e2e8f0;">Active vs passive transport, Nernst equation</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Enzymes</td><td style="padding:6px; border:1px solid #e2e8f0;">Catalysts lower activation energy</td><td style="padding:6px; border:1px solid #e2e8f0;">Michaelis-Menten (Km, Vmax), inhibition patterns</td></tr>
-      <tr><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Metabolism</td><td style="padding:6px; border:1px solid #e2e8f0;">Interconnected regulated pathways</td><td style="padding:6px; border:1px solid #e2e8f0;">Glycolysis net yield, TCA cycle, beta-oxidation</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:6px; border:1px solid #e2e8f0; font-weight:700;">Bioenergetics</td><td style="padding:6px; border:1px solid #e2e8f0;">ATP couples energy release & use</td><td style="padding:6px; border:1px solid #e2e8f0;">ΔG = ΔH - T*ΔS, redox ΔG° = -nF*ΔE°</td></tr>
-    </tbody>
-  </table>`,
-
-  // Page 19
-  `<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:20px;">
-    <h4 style="margin:0 0 10px; color:#0f172a; font-size:14px;">🎓 Final Exam Preparation Protocol</h4>
-    <ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px; margin:0;">
-      <li>Draw pathways (Glycolysis, TCA cycle, beta-oxidation) at least three times from memory.</li>
-      <li>Memorize all major equations (ΔG = ΔH - T*ΔS, v = Vmax*[S]/(Km+[S]), Nernst equation) and define every variable.</li>
-      <li>Solve previous GATE and university questions topic-wise.</li>
-      <li>Practice writing compact 5-mark model answers within one page.</li>
-      <li>Revise regulatory enzymes (PFK-1, ACC) and ATP yield repeatedly.</li>
-    </ol>
-  </div>`
+</div>`
 ];
+
 const FULL_GENETICS_23_PAGES = [
   // Page 1
   `<h1 style="font-size:22px; color:#1e3a8a; margin:0 0 10px; border-bottom:2px solid #1e3a8a; padding-bottom:8px;">MASTER ENGINEERING COURSE GUIDE:<br/>ADVANCED GENETICS & MOLECULAR BIOLOGY</h1>
