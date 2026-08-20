@@ -5169,7 +5169,10 @@ export default function LearningPage() {
   useEffect(() => {
     async function load() {
       const { data: { user } } = await supabase.auth.getUser();
-      if (!user) { window.location.href = "/login"; return; }
+      if (!user) {
+        window.location.href = "/login";
+        return;
+      }
       const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
       setProfile(data);
       setLoading(false);
@@ -5178,17 +5181,24 @@ export default function LearningPage() {
   }, []);
 
   function handleXPUpdate(newXP) {
-    setProfile(prev => prev ? { ...prev, xp: newXP } : prev);
+    setProfile(prev => (prev ? { ...prev, xp: newXP } : prev));
+  }
+
+  if (loading) {
+    return (
+      <AppShell active="/learning">
+        <div style={{ textAlign: "center", padding: "100px", color: "#9CA3AF" }}>Loading...</div>
+      </AppShell>
+    );
   }
 
   return (
     <AppShell active="/learning">
-      {loading
-        ? <div style={{ textAlign: "center", padding: "100px", color: "#9CA3AF" }}>Loading...</div>
-        : profile?.role === "educator"
-          ? <EducatorView supabase={supabase} profile={profile} onXPUpdate={handleXPUpdate} />
-          : <StudentView supabase={supabase} profile={profile} onXPUpdate={handleXPUpdate} />
-      }
+      {profile?.role === "educator" ? (
+        <EducatorView supabase={supabase} profile={profile} onXPUpdate={handleXPUpdate} />
+      ) : (
+        <StudentView supabase={supabase} profile={profile} onXPUpdate={handleXPUpdate} />
+      )}
     </AppShell>
   );
 }
