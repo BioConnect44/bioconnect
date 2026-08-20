@@ -624,50 +624,141 @@ const COURSE_TOPICS = [
       }
     ]
   },
-  {
+    {
     id: "topic-05",
     topicNum: "TOPIC 05",
     name: "Bioprocess Engineering",
     shortName: "Bioprocess Engineering",
     icon: "🏭",
     color: "#EC4899",
-    notesCount: "3 notes",
+    notesCount: "25 pages",
     module: "Module 4 of 4",
     progress: 40,
-    tagline: "Reactor design, stoichiometry, oxygen mass transfer & sterilization kinetics.",
+    tagline: "Full 25-Page Master Textbook: Upstream, downstream, kinetics, scale-up, bioreactors, products, purification & bioremediation.",
     pdfTitle: "Topic 05 - Bioprocess Engineering.pdf",
     sections: [
       {
-        title: "1. Material & Electron Balances",
-        content: `• Biomass Formula: CHaObNc.
-• Degree of Reductance (γ): γ = 4 + a - 2b - 3c (for NH3 nitrogen source).
-• If nitrogen source is HNO3 (N is +5): γ = 4 + a - 2b + 5c.`
+        title: "1. Engineering Principles: Upstream & Downstream",
+        content: `• Upstream Processing (USP): Media formulation, sterilization (Del factor ∇ ≥ 40), inoculum scale-up (5-10% v/v), growth kinetics.
+• Downstream Processing (DSP): Recovery, isolation, purification (chromatography, TFF), formulation.
+• Monod Model: μ = (μmax · S) / (Ks + S). Saturation constant Ks = S at μ = 0.5 μmax.
+• Thermal Death Kinetics: ln(N0/Nt) = k·t = ∇. Arrhenius dependency k = A·e^(-Ed/(R·T)). HTST rationale: Ed (250-300 kJ/mol) >> En (80-120 kJ/mol).`
       },
       {
-        title: "2. Ideal & Non-Ideal Reactors",
-        content: `• Batch: Closed system; dX/dt = μX.
-• CSTR / Chemostat: Open, steady state. Dilution rate D = F/V. At steady state, μ = D. Washout occurs when D > μmax.
-• PFR: Plug flow reactor, no axial mixing; τ = V/F = ∫dS/(-rS).`
+        title: "2. Bioprocess Scale-Up & Rheology",
+        content: `• Scale-Up Transition: Lab scale (0.5-5L) to industrial production (10,000-500,000L).
+• Fluid Rheology: Bingham plastic (yield stress τ0) vs Pseudoplastic (shear-thinning, Penicillium).
+• Equations: Reynolds No. Rei = (ρ · Ni · Di²) / μ. Ungassed Power P = Np · ρ · Ni³ · Di⁵.
+• Scale-Up under Constant P/V: Ni2 = Ni1 · (Di1 / Di2)^(2/3). Geometric similarity H/Dt ≈ 2-3, Di/Dt ≈ 0.33.`
       },
       {
-        title: "3. Mass Transfer & Sterilization Kinetics",
-        content: `• Oxygen Transfer Rate (OTR): OTR = kLa(C* - CL) ≥ OUR = qO2 · X.
-• Sterilization Del Factor (∇): ∇ = ln(N0/Nt) = ∫kd dt.
-• HTST (High-Temperature Short-Time): 140°C for seconds sterilizes media while preserving heat-labile nutrients.`
+        title: "3. Microbial, Animal & Plant Platforms",
+        content: `• Microbial (Bacteria/Yeast): Rigid peptidoglycan/chitin wall; rapid growth (td 20m-4h); high oxygen demand (kLa 100-500 h⁻¹); STR bioreactors.
+• Animal Cells (CHO/HEK): Fragile plasma membrane; slow growth (td 18-24h); low kLa (10-25 h⁻¹); airlift/wave bioreactors + Pluronic F-68 shear protection.
+• Plant Cells: Rigid cellulose wall, large clusters; very slow (td 2-5d); airlift bioreactors avoid mechanical impeller tip shear.`
+      },
+      {
+        title: "4. Production Kinetics (Primary vs Secondary)",
+        content: `• Primary Metabolites (Growth-Associated): Ethanol, lactic acid. qp = Y_(P/X) · μ = α · μ.
+• Secondary Metabolites (Non-Growth-Associated): Penicillin, statins. Idiophase production. qp = β = constant (independent of μ).
+• Luedeking-Piret Model: dP/dt = α(dX/dt) + β X. Ethanol: β = 0. Penicillin: α = 0.`
+      },
+      {
+        title: "5. Industrial Bioproducts & Catabolite Repression",
+        content: `• Products: Bioethanol (S. cerevisiae, Z. mobilis), Bioplastics/PHA (C. necator), Enzymes (α-Amylase, Proteases), Antibiotics (Penicillin, Streptomycin).
+• Catabolite Repression: Rapidly metabolizable glucose suppresses cAMP & secondary metabolite genes.
+• Solution: Fed-Batch Fermentation strategy maintaining low glucose concentrations.`
+      },
+      {
+        title: "6. Recombinant Protein Production & Purification Metrics",
+        content: `• Expression: Intracellular (Inclusion bodies in E. coli, refolding via 6M Guanidine HCl or 8M Urea) vs Extracellular (P. pastoris, CHO).
+• Performance Metrics: Yield (%) = (Pf/Pi)·100, Specific Activity (SA) = Units / Total Protein (mg), Purification Factor (PF) = SA_final / SA_initial.`
+      },
+      {
+        title: "7. Chromatography & Membrane Bio-Separations",
+        content: `• Chromatography Modalities: CEX (neg resin, pH < pI), AEX (pos resin, pH > pI), HIC (high salt binding), Affinity (Protein A, Ni-NTA).
+• Membrane Separation: Tangential Flow Filtration (TFF) prevents cake fouling.
+• Equations: Van Deemter HETP = A + B/u + C·u. Darcy-Flux J = ΔP / (μ(Rm + Rc)).`
+      },
+      {
+        title: "8. Biocatalyst Immobilization & Thiele Modulus",
+        content: `• Immobilization Techniques: Physical entrapment (Ca-alginate + CaCl2), Microencapsulation, Adsorption, Covalent binding, Cross-linking (CLECs, CLEAs).
+• Thiele Modulus: ϕ = R · √(k1 / De). When ϕ > 3, effectiveness factor η ≈ 1/ϕ (diffusion-limited).
+• Improvements: Decrease bead radius R, increase matrix porosity De.`
+      },
+      {
+        title: "9. Bioremediation: Aerobic vs. Anaerobic",
+        content: `• Aerobic: O2 electron acceptor (Activated Sludge ASP). BOD_t = BOD_u(1 - e^-ket). High sludge yield (YX/S 0.4-0.6).
+• Anaerobic: Hydrolysis → Acidogenesis → Acetogenesis → Methanogenesis (CH4 55-70% + CO2). Low sludge yield (0.05-0.1), energy positive (UASB reactors).`
+      },
+      {
+        title: "10. Comprehensive GATE Practice & Revision",
+        content: `• Chemostat Balance: μ = D = F/V. Substrate S = (Ks · D) / (μmax - D). Washout D_crit = (μmax · S0) / (Ks + S0).
+• OTR Equation: OTR = kLa(C* - CL).
+• Size Exclusion Chromatography: Large molecules elute FIRST (excluded from matrix pores).`
       }
     ],
     examTraps: [
-      "Chemostat golden rule: the culture grows exactly as fast as you feed it — μ = D at steady state.",
-      "At chemostat steady state, residual substrate S is set by dilution rate D, NOT by feed concentration Sin.",
-      "Washout occurs when dilution rate D exceeds the maximum achievable growth rate μmax."
+      "Chemostat golden rule: at steady state, specific growth rate μ exactly equals dilution rate D (μ = D = F/V).",
+      "Scale-up under constant P/V: impeller speed scales as Ni2 = Ni1 · (Di1 / Di2)^(2/3).",
+      "Anion Exchange (AEX): operates at pH > pI so protein carries a net negative charge."
     ],
     pyqs: [
       {
         id: 1,
-        question: "Which parameter describes volumetric oxygen mass transfer capability in a fermenter?",
-        options: ["kLa", "Re (Reynolds number)", "N (Impeller speed)", "Kd"],
+        question: "GAT-B 2022: A bioreactor is used for:",
+        options: ["DNA sequencing", "Large-scale cultivation of cells/microorganisms", "Electrophoresis", "Chromosome mapping"],
+        correct: 1,
+        explanation: "Bioreactors are engineered vessels designed for large-scale, controlled cultivation of living cells or microorganisms."
+      },
+      {
+        id: 2,
+        question: "GAT-B 2022: The growth phase showing maximum product formation in primary metabolites is:",
+        options: ["Lag phase", "Log phase", "Death phase", "Decline phase"],
+        correct: 1,
+        explanation: "Primary metabolites (such as ethanol or amino acids) are growth-associated and produced maximally during the exponential (log) growth phase."
+      },
+      {
+        id: 3,
+        question: "GAT-B 2022: Batch fermentation means:",
+        options: ["Continuous nutrient addition", "Closed system fermentation", "Cell-free fermentation", "Anaerobic digestion only"],
+        correct: 1,
+        explanation: "Batch fermentation is a closed system process where all nutrient components are added initially, with no addition or harvest until completion."
+      },
+      {
+        id: 4,
+        question: "GAT-B 2023: Foam formation in bioreactors is controlled using:",
+        options: ["Antibiotics", "Antifoaming agents", "Restriction enzymes", "Auxins"],
+        correct: 1,
+        explanation: "Antifoaming agents (surfactants or silicone oils) lower surface tension and break foam bubbles formed during intense aeration and sparging."
+      },
+      {
+        id: 5,
+        question: "GAT-B 2023: Downstream processing mainly involves:",
+        options: ["Fermentation only", "Product recovery and purification", "Cell transformation", "DNA replication"],
+        correct: 1,
+        explanation: "Downstream processing (DSP) includes all unit operations required for harvest, cell disruption, isolation, and purification of the target product."
+      },
+      {
+        id: 6,
+        question: "GAT-B 2023: Stirred tank bioreactors mainly provide:",
+        options: ["Genetic transformation", "Aeration and mixing", "DNA sequencing", "Chromosome staining"],
+        correct: 1,
+        explanation: "Stirred tank bioreactors use impellers and spargers to provide homogeneous bulk mixing, heat transfer, and dissolved oxygen aeration."
+      },
+      {
+        id: 7,
+        question: "In scaling up a stirred tank bioreactor under constant power per unit volume (P/V), if the impeller diameter is increased 10-fold, the new impeller speed (N2) relative to N1 will be:",
+        options: ["N2 = N1 * (0.1)^(2/3) ≈ 0.215 N1", "N2 = 10 * N1", "N2 = N1 / 10", "N2 = N1 * 10^(3/2)"],
         correct: 0,
-        explanation: "kLa (volumetric oxygen mass transfer coefficient) measures gas-liquid mass transfer in bioreactors."
+        explanation: "For constant P/V in turbulent regime, N2 = N1 * (D1 / D2)^(2/3). With D1/D2 = 0.1, N2 = N1 * (0.1)^0.667 ≈ 0.215 N1."
+      },
+      {
+        id: 8,
+        question: "An industrial immobilized enzyme bead system has a Thiele Modulus (ϕ) of 12. The internal effectiveness factor (η) is approximately:",
+        options: ["8.3% (0.0833)", "100%", "50%", "12.0%"],
+        correct: 0,
+        explanation: "When Thiele Modulus ϕ > 3, the system is in the strong diffusion-limited regime where effectiveness factor η ≈ 1 / ϕ = 1 / 12 = 0.0833 (8.3%)."
       }
     ]
   }
@@ -1721,6 +1812,446 @@ const FULL_ANIMAL_CELL_18_PAGES = [
 </div>`
 ];
 
+const FULL_BIOPROCESS_25_PAGES = [
+  `<h1 style="font-size:22px; color:#be185d; margin:0 0 10px; border-bottom:2px solid #be185d; padding-bottom:8px;">COMPREHENSIVE STUDY GUIDE: BIOPROCESS ENGINEERING</h1>
+<p style="font-style:italic; color:#475569; font-size:13px; margin-bottom:24px;">High-Yield Coursework &amp; GATE Preparation Handbook — Comprehensive Version 3</p>
+<div style="background:#fce7f3; border-left:4px solid #db2777; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9d174d;">
+  1. Engineering Principles of Bioprocessing: Upstream &amp; Downstream
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Definition &amp; Conceptual Foundations</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Bioprocess Engineering is the discipline that integrates the principles of biology, chemistry, and engineering to translate laboratory-scale biological discoveries into large-scale, viable industrial processes. It is fundamentally divided into two interconnected domains:<br/>
+  • <strong>Upstream Processing (USP):</strong> Encompasses all open/closed configurations preceding the actual bioreactor step, including medium formulation, sterilization, inoculum preparation, genetic development of the expression host, and kinetics of cellular growth up to the point of harvest.<br/>
+  • <strong>Downstream Processing (DSP):</strong> Comprises all unit operations required to recover, separate, isolate, purify, and formulate the target biological product from the highly complex bioreaction broth while maintaining structural stability and biological activity.
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Working Principle</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  The core working principle relies on maintaining mass and energy balances across biological systems. Unlike chemical kinetics, bioprocessing deals with living catalysts (microbial, plant, or animal cells) or active macromolecules (enzymes). The engineering strategy must balance optimal physiological requirements (shear stress limitations, oxygen mass transfer, dissolved carbon dioxide levels, nutrient feeds) with macro-transport phenomena (fluid dynamics, mixing times, heat transfer capacities during exothermic fermentation).
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Key Equations &amp; Critical Kinetic Derivations</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  <strong>1. Microbial Growth Kinetics (Monod Model):</strong><br/>
+  The specific growth rate (μ) of a cell population depends on the concentration of a single limiting substrate (S):<br/>
+  <strong style="color:#db2777; font-size:14.5px;">μ = (μ_max · S) / (K_s + S)</strong><br/>
+  Where μ is specific growth rate (h⁻¹), μ_max is maximum specific growth rate (h⁻¹), S is limiting substrate concentration (g/L), and K_s is the Monod saturation constant (g/L, where μ = 0.5 μ_max).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">2. Biomass Yield Coefficient</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  The quantitative relationship relating cellular biomass generation to substrate consumption is expressed as:<br/>
+  <strong style="color:#db2777; font-size:14.5px;">Y_{X/S} = ΔX / ΔS = - (dX / dS)</strong>
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">3. Thermal Death Kinetics &amp; Del Factor (∇)</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  The destruction of micro-organisms via thermal sterilization follows a first-order kinetic pathway:<br/>
+  <strong>- dN / dt = k · N</strong><br/>
+  Integrating between time t = 0 (initial population N₀) and sterilization time t (final population N_t):<br/>
+  <strong style="color:#db2777; font-size:14.5px;">ln(N₀ / N_t) = k · t = ∇</strong><br/>
+  Where ∇ (Del factor) represents the design criterion for sterilization profiling. Specific death rate constant k follows Arrhenius dependency:<br/>
+  <strong>k = A · e^(-E_d / (R · T))</strong>
+</p>
+<div style="background:#fff1f2; border:1px solid #fecdd3; border-radius:8px; padding:12px; margin-top:14px; margin-bottom:16px; font-size:13px; color:#9f1239;">
+  <strong>GATE Insight: Numerical Trap:</strong> In GATE numerical problems, if an overall contamination probability (e.g., 1 in 1000 runs, meaning N_t = 10⁻³) is specified for a fermenter volume V containing initial cell density X₀, the true initial number of total contaminant cells is <strong>N₀ = X₀ · V</strong>. Always verify volume units before processing ∇ computations.
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Step-by-Step Stepwise Technical Working Protocol</h3>
+<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px;">
+  <ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px; margin:0;">
+    <li><strong>Media Formulation &amp; Raw Material Choice:</strong> Calculate stoichiometric requirements of Carbon, Nitrogen, Phosphorus, and trace minerals for targeted biomass/product yields.</li>
+    <li><strong>Sterilization Protocol:</strong> Apply batch thermal profiling or continuous high-temperature short-time (HTST) flash heating to medium feed, minimizing nutrient denaturation while validating ∇ ≥ 40.</li>
+    <li><strong>Inoculum Scale-Up:</strong> Perform serial multi-stage cultivation step-ups starting from cryovial stock, through shake flasks, to bench seed bioreactors (5-10% v/v ratio).</li>
+    <li><strong>Bioreaction Operational Regulation:</strong> Control dissolved oxygen (DO), agitation, pH, temperature, and feeding profiles within target constraints.</li>
+  </ol>
+</div>`,
+  `<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  5. <strong>Harvesting &amp; Primary Clarification:</strong> Extract broth, perform flocculation or centrifugation, and achieve separation of raw liquid stream from cellular mass fractions.
+</p>
+<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-top:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">5-Mark Exam Question: Derive the design equation for a batch sterilization cycle and explain the physical significance of the Del Factor (∇). How does temperature influence nutrient preservation during sterilization?</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Model Answer:</strong> Thermal destruction of microbes is modeled as a first-order rate expression: -dN/dt = k · N.<br/>
+    Rearranging and integrating from t=0 (N=N₀) to t (N=N_t):<br/>
+    ∫(dN/N) from N₀ to N_t = - ∫ k dt  ⟹  <strong>ln(N₀ / N_t) = k · t = ∇</strong><br/><br/>
+    The <strong>Del Factor (∇)</strong> is a dimensionless parameter measuring the size of the microbial inactivation challenge (logarithmic reduction fraction).<br/><br/>
+    <strong>Temperature Influence (HTST Concept):</strong> The activation energy for thermal cell death (E_d ≈ 250-300 kJ/mol) is significantly higher than the activation energy for thermal degradation of essential nutrients (E_n ≈ 80-120 kJ/mol). Consequently, increasing temperature while dramatically decreasing holding time (High-Temperature Short-Time or HTST) achieves the target ∇ value while minimizing nutrient damage.
+  </div>
+</div>`,
+  `<div style="background:#fce7f3; border-left:4px solid #db2777; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9d174d;">
+  2. Bioprocess Design and Development: From Lab to Industrial Scale
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Definition &amp; Conceptual Foundations</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  <strong>Bioprocess Scale-Up</strong> is the analytical engineering transition required to transfer an optimized laboratory-scale culture process (0.5 to 5 Liters) into a structurally stable, economically viable industrial production vessel (10,000 to 500,000 Liters). Scale-down architectures represent exact reverse models utilized to troubleshoot commercial run anomalies at small bench scales.
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Working Principle &amp; Fluid Rheology</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Physical dynamics change non-linearly when geometric dimensional transformations scale up. In a lab flask, surface-to-volume ratio is high and transport limits are rare. At industrial scale, bulk mixing, localized heat dissipation, and volumetric mass transfer (k_L a) emerge as major constraints.<br/>
+  Fermentation broths can display non-Newtonian behavior:<br/>
+  • <strong>Bingham Plastic:</strong> Requires a threshold yield stress (τ₀) before starting flow.<br/>
+  • <strong>Pseudoplastic (Shear-thinning):</strong> Viscosity drops continuously as shear rates increase (characteristic of filamentous fungal fermentations like <em>Penicillium</em>).
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Key Equations &amp; Scale-Up Rules</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Impeller Reynolds Number: <strong style="color:#db2777;">Re_i = (ρ · N_i · D_i²) / μ</strong><br/>
+  Ungassed Power Consumption: <strong style="color:#db2777;">P = N_p · ρ · N_i³ · D_i⁵</strong><br/>
+  Where ρ = fluid density, N_i = impeller rotational speed, D_i = impeller diameter, μ = viscosity, and N_p = Power Number (constant in fully turbulent regime Re_i &gt; 10⁴).
+</p>`,
+  `<h4 style="font-size:14px; color:#0f172a; margin:0 0 10px;">Standard Scale-Up Criteria Options Table</h4>
+<table style="width:100%; border-collapse:collapse; font-size:12.5px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#be185d; color:#fff; text-align:left;">
+      <th style="padding:8px;">Scale-Up Criterion</th>
+      <th style="padding:8px;">Invariant Operational Condition</th>
+      <th style="padding:8px;">Mathematical Scaling Relationship</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fdf2f8;"><td style="padding:8px; border:1px solid #fbcfe8; font-weight:700;">Constant Power per Volume</td><td style="padding:8px; border:1px solid #fbcfe8;">(P / V)₁ = (P / V)₂</td><td style="padding:8px; border:1px solid #fbcfe8;">N_{i2} = N_{i1} · (D_{i1} / D_{i2})^{2/3}</td></tr>
+    <tr><td style="padding:8px; border:1px solid #fbcfe8; font-weight:700;">Constant Tip Speed</td><td style="padding:8px; border:1px solid #fbcfe8;">(π N_i D_i)₁ = (π N_i D_i)₂</td><td style="padding:8px; border:1px solid #fbcfe8;">N_{i2} = N_{i1} · (D_{i1} / D_{i2})</td></tr>
+    <tr style="background:#fdf2f8;"><td style="padding:8px; border:1px solid #fbcfe8; font-weight:700;">Constant Mass Transfer Rate</td><td style="padding:8px; border:1px solid #fbcfe8;">(k_L a)₁ = (k_L a)₂</td><td style="padding:8px; border:1px solid #fbcfe8;">Correlated with (P/V)^α · (v_s)^β</td></tr>
+    <tr><td style="padding:8px; border:1px solid #fbcfe8; font-weight:700;">Constant Mixing Reynolds No.</td><td style="padding:8px; border:1px solid #fbcfe8;">(Re_i)₁ = (Re_i)₂</td><td style="padding:8px; border:1px solid #fbcfe8;">N_{i2} = N_{i1} · (D_{i1} / D_{i2})²</td></tr>
+  </tbody>
+</table>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Step-by-Step Scale-Up Protocol</h3>
+<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px;">
+  <ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px; margin:0;">
+    <li><strong>Establish Geometric Similarity:</strong> Maintain static dimensional ratios (Height/Diameter H/D_t ≈ 2-3, Impeller/Tank diameter D_i/D_t ≈ 0.33).</li>
+    <li><strong>Determine Primary Control Variable:</strong> Select constraint parameter based on host organism (e.g. k_L a or P/V).</li>
+    <li><strong>Calculate Scale-Up Impeller Speed:</strong> Apply scaling rules to compute required operational RPM (N_{i2}).</li>
+    <li><strong>Evaluate Boundary Metrics:</strong> Verify mixing circulation time t_m and heat transfer capacities.</li>
+    <li><strong>Implement Oxygen Feed Configurations:</strong> Check Oxygen Transfer Rate vs Oxygen Uptake Rate: <strong>OTR = k_L a · (C* - C_L) ≥ OUR = q_{O2} · X</strong></li>
+  </ol>
+</div>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">5-Mark Exam Question: A laboratory fermenter (impeller diameter 0.1 m, speed 600 rpm) is scaled up to an industrial scale maintaining constant power per unit volume (P/V). If the large-scale impeller diameter is 1.0 m, calculate the required rotational speed of the industrial impeller under turbulent conditions.</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Model Answer:</strong> In a fully turbulent mixing system, Power Number N_p is constant.<br/>
+    Power P = N_p · ρ · N_i³ · D_i⁵. Fluid volume scales with D_i³, so V ∝ D_i³.<br/>
+    Specific power P / V ∝ (N_p · ρ · N_i³ · D_i⁵) / D_i³ = N_i³ · D_i².<br/><br/>
+    To maintain constant P/V across scales ((P/V)₁ = (P/V)₂):<br/>
+    N_{i1}³ · D_{i1}² = N_{i2}³ · D_{i2}²  ⟹  <strong>N_{i2} = N_{i1} · (D_{i1} / D_{i2})^{2/3}</strong><br/><br/>
+    Substituting values: N_{i2} = 600 · (0.1 / 1.0)^{2/3} = 600 · (0.1)^{0.667} = 600 · 0.2154 = <strong>129.24 rpm</strong><br/><br/>
+    <strong>Conclusion:</strong> The industrial scale impeller must rotate at <strong>129.2 rpm</strong> to maintain an identical specific volumetric power distribution.
+  </div>
+</div>`,
+  `<div style="background:#fce7f3; border-left:4px solid #db2777; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9d174d;">
+  3. Microbial, Animal, and Plant Cell Culture Platforms
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Comparative Platform Overview</h3>
+<table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#be185d; color:#fff; text-align:left;">
+      <th style="padding:6px;">Feature / Parameter</th>
+      <th style="padding:6px;">Microbial Culture (Bacteria/Yeast)</th>
+      <th style="padding:6px;">Animal Cell Culture (CHO/HEK)</th>
+      <th style="padding:6px;">Plant Cell Culture (Suspension)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fdf2f8;"><td style="padding:6px; border:1px solid #fbcfe8; font-weight:700;">Structural Rigidity</td><td style="padding:6px; border:1px solid #fbcfe8;">Robust peptidoglycan/chitin wall. Resists shear.</td><td style="padding:6px; border:1px solid #fbcfe8;">Fragile plasma membrane only. High shear sensitivity.</td><td style="padding:6px; border:1px solid #fbcfe8;">Thick cellulose cell wall, but large cell clusters. High shear sensitivity.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #fbcfe8; font-weight:700;">Doubling Time</td><td style="padding:6px; border:1px solid #fbcfe8;">Rapid kinetics (20 min - 4 hours).</td><td style="padding:6px; border:1px solid #fbcfe8;">Slow kinetics (18 - 24 hours).</td><td style="padding:6px; border:1px solid #fbcfe8;">Very slow kinetics (2 - 5 days).</td></tr>
+    <tr style="background:#fdf2f8;"><td style="padding:6px; border:1px solid #fbcfe8; font-weight:700;">Oxygen Demand</td><td style="padding:6px; border:1px solid #fbcfe8;">Extremely high (k_L a: 100 - 500 h⁻¹).</td><td style="padding:6px; border:1px solid #fbcfe8;">Low (k_L a: 10 - 25 h⁻¹).</td><td style="padding:6px; border:1px solid #fbcfe8;">Moderate (k_L a: 15 - 40 h⁻¹).</td></tr>
+    <tr><td style="padding:6px; border:1px solid #fbcfe8; font-weight:700;">Post-Translational Mod.</td><td style="padding:6px; border:1px solid #fbcfe8;">Absent (Bacteria) or simplistic (Yeast).</td><td style="padding:6px; border:1px solid #fbcfe8;">Complex, accurate human-like glycosylation.</td><td style="padding:6px; border:1px solid #fbcfe8;">Plant-specific complex glycosylation.</td></tr>
+    <tr style="background:#fdf2f8;"><td style="padding:6px; border:1px solid #fbcfe8; font-weight:700;">Bioreactor Choice</td><td style="padding:6px; border:1px solid #fbcfe8;">Stirred Tank Bioreactor (STR).</td><td style="padding:6px; border:1px solid #fbcfe8;">Airlift, Wave-mixed, or Packed-bed.</td><td style="padding:6px; border:1px solid #fbcfe8;">Airlift or Wide-impeller STR.</td></tr>
+  </tbody>
+</table>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Core Conceptual Engineering Constraints</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Oxygen Mass Transfer &amp; Gas Hold-Up:</strong> Low oxygen solubility (≈ 7-8 mg/L at 30°C) makes oxygen supply rate-limiting. Gas Hold-Up: <strong>ε_g = V_g / (V_l + V_g)</strong><br/>
+  • <strong>Shear Stress &amp; Hydrodynamics:</strong> Rushton turbines produce high shear at blade tips. Pluronic F-68 surfactant is added to stabilize membranes against bubble burst energy.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Working Protocol: Cultivation System Control</h3>
+<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px; margin-bottom:16px;">
+  <ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px; margin:0;">
+    <li><strong>Bioreactor Passivation &amp; Setup:</strong> Clean internal vessel surfaces; passivate to minimize cell adhesion.</li>
+    <li><strong>In Situ Sterilization:</strong> Sterilize thermostable media components; filter heat-labile serum through 0.1 μm membranes to exclude mycoplasma.</li>
+    <li><strong>Inoculation &amp; Environmental Tuning:</strong> Maintain 37.0°C ± 0.2°C, pH regulated via CO2 gas blend and sodium bicarbonate buffer.</li>
+    <li><strong>Agitation Tuning:</strong> Use marine impellers or pitched-blade turbines at low RPMs for gentle mixing.</li>
+  </ol>
+</div>
+<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Frequently Asked Exam Question: Why are airlift bioreactors preferred over conventional stirred tank reactors for cultivation of plant cell suspensions and filamentous fungi?</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Model Answer:</strong> Plant cells and filamentous aggregates are physically large and highly shear-sensitive due to rigid but fragile structural linkages. Standard stirred tank bioreactors generate localized high shear fields near impeller tips, causing cell lysis.<br/><br/>
+    An <strong>airlift bioreactor</strong> eliminates mechanical impellers completely. Fluid circulation is driven by density differences between the gas-sparged section (riser) and unsparged section (downcomer), providing uniform, gentle mixing with low shear stress while maintaining oxygen transfer.
+  </div>
+</div>`,
+  `<div style="background:#fce7f3; border-left:4px solid #db2777; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9d174d;">
+  4. Production of Biomass and Primary/Secondary Metabolites
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Structural Classification and Kinetics (Gaden System)</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  1. <strong>Primary Metabolites (Growth-Associated Production):</strong> Directly involved in essential cell growth and metabolism. Product synthesis occurs simultaneously with biomass formation (e.g., ethanol, lactic acid).<br/>
+  <strong style="color:#db2777;">q_p = Y_{P/X} · μ = α · μ</strong> (where α is a kinetic constant).<br/><br/>
+  2. <strong>Secondary Metabolites (Non-Growth-Associated Production):</strong> Synthesized after growth slows during the idiophase (e.g., penicillin, statins). Decoupled from growth kinetics.<br/>
+  <strong style="color:#db2777;">q_p = β = constant (independent of μ)</strong><br/><br/>
+  3. <strong>Mixed-Growth-Associated Production:</strong> Occurs during both active growth and deceleration phases (e.g., citric acid).<br/>
+  <strong style="color:#db2777;">q_p = α · μ + β (Luedeking-Piret Model)</strong>
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Fermentation Kinetics: Mathematical Modeling</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  The total net accumulation of a product within a batch culture system is governed by the Luedeking-Piret differential model:<br/>
+  <strong style="color:#db2777; font-size:14.5px;">dP / dt = α · (dX / dt) + β · X</strong><br/>
+  Dividing by biomass concentration X converts this to specific rate form: q_p = α · μ + β.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Step-by-Step Bioprocess Operation Strategy</h3>
+<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px; margin-bottom:16px;">
+  <ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px; margin:0;">
+    <li><strong>Trophophase Optimization:</strong> Supply balanced nutrient-rich media to maximize active biomass generation (dX/dt).</li>
+    <li><strong>Nutrient Limiting Shift:</strong> Feed a limiting key nutrient (e.g., deplete C or N) to transition culture into stationary idiophase.</li>
+    <li><strong>Precursor Feeding Strategy:</strong> Feed specific biochemical precursors (e.g. phenylacetic acid for Penicillin G) step-by-step.</li>
+    <li><strong>Continuous Broth Harvest:</strong> Monitor product concentrations and harvest broth before feedback inhibition occurs.</li>
+  </ol>
+</div>
+<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">5-Mark Exam Question: Formulate the Luedeking-Piret model equations. Classify the production profiles of ethanol and penicillin using this kinetic system.</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Model Answer:</strong> The Luedeking-Piret model combines growth-associated and non-growth-associated contributions: dP/dt = α(dX/dt) + β X.<br/><br/>
+    • <strong>Ethanol Production:</strong> Growth-associated primary metabolite synthesized during glucose breakdown. Here, <strong>β = 0</strong>, simplifying the equation to <strong>dP/dt = α(dX/dt)</strong>. Accumulation tracks biomass generation directly.<br/><br/>
+    • <strong>Penicillin Production:</strong> Non-growth-associated secondary metabolite synthesized during idiophase under nutrient limitation. Here, <strong>α = 0</strong>, reducing the equation to <strong>dP/dt = β X</strong>.
+  </div>
+</div>`,
+  `<div style="background:#fce7f3; border-left:4px solid #db2777; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9d174d;">
+  5. Industrial Bioproducts: Biofuels, Bioplastics, Enzymes, and Antibiotics
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">High-Yield Industrial Production Profiles</h3>
+<ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+  <li><strong>1. Biofuels (Bioethanol &amp; Biodiesel):</strong> Strains: <em>Saccharomyces cerevisiae</em>, <em>Zymomonas mobilis</em>. Product inhibition occurs above 10-12% v/v ethanol; mitigated by continuous vacuum distillation or gas stripping.</li>
+  <li><strong>2. Bioplastics (Polyhydroxyalkanoates - PHA):</strong> Strains: <em>Cupriavidus necator</em> (formerly <em>Ralstonia eutropha</em>). Intracellular storage granules accumulate under N/P limitation with excess carbon. Recovered via cell disruption and solvent extraction.</li>
+  <li><strong>3. Industrial Enzymes (α-Amylase, Proteases):</strong> Strains: <em>Bacillus licheniformis</em>, <em>Aspergillus oryzae</em>. Fed-batch cultivation under carbon limitation avoids catabolite repression; extracellular enzymes recovered from supernatant.</li>
+  <li><strong>4. Antibiotics (Penicillin, Streptomycin):</strong> Strains: <em>Penicillium chrysogenum</em>, <em>Streptomyces griseus</em>. Fed-batch mode maintains low glucose feed rates to prevent catabolite repression. High oxygen demand (k_L a).</li>
+</ul>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Core Conceptual Control Architecture</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  A primary challenge is <strong>Catabolite Repression</strong>, where rapidly metabolizable glucose suppresses genes for secondary metabolite pathways by downregulating cAMP levels. Industrial processes address this using <strong>Fed-Batch Fermentation Strategy</strong>, keeping glucose concentrations low.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Standard Operating Protocol for Antibiotic Production</h3>
+<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px; margin-bottom:16px;">
+  <ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px; margin:0;">
+    <li><strong>Bioreactor Preparation:</strong> Sterilize fermenter vessel and set up control loops for temp, pH, DO.</li>
+    <li><strong>Biomass Accumulation Phase:</strong> Grow biomass to target density using balanced seed media.</li>
+    <li><strong>Fed-Batch Feeding Phase:</strong> Begin controlled feed of limiting substrate with side-chain precursors (phenylacetic acid).</li>
+    <li><strong>Oxygen Transfer Management:</strong> Increase agitation and air sparging to maintain DO &gt; 30% air saturation.</li>
+    <li><strong>Harvest and Extraction:</strong> Filter mycelial biomass, cool liquor to 4°C, extract into organic solvent (butyl acetate) under acidic pH.</li>
+  </ol>
+</div>
+<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">GATE Core Concept Review: Detail the regulatory mechanism of glucose catabolite repression in secondary metabolite production and describe the engineering solution.</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    High glucose concentrations suppress transcription of secondary metabolic genes by downregulating cyclic AMP (cAMP) levels.<br/><br/>
+    <strong>Engineering Solution:</strong> Implement a <strong>Fed-Batch Fermentation Strategy</strong>. After accumulating target biomass density, glucose feed rate is matched to cellular maintenance requirement without allowing free glucose to accumulate in broth, relieving catabolite repression.
+  </div>
+</div>`,
+  `<div style="background:#fce7f3; border-left:4px solid #db2777; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9d174d;">
+  6. Large-Scale Production and Purification of Recombinant Proteins
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Definition &amp; Host Expression Strategies</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Recombinant Protein Production involves expressing heterologous genes in host platforms (<em>E. coli</em>, <em>Pichia pastoris</em>, CHO cells).<br/>
+  • <strong>Intracellular Accumulation (Inclusion Bodies):</strong> High expression in <em>E. coli</em> causes misfolding into insoluble inclusion bodies. Requires cell lysis, isolation, denaturation using chaotropic agents (6M Guanidine HCl or 8M Urea), and refolding.<br/>
+  • <strong>Extracellular Secretion:</strong> Secretion into medium (<em>P. pastoris</em>, CHO) simplifies purification by separating product from intracellular host contaminants.
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Quantitative Measures of Purification Performance</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Yield (%):</strong> (P_final / P_initial) · 100<br/>
+  • <strong>Specific Activity (SA):</strong> Total Units of Activity / Total Protein Weight (mg)<br/>
+  • <strong>Purification Factor (PF):</strong> SA_final / SA_initial
+</p>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">5-Mark Exam Question: Complete the purification table below. Calculate Yield and Purification Factor for each step.</h4>
+  <table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:10px;">
+    <thead>
+      <tr style="background:#dcfce7; color:#14532d;">
+        <th style="padding:6px; border:1px solid #86efac;">Step</th>
+        <th style="padding:6px; border:1px solid #86efac;">Total Volume (mL)</th>
+        <th style="padding:6px; border:1px solid #86efac;">Total Protein (mg)</th>
+        <th style="padding:6px; border:1px solid #86efac;">Total Activity (Units)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:6px; border:1px solid #86efac; font-weight:700;">1. Crude Extract</td><td style="padding:6px; border:1px solid #86efac;">1000</td><td style="padding:6px; border:1px solid #86efac;">5000</td><td style="padding:6px; border:1px solid #86efac;">100,000</td></tr>
+      <tr><td style="padding:6px; border:1px solid #86efac; font-weight:700;">2. Ion-Exchange</td><td style="padding:6px; border:1px solid #86efac;">200</td><td style="padding:6px; border:1px solid #86efac;">500</td><td style="padding:6px; border:1px solid #86efac;">80,000</td></tr>
+      <tr><td style="padding:6px; border:1px solid #86efac; font-weight:700;">3. Affinity Column</td><td style="padding:6px; border:1px solid #86efac;">20</td><td style="padding:6px; border:1px solid #86efac;">50</td><td style="padding:6px; border:1px solid #86efac;">60,000</td></tr>
+    </tbody>
+  </table>
+  <div style="font-size:12.5px; color:#14532d; line-height:1.6;">
+    <strong>Step 1: Calculate Specific Activity (SA = Activity / Protein):</strong><br/>
+    SA_Crude = 100,000 / 5000 = <strong>20 Units/mg</strong><br/>
+    SA_IEX = 80,000 / 500 = <strong>160 Units/mg</strong><br/>
+    SA_Affinity = 60,000 / 50 = <strong>1200 Units/mg</strong><br/><br/>
+    <strong>Step 2: Calculate Yield = (Activity / Crude Activity) * 100:</strong><br/>
+    Yield_IEX = (80,000 / 100,000) * 100 = <strong>80.0%</strong> | Yield_Affinity = (60,000 / 100,000) * 100 = <strong>60.0%</strong><br/><br/>
+    <strong>Step 3: Calculate Purification Factor (PF = SA_step / SA_Crude):</strong><br/>
+    PF_IEX = 160 / 20 = <strong>8.0 Fold</strong> | PF_Affinity = 1200 / 20 = <strong>60.0 Fold</strong><br/><br/>
+    <strong>Conclusion:</strong> Affinity Column provided the highest enrichment efficiency (PF = 60-fold, 60% cumulative yield).
+  </div>
+</div>`,
+  `<div style="background:#fce7f3; border-left:4px solid #db2777; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9d174d;">
+  7. Industrial Applications of Chromatographic &amp; Membrane Bio-Separation Methods
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Industrial Chromatographic Modalities</h3>
+<ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+  <li><strong>Ion-Exchange Chromatography (IEX):</strong> Separates by net charge.<br/>
+  - Cation Exchange (CEX): Negatively charged resin (CM, SP) binds positive proteins (pH &lt; pI).<br/>
+  - Anion Exchange (AEX): Positively charged resin (DEAE, Q) binds negative proteins (pH &gt; pI).</li>
+  <li><strong>Hydrophobic Interaction Chromatography (HIC):</strong> Binds hydrophobic surface patches under high salt (1-2M ammonium sulfate); elutes by lowering salt.</li>
+  <li><strong>Affinity Chromatography (AC):</strong> Specific biological interactions (e.g. Protein A for Fc region, Ni-NTA for His-tag).</li>
+</ul>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Membrane Bio-Separation Modalities</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Tangential Flow Filtration (TFF) / Cross-Flow Filtration: Fluid flows parallel to membrane, minimizing cake build-up.<br/>
+  Van Deemter Equation: <strong style="color:#db2777;">HETP = A + B/u + C · u</strong><br/>
+  Membrane Darcy-Flux: <strong style="color:#db2777;">J = ΔP / (μ · (R_m + R_c))</strong>
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Industrial Separation Design Protocol</h3>
+<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px; margin-bottom:16px;">
+  <ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px; margin:0;">
+    <li><strong>Primary TFF Concentration:</strong> Concentrate harvest using 10-30 kDa MWCO cassette.</li>
+    <li><strong>Capture Phase (IEX/Affinity):</strong> Bind target protein on high-capacity capture column.</li>
+    <li><strong>Intermediate Purification:</strong> Elute and route through HIC column to separate similar host proteins.</li>
+    <li><strong>Polishing &amp; Diafiltration:</strong> Final SEC column to remove aggregates, formulation via TFF diafiltration.</li>
+  </ol>
+</div>
+<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Frequently Asked GATE Question: A protein has a pI of 4.8. You need to purify it using anion exchange chromatography. What pH range should you choose, and how would you elute it?</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Model Answer:</strong> Anion exchange uses a positively charged resin. To carry a net negative charge, operating buffer pH must be higher than pI (pH &gt; pI).<br/>
+    For pI = 4.8, set buffer <strong>pH = 6.0 to 7.5</strong> (e.g. Tris-HCl).<br/><br/>
+    <strong>Elution Methods:</strong><br/>
+    1. <strong>Salt Gradient Elution:</strong> Increase NaCl concentration; Cl⁻ ions compete for resin binding sites.<br/>
+    2. <strong>pH Reduction Elution:</strong> Lower pH below 4.8, protonating protein surface to net positive charge.
+  </div>
+</div>`,
+  `<div style="background:#fce7f3; border-left:4px solid #db2777; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9d174d;">
+  8. Immobilization of Biocatalysts (Enzymes &amp; Cells) for Bioconversion Processes
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Categorized Classification of Immobilization Techniques</h3>
+<ul style="font-size:13.5px; color:#334155; line-height:1.7; padding-left:20px;">
+  <li><strong>Physical Entrapment:</strong> Trapping cells inside calcium alginate beads cross-linked with CaCl₂.</li>
+  <li><strong>Microencapsulation:</strong> Enclosing biological material within semi-permeable membranes or liposomes.</li>
+  <li><strong>Adsorption:</strong> Reversible binding to carrier surface (DEAE-cellulose, silica) via weak electrostatic forces.</li>
+  <li><strong>Covalent Binding:</strong> Chemical bonds between matrix and enzyme amino acid residues (glutaraldehyde + Lysine ε-amino group).</li>
+  <li><strong>Cross-Linking:</strong> Joining enzyme molecules using bifunctional reagents (glutaraldehyde) to form CLECs or CLEAs.</li>
+</ul>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Thiele Modulus (ϕ) &amp; Internal Effectiveness Factor (η)</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Thiele Modulus for spherical bead of radius R: <strong style="color:#db2777;">ϕ = R · √(k₁ / D_e)</strong><br/>
+  Effectiveness Factor: <strong style="color:#db2777;">η = Observed Reaction Rate / Ideal Rate without diffusion limit</strong>
+</p>`,
+  `<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  When ϕ &lt; 0.5, η ≈ 1.0 (reaction kinetics limited).<br/>
+  When ϕ &gt; 3, <strong style="color:#db2777;">η ≈ 1 / ϕ</strong> (diffusion-limited regime).
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Step-by-Step Practical Cell Entrapment Protocol</h3>
+<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px;">
+  <ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px; margin:0;">
+    <li><strong>Cell Slurry Mix:</strong> Suspend cell pellet in 2-3% w/v sodium alginate solution.</li>
+    <li><strong>Bead Formation:</strong> Extrude mixture drop-by-drop into 0.1-0.2 M Calcium Chloride (CaCl₂) bath.</li>
+    <li><strong>Cross-Linking In Situ:</strong> Cure beads in calcium solution for 30-60 minutes to swap Na⁺ for Ca²⁺ ions.</li>
+    <li><strong>Wash Step:</strong> Filter and rinse beads with physiological saline.</li>
+    <li><strong>Bioreactor Packing:</strong> Pack cured beads into column for Packed Bed Bioreactor operation.</li>
+  </ol>
+</div>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">5-Mark Exam Question: Define Thiele Modulus (ϕ) and Effectiveness Factor (η). If an industrial immobilized enzyme bead system has ϕ = 12, evaluate its efficiency and propose engineering modifications.</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Model Answer:</strong> For ϕ = 12 (diffusion-limited regime), internal effectiveness factor simplifies to:<br/>
+    <strong>η ≈ 1 / ϕ = 1 / 12 = 0.0833 ⟹ Efficiency ≈ 8.3%</strong><br/><br/>
+    Only ~8.3% of total enzyme capacity is utilized.<br/><br/>
+    <strong>Engineering Modifications to Improve Rate:</strong><br/>
+    1. <strong>Reduce Catalyst Particle Size (R):</strong> Smaller bead radius shortens internal diffusion path, directly lowering ϕ and increasing η.<br/>
+    2. <strong>Optimize Matrix Porosity:</strong> Increase support porosity to enhance effective diffusion coefficient D_e.<br/>
+    3. <strong>Adjust Catalyst Loading:</strong> Lower enzyme concentration within matrix to allow deeper substrate penetration.
+  </div>
+</div>`,
+  `<div style="background:#fce7f3; border-left:4px solid #db2777; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9d174d;">
+  9. Bioremediation: Aerobic and Anaerobic Processes for Solid &amp; Liquid Waste Stabilization
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Process Variations and Core Mechanics</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Aerobic Processes:</strong> Microbes use O₂ as final electron acceptor (Activated Sludge ASP, Trickling filters). End products: CO₂, H₂O, biomass.<br/>
+  • <strong>Anaerobic Processes:</strong> Absence of O₂; alternative acceptors (NO₃⁻, SO₄²⁻). Syntrophic consortium produces Methane gas (CH₄ 55-70%) and CO₂ (30-45%) (UASB reactors, digesters).<br/>
+  • <strong>Anaerobic Degradation Stages:</strong><br/>
+  Complex Polymers → Hydrolysis → Monomers → Acidogenesis → Volatile Fatty Acids → Acetogenesis → Acetic Acid &amp; H₂ → Methanogenesis → CH₄ + CO₂
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Governing Equations &amp; BOD Kinetics</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Biochemical Oxygen Demand (BOD): <strong style="color:#db2777;">BOD_t = BOD_u · (1 - e^(-k_e · t))</strong>
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Specific Substrate Consumption Rate inside Chemostats</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Steady-state balance in continuous wastewater treatment:<br/>
+  <strong style="color:#db2777; font-size:14.5px;">S = (K_s · D) / (μ_max - D)</strong><br/>
+  Where D is dilution rate (D = F / V).
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Step-by-Step Waste Treatment Design Protocol</h3>
+<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px;">
+  <ol style="font-size:13px; color:#334155; line-height:1.7; padding-left:20px; margin:0;">
+    <li><strong>Primary Screening:</strong> Route raw influent through bar screens and grit chambers to remove large solids.</li>
+    <li><strong>Equalization Control:</strong> Normalize variations in pH, temp, and loading rates in an equalization tank.</li>
+    <li><strong>Biological Inoculation:</strong> Activated Sludge aeration basin (pump air to maintain DO = 2.0 mg/L).</li>
+    <li><strong>Clarification and Settling:</strong> Secondary clarifier settles microbial biomass sheets.</li>
+    <li><strong>Recycle Loop Regulation:</strong> Return portion as Return Activated Sludge (RAS), purge remainder as WAS.</li>
+  </ol>
+</div>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">High-Yield Model Question: Compare aerobic and anaerobic waste treatment processes.</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    • <strong>Biomass Yield (Y_{X/S}):</strong> Aerobic processes have high yield (Y_{X/S} ≈ 0.4-0.6 g/g), generating significant sludge. Anaerobic yields are low (0.05-0.1 g/g), reducing sludge by 90%.<br/>
+    • <strong>Energy Footprint:</strong> Aerobic requires high power for continuous blowers/mixers. Anaerobic is energy-positive, generating methane gas (CH₄).<br/>
+    • <strong>Kinetics &amp; Start-Up:</strong> Aerobic bacteria grow fast (1-2 weeks start-up). Anaerobic methanogens grow slow (2-3 months start-up).<br/>
+    • <strong>Stability:</strong> Aerobic systems are robust. Anaerobic systems are sensitive to pH/temp fluctuations.
+  </div>
+</div>`,
+  `<div style="background:#fce7f3; border-left:4px solid #db2777; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9d174d;">
+  10. Comprehensive GATE Exam Practice: High-Yield Revision Focus
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Master Summary of Essential Bioprocess Design Equations</h3>
+<table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#be185d; color:#fff; text-align:left;">
+      <th style="padding:6px;">Core Concept Area</th>
+      <th style="padding:6px;">Primary Governing Formula</th>
+      <th style="padding:6px;">Key Variable Interpretations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fdf2f8;"><td style="padding:6px; border:1px solid #fbcfe8; font-weight:700;">Chemostat Steady State</td><td style="padding:6px; border:1px solid #fbcfe8; font-weight:700;">μ = D = F / V</td><td style="padding:6px; border:1px solid #fbcfe8;">At steady state in ideal chemostat, specific growth rate equals dilution rate.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #fbcfe8; font-weight:700;">Critical Washout</td><td style="padding:6px; border:1px solid #fbcfe8; font-weight:700;">D_{crit} = (μ_max · S₀) / (K_s + S₀)</td><td style="padding:6px; border:1px solid #fbcfe8;">If D &gt; D_{crit}, cells are washed out faster than they replicate.</td></tr>
+    <tr style="background:#fdf2f8;"><td style="padding:6px; border:1px solid #fbcfe8; font-weight:700;">Volumetric OTR</td><td style="padding:6px; border:1px solid #fbcfe8; font-weight:700;">OTR = k_L a · (C* - C_L)</td><td style="padding:6px; border:1px solid #fbcfe8;">k_L a = mass transfer coeff, C* = equilibrium O₂ solubility, C_L = dissolved O₂.</td></tr>
+  </tbody>
+</table>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">PRACTICE PROBLEM 1: CHEMOSTAT OPERATIONAL CALCULATIONS</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Scenario:</strong> A continuous chemostat (V = 100 L) operates at steady state with feed F = 20 L/h. S₀ = 10 g/L, μ_max = 0.5 h⁻¹, K_s = 2 g/L, Y_{X/S} = 0.5 g/g.<br/>
+    <strong>Calculate:</strong> (i) Steady-state S inside reactor, and (ii) Steady-state biomass X.<br/><br/>
+    <strong>Solution:</strong><br/>
+    1. Dilution rate D = F / V = 20 / 100 = <strong>0.2 h⁻¹</strong>.<br/>
+    2. At steady state, μ = D = 0.2 h⁻¹. Monod: 0.2 = (0.5 · S) / (2 + S)<br/>
+    0.2(2 + S) = 0.5 S  ⟹  0.4 + 0.2 S = 0.5 S  ⟹  0.3 S = 0.4  ⟹  <strong>S = 1.33 g/L</strong>.<br/>
+    3. Biomass X = Y_{X/S} · (S₀ - S) = 0.5 · (10 - 1.333) = 0.5 · 8.667 = <strong>4.33 g/L</strong>.<br/><br/>
+    <strong>Final Answer:</strong> S = <strong>1.33 g/L</strong>, X = <strong>4.33 g/L</strong>.
+  </div>
+</div>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">PRACTICE PROBLEM 2: VOLUMETRIC MASS TRANSFER EVALUATION</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Scenario:</strong> Industrial fermenter k_L a = 30 h⁻¹, C* = 8.0 mg/L. Minimum C_L = 25% air saturation = 2.0 mg/L.<br/>
+    <strong>Calculate:</strong> Maximum achievable OTR.<br/><br/>
+    <strong>Solution:</strong> OTR = k_L a · (C* - C_L) = 30 h⁻¹ · (8.0 - 2.0 mg/L) = 30 · 6.0 = 180 mg/(L·h) = <strong>0.18 g/(L·h)</strong>.<br/>
+    <strong>Final Answer:</strong> Maximum supported OTR is <strong>0.18 g/(L·h)</strong>.
+  </div>
+</div>
+<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#0f172a; font-size:14px;">🎓 High-Yield Revision Checklist for GATE Candidates</h4>
+  <ol style="font-size:12.5px; color:#334155; line-height:1.6; padding-left:20px; margin:0;">
+    <li>Verify units carefully: specific growth rate (h⁻¹), dilution rate D (h⁻¹), k_L a (h⁻¹).</li>
+    <li>Monod kinetics bounds: High S (S ≫ K_s) = zero-order (μ ≈ μ_max); Low S (S ≪ K_s) = first-order.</li>
+    <li>Understand scale-up rules under constant P/V: N_{i2} = N_{i1} · (D_{i1} / D_{i2})^{2/3}.</li>
+    <li>Size Exclusion Chromatography: Large protein aggregates exit FIRST (excluded from pores).</li>
+  </ol>
+</div>`
+];
+
 /* ── Continuous Scroll PDF Document Viewer Component ── */
 function ContinuousPdfViewer({ topic }) {
   function handleOpenNewWindow() {
@@ -1768,6 +2299,20 @@ function ContinuousPdfViewer({ topic }) {
           </div>
           ${pgContent}
           <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 18</span></div>
+        </div>
+      `).join("");
+    } else if (topic.id === "topic-05") {
+      pagesHtml = FULL_BIOPROCESS_25_PAGES.map((pgContent, idx) => `
+        <div class="page">
+          <div class="header">
+            <div>
+              <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
+              <h2 class="title">${topic.name}</h2>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${idx + 1} OF 25</span>
+          </div>
+          ${pgContent}
+          <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 25</span></div>
         </div>
       `).join("");
     } else {
@@ -1864,7 +2409,7 @@ function ContinuousPdfViewer({ topic }) {
           <div>
             <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#fff" }}>{topic.pdfTitle}</h3>
             <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>
-              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
+              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
             </p>
           </div>
         </div>
@@ -1878,10 +2423,10 @@ function ContinuousPdfViewer({ topic }) {
             cursor: "pointer", display: "flex", alignItems: "center", gap: "6px",
             boxShadow: "0 3px 12px " + topic.color + "40", transition: "all 0.2s"
           }}
-          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
+          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
         >
           <span>↗️</span>
-          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : "Open PDF in New Window"}</span>
+          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : "Open PDF in New Window"}</span>
         </button>
       </div>
 
@@ -1897,7 +2442,7 @@ function ContinuousPdfViewer({ topic }) {
           paddingRight: "8px",
           cursor: "pointer"
         }}
-        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
+        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
       >
         {topic.sections.map((sec, idx) => (
           <div key={idx} style={{
