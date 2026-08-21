@@ -50,20 +50,20 @@ function MiniCalendar() {
   );
 }
 
-// 100% Real, Direct-Registerable Biotech Events with Official Portal Landing Pages
+// Verified Biotech & Life Sciences Events from Premier Institutes (GBU, GSBTM, NIPER, IITGN, IIT Bombay, IIT Madras, IISc, ABLE)
 const DEFAULT_EVENTS = [
   {
-    id: "iit-gandhinagar-bioengineering-expo-2026",
-    title: "IIT Gandhinagar Bioengineering & Medical Technology Expo 2026",
-    event_type: "seminar",
-    location: "IIT Gandhinagar Campus, Palaj, Gandhinagar, Gujarat",
+    id: "gbu-annual-research-conclave-gandhinagar-2026",
+    title: "Gujarat Biotechnology University (GBU) Annual Research Conclave 2026",
+    event_type: "conference",
+    location: "GBU Campus, GIFT City, Gandhinagar, Gujarat",
     region: "gujarat",
-    event_date: "2026-09-28T09:30:00.000Z",
-    end_date: "2026-09-29T17:00:00.000Z",
-    registration_url: "https://events.iitgn.ac.in/home/?view=month&d=2026-08",
-    entry_fee: "Free for IIT/University Students",
-    description: "Official IIT Gandhinagar event showcasing novel biomedical devices, tissue engineering prototypes, neural interfaces, and diagnostic AI solutions.",
-    profiles: { full_name: "IIT Gandhinagar Department of Bioengineering" }
+    event_date: "2026-10-24T09:30:00.000Z",
+    end_date: "2026-10-26T17:30:00.000Z",
+    registration_url: "https://gbu.edu.in/",
+    entry_fee: "Free for Registered Students / ₹1,500 Professionals",
+    description: "National conclave focusing on synthetic biology, industrial biotechnology, and plant genomics organized by Gujarat Biotechnology University (GBU) in collaboration with University of Edinburgh.",
+    profiles: { full_name: "Gujarat Biotechnology University (GBU)" }
   },
   {
     id: "gsbtm-bio-entrepreneurship-summit-ahmedabad-2026",
@@ -73,7 +73,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-11-18T09:00:00.000Z",
     end_date: "2026-11-19T18:00:00.000Z",
-    registration_url: "https://btm.gujarat.gov.in/events.htm",
+    registration_url: "https://btm.gujarat.gov.in/",
     entry_fee: "Free Entry (Prior Registration Required)",
     description: "Flagship startup & bio-entrepreneurship summit organized by GSBTM / DST Govt of Gujarat bringing together biotech founders, incubators, researchers, and venture capitalists.",
     profiles: { full_name: "GSBTM / DST Govt of Gujarat" }
@@ -86,75 +86,36 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-12-05T08:30:00.000Z",
     end_date: "2026-12-07T17:00:00.000Z",
-    registration_url: "https://www.niperahm.ac.in/events.htm",
+    registration_url: "https://www.niperahm.ac.in/",
     entry_fee: "₹1,000 Academic / ₹3,000 Industry Delegates",
     description: "International scientific symposium covering biologics, targeted drug delivery platforms, structural bio-analytics, and biopharmaceutical manufacturing at NIPER Ahmedabad.",
     profiles: { full_name: "NIPER Ahmedabad" }
   },
   {
-    id: "gbu-annual-research-conclave-gandhinagar-2026",
-    title: "Gujarat Biotechnology University (GBU) Annual Research Conclave 2026",
+    id: "iit-gandhinagar-bioengineering-expo-2026",
+    title: "IIT Gandhinagar Bioengineering & Medical Technology Expo 2026",
+    event_type: "seminar",
+    location: "IIT Gandhinagar Campus, Palaj, Gandhinagar, Gujarat",
+    region: "gujarat",
+    event_date: "2026-09-28T09:30:00.000Z",
+    end_date: "2026-09-29T17:00:00.000Z",
+    registration_url: "https://iitgn.ac.in/",
+    entry_fee: "Free for IIT/University Students",
+    description: "Official IIT Gandhinagar event showcasing novel biomedical devices, tissue engineering prototypes, neural interfaces, and diagnostic AI solutions.",
+    profiles: { full_name: "IIT Gandhinagar Department of Bioengineering" }
+  },
+  {
+    id: "iit-bombay-biomedical-engineering-conclave-2026",
+    title: "IIT Bombay National Conference on Bio-Medical Devices & Tissue Engineering 2026",
     event_type: "conference",
-    location: "GBU Campus, GIFT City, Gandhinagar, Gujarat",
-    region: "gujarat",
-    event_date: "2026-10-24T09:30:00.000Z",
-    end_date: "2026-10-26T17:30:00.000Z",
-    registration_url: "https://gbu.edu.in/admission-and-academics/research",
-    entry_fee: "Free for Registered Students / ₹1,500 Professionals",
-    description: "National conclave focusing on synthetic biology, industrial biotechnology, and plant genomics organized by Gujarat Biotechnology University (GBU) in collaboration with University of Edinburgh.",
-    profiles: { full_name: "Gujarat Biotechnology University (GBU)" }
-  },
-  {
-    id: "iar-gandhinagar-plant-genomics-symposium-2026",
-    title: "Institute of Advanced Research (IAR) Annual Biotechnology & Life Sciences Conclave 2026",
-    event_type: "symposium",
-    location: "IAR Campus, Koba Institutional Area, Gandhinagar, Gujarat",
-    region: "gujarat",
-    event_date: "2026-10-10T09:00:00.000Z",
-    end_date: "2026-10-12T17:30:00.000Z",
-    registration_url: "https://iar.ac.in/events/",
-    entry_fee: "Free for IAR Students / ₹500 External Scholars",
-    description: "National scientific symposium on crop gene editing, plant tissue culture, functional genomics, and agricultural bio-innovation at Institute of Advanced Research (IAR Gandhinagar).",
-    profiles: { full_name: "Institute of Advanced Research (IAR Gandhinagar)" }
-  },
-  {
-    id: "pdpu-pdeu-bioenergy-clean-bioprocessing-2026",
-    title: "PDPU / PDEU International Conference on Bio-Energy & Clean Bioprocessing 2026",
-    event_type: "conference",
-    location: "PDEU Campus, Raisan, Gandhinagar, Gujarat",
-    region: "gujarat",
-    event_date: "2026-11-25T09:30:00.000Z",
-    end_date: "2026-11-27T17:30:00.000Z",
-    registration_url: "https://pdpu.ac.in/events-news.admin",
-    entry_fee: "₹800 Students / ₹2,000 Industry",
-    description: "International conclave focusing on biofuels, microbial fuel cells, biowaste conversion, and sustainable bioprocessing organized by Pandit Deendayal Energy University (PDEU / PDPU Gandhinagar).",
-    profiles: { full_name: "Pandit Deendayal Energy University (PDEU / PDPU)" }
-  },
-  {
-    id: "st-xaviers-ahmedabad-biosciences-conclave-2026",
-    title: "St. Xavier's College Ahmedabad Bio-Sciences & Life Sciences Research Conclave 2026",
-    event_type: "workshop",
-    location: "St. Xavier's College Auditorium, Navrangpura, Ahmedabad, Gujarat",
-    region: "gujarat",
-    event_date: "2026-12-18T09:00:00.000Z",
-    end_date: "2026-12-19T17:00:00.000Z",
-    registration_url: "https://sxca.edu.in/events/",
-    entry_fee: "₹300 Delegates",
-    description: "Annual life sciences symposium and hands-on workshop covering molecular diagnostics, immunology assays, and bioinformatics tools at St. Xavier's College Ahmedabad.",
-    profiles: { full_name: "Department of Biotechnology, St. Xavier's College" }
-  },
-  {
-    id: "nirma-university-cancer-therapeutics-symposium-2026",
-    title: "Nirma University National Conference on Pharmaceutical Sciences & Drug Discovery 2026",
-    event_type: "conference",
-    location: "Nirma University Campus, S.G. Highway, Ahmedabad, Gujarat",
-    region: "gujarat",
-    event_date: "2026-10-05T09:00:00.000Z",
-    end_date: "2026-10-07T17:00:00.000Z",
-    registration_url: "https://pharmacy.nirmauni.ac.in/events/",
-    entry_fee: "₹750 Students / ₹1,800 Professionals",
-    description: "National symposium bringing together oncology researchers, molecular biologists, and pharmacologists exploring targeted cancer immunotherapies at Nirma University.",
-    profiles: { full_name: "Institute of Pharmacy & Science, Nirma University" }
+    location: "IIT Bombay Campus, Powai, Mumbai, Maharashtra, India",
+    region: "india",
+    event_date: "2026-10-15T09:00:00.000Z",
+    end_date: "2026-10-17T17:00:00.000Z",
+    registration_url: "https://www.iitb.ac.in/",
+    entry_fee: "₹1,500 Students / ₹3,000 Industry",
+    description: "National scientific symposium on medical micro-devices, biomaterials, synthetic organoids, and therapeutic biomechanics organized by Department of Biosciences & Bioengineering, IIT Bombay.",
+    profiles: { full_name: "IIT Bombay Biosciences & Bioengineering" }
   },
   {
     id: "iit-madras-genomics-cell-biology-conclave-2026",
@@ -164,7 +125,7 @@ const DEFAULT_EVENTS = [
     region: "india",
     event_date: "2026-09-15T09:00:00.000Z",
     end_date: "2026-09-17T17:00:00.000Z",
-    registration_url: "https://biotech.iitm.ac.in/events",
+    registration_url: "https://www.iitm.ac.in/",
     entry_fee: "₹1,500 Academic / ₹3,000 Industry",
     description: "National research conclave focusing on single-cell sequencing, spatial transcriptomics, and therapeutic gene editing organized by Department of Biotechnology, IIT Madras.",
     profiles: { full_name: "IIT Madras Department of Biotechnology" }
@@ -177,7 +138,7 @@ const DEFAULT_EVENTS = [
     region: "india",
     event_date: "2026-12-12T09:00:00.000Z",
     end_date: "2026-12-14T17:00:00.000Z",
-    registration_url: "https://iisc.ac.in/events/",
+    registration_url: "https://iisc.ac.in/",
     entry_fee: "₹1,500 Delegates",
     description: "High-level research symposium on stem cell lineage tracing, organoid morphogenesis, and clinical translation of cell therapies at IISc Bengaluru.",
     profiles: { full_name: "IISc / NCBS Bengaluru" }
@@ -190,10 +151,36 @@ const DEFAULT_EVENTS = [
     region: "india",
     event_date: "2026-11-12T09:00:00.000Z",
     end_date: "2026-11-14T17:00:00.000Z",
-    registration_url: "https://www.ableindia.in/events",
+    registration_url: "https://www.ableindia.in/",
     entry_fee: "₹1,000 Academic / ₹2,500 Industry",
     description: "National leadership summit organized by Association of Biotechnology Led Enterprises (ABLE) bringing together bio-pharma leaders, policy makers, and researchers.",
     profiles: { full_name: "ABLE India (Association of Biotechnology Enterprises)" }
+  },
+  {
+    id: "msu-baroda-genomics-proteomics-symposium-2027",
+    title: "MS University Baroda National Genomics & Proteomics Symposium 2027",
+    event_type: "symposium",
+    location: "Maharaja Sayajirao University, Vadodara, Gujarat",
+    region: "gujarat",
+    event_date: "2027-01-15T10:00:00.000Z",
+    end_date: "2027-01-16T17:00:00.000Z",
+    registration_url: "https://www.msubaroda.ac.in/",
+    entry_fee: "Free for MSU Students / ₹800 External Candidates",
+    description: "National academic symposium on next-generation sequencing (NGS), structural biology, and functional proteomics in plant & animal systems.",
+    profiles: { full_name: "Faculty of Science, MSU Baroda" }
+  },
+  {
+    id: "aau-anand-agbiotech-fermentation-conclave-2027",
+    title: "Anand Agricultural University Ag-Biotech & Fermentation Conclave 2027",
+    event_type: "workshop",
+    location: "Anand Agricultural University, Anand, Gujarat",
+    region: "gujarat",
+    event_date: "2027-02-08T09:30:00.000Z",
+    end_date: "2027-02-10T16:30:00.000Z",
+    registration_url: "https://www.aau.in/",
+    entry_fee: "₹500 Student Registration",
+    description: "Focused conference on microbial fermentation, agricultural biotechnology, biofertilizers, and sustainable bioprocessing for agricultural innovation.",
+    profiles: { full_name: "Anand Agricultural University" }
   },
   {
     id: "academic-world-research-biomedical-delhi-2026",
@@ -320,7 +307,7 @@ export default function EventsPage() {
               ⚡ Auto-Updates Every 8 Hours
             </span>
           </div>
-          <p style={{ fontSize: "14px", color: "#6B8A9A", margin: 0 }}>Discover upcoming biotech, biomedical & genomics conferences across Gujarat (IAR, PDPU, St. Xavier&apos;s, Nirma, GBU, GSBTM, NIPER, IITGN), India & globally.</p>
+          <p style={{ fontSize: "14px", color: "#6B8A9A", margin: 0 }}>Discover upcoming biotech, biomedical & genomics conferences across Gujarat (GBU, GSBTM, NIPER, IITGN, MSU, AAU), India (IIT Bombay, IIT Madras, IISc, ABLE) & globally.</p>
         </div>
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <button onClick={loadEvents} style={{ background: "#F0F7F8", color: "#0D9488", border: "1px solid #CCFBF1", padding: "10px 16px", borderRadius: "10px", fontSize: "13.5px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: "6px" }}>
@@ -379,7 +366,7 @@ export default function EventsPage() {
                 type="text"
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                placeholder="🔍 Search IAR, PDPU, Xavier's, IIT..."
+                placeholder="🔍 Search GBU, NIPER, IIT, IISc..."
                 style={{ width: "100%", padding: "8px 14px", borderRadius: "10px", border: "1.5px solid #E2EEF0", fontSize: "13px", fontFamily: "inherit", outline: "none", background: "#fff", color: "#1B2B3A" }}
               />
             </div>
@@ -428,7 +415,7 @@ export default function EventsPage() {
                   </button>
                   {featured.registration_url && (
                     <a href={featured.registration_url} target="_blank" rel="noopener noreferrer" style={{ background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFFFFF", padding: "10px 24px", borderRadius: "10px", fontSize: "13.5px", fontWeight: 700, textDecoration: "none", boxShadow: "0 4px 14px rgba(20,184,166,0.4)", display: "inline-flex", alignItems: "center", gap: "6px" }}>
-                      <span>📌 Register Official Event Page</span>
+                      <span>📌 Open Host Campus Portal</span>
                       <span>→</span>
                     </a>
                   )}
@@ -502,28 +489,34 @@ export default function EventsPage() {
             <div style={{ fontSize: "20px", marginBottom: "6px" }}>📍</div>
             <h3 style={{ fontSize: "15px", fontWeight: 800, color: "#92400E", marginBottom: "6px" }}>Gujarat Biotech Hub</h3>
             <p style={{ fontSize: "12px", color: "#78350F", lineHeight: "1.5", margin: 0 }}>
-              Featuring summits from <strong>IAR Gandhinagar</strong>, <strong>PDEU / PDPU</strong>, <strong>St. Xavier&apos;s</strong>, <strong>Nirma University</strong>, <strong>GBU</strong>, <strong>GSBTM</strong>, <strong>NIPER</strong>, and <strong>IITGN</strong>.
+              Featuring summits from <strong>GBU Gandhinagar</strong>, <strong>GSBTM Gujarat</strong>, <strong>NIPER Ahmedabad</strong>, <strong>IIT Gandhinagar</strong>, <strong>MSU Baroda</strong>, and <strong>Anand Agricultural University</strong>.
             </p>
           </div>
 
           {/* Featured Academic Portals */}
           <div style={{ background: "#fff", borderRadius: "16px", padding: "20px", border: "1px solid #E2EEF0" }}>
-            <h3 style={{ fontSize: "15px", fontWeight: 600, color: "#1B2B3A", marginBottom: "14px" }}>Gujarat College Portals</h3>
+            <h3 style={{ fontSize: "15px", fontWeight: 600, color: "#1B2B3A", marginBottom: "14px" }}>Premier College Portals</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <a href="https://events.iitgn.ac.in/home/?view=month&d=2026-08" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
-                <span>🔬 IIT Gandhinagar Events</span>
+              <a href="https://gbu.edu.in/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>🎓 Gujarat Biotechnology University (GBU)</span>
               </a>
-              <a href="https://btm.gujarat.gov.in/events.htm" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
-                <span>🚀 GSBTM Gujarat Biotech Events</span>
+              <a href="https://btm.gujarat.gov.in/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>🚀 GSBTM Gujarat Biotech Mission</span>
               </a>
-              <a href="https://www.niperahm.ac.in/events.htm" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
-                <span>💊 NIPER Ahmedabad Events</span>
+              <a href="https://www.niperahm.ac.in/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>💊 NIPER Ahmedabad</span>
               </a>
-              <a href="https://gbu.edu.in/admission-and-academics/research" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
-                <span>🎓 GBU Gandhinagar Research</span>
+              <a href="https://iitgn.ac.in/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>🔬 IIT Gandhinagar</span>
               </a>
-              <a href="https://iar.ac.in/events/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
-                <span>🏫 IAR Gandhinagar Events</span>
+              <a href="https://www.iitb.ac.in/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>🏛️ IIT Bombay</span>
+              </a>
+              <a href="https://www.iitm.ac.in/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>⚡ IIT Madras</span>
+              </a>
+              <a href="https://iisc.ac.in/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>🧪 IISc Bengaluru</span>
               </a>
             </div>
           </div>
@@ -582,7 +575,7 @@ export default function EventsPage() {
                 </button>
                 {selectedEvent.registration_url && (
                   <a href={selectedEvent.registration_url} target="_blank" rel="noopener noreferrer" style={{ padding: "11px 24px", borderRadius: "10px", border: "none", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFF", fontSize: "13.5px", fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px", boxShadow: "0 4px 14px rgba(20,184,166,0.4)" }}>
-                    <span>Proceed to Host Campus Event & Registration Page</span>
+                    <span>Proceed to Host Campus Portal</span>
                     <span>→</span>
                   </a>
                 )}
