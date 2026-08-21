@@ -1060,6 +1060,267 @@ const COURSE_TOPICS = [
         explanation: "The rolB gene among the root locus oncogenes is the most vital trigger for hyper-branched hairy root organogenesis."
       }
     ]
+  },
+  {
+    id: "topic-08",
+    topicNum: "TOPIC 08",
+    name: "Microbiology & Virology",
+    shortName: "Microbiology & Virology",
+    icon: "🦠",
+    color: "#0284C7",
+    notesCount: "16 pages",
+    module: "Module 4 of 4",
+    progress: 60,
+    tagline: "Full 16-Page Master Textbook: Viral structure, microbial diversity, growth kinetics, respiration & nitrogen fixation.",
+    pdfTitle: "Topic 08 - Microbiology & Virology.pdf",
+    sections: [
+      {
+        title: "1. Viruses: Structure and Classification",
+        content: `• Acellular Parasites: DNA or RNA genome (never both) in protein capsid. Enveloped viruses have lipid membrane with glycoprotein spikes. Obligate intracellular parasites.
+• Infection Cycle: Attachment → Penetration → Uncoating → Replication → Protein Synthesis → Assembly → Release (Lysis/Budding).
+• Classification & Retroviruses: Helical, Icosahedral, Complex symmetry. Retroviruses (HIV) use Reverse Transcriptase (RNA → dsDNA). Lytic cycle lyses host; Lysogenic cycle integrates prophage.`
+      },
+      {
+        title: "2. Microbial Classification and Diversity",
+        content: `• Taxonomy & 16S rRNA: Grouped by morphology, staining, and 16S rRNA molecular sequencing. Woese 3-Domain System: Bacteria, Archaea, Eukarya.
+• Major Groups: Bacteria (prokaryotic, peptidoglycan wall), Algae (eukaryotic, photosynthetic), Fungi (eukaryotic, chitin wall).
+• Atypical Microbes: Mycoplasma (lacks cell wall, penicillin-resistant), Cyanobacteria (prokaryotic oxygenic photosynthetic).`
+      },
+      {
+        title: "3. Methods in Microbiology: Sterilization, Staining & Culture",
+        content: `• Sterilization: Autoclaving (Moist heat under pressure: 121°C, 15 psi for 15-20 min kills spores), Hot air oven (160°C, 2h), Filtration (0.22 µm for heat-sensitive media).
+• Gram Staining: Gram-positive retains Crystal Violet-Iodine complex due to thick peptidoglycan; Gram-negative decolorized by alcohol and takes up Safranin counterstain (pink).
+• Media: Selective (inhibits specific bacteria, e.g. MacConkey) vs Differential (distinguishes biochemical reactions, e.g. EMB).`
+      },
+      {
+        title: "4. Microbial Growth Kinetics & Nutrition",
+        content: `• Growth Phases: Lag phase (enzymatic adaptation), Log phase (maximum binary fission rate), Stationary phase (nutrient exhaustion/toxins, zero net growth), Death phase.
+• Key Equations: Nt = N0 · 2^n, n = (log Nt - log N0)/0.301, doubling time g = t/n, specific growth rate μ = 0.693/g.
+• Nutritional Classes: Autotrophs (CO2) vs Heterotrophs (organic C); Phototrophs (light) vs Chemotrophs (chemical bonds); Lithotrophs (inorganic e⁻) vs Organotrophs (organic e⁻).`
+      },
+      {
+        title: "5. Aerobic and Anaerobic Respiration",
+        content: `• Energy Generation: Glycolysis → Pyruvate oxidation → TCA cycle → ETC (proton motive force driving F0F1-ATP synthase).
+• Acceptors: Aerobic (O2 terminal acceptor, ~32-38 ATP), Anaerobic (Nitrate NO3⁻, Sulfate SO4²⁻), Fermentation (substrate-level phosphorylation only, ~2 ATP).
+• Denitrification: Anaerobic reduction of NO3⁻ → NO2⁻ → NO → N2O → N2 by Pseudomonas denitrificans.`
+      },
+      {
+        title: "6. Nitrogen Fixation & Host-Pathogen Interaction",
+        content: `• Biological N2 Fixation: N2 + 8H⁺ + 8e⁻ + 16ATP → 2NH3 + H2 + 16ADP + 16Pi. Catalyzed by oxygen-sensitive Nitrogenase (Fe-protein & MoFe-protein).
+• Symbiosis: Rhizobium root hair infection thread → bacteroids in legume nodules. Leghemoglobin buffers free O2 to protect nitrogenase. Ammonia assimilated via GS-GOGAT pathway.
+• Pathogenesis & Toxins: Virulence factors (Capsules protect against phagocytosis, Pili for conjugation, Biofilms). Exotoxins (secreted proteins, heat-labile) vs Endotoxins (Lipid A LPS of Gram-negative outer membrane, heat-stable, induces fever).`
+      }
+    ],
+    examTraps: [
+      "Gram staining rule: Gram-positive retains crystal violet (thick peptidoglycan); Gram-negative decolorizes and stains pink with safranin.",
+      "Autoclaving parameters: 121°C at 15 psi pressure for 15-20 minutes destroys bacterial endospores.",
+      "Exotoxin vs Endotoxin: Exotoxins are secreted heat-labile proteins; Endotoxin is heat-stable Lipid A of Gram-negative LPS."
+    ],
+    pyqs: [
+      {
+        id: 1,
+        question: "GAT-B 2020: Gram-positive bacteria retain crystal violet stain because of:",
+        options: ["Presence of outer membrane", "Thick peptidoglycan layer", "Presence of lipopolysaccharide", "Thin cell wall"],
+        correct: 1,
+        explanation: "Gram-positive bacteria possess a thick peptidoglycan layer that dehydrates during alcohol washing, trapping the crystal violet-iodine complex."
+      },
+      {
+        id: 2,
+        question: "GAT-B 2020: Which phase of bacterial growth shows maximum metabolic activity?",
+        options: ["Lag phase", "Log phase", "Stationary phase", "Death phase"],
+        correct: 1,
+        explanation: "During the exponential/log phase, bacterial cells divide actively at their maximum rate and exhibit peak metabolic activity."
+      },
+      {
+        id: 3,
+        question: "GAT-B 2020: Endospores are formed mainly for:",
+        options: ["Reproduction", "Photosynthesis", "Survival under adverse conditions", "Motility"],
+        correct: 2,
+        explanation: "Endospores are highly resistant, dormant bacterial structures formed by Bacillus and Clostridium species strictly for survival under harsh conditions."
+      },
+      {
+        id: 4,
+        question: "GAT-B 2021: The bacterial structure responsible for motility is:",
+        options: ["Pili", "Capsule", "Flagella", "Mesosome"],
+        correct: 2,
+        explanation: "Flagella are filament structures powered by proton motive force responsible for bacterial locomotion and chemotaxis."
+      },
+      {
+        id: 5,
+        question: "GAT-B 2021: Which of the following is an acid-fast bacterium?",
+        options: ["Escherichia coli", "Bacillus subtilis", "Mycobacterium tuberculosis", "Vibrio cholerae"],
+        correct: 2,
+        explanation: "Mycobacterium tuberculosis has a mycolic acid-rich cell wall that retains carbolfuchsin stain resisting acid-alcohol decolorization."
+      },
+      {
+        id: 6,
+        question: "GAT-B 2021: The sterilization method used for heat-sensitive media is:",
+        options: ["Autoclaving", "Hot air oven", "Filtration", "Incineration"],
+        correct: 2,
+        explanation: "Filtration through 0.22 µm membrane filters removes microbes without exposing heat-sensitive media, antibiotics, or vitamins to thermal degradation."
+      },
+      {
+        id: 7,
+        question: "GAT-B 2022: Nitrogen fixation in root nodules is carried out by:",
+        options: ["Azotobacter", "Rhizobium", "Nitrosomonas", "Bacillus"],
+        correct: 1,
+        explanation: "Rhizobium species form symbiotic associations with leguminous plants inside root nodules to reduce atmospheric N2 to ammonia."
+      },
+      {
+        id: 8,
+        question: "GAT-B 2022: Which bacterial growth curve phase has nutrient depletion and toxin accumulation?",
+        options: ["Lag phase", "Log phase", "Stationary phase", "Death phase"],
+        correct: 2,
+        explanation: "In the stationary phase, nutrient exhaustion and metabolic toxin accumulation cause cell division rate to equal cell death rate."
+      },
+      {
+        id: 9,
+        question: "GAT-B 2022: The toxic component of Gram-negative bacteria is:",
+        options: ["Teichoic acid", "Lipopolysaccharide", "Peptidoglycan", "Capsule"],
+        correct: 1,
+        explanation: "Lipopolysaccharide (LPS), specifically the Lipid A portion of the Gram-negative outer membrane, acts as a potent endotoxin."
+      },
+      {
+        id: 10,
+        question: "GAT-B 2023: Which organism is used in yogurt production?",
+        options: ["Saccharomyces cerevisiae", "Lactobacillus bulgaricus", "Penicillium notatum", "Aspergillus niger"],
+        correct: 1,
+        explanation: "Lactobacillus bulgaricus ferments lactose into lactic acid, curdling milk proteins during yogurt fermentation."
+      },
+      {
+        id: 11,
+        question: "GAT-B 2023: Binary fission in bacteria primarily involves:",
+        options: ["Mitotic spindle", "Meiosis", "DNA replication and septum formation", "Budding"],
+        correct: 2,
+        explanation: "Binary fission is asexual prokaryotic division involving chromosome replication, segregation, and FtsZ-mediated septum formation."
+      },
+      {
+        id: 12,
+        question: "GAT-B 2023: Who discovered penicillin?",
+        options: ["Louis Pasteur", "Robert Koch", "Alexander Fleming", "Edward Jenner"],
+        correct: 2,
+        explanation: "Alexander Fleming (1928) discovered penicillin from Penicillium notatum mold contaminating Staphylococcus culture plates."
+      },
+      {
+        id: 13,
+        question: "GAT-B 2024: The minimum temperature required to destroy all microorganisms including spores is achieved by:",
+        options: ["Pasteurization", "Autoclaving", "Refrigeration", "UV radiation"],
+        correct: 1,
+        explanation: "Autoclaving delivers moist heat at 121°C under 15 psi pressure, completely destroying bacterial endospores within 15-20 minutes."
+      },
+      {
+        id: 14,
+        question: "GAT-B 2024: Which bacterial structure protects against phagocytosis?",
+        options: ["Flagella", "Capsule", "Ribosome", "Pili"],
+        correct: 1,
+        explanation: "The polysaccharide capsule prevents opsonization and phagocytic engulfment by host immune cells."
+      },
+      {
+        id: 15,
+        question: "GAT-B 2024: Conjugation in bacteria requires:",
+        options: ["Capsule", "Sex pilus", "Endospore", "Cell wall"],
+        correct: 1,
+        explanation: "Bacterial conjugation requires a sex pilus encoded by the F-plasmid to establish a mating bridge between donor and recipient cells."
+      },
+      {
+        id: 16,
+        question: "GAT-B 2020: Viruses are called obligate intracellular parasites because:",
+        options: ["They contain ribosomes", "They can reproduce independently", "They require host machinery for replication", "They possess cell wall"],
+        correct: 2,
+        explanation: "Viruses lack metabolic enzymes, tRNA, and ribosomes, rendering them completely dependent on host cell machinery for replication."
+      },
+      {
+        id: 17,
+        question: "GAT-B 2020: The protein coat of virus is called:",
+        options: ["Envelope", "Capsid", "Core", "Matrix"],
+        correct: 1,
+        explanation: "The capsid is the protective protein shell constructed of repeating capsomere subunits surrounding viral nucleic acid."
+      },
+      {
+        id: 18,
+        question: "GAT-B 2021: Which enzyme is characteristic of retroviruses?",
+        options: ["DNA polymerase", "RNA polymerase", "Reverse transcriptase", "Ligase"],
+        correct: 2,
+        explanation: "Retroviruses (like HIV) carry Reverse Transcriptase to synthesize complementary DNA (cDNA) from their ssRNA genome."
+      },
+      {
+        id: 19,
+        question: "GAT-B 2021: Bacteriophages infect:",
+        options: ["Plants", "Animals", "Fungi", "Bacteria"],
+        correct: 3,
+        explanation: "Bacteriophages are viruses that specifically target, infect, and replicate within bacterial hosts."
+      },
+      {
+        id: 20,
+        question: "GAT-B 2021: The viral replication cycle involving integration into host genome is:",
+        options: ["Lytic cycle", "Lysogenic cycle", "Budding", "Transformation"],
+        correct: 1,
+        explanation: "In the lysogenic cycle, temperate phage DNA integrates into host chromosome as a dormant prophage without immediate host cell lysis."
+      },
+      {
+        id: 21,
+        question: "GAT-B 2022: Which virus causes AIDS?",
+        options: ["Influenza virus", "HIV", "Hepatitis B virus", "Dengue virus"],
+        correct: 1,
+        explanation: "Human Immunodeficiency Virus (HIV) is an enveloped retrovirus that attacks CD4+ T-lymphocytes, causing AIDS."
+      },
+      {
+        id: 22,
+        question: "GAT-B 2022: The genetic material in viruses can be:",
+        options: ["Only DNA", "Only RNA", "Both DNA and RNA together", "Either DNA or RNA"],
+        correct: 3,
+        explanation: "Viral genomes consist of either DNA or RNA (single or double stranded), but a single virus species never contains both."
+      },
+      {
+        id: 23,
+        question: "GAT-B 2022: Which bacteriophage infects E. coli?",
+        options: ["T4 phage", "TMV", "HIV", "Rabies virus"],
+        correct: 0,
+        explanation: "T4 bacteriophage is a complex lytic myovirus that specifically infects Escherichia coli bacteria."
+      },
+      {
+        id: 24,
+        question: "GAT-B 2023: TMV is an example of:",
+        options: ["DNA animal virus", "RNA plant virus", "Retrovirus", "Bacterial virus"],
+        correct: 1,
+        explanation: "Tobacco Mosaic Virus (TMV) is a helical (+)ssRNA plant virus that infects solanaceous crops."
+      },
+      {
+        id: 25,
+        question: "GAT-B 2023: The outer lipoprotein covering present in some viruses is:",
+        options: ["Capsomere", "Envelope", "Matrix", "Tail sheath"],
+        correct: 1,
+        explanation: "The viral envelope is a lipid bilayer acquired from host cell membranes during budding, embedded with viral glycoproteins."
+      },
+      {
+        id: 26,
+        question: "GAT-B 2023: Attachment of virus to host cell occurs through:",
+        options: ["Ribosomes", "Surface receptors", "Histones", "Cytoplasm"],
+        correct: 1,
+        explanation: "Viral surface spikes/glycoproteins specifically bind complementary protein or carbohydrate receptors on host cell membranes."
+      },
+      {
+        id: 27,
+        question: "GAT-B 2024: Baltimore classification of viruses is based on:",
+        options: ["Shape of virus", "Host specificity", "Type of nucleic acid and replication strategy", "Presence of envelope"],
+        correct: 2,
+        explanation: "David Baltimore classified viruses into 7 groups based on genome type (dsDNA, ssDNA, dsRNA, ssRNA) and mRNA synthesis pathway."
+      },
+      {
+        id: 28,
+        question: "GAT-B 2024: Which enzyme synthesizes viral DNA from RNA template?",
+        options: ["DNA ligase", "RNA polymerase", "Reverse transcriptase", "Primase"],
+        correct: 2,
+        explanation: "Reverse transcriptase (RNA-dependent DNA polymerase) transcribes viral ssRNA into cDNA during retroviral replication."
+      },
+      {
+        id: 29,
+        question: "GAT-B 2024: Prions are infectious agents composed of:",
+        options: ["DNA only", "RNA only", "Protein only", "Lipid only"],
+        correct: 2,
+        explanation: "Prions are proteinaceous infectious particles devoid of nucleic acids, causing transmissible spongiform encephalopathies."
+      }
+    ]
   }
 ];
 
@@ -1101,6 +1362,16 @@ const CHALLENGES = {
     xp: 250,
     timeLimit: 900,
     questions: COURSE_TOPICS[5].pyqs
+  }
+,
+  microbiology: {
+    title: "Microbiology & Virology PYQs",
+    subject: "Microbiology & Virology (GAT-B 2020-2024)",
+    color: "#0284C7",
+    bg: "#E0F2FE",
+    xp: 300,
+    timeLimit: 1200,
+    questions: COURSE_TOPICS[6].pyqs
   }
 };
 
@@ -3134,6 +3405,201 @@ const FULL_SECONDARY_METABOLITES_21_PAGES = [
 </div>`
 ];
 
+const FULL_MICROBIOLOGY_16_PAGES = [
+  `<h1 style="font-size:22px; color:#0284c7; margin:0 0 10px; border-bottom:2px solid #0284c7; padding-bottom:8px;">DETAILED STUDY GUIDE: MICROBIOLOGY &amp; VIROLOGY</h1>
+<p style="font-style:italic; color:#475569; font-size:13.5px; margin-bottom:24px;">High-Yield Technical Notes, Growth Kinetics, Protocols &amp; Integrated Question Banks — B.Tech Biotechnology</p>
+<div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+  1. Viruses: Structure and Classification
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Definition &amp; Core Concept</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Viruses are acellular infectious agents containing either DNA or RNA (never both together) as their genetic material, enclosed within a protein coat called the <strong>capsid</strong>. Some viruses also possess a lipid <strong>envelope</strong> derived from host plasma membrane. They are <strong>obligate intracellular parasites</strong> because they lack ribosomes, cytoplasm, and independent metabolic machinery.
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Structure &amp; Working Principle</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Genome:</strong> DNA or RNA, single-stranded or double-stranded.<br/>
+  • <strong>Capsid:</strong> Protein shell composed of capsomeres.<br/>
+  • <strong>Envelope &amp; Spikes:</strong> Lipid membrane with glycoprotein peplomers for attachment.<br/>
+  • <strong>Infection Cycle (7 Steps):</strong> 1. Attachment ➔ 2. Penetration ➔ 3. Uncoating ➔ 4. Replication ➔ 5. Protein synthesis ➔ 6. Assembly ➔ 7. Release via lysis or budding.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Virus Classification &amp; Lytic Cycle Protocol</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Genome Class:</strong> DNA viruses (Adenovirus, T4), RNA viruses (TMV, Influenza), Retroviruses (HIV with Reverse Transcriptase).<br/>
+  • <strong>Symmetry:</strong> Helical (TMV), Icosahedral (Polio), Complex (Bacteriophage).<br/>
+  • <strong>Baltimore Classification:</strong> Based on nucleic acid type (dsDNA, ssDNA, dsRNA, (+)ssRNA, (-)ssRNA, ssRNA-RT, dsDNA-RT) and mRNA synthesis strategy.
+</p>
+<div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:10px; padding:16px; margin-top:16px;">
+  <h4 style="margin:0 0 8px; color:#0369a1; font-size:14px;">PROTOCOL: LYTIC VS LYSOGENIC CYCLES</h4>
+  <div style="font-size:13px; color:#0c4a6e; line-height:1.6;">
+    • <strong>Lytic Cycle:</strong> Phage attaches, injects DNA, replicates rapidly, synthesizes viral proteins, assembles virions, and lyses host cell.<br/>
+    • <strong>Lysogenic Cycle:</strong> Phage DNA integrates into bacterial chromosome as a <strong>prophage</strong>, replicating passively during cell division until induction triggers lytic cycle.
+  </div>
+</div>`,
+  `<div style="background:#e0f2fe; border:1px solid #7dd3fc; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#0369a1; font-size:14px;">Module 1 Question Bank: Virology Essentials</h4>
+  <div style="font-size:13px; color:#0c4a6e; line-height:1.6;">
+    • <strong>Q1: Why obligate intracellular parasites?</strong> Lack ribosomes &amp; metabolic machinery; require host cell machinery.<br/>
+    • <strong>Q2: Role of viral spikes?</strong> Glycoproteins on envelope/capsid that bind specific host cell surface receptors.<br/>
+    • <strong>Q3: Retrovirus key enzyme?</strong> Reverse Transcriptase (RNA ➔ ssDNA ➔ dsDNA integration).
+  </div>
+</div>
+<div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+  2. Microbial Classification and Diversity
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Systematic grouping based on structural, physiological, and genetic similarities. Modern taxonomy relies on <strong>16S rRNA sequencing</strong>.<br/>
+  • <strong>Woese Three-Domain System:</strong> Life divided into <strong>Bacteria</strong> (prokaryotic, peptidoglycan), <strong>Archaea</strong> (prokaryotic, ether-linked lipids, no peptidoglycan), and <strong>Eukarya</strong>.<br/>
+  • <strong>Bacteria vs Algae vs Fungi:</strong> Bacteria (unicellular prokaryotes, peptidoglycan wall), Algae (eukaryotic, photosynthetic), Fungi (eukaryotic heterotrophs, chitin wall).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Bacterial Morphology &amp; Classification Bases</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Shapes:</strong> Cocci (spherical), Bacilli (rod-shaped), Spirilla (spiral), Vibrios (comma-shaped).<br/>
+  • <strong>Atypical Bacteria:</strong> <strong>Mycoplasma</strong> (lacks cell wall, pleomorphic, penicillin-resistant), <strong>Cyanobacteria</strong> (prokaryotic oxygenic photosynthetic with chlorophyll a).<br/>
+  • <strong>Taxonomic Approaches:</strong> Phenetic (observable traits), Phylogenetic (evolutionary relationships via 16S rRNA), Numerical taxonomy (statistical similarity matrix).
+</p>`,
+  `<div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#0369a1; font-size:14px;">PROTOCOL: BASIC MICROBIAL IDENTIFICATION (6 STEPS)</h4>
+  <div style="font-size:13px; color:#0c4a6e; line-height:1.6;">
+    1. Observe colony morphology ➔ 2. Microscopic examination ➔ 3. Gram &amp; Acid-fast staining ➔ 4. Biochemical assays (catalase, oxidase, IMViC) ➔ 5. Growth requirements (temp, O2) ➔ 6. 16S rRNA sequence confirmation.
+  </div>
+</div>
+<div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+  3. Methods in Microbiology
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Sterilization Modalities:</strong> Autoclaving (Moist heat under pressure: 121°C, 15 psi for 15-20 min kills all vegetative cells &amp; endospores); Hot air oven (Dry heat 160°C for 2h); Filtration (0.22 µm membrane filter for heat-sensitive antibiotics/media); UV &amp; Gamma radiation.<br/>
+  • <strong>Microscopy:</strong> Bright-field, Dark-field (treponemes), Phase-contrast (live unstained cells), Fluorescence (fluorochromes), Electron microscopy (TEM/SEM for viruses).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Staining Protocols &amp; Media Types</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Gram Staining Principle:</strong> Gram-positive bacteria have a thick peptidoglycan wall (20-80 nm) that traps Crystal Violet-Iodine complex. Gram-negative bacteria have a thin peptidoglycan layer and LPS outer membrane; alcohol washes out crystal violet, taking up counterstain <strong>Safranin</strong> (pink/red).<br/>
+  • <strong>Acid-Fast Staining (Ziehl-Neelsen):</strong> Identifies <em>Mycobacterium tuberculosis</em> carrying lipid-rich mycolic acids in cell wall; resists decolorization by acid-alcohol (retains Carbolfuchsin red).<br/>
+  • <strong>Media Types:</strong> Selective (MacConkey inhibits Gram-positive via bile salts), Differential (EMB displays metallic green sheen for <em>E. coli</em> lactose fermenters), Enriched (Blood agar).
+</p>`,
+  `<div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#0369a1; font-size:14px;">STEP-BY-STEP GRAM STAINING PROTOCOL</h4>
+  <div style="font-size:13px; color:#0c4a6e; line-height:1.6;">
+    1. Prepare and heat-fix smear ➔ 2. Stain with Crystal Violet (1 min) ➔ 3. Apply Gram's Iodine mordant (1 min) ➔ 4. Decolorize with 95% Ethanol (10-15s) ➔ 5. Counterstain with Safranin (45s) ➔ 6. Wash, dry &amp; view under oil immersion (100x).
+  </div>
+</div>
+<div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+  4. Microbial Growth and Nutrition
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Microbial growth is defined as an increase in total cellular population size. Growth in batch culture follows a 4-phase sigmoidal curve: Lag phase (enzymatic adaptation), Log/Exponential phase (maximum division rate), Stationary phase (nutrient exhaustion/toxin accumulation, zero net growth), Death phase.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Key Growth Equations for GATE Numerical Calculations</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  1. Exponential Growth: <strong style="color:#0284c7; font-size:14.5px;">N_t = N₀ · 2^n</strong><br/>
+  2. Number of Generations: <strong style="color:#0284c7; font-size:14.5px;">n = (log N_t - log N₀) / 0.301</strong><br/>
+  3. Generation (Doubling) Time: <strong style="color:#0284c7; font-size:14.5px;">g = t / n</strong><br/>
+  4. Specific Growth Rate: <strong style="color:#0284c7; font-size:14.5px;">μ = (ln N_t - ln N₀) / t = 0.693 / g</strong><br/><br/>
+  • <strong>Nutritional Classes:</strong> Autotrophs (CO2 carbon source) vs Heterotrophs (organic carbon); Phototrophs (light energy) vs Chemotrophs (chemical bond energy); Lithotrophs (inorganic e⁻ donor) vs Organotrophs (organic e⁻ donor).
+</p>`,
+  `<div style="background:#e0f2fe; border:1px solid #7dd3fc; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#0369a1; font-size:14px;">Module 4 Question Bank: Growth Kinetics Practice</h4>
+  <div style="font-size:13px; color:#0c4a6e; line-height:1.6;">
+    <strong>Scenario:</strong> A bacterial culture increases from 10³ cells/mL to 107 cells/mL in 4 hours.<br/>
+    • n = (log 107 - log 10³) / 0.301 = (7 - 3) / 0.301 = 4 / 0.301 = <strong>13.29 generations</strong>.<br/>
+    • Generation Time g = 240 min / 13.29 = <strong>18.06 minutes</strong>.<br/>
+    • Specific Growth Rate μ = 0.693 / 18.06 min = <strong>0.0384 min⁻¹ = 2.30 h⁻¹</strong>.
+  </div>
+</div>
+<div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+  5. Aerobic and Anaerobic Respiration
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Respiration oxidizes substrates to generate ATP via glycolysis, TCA cycle, and electron transport chain (ETC).<br/>
+  • <strong>Aerobic Respiration:</strong> Oxygen is the terminal electron acceptor (high ATP yield ~32-38 ATP/glucose).<br/>
+  • <strong>Anaerobic Respiration:</strong> Inorganic compounds (Nitrate NO3⁻, Sulfate SO4²⁻, Fumarate) act as terminal acceptors.<br/>
+  • <strong>Fermentation:</strong> Substrate-level phosphorylation with no external electron acceptor or ETC (low yield ~2 ATP).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Denitrification &amp; ETC Proton Gradient</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Denitrification:</strong> Anaerobic respiratory reduction of nitrate (NO3⁻ ➔ NO2⁻ ➔ NO ➔ N2O ➔ N2) by bacteria like <em>Pseudomonas denitrificans</em>, releasing N2 gas back into atmosphere.<br/>
+  • <strong>Electron Transport Chain:</strong> Complexes I-IV pump protons across bacterial cell membrane to establish a <strong>proton motive force (PMF)</strong>, driving ATP synthesis via F0F1-ATP synthase.
+</p>
+<div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-top:20px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+  6. Nitrogen Fixation
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Biological Nitrogen Fixation (BNF) reduces inert atmospheric N2 to ammonia (NH3):<br/>
+  <strong style="color:#0284c7; font-size:14.5px;">N₂ + 8H⁺ + 8e⁻ + 16 ATP ➔ 2 NH₃ + H₂ + 16 ADP + 16 P_i</strong><br/><br/>
+  • <strong>Nitrogenase Complex:</strong> Composed of Dinitrogenase Reductase (Fe-protein) and Dinitrogenase (MoFe-protein). Extremely oxygen-sensitive.<br/>
+  • <strong>Microbial Types:</strong> Symbiotic (<em>Rhizobium</em> in legume root nodules), Free-living (<em>Azotobacter</em> aerobic, <em>Clostridium</em> anaerobic), Associative (<em>Azospirillum</em>).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Leghemoglobin Protection &amp; GS-GOGAT Assimilation</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Leghemoglobin:</strong> Pink oxygen-buffering heme protein in root nodules. Maintains ultra-low free oxygen concentration to protect oxygen-labile nitrogenase while providing sufficient O2 for bacteroid respiration.<br/>
+  • <strong>Symbiotic Nodule Formation:</strong> Flavonoid root secretion ➔ <em>Rhizobium</em> Nod factors ➔ Root hair curling ➔ Infection thread ➔ Bacteroid differentiation inside nodule cells.<br/>
+  • <strong>Ammonia Assimilation:</strong> Fixed NH3 incorporated into amino acids via <strong>Glutamine Synthetase (GS)</strong> and <strong>Glutamate Synthase (GOGAT)</strong> pathway.
+</p>`,
+  `<h1 style="font-size:20px; color:#0284c7; margin:0 0 10px; border-bottom:2px solid #0284c7; padding-bottom:8px;">7. MICROBIAL DISEASES AND HOST-PATHOGEN INTERACTION</h1>
+<div style="background:#e0f2fe; border-left:4px solid #0284c7; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0369a1;">
+  7.1 Infection Stages &amp; Virulence Factors
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Stages of Pathogenesis:</strong> 1. Entry ➔ 2. Adherence/Attachment (Adhesins, Pili) ➔ 3. Colonization &amp; Invasion ➔ 4. Immune Evasion (Capsules, antigenic variation) ➔ 5. Tissue Damage.<br/>
+  • <strong>Virulence Factors:</strong> Capsules (antiphagocytic polysaccharide coat in <em>S. pneumoniae</em>), Toxins, Biofilms, Enzymes (hyaluronidase, coagulase).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Exotoxins vs. Endotoxins Comparison</h3>
+<table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#0284c7; color:#fff; text-align:left;">
+      <th style="padding:6px;">Property</th>
+      <th style="padding:6px;">Exotoxins</th>
+      <th style="padding:6px;">Endotoxins</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f0f9ff;"><td style="padding:6px; border:1px solid #bae6fd; font-weight:700;">Chemical Nature</td><td style="padding:6px; border:1px solid #bae6fd;">Secreted soluble proteins.</td><td style="padding:6px; border:1px solid #bae6fd;">Lipopolysaccharide (Lipid A) of Gram-negative outer membrane.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #bae6fd; font-weight:700;">Source Bacteria</td><td style="padding:6px; border:1px solid #bae6fd;">Gram-positive and Gram-negative.</td><td style="padding:6px; border:1px solid #bae6fd;">Exclusively Gram-negative bacteria.</td></tr>
+    <tr style="background:#f0f9ff;"><td style="padding:6px; border:1px solid #bae6fd; font-weight:700;">Toxicity &amp; Heat Stability</td><td style="padding:6px; border:1px solid #bae6fd;">High toxicity; heat-labile (destroyed at 60°C).</td><td style="padding:6px; border:1px solid #bae6fd;">Moderate toxicity; heat-stable (withstands autoclaving).</td></tr>
+    <tr><td style="padding:6px; border:1px solid #bae6fd; font-weight:700;">Immunogenicity</td><td style="padding:6px; border:1px solid #bae6fd;">Highly immunogenic; converted to toxoids for vaccines.</td><td style="padding:6px; border:1px solid #bae6fd;">Poorly immunogenic; induces fever &amp; septic shock.</td></tr>
+  </tbody>
+</table>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">High-Yield Revision Matrix: Core Topics Summary</h3>
+<table style="width:100%; border-collapse:collapse; font-size:11.5px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#0284c7; color:#fff; text-align:left;">
+      <th style="padding:6px;">Topic</th>
+      <th style="padding:6px;">Main Focus Area</th>
+      <th style="padding:6px;">Most Asked GATE / GAT-B Exam Focus</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f0f9ff;"><td style="padding:6px; border:1px solid #bae6fd; font-weight:700;">Viruses</td><td style="padding:6px; border:1px solid #bae6fd;">Structure &amp; Classification</td><td style="padding:6px; border:1px solid #bae6fd;">DNA vs RNA genomes, Capsid vs Envelope, Reverse Transcriptase, Lytic vs Lysogenic cycles.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #bae6fd; font-weight:700;">Microbial Diversity</td><td style="padding:6px; border:1px solid #bae6fd;">Bacteria, Algae, Fungi taxonomy</td><td style="padding:6px; border:1px solid #bae6fd;">16S rRNA, Woese 3-domain system, Mycoplasma (no cell wall), Cyanobacteria.</td></tr>
+    <tr style="background:#f0f9ff;"><td style="padding:6px; border:1px solid #bae6fd; font-weight:700;">Methods</td><td style="padding:6px; border:1px solid #bae6fd;">Staining, Sterilization &amp; Culture</td><td style="padding:6px; border:1px solid #bae6fd;">Gram staining peptidoglycan retention, Autoclaving 121°C 15psi, Filtration for media.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #bae6fd; font-weight:700;">Growth Kinetics</td><td style="padding:6px; border:1px solid #bae6fd;">Growth curve &amp; Nutrients</td><td style="padding:6px; border:1px solid #bae6fd;">Generation time g = t/n, Log phase maximum division, Stationary phase secondary metabolites.</td></tr>
+  </tbody>
+</table>`,
+  `<table style="width:100%; border-collapse:collapse; font-size:11.5px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#0284c7; color:#fff; text-align:left;">
+      <th style="padding:6px;">Topic</th>
+      <th style="padding:6px;">Main Focus Area</th>
+      <th style="padding:6px;">Most Asked GATE / GAT-B Exam Focus</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f0f9ff;"><td style="padding:6px; border:1px solid #bae6fd; font-weight:700;">Respiration</td><td style="padding:6px; border:1px solid #bae6fd;">Aerobic vs Anaerobic vs Fermentation</td><td style="padding:6px; border:1px solid #bae6fd;">Terminal electron acceptors (O2 vs NO3⁻/SO4²⁻), ETC proton motive force, ATP yield.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #bae6fd; font-weight:700;">Nitrogen Fixation</td><td style="padding:6px; border:1px solid #bae6fd;">Nitrogenase &amp; Nodule Symbiosis</td><td style="padding:6px; border:1px solid #bae6fd;">N2 + 8H⁺ + 8e⁻ + 16ATP ➔ 2NH3, Leghemoglobin O2 buffer, Rhizobium Nod factors &amp; GS-GOGAT.</td></tr>
+    <tr style="background:#f0f9ff;"><td style="padding:6px; border:1px solid #bae6fd; font-weight:700;">Host-Pathogen</td><td style="padding:6px; border:1px solid #bae6fd;">Virulence factors &amp; Toxins</td><td style="padding:6px; border:1px solid #bae6fd;">Exotoxins (proteins, heat-labile) vs Endotoxins (Lipid A LPS, heat-stable, fever), Capsule phagocytosis.</td></tr>
+  </tbody>
+</table>`,
+  `<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#0f172a; font-size:14px;">🎓 Final GATE-Focused Checklist for Microbiology &amp; Virology</h4>
+  <ol style="font-size:12.5px; color:#334155; line-height:1.6; padding-left:20px; margin:0;">
+    <li>Gram-positive retains Crystal Violet due to thick peptidoglycan layer; Gram-negative decolorizes and stains pink with Safranin.</li>
+    <li>Autoclaving parameters: 121°C, 15 psi pressure for 15-20 minutes; kills bacterial endospores.</li>
+    <li>Generation time formula: g = t / n, where n = (log Nt - log N0) / 0.301.</li>
+    <li>Nitrogenase enzyme formula requires 16 ATP per N2 molecule reduced; protected by Leghemoglobin in root nodules.</li>
+    <li>Endotoxin is Lipid A of Lipopolysaccharide (LPS) in Gram-negative outer cell membrane.</li>
+  </ol>
+</div>`
+];
+
 /* ── Continuous Scroll PDF Document Viewer Component ── */
 function ContinuousPdfViewer({ topic }) {
   function handleOpenNewWindow() {
@@ -3223,6 +3689,20 @@ function ContinuousPdfViewer({ topic }) {
           </div>
           ${pgContent}
           <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 21</span></div>
+        </div>
+      `).join("");
+    } else if (topic.id === "topic-08") {
+      pagesHtml = FULL_MICROBIOLOGY_16_PAGES.map((pgContent, idx) => `
+        <div class="page">
+          <div class="header">
+            <div>
+              <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
+              <h2 class="title">${topic.name}</h2>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${idx + 1} OF 16</span>
+          </div>
+          ${pgContent}
+          <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 16</span></div>
         </div>
       `).join("");
     } else {
@@ -3319,7 +3799,7 @@ function ContinuousPdfViewer({ topic }) {
           <div>
             <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#fff" }}>{topic.pdfTitle}</h3>
             <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>
-              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : topic.id === "topic-07" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
+              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : topic.id === "topic-07" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : topic.id === "topic-08" ? "Executive Syllabus Summary • Full 16-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
             </p>
           </div>
         </div>
@@ -3333,10 +3813,10 @@ function ContinuousPdfViewer({ topic }) {
             cursor: "pointer", display: "flex", alignItems: "center", gap: "6px",
             boxShadow: "0 3px 12px " + topic.color + "40", transition: "all 0.2s"
           }}
-          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
+          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-08" ? "Click to open full 16-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
         >
           <span>↗️</span>
-          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : "Open PDF in New Window"}</span>
+          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : topic.id === "topic-08" ? "Open Full 16-Page PDF" : "Open PDF in New Window"}</span>
         </button>
       </div>
 
@@ -3352,7 +3832,7 @@ function ContinuousPdfViewer({ topic }) {
           paddingRight: "8px",
           cursor: "pointer"
         }}
-        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : topic.id === "topic-07" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
+        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : topic.id === "topic-07" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : topic.id === "topic-08" ? "Click anywhere on the study notes viewer to open full 16-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
       >
         {topic.sections.map((sec, idx) => (
           <div key={idx} style={{
