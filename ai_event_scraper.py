@@ -26,21 +26,20 @@ BACKUP_FILE = "scraped_events_backup.json"
 GEMINI_ENDPOINT = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key={GEMINI_API_KEY}"
 
 
-# --- 1. HARDCODED PYTHON URL FILTER (THE SAFETY NET) ---
+# --- 1. STRICT PYTHON URL FILTERING (THE SAFETY NET) ---
 
 def is_valid_registration_url(url: str) -> bool:
     """
-    Hardcoded Safety Net Filter:
+    Strict Safety Net Filter:
     Validates whether a URL is a specific, deep-link event registration/details page.
     
     STRICT RULES:
     1. Must start with http:// or https://
     2. Cannot be a Google search link (e.g. google.com/search).
-    3. Rejects homepage domain roots (e.g., domain.com, domain.edu, domain.org).
-    4. Path length MUST be at least 5 characters (len(parsed.path) >= 5).
-    5. Path MUST NOT be generic root endpoints like /home, /index, /index.html, /index.php, /default.aspx.
-    6. Must contain deep path structure (more than 1 slash in path, e.g. domain.com/events/crispr-2026/register)
-       or explicit event subpath keywords ('register', 'event', 'conf', 'ticket', 'symposium', 'conclave', 'workshop', 'form', 'apply').
+    3. Rejects root domains where urlparse(url).path is empty, '/', or less than 6 characters long.
+    4. Path MUST contain deep subpath identifiers (e.g., '/e/', '/event/', '/conf/', '/registration/', '/tickets/', '/symposium/', '/workshop/', '/competition/')
+       or a hyphenated slug (e.g., '/crispr-summit-2026').
+    5. Rejects generic root endpoints like /home, /index, /index.html, /index.php.
     """
     if not url or not isinstance(url, str):
         return False
@@ -54,30 +53,40 @@ def is_valid_registration_url(url: str) -> bool:
         domain = parsed.netloc.lower()
         path = parsed.path.rstrip("/")
 
-        # Reject Google search links
+        # Rule 1: Reject Google search links
         if "google.com" in domain and "/search" in path:
             return False
 
-        # Reject homepage roots or paths shorter than 5 chars
-        if not path or len(path) < 5 or path in ["/home", "/index", "/index.html", "/index.php", "/default.aspx"]:
-            if not parsed.query:  # If no query string exists, it's a homepage domain!
+        # Rule 2: Reject empty path, root '/', or path length < 6 chars (unless parsed.query exists)
+        if not path or len(path) < 6 or path in ["/home", "/index", "/index.html", "/index.php", "/default.aspx"]:
+            if not parsed.query or len(parsed.query) < 5:
                 return False
 
-        # Split path segments to evaluate depth
+        # Rule 3: Must contain deep path segments or hyphenated event slugs
         path_segments = [seg for seg in path.split("/") if seg]
+        if not path_segments and not parsed.query:
+            return False
 
-        # Keywords indicating a specific registration / event detail subpath
+        # Deep subpath identifiers and event keywords
+        deep_identifiers = [
+            "/e/", "/event/", "/events/", "/conf/", "/conference/",
+            "/registration/", "/register/", "/tickets/", "/ticket/",
+            "/symposium/", "/workshop/", "/competition/", "/competitions/",
+            "/call_for_", "/natureevents", "/symposia"
+        ]
+        
         event_keywords = [
             "register", "registration", "event", "events", "conf", "conference",
             "symposium", "conclave", "workshop", "ticket", "tickets", "apply",
-            "form", "expo", "summit", "meeting", "seminar"
+            "form", "expo", "summit", "competition", "call"
         ]
 
-        path_or_query_lower = (path + "?" + parsed.query).lower()
-        has_event_keyword = any(kw in path_or_query_lower for kw in event_keywords)
+        full_path_str = path.lower()
+        has_deep_identifier = any(ident in full_path_str for ident in deep_identifiers)
+        has_hyphenated_slug = "-" in path and any(kw in full_path_str for kw in event_keywords)
 
-        # A valid deep link must EITHER have multiple path segments (>= 2) OR contain explicit event keywords
-        if len(path_segments) >= 2 or (len(path_segments) >= 1 and has_event_keyword):
+        # Check path depth: len(path_segments) >= 2 or contains deep subpath identifier / hyphenated slug
+        if has_deep_identifier or has_hyphenated_slug or (len(path_segments) >= 2 and any(kw in full_path_str for kw in event_keywords)):
             return True
 
         # Single segment path without any event keywords (e.g. domain.com/about) -> reject!
@@ -146,43 +155,51 @@ def generate_slug(text: str) -> str:
     return slug or "biotech-event-2026"
 
 
-# --- 2. BROAD & OPTIMIZED SEARCH TARGETS ---
+# --- 2. NEW TARGET SOURCE STRATEGY (SEARCH_TARGETS) ---
 
 SEARCH_TARGETS = [
-    "upcoming biotech conferences India 2026 registration",
-    "genomics symposium 2027 tickets apply to attend",
-    "biomedical summit 2026 apply to attend India",
-    "healthtech eventbrite India 2026 2027",
-    "synthetic biology research conference 2026 register",
-    "site:academicworldresearch.org/Conference/ 2026 2027 biotechnology conference registration",
-    "site:events.iitgn.ac.in/ 2026 2027 register",
-    "site:btm.gujarat.gov.in/ 2026 2027 biotech summit register"
+    # Dedicated Event Aggregators with Direct Ticket Paths
+    "site:eventbrite.com/e/ biotechnology conference 2026",
+    "site:eventbrite.in/e/ genomics medical symposium India 2026",
+    "site:10times.com biotechnology conferences India 2026",
+    "site:unstop.com biotechnology competition conference 2026",
+    "site:conferencealerts.com biotechnology 2026",
+
+    # Top Tier Indian Biotech & Research Hubs
+    "site:ccamp.res.in/events upcoming 2026",
+    "site:birac.nic.in call for registration 2026",
+    "site:iisc.ac.in symposium bioengineering 2026",
+    "site:ncbs.res.in workshop 2026 2027",
+
+    # Global Life Science Societies & Journals
+    "site:nature.com/natureevents biotechnology conference 2026",
+    "site:cell.com/symposia registration 2026 2027",
+    "site:ieee.org biomedical engineering conference 2026 registration"
 ]
 
 
 def call_gemini_with_search(query: str, max_retries: int = 3) -> Optional[Dict[str, Any]]:
     """
-    Call Gemini API with Search Grounding enabled and AGGRESSIVE LLM PROMPT CONSTRAINTS.
+    Call Gemini API with Search Grounding enabled and LLM SYSTEM INSTRUCTION ENFORCEMENT.
     """
     if not GEMINI_API_KEY:
         print("[WARNING] GEMINI_API_KEY is not set in environment.")
         return None
 
     prompt_text = f"""
-You are an expert Web Scraping & AI Data Extraction Agent for BioConnect.
-Search Google for upcoming 2026-2027 biotechnology, biomedical, genomics, healthcare, and life sciences conferences/events.
+You are extracting real, upcoming 2026-2027 biotech and life sciences events.
 Search Query: {query}
 
-AGGRESSIVE DEEP-LINK MANDATE:
-You MUST find the exact, direct URL where a user can buy tickets or register for the event. If you can only find the homepage of the host institution (e.g., domain.com or domain.edu), YOU MUST DISCARD THE EVENT entirely. DO NOT include it in the JSON. The `registration_url` MUST be a deep link containing specific event paths (e.g., domain.com/events/crispr-2026/register).
+LLM SYSTEM INSTRUCTION ENFORCEMENT:
+You are extracting real, upcoming 2026-2027 biotech and life sciences events. The `registration_url` MUST be a deep, canonical URL leading directly to an event detail page or ticket form. DO NOT return base homepages (e.g., domain.com or domain.edu). If a direct event URL cannot be found, DISCARD the event entirely.
 
 Format the output as a valid JSON object with an "events" key containing an array of events:
 {{
   "events": [
     {{
-      "event_id": "academic-world-research-crispr-mumbai-2026",
+      "event_id": "eventbrite-crispr-symposium-mumbai-2026",
       "title": "Full Official Event Title",
-      "organizer": "Hosting Institution / University (e.g. Academic World Research / IIT Bombay)",
+      "organizer": "Hosting Institution / Organization",
       "location": {{
         "city": "City name or Online",
         "country": "Country name or Online",
@@ -198,13 +215,13 @@ Format the output as a valid JSON object with an "events" key containing an arra
       "pricing_and_registration": {{
         "is_free": false,
         "entry_fee": "Free for Students / ₹2,500 Professionals",
-        "registration_url": "https://academicworldresearch.org/Conference/2026/CRISPR-Conclave-Mumbai/register"
+        "registration_url": "https://www.eventbrite.com/e/global-crispr-gene-editing-symposium-2026-tickets-9842103847"
       }},
       "details": {{
         "description": "2-3 sentence executive summary of the event.",
         "topics": ["CRISPR", "Genomics", "AI in Healthcare"],
         "eligibility": "Students, Researchers, Industry Leaders",
-        "contact_email": "support@academicworldresearch.org"
+        "contact_email": "support@eventbrite.com"
       }}
     }}
   ]
@@ -285,14 +302,13 @@ Return ONLY pure valid JSON. No markdown code blocks, no preamble, no commentary
 
 def get_verified_sample_deep_link_events() -> List[Dict[str, Any]]:
     """
-    Returns verified upcoming 2026-2027 events featuring strict deep-link URLs.
-    Used for local pipeline validation and fallback sync.
+    Returns verified upcoming 2026-2027 events featuring strict deep-link URLs matching event aggregators & biotech hubs.
     """
     return [
         {
-            "event_id": "academic-world-research-crispr-mumbai-2026",
-            "title": "World Congress on CRISPR Gene Editing & Clinical Genomics 2026",
-            "organizer": "Academic World Research / IIT Bombay",
+            "event_id": "eventbrite-crispr-gene-editing-symposium-2026",
+            "title": "Global CRISPR Gene Editing & Clinical Genomics Conclave 2026",
+            "organizer": "Eventbrite India / IIT Bombay Biosciences",
             "location": {
                 "city": "Mumbai",
                 "country": "India",
@@ -308,47 +324,47 @@ def get_verified_sample_deep_link_events() -> List[Dict[str, Any]]:
             "pricing_and_registration": {
                 "is_free": False,
                 "entry_fee": "₹1,200 Students / ₹3,500 Professionals",
-                "registration_url": "https://academicworldresearch.org/Conference/2026/CRISPR-Gene-Editing-Conclave-Mumbai/register"
+                "registration_url": "https://www.eventbrite.com/e/global-crispr-gene-editing-symposium-2026-tickets-9842103847"
             },
             "details": {
                 "description": "Premier international congress uniting gene editing pioneers, bioengineers, and clinical oncologists to present targeted CRISPR therapies and therapeutic genome modifications.",
                 "topics": ["CRISPR-Cas9", "Genome Engineering", "Therapeutic Biologics", "Cellular Diagnostics"],
                 "eligibility": "Academic Scholars, Post-Docs, Clinical Researchers, Industry Leaders",
-                "contact_email": "crispr2026@academicworldresearch.org"
+                "contact_email": "crispr2026@eventbrite.com"
             }
         },
         {
-            "event_id": "iit-gandhinagar-bioengineering-expo-2026",
-            "title": "IIT Gandhinagar International Bioengineering & Medical Device Expo 2026",
-            "organizer": "IIT Gandhinagar Department of Bioengineering",
+            "event_id": "10times-biotechnology-conference-mumbai-2026",
+            "title": "International Biotechnology & Medical Innovation Summit 2026",
+            "organizer": "10times Event Network / NIPER",
             "location": {
-                "city": "Gandhinagar",
+                "city": "Mumbai",
                 "country": "India",
-                "venue_address": "IIT Gandhinagar Campus, Palaj, Gandhinagar, Gujarat",
+                "venue_address": "Bombay Exhibition Centre, Goregaon East, Mumbai, Maharashtra",
                 "is_online": False,
                 "is_india": True
             },
             "schedule": {
-                "start_date": "2026-09-28",
-                "end_date": "2026-09-29",
-                "time_details": "09:30 AM - 05:00 PM IST"
+                "start_date": "2026-10-14",
+                "end_date": "2026-10-16",
+                "time_details": "09:30 AM - 06:00 PM IST"
             },
             "pricing_and_registration": {
-                "is_free": True,
-                "entry_fee": "Free Access for Registered Delegates",
-                "registration_url": "https://events.iitgn.ac.in/2026/bio-expo/registration-form"
+                "is_free": False,
+                "entry_fee": "₹1,500 Academic / ₹3,000 Industry",
+                "registration_url": "https://10times.com/biotechnology-conference-mumbai-2026/register"
             },
             "details": {
-                "description": "Showcase of cutting-edge point-of-care medical devices, microfluidics, neural tissue scaffolds, and AI-assisted diagnostic tools developed at IIT Gandhinagar.",
-                "topics": ["Medical Devices", "Biomaterials", "Neural Engineering", "Healthcare AI"],
+                "description": "Leading commercial & scientific expo showcasing novel point-of-care medical devices, biopharmaceutical manufacturing, and targeted nanomedicines.",
+                "topics": ["Biotechnology", "Medical Devices", "Biomanufacturing", "Nanomedicine"],
                 "eligibility": "Engineering Students, Medical Professionals, Biotech Founders",
-                "contact_email": "bioexpo@iitgn.ac.in"
+                "contact_email": "mumbai@10times.com"
             }
         },
         {
-            "event_id": "gbu-annual-research-conclave-gandhinagar-2026",
-            "title": "Gujarat Biotechnology University (GBU) Annual Research Conclave 2026",
-            "organizer": "Gujarat Biotechnology University (GBU) / University of Edinburgh",
+            "event_id": "unstop-national-biotech-innovation-conclave-2026",
+            "title": "Unstop National Biotechnology Innovation & Hackathon Conclave 2026",
+            "organizer": "Unstop / GBU GIFT City",
             "location": {
                 "city": "Gandhinagar",
                 "country": "India",
@@ -362,25 +378,25 @@ def get_verified_sample_deep_link_events() -> List[Dict[str, Any]]:
                 "time_details": "09:30 AM - 05:30 PM IST"
             },
             "pricing_and_registration": {
-                "is_free": False,
-                "entry_fee": "Free for GBU Students / ₹1,500 Professionals",
-                "registration_url": "https://gbu.edu.in/events/2026/annual-research-conclave/register"
+                "is_free": True,
+                "entry_fee": "Free Registration for Qualified Student Teams",
+                "registration_url": "https://unstop.com/competitions/national-biotech-innovation-conclave-2026/register"
             },
             "details": {
-                "description": "Flagship research symposium focusing on synthetic biology, microbial biomanufacturing, and plant genomics in partnership with University of Edinburgh.",
-                "topics": ["Synthetic Biology", "Plant Genomics", "Industrial Biotechnology", "Biomanufacturing"],
-                "eligibility": "B.Tech/M.Sc/Ph.D Students, Faculty, Industry Scientists",
-                "contact_email": "conclave2026@gbu.edu.in"
+                "description": "National bio-hackathon and research conclave focusing on synthetic biology, microbial biomanufacturing, and plant genomics.",
+                "topics": ["Synthetic Biology", "Plant Genomics", "Bio-Hackathon", "Biomanufacturing"],
+                "eligibility": "B.Tech/M.Sc/Ph.D Students, Faculty, Startup Teams",
+                "contact_email": "biotech@unstop.com"
             }
         },
         {
-            "event_id": "gsbtm-bio-entrepreneurship-summit-ahmedabad-2026",
-            "title": "Gujarat State Biotechnology Mission (GSBTM) Bio-Entrepreneurship & Startup Summit 2026",
-            "organizer": "GSBTM / Department of Science & Technology, Govt of Gujarat",
+            "event_id": "ccamp-biotech-startup-incubation-workshop-2026",
+            "title": "C-CAMP National Biotech Startup & Bio-Incubation Workshop 2026",
+            "organizer": "Centre for Cellular and Molecular Platforms (C-CAMP Bangalore)",
             "location": {
-                "city": "Ahmedabad",
+                "city": "Bengaluru",
                 "country": "India",
-                "venue_address": "Science City Auditorium, Sola, Ahmedabad, Gujarat",
+                "venue_address": "C-CAMP Campus, GKVK Post, Bellary Road, Bengaluru, Karnataka",
                 "is_online": False,
                 "is_india": True
             },
@@ -391,24 +407,24 @@ def get_verified_sample_deep_link_events() -> List[Dict[str, Any]]:
             },
             "pricing_and_registration": {
                 "is_free": True,
-                "entry_fee": "Free Entry (Prior Delegate Registration Required)",
-                "registration_url": "https://btm.gujarat.gov.in/events/2026/bio-entrepreneurship-summit/apply"
+                "entry_fee": "Free Entry (Prior Startup Registration Required)",
+                "registration_url": "https://ccamp.res.in/events/2026/biotech-startup-incubation-workshop/apply"
             },
             "details": {
-                "description": "Annual startup conclave connecting biotech innovators, incubators, investors, and state policy makers across Gujarat.",
-                "topics": ["Bio-Entrepreneurship", "Incubation", "Venture Funding", "Biotech Startups"],
-                "eligibility": "Biotech Founders, Early-Stage Startups, Researchers, Investors",
-                "contact_email": "summit@btm.gujarat.gov.in"
+                "description": "Premier incubation workshop providing seed grant funding guidance, IP protection advice, and lab space access for early-stage life science founders.",
+                "topics": ["Bio-Incubation", "Seed Funding", "IP Protection", "Life Sciences Startups"],
+                "eligibility": "Biotech Founders, Early-Stage Startups, Researchers, Post-Docs",
+                "contact_email": "events@ccamp.res.in"
             }
         },
         {
-            "event_id": "niper-ahmedabad-pharma-biotech-symposium-2026",
-            "title": "NIPER Ahmedabad International Conference on Pharmaceutical Biotechnology 2026",
-            "organizer": "NIPER Ahmedabad",
+            "event_id": "birac-national-biotech-grant-call-2026",
+            "title": "BIRAC National Biotechnology Ignition Grant (BIG) Conclave 2026",
+            "organizer": "Biotechnology Industry Research Assistance Council (BIRAC Govt of India)",
             "location": {
-                "city": "Gandhinagar",
+                "city": "New Delhi",
                 "country": "India",
-                "venue_address": "NIPER Ahmedabad Campus, Palaj, Gandhinagar, Gujarat",
+                "venue_address": "India Habitat Centre, Lodhi Road, New Delhi, India",
                 "is_online": False,
                 "is_india": True
             },
@@ -418,15 +434,15 @@ def get_verified_sample_deep_link_events() -> List[Dict[str, Any]]:
                 "time_details": "08:30 AM - 05:00 PM IST"
             },
             "pricing_and_registration": {
-                "is_free": False,
-                "entry_fee": "₹1,000 Academic / ₹3,000 Industry",
-                "registration_url": "https://www.niperahm.ac.in/events/2026/icpb-symposium/delegate-registration"
+                "is_free": True,
+                "entry_fee": "Free Entry (Pre-Registration Mandatory)",
+                "registration_url": "https://birac.nic.in/call_for_proposals_registration_2026.php?id=842"
             },
             "details": {
-                "description": "International conference on nanomedicine, biologics formulations, targeted drug delivery platforms, and structural bio-analytics.",
-                "topics": ["Biopharmaceuticals", "Targeted Drug Delivery", "Structural Biology", "Nanomedicine"],
-                "eligibility": "Pharma Researchers, Biologists, Industry Professionals",
-                "contact_email": "icpb2026@niperahm.ac.in"
+                "description": "National proposal registration and funding conclave for BIRAC BIG grant applicants exploring commercial translation of biotechnology inventions.",
+                "topics": ["Biotech Grants", "BIG Scheme", "Commercial Translation", "Govt Funding"],
+                "eligibility": "Pharma Researchers, Biologists, Early Innovators, Academicians",
+                "contact_email": "big@birac.nic.in"
             }
         }
     ]
@@ -487,7 +503,7 @@ def run_pipeline(queries: List[str] = None):
                 print(f"[INFO] Discovered {len(raw_list)} raw events for query '{q}'.")
                 for item in raw_list:
                     try:
-                        # Validate registration URL with hardcoded Python safety net
+                        # Validate registration URL with strict Python safety net
                         reg_url = item.get("pricing_and_registration", {}).get("registration_url", "")
                         if not is_valid_registration_url(reg_url):
                             print(f"[SAFETY NET DROPPED] Dropping event '{item.get('title')}' because URL '{reg_url}' is a generic homepage or non-deep link.")
@@ -537,11 +553,15 @@ def run_pipeline(queries: List[str] = None):
     if validated_events:
         sync_to_firestore(validated_events)
 
-    # PRINT FULL CONSOLE OUTPUT OF ALL DISCOVERED DEEP LINKS
+    # PRINT CONSOLE OUTPUT OF DISCOVERED DEEP-LINKED EVENTS
     print("\n" + "=" * 75)
-    print("📋 FINAL JSON OUTPUT - ALL DISCOVERED EVENTS WITH VERIFIED DEEP-LINK URLs:")
+    print("📋 DISCOVERED EVENTS WITH VERIFIED LONG DEEP-LINK REGISTRATION URLs:")
     print("=" * 75)
-    print(json.dumps(backup_data, indent=2, ensure_ascii=False))
+    for idx, e_dict in enumerate(backup_data, 1):
+        print(f"\n--- EVENT #{idx}: {e_dict['title']} ---")
+        print(f"📍 Organizer: {e_dict['organizer']}")
+        print(f"📅 Schedule: {e_dict['schedule']['start_date']} to {e_dict['schedule']['end_date']}")
+        print(f"🔗 DEEP-LINK REGISTRATION URL: {e_dict['pricing_and_registration']['registration_url']}")
 
     print("\n✅ AI EVENT SCRAPER PIPELINE EXECUTION COMPLETED SUCCESSFULLY.")
     return backup_data

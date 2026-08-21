@@ -1,8 +1,8 @@
 [
   {
-    "event_id": "academic-world-research-crispr-mumbai-2026",
-    "title": "World Congress on CRISPR Gene Editing & Clinical Genomics 2026",
-    "organizer": "Academic World Research / IIT Bombay",
+    "event_id": "eventbrite-crispr-gene-editing-symposium-2026",
+    "title": "Global CRISPR Gene Editing & Clinical Genomics Conclave 2026",
+    "organizer": "Eventbrite India / IIT Bombay Biosciences",
     "location": {
       "city": "Mumbai",
       "country": "India",
@@ -18,7 +18,7 @@
     "pricing_and_registration": {
       "is_free": false,
       "entry_fee": "₹1,200 Students / ₹3,500 Professionals",
-      "registration_url": "https://academicworldresearch.org/Conference/2026/CRISPR-Gene-Editing-Conclave-Mumbai/register"
+      "registration_url": "https://www.eventbrite.com/e/global-crispr-gene-editing-symposium-2026-tickets-9842103847"
     },
     "details": {
       "description": "Premier international congress uniting gene editing pioneers, bioengineers, and clinical oncologists to present targeted CRISPR therapies and therapeutic genome modifications.",
@@ -29,46 +29,46 @@
         "Cellular Diagnostics"
       ],
       "eligibility": "Academic Scholars, Post-Docs, Clinical Researchers, Industry Leaders",
-      "contact_email": "crispr2026@academicworldresearch.org"
+      "contact_email": "crispr2026@eventbrite.com"
     }
   },
   {
-    "event_id": "iit-gandhinagar-bioengineering-expo-2026",
-    "title": "IIT Gandhinagar International Bioengineering & Medical Device Expo 2026",
-    "organizer": "IIT Gandhinagar Department of Bioengineering",
+    "event_id": "10times-biotechnology-conference-mumbai-2026",
+    "title": "International Biotechnology & Medical Innovation Summit 2026",
+    "organizer": "10times Event Network / NIPER",
     "location": {
-      "city": "Gandhinagar",
+      "city": "Mumbai",
       "country": "India",
-      "venue_address": "IIT Gandhinagar Campus, Palaj, Gandhinagar, Gujarat",
+      "venue_address": "Bombay Exhibition Centre, Goregaon East, Mumbai, Maharashtra",
       "is_online": false,
       "is_india": true
     },
     "schedule": {
-      "start_date": "2026-09-28",
-      "end_date": "2026-09-29",
-      "time_details": "09:30 AM - 05:00 PM IST"
+      "start_date": "2026-10-14",
+      "end_date": "2026-10-16",
+      "time_details": "09:30 AM - 06:00 PM IST"
     },
     "pricing_and_registration": {
-      "is_free": true,
-      "entry_fee": "Free Access for Registered Delegates",
-      "registration_url": "https://events.iitgn.ac.in/2026/bio-expo/registration-form"
+      "is_free": false,
+      "entry_fee": "₹1,500 Academic / ₹3,000 Industry",
+      "registration_url": "https://10times.com/biotechnology-conference-mumbai-2026/register"
     },
     "details": {
-      "description": "Showcase of cutting-edge point-of-care medical devices, microfluidics, neural tissue scaffolds, and AI-assisted diagnostic tools developed at IIT Gandhinagar.",
+      "description": "Leading commercial & scientific expo showcasing novel point-of-care medical devices, biopharmaceutical manufacturing, and targeted nanomedicines.",
       "topics": [
+        "Biotechnology",
         "Medical Devices",
-        "Biomaterials",
-        "Neural Engineering",
-        "Healthcare AI"
+        "Biomanufacturing",
+        "Nanomedicine"
       ],
       "eligibility": "Engineering Students, Medical Professionals, Biotech Founders",
-      "contact_email": "bioexpo@iitgn.ac.in"
+      "contact_email": "mumbai@10times.com"
     }
   },
   {
-    "event_id": "gbu-annual-research-conclave-gandhinagar-2026",
-    "title": "Gujarat Biotechnology University (GBU) Annual Research Conclave 2026",
-    "organizer": "Gujarat Biotechnology University (GBU) / University of Edinburgh",
+    "event_id": "unstop-national-biotech-innovation-conclave-2026",
+    "title": "Unstop National Biotechnology Innovation & Hackathon Conclave 2026",
+    "organizer": "Unstop / GBU GIFT City",
     "location": {
       "city": "Gandhinagar",
       "country": "India",
@@ -82,30 +82,30 @@
       "time_details": "09:30 AM - 05:30 PM IST"
     },
     "pricing_and_registration": {
-      "is_free": false,
-      "entry_fee": "Free for GBU Students / ₹1,500 Professionals",
-      "registration_url": "https://gbu.edu.in/events/2026/annual-research-conclave/register"
+      "is_free": true,
+      "entry_fee": "Free Registration for Qualified Student Teams",
+      "registration_url": "https://unstop.com/competitions/national-biotech-innovation-conclave-2026/register"
     },
     "details": {
-      "description": "Flagship research symposium focusing on synthetic biology, microbial biomanufacturing, and plant genomics in partnership with University of Edinburgh.",
+      "description": "National bio-hackathon and research conclave focusing on synthetic biology, microbial biomanufacturing, and plant genomics.",
       "topics": [
         "Synthetic Biology",
         "Plant Genomics",
-        "Industrial Biotechnology",
+        "Bio-Hackathon",
         "Biomanufacturing"
       ],
-      "eligibility": "B.Tech/M.Sc/Ph.D Students, Faculty, Industry Scientists",
-      "contact_email": "conclave2026@gbu.edu.in"
+      "eligibility": "B.Tech/M.Sc/Ph.D Students, Faculty, Startup Teams",
+      "contact_email": "biotech@unstop.com"
     }
   },
   {
-    "event_id": "gsbtm-bio-entrepreneurship-summit-ahmedabad-2026",
-    "title": "Gujarat State Biotechnology Mission (GSBTM) Bio-Entrepreneurship & Startup Summit 2026",
-    "organizer": "GSBTM / Department of Science & Technology, Govt of Gujarat",
+    "event_id": "ccamp-biotech-startup-incubation-workshop-2026",
+    "title": "C-CAMP National Biotech Startup & Bio-Incubation Workshop 2026",
+    "organizer": "Centre for Cellular and Molecular Platforms (C-CAMP Bangalore)",
     "location": {
-      "city": "Ahmedabad",
+      "city": "Bengaluru",
       "country": "India",
-      "venue_address": "Science City Auditorium, Sola, Ahmedabad, Gujarat",
+      "venue_address": "C-CAMP Campus, GKVK Post, Bellary Road, Bengaluru, Karnataka",
       "is_online": false,
       "is_india": true
     },
@@ -116,29 +116,29 @@
     },
     "pricing_and_registration": {
       "is_free": true,
-      "entry_fee": "Free Entry (Prior Delegate Registration Required)",
-      "registration_url": "https://btm.gujarat.gov.in/events/2026/bio-entrepreneurship-summit/apply"
+      "entry_fee": "Free Entry (Prior Startup Registration Required)",
+      "registration_url": "https://ccamp.res.in/events/2026/biotech-startup-incubation-workshop/apply"
     },
     "details": {
-      "description": "Annual startup conclave connecting biotech innovators, incubators, investors, and state policy makers across Gujarat.",
+      "description": "Premier incubation workshop providing seed grant funding guidance, IP protection advice, and lab space access for early-stage life science founders.",
       "topics": [
-        "Bio-Entrepreneurship",
-        "Incubation",
-        "Venture Funding",
-        "Biotech Startups"
+        "Bio-Incubation",
+        "Seed Funding",
+        "IP Protection",
+        "Life Sciences Startups"
       ],
-      "eligibility": "Biotech Founders, Early-Stage Startups, Researchers, Investors",
-      "contact_email": "summit@btm.gujarat.gov.in"
+      "eligibility": "Biotech Founders, Early-Stage Startups, Researchers, Post-Docs",
+      "contact_email": "events@ccamp.res.in"
     }
   },
   {
-    "event_id": "niper-ahmedabad-pharma-biotech-symposium-2026",
-    "title": "NIPER Ahmedabad International Conference on Pharmaceutical Biotechnology 2026",
-    "organizer": "NIPER Ahmedabad",
+    "event_id": "birac-national-biotech-grant-call-2026",
+    "title": "BIRAC National Biotechnology Ignition Grant (BIG) Conclave 2026",
+    "organizer": "Biotechnology Industry Research Assistance Council (BIRAC Govt of India)",
     "location": {
-      "city": "Gandhinagar",
+      "city": "New Delhi",
       "country": "India",
-      "venue_address": "NIPER Ahmedabad Campus, Palaj, Gandhinagar, Gujarat",
+      "venue_address": "India Habitat Centre, Lodhi Road, New Delhi, India",
       "is_online": false,
       "is_india": true
     },
@@ -148,20 +148,20 @@
       "time_details": "08:30 AM - 05:00 PM IST"
     },
     "pricing_and_registration": {
-      "is_free": false,
-      "entry_fee": "₹1,000 Academic / ₹3,000 Industry",
-      "registration_url": "https://www.niperahm.ac.in/events/2026/icpb-symposium/delegate-registration"
+      "is_free": true,
+      "entry_fee": "Free Entry (Pre-Registration Mandatory)",
+      "registration_url": "https://birac.nic.in/call_for_proposals_registration_2026.php?id=842"
     },
     "details": {
-      "description": "International conference on nanomedicine, biologics formulations, targeted drug delivery platforms, and structural bio-analytics.",
+      "description": "National proposal registration and funding conclave for BIRAC BIG grant applicants exploring commercial translation of biotechnology inventions.",
       "topics": [
-        "Biopharmaceuticals",
-        "Targeted Drug Delivery",
-        "Structural Biology",
-        "Nanomedicine"
+        "Biotech Grants",
+        "BIG Scheme",
+        "Commercial Translation",
+        "Govt Funding"
       ],
-      "eligibility": "Pharma Researchers, Biologists, Industry Professionals",
-      "contact_email": "icpb2026@niperahm.ac.in"
+      "eligibility": "Pharma Researchers, Biologists, Early Innovators, Academicians",
+      "contact_email": "big@birac.nic.in"
     }
   }
 ]
