@@ -3081,22 +3081,29 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
   }
 
   return (
-    <div style={{
-      position: "fixed", inset: 0, zIndex: 1000,
-      background: "rgba(11, 25, 33, 0.85)",
-      backdropFilter: "blur(10px)",
-      display: "flex", alignItems: "center", justifyContent: "center",
-      padding: "20px"
-    }}>
-      <div style={{
-        background: "#ffffff",
-        borderRadius: "24px",
-        width: "100%", maxWidth: "880px",
-        maxHeight: "92vh", overflowY: "auto",
-        boxShadow: "0 24px 60px rgba(0,0,0,0.25)",
-        border: "1px solid #E2EEF0",
-        display: "flex", flexDirection: "column"
-      }}>
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 1000,
+        background: "rgba(11, 25, 33, 0.85)",
+        backdropFilter: "blur(10px)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "20px", cursor: "pointer"
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          background: "#ffffff",
+          borderRadius: "24px",
+          width: "100%", maxWidth: "880px",
+          maxHeight: "92vh", overflowY: "auto",
+          boxShadow: "0 24px 60px rgba(0,0,0,0.25)",
+          border: "1px solid #E2EEF0",
+          display: "flex", flexDirection: "column",
+          cursor: "default"
+        }}
+      >
         {/* Header */}
         <div style={{
           padding: "24px 32px",
@@ -3379,22 +3386,29 @@ function ChallengeModal({ challengeKey, onClose, supabase, profile, onXPUpdate }
   const scorePercent = Math.round((totalCorrect / questions.length) * 100);
 
   return (
-    <div style={{
-      position: "fixed", inset: 0, zIndex: 1000,
-      background: "rgba(11, 25, 33, 0.85)",
-      backdropFilter: "blur(10px)",
-      display: "flex", alignItems: "center", justifyContent: "center",
-      padding: "20px"
-    }}>
-      <div style={{
-        background: "#ffffff",
-        borderRadius: "24px",
-        width: "100%", maxWidth: "840px",
-        maxHeight: "90vh", overflowY: "auto",
-        boxShadow: "0 24px 60px rgba(0,0,0,0.25)",
-        border: "1px solid #E2EEF0",
-        display: "flex", flexDirection: "column"
-      }}>
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 1000,
+        background: "rgba(11, 25, 33, 0.85)",
+        backdropFilter: "blur(10px)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "20px", cursor: "pointer"
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          background: "#ffffff",
+          borderRadius: "24px",
+          width: "100%", maxWidth: "840px",
+          maxHeight: "90vh", overflowY: "auto",
+          boxShadow: "0 24px 60px rgba(0,0,0,0.25)",
+          border: "1px solid #E2EEF0",
+          display: "flex", flexDirection: "column",
+          cursor: "default"
+        }}
+      >
         {/* Header */}
         <div style={{
           padding: "20px 28px",
