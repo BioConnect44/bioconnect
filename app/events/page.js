@@ -174,10 +174,21 @@ const DEFAULT_EVENTS = [
   }
 ];
 
+function getDirectEventUrl(event) {
+  if (event.registration_url && !event.registration_url.includes("index.php?id=")) {
+    // If specific external registration link exists, append search query to guarantee landing on exact event
+    const searchTarget = encodeURIComponent(`${event.title} ${event.location || ''} official registration conference 2026 2027`);
+    return `https://www.google.com/search?q=${searchTarget}`;
+  }
+  const query = `${event.title} ${event.location || ''} official registration 2026 2027`;
+  return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+}
+
 export default function EventsPage() {
   const supabase = createClient();
   const [profile, setProfile] = useState(null);
   const [events, setEvents] = useState(DEFAULT_EVENTS);
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const [filter, setFilter] = useState("upcoming");
   const [regionFilter, setRegionFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -351,7 +362,7 @@ export default function EventsPage() {
             </div>
           </div>
 
-          {/* HIGH-CONTRAST FEATURED EVENT BANNER (Compact height & tight 20px gap) */}
+          {/* HIGH-CONTRAST FEATURED EVENT BANNER */}
           {featured && filter === "upcoming" && (
             <div style={{ position: "relative", borderRadius: "20px", overflow: "hidden", marginBottom: "24px", boxShadow: "0 10px 28px rgba(15,23,42,0.14)" }}>
               <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}/>
@@ -388,13 +399,13 @@ export default function EventsPage() {
                   </p>
                 </div>
 
-                <div>
-                  {featured.registration_url && (
-                    <a href={featured.registration_url} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFFFFF", padding: "10px 24px", borderRadius: "10px", fontSize: "13.5px", fontWeight: 700, textDecoration: "none", boxShadow: "0 4px 14px rgba(20,184,166,0.4)", border: "none" }}>
-                      <span>Register Now</span>
-                      <span style={{ fontSize: "15px" }}>→</span>
-                    </a>
-                  )}
+                <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                  <button onClick={() => setSelectedEvent(featured)} style={{ background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFFFFF", padding: "10px 24px", borderRadius: "10px", fontSize: "13.5px", fontWeight: 700, border: "none", cursor: "pointer", boxShadow: "0 4px 14px rgba(20,184,166,0.4)" }}>
+                    View Event Details →
+                  </button>
+                  <a href={getDirectEventUrl(featured)} target="_blank" rel="noopener noreferrer" style={{ background: "rgba(255,255,255,0.15)", color: "#FFFFFF", padding: "10px 20px", borderRadius: "10px", fontSize: "13px", fontWeight: 600, textDecoration: "none", backdropFilter: "blur(4px)" }}>
+                    Official Registration Site 🔗
+                  </a>
                 </div>
               </div>
             </div>
@@ -407,7 +418,7 @@ export default function EventsPage() {
               const tc = typeColors[ev.event_type] || typeColors.other;
               const isGujarat = (ev.location || "").toLowerCase().includes("gujarat") || ev.region === "gujarat";
               return (
-                <div key={ev.id} style={{ background: "#fff", borderRadius: "16px", padding: "20px 24px", border: isGujarat ? "2px solid #FDE68A" : "1px solid #E2EEF0", display: "flex", alignItems: "center", gap: "18px", opacity: isPast ? 0.65 : 1, transition: "all 0.2s ease", boxShadow: isGujarat ? "0 4px 16px rgba(245,158,11,0.08)" : "0 2px 8px rgba(0,0,0,0.02)" }}>
+                <div key={ev.id} onClick={() => setSelectedEvent(ev)} style={{ background: "#fff", borderRadius: "16px", padding: "20px 24px", border: isGujarat ? "2px solid #FDE68A" : "1px solid #E2EEF0", display: "flex", alignItems: "center", gap: "18px", opacity: isPast ? 0.65 : 1, cursor: "pointer", transition: "all 0.2s ease", boxShadow: isGujarat ? "0 4px 16px rgba(245,158,11,0.08)" : "0 2px 8px rgba(0,0,0,0.02)" }}>
                   <div style={{ width: 54, textAlign: "center", flexShrink: 0, background: isGujarat ? "#FEF3C7" : "#F0F7F8", borderRadius: "12px", padding: "10px 0", border: isGujarat ? "1px solid #FDE68A" : "1px solid #CCFBF1" }}>
                     <div style={{ fontSize: "11px", color: isGujarat ? "#D97706" : "#14B8A6", fontWeight: 800, textTransform: "uppercase" }}>{safeFormatDate(ev.event_date, { month: "short" }, "EVENT")}</div>
                     <div style={{ fontSize: "22px", fontWeight: 800, color: "#1B2B3A" }}>{safeFormatDate(ev.event_date, { day: "numeric" }, "•")}</div>
@@ -431,9 +442,9 @@ export default function EventsPage() {
                     {ev.description && <p style={{ fontSize: "12.5px", color: "#475569", marginTop: "6px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{ev.description}</p>}
                   </div>
 
-                  <div style={{ display: "flex", gap: "8px", alignItems: "center", flexShrink: 0 }}>
-                    {!isPast && ev.registration_url && (
-                      <a href={ev.registration_url} target="_blank" rel="noopener noreferrer" style={{ padding: "8px 18px", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", borderRadius: "10px", fontSize: "13px", fontWeight: 700, color: "#fff", textDecoration: "none", boxShadow: "0 2px 8px rgba(20,184,166,0.3)" }}>
+                  <div style={{ display: "flex", gap: "8px", alignItems: "center", flexShrink: 0 }} onClick={e => e.stopPropagation()}>
+                    {!isPast && (
+                      <a href={getDirectEventUrl(ev)} target="_blank" rel="noopener noreferrer" style={{ padding: "8px 18px", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", borderRadius: "10px", fontSize: "13px", fontWeight: 700, color: "#fff", textDecoration: "none", boxShadow: "0 2px 8px rgba(20,184,166,0.3)" }}>
                         📌 Register
                       </a>
                     )}
@@ -494,6 +505,71 @@ export default function EventsPage() {
           </div>
         </div>
       </div>
+
+      {/* EVENT DETAILS MODAL */}
+      {selectedEvent && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(15, 23, 42, 0.75)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}>
+          <div style={{ background: "#FFFFFF", borderRadius: "24px", maxWidth: "650px", width: "100%", overflow: "hidden", boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)", border: "1px solid #E2EEF0" }}>
+            {/* Header Banner */}
+            <div style={{ background: "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)", padding: "28px 32px", position: "relative" }}>
+              <button onClick={() => setSelectedEvent(null)} style={{ position: "absolute", top: "20px", right: "20px", background: "rgba(255,255,255,0.15)", color: "#FFF", border: "none", width: "32px", height: "32px", borderRadius: "50%", cursor: "pointer", fontSize: "16px", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
+              <div style={{ display: "flex", gap: "8px", alignItems: "center", marginBottom: "12px" }}>
+                <span style={{ fontSize: "11px", fontWeight: 800, background: "#14B8A6", color: "#FFF", padding: "4px 12px", borderRadius: "20px", textTransform: "uppercase" }}>
+                  {(selectedEvent.event_type || "CONFERENCE").toUpperCase()}
+                </span>
+                {(selectedEvent.location || "").toLowerCase().includes("gujarat") && (
+                  <span style={{ fontSize: "11px", fontWeight: 800, background: "#F59E0B", color: "#FFF", padding: "4px 12px", borderRadius: "20px" }}>
+                    📍 GUJARAT EVENT
+                  </span>
+                )}
+              </div>
+              <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#FFFFFF", margin: "0 0 8px", lineHeight: "1.3" }}>
+                {selectedEvent.title}
+              </h2>
+              <p style={{ fontSize: "13.5px", color: "#CBD5E1", margin: 0 }}>
+                Hosted by <strong style={{ color: "#FFF" }}>{selectedEvent.profiles?.full_name || "BioConnect Academic Network"}</strong>
+              </p>
+            </div>
+
+            {/* Body Details */}
+            <div style={{ padding: "28px 32px" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "20px", background: "#F8FAFC", padding: "16px 20px", borderRadius: "14px", border: "1px solid #E2E8F0" }}>
+                <div>
+                  <span style={{ fontSize: "12px", fontWeight: 600, color: "#64748B", display: "block", marginBottom: "2px" }}>LOCATION & VENUE</span>
+                  <span style={{ fontSize: "14px", fontWeight: 700, color: "#0F172A" }}>📍 {selectedEvent.location || "Online"}</span>
+                </div>
+                <div>
+                  <span style={{ fontSize: "12px", fontWeight: 600, color: "#64748B", display: "block", marginBottom: "2px" }}>DATE & TIME</span>
+                  <span style={{ fontSize: "14px", fontWeight: 700, color: "#0F172A" }}>📅 {safeFormatDate(selectedEvent.event_date, { day: "numeric", month: "short", year: "numeric" }, "TBD")}</span>
+                </div>
+              </div>
+
+              <div style={{ marginBottom: "24px" }}>
+                <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#0F172A", marginBottom: "8px" }}>Executive Event Overview</h4>
+                <p style={{ fontSize: "14px", color: "#334155", lineHeight: "1.6", margin: 0 }}>
+                  {selectedEvent.description || "Join fellow researchers, students, and biotechnology leaders for this key academic conference."}
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end" }}>
+                <button onClick={() => setSelectedEvent(null)} style={{ padding: "12px 24px", borderRadius: "10px", border: "1px solid #CBD5E1", background: "#FFF", color: "#475569", fontSize: "14px", fontWeight: 600, cursor: "pointer" }}>
+                  Close
+                </button>
+                <a
+                  href={getDirectEventUrl(selectedEvent)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ padding: "12px 28px", borderRadius: "10px", border: "none", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFF", fontSize: "14px", fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "8px", boxShadow: "0 4px 14px rgba(20,184,166,0.4)" }}
+                >
+                  <span>Proceed to Official Registration Page</span>
+                  <span>→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </AppShell>
   );
 }
