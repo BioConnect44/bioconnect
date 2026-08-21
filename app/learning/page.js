@@ -1321,6 +1321,166 @@ const COURSE_TOPICS = [
         explanation: "Prions are proteinaceous infectious particles devoid of nucleic acids, causing transmissible spongiform encephalopathies."
       }
     ]
+  },
+  {
+    id: "topic-09",
+    topicNum: "TOPIC 09",
+    name: "Cell Biology & Signal Transduction",
+    shortName: "Cell Biology",
+    icon: "🔬",
+    color: "#F59E0B",
+    notesCount: "10 pages",
+    module: "Module 4 of 4",
+    progress: 70,
+    tagline: "Full 10-Page Master Textbook: Ultrastructure, cell cycle checkpoints, GPCR & RTK signal transduction.",
+    pdfTitle: "Topic 09 - Cell Biology & Signal Transduction.pdf",
+    sections: [
+      {
+        title: "1. Prokaryotic and Eukaryotic Cell Structure & Ultrastructure",
+        content: `• Architectural Paradigms: Prokaryotes (unicellular, no nuclear envelope, high S/V ratio, coupled transcription-translation) vs Eukaryotes (membrane-bound nucleus, compartmentalized organelle endomembrane system).
+• Prokaryotic Envelope: Peptidoglycan meshwork of β-(1-4) linked NAG and NAM with D-amino acids. Gram-positive teichoic acids vs Gram-negative thin peptidoglycan + LPS outer membrane Lipid A endotoxin.
+• Cytoskeletal Evolutionary Homologues: Microtubules/FtsZ (contractile Z-ring in binary fission), Microfilaments/MreB (rod shape cell width), Intermediate filaments/Crescentin (vibrio curvature). Archaea ether linkages & tetraether monolayers.`
+      },
+      {
+        title: "2. Cell Cycle Control & Checkpoint Cascades",
+        content: `• Cyclin-CDK Progression: Mid-G1 (Cyclin D + CDK4/6), Restriction Point (Cyclin E + CDK2), S Phase (Cyclin A + CDK2), G2/M Switch (Cyclin B + CDK1 MPF).
+• Retinoblastoma Gateway: Unphosphorylated pRb + E2F + HDACs (active G0/G1 repression). Mitogenic cues → Cyclin D-CDK4/6 monophosphorylates, Cyclin E-CDK2 hyperphosphorylates pRb, releasing free E2F for S-phase transcription.
+• G2/M Switch & SAC: Inhibitory Wee1 (Thr14/Tyr15) vs activating CAK (Thr161). Cdc25 phosphatase activates MPF. SAC MCC complex (Mad2, Mad3, Bub3, Cdc20) traps Cdc20 until chromosome bi-orientation → APC/C E3 ligase degrades securin & Cyclin B.`
+      },
+      {
+        title: "3. Growth Kinetics & Synchronisation Protocol",
+        content: `• Bioprocess Growth Formulations: dX/dt = μ·X → X(t) = X0·e^(μ·t). Population doubling time td = ln(2)/μ = 0.693/μ.
+• Double Thymidine Block Protocol: Culture cells to 50-60% confluence → Add 2.5 mM Thymidine for 16h (inhibits ribonucleotide reductase, depleting dCTP, stalling G1/S) → Wash & release 9h → 2.5 mM Thymidine 15h second block → Synchronous release.`
+      },
+      {
+        title: "4. Cell Communication & Transmembrane Transduction Cascades",
+        content: `• Spatial Modalities: Endocrine (distant bloodstream), Paracrine (local diffusion), Autocrine (self loop), Juxtacrine (contact-dependent Notch-Delta).
+• GPCR Gαs AC Pathway: Gαs-GTP activates Adenylyl Cyclase → cAMP → PKA catalytic release → CREB Ser133 phosphorylation.
+• GPCR Gαq PLC Pathway: Gαq-GTP activates PLC-β → cleaves PIP2 into IP3 (diffuses to ER releasing Ca²⁺) + DAG (activates PKC at membrane).`
+      },
+      {
+        title: "5. RTK Ras/MAPK Pathway & Saturation Binding Kinetics",
+        content: `• RTK Ras/MAPK Cascade: Dimerization & autophosphorylation → SH2 Grb2 → SH3 Sos GEF → Ras-GTP → Raf (MAPKKK) → MEK (MAPKK) → ERK (MAPK) → Elk-1 → Cyclin D expression.
+• Saturation Binding Kinetics: Dissociation constant Kd = [R][L]/[RL]. Fractional occupancy θ = [RL]/[R]total = [L]/(Kd + [L]). At [L] = Kd, θ = 0.5 (50% receptor occupancy).`
+      },
+      {
+        title: "6. Exam Evaluative Questions & Pathogenic Toxin Mechanisms",
+        content: `• Retinoblastoma Mutation: Loss of rb gene leaves E2F constitutively active, bypassing G1 restriction point → uncontrolled oncogenic proliferation.
+• Cholera vs Pertussis Toxins: Cholera Toxin ADP-ribosylates active Gαs arginine (blocks GTPase → permanent AC stimulation → cAMP surge & fluid secretion). Pertussis Toxin ADP-ribosylates inhibitory Gαi cysteine (traps Gαi inactive → loss of AC inhibition → high cAMP).`
+      }
+    ],
+    examTraps: [
+      "pRb Checkpoint rule: pRb must be hyperphosphorylated by Cyclin E-CDK2 to release E2F and allow S-phase entry.",
+      "Receptor saturation: When free ligand [L] = Kd, exactly 50% of cell surface receptors are bound (θ = 0.5).",
+      "Toxin targets: Cholera toxin locks Gαs permanently ACTIVE; Pertussis toxin locks Gαi permanently INACTIVE."
+    ],
+    pyqs: [
+      {
+        id: 1,
+        question: "GAT-B 2020: Which of the following is present in both prokaryotes and eukaryotes?",
+        options: ["Membrane-bound nucleus", "Histones in all species", "Ribosomes", "Mitochondria"],
+        correct: 2,
+        explanation: "Ribosomes are present in all living cells for protein translation (70S in prokaryotes, 80S in eukaryotes)."
+      },
+      {
+        id: 2,
+        question: "GAT-B 2020: The major difference between prokaryotic and eukaryotic cells is:",
+        options: ["Presence of plasma membrane", "Presence of ribosomes", "Compartmentalization by membrane-bound organelles", "Presence of DNA"],
+        correct: 2,
+        explanation: "Eukaryotic cells are defined by extensive internal membrane-bound compartmentalization (nucleus, mitochondria, ER, Golgi)."
+      },
+      {
+        id: 3,
+        question: "GAT-B 2020: Which organelle is absent in prokaryotes?",
+        options: ["Ribosome", "Cell membrane", "Nucleolus", "Cytoplasm"],
+        correct: 2,
+        explanation: "Prokaryotes lack a true nuclear envelope and therefore do not possess a nucleolus."
+      },
+      {
+        id: 4,
+        question: "GAT-B 2021: In prokaryotes, transcription and translation are coupled because:",
+        options: ["DNA is circular", "Ribosomes attach directly to DNA", "No nuclear membrane is present", "mRNA is absent"],
+        correct: 2,
+        explanation: "Without a nuclear membrane separating transcription and translation, ribosomes attach to mRNA while it is still being synthesized."
+      },
+      {
+        id: 5,
+        question: "GAT-B 2021: Which of the following is characteristic of eukaryotic chromosomes?",
+        options: ["Circular DNA", "Histone-associated linear DNA", "Naked DNA", "Single origin of replication"],
+        correct: 1,
+        explanation: "Eukaryotic chromosomes consist of linear double-stranded DNA complexed with basic histone proteins into nucleosomes."
+      },
+      {
+        id: 6,
+        question: "GAT-B 2021: 70S ribosomes dissociate into:",
+        options: ["50S + 20S", "40S + 30S", "50S + 30S", "60S + 40S"],
+        correct: 2,
+        explanation: "Prokaryotic 70S ribosomes consist of a large 50S subunit and a small 30S subunit."
+      },
+      {
+        id: 7,
+        question: "GAT-B 2022: Which structure is common to both mitochondria and bacteria?",
+        options: ["80S ribosome", "Linear chromosome", "Circular DNA", "Histones"],
+        correct: 2,
+        explanation: "According to the Endosymbiotic Theory, mitochondria evolved from prokaryotic ancestors and retain circular non-histone DNA."
+      },
+      {
+        id: 8,
+        question: "GAT-B 2022: Which RNA molecule helps identify evolutionary relationships between prokaryotes?",
+        options: ["tRNA", "mRNA", "rRNA", "snRNA"],
+        correct: 2,
+        explanation: "16S ribosomal RNA (rRNA) contains highly conserved regions and is the universal biomarker for microbial phylogenetics."
+      },
+      {
+        id: 9,
+        question: "GAT-B 2022: Mesosomes are associated with:",
+        options: ["Photosynthesis", "Respiration and cell division", "Protein secretion", "Lipid synthesis"],
+        correct: 1,
+        explanation: "Mesosomes are invaginations of the bacterial plasma membrane associated with respiratory enzymes, cell wall synthesis, and chromosome segregation."
+      },
+      {
+        id: 10,
+        question: "GAT-B 2023: Which of the following is NOT found in prokaryotes?",
+        options: ["Plasmid", "Peptidoglycan", "Endoplasmic reticulum", "Pili"],
+        correct: 2,
+        explanation: "Endoplasmic reticulum is a membrane-bound organelle restricted exclusively to eukaryotic cells."
+      },
+      {
+        id: 11,
+        question: "GAT-B 2023: The DNA in prokaryotes is located in:",
+        options: ["Nucleus", "Nucleoid", "Golgi body", "Lysosome"],
+        correct: 1,
+        explanation: "Prokaryotic genomic DNA resides in an irregularly shaped cytoplasmic region without a membrane called the nucleoid."
+      },
+      {
+        id: 12,
+        question: "GAT-B 2023: Archaea differ from bacteria mainly in:",
+        options: ["Presence of nucleus", "Cell wall composition", "Absence of DNA", "Lack of ribosomes"],
+        correct: 1,
+        explanation: "Archaeal cell walls lack peptidoglycan (containing pseudomurein or S-layers) and feature ether-linked membrane lipids."
+      },
+      {
+        id: 13,
+        question: "GAT-B 2024: Which feature is unique to eukaryotic mRNA?",
+        options: ["Polycistronic nature", "Simultaneous transcription and translation", "5' cap and poly-A tail", "Lack of introns"],
+        correct: 2,
+        explanation: "Eukaryotic pre-mRNA undergoes post-transcriptional processing including 7-methylguanosine 5' capping and 3' polyadenylation."
+      },
+      {
+        id: 14,
+        question: "GAT-B 2024: The site of ATP generation in prokaryotes is:",
+        options: ["Mitochondria", "Plasma membrane", "Golgi apparatus", "Lysosome"],
+        correct: 1,
+        explanation: "Lacking mitochondria, prokaryotes generate proton motive force and ATP across their plasma membrane."
+      },
+      {
+        id: 15,
+        question: "GAT-B 2024: Which statement regarding prokaryotic cells is correct?",
+        options: ["They contain membrane-bound organelles", "Their DNA is associated with histones in all species", "They divide by binary fission", "They possess mitotic spindle"],
+        correct: 2,
+        explanation: "Prokaryotic cells replicate and divide via binary fission mediated by the FtsZ contractile protein ring."
+      }
+    ]
   }
 ];
 
@@ -1372,6 +1532,16 @@ const CHALLENGES = {
     xp: 300,
     timeLimit: 1200,
     questions: COURSE_TOPICS[6].pyqs
+  }
+,
+  cellbio: {
+    title: "Cell Biology & Signal Transduction PYQs",
+    subject: "Cell Biology & Signal Transduction (GAT-B 2020-2024)",
+    color: "#F59E0B",
+    bg: "#FEF3C7",
+    xp: 250,
+    timeLimit: 1000,
+    questions: COURSE_TOPICS[7].pyqs
   }
 };
 
@@ -3600,6 +3770,136 @@ const FULL_MICROBIOLOGY_16_PAGES = [
 </div>`
 ];
 
+const FULL_CELL_BIOLOGY_10_PAGES = [
+  `<h1 style="font-size:22px; color:#d97706; margin:0 0 10px; border-bottom:2px solid #d97706; padding-bottom:8px;">COMPREHENSIVE STUDY GUIDE: CELL BIOLOGY &amp; SIGNAL TRANSDUCTION</h1>
+<p style="font-style:italic; color:#475569; font-size:13.5px; margin-bottom:24px;">Definitive High-Yield Resource for B.Tech University Exams and GATE Biotechnology Prep</p>
+<div style="background:#fef3c7; border-left:4px solid #f59e0b; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#92400e;">
+  Module 1: Prokaryotic and Eukaryotic Cell Structure &amp; Ultrastructure
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">1.1 Definitions &amp; 1.2 Core Architectural Paradigms</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Prokaryotic Cells:</strong> Unicellular micro-compartments defined by the absolute absence of a nuclear envelope and membrane-bound organelles. Genetic material resides in a non-bounded <strong>nucleoid</strong>.<br/>
+  • <strong>Eukaryotic Cells:</strong> Highly compartmentalized structures defined by a double-membrane-bound nucleus enclosing linear genomes alongside specialized organelles.<br/>
+  • <strong>Spatial Organization:</strong> Prokaryotes optimize for rapid division via high surface-area-to-volume ratio (S/V) and coupled transcription-translation. Eukaryotes isolate distinct biochemical environments via internal membranes.<br/>
+  • <strong>Prokaryotic Envelope:</strong> Bacterial cell wall relies on <strong>peptidoglycan (murein)</strong> meshwork of alternating β-(1-4) linked NAG and NAM with D-amino acid side chains (D-alanine, D-glutamic acid). Gram-positive contains teichoic acids; Gram-negative contains thin peptidoglycan + LPS outer membrane (Lipid A endotoxin).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Endomembrane System &amp; Cytoskeletal Evolutionary Homologues</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Nucleolus:</strong> Non-membranous ribosome assembly factory around Nucleolar Organizer Regions (NORs) guided by snoRNAs.<br/>
+  • <strong>Endosymbiotic Organelles:</strong> Mitochondria and Chloroplasts contain circular non-histone DNA and autonomous 70S ribosomes sensitive to chloramphenicol.<br/>
+  • <strong>Cytoskeletal Homologues:</strong>
+</p>
+<table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#f59e0b; color:#fff; text-align:left;">
+      <th style="padding:6px;">Eukaryotic System</th>
+      <th style="padding:6px;">Subunit Composition</th>
+      <th style="padding:6px;">Prokaryotic Homologue &amp; Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fffbeb;"><td style="padding:6px; border:1px solid #fde68a; font-weight:700;">Microtubules</td><td style="padding:6px; border:1px solid #fde68a;">α/β-tubulin (GTP)</td><td style="padding:6px; border:1px solid #fde68a;"><strong>FtsZ:</strong> Contractile Z-ring during binary fission.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #fde68a; font-weight:700;">Microfilaments</td><td style="padding:6px; border:1px solid #fde68a;">G-actin / F-actin (ATP)</td><td style="padding:6px; border:1px solid #fde68a;"><strong>MreB:</strong> Controls structural width/elongation of bacilli.</td></tr>
+    <tr style="background:#fffbeb;"><td style="padding:6px; border:1px solid #fde68a; font-weight:700;">Intermediate Filaments</td><td style="padding:6px; border:1px solid #fde68a;">α-helical tetramers</td><td style="padding:6px; border:1px solid #fde68a;"><strong>Crescentin:</strong> Imparts curved vibrioid morphology.</td></tr>
+  </tbody>
+</table>
+<div style="background:#fef3c7; border:1px solid #fde68a; border-radius:8px; padding:12px; font-size:13px; color:#92400e;">
+  <strong>GATE Excellence Pointer: Membrane Lipid Adaptations:</strong> Archaea utilize ether linkages binding branched isoprenoid chains to L-glycerol (often diglycerol tetraether monolayers), resisting hyperthermic cleavage.
+</div>`,
+  `<div style="background:#fef3c7; border-left:4px solid #f59e0b; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#92400e;">
+  Module 2: Cell Cycle Control and Population Growth Dynamics
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">2.1 Phase Progression &amp; 2.2 Checkpoint Control Cascades</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Phase Cyclin-CDK Complexes:</strong> Mid-G1 (Cyclin D + CDK4/6), Restriction Point (Cyclin E + CDK2), S Phase (Cyclin A + CDK2), G2/M Switch (Cyclin B + CDK1 = MPF).<br/>
+  • <strong>Retinoblastoma (pRb) Gateway:</strong> In G0/early G1, unphosphorylated pRb binds E2F and recruits HDACs (active repression). Growth signals cause Cyclin D-CDK4/6 to monophosphorylate pRb, enabling Cyclin E-CDK2 to <strong>hyperphosphorylate pRb</strong>, releasing free E2F to transcribe S-phase genes.<br/>
+  • <strong>G2/M Switch Rheostat:</strong> Kinase <strong>Wee1</strong> introduces inhibitory Thr14/Tyr15 phosphorylations on CDK1. Dual-specificity phosphatase <strong>Cdc25</strong> removes inhibitory phosphates, triggering MPF positive feedback.<br/>
+  • <strong>Spindle Assembly Checkpoint (SAC):</strong> Unattached kinetochores assemble MCC (Mad2, Mad3, Bub3, Cdc20), trapping Cdc20. Upon proper tension, Cdc20 activates <strong>APC/C E3 ubiquitin ligase</strong> to degrade securin (releasing separase to cleave cohesin) and Cyclin B.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">2.3 Bioprocess Growth Kinetics Formulations</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  First-order exponential population growth equation: <strong>dX/dt = μ · X</strong>.<br/>
+  Integration yields: <strong style="color:#d97706; font-size:14.5px;">X(t) = X₀ · e^(μ · t)</strong>   or   <strong style="color:#d97706; font-size:14.5px;">ln(X / X₀) = μ · t</strong>.<br/>
+  Doubling time: <strong style="color:#d97706; font-size:14.5px;">t_d = ln(2) / μ = 0.693 / μ</strong>.
+</p>
+<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-top:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">PROTOCOL: DOUBLE THYMIDINE SYNCHRONISATION BLOCK</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    1. Seed cells ➔ 2. Add 2.5 mM Thymidine for 16h (feedback inhibits ribonucleotide reductase, depleting dCTP, stalling at G1/S boundary) ➔ 3. Release in fresh media for 9h ➔ 4. Re-introduce 2.5 mM Thymidine for 15h ➔ 5. Release for 100% synchronous cell cycle progression.
+  </div>
+</div>`,
+  `<div style="background:#fef3c7; border-left:4px solid #f59e0b; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#92400e;">
+  Module 3: Cell-Cell Communication, Signaling &amp; Signal Transduction
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">3.1 Spatial Modalities &amp; 3.2 Transmembrane GPCR Cascades</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Modalities:</strong> Endocrine (bloodstream distant), Paracrine (local diffusion), Autocrine (self-binding loop), Juxtacrine (contact-dependent Notch-Delta).<br/>
+  • <strong>GPCR Pathways (7 Transmembrane α-Helices):</strong> Ligand binding acts as GEF, causing Gα to release GDP and bind GTP, dissociating Gα-GTP from Gβγ dimer.<br/>
+  • <strong>Gαs Adenylyl Cyclase Pathway:</strong> Active Gαs-GTP activates Adenylyl Cyclase ➔ converts ATP to second messenger <strong>cAMP</strong> ➔ releases Protein Kinase A (PKA) catalytic subunits ➔ translocates to nucleus ➔ phosphorylates <strong>CREB at Ser133</strong>.<br/>
+  • <strong>Gαq Phospholipase C Cascade:</strong> Active Gαq-GTP activates PLC-β ➔ cleaves PIP2 into <strong>IP3 + DAG</strong>. IP3 releases Ca²⁺ from smooth ER; DAG + Ca²⁺ activate <strong>Protein Kinase C (PKC)</strong> at membrane.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">RTK Ras/MAPK Pathway &amp; Saturation Binding Kinetics</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Receptor Tyrosine Kinase (RTK) Cascade:</strong> Ligand binding causes dimerization ➔ cross-autophosphorylation on internal tyrosines ➔ recruits SH2 domain adaptor <strong>Grb2</strong> ➔ SH3 domains recruit <strong>Sos GEF</strong> ➔ exchanges GDP for GTP on membrane-anchored monomeric <strong>Ras</strong> ➔ initiates MAP kinase cascade:<br/>
+  <strong style="color:#d97706; font-size:14px;">Ras-GTP ➔ Raf (MAPKKK) ➔ MEK (MAPKK) ➔ ERK (MAPK) ➔ Elk-1 (Nuclear TF) ➔ Cyclin D</strong><br/><br/>
+  • <strong>GATE Focus: Saturation Binding Kinetics Formula:</strong><br/>
+  Equilibrium dissociation constant: K_d = [R][L] / [RL].<br/>
+  Fractional Occupancy equation (θ):<br/>
+  <strong style="color:#d97706; font-size:14.5px;">θ = [RL] / [R]_total = [L] / (K_d + [L])</strong><br/>
+  When free ligand concentration [L] equals K_d, exactly <strong>50% of surface receptors are occupied</strong>.
+</p>`,
+  `<div style="background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#92400e; font-size:14px;">Module 4 Question 1: Retinoblastoma Checkpoint Gatekeeper (5 Marks)</h4>
+  <div style="font-size:13px; color:#78350f; line-height:1.6;">
+    <strong>Model Answer:</strong><br/>
+    • <strong>Hypophosphorylated State (Active Repression):</strong> In G0/early G1, unphosphorylated pRb binds E2F and recruits HDACs to promoter regions, locking chromatin condensed and blocking S-phase genes.<br/>
+    • <strong>Hyperphosphorylation (Release):</strong> Growth factors stimulate Cyclin D-CDK4/6 (monophosphorylation) and Cyclin E-CDK2 (hyperphosphorylation), causing pRb to change conformation and release free E2F.<br/>
+    • <strong>Mutation Impact:</strong> Loss-of-function <em>rb</em> gene mutations leave E2F constitutively active, bypassing G1 restriction point and causing uncontrolled cell proliferation (retinoblastoma tumors).
+  </div>
+</div>`,
+  `<div style="background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#92400e; font-size:14px;">Module 4 Question 2: Compare Gαs and Gαq GPCR Cascades (5 Marks)</h4>
+  <div style="font-size:13px; color:#78350f; line-height:1.6;">
+    • <strong>Gαs Pathway:</strong> Effector enzyme Adenylyl Cyclase (AC) ➔ Second messenger cyclic AMP (cAMP) ➔ Activates Protein Kinase A (PKA) ➔ Phosphorylates CREB at Ser133.<br/>
+    • <strong>Gαq Pathway:</strong> Effector enzyme Phospholipase C-β (PLC-β) ➔ Cleaves PIP2 into IP3 + DAG ➔ IP3 releases cytosolic Ca²⁺ from smooth ER; DAG + Ca²⁺ activate Protein Kinase C (PKC).
+  </div>
+</div>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">GATE Numerical 1: Bioprocess Growth Kinetics Calculation</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Problem:</strong> Initial OD600 X₀ = 0.20. Final OD600 X = 3.20 after t = 5.0 hours. Calculate specific growth rate (μ) and doubling time (t_d).<br/>
+    • X / X₀ = 3.20 / 0.20 = 16 = e^(5·μ).<br/>
+    • ln(16) = 2.7726 = 5·μ  ⟹  <strong style="color:#15803d;">μ = 0.5545 h⁻¹</strong>.<br/>
+    • Doubling time t_d = 0.6931 / 0.5545 = <strong>1.25 hours (1 h 15 min)</strong>.
+  </div>
+</div>
+<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">GATE Numerical 2: Receptor Saturation Binding Kinetics</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Problem:</strong> [R]_total = 20,000 receptors/cell, Kd = 4.0 × 10⁻⁸ M, free ligand [L] = 1.2 × 10⁻⁷ M = 12.0 × 10⁻⁸ M. Calculate occupied receptors per cell.<br/>
+    • Fractional Occupancy θ = [L] / (Kd + [L]) = (12.0 × 10⁻⁸) / (4.0 × 10⁻⁸ + 12.0 × 10⁻⁸) = 12 / 16 = <strong>0.75 (75%)</strong>.<br/>
+    • Occupied Receptors [RL] = 0.75 × 20,000 = <strong style="color:#15803d;">15,000 receptors / cell</strong>.
+  </div>
+</div>`,
+  `<div style="background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#92400e; font-size:14px;">FAQ 3: Pathogenic Toxin Mechanisms (Cholera vs. Pertussis Toxin)</h4>
+  <div style="font-size:13px; color:#78350f; line-height:1.6;">
+    Both toxins perform NAD+-dependent ADP-ribosylation on G-protein subunits with opposite biochemical outcomes:<br/>
+    • <strong>Cholera Toxin:</strong> ADP-ribosylates arginine on active <strong>Gαs</strong> subunit ➔ blocks intrinsic GTPase activity ➔ Gαs permanently active ➔ continuous Adenylyl Cyclase stimulation ➔ massive cAMP surge &amp; intestinal fluid secretion.<br/>
+    • <strong>Pertussis Toxin:</strong> ADP-ribosylates cysteine on inhibitory <strong>Gαi</strong> subunit ➔ traps Gαi in inactive GDP-bound state ➔ prevents Gαi from inhibiting Adenylyl Cyclase ➔ loss of regulatory brake ➔ high cAMP levels.
+  </div>
+</div>
+<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#0f172a; font-size:14px;">🎓 Final GATE-Focused Checklist for Cell Biology</h4>
+  <ol style="font-size:12.5px; color:#334155; line-height:1.6; padding-left:20px; margin:0;">
+    <li>Prokaryotic cytoskeletal homologues: FtsZ (Tubulin), MreB (Actin), Crescentin (Intermediate filaments).</li>
+    <li>G1/S Checkpoint: pRb hyperphosphorylated by Cyclin E-CDK2 to release E2F.</li>
+    <li>GPCR Second Messengers: Gαs AC → cAMP → PKA; Gαq PLC-β → IP3 (Ca²⁺) + DAG → PKC.</li>
+    <li>Fractional receptor occupancy: θ = [L] / (Kd + [L]). When [L] = Kd, θ = 0.5 (50%).</li>
+  </ol>
+</div>`
+];
+
 /* ── Continuous Scroll PDF Document Viewer Component ── */
 function ContinuousPdfViewer({ topic }) {
   function handleOpenNewWindow() {
@@ -3705,6 +4005,20 @@ function ContinuousPdfViewer({ topic }) {
           <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 16</span></div>
         </div>
       `).join("");
+    } else if (topic.id === "topic-09") {
+      pagesHtml = FULL_CELL_BIOLOGY_10_PAGES.map((pgContent, idx) => `
+        <div class="page">
+          <div class="header">
+            <div>
+              <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
+              <h2 class="title">${topic.name}</h2>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${idx + 1} OF 10</span>
+          </div>
+          ${pgContent}
+          <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 10</span></div>
+        </div>
+      `).join("");
     } else {
       pagesHtml = topic.sections.map((sec, idx) => `
         <div class="page">
@@ -3799,7 +4113,7 @@ function ContinuousPdfViewer({ topic }) {
           <div>
             <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#fff" }}>{topic.pdfTitle}</h3>
             <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>
-              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : topic.id === "topic-07" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : topic.id === "topic-08" ? "Executive Syllabus Summary • Full 16-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
+              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : topic.id === "topic-07" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : topic.id === "topic-08" ? "Executive Syllabus Summary • Full 16-Page PDF Document Available below" : topic.id === "topic-09" ? "Executive Syllabus Summary • Full 10-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
             </p>
           </div>
         </div>
@@ -3813,10 +4127,10 @@ function ContinuousPdfViewer({ topic }) {
             cursor: "pointer", display: "flex", alignItems: "center", gap: "6px",
             boxShadow: "0 3px 12px " + topic.color + "40", transition: "all 0.2s"
           }}
-          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-08" ? "Click to open full 16-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
+          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-08" ? "Click to open full 16-page PDF document in a new browser tab/window" : topic.id === "topic-09" ? "Click to open full 10-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
         >
           <span>↗️</span>
-          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : topic.id === "topic-08" ? "Open Full 16-Page PDF" : "Open PDF in New Window"}</span>
+          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : topic.id === "topic-08" ? "Open Full 16-Page PDF" : topic.id === "topic-09" ? "Open Full 10-Page PDF" : "Open PDF in New Window"}</span>
         </button>
       </div>
 
@@ -3832,7 +4146,7 @@ function ContinuousPdfViewer({ topic }) {
           paddingRight: "8px",
           cursor: "pointer"
         }}
-        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : topic.id === "topic-07" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : topic.id === "topic-08" ? "Click anywhere on the study notes viewer to open full 16-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
+        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : topic.id === "topic-07" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : topic.id === "topic-08" ? "Click anywhere on the study notes viewer to open full 16-page PDF document in new window" : topic.id === "topic-09" ? "Click anywhere on the study notes viewer to open full 10-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
       >
         {topic.sections.map((sec, idx) => (
           <div key={idx} style={{
