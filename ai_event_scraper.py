@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import re
 import time
@@ -6,6 +7,9 @@ import requests
 from typing import List, Optional, Dict, Any
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
+
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 
 # Load environment variables
 load_dotenv()
