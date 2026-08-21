@@ -351,48 +351,48 @@ export default function EventsPage() {
             </div>
           </div>
 
-          {/* HIGH-CONTRAST FEATURED EVENT BANNER (Perfect vertical spacing & no overlap) */}
+          {/* HIGH-CONTRAST FEATURED EVENT BANNER (Compact height & tight 20px gap) */}
           {featured && filter === "upcoming" && (
-            <div style={{ position: "relative", borderRadius: "20px", overflow: "hidden", marginBottom: "28px", boxShadow: "0 12px 32px rgba(15,23,42,0.16)", minHeight: "310px" }}>
-              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80" alt="" style={{ width: "100%", height: "100%", minHeight: "310px", objectFit: "cover", display: "block" }}/>
+            <div style={{ position: "relative", borderRadius: "20px", overflow: "hidden", marginBottom: "24px", boxShadow: "0 10px 28px rgba(15,23,42,0.14)" }}>
+              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}/>
               
               {/* High-Contrast Gradient Backdrop Overlay */}
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.88) 55%, rgba(13, 148, 136, 0.45) 100%)", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "32px 36px" }}>
+              <div style={{ position: "relative", zIndex: 1, background: "linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.88) 55%, rgba(13, 148, 136, 0.45) 100%)", padding: "26px 30px" }}>
                 <div>
-                  <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap", marginBottom: "16px" }}>
-                    <span style={{ fontSize: "12px", color: "#FFFFFF", fontWeight: 800, background: "#14B8A6", padding: "5px 14px", borderRadius: "20px", textTransform: "uppercase", letterSpacing: "0.5px", boxShadow: "0 2px 8px rgba(20,184,166,0.4)" }}>
+                  <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap", marginBottom: "12px" }}>
+                    <span style={{ fontSize: "11.5px", color: "#FFFFFF", fontWeight: 800, background: "#14B8A6", padding: "4px 12px", borderRadius: "20px", textTransform: "uppercase", letterSpacing: "0.5px", boxShadow: "0 2px 8px rgba(20,184,166,0.4)" }}>
                       {safeFormatDate(featured.event_date, { month: "short", day: "numeric" }, "UPCOMING").toUpperCase()}
                     </span>
                     {(featured.location || "").toLowerCase().includes("gujarat") && (
-                      <span style={{ fontSize: "12px", color: "#FFFFFF", fontWeight: 800, background: "#F59E0B", padding: "5px 14px", borderRadius: "20px", boxShadow: "0 2px 8px rgba(245,158,11,0.4)" }}>
+                      <span style={{ fontSize: "11.5px", color: "#FFFFFF", fontWeight: 800, background: "#F59E0B", padding: "4px 12px", borderRadius: "20px", boxShadow: "0 2px 8px rgba(245,158,11,0.4)" }}>
                         📍 GUJARAT EVENT
                       </span>
                     )}
-                    <span style={{ fontSize: "12px", color: "#FFFFFF", fontWeight: 700, background: "rgba(255,255,255,0.18)", backdropFilter: "blur(4px)", padding: "5px 12px", borderRadius: "20px" }}>
+                    <span style={{ fontSize: "11.5px", color: "#FFFFFF", fontWeight: 700, background: "rgba(255,255,255,0.18)", backdropFilter: "blur(4px)", padding: "4px 12px", borderRadius: "20px" }}>
                       {(featured.event_type || "CONFERENCE").toUpperCase()}
                     </span>
                   </div>
 
-                  <h2 style={{ fontSize: "24px", fontWeight: 800, color: "#FFFFFF", margin: "0 0 14px", maxWidth: "700px", lineHeight: "1.35", textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}>
+                  <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#FFFFFF", margin: "0 0 10px", maxWidth: "700px", lineHeight: "1.3", textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}>
                     {featured.title}
                   </h2>
 
-                  <p style={{ fontSize: "14px", color: "#F1F5F9", marginBottom: "8px", fontWeight: 600, display: "flex", alignItems: "center", gap: "8px" }}>
+                  <p style={{ fontSize: "13.5px", color: "#F1F5F9", marginBottom: "6px", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
                     <span>📍 {featured.location || "Online"}</span>
                     <span style={{ color: "#94A3B8" }}>•</span>
                     <span>⏰ {safeFormatTime(featured.event_date, { hour: "2-digit", minute: "2-digit" }, "09:00 AM")} IST</span>
                   </p>
 
-                  <p style={{ fontSize: "13.5px", color: "#CBD5E1", margin: "0 0 20px", fontWeight: 500 }}>
+                  <p style={{ fontSize: "13px", color: "#CBD5E1", margin: "0 0 20px", fontWeight: 500 }}>
                     Hosted by <span style={{ color: "#FFFFFF", fontWeight: 700 }}>{featured.profiles?.full_name || "BioConnect Academic Network"}</span>
                   </p>
                 </div>
 
                 <div>
                   {featured.registration_url && (
-                    <a href={featured.registration_url} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFFFFF", padding: "12px 28px", borderRadius: "12px", fontSize: "14px", fontWeight: 700, textDecoration: "none", boxShadow: "0 4px 16px rgba(20,184,166,0.5)", border: "none" }}>
+                    <a href={featured.registration_url} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFFFFF", padding: "10px 24px", borderRadius: "10px", fontSize: "13.5px", fontWeight: 700, textDecoration: "none", boxShadow: "0 4px 14px rgba(20,184,166,0.4)", border: "none" }}>
                       <span>Register Now</span>
-                      <span style={{ fontSize: "16px" }}>→</span>
+                      <span style={{ fontSize: "15px" }}>→</span>
                     </a>
                   )}
                 </div>
