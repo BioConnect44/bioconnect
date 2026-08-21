@@ -60,7 +60,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-10-10T09:00:00.000Z",
     end_date: "2026-10-12T17:30:00.000Z",
-    registration_url: "https://iar.ac.in/",
+    registration_url: "https://iar.ac.in/events/",
     entry_fee: "Free for IAR Students / ₹500 External Scholars",
     description: "National scientific symposium on crop gene editing, plant tissue culture, functional genomics, and agricultural bio-innovation at Institute of Advanced Research (IAR Gandhinagar).",
     profiles: { full_name: "Institute of Advanced Research (IAR Gandhinagar)" }
@@ -73,7 +73,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-11-25T09:30:00.000Z",
     end_date: "2026-11-27T17:30:00.000Z",
-    registration_url: "https://pdpu.ac.in/",
+    registration_url: "https://pdpu.ac.in/events-news.admin",
     entry_fee: "₹800 Students / ₹2,000 Industry",
     description: "International conclave focusing on biofuels, microbial fuel cells, biowaste conversion, and sustainable bioprocessing organized by Pandit Deendayal Energy University (PDEU / PDPU Gandhinagar).",
     profiles: { full_name: "Pandit Deendayal Energy University (PDEU / PDPU)" }
@@ -86,7 +86,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-12-18T09:00:00.000Z",
     end_date: "2026-12-19T17:00:00.000Z",
-    registration_url: "https://sxca.edu.in/",
+    registration_url: "https://sxca.edu.in/events/",
     entry_fee: "₹300 Delegates",
     description: "Annual life sciences symposium and hands-on workshop covering molecular diagnostics, immunology assays, and bioinformatics tools at St. Xavier's College Ahmedabad.",
     profiles: { full_name: "Department of Biotechnology, St. Xavier's College" }
@@ -99,7 +99,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-10-05T09:00:00.000Z",
     end_date: "2026-10-07T17:00:00.000Z",
-    registration_url: "https://nirmauni.ac.in/",
+    registration_url: "https://pharmacy.nirmauni.ac.in/events/",
     entry_fee: "₹750 Students / ₹1,800 Professionals",
     description: "National symposium bringing together oncology researchers, molecular biologists, and pharmacologists exploring targeted cancer immunotherapies at Nirma University.",
     profiles: { full_name: "Institute of Pharmacy & Science, Nirma University" }
@@ -112,7 +112,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-10-24T09:30:00.000Z",
     end_date: "2026-10-26T17:30:00.000Z",
-    registration_url: "https://gbu.edu.in/",
+    registration_url: "https://gbu.edu.in/admission-and-academics/research",
     entry_fee: "Free for Registered Students / ₹1,500 Professionals",
     description: "National conclave focusing on synthetic biology, industrial biotechnology, and plant genomics organized by Gujarat Biotechnology University (GBU) in collaboration with University of Edinburgh.",
     profiles: { full_name: "Gujarat Biotechnology University (GBU)" }
@@ -125,7 +125,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-11-18T09:00:00.000Z",
     end_date: "2026-11-19T18:00:00.000Z",
-    registration_url: "https://btm.gujarat.gov.in/",
+    registration_url: "https://btm.gujarat.gov.in/events.htm",
     entry_fee: "Free Entry (Prior Registration Required)",
     description: "Flagship startup & bio-entrepreneurship summit bringing together biotech founders, incubators, researchers, and venture capitalists across Gujarat state.",
     profiles: { full_name: "GSBTM / DST Govt of Gujarat" }
@@ -138,7 +138,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-12-05T08:30:00.000Z",
     end_date: "2026-12-07T17:00:00.000Z",
-    registration_url: "https://www.niperahm.ac.in/",
+    registration_url: "https://www.niperahm.ac.in/events.htm",
     entry_fee: "₹1,000 Academic / ₹3,000 Industry Delegates",
     description: "International scientific symposium covering biologics, targeted drug delivery platforms, structural bio-analytics, and biopharmaceutical manufacturing.",
     profiles: { full_name: "NIPER Ahmedabad" }
@@ -164,7 +164,7 @@ const DEFAULT_EVENTS = [
     region: "india",
     event_date: "2026-09-15T09:00:00.000Z",
     end_date: "2026-09-17T17:00:00.000Z",
-    registration_url: "https://www.iitm.ac.in/",
+    registration_url: "https://biotech.iitm.ac.in/events",
     entry_fee: "₹1,500 Academic / ₹3,000 Industry",
     description: "National research conclave focusing on single-cell sequencing, spatial transcriptomics, and therapeutic gene editing organized by Department of Biotechnology, IIT Madras.",
     profiles: { full_name: "IIT Madras Department of Biotechnology" }
@@ -190,7 +190,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2027-01-15T10:00:00.000Z",
     end_date: "2027-01-16T17:00:00.000Z",
-    registration_url: "https://www.msubaroda.ac.in/",
+    registration_url: "https://www.msubaroda.ac.in/Academics/Events",
     entry_fee: "Free for MSU Students / ₹800 External Candidates",
     description: "National academic symposium on next-generation sequencing (NGS), structural biology, and functional proteomics in plant & animal systems.",
     profiles: { full_name: "Faculty of Science, MSU Baroda" }
@@ -203,7 +203,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2027-02-08T09:30:00.000Z",
     end_date: "2027-02-10T16:30:00.000Z",
-    registration_url: "https://www.aau.in/",
+    registration_url: "https://www.aau.in/events",
     entry_fee: "₹500 Student Registration",
     description: "Focused conference on microbial fermentation, agricultural biotechnology, biofertilizers, and sustainable bioprocessing for agricultural innovation.",
     profiles: { full_name: "Anand Agricultural University" }
@@ -216,7 +216,7 @@ const DEFAULT_EVENTS = [
     region: "india",
     event_date: "2026-12-12T09:00:00.000Z",
     end_date: "2026-12-14T17:00:00.000Z",
-    registration_url: "https://iisc.ac.in/",
+    registration_url: "https://iisc.ac.in/events/",
     entry_fee: "₹1,500 Delegates",
     description: "High-level research symposium on stem cell lineage tracing, organoid morphogenesis, and clinical translation of cell therapies.",
     profiles: { full_name: "IISc / NCBS Bengaluru" }
@@ -240,12 +240,7 @@ export default function EventsPage() {
   const supabase = createClient();
   const [profile, setProfile] = useState(null);
   const [events, setEvents] = useState(DEFAULT_EVENTS);
-  const [selectedEvent, setSelectedEvent] = useState(null); // Event Details Modal
-  const [registerModalEvent, setRegisterModalEvent] = useState(null); // Direct Registration Engine Modal
-  const [registeredIds, setRegisteredIds] = useState([]);
-  const [regForm, setRegForm] = useState({ name: "", email: "", university: "", category: "Student" });
-  const [submittingReg, setSubmittingReg] = useState(false);
-  const [regResult, setRegResult] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState(null); // View Event Details Modal
 
   const [filter, setFilter] = useState("upcoming");
   const [regionFilter, setRegionFilter] = useState("all");
@@ -291,53 +286,6 @@ export default function EventsPage() {
     }
     load();
   }, []);
-
-  function openRegisterEngine(ev) {
-    setSelectedEvent(null);
-    setRegisterModalEvent(ev);
-    setRegResult(null);
-    setRegForm({
-      name: profile?.full_name || "",
-      email: profile?.email || "",
-      university: profile?.university || "Institute of Advanced Research",
-      category: profile?.role === "educator" ? "Faculty / Educator" : profile?.role === "researcher" ? "Research Scholar" : "Student"
-    });
-  }
-
-  async function handleRegisterSubmit(e) {
-    e.preventDefault();
-    if (!registerModalEvent) return;
-    setSubmittingReg(true);
-
-    try {
-      const res = await fetch("/api/events/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          event_id: registerModalEvent.id,
-          event_title: registerModalEvent.title,
-          location: registerModalEvent.location,
-          name: regForm.name,
-          email: regForm.email,
-          university: regForm.university,
-          category: regForm.category
-        })
-      });
-
-      const json = await res.json();
-      setRegResult(json);
-      setRegisteredIds(prev => [...prev, registerModalEvent.id]);
-    } catch (err) {
-      setRegResult({
-        success: true,
-        confirmation_id: `BC-OFFICIAL-SYNC-2026-${registerModalEvent.id.slice(0, 6).toUpperCase()}-9842`,
-        message: "Registration officially recorded and dispatched to host campus."
-      });
-      setRegisteredIds(prev => [...prev, registerModalEvent.id]);
-    }
-
-    setSubmittingReg(false);
-  }
 
   async function handleAdd(e) {
     e.preventDefault(); setSaving(true);
@@ -504,9 +452,12 @@ export default function EventsPage() {
                   <button onClick={() => setSelectedEvent(featured)} style={{ background: "rgba(255,255,255,0.2)", color: "#FFFFFF", padding: "10px 20px", borderRadius: "10px", fontSize: "13.5px", fontWeight: 700, border: "1px solid rgba(255,255,255,0.3)", cursor: "pointer", backdropFilter: "blur(4px)" }}>
                     ℹ️ View Details
                   </button>
-                  <button onClick={() => openRegisterEngine(featured)} style={{ background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFFFFF", padding: "10px 24px", borderRadius: "10px", fontSize: "13.5px", fontWeight: 700, border: "none", cursor: "pointer", boxShadow: "0 4px 14px rgba(20,184,166,0.4)" }}>
-                    {registeredIds.includes(featured.id) ? "✅ Registered" : "📌 Official Registration"}
-                  </button>
+                  {featured.registration_url && (
+                    <a href={featured.registration_url} target="_blank" rel="noopener noreferrer" style={{ background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFFFFF", padding: "10px 24px", borderRadius: "10px", fontSize: "13.5px", fontWeight: 700, textDecoration: "none", boxShadow: "0 4px 14px rgba(20,184,166,0.4)", display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                      <span>📌 Register Official Event Page</span>
+                      <span>→</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -516,7 +467,6 @@ export default function EventsPage() {
           <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
             {filteredEvents.filter(e => e !== featured || filter === "past" || regionFilter !== "all" || searchQuery).map(ev => {
               const isPast = ev.event_date ? new Date(ev.event_date) < now : false;
-              const isRegistered = registeredIds.includes(ev.id);
               const tc = typeColors[ev.event_type] || typeColors.other;
               const isGujarat = (ev.location || "").toLowerCase().includes("gujarat") || ev.region === "gujarat";
               return (
@@ -548,10 +498,10 @@ export default function EventsPage() {
                     <button onClick={() => setSelectedEvent(ev)} style={{ padding: "7px 14px", background: "#F0F7F8", color: "#0D9488", border: "1px solid #CCFBF1", borderRadius: "8px", fontSize: "12.5px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>
                       ℹ️ Details
                     </button>
-                    {!isPast && (
-                      <button onClick={() => openRegisterEngine(ev)} style={{ padding: "8px 18px", background: isRegistered ? "#059669" : "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", border: "none", borderRadius: "10px", fontSize: "13px", fontWeight: 700, color: "#fff", cursor: "pointer", boxShadow: "0 2px 8px rgba(20,184,166,0.3)" }}>
-                        {isRegistered ? "✅ Registered" : "📌 Register"}
-                      </button>
+                    {!isPast && ev.registration_url && (
+                      <a href={ev.registration_url} target="_blank" rel="noopener noreferrer" style={{ padding: "8px 18px", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", borderRadius: "10px", fontSize: "13px", fontWeight: 700, color: "#fff", textDecoration: "none", boxShadow: "0 2px 8px rgba(20,184,166,0.3)", display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                        <span>📌 Register</span>
+                      </a>
                     )}
                     {isEducator && ev.created_by === profile?.id && <button onClick={() => handleDelete(ev.id)} style={{ fontSize: "12px", color: "#EF4444", background: "#FEF2F2", border: "none", padding: "6px 10px", borderRadius: "6px", cursor: "pointer", fontFamily: "inherit" }}>Delete</button>}
                   </div>
@@ -586,17 +536,17 @@ export default function EventsPage() {
           <div style={{ background: "#fff", borderRadius: "16px", padding: "20px", border: "1px solid #E2EEF0" }}>
             <h3 style={{ fontSize: "15px", fontWeight: 600, color: "#1B2B3A", marginBottom: "14px" }}>Gujarat College Portals</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <a href="https://iar.ac.in/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
-                <span>🏫 Institute of Advanced Research (IAR)</span>
+              <a href="https://iar.ac.in/events/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>🏫 IAR Gandhinagar Events</span>
               </a>
-              <a href="https://pdpu.ac.in/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
+              <a href="https://pdpu.ac.in/events-news.admin" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
                 <span>🏛️ PDEU / PDPU Gandhinagar</span>
               </a>
-              <a href="https://sxca.edu.in/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
-                <span>🧬 St. Xavier&apos;s College Ahmedabad</span>
+              <a href="https://sxca.edu.in/events/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>🧬 St. Xavier&apos;s College Events</span>
               </a>
-              <a href="https://nirmauni.ac.in/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
-                <span>🎓 Nirma University Ahmedabad</span>
+              <a href="https://pharmacy.nirmauni.ac.in/events/" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
+                <span>🎓 Nirma University Events</span>
               </a>
               <a href="https://events.iitgn.ac.in/home/?view=month&d=2026-08" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
                 <span>🔬 IIT Gandhinagar Events</span>
@@ -656,127 +606,13 @@ export default function EventsPage() {
                 <button onClick={() => setSelectedEvent(null)} style={{ padding: "11px 20px", borderRadius: "10px", border: "1px solid #CBD5E1", background: "#FFF", color: "#475569", fontSize: "13.5px", fontWeight: 600, cursor: "pointer" }}>
                   Close
                 </button>
-                <button onClick={() => openRegisterEngine(selectedEvent)} style={{ padding: "11px 24px", borderRadius: "10px", border: "none", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFF", fontSize: "13.5px", fontWeight: 700, cursor: "pointer", boxShadow: "0 4px 14px rgba(20,184,166,0.4)" }}>
-                  Register for Event 🎉
-                </button>
+                {selectedEvent.registration_url && (
+                  <a href={selectedEvent.registration_url} target="_blank" rel="noopener noreferrer" style={{ padding: "11px 24px", borderRadius: "10px", border: "none", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFF", fontSize: "13.5px", fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px", boxShadow: "0 4px 14px rgba(20,184,166,0.4)" }}>
+                    <span>Proceed to Official Event & Registration Page</span>
+                    <span>→</span>
+                  </a>
+                )}
               </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* BIOCONNECT DIRECT REGISTRATION ENGINE MODAL */}
-      {registerModalEvent && (
-        <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(15, 23, 42, 0.75)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}>
-          <div style={{ background: "#FFFFFF", borderRadius: "24px", maxWidth: "620px", width: "100%", overflow: "hidden", boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)", border: "1px solid #E2EEF0" }}>
-            {/* Header */}
-            <div style={{ background: "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)", padding: "24px 28px", position: "relative" }}>
-              <button onClick={() => setRegisterModalEvent(null)} style={{ position: "absolute", top: "20px", right: "20px", background: "rgba(255,255,255,0.15)", color: "#FFF", border: "none", width: "32px", height: "32px", borderRadius: "50%", cursor: "pointer", fontSize: "16px", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
-              <span style={{ fontSize: "11px", fontWeight: 800, background: "#14B8A6", color: "#FFF", padding: "4px 12px", borderRadius: "20px", textTransform: "uppercase", display: "inline-block", marginBottom: "8px" }}>
-                OFFICIAL DIRECT EVENT REGISTRATION ENGINE
-              </span>
-              <h2 style={{ fontSize: "20px", fontWeight: 800, color: "#FFFFFF", margin: "0 0 4px", lineHeight: "1.3" }}>
-                {registerModalEvent.title}
-              </h2>
-              <p style={{ fontSize: "13px", color: "#CBD5E1", margin: 0 }}>
-                Organized by <strong style={{ color: "#FFF" }}>{registerModalEvent.profiles?.full_name || "BioConnect Academic Network"}</strong>
-              </p>
-            </div>
-
-            {/* Content Body */}
-            <div style={{ padding: "24px 28px" }}>
-              {regResult ? (
-                /* Registration Confirmation Screen */
-                <div style={{ textAlign: "center", padding: "16px 10px" }}>
-                  <div style={{ width: "64px", height: "64px", background: "#DCFCE7", color: "#166534", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "32px", margin: "0 auto 16px" }}>🎉</div>
-                  <h3 style={{ fontSize: "20px", fontWeight: 800, color: "#064E3B", marginBottom: "8px" }}>Registration Officially Confirmed!</h3>
-                  <p style={{ fontSize: "13.5px", color: "#047857", marginBottom: "16px", lineHeight: "1.5" }}>
-                    Your official delegate entry for <strong>{registerModalEvent.title}</strong> has been registered and synced via the BioConnect Events API.
-                  </p>
-
-                  <div style={{ background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: "14px", padding: "16px", marginBottom: "16px", textAlign: "left" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-                      <span style={{ fontSize: "12px", color: "#166534", fontWeight: 600 }}>OFFICIAL SYNC ID:</span>
-                      <span style={{ fontSize: "12px", color: "#15803D", fontWeight: 800, fontFamily: "monospace" }}>{regResult.confirmation_id || `BC-OFFICIAL-SYNC-2026-${registerModalEvent.id.slice(0, 6).toUpperCase()}`}</span>
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-                      <span style={{ fontSize: "12px", color: "#166534", fontWeight: 600 }}>DELEGATE NAME:</span>
-                      <span style={{ fontSize: "12px", color: "#15803D", fontWeight: 700 }}>{regForm.name}</span>
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "space-between" }}>
-                      <span style={{ fontSize: "12px", color: "#166534", fontWeight: 600 }}>INSTITUTION:</span>
-                      <span style={{ fontSize: "12px", color: "#15803D", fontWeight: 700 }}>{regForm.university}</span>
-                    </div>
-                  </div>
-
-                  <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
-                    <button onClick={() => setRegisterModalEvent(null)} style={{ padding: "10px 24px", borderRadius: "10px", border: "1px solid #CBD5E1", background: "#FFF", color: "#475569", fontSize: "14px", fontWeight: 600, cursor: "pointer" }}>
-                      Done
-                    </button>
-                    {registerModalEvent.registration_url && (
-                      <a href={registerModalEvent.registration_url} target="_blank" rel="noopener noreferrer" style={{ padding: "10px 24px", borderRadius: "10px", background: "#059669", color: "#FFF", fontSize: "14px", fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px" }}>
-                        <span>Open Host Campus Portal 🔗</span>
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ) : (
-                /* Registration Form */
-                <div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "16px", background: "#F8FAFC", padding: "14px 16px", borderRadius: "12px", border: "1px solid #E2E8F0" }}>
-                    <div>
-                      <span style={{ fontSize: "11px", fontWeight: 600, color: "#64748B", display: "block", marginBottom: "2px" }}>LOCATION</span>
-                      <span style={{ fontSize: "13px", fontWeight: 700, color: "#0F172A" }}>📍 {registerModalEvent.location || "Online"}</span>
-                    </div>
-                    <div>
-                      <span style={{ fontSize: "11px", fontWeight: 600, color: "#64748B", display: "block", marginBottom: "2px" }}>ENTRY FEE</span>
-                      <span style={{ fontSize: "13px", fontWeight: 700, color: "#0D9488" }}>💳 {registerModalEvent.entry_fee || "Free Access"}</span>
-                    </div>
-                  </div>
-
-                  <form onSubmit={handleRegisterSubmit} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                    <div>
-                      <label style={L}>Full Name *</label>
-                      <input required value={regForm.name} onChange={e => setRegForm({...regForm, name: e.target.value})} style={I} placeholder="Your full name"/>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
-                      <div>
-                        <label style={L}>Email Address *</label>
-                        <input required type="email" value={regForm.email} onChange={e => setRegForm({...regForm, email: e.target.value})} style={I} placeholder="email@university.edu"/>
-                      </div>
-                      <div>
-                        <label style={L}>Delegate Category</label>
-                        <select value={regForm.category} onChange={e => setRegForm({...regForm, category: e.target.value})} style={I}>
-                          <option value="Student">Student (B.Tech/M.Sc/Ph.D)</option>
-                          <option value="Research Scholar">Research Scholar</option>
-                          <option value="Faculty / Educator">Faculty / Educator</option>
-                          <option value="Industry Delegate">Industry Delegate</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div>
-                      <label style={L}>University / Institution *</label>
-                      <input required value={regForm.university} onChange={e => setRegForm({...regForm, university: e.target.value})} style={I} placeholder="e.g. IAR / PDPU / St. Xavier's / Nirma University"/>
-                    </div>
-
-                    <div style={{ marginTop: "12px", display: "flex", gap: "10px", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
-                      {registerModalEvent.registration_url && (
-                        <a href={registerModalEvent.registration_url} target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", fontWeight: 600, textDecoration: "underline" }}>
-                          Open Campus Registration Portal 🔗
-                        </a>
-                      )}
-                      <div style={{ display: "flex", gap: "8px", marginLeft: "auto" }}>
-                        <button type="button" onClick={() => setRegisterModalEvent(null)} style={{ padding: "10px 18px", borderRadius: "10px", border: "1px solid #CBD5E1", background: "#FFF", color: "#475569", fontSize: "13.5px", fontWeight: 600, cursor: "pointer" }}>
-                          Cancel
-                        </button>
-                        <button type="submit" disabled={submittingReg} style={{ padding: "11px 24px", borderRadius: "10px", border: "none", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFF", fontSize: "14px", fontWeight: 700, cursor: "pointer", boxShadow: "0 4px 14px rgba(20,184,166,0.4)", opacity: submittingReg ? 0.7 : 1 }}>
-                          {submittingReg ? "Registering..." : "Submit Official Registration 🎉"}
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              )}
             </div>
           </div>
         </div>
