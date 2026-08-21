@@ -36,8 +36,8 @@ export default function LoginPage() {
         <div style={S.imgPanel}>
           <div style={S.imgOverlay}></div>
           <img
-            src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80"
-            alt="Biotechnology Laboratory Research"
+            src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&q=80"
+            alt="DNA & Molecular Biotechnology Research"
             style={S.img}
           />
         </div>
