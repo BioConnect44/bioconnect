@@ -1,0 +1,101 @@
+[
+  {
+    "event_id": "academic-world-research-crispr-mumbai-2026",
+    "title": "International Conference on CRISPR and Genome Editing Technologies (ICCGET 2026)",
+    "organizer": "Academic World Research / IIT Bombay",
+    "location": {
+      "city": "Mumbai",
+      "country": "India",
+      "venue_address": "IIT Bombay Campus, Powai, Mumbai, Maharashtra 400076",
+      "is_online": false,
+      "is_india": true
+    },
+    "schedule": {
+      "start_date": "2026-09-15",
+      "end_date": "2026-09-17",
+      "time_details": "09:00 AM - 05:00 PM IST"
+    },
+    "pricing_and_registration": {
+      "is_free": false,
+      "entry_fee": "Free for Students / ₹2,500 Professionals",
+      "registration_url": "https://academicworldresearch.org/event/index.php?id=1849201"
+    },
+    "details": {
+      "description": "Premier international gathering of genomics researchers and biotechnology engineers discussing recent advancements in CRISPR-Cas9 base editing, prime editing, and therapeutic delivery platforms.",
+      "topics": [
+        "CRISPR",
+        "Genomics",
+        "Base Editing",
+        "Gene Therapy"
+      ],
+      "eligibility": "Students, Researchers, Faculty, and Industry Professionals",
+      "contact_email": "info@academicworldresearch.org"
+    }
+  },
+  {
+    "event_id": "academic-world-research-biomedical-delhi-2026",
+    "title": "World Congress on Biomedical Engineering and Healthcare AI (WCBHAI 2026)",
+    "organizer": "Academic World Research / AIIMS New Delhi",
+    "location": {
+      "city": "New Delhi",
+      "country": "India",
+      "venue_address": "AIIMS Campus Auditorium, Ansari Nagar, New Delhi 110029",
+      "is_online": false,
+      "is_india": true
+    },
+    "schedule": {
+      "start_date": "2026-11-04",
+      "end_date": "2026-11-06",
+      "time_details": "08:30 AM - 06:00 PM IST"
+    },
+    "pricing_and_registration": {
+      "is_free": false,
+      "entry_fee": "₹1,500 Students / ₹4,000 Delegates",
+      "registration_url": "https://academicworldresearch.org/event/index.php?id=1938210"
+    },
+    "details": {
+      "description": "Leading conference bringing together biomedical scientists, clinical researchers, and AI engineers to explore artificial intelligence applications in clinical diagnostics and drug discovery.",
+      "topics": [
+        "Biomedical Engineering",
+        "AI in Healthcare",
+        "Clinical Diagnostics",
+        "Precision Medicine"
+      ],
+      "eligibility": "Biomedical Scientists, Clinicians, Researchers, Students",
+      "contact_email": "contact@academicworldresearch.org"
+    }
+  },
+  {
+    "event_id": "global-genomics-biotech-summit-virtual-2027",
+    "title": "Global Virtual Summit on Synthetic Biology & Biomanufacturing 2027",
+    "organizer": "International Society of Biotechnology & Life Sciences",
+    "location": {
+      "city": "Online",
+      "country": "Online",
+      "venue_address": "Virtual Event Platform (Zoom & Webex Live)",
+      "is_online": true,
+      "is_india": false
+    },
+    "schedule": {
+      "start_date": "2027-02-20",
+      "end_date": "2027-02-22",
+      "time_details": "10:00 AM - 04:00 PM UTC"
+    },
+    "pricing_and_registration": {
+      "is_free": true,
+      "entry_fee": "Free Virtual Access",
+      "registration_url": "https://academicworldresearch.org/event/index.php?id=2049102"
+    },
+    "details": {
+      "description": "A 3-day global virtual event featuring keynote lectures from Nobel laureates and industry pioneers on metabolic engineering, microbial cell factories, and bioprocess scaling.",
+      "topics": [
+        "Synthetic Biology",
+        "Biomanufacturing",
+        "Metabolic Engineering",
+        "Bioprocess"
+      ],
+      "eligibility": "Global Academic Community and Industry Leaders",
+      "contact_email": "support@isbls-symposium.org"
+    }
+  }
+]
