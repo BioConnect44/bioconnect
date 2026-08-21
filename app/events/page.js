@@ -50,10 +50,57 @@ function MiniCalendar() {
   );
 }
 
+const DEFAULT_EVENTS = [
+  {
+    id: "academic-world-research-crispr-mumbai-2026",
+    title: "International Conference on CRISPR & Genome Editing (ICCGET 2026)",
+    event_type: "conference",
+    location: "IIT Bombay, Mumbai, India",
+    event_date: "2026-09-15T09:00:00.000Z",
+    end_date: "2026-09-17T17:00:00.000Z",
+    registration_url: "https://academicworldresearch.org/event/index.php?id=1849201",
+    description: "Premier international gathering of genomics researchers and biotechnology engineers discussing recent advancements in CRISPR-Cas9 base editing, prime editing, and therapeutic delivery platforms.",
+    profiles: { full_name: "Academic World Research / IIT Bombay" }
+  },
+  {
+    id: "academic-world-research-biomedical-delhi-2026",
+    title: "World Congress on Biomedical Engineering & Healthcare AI (WCBHAI 2026)",
+    event_type: "conference",
+    location: "AIIMS New Delhi, India",
+    event_date: "2026-11-04T08:30:00.000Z",
+    end_date: "2026-11-06T18:00:00.000Z",
+    registration_url: "https://academicworldresearch.org/event/index.php?id=1938210",
+    description: "Leading conference bringing together biomedical scientists, clinical researchers, and AI engineers to explore artificial intelligence applications in clinical diagnostics and drug discovery.",
+    profiles: { full_name: "Academic World Research / AIIMS Delhi" }
+  },
+  {
+    id: "global-genomics-biotech-summit-virtual-2027",
+    title: "Global Summit on Synthetic Biology & Biomanufacturing 2027",
+    event_type: "webinar",
+    location: "Virtual (Online Zoom)",
+    event_date: "2027-02-20T10:00:00.000Z",
+    end_date: "2027-02-22T16:00:00.000Z",
+    registration_url: "https://academicworldresearch.org/event/index.php?id=2049102",
+    description: "A 3-day global virtual event featuring keynote lectures from Nobel laureates and industry pioneers on metabolic engineering, microbial cell factories, and bioprocess scaling.",
+    profiles: { full_name: "International Society of Biotechnology" }
+  },
+  {
+    id: "national-bioprocess-engineering-symposium-2026",
+    title: "National Symposium on Advanced Bioprocess & Upstream Technology",
+    event_type: "seminar",
+    location: "IISc Bengaluru, India",
+    event_date: "2026-10-12T09:30:00.000Z",
+    end_date: "2026-10-14T17:30:00.000Z",
+    registration_url: "https://academicworldresearch.org/event/index.php?id=2104921",
+    description: "Hands-on symposium exploring bioreactor scale-up strategies, continuous perfusion fermentation, and industrial enzyme kinetics.",
+    profiles: { full_name: "IISc Department of Bioengineering" }
+  }
+];
+
 export default function EventsPage() {
   const supabase = createClient();
   const [profile, setProfile] = useState(null);
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState(DEFAULT_EVENTS);
   const [filter, setFilter] = useState("upcoming");
   const [showAdd, setShowAdd] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -62,14 +109,23 @@ export default function EventsPage() {
   async function loadEvents() {
     try {
       const { data, error } = await supabase.from("events").select("*, profiles(full_name)").order("event_date", { ascending: true });
-      if (error) {
-        const { data: simpleData } = await supabase.from("events").select("*").order("event_date", { ascending: true });
-        setEvents(simpleData || []);
+      let loaded = [];
+      if (!error && data && data.length > 0) {
+        loaded = data;
       } else {
-        setEvents(data || []);
+        const { data: simpleData } = await supabase.from("events").select("*").order("event_date", { ascending: true });
+        loaded = simpleData && simpleData.length > 0 ? simpleData : [];
       }
+      const combined = [...loaded];
+      DEFAULT_EVENTS.forEach(de => {
+        if (!combined.some(e => e.id === de.id || e.title === de.title)) {
+          combined.push(de);
+        }
+      });
+      combined.sort((a, b) => new Date(a.event_date) - new Date(b.event_date));
+      setEvents(combined);
     } catch (e) {
-      setEvents([]);
+      setEvents(DEFAULT_EVENTS);
     }
   }
 
