@@ -934,6 +934,132 @@ const COURSE_TOPICS = [
         explanation: "Cybrids (cytoplasmic hybrids) are created via protoplast fusion where one parental nucleus is inactivated by irradiation prior to fusion."
       }
     ]
+  },
+  {
+    id: "topic-07",
+    topicNum: "TOPIC 07",
+    name: "Plant Secondary Metabolites & Industrial Biotechnology",
+    shortName: "Secondary Metabolites",
+    icon: "🧪",
+    color: "#8B5CF6",
+    notesCount: "21 pages",
+    module: "Module 4 of 4",
+    progress: 40,
+    tagline: "Full 21-Page Master Textbook: Suspension cultures, hairy root technology, transgenic plants & industrial products.",
+    pdfTitle: "Topic 07 - Plant Secondary Metabolites & Industrial Biotechnology.pdf",
+    sections: [
+      {
+        title: "1. Production of Secondary Metabolites by Suspension Cultures",
+        content: `• Primary vs Secondary Metabolites: Primary (growth/respiration) vs Secondary (defense, allelopathy, signaling). Secondary metabolism repressed during log phase, upregulated in stationary phase.
+• Suspension Culture Initiation: Friable callus induced by high auxins (2,4-D) + low cytokinins; dispersed in liquid MS under orbital shaking (110-130 rpm, 2-3% sucrose).
+• Growth Kinetics: Specific growth rate dX/dt = μ·X → X = X0·e^(μ·t). Doubling time td = ln(2)/μ = 0.693/μ.
+• Chemostat Mass Balance: At steady state, specific growth rate μ equals dilution rate D = F/V. Washout occurs when D > μmax.`
+      },
+      {
+        title: "2. Technical Protocol & Growth Phase Mnemonics",
+        content: `• Initiation Protocol: 0.1% HgCl2 leaf sterilization → MS + 3.0 mg/L 2,4-D + 0.5 mg/L Kinetin for callus → transfer to liquid MS + 2.0 mg/L NAA + 0.2 mg/L BAP. Sub-culture 10 mL into 40 mL every 14d through 500-micron sieve.
+• Growth Phases Mnemonic: "Let's Explore Linear Dynamics Soon" → Lag, Exponential/Log, Linear, Deceleration, Stationary phase.
+• Elicitation Strategy: Biotic elicitors (chitin, chitosan, fungal extracts) vs Abiotic elicitors (AgNO3, CdCl2, UV-C, methyl jasmonate, salicylic acid).
+• Two-Stage Strategy: Stage 1 (Biomass accumulation with 2,4-D & high phosphate) → Stage 2 (Production phase without 2,4-D, low phosphate + elicitors).`
+      },
+      {
+        title: "3. Hairy Root Culture Technology & Ri Plasmid Architecture",
+        content: `• Hairy Root Principle: Organ-based system induced by Agrobacterium rhizogenes infection carrying Ri plasmid.
+• rol Oncogenes: rolA, rolB, rolC, rolD alter hormone sensitivity for auxin-independent root growth. rolB is the primary trigger.
+• Hairy Root Advantages: High karyotypic stability over years, hormone-independent rapid growth in simple media, consistent high secondary metabolite yields.
+• Transformation Cascade: Acetosyringone → VirA sensor autophosphorylation → VirG activation → VirD1/D2 border nicking → VirE2 ssDNA coating → VirB T4SS export → Integration via NHEJ.`
+      },
+      {
+        title: "4. Transgenic Plants & Gene Transfer Frameworks",
+        content: `• Vector Systems: Disarmed vectors delete oncogenes from T-DNA while preserving 25-bp Left/Right borders. Co-integrate vectors (homologous recombination) vs Binary vector system (Helper plasmid + Binary cloning vector).
+• Biolistics / Particle Bombardment: Gold/Tungsten microprojectiles (0.6-1.0 µm) accelerated by helium gas blasts (900-1500 psi). Kinetic energy Ek = 1/2 m v².
+• Markers: Selectable markers (nptII Kanamycin, hpt Hygromycin, bar Glufosinate) vs Reporter genes (gusA/uidA blue X-Gluc cleavage, gfp native UV green fluorescence).`
+      },
+      {
+        title: "5. Commercial Examples of Transgenic Crops",
+        content: `• Bt Cotton: Expresses cry1Ac delta-endotoxin protoxin from Bacillus thuringiensis; cleaved in insect midgut alkaline environment (pH > 9.0) forming lytic pores.
+• Golden Rice: Engineered for β-carotene synthesis via psy (daffodil), crtI (Erwinia), and lcy-b. Mnemonic: "Plants Can Live Golden".
+• Roundup Ready Soybean: Expresses cp4-EPSPS gene resistant to glyphosate (inhibits shikimate pathway required for aromatic amino acids).`
+      },
+      {
+        title: "6. Plant Products of Industrial Importance & Yield Matrix",
+        content: `• Chemical Classes: Alkaloids (nitrogenous), Terpenoids (isoprene units), Phenolics/Naphthoquinones.
+• Shikonin: Naphthoquinone from Lithospermum erythrorhizon; red dye / anti-inflammatory; produced in first commercial 2-stage plant culture process.
+• Taxol (Paclitaxel): Diterpenoid alkaloid from Taxus brevifolia; binds β-tubulin hyper-stabilizing microtubules to halt mitosis.
+• Berberine: Isoquinoline alkaloid from Coptis japonica; antimicrobial; accumulates in vacuolar compartments.
+• Vincristine & Vinblastine: Indole alkaloids from Catharanthus roseus; binds tubulin dimers to inhibit polymerization.
+• Artemisinin: Sesquiterpene lactone from Artemisia annua; antimalarial via unique endoperoxide bridge.`
+      },
+      {
+        title: "7. Bioprocess Engineering & Anticancer Drug Mnemonics",
+        content: `• Drug Mechanisms Mnemonic: "Taxol Tightens; Vinca Vanishes" → Taxol stabilizes microtubules preventing depolymerization; Vinca alkaloids prevent tubulin dimerization.
+• Shikonin Industrial Process: Stage 1 (Biomass accumulation in MG-5 medium with ammonium & 2,4-D) → Stage 2 (Production in M-9 medium with nitrate, no auxins, plus Cu²⁺ elicitor) → Lipophilic solvent extraction.
+• Precursor Feeding: Adding early pathway intermediates (e.g. phenylalanine for Taxol side-chain) to bypass rate-limiting enzymatic steps.`
+      }
+    ],
+    examTraps: [
+      "Stationary phase rule: Secondary metabolites are non-growth-associated and peak during the stationary/deceleration phase.",
+      "2,4-D inhibition: 2,4-D induces callus but represses secondary metabolic enzymes (PAL); must be excluded from production media.",
+      "Taxol vs Vinca: Taxol stabilizes microtubules (prevents disassembly); Vinca alkaloids prevent tubulin assembly."
+    ],
+    pyqs: [
+      {
+        id: 1,
+        question: "GAT-B 2020: Secondary metabolites are generally produced during:",
+        options: ["Lag phase", "Log phase", "Stationary phase", "Death phase"],
+        correct: 2,
+        explanation: "Secondary metabolites are non-growth-associated products synthesized primarily during the stationary phase when cell growth slows down."
+      },
+      {
+        id: 2,
+        question: "GAT-B 2020: Penicillin is an example of:",
+        options: ["Primary metabolite", "Secondary metabolite", "Vitamin", "Enzyme"],
+        correct: 1,
+        explanation: "Penicillin is a secondary metabolite produced by Penicillium chrysogenum during the idiophase (stationary phase)."
+      },
+      {
+        id: 3,
+        question: "GAT-B 2021: Alkaloids are examples of:",
+        options: ["Primary metabolites", "Secondary metabolites", "Structural proteins", "Nucleic acids"],
+        correct: 1,
+        explanation: "Alkaloids (such as morphine, nicotine, and atropine) are nitrogenous plant secondary metabolites used for defense."
+      },
+      {
+        id: 4,
+        question: "GAT-B 2021: Which microorganism produces citric acid industrially?",
+        options: ["E. coli", "Aspergillus niger", "Rhizobium", "Bacillus subtilis"],
+        correct: 1,
+        explanation: "Citric acid is produced industrially by aerobic fermentation using the filamentous fungus Aspergillus niger."
+      },
+      {
+        id: 5,
+        question: "GAT-B 2024: Antibiotics are commercially important:",
+        options: ["Primary metabolites", "Secondary metabolites", "Vitamins", "Hormones"],
+        correct: 1,
+        explanation: "Antibiotics are specialized secondary metabolites synthesized by microorganisms to inhibit competing species."
+      },
+      {
+        id: 6,
+        question: "GAT-B 2024: Secondary metabolites mainly help organisms in:",
+        options: ["Basic metabolism only", "Defense and ecological interaction", "DNA replication", "Protein synthesis only"],
+        correct: 1,
+        explanation: "Secondary metabolites serve eco-physiological roles including herbivore defense, pathogen protection, allelopathy, and pollinator attraction."
+      },
+      {
+        id: 7,
+        question: "In a continuous chemostat plant cell suspension culture (V = 50 L), if the volumetric flow rate F is 2.5 L/h, what is the steady-state specific growth rate μ?",
+        options: ["0.05 h⁻¹", "0.5 h⁻¹", "2.0 h⁻¹", "0.025 h⁻¹"],
+        correct: 0,
+        explanation: "At steady state in a chemostat, specific growth rate μ equals dilution rate D = F / V = 2.5 / 50 = 0.05 h⁻¹."
+      },
+      {
+        id: 8,
+        question: "Which gene in the Ri plasmid of Agrobacterium rhizogenes is primarily responsible for triggering auxin-independent hairy root proliferation?",
+        options: ["rolB", "virD2", "nptII", "psy"],
+        correct: 0,
+        explanation: "The rolB gene among the root locus oncogenes is the most vital trigger for hyper-branched hairy root organogenesis."
+      }
+    ]
   }
 ];
 
