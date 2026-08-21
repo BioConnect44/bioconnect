@@ -25,26 +25,124 @@ function safeFormatTime(dateStr, options, fallback = "") {
   }
 }
 
-function MiniCalendar() {
-  const now = new Date();
-  const month = now.toLocaleString("en", { month: "long", year: "numeric" });
+function MiniCalendar({ events = [], onSelectDate }) {
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  const year = currentDate.getFullYear();
+  const monthIdx = currentDate.getMonth();
+  const monthName = currentDate.toLocaleString("en", { month: "long", year: "numeric" });
   const days = ["M","T","W","T","F","S","S"];
-  const firstDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
-  const totalDays = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+
+  const firstDay = new Date(year, monthIdx, 1).getDay();
+  const totalDays = new Date(year, monthIdx + 1, 0).getDate();
   const offset = firstDay === 0 ? 6 : firstDay - 1;
+
   const cells = [];
   for (let i = 0; i < offset; i++) cells.push(null);
   for (let d = 1; d <= totalDays; d++) cells.push(d);
+
+  // Build a map of dates that have events: YYYY-MM-DD -> Array of event titles
+  const eventDateMap = {};
+  events.forEach(evt => {
+    if (!evt.event_date) return;
+    try {
+      const start = new Date(evt.event_date);
+      const end = evt.end_date ? new Date(evt.end_date) : start;
+
+      const curr = new Date(start);
+      while (curr <= end) {
+        const dateKey = `${curr.getFullYear()}-${String(curr.getMonth() + 1).padStart(2, '0')}-${String(curr.getDate()).padStart(2, '0')}`;
+        if (!eventDateMap[dateKey]) eventDateMap[dateKey] = [];
+        if (!eventDateMap[dateKey].includes(evt.title)) {
+          eventDateMap[dateKey].push(evt.title);
+        }
+        curr.setDate(curr.getDate() + 1);
+        if (curr - start > 10 * 86400000) break;
+      }
+    } catch (e) {}
+  });
+
+  const now = new Date();
+  const isCurrentMonth = now.getFullYear() === year && now.getMonth() === monthIdx;
+
+  function prevMonth() {
+    setCurrentDate(new Date(year, monthIdx - 1, 1));
+  }
+
+  function nextMonth() {
+    setCurrentDate(new Date(year, monthIdx + 1, 1));
+  }
+
   return (
-    <div style={{ background: "#fff", borderRadius: "16px", padding: "20px", border: "1px solid #E2EEF0" }}>
+    <div style={{ background: "#fff", borderRadius: "16px", padding: "20px", border: "1px solid #E2EEF0", boxShadow: "0 2px 10px rgba(0,0,0,0.02)" }}>
+      {/* Month Header with Navigation Controls */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-        <span style={{ fontSize: "14px", fontWeight: 600, color: "#1B2B3A" }}>‹ {month} ›</span>
+        <button onClick={prevMonth} style={{ background: "#F0F7F8", border: "1px solid #CCFBF1", borderRadius: "8px", color: "#0D9488", width: "28px", height: "28px", cursor: "pointer", fontWeight: 800, fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          ‹
+        </button>
+        <span style={{ fontSize: "14px", fontWeight: 700, color: "#1B2B3A" }}>{monthName}</span>
+        <button onClick={nextMonth} style={{ background: "#F0F7F8", border: "1px solid #CCFBF1", borderRadius: "8px", color: "#0D9488", width: "28px", height: "28px", cursor: "pointer", fontWeight: 800, fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          ›
+        </button>
       </div>
+
+      {/* Days Grid */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "4px", textAlign: "center" }}>
-        {days.map((d, i) => <div key={i} style={{ fontSize: "11px", color: "#9CA3AF", fontWeight: 600, padding: "4px" }}>{d}</div>)}
-        {cells.map((d, i) => (
-          <div key={i} style={{ fontSize: "13px", padding: "6px 4px", borderRadius: "50%", cursor: d ? "pointer" : "default", background: d === now.getDate() ? "#14B8A6" : "transparent", color: d === now.getDate() ? "#fff" : d ? "#374151" : "transparent", fontWeight: d === now.getDate() ? 700 : 400 }}>{d}</div>
+        {days.map((d, i) => (
+          <div key={i} style={{ fontSize: "11px", color: "#9CA3AF", fontWeight: 700, padding: "4px" }}>{d}</div>
         ))}
+        {cells.map((d, i) => {
+          if (!d) return <div key={i} style={{ padding: "6px 4px" }} />;
+
+          const dateKey = `${year}-${String(monthIdx + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+          const dayEvents = eventDateMap[dateKey] || [];
+          const hasEvent = dayEvents.length > 0;
+          const isToday = isCurrentMonth && d === now.getDate();
+
+          return (
+            <div
+              key={i}
+              title={hasEvent ? `📅 Events on ${dateKey}:\n• ${dayEvents.join('\n• ')}` : ""}
+              onClick={() => hasEvent && onSelectDate && onSelectDate(dateKey)}
+              style={{
+                position: "relative",
+                fontSize: "13px",
+                padding: "8px 4px",
+                borderRadius: "10px",
+                cursor: d ? "pointer" : "default",
+                background: isToday ? "#14B8A6" : hasEvent ? "#F0FDF4" : "transparent",
+                color: isToday ? "#ffffff" : hasEvent ? "#15803D" : "#374151",
+                fontWeight: isToday || hasEvent ? 700 : 400,
+                border: hasEvent && !isToday ? "1px solid #BBF7D0" : "1px solid transparent",
+                transition: "all 0.15s ease"
+              }}
+            >
+              {d}
+              {/* Event Indicator Badge / Dot */}
+              {hasEvent && (
+                <span
+                  style={{
+                    position: "absolute",
+                    bottom: "3px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "5px",
+                    height: "5px",
+                    borderRadius: "50%",
+                    background: isToday ? "#FFFFFF" : "#16A34A",
+                    boxShadow: "0 0 4px rgba(22, 163, 74, 0.6)"
+                  }}
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Event Legend */}
+      <div style={{ marginTop: "14px", paddingTop: "12px", borderTop: "1px dashed #E2EEF0", display: "flex", alignItems: "center", gap: "6px", fontSize: "11.5px", color: "#64748B", fontWeight: 600 }}>
+        <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#16A34A", display: "inline-block" }} />
+        <span>Days with scheduled events</span>
       </div>
     </div>
   );
@@ -265,7 +363,7 @@ export default function EventsPage() {
           <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px" }}>
             <h1 style={{ fontSize: "24px", fontWeight: 800, color: "#1B2B3A", margin: 0 }}>Events & Networking</h1>
             <span style={{ fontSize: "11px", fontWeight: 700, background: "#E0F2FE", color: "#0284C7", padding: "3px 9px", borderRadius: "12px", border: "1px solid #BAE6FD" }}>
-              ⚡ Public Registration Verified
+              ⚡ Interactive Event Calendar Live
             </span>
           </div>
           <p style={{ fontSize: "14px", color: "#6B8A9A", margin: 0 }}>Discover upcoming biotech, biomedical & genomics conferences from C-CAMP, IISc, NCBS, IIT Bombay, ABLE, BIRAC, Eventbrite & Unstop.</p>
@@ -443,7 +541,10 @@ export default function EventsPage() {
 
         {/* Right sidebar */}
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          <MiniCalendar/>
+          {/* Dynamic Interactive Event Calendar with Green Event Dots */}
+          <MiniCalendar events={events} onSelectDate={(dateKey) => {
+            setSearchQuery(dateKey);
+          }} />
 
           {/* Direct Ticket & Registration Portals */}
           <div style={{ background: "#fff", borderRadius: "16px", padding: "20px", border: "1px solid #E2EEF0" }}>
