@@ -2077,6 +2077,276 @@ const COURSE_TOPICS = [
         explanation: "Agarose gel electrophoresis separates negatively charged DNA molecules based on size under an electric field."
       }
     ]
+  },
+  {
+    id: "topic-13",
+    topicNum: "TOPIC 13",
+    name: "Biophysical & Analytical Techniques",
+    shortName: "Biophysical Techniques",
+    icon: "🔬",
+    color: "#0D9488",
+    notesCount: "28 pages",
+    module: "Module 4 of 4",
+    progress: 80,
+    tagline: "Full 28-Page Master Textbook: Microscopy, centrifugation, UV/CD/NMR spectroscopy, chromatography & electrophoresis.",
+    pdfTitle: "Topic 13 - Biophysical & Analytical Techniques.pdf",
+    sections: [
+      {
+        title: "1. Principles of Microscopy (Abbe, TEM/SEM & Confocal)",
+        content: `• Abbe's Resolution Limit: d = λ / (2·NA) = λ / (2·n·sin θ). Oil immersion (n=1.515) increases NA to 1.4, decreasing d for sharper resolution.
+• Modifications: Phase contrast (living unstained cells via refractive index phase shifts) vs Darkfield (bright specimen on dark background).
+• Electron Microscopy: De Broglie wavelength λ = 1.22 / √V nm (0.0037 nm at 100 kV in vacuum). TEM (2D internal organelle ultrastructure) vs SEM (3D surface morphology).
+• Fluorescence & Confocal (CLSM): Stokes Shift (emitted photon longer wavelength than absorbed). CLSM uses pinhole aperture filter to block out-of-focus light for 3D optical sectioning.`
+      },
+      {
+        title: "2. Centrifugation Kinetics & Svedberg Equation",
+        content: `• Balance of Forces: Centrifugal force Fc = m·ω²·r vs Buoyant force Fb = m·v̄·ρ·ω²·r vs Drag Ff = f·v.
+• Svedberg Equation: Sedimentation coefficient s = v / (ω²·r) = m(1 - v̄·ρ)/f. Macroscopic formula M = (s·R·T) / [ D·(1 - v̄·ρ) ].
+• Separation Modes: Differential centrifugation (pelleting by mass) vs Isopycnic density gradient centrifugation (separation purely by buoyant density in CsCl). Clearing factor K-factor calculation.`
+      },
+      {
+        title: "3. Spectroscopy (UV-Vis, CD, FTIR, Raman, MS & NMR)",
+        content: `• UV-Vis Spectroscopy: Beer-Lambert Law A = ε·c·l. DNA 260 nm, Protein 280 nm (Trp, Tyr). Pure DNA A260/A280 = 1.8.
+• Circular Dichroism (CD): Far-UV (190-250 nm) for protein secondary structure. α-helix dual negative dips at 222 nm & 208 nm; β-sheet single dip at 218 nm; unfolded dip at 195 nm.
+• IR/FTIR vs Raman: IR requires dipole moment change (water absorbs strongly). Raman requires polarizability change (water transparent, ideal for live cells).
+• MS & NMR: Soft ionization MALDI [M+H]⁺ vs ESI multi-charged series [M+zH]^(z+). ESI peak charge decoding z = (m1 - H)/(m2 - m1). NMR nuclear spin (¹H, ¹³C, ¹⁵N) chemical shifts determine 3D protein structure in solution.`
+      },
+      {
+        title: "4. Chromatography Modes & Van Deemter Equation",
+        content: `• Van Deemter Equation: HETP = A + (B / u) + C·u (A=eddy diffusion, B=longitudinal diffusion, C=mass transfer resistance).
+• Separation Modes: Ion Exchange (IEXC: Anion vs Cation, pH > pI, NaCl elution); Size Exclusion (SEC: Ve = V0 + Kd(Vt - V0), large molecules elute first in V0, small salt elutes last at Vt); Hydrophobic Interaction (HIC: high salt load, decreasing salt elution); IMAC Affinity (Ni²⁺-agarose binds 6×His tag, high imidazole 250-500 mM elution).`
+      },
+      {
+        title: "5. Electrophoresis & Microarrays",
+        content: `• Electrophoretic Mobility: μ = v / E = q / f.
+• Electrophoresis Modes: SDS-PAGE (SDS coats uniform negative charge, separates purely by molecular weight); Isoelectric Focusing (IEF: pH gradient, migrates until net charge q=0 at pH = pI); 2D PAGE (1st dim IEF charge + 2nd dim SDS-PAGE weight).
+• Microarrays: Dual-color Cy3 (green control cDNA) vs Cy5 (red test cDNA) hybridization. Red = upregulated, Green = downregulated, Yellow = unchanged.`
+      },
+      {
+        title: "6. Step-by-Step Problem-Solving Vault",
+        content: `• Problem 1 (Optics): Resolution limit d in air = 242.74 nm vs oil immersion = 159.70 nm.
+• Problem 2 (Centrifuge): Clearing factor K = 86.60, run time t = K / s = 1.08 hours (65 mins).
+• Problem 3 (ESI MS): Adjacent peaks 1750.9 Da and 2042.5 Da decode charge z = +6 ➔ true protein mass M = 12,249.1 Da.
+• Problem 4 (SEC Matrix): Distribution coefficient Kd = 0.4127, small NaCl salt elutes at total volume Vt = 95 mL.`
+      }
+    ],
+    examTraps: [
+      "Confocal aperture: Confocal microscopy uses a pinhole filter to eliminate out-of-focus light blur.",
+      "His-tag elution: Imidazole outcompetes the histidine tag for Ni²⁺-NTA binding, eluting pure recombinant protein.",
+      "CD fingerprinting: α-helices display two characteristic negative dips at 222 nm and 208 nm."
+    ],
+    pyqs: [
+      {
+        id: 1,
+        question: "GAT-B 2020: The maximum magnification and resolution among light microscopes is achieved by:",
+        options: ["Bright field microscope", "Phase contrast microscope", "Electron microscope", "Fluorescence microscope"],
+        correct: 2,
+        explanation: "Electron microscopes achieve the highest resolution (down to 0.1 nm) and magnification by utilizing short-wavelength electron beams in a vacuum."
+      },
+      {
+        id: 2,
+        question: "GAT-B 2020: The resolving power of a microscope depends mainly on:",
+        options: ["Magnification only", "Numerical aperture and wavelength", "Lens diameter only", "Sample size"],
+        correct: 1,
+        explanation: "According to Abbe's formula (d = λ / 2NA), resolving power depends on light wavelength (λ) and numerical aperture (NA)."
+      },
+      {
+        id: 3,
+        question: "GAT-B 2020: Phase contrast microscopy is especially useful for observing:",
+        options: ["Dead stained cells", "Living unstained cells", "Crystals only", "DNA fragments"],
+        correct: 1,
+        explanation: "Phase contrast microscopy converts refractive index phase shifts into intensity changes, allowing visualization of living unstained cells."
+      },
+      {
+        id: 4,
+        question: "GAT-B 2021: Which microscope uses electrons instead of light?",
+        options: ["Compound microscope", "TEM", "Phase contrast microscope", "Stereo microscope"],
+        correct: 1,
+        explanation: "Transmission Electron Microscope (TEM) uses an electron beam and electromagnetic lenses to image internal specimen ultrastructure."
+      },
+      {
+        id: 5,
+        question: "GAT-B 2021: SEM mainly provides information about:",
+        options: ["Internal ultrastructure", "Surface morphology", "DNA sequence", "Protein structure"],
+        correct: 1,
+        explanation: "Scanning Electron Microscopy (SEM) detects secondary electrons knocked off gold-coated specimen surfaces to produce 3D surface images."
+      },
+      {
+        id: 6,
+        question: "GAT-B 2021: Fluorescence microscopy is based on:",
+        options: ["Reflection of light", "Emission of light by fluorophores", "Electron scattering", "Radioactivity"],
+        correct: 1,
+        explanation: "Fluorescence microscopy detects light emitted by fluorophore dyes upon excitation by shorter wavelength light (Stokes shift)."
+      },
+      {
+        id: 7,
+        question: "GAT-B 2022: The microscope commonly used to study internal cell organelles is:",
+        options: ["SEM", "TEM", "Stereo microscope", "Dark field microscope"],
+        correct: 1,
+        explanation: "TEM passes electrons through thin specimen sections to resolve 2D internal organelle ultrastructure."
+      },
+      {
+        id: 8,
+        question: "GAT-B 2022: Confocal microscopy improves image quality mainly by:",
+        options: ["Increasing specimen size", "Eliminating out-of-focus light", "Using UV radiation only", "Increasing staining time"],
+        correct: 1,
+        explanation: "Confocal laser scanning microscopy uses a pinhole filter to block out-of-focus blur from above and below the focal plane."
+      },
+      {
+        id: 9,
+        question: "GAT-B 2022: Oil immersion objective generally has magnification of:",
+        options: ["10X", "40X", "100X", "1000X"],
+        correct: 2,
+        explanation: "The standard oil immersion objective lens has a magnification of 100X."
+      },
+      {
+        id: 10,
+        question: "GAT-B 2023: Electron microscopes require:",
+        options: ["Oil immersion", "Vacuum environment", "UV light only", "Fluorescent dyes only"],
+        correct: 1,
+        explanation: "Electron microscopes require a high vacuum environment to prevent gas molecules from scattering the electron beam."
+      },
+      {
+        id: 11,
+        question: "GAT-B 2023: The wavelength of electrons is:",
+        options: ["Greater than visible light", "Equal to visible light", "Much shorter than visible light", "Infinite"],
+        correct: 2,
+        explanation: "Accelerated electrons have de Broglie wavelengths (~0.0037 nm) much shorter than visible light (400-700 nm), yielding high resolution."
+      },
+      {
+        id: 12,
+        question: "GAT-B 2023: Dark field microscopy produces:",
+        options: ["Bright specimen on dark background", "Dark specimen on bright background", "Colored image only", "3D image only"],
+        correct: 0,
+        explanation: "Darkfield microscopy uses an annular stop to block direct light, causing only light scattered by the specimen to form a bright image on a dark background."
+      },
+      {
+        id: 13,
+        question: "GAT-B 2024: The fluorochrome commonly used in fluorescence microscopy is:",
+        options: ["Ethidium bromide", "Crystal violet", "Safranin", "Hematoxylin"],
+        correct: 0,
+        explanation: "Ethidium bromide is a fluorescent dye that intercalates into DNA and fluoresces under UV excitation."
+      },
+      {
+        id: 14,
+        question: "GAT-B 2024: Resolution is defined as the ability to:",
+        options: ["Increase specimen size", "Distinguish two closely spaced objects", "Change image color", "Detect proteins"],
+        correct: 1,
+        explanation: "Resolution is the minimum distance between two distinct points at which they can still be distinguished as separate entities."
+      },
+      {
+        id: 15,
+        question: "GAT-B 2024: Scanning electron microscopy mainly produces:",
+        options: ["2D internal image", "3D surface image", "DNA map", "RNA profile"],
+        correct: 1,
+        explanation: "SEM scans specimen surfaces with a focused electron beam to generate high-resolution 3D surface morphology images."
+      },
+      {
+        id: 16,
+        question: "GAT-B 2020: Spectrophotometry is based on:",
+        options: ["Absorption of light", "Electron microscopy", "Radioactivity", "Magnetic resonance"],
+        correct: 0,
+        explanation: "Spectrophotometry measures the quantitative absorption of light by chemical species in solution according to Beer-Lambert's Law."
+      },
+      {
+        id: 17,
+        question: "GAT-B 2020: DNA concentration is commonly measured at:",
+        options: ["280 nm", "260 nm", "420 nm", "600 nm"],
+        correct: 1,
+        explanation: "Purine and pyrimidine bases of DNA absorb ultraviolet light strongly at 260 nm."
+      },
+      {
+        id: 18,
+        question: "GAT-B 2020: Proteins show maximum absorbance near:",
+        options: ["260 nm", "420 nm", "280 nm", "600 nm"],
+        correct: 2,
+        explanation: "Aromatic amino acid side chains (tryptophan, tyrosine, phenylalanine) absorb UV light with a peak at 280 nm."
+      },
+      {
+        id: 19,
+        question: "GAT-B 2020: Beer-Lambert law relates absorbance with:",
+        options: ["Temperature", "Concentration and path length", "Molecular weight", "pH only"],
+        correct: 1,
+        explanation: "Beer-Lambert Law states that absorbance (A) is directly proportional to solute concentration (c) and optical path length (l): A = ε·c·l."
+      },
+      {
+        id: 20,
+        question: "GAT-B 2021: Which spectroscopy technique is used for identifying functional groups?",
+        options: ["UV spectroscopy", "IR spectroscopy", "NMR spectroscopy", "Mass spectrometry"],
+        correct: 1,
+        explanation: "Infrared (IR) spectroscopy measures molecular bond vibrational frequencies to identify functional groups."
+      },
+      {
+        id: 21,
+        question: "GAT-B 2021: NMR spectroscopy is mainly based on:",
+        options: ["Electron movement", "Nuclear spin properties", "UV absorption", "Electron scattering"],
+        correct: 1,
+        explanation: "Nuclear Magnetic Resonance (NMR) measures energy absorbed during nuclear spin flips of isotopes like 1H, 13C, and 15N in a magnetic field."
+      },
+      {
+        id: 22,
+        question: "GAT-B 2022: The purity of DNA is assessed using ratio:",
+        options: ["A420/A600", "A260/A280", "A340/A420", "A700/A800"],
+        correct: 1,
+        explanation: "The A260/A280 absorbance ratio assesses nucleic acid purity (pure DNA ratio is ~1.8)."
+      },
+      {
+        id: 23,
+        question: "GAT-B 2022: Mass spectrometry determines:",
+        options: ["Cell morphology", "Molecular mass", "DNA replication", "Antibody concentration"],
+        correct: 1,
+        explanation: "Mass spectrometry measures mass-to-charge ratios (m/z) of ionized molecules to determine exact molecular mass."
+      },
+      {
+        id: 24,
+        question: "GAT-B 2022: UV-visible spectroscopy commonly uses wavelength range:",
+        options: ["10–50 nm", "200–800 nm", "1000–2000 nm", ">5000 nm"],
+        correct: 1,
+        explanation: "UV-visible spectroscopy operates in the 200–400 nm (ultraviolet) and 400–800 nm (visible) spectral regions."
+      },
+      {
+        id: 25,
+        question: "GAT-B 2023: Infrared spectroscopy measures:",
+        options: ["Molecular vibrations", "Electron spin", "DNA sequencing", "Cell morphology"],
+        correct: 0,
+        explanation: "Infrared radiation excites bond stretching and bending molecular vibrations."
+      },
+      {
+        id: 26,
+        question: "GAT-B 2023: Which spectroscopy technique provides structural information about proteins in solution?",
+        options: ["NMR", "UV spectroscopy", "Colorimetry", "Bright field microscopy"],
+        correct: 0,
+        explanation: "Multidimensional NMR spectroscopy determines 3D atomic structures and conformational dynamics of proteins in liquid solution."
+      },
+      {
+        id: 27,
+        question: "GAT-B 2023: A spectrophotometer primarily consists of:",
+        options: ["Light source + monochromator + detector", "Centrifuge and rotor", "Vacuum chamber", "Laser only"],
+        correct: 0,
+        explanation: "A spectrophotometer consists of a light source, a monochromator (wavelength selector), sample cuvette holder, and a photoelectric detector."
+      },
+      {
+        id: 28,
+        question: "GAT-B 2024: OD600 measurement is mainly used for estimating:",
+        options: ["DNA concentration", "Bacterial growth", "Protein folding", "RNA sequencing"],
+        correct: 1,
+        explanation: "Optical density at 600 nm (OD600) measures light scattering to estimate bacterial cell culture density and growth kinetics."
+      },
+      {
+        id: 29,
+        question: "GAT-B 2024: Fluorescence spectroscopy is generally more sensitive than UV spectroscopy because:",
+        options: ["It uses vacuum", "It detects emitted light", "It measures mass", "It uses infrared rays"],
+        correct: 1,
+        explanation: "Fluorescence measures emitted light against a dark background, offering higher sensitivity and lower detection limits than absorption."
+      },
+      {
+        id: 30,
+        question: "GAT-B 2024: Circular dichroism spectroscopy is commonly used to study:",
+        options: ["DNA replication", "Protein secondary structure", "Cell wall synthesis", "Chromosome mapping"],
+        correct: 1,
+        explanation: "Circular Dichroism (CD) in the far-UV range (190-250 nm) measures differential absorption of circularly polarized light to quantify protein secondary structure (α-helices, β-sheets)."
+      }
+    ]
   }
 ];
 
@@ -2168,6 +2438,16 @@ const CHALLENGES = {
     xp: 300,
     timeLimit: 1200,
     questions: COURSE_TOPICS[10].pyqs
+  }
+,
+  biophysical: {
+    title: "Biophysical & Analytical Techniques PYQs",
+    subject: "Biophysical & Analytical Techniques (GAT-B 2020-2024)",
+    color: "#0D9488",
+    bg: "#CCFBF1",
+    xp: 300,
+    timeLimit: 1200,
+    questions: COURSE_TOPICS[11].pyqs
   }
 };
 
@@ -5281,6 +5561,231 @@ const FULL_RECOMBINANT_DNA_21_PAGES = [
 </div>`
 ];
 
+const FULL_BIOPHYSICAL_28_PAGES = [
+  `<h1 style="font-size:22px; color:#0d9488; margin:0 0 10px; border-bottom:2px solid #0d9488; padding-bottom:8px;">BIOPHYSICAL &amp; ANALYTICAL TECHNIQUES</h1>
+<p style="font-style:italic; color:#475569; font-size:13.5px; margin-bottom:24px;">Complete High-Yield Manual for B.Tech Undergraduate Excellence &amp; GATE Examination Preparation</p>
+<div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0f766e;">
+  Unit 1: Principles of Microscopy
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">1.1 Light (Brightfield) Microscopy &amp; Optical Limits</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Brightfield Light Microscopy:</strong> Visible light focused by condenser lens passes through specimen to objective lens. Total magnification = Eyepiece × Objective.<br/>
+  • <strong>Numerical Aperture (NA):</strong> NA = n · sin(θ), where n is the refractive index of the medium between lens and sample (air n=1.0, oil immersion n=1.515).<br/>
+  • <strong>Resolution Limit (Abbe's Formula):</strong> <strong style="color:#0d9488; font-size:14.5px;">d = λ / (2 · NA) = λ / (2 · n · sin θ)</strong>.<br/>
+  Shorter wavelength (λ) or higher NA decreases d, improving sharpness.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Phase Contrast &amp; Darkfield Light Modifications</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Phase Contrast Microscopy:</strong> Converts minor phase shifts in light passing through cellular structures of varying refractive index into visible amplitude (brightness) changes. Ideal for observing <strong>living, unstained cells</strong>.<br/>
+  • <strong>Darkfield Microscopy:</strong> Direct un-scattered light is blocked by an annular stop. Only light scattered by the specimen enters the objective lens, producing a <strong>bright specimen on a completely black background</strong>.<br/>
+  • <strong>Oil Immersion Objective (100X):</strong> Prevents light refraction at glass-air interface, raising NA up to 1.4 for high-resolution cell imaging.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">1.2 Electron Microscopy (TEM and SEM)</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Utilizes accelerated electron beams instead of light and electromagnetic lenses in a <strong>vacuum environment</strong>.<br/>
+  • <strong>De Broglie Wavelength:</strong> λ = h / p = 1.22 / √V nm. At 100 kV accelerating voltage, λ = <strong>0.0037 nm</strong> (100,000× shorter than visible light).<br/>
+  • <strong>Transmission Electron Microscopy (TEM):</strong> Electron beam transmits through ultra-thin lead/gold-stained slices ➔ resolves <strong>2D internal organelle ultrastructure</strong> (resolution down to 0.1–0.2 nm).<br/>
+  • <strong>Scanning Electron Microscopy (SEM):</strong> Scans gold-coated specimen surfaces with secondary electron detectors ➔ produces <strong>3D surface morphology images</strong>.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">1.3 Fluorescence Microscopy &amp; Stokes Shift</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Fluorescence Principle:</strong> Fluorophores absorb high-energy short-wavelength excitation photons (e.g. UV/blue), lose small energy as vibrational heat, and emit lower-energy longer-wavelength photons.<br/>
+  • <strong>Stokes Shift:</strong> <strong style="color:#0d9488; font-size:14px;">(h·c / λ_excitation) &gt; (h·c / λ_emission)</strong> ➔ λ_emission is always longer than λ_excitation.<br/>
+  • <strong>Filter Optics:</strong> Excitation filter ➔ Dichroic mirror (reflects short excitation light, transmits long emitted light) ➔ Emission filter.<br/>
+  • <strong>Common Fluorochromes:</strong> Ethidium Bromide (nucleic acids), FITC, DAPI.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">1.4 Confocal Laser Scanning Microscopy (CLSM)</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Pinhole Aperture Mechanism:</strong> Standard fluorescence captures out-of-focus light from above and below the focal plane. CLSM focuses a fine laser spot on a single plane and places a <strong>pinhole filter in front of the detector</strong> to block out-of-focus blur.<br/>
+  • <strong>3D Reconstruction:</strong> Collects crisp optical sections (z-stacks) through thick biological samples, building high-resolution 3D digital cellular reconstructions.
+</p>`,
+  `<div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0f766e;">
+  Unit 2: Principles of Centrifugation
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">2.1 Balance of Physical Forces in a Centrifuge</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Particles in a spinning rotor experience three competing forces:<br/>
+  1. Centrifugal Force: F_c = m · ω² · r.<br/>
+  2. Buoyant Force: F_b = m · v̄ · ρ · ω² · r (Archimedes' principle).<br/>
+  3. Net Sedimentation Force: F_net = m · ω² · r · (1 - v̄ · ρ).<br/>
+  4. Frictional Drag: F_f = f · v, reaching terminal velocity when F_net = F_f ➔ <strong>m · ω² · r · (1 - v̄ · ρ) = f · v</strong>.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">2.2 The Svedberg Equation</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Sedimentation coefficient <strong>s = v / (ω² · r) = m · (1 - v̄ · ρ) / f</strong> (expressed in Svedberg units S, where 1 S = 10⁻¹³ seconds).<br/>
+  Substituting macroscopic molecular weight (M = N · m) and Einstein diffusion relation (f = R·T / [N·D]):<br/>
+  <strong style="color:#0d9488; font-size:15px;">M = (s · R · T) / [ D · (1 - v̄ · ρ) ]</strong><br/>
+  Allows exact determination of protein molecular weight from centrifugation sedimentation and diffusion rates.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">2.3 Separation Strategies &amp; Ultracentrifugation</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>High-Speed vs. Ultracentrifugation:</strong> Ultracentrifuges operate at 60,000–100,000+ RPM (&gt;1,000,000 × g) in a <strong>refrigerated high-vacuum chamber</strong> to eliminate air friction heating.<br/>
+  • <strong>Differential Centrifugation:</strong> Pelleting components sequentially based on mass/size at increasing g-forces (nuclei ➔ mitochondria ➔ microsomes ➔ ribosomes).<br/>
+  • <strong>Isopycnic (Density Gradient) Centrifugation:</strong> Separates purely by buoyant density in CsCl or sucrose gradients, independent of shape/size (e.g. Meselson-Stahl DNA isotope separation).
+</p>`,
+  `<div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0f766e;">
+  Unit 3: Principles of Spectroscopy
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">3.1 UV-Vis Spectroscopy &amp; Beer-Lambert Law</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Beer-Lambert Law:</strong> <strong style="color:#0d9488; font-size:14.5px;">A = log10(I₀ / I) = ε · c · l</strong>, where ε is molar extinction coefficient, c is concentration, and l is path length (1 cm).<br/>
+  • <strong>Absorbance Peaks:</strong> Nucleic acids absorb strongly at <strong>260 nm</strong> (purine/pyrimidine bases); Proteins absorb at <strong>280 nm</strong> (aromatic residues Trp, Tyr).<br/>
+  • <strong>Purity Ratio:</strong> Pure DNA A260/A280 = ~1.8; Pure RNA = ~2.0.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">3.2 Circular Dichroism (CD) Spectroscopy</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Measures differential absorption of left- vs right-handed circularly polarized light in the far-UV range (190–250 nm) to determine <strong>protein secondary structure</strong>:<br/>
+  • <strong>α-Helix:</strong> Two distinct negative dips at <strong>222 nm and 208 nm</strong>.<br/>
+  • <strong>β-Sheet:</strong> Single negative dip at <strong>218 nm</strong>.<br/>
+  • <strong>Random Coil (Unfolded):</strong> Strong negative dip near <strong>195 nm</strong>.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">3.3 IR/FTIR vs 3.4 Raman Spectroscopy</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>IR / FTIR Spectroscopy:</strong> Measures molecular bond stretching/bending vibrations. Requires a <strong>change in dipole moment</strong> during vibration. Hooke's Law: ν = (1 / 2πc) · √(k / μ_red).<br/>
+  • <strong>Raman Spectroscopy:</strong> Measures inelastic light scattering (Rayleigh vs Raman). Requires a <strong>change in polarizability</strong>.<br/>
+  • <strong>Water Advantage:</strong> Water creates massive background absorption in IR, but gives a very weak signal in Raman ➔ Raman is ideal for wet biological samples &amp; living cells.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">3.5 Mass Spectrometry (MS) &amp; 3.6 NMR Spectroscopy</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Mass Spectrometry (m/z):</strong> Soft ionization methods:<br/>
+  - <strong>MALDI:</strong> Matrix-assisted laser desorption ➔ singly-charged ions [M+H]⁺.<br/>
+  - <strong>ESI:</strong> Electrospray ionization ➔ multi-charged ion series [M+zH]^(z+).<br/>
+  • <strong>NMR Spectroscopy:</strong> Based on <strong>nuclear spin properties</strong> (¹H, ¹³C, ¹⁵N) in magnetic field B₀. Measures chemical shifts ➔ determines <strong>3D protein structure in liquid solution</strong>.
+</p>`,
+  `<div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0f766e;">
+  Unit 4: Principles of Chromatography
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">4.1 Van Deemter Equation &amp; Column Efficiency</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Column efficiency is measured by Height Equivalent to a Theoretical Plate (HETP). Smaller HETP = higher efficiency.<br/>
+  <strong style="color:#0d9488; font-size:14.5px;">HETP = A + (B / u) + C · u</strong><br/>
+  • <strong>A (Eddy Diffusion):</strong> Multiple paths around irregular packing beads.<br/>
+  • <strong>B / u (Longitudinal Diffusion):</strong> Outward molecular diffusion along column.<br/>
+  • <strong>C · u (Mass Transfer Resistance):</strong> Slow exchange between stationary bead and mobile fluid.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">4.2 Modes of Liquid Chromatography</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Ion Exchange (IEXC):</strong> Separates by net surface charge. Anion exchangers (positive beads) bind negative proteins (pH &gt; pI). Eluted with NaCl salt gradient.<br/>
+  • <strong>Size Exclusion (SEC / Gel Filtration):</strong> V_e = V_0 + K_d · (V_t - V_0). Large molecules elute first in void volume V_0; small molecules enter internal pores and elute last (K_d = 1.0).<br/>
+  • <strong>Hydrophobic Interaction (HIC):</strong> High salt loading buffer exposes hydrophobic patches; eluted with decreasing salt gradient.<br/>
+  • <strong>IMAC Affinity:</strong> Nickel-agarose (Ni²⁺) traps 6×His-tagged recombinant proteins; eluted with high <strong>imidazole</strong> (250–500 mM).
+</p>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">PROTOCOL: PURIFYING HIS-TAGGED RECOMBINANT PROTEIN</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    1. Sonicate cell pellet in buffer with 10 mM imidazole ➔ 2. Load supernatant onto Ni-NTA agarose column ➔ 3. Wash with 20 mM imidazole to remove weak host proteins ➔ 4. Elute pure target protein with 250–500 mM imidazole.
+  </div>
+</div>`,
+  `<div style="background:#ccfbf1; border-left:4px solid #0d9488; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#0f766e;">
+  Unit 5: Electrophoresis &amp; Microarrays
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">5.1 Electrophoresis Principles &amp; 5.2 Microarrays</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Electrophoretic mobility <strong>μ = v / E = q / f</strong>.<br/>
+  • <strong>SDS-PAGE:</strong> SDS denatures proteins, imparts uniform negative charge-to-mass ratio, separating purely by molecular weight.<br/>
+  • <strong>Isoelectric Focusing (IEF):</strong> Proteins migrate along pH gradient until net charge q = 0 at <strong>pH = pI</strong>.<br/>
+  • <strong>2D Electrophoresis:</strong> 1st Dimension IEF (charge) + 2nd Dimension SDS-PAGE (weight).<br/>
+  • <strong>DNA Microarrays:</strong> Dual-color Cy3 (green control cDNA) vs Cy5 (red test cDNA) hybridization. Red = upregulated, Green = downregulated, Yellow = unchanged.
+</p>`,
+  `<h1 style="font-size:20px; color:#0d9488; margin:0 0 10px; border-bottom:2px solid #0d9488; padding-bottom:8px;">UNIT 6: STEP-BY-STEP PROBLEM-SOLVING VAULT</h1>
+<div style="background:#ccfbf1; border:1px solid #99f6e4; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#0f766e; font-size:14px;">PROBLEM 1: EVALUATING OPTICAL RESOLUTION LIMITS</h4>
+  <div style="font-size:13px; color:#115e59; line-height:1.6;">
+    <strong>Question:</strong> Objective lens θ = 65°, λ = 440 nm. Calculate NA and resolution limit d for (a) Air (n=1.00) and (b) Oil (n=1.52).<br/>
+    • sin(65°) = 0.9063.<br/>
+    • (a) Air: NA = 1.00 × 0.9063 = 0.9063  ➔  d = 440 / (2 × 0.9063) = <strong style="color:#0d9488;">242.74 nm</strong>.<br/>
+    • (b) Oil: NA = 1.52 × 0.9063 = 1.3776  ➔  d = 440 / (2 × 1.3776) = <strong style="color:#0d9488;">159.70 nm</strong>.<br/>
+    Oil immersion lowers resolution limit from 242.74 nm to 159.70 nm, increasing sharpness.
+  </div>
+</div>`,
+  `<div style="background:#ccfbf1; border:1px solid #99f6e4; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#0f766e; font-size:14px;">PROBLEM 2: CALCULATING CENTRIFUGE RUN TIMES &amp; K-FACTOR</h4>
+  <div style="font-size:13px; color:#115e59; line-height:1.6;">
+    <strong>Question:</strong> Ultracentrifuge 45,000 RPM, r_min = 6.0 cm, r_max = 12.0 cm, s = 80S virus. Calculate K-factor and total clearing time.<br/>
+    • K = [ 2.53 × 10¹¹ × ln(r_max / r_min) ] / (RPM)² = [ 2.53 × 10¹¹ × ln(2.0) ] / (45000)² = <strong style="color:#0d9488;">86.60</strong>.<br/>
+    • Run time t = K / s = 86.60 / 80 = <strong>1.08 hours (64.95 minutes)</strong>.
+  </div>
+</div>`,
+  `<div style="background:#ccfbf1; border:1px solid #99f6e4; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#0f766e; font-size:14px;">PROBLEM 3: DECODING ESI MASS SPECTROMETRY PEAKS</h4>
+  <div style="font-size:13px; color:#115e59; line-height:1.6;">
+    <strong>Question:</strong> ESI spectrum displays adjacent peaks m1 = 1750.9 Da (charge z+1) and m2 = 2042.5 Da (charge z). Find true uncharged weight M.<br/>
+    • Charge z = (m1 - H) / (m2 - m1) = (1750.9 - 1.0078) / (2042.5 - 1750.9) = 1749.8922 / 291.6 = <strong>6.001 ➔ z = +6</strong>.<br/>
+    • Peak 1 is +7; Peak 2 is +6.<br/>
+    • True Mass M = 6 × 2042.5 - 6 × 1.0078 = <strong style="color:#0d9488;">12,248.95 Da (~12,249.1 Da)</strong>.
+  </div>
+</div>`,
+  `<div style="background:#ccfbf1; border:1px solid #99f6e4; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#0f766e; font-size:14px;">PROBLEM 4: SIZE EXCLUSION RETENTION PROPERTIES</h4>
+  <div style="font-size:13px; color:#115e59; line-height:1.6;">
+    <strong>Question:</strong> SEC total volume V_t = 95 mL, void volume V_0 = 32 mL, protein elution volume V_e = 58 mL. Calculate K_d and elution volume of small NaCl salt.<br/>
+    • K_d = (V_e - V_0) / (V_t - V_0) = (58 - 32) / (95 - 32) = 26 / 63 = <strong style="color:#0d9488;">0.4127</strong>.<br/>
+    • Small NaCl salt fits all pores (K_d = 1.0) ➔ V_e = V_0 + 1.0 × (V_t - V_0) = <strong>95 mL</strong> (elutes at total bed volume).
+  </div>
+</div>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Microscopy &amp; Optics Quick Revision</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Abbe Formula:</strong> d = λ / (2·NA). Shorter λ / higher NA ➔ sharper resolution.<br/>
+  • <strong>Phase Contrast:</strong> Living unstained cells.<br/>
+  • <strong>Darkfield:</strong> Bright specimen on dark background.<br/>
+  • <strong>TEM:</strong> 2D internal ultrastructure (electrons in vacuum).<br/>
+  • <strong>SEM:</strong> 3D surface morphology.<br/>
+  • <strong>Confocal (CLSM):</strong> Pinhole filter blocks out-of-focus light.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Centrifugation &amp; Sedimentation Quick Revision</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Svedberg Equation:</strong> M = (s · R · T) / [ D · (1 - v̄ · ρ) ].<br/>
+  • <strong>Differential Centrifugation:</strong> Pelleting by mass/size.<br/>
+  • <strong>Isopycnic Centrifugation:</strong> Separation purely by buoyant density in CsCl.<br/>
+  • <strong>Clearing Factor:</strong> K = [ 2.53×10¹¹ × ln(r_max/r_min) ] / RPM². Run time t = K / s.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Spectroscopy &amp; Structural Biology Quick Revision</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Beer-Lambert Law:</strong> A = ε · c · l. DNA 260 nm, Protein 280 nm.<br/>
+  • <strong>Circular Dichroism (CD):</strong> α-helix (222 &amp; 208 nm dips), β-sheet (218 nm dip), Unfolded (195 nm dip).<br/>
+  • <strong>FTIR vs. Raman:</strong> IR requires dipole moment change; Raman requires polarizability change (water transparent in Raman).<br/>
+  • <strong>NMR:</strong> Nuclear spin in liquid solution ➔ 3D protein structure.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Chromatography &amp; Van Deemter Quick Revision</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Van Deemter Equation:</strong> HETP = A + (B / u) + C · u (A=eddy diffusion, B=longitudinal diffusion, C=mass transfer resistance).<br/>
+  • <strong>IEXC:</strong> Anion exchange (positive beads bind negative proteins at pH &gt; pI).<br/>
+  • <strong>SEC:</strong> Large molecules elute first in V_0; small molecules elute last.<br/>
+  • <strong>IMAC:</strong> Ni²⁺-agarose binds 6×His tag; eluted with imidazole.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Electrophoresis &amp; Microarrays Quick Revision</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>SDS-PAGE:</strong> SDS coats proteins with uniform negative charge ➔ separates purely by molecular weight.<br/>
+  • <strong>IEF:</strong> Separates by charge along pH gradient until pH = pI.<br/>
+  • <strong>2D PAGE:</strong> 1st dim IEF + 2nd dim SDS-PAGE.<br/>
+  • <strong>Microarray:</strong> Dual-color Cy3 (green control) vs Cy5 (red test) hybridization.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">GATE High-Yield Formula Cheat Sheet</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Resolution:</strong> d = λ / (2 · NA).<br/>
+  • <strong>Svedberg MW:</strong> M = (s R T) / [ D (1 - v̄ ρ) ].<br/>
+  • <strong>Beer-Lambert:</strong> A = ε · c · l.<br/>
+  • <strong>SEC Elution:</strong> V_e = V_0 + K_d (V_t - V_0).<br/>
+  • <strong>Electrophoretic Mobility:</strong> μ = v / E = q / f.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Mass Spectrometry &amp; Ionization Cheat Sheet</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>MALDI:</strong> Matrix-assisted laser ➔ singly charged [M+H]⁺.<br/>
+  • <strong>ESI:</strong> High-voltage spray ➔ multi-charged ion series [M+zH]^(z+).<br/>
+  • <strong>ESI Peak Formula:</strong> z = (m1 - H) / (m2 - m1).
+</p>`,
+  `<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#0f172a; font-size:14px;">🎓 Final GATE-Focused Checklist for Biophysical Techniques</h4>
+  <ol style="font-size:12.5px; color:#334155; line-height:1.6; padding-left:20px; margin:0;">
+    <li>Confocal microscopy uses a pinhole aperture to eliminate out-of-focus light blur.</li>
+    <li>Phase contrast microscopy is specially designed for observing living unstained cells.</li>
+    <li>CD spectroscopy α-helix features double negative dips at 222 nm and 208 nm.</li>
+    <li>His-tagged proteins bind Ni²⁺-NTA beads and are eluted specifically with imidazole.</li>
+    <li>In size exclusion chromatography, large molecules elute first in the void volume V_0.</li>
+  </ol>
+</div>`
+];
+
 /* ── Continuous Scroll PDF Document Viewer Component ── */
 function ContinuousPdfViewer({ topic }) {
   function handleOpenNewWindow() {
@@ -5442,6 +5947,20 @@ function ContinuousPdfViewer({ topic }) {
           <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 21</span></div>
         </div>
       `).join("");
+    } else if (topic.id === "topic-13") {
+      pagesHtml = FULL_BIOPHYSICAL_28_PAGES.map((pgContent, idx) => `
+        <div class="page">
+          <div class="header">
+            <div>
+              <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
+              <h2 class="title">${topic.name}</h2>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${idx + 1} OF 28</span>
+          </div>
+          ${pgContent}
+          <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 28</span></div>
+        </div>
+      `).join("");
     } else {
       pagesHtml = topic.sections.map((sec, idx) => `
         <div class="page">
@@ -5536,7 +6055,7 @@ function ContinuousPdfViewer({ topic }) {
           <div>
             <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#fff" }}>{topic.pdfTitle}</h3>
             <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>
-              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : topic.id === "topic-07" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : topic.id === "topic-08" ? "Executive Syllabus Summary • Full 16-Page PDF Document Available below" : topic.id === "topic-09" ? "Executive Syllabus Summary • Full 10-Page PDF Document Available below" : topic.id === "topic-10" ? "Executive Syllabus Summary • Full 22-Page PDF Document Available below" : topic.id === "topic-11" ? "Executive Syllabus Summary • Full 30-Page PDF Document Available below" : topic.id === "topic-12" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
+              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : topic.id === "topic-07" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : topic.id === "topic-08" ? "Executive Syllabus Summary • Full 16-Page PDF Document Available below" : topic.id === "topic-09" ? "Executive Syllabus Summary • Full 10-Page PDF Document Available below" : topic.id === "topic-10" ? "Executive Syllabus Summary • Full 22-Page PDF Document Available below" : topic.id === "topic-11" ? "Executive Syllabus Summary • Full 30-Page PDF Document Available below" : topic.id === "topic-12" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : topic.id === "topic-13" ? "Executive Syllabus Summary • Full 28-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
             </p>
           </div>
         </div>
@@ -5550,10 +6069,10 @@ function ContinuousPdfViewer({ topic }) {
             cursor: "pointer", display: "flex", alignItems: "center", gap: "6px",
             boxShadow: "0 3px 12px " + topic.color + "40", transition: "all 0.2s"
           }}
-          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-08" ? "Click to open full 16-page PDF document in a new browser tab/window" : topic.id === "topic-09" ? "Click to open full 10-page PDF document in a new browser tab/window" : topic.id === "topic-10" ? "Click to open full 22-page PDF document in a new browser tab/window" : topic.id === "topic-11" ? "Click to open full 30-page PDF document in a new browser tab/window" : topic.id === "topic-12" ? "Click to open full 21-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
+          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-08" ? "Click to open full 16-page PDF document in a new browser tab/window" : topic.id === "topic-09" ? "Click to open full 10-page PDF document in a new browser tab/window" : topic.id === "topic-10" ? "Click to open full 22-page PDF document in a new browser tab/window" : topic.id === "topic-11" ? "Click to open full 30-page PDF document in a new browser tab/window" : topic.id === "topic-12" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-13" ? "Click to open full 28-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
         >
           <span>↗️</span>
-          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : topic.id === "topic-08" ? "Open Full 16-Page PDF" : topic.id === "topic-09" ? "Open Full 10-Page PDF" : topic.id === "topic-10" ? "Open Full 22-Page PDF" : topic.id === "topic-11" ? "Open Full 30-Page PDF" : topic.id === "topic-12" ? "Open Full 21-Page PDF" : "Open PDF in New Window"}</span>
+          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : topic.id === "topic-08" ? "Open Full 16-Page PDF" : topic.id === "topic-09" ? "Open Full 10-Page PDF" : topic.id === "topic-10" ? "Open Full 22-Page PDF" : topic.id === "topic-11" ? "Open Full 30-Page PDF" : topic.id === "topic-12" ? "Open Full 21-Page PDF" : topic.id === "topic-13" ? "Open Full 28-Page PDF" : "Open PDF in New Window"}</span>
         </button>
       </div>
 
@@ -5569,7 +6088,7 @@ function ContinuousPdfViewer({ topic }) {
           paddingRight: "8px",
           cursor: "pointer"
         }}
-        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : topic.id === "topic-07" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : topic.id === "topic-08" ? "Click anywhere on the study notes viewer to open full 16-page PDF document in new window" : topic.id === "topic-09" ? "Click anywhere on the study notes viewer to open full 10-page PDF document in new window" : topic.id === "topic-10" ? "Click anywhere on the study notes viewer to open full 22-page PDF document in new window" : topic.id === "topic-11" ? "Click anywhere on the study notes viewer to open full 30-page PDF document in new window" : topic.id === "topic-12" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
+        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : topic.id === "topic-07" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : topic.id === "topic-08" ? "Click anywhere on the study notes viewer to open full 16-page PDF document in new window" : topic.id === "topic-09" ? "Click anywhere on the study notes viewer to open full 10-page PDF document in new window" : topic.id === "topic-10" ? "Click anywhere on the study notes viewer to open full 22-page PDF document in new window" : topic.id === "topic-11" ? "Click anywhere on the study notes viewer to open full 30-page PDF document in new window" : topic.id === "topic-12" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : topic.id === "topic-13" ? "Click anywhere on the study notes viewer to open full 28-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
       >
         {topic.sections.map((sec, idx) => (
           <div key={idx} style={{
