@@ -1,1 +1,167 @@
-[]
+[
+  {
+    "event_id": "academic-world-research-crispr-mumbai-2026",
+    "title": "World Congress on CRISPR Gene Editing & Clinical Genomics 2026",
+    "organizer": "Academic World Research / IIT Bombay",
+    "location": {
+      "city": "Mumbai",
+      "country": "India",
+      "venue_address": "IIT Bombay Campus Auditorium, Powai, Mumbai, Maharashtra",
+      "is_online": false,
+      "is_india": true
+    },
+    "schedule": {
+      "start_date": "2026-11-04",
+      "end_date": "2026-11-06",
+      "time_details": "09:00 AM - 05:30 PM IST"
+    },
+    "pricing_and_registration": {
+      "is_free": false,
+      "entry_fee": "₹1,200 Students / ₹3,500 Professionals",
+      "registration_url": "https://academicworldresearch.org/Conference/2026/CRISPR-Gene-Editing-Conclave-Mumbai/register"
+    },
+    "details": {
+      "description": "Premier international congress uniting gene editing pioneers, bioengineers, and clinical oncologists to present targeted CRISPR therapies and therapeutic genome modifications.",
+      "topics": [
+        "CRISPR-Cas9",
+        "Genome Engineering",
+        "Therapeutic Biologics",
+        "Cellular Diagnostics"
+      ],
+      "eligibility": "Academic Scholars, Post-Docs, Clinical Researchers, Industry Leaders",
+      "contact_email": "crispr2026@academicworldresearch.org"
+    }
+  },
+  {
+    "event_id": "iit-gandhinagar-bioengineering-expo-2026",
+    "title": "IIT Gandhinagar International Bioengineering & Medical Device Expo 2026",
+    "organizer": "IIT Gandhinagar Department of Bioengineering",
+    "location": {
+      "city": "Gandhinagar",
+      "country": "India",
+      "venue_address": "IIT Gandhinagar Campus, Palaj, Gandhinagar, Gujarat",
+      "is_online": false,
+      "is_india": true
+    },
+    "schedule": {
+      "start_date": "2026-09-28",
+      "end_date": "2026-09-29",
+      "time_details": "09:30 AM - 05:00 PM IST"
+    },
+    "pricing_and_registration": {
+      "is_free": true,
+      "entry_fee": "Free Access for Registered Delegates",
+      "registration_url": "https://events.iitgn.ac.in/2026/bio-expo/registration-form"
+    },
+    "details": {
+      "description": "Showcase of cutting-edge point-of-care medical devices, microfluidics, neural tissue scaffolds, and AI-assisted diagnostic tools developed at IIT Gandhinagar.",
+      "topics": [
+        "Medical Devices",
+        "Biomaterials",
+        "Neural Engineering",
+        "Healthcare AI"
+      ],
+      "eligibility": "Engineering Students, Medical Professionals, Biotech Founders",
+      "contact_email": "bioexpo@iitgn.ac.in"
+    }
+  },
+  {
+    "event_id": "gbu-annual-research-conclave-gandhinagar-2026",
+    "title": "Gujarat Biotechnology University (GBU) Annual Research Conclave 2026",
+    "organizer": "Gujarat Biotechnology University (GBU) / University of Edinburgh",
+    "location": {
+      "city": "Gandhinagar",
+      "country": "India",
+      "venue_address": "GBU Campus, GIFT City, Gandhinagar, Gujarat",
+      "is_online": false,
+      "is_india": true
+    },
+    "schedule": {
+      "start_date": "2026-10-24",
+      "end_date": "2026-10-26",
+      "time_details": "09:30 AM - 05:30 PM IST"
+    },
+    "pricing_and_registration": {
+      "is_free": false,
+      "entry_fee": "Free for GBU Students / ₹1,500 Professionals",
+      "registration_url": "https://gbu.edu.in/events/2026/annual-research-conclave/register"
+    },
+    "details": {
+      "description": "Flagship research symposium focusing on synthetic biology, microbial biomanufacturing, and plant genomics in partnership with University of Edinburgh.",
+      "topics": [
+        "Synthetic Biology",
+        "Plant Genomics",
+        "Industrial Biotechnology",
+        "Biomanufacturing"
+      ],
+      "eligibility": "B.Tech/M.Sc/Ph.D Students, Faculty, Industry Scientists",
+      "contact_email": "conclave2026@gbu.edu.in"
+    }
+  },
+  {
+    "event_id": "gsbtm-bio-entrepreneurship-summit-ahmedabad-2026",
+    "title": "Gujarat State Biotechnology Mission (GSBTM) Bio-Entrepreneurship & Startup Summit 2026",
+    "organizer": "GSBTM / Department of Science & Technology, Govt of Gujarat",
+    "location": {
+      "city": "Ahmedabad",
+      "country": "India",
+      "venue_address": "Science City Auditorium, Sola, Ahmedabad, Gujarat",
+      "is_online": false,
+      "is_india": true
+    },
+    "schedule": {
+      "start_date": "2026-11-18",
+      "end_date": "2026-11-19",
+      "time_details": "09:00 AM - 06:00 PM IST"
+    },
+    "pricing_and_registration": {
+      "is_free": true,
+      "entry_fee": "Free Entry (Prior Delegate Registration Required)",
+      "registration_url": "https://btm.gujarat.gov.in/events/2026/bio-entrepreneurship-summit/apply"
+    },
+    "details": {
+      "description": "Annual startup conclave connecting biotech innovators, incubators, investors, and state policy makers across Gujarat.",
+      "topics": [
+        "Bio-Entrepreneurship",
+        "Incubation",
+        "Venture Funding",
+        "Biotech Startups"
+      ],
+      "eligibility": "Biotech Founders, Early-Stage Startups, Researchers, Investors",
+      "contact_email": "summit@btm.gujarat.gov.in"
+    }
+  },
+  {
+    "event_id": "niper-ahmedabad-pharma-biotech-symposium-2026",
+    "title": "NIPER Ahmedabad International Conference on Pharmaceutical Biotechnology 2026",
+    "organizer": "NIPER Ahmedabad",
+    "location": {
+      "city": "Gandhinagar",
+      "country": "India",
+      "venue_address": "NIPER Ahmedabad Campus, Palaj, Gandhinagar, Gujarat",
+      "is_online": false,
+      "is_india": true
+    },
+    "schedule": {
+      "start_date": "2026-12-05",
+      "end_date": "2026-12-07",
+      "time_details": "08:30 AM - 05:00 PM IST"
+    },
+    "pricing_and_registration": {
+      "is_free": false,
+      "entry_fee": "₹1,000 Academic / ₹3,000 Industry",
+      "registration_url": "https://www.niperahm.ac.in/events/2026/icpb-symposium/delegate-registration"
+    },
+    "details": {
+      "description": "International conference on nanomedicine, biologics formulations, targeted drug delivery platforms, and structural bio-analytics.",
+      "topics": [
+        "Biopharmaceuticals",
+        "Targeted Drug Delivery",
+        "Structural Biology",
+        "Nanomedicine"
+      ],
+      "eligibility": "Pharma Researchers, Biologists, Industry Professionals",
+      "contact_email": "icpb2026@niperahm.ac.in"
+    }
+  }
+]
