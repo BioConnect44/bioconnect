@@ -60,7 +60,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-10-24T09:30:00.000Z",
     end_date: "2026-10-26T17:30:00.000Z",
-    registration_url: "https://academicworldresearch.org/event/index.php?id=gbu2026",
+    registration_url: "https://gbu.edu.in/",
     description: "National conclave focusing on synthetic biology, industrial biotechnology, and plant genomics organized by Gujarat Biotechnology University (GBU) in collaboration with University of Edinburgh.",
     profiles: { full_name: "Gujarat Biotechnology University (GBU)" }
   },
@@ -72,7 +72,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-11-18T09:00:00.000Z",
     end_date: "2026-11-19T18:00:00.000Z",
-    registration_url: "https://academicworldresearch.org/event/index.php?id=gsbtm2026",
+    registration_url: "https://btm.gujarat.gov.in/",
     description: "Flagship startup & bio-entrepreneurship summit bringing together biotech founders, incubators, researchers, and venture capitalists across Gujarat state.",
     profiles: { full_name: "GSBTM / DST Govt of Gujarat" }
   },
@@ -84,7 +84,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-12-05T08:30:00.000Z",
     end_date: "2026-12-07T17:00:00.000Z",
-    registration_url: "https://academicworldresearch.org/event/index.php?id=niper2026",
+    registration_url: "https://www.niperahm.ac.in/",
     description: "International scientific symposium covering biologics, targeted drug delivery platforms, structural bio-analytics, and biopharmaceutical manufacturing.",
     profiles: { full_name: "NIPER Ahmedabad" }
   },
@@ -96,7 +96,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-09-28T09:00:00.000Z",
     end_date: "2026-09-29T17:00:00.000Z",
-    registration_url: "https://academicworldresearch.org/event/index.php?id=iitgn2026",
+    registration_url: "https://iitgn.ac.in/",
     description: "Showcase of novel biomedical devices, tissue engineering prototypes, neural interfaces, and diagnostic AI solutions developed by IIT Gandhinagar research labs.",
     profiles: { full_name: "IIT Gandhinagar Department of Bioengineering" }
   },
@@ -108,7 +108,7 @@ const DEFAULT_EVENTS = [
     region: "india",
     event_date: "2026-09-15T09:00:00.000Z",
     end_date: "2026-09-17T17:00:00.000Z",
-    registration_url: "https://academicworldresearch.org/event/index.php?id=1849201",
+    registration_url: "https://academicworldresearch.org/",
     description: "Premier international gathering of genomics researchers and biotechnology engineers discussing recent advancements in CRISPR-Cas9 base editing, prime editing, and therapeutic delivery platforms.",
     profiles: { full_name: "Academic World Research / IIT Bombay" }
   },
@@ -120,7 +120,7 @@ const DEFAULT_EVENTS = [
     region: "india",
     event_date: "2026-11-04T08:30:00.000Z",
     end_date: "2026-11-06T18:00:00.000Z",
-    registration_url: "https://academicworldresearch.org/event/index.php?id=1938210",
+    registration_url: "https://academicworldresearch.org/",
     description: "Leading conference bringing together biomedical scientists, clinical researchers, and AI engineers to explore artificial intelligence applications in clinical diagnostics and drug discovery.",
     profiles: { full_name: "Academic World Research / AIIMS Delhi" }
   },
@@ -132,7 +132,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2027-01-15T10:00:00.000Z",
     end_date: "2027-01-16T17:00:00.000Z",
-    registration_url: "https://academicworldresearch.org/event/index.php?id=msub2027",
+    registration_url: "https://www.msubaroda.ac.in/",
     description: "National academic symposium on next-generation sequencing (NGS), structural biology, and functional proteomics in plant & animal systems.",
     profiles: { full_name: "Faculty of Science, MSU Baroda" }
   },
@@ -144,7 +144,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2027-02-08T09:30:00.000Z",
     end_date: "2027-02-10T16:30:00.000Z",
-    registration_url: "https://academicworldresearch.org/event/index.php?id=aau2027",
+    registration_url: "https://www.aau.in/",
     description: "Focused conference on microbial fermentation, agricultural biotechnology, biofertilizers, and sustainable bioprocessing for agricultural innovation.",
     profiles: { full_name: "Anand Agricultural University" }
   },
@@ -156,7 +156,7 @@ const DEFAULT_EVENTS = [
     region: "india",
     event_date: "2026-12-12T09:00:00.000Z",
     end_date: "2026-12-14T17:00:00.000Z",
-    registration_url: "https://academicworldresearch.org/event/index.php?id=iisc2026",
+    registration_url: "https://iisc.ac.in/",
     description: "High-level research symposium on stem cell lineage tracing, organoid morphogenesis, and clinical translation of cell therapies.",
     profiles: { full_name: "IISc / NCBS Bengaluru" }
   },
@@ -168,7 +168,7 @@ const DEFAULT_EVENTS = [
     region: "global",
     event_date: "2027-02-20T10:00:00.000Z",
     end_date: "2027-02-22T16:00:00.000Z",
-    registration_url: "https://academicworldresearch.org/event/index.php?id=2049102",
+    registration_url: "https://academicworldresearch.org/",
     description: "A 3-day global virtual event featuring keynote lectures from Nobel laureates and industry pioneers on metabolic engineering, microbial cell factories, and bioprocess scaling.",
     profiles: { full_name: "International Society of Biotechnology" }
   }
