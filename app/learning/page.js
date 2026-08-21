@@ -1914,6 +1914,169 @@ const COURSE_TOPICS = [
         explanation: "Genome annotation is the process of identifying gene locations, coding regions, introns/exons, and functional elements within a raw genome sequence."
       }
     ]
+  },
+  {
+    id: "topic-12",
+    topicNum: "TOPIC 12",
+    name: "Recombinant DNA Technology & Genetic Engineering",
+    shortName: "Recombinant DNA Tech",
+    icon: "🧬",
+    color: "#8B5CF6",
+    notesCount: "21 pages",
+    module: "Module 4 of 4",
+    progress: 85,
+    tagline: "Full 21-Page Master Textbook: Restriction enzymes, vector design, cDNA libraries, CRISPR-Cas9, PCR & gene therapy.",
+    pdfTitle: "Topic 12 - Recombinant DNA Technology & Genetic Engineering.pdf",
+    sections: [
+      {
+        title: "1. Restriction-Modification Systems & Auxiliary Enzymes",
+        content: `• R-M Systems: Bacterial host defense (endonucleases cut phage DNA; SAM-dependent methyltransferases protect host DNA).
+• Type II Systems: Homodimeric, requires Mg²⁺ (no ATP), cuts directly at palindromic recognition sites. Cutting frequency formula P = [(1-g)/2]^n_AT × [g/2]^n_GC.
+• Modifying Enzymes: T4 DNA Ligase (ATP dependent) vs E. coli Ligase (NAD⁺ dependent); CIP/SAP Alkaline Phosphatase (removes 5'-P); T4 PNK (adds 5'-P); TdT (homopolymer tailing). Star activity triggered by >5% glycerol, low salt, high pH.`
+      },
+      {
+        title: "2. Structural Architecture of Cloning & Expression Vectors",
+        content: `• Core Regions: Ori, Selectable marker, MCS.
+• Plasmids: pBR322 (ampʳ, tetʳ insertional inactivation) vs pUC19 (high-copy, lacZ' α-complementation blue-white screening on IPTG/X-gal).
+• High-Capacity Vectors: Phage λ insertion (8-10 kb) vs replacement (15-23 kb; packaging limit 38-52 kb); Cosmids (30-45 kb); BACs (F-factor oriS/repE, 100-300 kb); YACs (CEN, ARS, TEL, 200-2000 kb). Plant Ti plasmid (Agrobacterium T-DNA, vir genes, binary vectors).`
+      },
+      {
+        title: "3. Nucleic Acid Libraries & Screening Strategies",
+        content: `• Genomic vs cDNA Libraries: Genomic DNA library (exons, introns, promoters) vs cDNA library (transcribed mRNA, reverse transcriptase, ideal for expression).
+• Clarke-Carbon Formula: N = ln(1 - P) / ln(1 - [I / G]) for genomic library size calculation.
+• cDNA Synthesis: Poly(A)⁺ selection → First-strand reverse transcriptase → Second-strand Gubler-Hoffman method (RNase H + DNA Pol I nick translation) → Adaptors & λ packaging. Screening via colony hybridization or antibodies.`
+      },
+      {
+        title: "4. Transposons, CRISPR-Cas9 & Site-Directed Mutagenesis",
+        content: `• Transposons: Class I Retrotransposons (copy-and-paste RNA intermediate) vs Class II DNA Transposons (cut-and-paste Transposase, Ac/Ds).
+• CRISPR-Cas9: sgRNA (20 bp target) + 3 bp PAM (5'-NGG-3') → Cas9 blunt DSB cut. Repair via error-prone NHEJ (indels knockout) or HDR (donor template knock-in).
+• QuikChange SDM Protocol: Mutagenic primers → Pfu whole-plasmid PCR → DpnI digestion of methylated 5'-GMeATC-3' parental template → Transformation.`
+      },
+      {
+        title: "5. Analytical Molecular Methods & PCR Formulations",
+        content: `• Blotting & Sequencing: Southern (DNA), Northern (RNA), Western (Protein). Sanger ddNTP chain termination vs Illumina NGS vs Oxford Nanopore real-time single molecule.
+• PCR Kinetics & Formulas: Denaturation (94-96°C) → Annealing (50-65°C) → Extension (72°C). Geometric amplification N_n = N₀·2ⁿ. Wallace-Itakura Tm = 2(A+T) + 4(G+C)°C.
+• qPCR & Markers: SYBR Green vs TaqMan probes (Threshold cycle Ct). RFLP (codominant, Southern) vs RAPD (dominant, 10-mer primer) vs AFLP (dominant, adaptor PCR).`
+      },
+      {
+        title: "6. Gene Transfer Systems, Gene Therapy & GATE Numericals",
+        content: `• Gene Delivery: Physical (electroporation, biolistics gene gun, microinjection) vs Chemical (lipofection cationic lipids, CaPO4 co-precipitation).
+• Gene Therapy Vectors: Retrovirus/Lentivirus (ssRNA, 8 kb, integrating) vs Adenovirus (dsDNA, 8-30 kb, episomal, immune response) vs AAV (ssDNA, 4.5-4.8 kb, episomal, low immunity).
+• GATE Practice Problems: Partial restriction mass fraction calculation (16.2%), pUC19 MSQ selection, and qPCR fold-difference (2^4 = 16-fold).`
+      }
+    ],
+    examTraps: [
+      "DpnI selection: DpnI selectively digests methylated parental DNA (5'-GMeATC-3') while sparing un-methylated mutated PCR strands in SDM.",
+      "pUC19 screening: Insertional inactivation of lacZ' prevents α-complementation, causing recombinant colonies to stay white.",
+      "Ligase cofactors: T4 DNA Ligase requires ATP; E. coli DNA Ligase requires NAD⁺."
+    ],
+    pyqs: [
+      {
+        id: 1,
+        question: "GAT-B 2020: Restriction endonucleases recognize:",
+        options: ["Random DNA sequences", "Palindromic sequences", "Introns only", "RNA sequences"],
+        correct: 1,
+        explanation: "Restriction endonucleases recognize specific palindromic DNA sequences where the 5' to 3' sequence is identical on both strands."
+      },
+      {
+        id: 2,
+        question: "GAT-B 2020: Which enzyme is used to join DNA fragments?",
+        options: ["DNA helicase", "DNA ligase", "Primase", "Topoisomerase"],
+        correct: 1,
+        explanation: "DNA ligase catalyzes the formation of phosphodiester bonds to covalently join DNA fragments."
+      },
+      {
+        id: 3,
+        question: "GAT-B 2020: Sticky ends are generated by:",
+        options: ["DNA polymerase", "Restriction enzymes", "Ligase", "Primase"],
+        correct: 1,
+        explanation: "Restriction enzymes that introduce staggered cuts leave single-stranded overhangs known as sticky or cohesive ends."
+      },
+      {
+        id: 4,
+        question: "GAT-B 2021: The selectable marker in plasmid vectors is generally:",
+        options: ["Histone gene", "Antibiotic resistance gene", "Ribosomal RNA gene", "Operon"],
+        correct: 1,
+        explanation: "Antibiotic resistance genes (e.g., ampR, kanR) serve as selectable markers to identify transformed host cells."
+      },
+      {
+        id: 5,
+        question: "GAT-B 2021: A plasmid used in cloning should contain:",
+        options: ["Ori site", "Selectable marker", "Multiple cloning site", "All of the above"],
+        correct: 3,
+        explanation: "A functional cloning vector requires an origin of replication (ori), a selectable marker, and a multiple cloning site (MCS)."
+      },
+      {
+        id: 6,
+        question: "GAT-B 2021: The process of introducing recombinant DNA into bacteria is called:",
+        options: ["Translation", "Transformation", "Transduction", "Conjugation"],
+        correct: 1,
+        explanation: "Transformation is the uptake and integration of exogenous naked recombinant DNA by competent bacterial host cells."
+      },
+      {
+        id: 7,
+        question: "GAT-B 2022: The enzyme used to synthesize cDNA is:",
+        options: ["DNA ligase", "RNA polymerase", "Reverse transcriptase", "Helicase"],
+        correct: 2,
+        explanation: "Reverse transcriptase (RNA-dependent DNA polymerase) transcribes mature polyadenylated mRNA into complementary DNA (cDNA)."
+      },
+      {
+        id: 8,
+        question: "GAT-B 2022: Which vector is commonly used for cloning large DNA fragments?",
+        options: ["Plasmid", "Cosmids", "BAC", "Both B and C"],
+        correct: 3,
+        explanation: "Cosmids (30-45 kb) and Bacterial Artificial Chromosomes (BACs, 100-300 kb) are designed to clone large DNA inserts."
+      },
+      {
+        id: 9,
+        question: "GAT-B 2022: Blue-white screening is based on disruption of:",
+        options: ["AmpR gene", "lacZ gene", "ori region", "TetR gene"],
+        correct: 1,
+        explanation: "Blue-white selection relies on insertional inactivation of the lacZ' gene encoding the α-peptide of β-galactosidase."
+      },
+      {
+        id: 10,
+        question: "GAT-B 2023: The term recombinant DNA refers to:",
+        options: ["DNA from one organism only", "Hybrid DNA formed from different sources", "Viral RNA", "Mutated chromosomal DNA"],
+        correct: 1,
+        explanation: "Recombinant DNA (rDNA) is a chimeric DNA molecule constructed artificially by combining genetic material from multiple sources."
+      },
+      {
+        id: 11,
+        question: "GAT-B 2023: Which bacterium is most commonly used in cloning experiments?",
+        options: ["Bacillus subtilis", "E. coli", "Vibrio cholerae", "Streptococcus"],
+        correct: 1,
+        explanation: "Escherichia coli is the universal prokaryotic model organism used for gene cloning and recombinant plasmid propagation."
+      },
+      {
+        id: 12,
+        question: "GAT-B 2023: The enzyme Taq polymerase is isolated from:",
+        options: ["Thermus aquaticus", "E. coli", "Bacillus subtilis", "Salmonella"],
+        correct: 0,
+        explanation: "Taq DNA polymerase is a thermostable enzyme purified from the thermophilic bacterium Thermus aquaticus."
+      },
+      {
+        id: 13,
+        question: "GAT-B 2024: PCR amplification requires:",
+        options: ["Template DNA", "Primers", "dNTPs", "All of the above"],
+        correct: 3,
+        explanation: "Polymerase Chain Reaction requires template DNA, synthetic oligonucleotide primers, dNTP substrates, and a thermostable DNA polymerase."
+      },
+      {
+        id: 14,
+        question: "GAT-B 2024: Annealing step in PCR generally occurs at:",
+        options: ["4°C", "25°C", "55°C", "95°C"],
+        correct: 2,
+        explanation: "Primer annealing typically takes place between 50°C and 65°C (commonly 55°C) depending on primer melting temperature."
+      },
+      {
+        id: 15,
+        question: "GAT-B 2024: Which technique is used for separation of DNA fragments?",
+        options: ["Centrifugation", "Gel electrophoresis", "Spectroscopy", "Chromatography"],
+        correct: 1,
+        explanation: "Agarose gel electrophoresis separates negatively charged DNA molecules based on size under an electric field."
+      }
+    ]
   }
 ];
 
@@ -1995,6 +2158,16 @@ const CHALLENGES = {
     xp: 250,
     timeLimit: 1000,
     questions: COURSE_TOPICS[9].pyqs
+  }
+,
+  rdna: {
+    title: "Recombinant DNA Technology PYQs",
+    subject: "Recombinant DNA Technology & Genetic Engineering (GAT-B 2020-2024)",
+    color: "#8B5CF6",
+    bg: "#F3E8FF",
+    xp: 300,
+    timeLimit: 1200,
+    questions: COURSE_TOPICS[10].pyqs
   }
 };
 
@@ -4902,6 +5075,212 @@ const FULL_BIOINFORMATICS_30_PAGES = [
 </div>`
 ];
 
+const FULL_RECOMBINANT_DNA_21_PAGES = [
+  `<h1 style="font-size:22px; color:#8b5cf6; margin:0 0 10px; border-bottom:2px solid #8b5cf6; padding-bottom:8px;">ADVANCED MOLECULAR BIOLOGY &amp; RECOMBINANT DNA TECHNOLOGY</h1>
+<p style="font-style:italic; color:#475569; font-size:13.5px; margin-bottom:24px;">Complete High-Yield Manual for B.Tech Undergraduate Excellence &amp; GATE Examination Preparation</p>
+<div style="background:#f3e8ff; border-left:4px solid #8b5cf6; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#6b21a8;">
+  Module 1: Restriction-Modification Systems &amp; Auxiliary Enzymes
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">1.1 Ecological Architecture &amp; 1.2 Catalytic Cleavage</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>R-M Systems:</strong> Host bacterial innate immune defense against bacteriophage DNA. Site-specific <strong>DNA Methyltransferases</strong> transfer methyl groups from S-adenosylmethionine (SAM) to host recognition sites, sterically hindering endonuclease cleavage.<br/>
+  • <strong>Cleavage Mechanics:</strong> Divalent Mg²⁺ ions coordinate water molecules for nucleophilic attack on phosphorus atoms, breaking 3'-5' phosphodiester bonds and leaving 5'-phosphate and 3'-hydroxyl terminals (sticky cohesive vs blunt ends).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">1.3 Exhaustive Multi-Class Restriction Comparison</h3>
+<table style="width:100%; border-collapse:collapse; font-size:11.5px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#8b5cf6; color:#fff; text-align:left;">
+      <th style="padding:6px;">Property</th>
+      <th style="padding:6px;">Type I Systems</th>
+      <th style="padding:6px;">Type II Systems (Cloning Core)</th>
+      <th style="padding:6px;">Type III Systems</th>
+      <th style="padding:6px;">Type IV Systems</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f3e8ff;"><td style="padding:6px; border:1px solid #d8b4fe; font-weight:700;">Subunits</td><td style="padding:6px; border:1px solid #d8b4fe;">Heterotrimer HsdR/M/S</td><td style="padding:6px; border:1px solid #d8b4fe;">Distinct Homodimeric Endonuclease</td><td style="padding:6px; border:1px solid #d8b4fe;">Heterodimer Mod &amp; Res</td><td style="padding:6px; border:1px solid #d8b4fe;">Varying monomer/dimer</td></tr>
+    <tr><td style="padding:6px; border:1px solid #d8b4fe; font-weight:700;">Cofactors</td><td style="padding:6px; border:1px solid #d8b4fe;">ATP, Mg²⁺, SAM</td><td style="padding:6px; border:1px solid #d8b4fe;"><strong>Mg²⁺ exclusively</strong> (No ATP)</td><td style="padding:6px; border:1px solid #d8b4fe;">ATP, Mg²⁺, SAM</td><td style="padding:6px; border:1px solid #d8b4fe;">Mg²⁺</td></tr>
+    <tr style="background:#f3e8ff;"><td style="padding:6px; border:1px solid #d8b4fe; font-weight:700;">Cleavage Site</td><td style="padding:6px; border:1px solid #d8b4fe;">Random (&gt;1000 bp downstream)</td><td style="padding:6px; border:1px solid #d8b4fe;"><strong>Directly at palindromic site</strong></td><td style="padding:6px; border:1px solid #d8b4fe;">24–26 bp downstream</td><td style="padding:6px; border:1px solid #d8b4fe;">Modified/methylated DNA</td></tr>
+    <tr><td style="padding:6px; border:1px solid #d8b4fe; font-weight:700;">Examples</td><td style="padding:6px; border:1px solid #d8b4fe;">EcoK1, EcoB</td><td style="padding:6px; border:1px solid #d8b4fe;">EcoRI, HindIII, BamHI, SmaI</td><td style="padding:6px; border:1px solid #d8b4fe;">EcoP1, HinfIII</td><td style="padding:6px; border:1px solid #d8b4fe;">McrBC</td></tr>
+  </tbody>
+</table>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Probability Profiles, Isoschizomers &amp; Modifying Enzymes</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>GATE Cutting Frequency Formula:</strong> Probability P = [(1-g)/2]^n_AT × [g/2]^n_GC. Mean fragment size λ = 1/P. For 60% GC bias (g=0.60), EcoRI (5'-GAATTC-3', n_AT=4, n_GC=2) gives P = 0.000144 ➔ λ ≈ <strong>6,944 bp</strong>.<br/>
+  • <strong>Isoschizomers vs. Neoschizomers:</strong> Isoschizomers (SphI/BbvI) cut identically; Neoschizomers (SmaI CCC^GGG blunt vs XmaI C^CCGGG 5' sticky) cut same motif at different positions.<br/>
+  • <strong>Auxiliary Enzymes:</strong> T4 DNA Ligase (requires ATP), <em>E. coli</em> DNA Ligase (requires NAD⁺), CIP/SAP Alkaline Phosphatase (removes 5'-P to prevent vector self-ligation), T4 PNK (transfers γ-phosphate from ATP to 5'-OH), TdT (template-independent 3'-OH tailing).
+</p>`,
+  `<div style="background:#f3e8ff; border:1px solid #d8b4fe; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#6b21a8; font-size:14px;">5-Mark Exam Blueprint: Star Activity Analysis</h4>
+  <div style="font-size:13px; color:#581c87; line-height:1.6;">
+    • <strong>Definition:</strong> Relaxed sequence specificity where Type II restriction endonucleases cleave non-canonical target sites (e.g., EcoRI cutting 5'-NAATTC-3' instead of 5'-GAATTC-3').<br/>
+    • <strong>Triggers:</strong> High glycerol levels (&gt;5% v/v), overdigestion, low ionic strength/salt, elevated pH (&gt;8.0), organic solvents (DMSO, ethanol), or replacing Mg²⁺ with Mn²⁺/Co²⁺/Zn²⁺.<br/>
+    • <strong>Prevention:</strong> Keep enzyme volume &lt;10% of total reaction, use recommended buffer, avoid over-incubation.
+  </div>
+</div>`,
+  `<h1 style="font-size:20px; color:#8b5cf6; margin:0 0 10px; border-bottom:2px solid #8b5cf6; padding-bottom:8px;">MODULE 2: CLONING &amp; EXPRESSION VECTORS</h1>
+<div style="background:#f3e8ff; border-left:4px solid #8b5cf6; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#6b21a8;">
+  2.1 Core Elements &amp; 2.2 Vector Architecture Breakdown
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Core Regions:</strong> Origin of Replication (ori), Selectable Marker (antibiotic resistance), Multiple Cloning Site (MCS).<br/>
+  • <strong>pBR322:</strong> Low-copy plasmid with ampʳ and tetʳ genes. Cloning into BamHI site inside tetʳ causes <strong>insertional inactivation</strong> (ampʳ tetˢ).<br/>
+  • <strong>pUC19:</strong> High-copy plasmid with lacZ' N-terminal α-peptide for <strong>blue-white screening</strong> (IPTG + X-gal on lacZΔM15 host; insertional inactivation turns recombinant colonies white).<br/>
+  • <strong>Phage λ Vectors:</strong> Insertion vectors (λgt10, up to 8-10 kb) &amp; Replacement vectors (λEMBL4 stuffer fragment, 15-23 kb; packaging limit 38 kb ≤ arms + insert ≤ 52 kb).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Cosmids, Ti Plasmid &amp; Artificial Chromosomes</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Cosmids:</strong> Plasmid + λ <em>cos</em> sites (30–45 kb inserts).<br/>
+  • <strong>Ti Plasmid (Plant Transformation):</strong> <em>Agrobacterium tumefaciens</em> 23 kb T-DNA bounded by 25 bp direct repeats (LB/RB) powered by <em>vir</em> genes. Disarmed binary vector systems decouple T-DNA and <em>vir</em> helper plasmids.<br/>
+  • <strong>BACs vs. YACs:</strong><br/>
+  - <strong>Bacterial Artificial Chromosomes (BACs):</strong> <em>E. coli</em> F-factor (<em>oriS, repE</em>), 1-2 copies/cell, 100–300 kb capacity.<br/>
+  - <strong>Yeast Artificial Chromosomes (YACs):</strong> Linear yeast vectors with centromere (CEN), ARS origin, and telomeres (TEL), 200–2000 kb capacity.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">2.3 Expression Vectors Comparison</h3>
+<table style="width:100%; border-collapse:collapse; font-size:11.5px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#8b5cf6; color:#fff; text-align:left;">
+      <th style="padding:6px;">Component</th>
+      <th style="padding:6px;">Prokaryotic (pET)</th>
+      <th style="padding:6px;">Mammalian (pcDNA)</th>
+      <th style="padding:6px;">Plant Vectors</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f3e8ff;"><td style="padding:6px; border:1px solid #d8b4fe; font-weight:700;">Promoter</td><td style="padding:6px; border:1px solid #d8b4fe;">Inducible T7, lac, tac</td><td style="padding:6px; border:1px solid #d8b4fe;">Constitutive CMV, SV40</td><td style="padding:6px; border:1px solid #d8b4fe;">CaMV 35S, actin</td></tr>
+    <tr><td style="padding:6px; border:1px solid #d8b4fe; font-weight:700;">Translation Start</td><td style="padding:6px; border:1px solid #d8b4fe;">Shine-Dalgarno (5'-AGGAGG-3')</td><td style="padding:6px; border:1px solid #d8b4fe;">Kozak (5'-GCCRCCATGG-3')</td><td style="padding:6px; border:1px solid #d8b4fe;">Kozak-like leader</td></tr>
+    <tr style="background:#f3e8ff;"><td style="padding:6px; border:1px solid #d8b4fe; font-weight:700;">Termination</td><td style="padding:6px; border:1px solid #d8b4fe;">Rho-independent stem-loop</td><td style="padding:6px; border:1px solid #d8b4fe;">Polyadenylation bGH/SV40 polyA</td><td style="padding:6px; border:1px solid #d8b4fe;">NOS or OCS termination</td></tr>
+  </tbody>
+</table>
+<div style="background:#fef3c7; border:1px solid #fde68a; border-radius:8px; padding:12px; font-size:13px; color:#92400e;">
+  <strong>GATE Scenario: Expressing Intron Genes in E. coli:</strong> Fails due to 1. Splicing deficiency (lack spliceosomes); 2. Codon bias (rare tRNAs AGG/AGA); 3. Post-translational processing failure (no glycosylation).
+</div>`,
+  `<h1 style="font-size:20px; color:#8b5cf6; margin:0 0 10px; border-bottom:2px solid #8b5cf6; padding-bottom:8px;">MODULE 3: LIBRARIES &amp; SCREENING STRATEGIES</h1>
+<div style="background:#f3e8ff; border-left:4px solid #8b5cf6; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#6b21a8;">
+  3.1 cDNA vs. Genomic Libraries &amp; Clarke-Carbon Formula
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Genomic Library:</strong> Whole genome partial digest (MboI), contains exons, introns, promoters.<br/>
+  • <strong>cDNA Library:</strong> Derived from mRNA using Reverse Transcriptase, lacks introns (ideal for expression).<br/>
+  • <strong>Clarke-Carbon Formula:</strong> <strong style="color:#8b5cf6; font-size:14.5px;">N = ln(1 - P) / ln(1 - [I / G])</strong>.<br/>
+  For human genome (G = 3×10⁹ bp), P = 0.99, cosmid insert (I = 4×10⁴ bp) ➔ N ≈ <strong>345,398 clones</strong>.
+</p>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">PROTOCOL: CDNA LIBRARY SYNTHESIS (GUBLER-HOFFMAN METHOD)</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    1. Guanidinium RNA extraction ➔ 2. Poly(A)⁺ selection (oligo(dT)-cellulose) ➔ 3. First-strand cDNA (Reverse Transcriptase) ➔ 4. Second-strand synthesis (RNase H nicking + DNA Pol I nick translation + T4 DNA Ligase) ➔ 5. End-polishing &amp; EcoRI adaptors ➔ 6. Packaging into λ vector.
+  </div>
+</div>`,
+  `<h1 style="font-size:20px; color:#8b5cf6; margin:0 0 10px; border-bottom:2px solid #8b5cf6; padding-bottom:8px;">MODULE 4: TRANSPOSONS, CRISPR &amp; SDM</h1>
+<div style="background:#f3e8ff; border-left:4px solid #8b5cf6; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#6b21a8;">
+  4.1 Transposons &amp; 4.2 CRISPR-Cas9 System
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Transposons:</strong> Class I Retrotransposons (copy-and-paste RNA intermediate) vs Class II DNA Transposons (cut-and-paste Transposase, <em>Ac/Ds</em>).<br/>
+  • <strong>CRISPR-Cas9:</strong> sgRNA (20 bp target) + 3 bp PAM (5'-NGG-3') ➔ Cas9 introduces blunt DSB.<br/>
+  - <strong>NHEJ Repair:</strong> Error-prone indels ➔ gene knockout.<br/>
+  - <strong>HDR Repair:</strong> Precise donor template ➔ gene knock-in.
+</p>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">PROTOCOL: QUIKCHANGE SITE-DIRECTED MUTAGENESIS</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    1. Design complementary mutagenic primers (Tm ≥ 78°C) ➔ 2. Whole-plasmid PCR with Pfu polymerase on methylated dam⁺ template ➔ 3. Add <strong>DpnI restriction enzyme</strong> to selectively digest methylated parental template (5'-GMeATC-3'), sparing mutated PCR strands ➔ 4. Transform into <em>E. coli</em>.
+  </div>
+</div>`,
+  `<h1 style="font-size:20px; color:#8b5cf6; margin:0 0 10px; border-bottom:2px solid #8b5cf6; padding-bottom:8px;">MODULE 5: LABELING, SEQUENCING &amp; BLOTTING</h1>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>DNA Labeling:</strong> Nick Translation (DNase I + DNA Pol I 5'->3' exonuclease) vs Random Primed Labeling (Klenow fragment).<br/>
+  • <strong>Sequencing Evolution:</strong> Sanger Dideoxy (ddNTPs lacking 3'-OH) ➔ Illumina NGS (bridge PCR, reversible terminators) ➔ Oxford Nanopore (3rd gen real-time single-molecule ionic current).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">5.3 Blotting and Hybridization Assays Comparison</h3>
+<table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#8b5cf6; color:#fff; text-align:left;">
+      <th style="padding:6px;">Assay</th>
+      <th style="padding:6px;">Target Analyte</th>
+      <th style="padding:6px;">Gel Matrix &amp; Treatment</th>
+      <th style="padding:6px;">Probing / Detection</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f3e8ff;"><td style="padding:6px; border:1px solid #d8b4fe; font-weight:700;">Southern Blotting</td><td style="padding:6px; border:1px solid #d8b4fe;">Genomic DNA</td><td style="padding:6px; border:1px solid #d8b4fe;">Agarose gel; NaOH denaturation</td><td style="padding:6px; border:1px solid #d8b4fe;">Labeled cDNA or RNA probe</td></tr>
+    <tr><td style="padding:6px; border:1px solid #d8b4fe; font-weight:700;">Northern Blotting</td><td style="padding:6px; border:1px solid #d8b4fe;">Total / mRNA</td><td style="padding:6px; border:1px solid #d8b4fe;">Formaldehyde-Agarose (denaturing)</td><td style="padding:6px; border:1px solid #d8b4fe;">Labeled antisense RNA probe</td></tr>
+    <tr style="background:#f3e8ff;"><td style="padding:6px; border:1px solid #d8b4fe; font-weight:700;">Western Blotting</td><td style="padding:6px; border:1px solid #d8b4fe;">Total Protein</td><td style="padding:6px; border:1px solid #d8b4fe;">SDS-PAGE (denaturing)</td><td style="padding:6px; border:1px solid #d8b4fe;">Specific primary &amp; secondary antibody</td></tr>
+  </tbody>
+</table>`,
+  `<h1 style="font-size:20px; color:#8b5cf6; margin:0 0 10px; border-bottom:2px solid #8b5cf6; padding-bottom:8px;">MODULE 6: PCR &amp; MOLECULAR MARKERS</h1>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>PCR Steps:</strong> Denaturation (94–96°C) ➔ Annealing (50–65°C) ➔ Extension (72°C Taq/Pfu).<br/>
+  • <strong>Exponential Amplification Formula:</strong> N_n = N₀ · (1 + E)^n  ➔  At 100% efficiency, <strong>N_n = N₀ · 2ⁿ</strong>.<br/>
+  • <strong>Wallace-Itakura Tm Formula:</strong> <strong style="color:#8b5cf6; font-size:14.5px;">Tm = 2(A + T) + 4(G + C) °C</strong>. T_anneal = Tm - 5°C.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">qPCR &amp; Polymorphic Molecular Markers</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>qPCR Chemistries:</strong> SYBR Green (intercalating minor groove dye, needs melting curve) vs TaqMan Probes (5' reporter, 3' quencher, Taq 5'->3' exonuclease cleavage).<br/>
+  • <strong>Molecular Markers Comparison:</strong><br/>
+  - <strong>RFLP:</strong> Co-dominant, Southern blot based, highly reproducible.<br/>
+  - <strong>RAPD:</strong> Dominant, arbitrary 10-mer primer low stringency PCR, poor reproducibility.<br/>
+  - <strong>AFLP:</strong> Dominant, restriction digestion + adaptor ligation + selective PCR, robust.
+</p>`,
+  `<h1 style="font-size:20px; color:#8b5cf6; margin:0 0 10px; border-bottom:2px solid #8b5cf6; padding-bottom:8px;">MODULE 7: GENE TRANSFER &amp; GENE THERAPY</h1>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Physical Delivery:</strong> Electroporation (electric micro-pores), Biolistics / Gene Gun (gold/tungsten beads, helium), Microinjection (pronucleus).<br/>
+  • <strong>Chemical Transfection:</strong> Lipofection (cationic lipoplexes), Calcium Phosphate co-precipitation.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Viral Vector Systems for Gene Therapy</h3>
+<table style="width:100%; border-collapse:collapse; font-size:11.5px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#8b5cf6; color:#fff; text-align:left;">
+      <th style="padding:6px;">Vector Class</th>
+      <th style="padding:6px;">Genome Material</th>
+      <th style="padding:6px;">Cloning Capacity</th>
+      <th style="padding:6px;">Integration &amp; Profile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f3e8ff;"><td style="padding:6px; border:1px solid #d8b4fe; font-weight:700;">Lentivirus / Retrovirus</td><td style="padding:6px; border:1px solid #d8b4fe;">ssRNA</td><td style="padding:6px; border:1px solid #d8b4fe;">~8 kb</td><td style="padding:6px; border:1px solid #d8b4fe;">Integrates permanently into host genome; sustained expression.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #d8b4fe; font-weight:700;">Adenovirus</td><td style="padding:6px; border:1px solid #d8b4fe;">dsDNA</td><td style="padding:6px; border:1px solid #d8b4fe;">~8–30 kb</td><td style="padding:6px; border:1px solid #d8b4fe;">Remains episomal; high expression; strong immune response.</td></tr>
+    <tr style="background:#f3e8ff;"><td style="padding:6px; border:1px solid #d8b4fe; font-weight:700;">Adeno-Associated Virus (AAV)</td><td style="padding:6px; border:1px solid #d8b4fe;">ssDNA</td><td style="padding:6px; border:1px solid #d8b4fe;">~4.5–4.8 kb</td><td style="padding:6px; border:1px solid #d8b4fe;">Remains episomal; minimal immune response; excellent for muscle/neurons.</td></tr>
+  </tbody>
+</table>`,
+  `<div style="background:#f3e8ff; border:1px solid #d8b4fe; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#6b21a8; font-size:14px;">GATE Practice Problem 1: Partial Restriction Digestion NAT</h4>
+  <div style="font-size:13px; color:#581c87; line-height:1.6;">
+    <strong>Problem:</strong> 10,000 bp DNA with EcoRI sites at 3,000 and 7,500. Cleavage probability = 60% per site. Calculate mass fraction % of the 4,500 bp fragment.<br/>
+    • Target 4,500 bp fragment is generated ONLY when <strong>both sites are cut</strong> (Probability = 0.6 × 0.6 = 0.36).<br/>
+    • Mass fraction = 0.36 × (4500 / 10000) = 0.36 × 0.45 = <strong>0.162 (16.2%)</strong>.<br/>
+    <strong style="color:#7e22ce;">Final GATE Answer: 16.2%</strong>
+  </div>
+</div>`,
+  `<div style="background:#f3e8ff; border:1px solid #d8b4fe; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#6b21a8; font-size:14px;">GATE Practice Problem 2: pUC19 Recombinant Selection MSQ</h4>
+  <div style="font-size:13px; color:#581c87; line-height:1.6;">
+    (A) Recombinant colonies appear white on IPTG/X-gal due to lacZ' insertional inactivation (CORRECT).<br/>
+    (B) Supercoiled intact plasmids migrate faster in gel electrophoresis than linear counterparts (CORRECT).<br/>
+    (C) Circular plasmid with 2 unique restriction sites yields 2 distinct bands upon dual digestion (CORRECT).<br/>
+    <strong style="color:#7e22ce;">Correct Options: (A), (B), (C)</strong>.
+  </div>
+</div>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">GATE Practice Problem 3: qPCR Relative Fold-Difference NAT</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    Sample A threshold cycle Ct = 18.0. Sample B threshold cycle Ct = 22.0.<br/>
+    Relative Abundance = 2^(Ct,B - Ct,A) = 2^(22.0 - 18.0) = 2⁴ = <strong style="color:#15803d; font-size:14.5px;">16</strong>.<br/>
+    Sample A contains 16 times more initial template copies than Sample B.
+  </div>
+</div>`,
+  `<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#0f172a; font-size:14px;">🎓 Final GATE-Focused Checklist for Recombinant DNA Technology</h4>
+  <ol style="font-size:12.5px; color:#334155; line-height:1.6; padding-left:20px; margin:0;">
+    <li>Type II restriction enzymes cut palindromic sites directly using Mg²⁺ with no ATP requirement.</li>
+    <li>pUC19 insertional inactivation of lacZ' leaves recombinant colonies white on IPTG + X-gal.</li>
+    <li>DpnI selectively degrades methylated parental template DNA (5'-GMeATC-3') during QuikChange SDM.</li>
+    <li>Sanger sequencing uses chain-terminating ddNTPs lacking 3'-OH.</li>
+    <li>CRISPR-Cas9 requires a 3 bp PAM sequence (5'-NGG-3') adjacent to the 20 bp sgRNA target.</li>
+  </ol>
+</div>`
+];
+
 /* ── Continuous Scroll PDF Document Viewer Component ── */
 function ContinuousPdfViewer({ topic }) {
   function handleOpenNewWindow() {
@@ -5049,6 +5428,20 @@ function ContinuousPdfViewer({ topic }) {
           <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 30</span></div>
         </div>
       `).join("");
+    } else if (topic.id === "topic-12") {
+      pagesHtml = FULL_RECOMBINANT_DNA_21_PAGES.map((pgContent, idx) => `
+        <div class="page">
+          <div class="header">
+            <div>
+              <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
+              <h2 class="title">${topic.name}</h2>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${idx + 1} OF 21</span>
+          </div>
+          ${pgContent}
+          <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 21</span></div>
+        </div>
+      `).join("");
     } else {
       pagesHtml = topic.sections.map((sec, idx) => `
         <div class="page">
@@ -5143,7 +5536,7 @@ function ContinuousPdfViewer({ topic }) {
           <div>
             <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#fff" }}>{topic.pdfTitle}</h3>
             <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>
-              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : topic.id === "topic-07" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : topic.id === "topic-08" ? "Executive Syllabus Summary • Full 16-Page PDF Document Available below" : topic.id === "topic-09" ? "Executive Syllabus Summary • Full 10-Page PDF Document Available below" : topic.id === "topic-10" ? "Executive Syllabus Summary • Full 22-Page PDF Document Available below" : topic.id === "topic-11" ? "Executive Syllabus Summary • Full 30-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
+              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : topic.id === "topic-07" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : topic.id === "topic-08" ? "Executive Syllabus Summary • Full 16-Page PDF Document Available below" : topic.id === "topic-09" ? "Executive Syllabus Summary • Full 10-Page PDF Document Available below" : topic.id === "topic-10" ? "Executive Syllabus Summary • Full 22-Page PDF Document Available below" : topic.id === "topic-11" ? "Executive Syllabus Summary • Full 30-Page PDF Document Available below" : topic.id === "topic-12" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
             </p>
           </div>
         </div>
@@ -5157,10 +5550,10 @@ function ContinuousPdfViewer({ topic }) {
             cursor: "pointer", display: "flex", alignItems: "center", gap: "6px",
             boxShadow: "0 3px 12px " + topic.color + "40", transition: "all 0.2s"
           }}
-          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-08" ? "Click to open full 16-page PDF document in a new browser tab/window" : topic.id === "topic-09" ? "Click to open full 10-page PDF document in a new browser tab/window" : topic.id === "topic-10" ? "Click to open full 22-page PDF document in a new browser tab/window" : topic.id === "topic-11" ? "Click to open full 30-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
+          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-08" ? "Click to open full 16-page PDF document in a new browser tab/window" : topic.id === "topic-09" ? "Click to open full 10-page PDF document in a new browser tab/window" : topic.id === "topic-10" ? "Click to open full 22-page PDF document in a new browser tab/window" : topic.id === "topic-11" ? "Click to open full 30-page PDF document in a new browser tab/window" : topic.id === "topic-12" ? "Click to open full 21-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
         >
           <span>↗️</span>
-          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : topic.id === "topic-08" ? "Open Full 16-Page PDF" : topic.id === "topic-09" ? "Open Full 10-Page PDF" : topic.id === "topic-10" ? "Open Full 22-Page PDF" : topic.id === "topic-11" ? "Open Full 30-Page PDF" : "Open PDF in New Window"}</span>
+          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : topic.id === "topic-08" ? "Open Full 16-Page PDF" : topic.id === "topic-09" ? "Open Full 10-Page PDF" : topic.id === "topic-10" ? "Open Full 22-Page PDF" : topic.id === "topic-11" ? "Open Full 30-Page PDF" : topic.id === "topic-12" ? "Open Full 21-Page PDF" : "Open PDF in New Window"}</span>
         </button>
       </div>
 
@@ -5176,7 +5569,7 @@ function ContinuousPdfViewer({ topic }) {
           paddingRight: "8px",
           cursor: "pointer"
         }}
-        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : topic.id === "topic-07" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : topic.id === "topic-08" ? "Click anywhere on the study notes viewer to open full 16-page PDF document in new window" : topic.id === "topic-09" ? "Click anywhere on the study notes viewer to open full 10-page PDF document in new window" : topic.id === "topic-10" ? "Click anywhere on the study notes viewer to open full 22-page PDF document in new window" : topic.id === "topic-11" ? "Click anywhere on the study notes viewer to open full 30-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
+        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : topic.id === "topic-07" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : topic.id === "topic-08" ? "Click anywhere on the study notes viewer to open full 16-page PDF document in new window" : topic.id === "topic-09" ? "Click anywhere on the study notes viewer to open full 10-page PDF document in new window" : topic.id === "topic-10" ? "Click anywhere on the study notes viewer to open full 22-page PDF document in new window" : topic.id === "topic-11" ? "Click anywhere on the study notes viewer to open full 30-page PDF document in new window" : topic.id === "topic-12" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
       >
         {topic.sections.map((sec, idx) => (
           <div key={idx} style={{
