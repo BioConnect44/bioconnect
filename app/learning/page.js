@@ -783,6 +783,16 @@ const CHALLENGES = {
     timeLimit: 1200,
     questions: COURSE_TOPICS[1].pyqs
   }
+,
+  plant: {
+    title: "Plant Biotechnology PYQs",
+    subject: "Plant Biotechnology & Genetic Engineering (GAT-B 2020-2023)",
+    color: "#10B981",
+    bg: "#ECFDF5",
+    xp: 250,
+    timeLimit: 1000,
+    questions: COURSE_TOPICS[4].pyqs
+  }
 };
 
 /* ── 19-Page Master Textbook Pages for Biomolecules, Membranes, Enzymes, Metabolism & Bioenergetics ── */
@@ -2252,6 +2262,333 @@ const FULL_BIOPROCESS_25_PAGES = [
 </div>`
 ];
 
+const FULL_PLANT_BIOTECH_20_PAGES = [
+  `<h1 style="font-size:22px; color:#059669; margin:0 0 10px; border-bottom:2px solid #059669; padding-bottom:8px;">MODULE 1: PLANT TISSUE CULTURE &amp; MICROPROPAGATION FOUNDATIONS</h1>
+<p style="font-style:italic; color:#475569; font-size:13px; margin-bottom:24px;">Comprehensive High-Yield Coursework &amp; GATE Preparation Handbook — Plant Biotechnology Series</p>
+<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  1.1 Tissue Culture and its Applications
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Definition</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Plant tissue culture (PTC) is the in vitro aseptic cultivation of plant cells, tissues, organs, or whole plants under controlled nutritional and environmental conditions, leveraging the inherent genetic potential of plant cells termed <strong>totipotency</strong>.
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Working Principle</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  The core mechanism relies on cellular totipotency (the capability of a nucleated cell to regenerate into a whole organism) and cellular dedifferentiation. When an explant (excised plant tissue) is placed on a nutrient-rich agar medium supplemented with balanced phytohormones, differentiated cells revert to a meristematic state, forming an unorganized mass called <strong>callus</strong> (dedifferentiation). This callus can then undergo redifferentiation into organs via organogenesis or somatic embryogenesis, driven by varying ratios of auxins and cytokinins.
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Phytohormone Morphogenesis Kinetics</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  The morphogenesis of tissues in vitro is quantitatively governed by the cytokinin-to-auxin ratio. Let [Cytokinin] represent the concentration of exogenous cytokinin and [Auxin] represent the concentration of exogenous auxin. The morphogenetic index (θ) is modeled as:<br/>
+  <strong style="color:#059669; font-size:14.5px;">θ = [Cytokinin] / [Auxin]</strong><br/><br/>
+  • If <strong>θ &gt;&gt; 1</strong> (High Cytokinin, Low Auxin): Shoot bud induction occurs (caulogenesis).<br/>
+  • If <strong>θ &lt;&lt; 1</strong> (Low Cytokinin, High Auxin): Root bud induction occurs (rhizogenesis).<br/>
+  • If <strong>θ ≈ 1</strong>: Unorganized cell proliferation (callus growth) occurs.
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Professor's High-Yield Addition: Murashige and Skoog (MS) Medium Composition</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Macronutrients (Required &gt; 0.5 mmol/L):</strong> Nitrogen (supplied as NH4NO3 and KNO3 to maintain balancing redox potential), Phosphorus (KH2PO4), Magnesium (MgSO4), Calcium (CaCl2), and Potassium.<br/>
+  • <strong>Micronutrients (Required &lt; 0.5 mmol/L):</strong> Boron, Manganese, Zinc, Copper, Cobalt, and Iodine. <strong>Iron is unique:</strong> it is supplied as an <strong>Fe-EDTA chelate</strong> complex. Free iron precipitates out as ferric hydroxide at physiological pH levels; chelating it ensures structural bioavailability for chlorophyll biosynthesis.<br/>
+  • <strong>Carbon Source:</strong> Typically 3% Sucrose.
+</p>`,
+  `<div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:12px; margin-bottom:16px; font-size:13px; color:#065f46;">
+  <strong>GATE Numerical Insight: Autoclave Sterilization Thermal Kinetics:</strong><br/>
+  The thermal death time and lethality coefficient of bacterial endospores (e.g., <em>Geobacillus stearothermophilus</em>) during media preparation is given by: <strong>ln(N_t / N₀) = -k · t</strong><br/>
+  At standard autoclaving parameters (121°C, 15 psi pressure), k equals approximately 2.3 min⁻¹. For validation, the survival probability target must be less than or equal to 10⁻⁶.
+</div>
+<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  1.2 Micropropagation
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Definition</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Micropropagation is the true-to-type rapid clonal multiplication of elite plant species in vitro under controlled environmental conditions using tissue culture methods.
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 8px;">Stages of Micropropagation</h3>
+<table style="width:100%; border-collapse:collapse; font-size:12.5px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#059669; color:#fff; text-align:left;">
+      <th style="padding:8px;">Stage</th>
+      <th style="padding:8px;">Name</th>
+      <th style="padding:8px;">Primary Objective &amp; Culture Conditions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f0fdf4;"><td style="padding:8px; border:1px solid #a7f3d0; font-weight:700;">Stage 0</td><td style="padding:8px; border:1px solid #a7f3d0;">Selection &amp; Preparation</td><td style="padding:8px; border:1px solid #a7f3d0;">Growing healthy mother plants under controlled greenhouse conditions to reduce systemic contamination.</td></tr>
+    <tr><td style="padding:8px; border:1px solid #a7f3d0; font-weight:700;">Stage I</td><td style="padding:8px; border:1px solid #a7f3d0;">Establishment of Culture</td><td style="padding:8px; border:1px solid #a7f3d0;">Surface sterilization of explants (using HgCl2 or NaOCl) and inoculation onto sterile media to achieve axenic survival.</td></tr>
+    <tr style="background:#f0fdf4;"><td style="padding:8px; border:1px solid #a7f3d0; font-weight:700;">Stage II</td><td style="padding:8px; border:1px solid #a7f3d0;">Multiplication of Shoots</td><td style="padding:8px; border:1px solid #a7f3d0;">Repeated subculturing onto media with elevated cytokinin to maximize axillary or adventitious shoot branching.</td></tr>
+    <tr><td style="padding:8px; border:1px solid #a7f3d0; font-weight:700;">Stage III</td><td style="padding:8px; border:1px solid #a7f3d0;">Rooting of Shoots</td><td style="padding:8px; border:1px solid #a7f3d0;">Transfer of elongated shoots onto media rich in auxins (IBA or NAA) or half-strength MS to induce roots.</td></tr>
+    <tr style="background:#f0fdf4;"><td style="padding:8px; border:1px solid #a7f3d0; font-weight:700;">Stage IV</td><td style="padding:8px; border:1px solid #a7f3d0;">Acclimatization</td><td style="padding:8px; border:1px solid #a7f3d0;">Gradual shifting of in vitro plantlets from high-humidity sterile growth chambers to natural field conditions.</td></tr>
+  </tbody>
+</table>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Typical 5-Mark Exam Question: Describe the steps and significance of acclimatization in micropropagation.</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Significance:</strong> Plantlets cultured in vitro grow under 100% relative humidity, heterotrophic carbon sources, and low light intensities. Consequently, they possess underdeveloped cuticle waxes, dysfunctional stomata, and minimal photosynthetic activity. Acclimatization (Stage IV) is mandatory to convert these fragile heterotrophic plants into autotrophic, field-hardy individuals.<br/><br/>
+    <strong>Step-by-step Process:</strong><br/>
+    1. In vitro plantlets with developed root systems are gently extracted from agar matrices without damaging root hairs.<br/>
+    2. Roots are washed meticulously under lukewarm tap water to remove remaining carbon-rich agar, preventing fungal outbreaks.<br/>
+    3. Plantlets are transferred into plastic pots holding porous matrices like vermiculite, perlite, and peat moss (1:1:1 ratio).<br/>
+    4. Pots are maintained under clear plastic mist-tents to keep humidity &gt;90% for the first 3–7 days.<br/>
+    5. Humidity is progressively declined over 2–3 weeks by piercing covers, forcing stomatal control activation and epicuticular wax accumulation.
+  </div>
+</div>
+<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  1.3 Meristem Culture and Production of Virus-Free Plants
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Definition &amp; Biophysical Basis</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Meristem culture is the excision and aseptic growth of the apical or axillary dome of the shoot meristem (0.1 to 0.5 mm diameter) containing actively dividing undifferentiated cells, devoid of vascular traces. The apical dome remains virus-free due to three factors:<br/>
+  1. <strong>Lack of Vascular Network:</strong> Meristems contain no differentiated xylem or phloem tissues; virions cannot be imported rapidly.<br/>
+  2. <strong>High Mitotic Turnover:</strong> Cell division kinetics in the apical dome surpass the speed of viral genomic replication.<br/>
+  3. <strong>Endogenous Auxin Levels:</strong> Highly elevated native Indole-3-Acetic Acid (IAA) concentrations block viral replication.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Excision Kinetic Protocol</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  The efficiency of virus eradication (E_v) operates inversely to the diameter of the excised explant (d):<br/>
+  <strong style="color:#059669; font-size:14.5px;">E_v ∝ 1 / d</strong><br/>
+  Explants under 0.1 mm rarely survive due to nutrient starvation, requiring an operational compromise size of 0.2–0.3 mm containing the apical dome plus 1–2 leaf primordia.
+</p>
+<div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:10px; padding:16px; margin-top:16px;">
+  <h4 style="margin:0 0 8px; color:#065f46; font-size:14px;">Frequently Asked Exam Question (2 Marks): Why is thermotherapy combined with meristem culture?</h4>
+  <p style="font-size:13px; color:#047857; margin:0;">
+    <strong>Model Answer:</strong> Exposing infected stock plants to higher sublethal temperatures (37°C–40°C) for several weeks slows down viral multiplication and destabilizes viral capsid structures, effectively widening the virus-free apical zone. Excision of the meristem after thermotherapy dramatically boosts the success rate of producing virus-free progeny.
+  </p>
+</div>`,
+  `<h1 style="font-size:22px; color:#059669; margin:0 0 10px; border-bottom:2px solid #059669; padding-bottom:8px;">MODULE 2: ADVANCED HAPLOID, EMBRYO &amp; SOMATIC CELL TECHNOLOGIES</h1>
+<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  2.1 Anther and Microspore Culture
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Definition &amp; Androgenesis Mechanism</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Anther culture entails culturing intact immature anthers, whereas microspore culture involves isolating solitary microspores (pollen grains) to produce haploid embryoids. Under <strong>androgenesis</strong>, the gametophytic path is diverted toward a sporophytic developmental path, forming haploid structures.<br/>
+  • <strong>Critical Stage:</strong> The <strong>uninucleate microspore stage</strong> (just past tetrad phase, nucleus central/eccentric) offers optimal responsiveness.<br/>
+  • <strong>Doubled Haploids (DH):</strong> Haploids are sterile. Artificial diploidization is mediated via <strong>Colchicine</strong> treatment. Colchicine binds α- and β-tubulin heterodimers, inhibiting microtubule assembly and spindle formation during mitotic anaphase, producing fully homozygous doubled haploids (2n).
+</p>
+<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-top:20px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  2.2 Embryo and Ovary Culture (Embryo Rescue)
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  In wide distant hybridization (inter-specific crossings), post-zygotic incompatibility leads to early endosperm degradation and embryo abortion. Excision of the young hybrid embryo prior to abortion and culturing it in vitro replaces the missing endosperm, rescuing the hybrid line.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Mathematical Formulation of Osmotic Requirements</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Young globular embryos require high osmotic potential to prevent precocious germination. Osmotic pressure (Π) follows the van 't Hoff equation:<br/>
+  <strong style="color:#059669; font-size:14.5px;">Π = i · C · R · T</strong><br/>
+  Where i is van 't Hoff dissociation factor (1.0 for sucrose), C is molar concentration, R is gas constant, and T is absolute temperature. Young embryos require hypertonic 8%–12% sucrose, while mature embryos require 2%–3% sucrose for organ development.
+</p>
+<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-top:20px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  2.3 Protoplast Isolation, Fusion, Somatic Hybrids, and Cybrids
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Enzymatic Isolation Protocol</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  1. <strong>Cellulase (1.0–2.0% w/v):</strong> Cleaves internal β-1,4-glucosidic linkages of cellulose chains.<br/>
+  2. <strong>Macerozyme / Pectinase (0.1–0.5% w/v):</strong> Hydrolyzes polygalacturonic acid backbone of middle lamella.<br/>
+  3. <strong>Osmoticum Inclusion:</strong> Non-metabolizable sugar alcohols like Mannitol or Sorbitol (0.4 to 0.7 M) prevent osmotic lysis.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Protoplast Fusion Agents &amp; Cybrid Structure</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>PEG 6000 (25–40% w/v):</strong> Dehydrates lipid bilayer and induces membrane fusion upon high-pH, high-Ca²⁺ dilution.<br/>
+  • <strong>Electrofusion:</strong> Alternating electric field aligns protoplasts into "pearl chains"; a DC pulse opens reversible membrane pores.
+</p>
+<table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#059669; color:#fff; text-align:left;">
+      <th style="padding:6px;">Feature</th>
+      <th style="padding:6px;">Somatic Hybrid Matrix</th>
+      <th style="padding:6px;">Cybrid (Cytoplasmic Hybrid) Matrix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f0fdf4;"><td style="padding:6px; border:1px solid #a7f3d0; font-weight:700;">Nuclear Fusion</td><td style="padding:6px; border:1px solid #a7f3d0;">True integration of both Parent A + Parent B chromosome complements.</td><td style="padding:6px; border:1px solid #a7f3d0;">Contains nucleus of only one designated parent (Parent A).</td></tr>
+    <tr><td style="padding:6px; border:1px solid #a7f3d0; font-weight:700;">Chloroplast/Mitochondria</td><td style="padding:6px; border:1px solid #a7f3d0;">Co-existence or selective sorting of organelle genomes.</td><td style="padding:6px; border:1px solid #a7f3d0;">Source of Cytoplasmic Male Sterility (CMS) from donor parent.</td></tr>
+    <tr style="background:#f0fdf4;"><td style="padding:6px; border:1px solid #a7f3d0; font-weight:700;">Production Method</td><td style="padding:6px; border:1px solid #a7f3d0;">Equal intact fusion without radiation.</td><td style="padding:6px; border:1px solid #a7f3d0;">Irradiating Parent B with X-rays/Gamma rays to inactivate nucleus prior to fusion.</td></tr>
+  </tbody>
+</table>
+<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">GATE Core Question: Quantitative Isolation Yield Calculation</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Problem:</strong> 45 protoplasts counted per large square (1 mm², depth 0.1 mm) from 1g leaf tissue in 5 mL total suspension. Calculate total yield.<br/>
+    • Square Volume = 1 mm² × 0.1 mm = 0.1 mm³ = 10⁻⁴ mL.<br/>
+    • Concentration = 45 / 10⁻⁴ mL = 45 × 10⁴ = 4.5 × 10⁵ protoplasts/mL.<br/>
+    • Total Yield = (4.5 × 10⁵ protoplasts/mL) × 5 mL = <strong>2.25 × 10⁶ protoplasts / g tissue</strong>.
+  </div>
+</div>`,
+  `<h1 style="font-size:22px; color:#059669; margin:0 0 10px; border-bottom:2px solid #059669; padding-bottom:8px;">MODULE 3: SOMACLONAL VARIATION, SYNTHETIC SEEDS &amp; CRYOPRESERVATION</h1>
+<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  3.1 Somaclonal Variation
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Somaclonal variation describes genetic/epigenetic modifications generated among plants regenerated from long-term tissue culture.<br/>
+  • <strong>Mechanisms:</strong> Chromosomal aberrations (polyploidy, aneuploidy, deletions), point mutations (SNPs), transposable element activation, and epigenetic remodeling (DNA methylation shifts).
+</p>
+<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-top:20px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  3.2 Synthetic Seeds (Artificial Seeds)
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Synthetic seeds are artificially encapsulated somatic embryos or shoot buds in a protective gel matrix mimicking a seed coat.<br/>
+  • <strong>Encapsulation Chemistry:</strong> Sodium Alginate (2% to 3% w/v) complexed with Calcium Chloride (50 to 100 mM). Divalent calcium ions (Ca²⁺) displace monovalent sodium ions (Na⁺), cross-linking guluronic acid blocks to form the <strong>"Egg-Box Model"</strong> gel network.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">3.3 In Vitro Germplasm Conservation and Cryopreservation</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Cryopreservation stores living tissues at ultra-low temperatures (-196°C liquid nitrogen or -150°C vapor phase), halting metabolic degradation.<br/>
+  • <strong>Vitrification:</strong> To prevent ice crystal formation, cells are transformed directly into an amorphous glass-like solid using Plant Vitrification Solution 2 (PVS2: 30% glycerol, 15% ethylene glycol, 15% DMSO in sucrose media).<br/>
+  • <strong>Mazur Equation for Cooling Water Loss:</strong> d(ln V) / dT = [ΔH_f / (R · T²)] * (1 / B) * ln(a_{w,ex} / a_{w,in})
+</p>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Frequently Asked Exam Question (5 Marks): Detail the complete sequence of Cryopreservation via Vitrification.</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    1. <strong>Pre-growth:</strong> Culture meristems for 2–3 days on high-sucrose media (0.3 M) to activate osmo-tolerance.<br/>
+    2. <strong>Loading Treatment:</strong> Incubate explants in 2 M glycerol + 0.4 M sucrose for 20 minutes.<br/>
+    3. <strong>Dehydration via CPA:</strong> Expose to ice-cold PVS2 solution for 20–60 minutes at 0°C.<br/>
+    4. <strong>Liquid Nitrogen Immersion:</strong> Plunge cryovials directly into liquid nitrogen (-196°C) at &gt;100°C/sec cooling speed.<br/>
+    5. <strong>Storage:</strong> Store in liquid nitrogen tanks indefinitely.<br/>
+    6. <strong>Thawing / Warming:</strong> Rapidly warm samples in 40°C water bath for 1–2 minutes to prevent recrystallization.<br/>
+    7. <strong>Unloading / Washing:</strong> Dilute out toxic PVS2 using 1.2 M sucrose solution before regeneration.
+  </div>
+</div>`,
+  `<h1 style="font-size:22px; color:#059669; margin:0 0 10px; border-bottom:2px solid #059669; padding-bottom:8px;">MODULE 4: MOLECULAR BIOLOGY, ORGANELLE DNA &amp; GENE EXPRESSION</h1>
+<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  4.1 Organelle DNA, Satellite and Repetitive DNAs
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Chloroplast DNA (cpDNA):</strong> Circular dsDNA (120-170 kb). Features two Inverted Repeats (IR_A &amp; IR_B) flanking a Large Single Copy (LSC) and Small Single Copy (SSC) region. Encodes Rubisco large subunit (rbcL).<br/>
+  • <strong>Mitochondrial DNA (mtDNA):</strong> Dynamic mix of circular and linear conformations (200-2400 kb in plants). Encodes electron transport chain genes (nad, cob, cox).
+</p>
+<table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#059669; color:#fff; text-align:left;">
+      <th style="padding:6px;">Classification Group</th>
+      <th style="padding:6px;">Structural Layout &amp; Unit Size</th>
+      <th style="padding:6px;">Genomic Distribution &amp; Properties</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f0fdf4;"><td style="padding:6px; border:1px solid #a7f3d0; font-weight:700;">Satellite DNA</td><td style="padding:6px; border:1px solid #a7f3d0;">Highly repetitive tandem arrays (100 to 500 bp).</td><td style="padding:6px; border:1px solid #a7f3d0;">Centromeric/heterochromatic zones; forms CsCl density bands.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #a7f3d0; font-weight:700;">Minisatellites</td><td style="padding:6px; border:1px solid #a7f3d0;">Tandem repeats of 10 to 60 bp motifs.</td><td style="padding:6px; border:1px solid #a7f3d0;">Euchromatic zones; basis for VNTR markers.</td></tr>
+    <tr style="background:#f0fdf4;"><td style="padding:6px; border:1px solid #a7f3d0; font-weight:700;">Microsatellites (SSRs)</td><td style="padding:6px; border:1px solid #a7f3d0;">Ultra-short tandem repeats (1 to 6 bp, e.g. [AT]n).</td><td style="padding:6px; border:1px solid #a7f3d0;">Abundant across genome; used in PCR DNA fingerprinting.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #a7f3d0; font-weight:700;">Interspersed Repeats</td><td style="padding:6px; border:1px solid #a7f3d0;">LINEs, SINEs transposons.</td><td style="padding:6px; border:1px solid #a7f3d0;">Comprises up to 80% of large plant genomes (e.g. <em>Zea mays</em>).</td></tr>
+  </tbody>
+</table>`,
+  `<div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:12px; margin-bottom:16px; font-size:13px; color:#065f46;">
+  <strong>GATE Cot Curve Kinetics:</strong> C / C₀ = 1 / (1 + k · C₀ · t). Highly repetitive satellite DNA reassociates rapidly at ultra-low C₀t values.
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">4.2 DNA Repair Mechanisms in Plants</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  1. <strong>Photoreactivation (Direct Repair):</strong> UV-B creates cyclobutane pyrimidine dimers (CPDs). Enzyme <strong>Photolyase</strong> uses blue light photons (300-500 nm via FADH⁻ chromophore) to break CPDs without cutting backbone.<br/>
+  2. <strong>Nucleotide Excision Repair (NER):</strong> Multi-protein complex excises 24-30 nt single-strand fragment containing lesion.<br/>
+  3. <strong>Double-Strand Break (DSB) Repair:</strong> Non-Homologous End Joining (NHEJ via Ku70/Ku80, error-prone during G1) vs Homologous Recombination (HR via RAD51, error-free during S/G2).
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">4.3 Regulation of Gene Expression in Plants</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Light Photomorphogenesis:</strong> G-box promoter element (5'-CACGTG-3') binds bZIP TF <strong>HY5</strong> to recruit RNA Pol II. In darkness, E3 ubiquitin ligase <strong>COP1</strong> ubiquitinates HY5 for 26S proteasomal degradation.
+</p>`,
+  `<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Post-Transcriptional Regulation:</strong> Alternative splicing and polyadenylation (e.g. autonomous flowering control gene <em>FCA</em>).<br/>
+  • <strong>Epigenetic Control:</strong> Histone Acetyltransferases (HATs) transfer acetyl groups to lysine tails, neutralizing positive charge to form euchromatin. Histone Deacetylases (HDACs) and DNA Methyltransferases (e.g. MET1) condense chromatin into heterochromatin.
+</p>`,
+  `<h1 style="font-size:22px; color:#059669; margin:0 0 10px; border-bottom:2px solid #059669; padding-bottom:8px;">MODULE 5: RECOMBINANT DNA TECHNOLOGY &amp; PLANT TRANSFORMATION</h1>
+<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  5.1 Recombinant DNA Technology Components
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Type II Restriction Endonucleases:</strong> Recognize palindromic DNA sequences and cleave phosphodiester bonds without requiring ATP (e.g. EcoRI: 5'-G | AATTC-3' yields 4-base 5'-AATT cohesive sticky ends).<br/>
+  • <strong>Binary Vector System:</strong> Split into Helper Plasmid (intact <em>vir</em> operon virA-virG, no T-DNA) and Binary Cloning Vector (e.g. pBI121, containing 25-bp Left/Right Borders, <em>nptII</em> selectable marker, and CaMV 35S promoter).
+</p>
+<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-top:20px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  5.2 Methods of Gene Transfer in Plants
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">1. Agrobacterium-Mediated Transformation (Biological Delivery)</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Wounded cells release phenolic <strong>Acetosyringone</strong> → binds sensor kinase <strong>VirA</strong> → autophosphorylates and activates <strong>VirG</strong> → transcribes <em>vir</em> operon.
+</p>`,
+  `<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>VirD1/VirD2</strong> endonuclease nicks 25-bp T-DNA border sequences; VirD2 covalently attaches to 5' end of ssDNA T-strand.<br/>
+  • <strong>VirE2</strong> single-stranded binding protein coats T-strand; exported via Type IV Secretion System (T4SS encoded by virB).<br/>
+  • <strong>VirD2 &amp; VirE2</strong> nuclear import signals guide T-complex into nucleus; VirD2 facilitates chromosomal integration via NHEJ.
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">2. Biolistic / Particle Bombardment (Physical Delivery)</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Gold or Tungsten micro-carriers (0.6–1.0 μm) coated with plasmid DNA are accelerated by helium gas blasts (900–1500 psi) in a vacuum chamber into target plant tissue.
+</p>
+<table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#059669; color:#fff; text-align:left;">
+      <th style="padding:6px;">Parameter</th>
+      <th style="padding:6px;">Selectable Marker Genes</th>
+      <th style="padding:6px;">Reporter Genes (Scorable Markers)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f0fdf4;"><td style="padding:6px; border:1px solid #a7f3d0; font-weight:700;">Primary Purpose</td><td style="padding:6px; border:1px solid #a7f3d0;">Actively eliminate non-transformed cells on selective media.</td><td style="padding:6px; border:1px solid #a7f3d0;">Measure gene expression levels and track subcellular localization.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #a7f3d0; font-weight:700;">Classic Examples</td><td style="padding:6px; border:1px solid #a7f3d0;"><em>nptII</em> (Kanamycin resistance) &amp; <em>hpt</em> (Hygromycin resistance).</td><td style="padding:6px; border:1px solid #a7f3d0;"><em>GUS</em> (cleaves X-Gluc to blue color) &amp; <em>GFP</em> (green fluorescence under UV).</td></tr>
+  </tbody>
+</table>`,
+  `<h1 style="font-size:22px; color:#059669; margin:0 0 10px; border-bottom:2px solid #059669; padding-bottom:8px;">MODULE 6: AGRICULTURAL BIOTECHNOLOGY, TRANSGENICS &amp; MODERN DEVELOPMENTS</h1>
+<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  6.1 Development of Transgenics for Biotic &amp; Abiotic Stress Tolerance
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Bt Technology (Insect Resistance):</strong> <em>Bacillus thuringiensis cry1Ac</em> gene. Ingested protoxin dissolves in alkaline midgut (pH &gt; 9.0), cleaved by proteases into active toxin, binds cadherin receptors, forming lytic pores → cell lysis &amp; death.<br/>
+  • <strong>Glyphosate Resistance (Herbicide Tolerance):</strong> Glyphosate inhibits EPSP Synthase. Transgenic Roundup Ready crops express bacterial <em>cp4 EPSPS</em> gene, maintaining catalytic activity.<br/>
+  • <strong>Abiotic Stress Tolerance:</strong> Overexpressing <em>AtNHX1</em> (vacuolar Na⁺/H⁺ antiporter) for salinity tolerance; inserting <em>codA</em> (choline oxidase) for osmoprotectant glycine betaine accumulation.
+</p>
+<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-top:20px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  6.2 Bioethics, Terminator Technology &amp; Gene Silencing
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Refugia Strategy:</strong> Planting non-Bt crop borders alongside Bt fields to preserve susceptible insect alleles.<br/>
+  • <strong>Terminator Technology (GURTs):</strong> Produces sterile F1 seeds. Tripartite cascade: Lethal gene (Barnase/Sarin) + LoxP spacer + Cre recombinase + Tetracycline repressor. Tetracycline treatment excises spacer, activating lethal gene during late embryo development.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Gene Silencing Mechanisms: RNA Interference (RNAi)</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Double-stranded RNA (dsRNA) is recognized and cleaved by ribonuclease III enzyme <strong>Dicer</strong> into 21–23 bp short interfering RNA (siRNA) duplexes. siRNAs load into <strong>RISC</strong> (RNA-Induced Silencing Complex), guide strand leads Argonaute (AGO) protein to cleave complementary target mRNA.
+</p>
+<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-top:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">Frequently Asked Exam Question (5 Marks): Explain RNA Interference (RNAi) and its application in developing nematode-resistant crops.</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    <strong>Model Answer:</strong> Application in Nematode Resistance (<em>Meloidogyne incognita</em>):<br/>
+    1. Identify essential gene for nematode survival (e.g. <em>rps4</em> ribosomal protein).<br/>
+    2. Clone fragment as inverted repeat construct separated by intron linker under root-specific promoter (tobacco <em>TobRB7</em>).<br/>
+    3. Transgenic plant transcribes inverted repeats into self-complementary hairpin dsRNA in root cells.<br/>
+    4. Nematode feeds on roots, ingesting plant-produced dsRNA.<br/>
+    5. Inside nematode cells, Dicer-RISC degrades essential nematode mRNA, preventing root galling.
+  </div>
+</div>`,
+  `<div style="background:#d1fae5; border-left:4px solid #10b981; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#065f46;">
+  6.3 Nanotechnology and DNA Fingerprinting in Agriculture
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">Nanotechnology Horizons</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Smart Nano-Fertilizers (porous silica slow release), Nano-Pesticides (polymeric UV protection), Nanolistic Gene Delivery (carbon nanotubes CNTs piercing cell wall).
+</p>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">DNA Fingerprinting Methodology</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  RFLP and SSR marker analysis using CTAB extraction, restriction digestion / PCR, capillary electrophoresis.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Jaccard's Similarity Coefficient (S_J)</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Calculated from binary matrix scoring of band presence/absence:<br/>
+  <strong style="color:#059669; font-size:14.5px;">S_J = a / (a + b + c)</strong><br/>
+  Where a = shared bands, b = unique to sample A, c = unique to sample B. Establishes legal parameters for Plant Variety Protection (PVP).
+</p>`,
+  `<div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#065f46; font-size:14px;">APPENDIX: HIGH-YIELD CORE CONCEPTS FOR GATE COMPETITIONS</h4>
+  <div style="font-size:13px; color:#047857; line-height:1.6;">
+    • <strong>Somatic Embryogenesis Synchronization:</strong> Medium cell density optimization requires maintaining a critical threshold of <strong>10⁴ cells/mL</strong> to support paracrine signaling via arabinogalactan proteins.<br/><br/>
+    • <strong>qPCR Plasmid Copy Number Ratio:</strong> Ratio = [(1 + E_target)^(ΔCt_target)] / [(1 + E_ref)^(ΔCt_ref)]<br/><br/>
+    • <strong>Cryopreservation Viability Assay (TTC Test):</strong> Evaluated using 2,3,5-Triphenyltetrazolium chloride. Dehydrogenases in living cells reduce clear TTC to water-insoluble red formazan crystals (read at 485 nm).
+  </div>
+</div>
+<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#0f172a; font-size:14px;">🎓 Final Exam Preparation Checklist for Plant Biotech</h4>
+  <ol style="font-size:12.5px; color:#334155; line-height:1.6; padding-left:20px; margin:0;">
+    <li>Master the Cytokinin/Auxin ratio rules for caulogenesis vs rhizogenesis.</li>
+    <li>Memorize the 5 stages of Micropropagation and meristem virus-free mechanisms.</li>
+    <li>Understand Protoplast isolation enzymes (Cellulase + Pectinase) and fusogens (PEG/Electrofusion).</li>
+    <li>Learn Agrobacterium VirA/VirG/VirD2/VirE2 mechanisms and GURTs Terminator technology.</li>
+  </ol>
+</div>`
+];
+
 /* ── Continuous Scroll PDF Document Viewer Component ── */
 function ContinuousPdfViewer({ topic }) {
   function handleOpenNewWindow() {
@@ -2313,6 +2650,20 @@ function ContinuousPdfViewer({ topic }) {
           </div>
           ${pgContent}
           <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 25</span></div>
+        </div>
+      `).join("");
+    } else if (topic.id === "topic-06") {
+      pagesHtml = FULL_PLANT_BIOTECH_20_PAGES.map((pgContent, idx) => `
+        <div class="page">
+          <div class="header">
+            <div>
+              <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
+              <h2 class="title">${topic.name}</h2>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${idx + 1} OF 20</span>
+          </div>
+          ${pgContent}
+          <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 20</span></div>
         </div>
       `).join("");
     } else {
@@ -2409,7 +2760,7 @@ function ContinuousPdfViewer({ topic }) {
           <div>
             <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#fff" }}>{topic.pdfTitle}</h3>
             <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>
-              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
+              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
             </p>
           </div>
         </div>
@@ -2423,10 +2774,10 @@ function ContinuousPdfViewer({ topic }) {
             cursor: "pointer", display: "flex", alignItems: "center", gap: "6px",
             boxShadow: "0 3px 12px " + topic.color + "40", transition: "all 0.2s"
           }}
-          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
+          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
         >
           <span>↗️</span>
-          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : "Open PDF in New Window"}</span>
+          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : "Open PDF in New Window"}</span>
         </button>
       </div>
 
@@ -2442,7 +2793,7 @@ function ContinuousPdfViewer({ topic }) {
           paddingRight: "8px",
           cursor: "pointer"
         }}
-        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
+        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
       >
         {topic.sections.map((sec, idx) => (
           <div key={idx} style={{
