@@ -1481,6 +1481,275 @@ const COURSE_TOPICS = [
         explanation: "Prokaryotic cells replicate and divide via binary fission mediated by the FtsZ contractile protein ring."
       }
     ]
+  },
+  {
+    id: "topic-10",
+    topicNum: "TOPIC 10",
+    name: "Immunology & Immunotechnology",
+    shortName: "Immunology",
+    icon: "🛡️",
+    color: "#E11D48",
+    notesCount: "22 pages",
+    module: "Module 4 of 4",
+    progress: 75,
+    tagline: "Full 22-Page Master Textbook: Foundations of immunity, antibody structure, V(D)J diversity, MHC & hybridoma technology.",
+    pdfTitle: "Topic 10 - Immunology & Immunotechnology.pdf",
+    sections: [
+      {
+        title: "1. History & Foundations of Immunity",
+        content: `• Historical Landmarks: Jenner (cowpox/smallpox cross-immunity 1796), Pasteur (attenuation), von Behring & Kitasato (humoral antitoxins 1890), Ehrlich (side-chain theory), Metchnikoff (phagocytosis), Burnet & Jerne (Clonal Selection Theory).
+• Innate vs Adaptive: Innate (germline PRRs/TLRs, immediate non-specific) vs Adaptive (V(D)J somatic recombination BCR/TCR, delayed 5-7d lag, antigen-specific memory).
+• Phagocytosis Protocol: Chemotaxis → Adherence & Opsonization (IgG/C3b) → Engulfment → Phagolysosome fusion → Intracellular killing (NADPH Oxidase ROS & iNOS RNS) → Exocytosis/MHC II presentation.`
+      },
+      {
+        title: "2. Antigens, Epitopes, and Haptens",
+        content: `• Immunogenicity Criteria: Foreignness, Molecular size (Mw > 100 kDa), Chemical complexity (aromatic amino acids), Degradability & presentability.
+• B-cell vs T-cell Epitopes: B-cell epitopes (hydrophilic exterior, linear or conformational, binds free intact macromolecules) vs T-cell epitopes (processed linear hydrophobic peptides presented on self-MHC).
+• Haptens & Carrier Effect: Small non-immunogenic molecules (Mw < 5,000 Da) coupled to carrier proteins (EDC carbodiimide coupling) to induce high-affinity anti-hapten antibodies. Basis of conjugate vaccines (Hib).`
+      },
+      {
+        title: "3. Lymphoid Organs, Markers & Thymic Selection",
+        content: `• Lymphoid Organs: Primary PLOs (Bone Marrow B-cell development & Thymus T-cell selection) vs Secondary SLOs (Spleen, Lymph Nodes, MALT).
+• Cluster of Differentiation (CD) Markers: B cells (CD19/20/21/40), Helper T cells (CD3/CD4/CD28), Cytotoxic T cells (CD3/CD8), NK cells (CD16/CD56, lack CD3).
+• Thymic Selection: Positive selection in cortex (cTECs self-MHC restriction) → Negative selection in medulla (mTECs AIRE gene self-antigens deletion of autoreactive clones). PBMC isolation via Ficoll-Paque (1.077 g/mL).`
+      },
+      {
+        title: "4. Antibody Structure, Isotypes & Proteolytic Cleavage",
+        content: `• Structure: 150 kDa Y-shaped glycoprotein (2 Heavy 50 kDa + 2 Light 25 kDa). Paratope CDR1/2/3 hypervariable loops.
+• Proteolytic Cleavage: Papain cleaves above hinge → 2 monovalent Fab (50 kDa) + 1 Fc (50 kDa). Pepsin cleaves below hinge → 1 bivalent F(ab')2 (110 kDa) + degraded Fc. SDS-PAGE reduction → 50 kDa Heavy + 25 kDa Light bands.
+• Isotypes: IgG (75-80%, crosses placenta), IgM (pentamer, J-chain, primary response), IgA (dimer, mucosal sIgA, pIgR transcytosis), IgE (mast cell FcεRI, Type I allergy), IgD (naive B cell receptor).`
+      },
+      {
+        title: "5. Molecular Basis of Antibody Diversity & Recombination",
+        content: `• 12/23 Rule: Recombination Signal Sequences (RSS heptamer + 12/23 bp spacer + nonamer). Recombination occurs strictly between a 12-bp spacer RSS and a 23-bp spacer RSS.
+• 5 Diversity Sources: Combinatorial V(D)J joining, Heavy-Light chain pairing, Junctional flexibility, P-nucleotides (Artemis), N-nucleotides (TDT), Somatic Hypermutation (AID).
+• Recombination Cascade: RAG-1/2 synapsis & nicking → NHEJ signal end ligation → Artemis hairpin opening → TDT N-addition → DNA Ligase IV sealing. Combinatorial calculation N = V × D × J.`
+      },
+      {
+        title: "6. Antigen-Antibody Reactions, Complement & Hybridoma Tech",
+        content: `• Scatchard Equation: r/c = Ka(n - r). Monoclonal mAb yields a straight line; Polyclonal yields a downward-curving line.
+• Complement System: Classical (C1qrs → C4b2a → C4b2a3b), Lectin (MBL/MASP), Alternative (spontaneous C3 tick-over → C3bBb). MAC pore C5b-C9. Regulatory DAF (CD55) & CD59 Protectin.
+• MHC Class I (all nucleated cells, α + β2-microglobulin, TAP1/2 proteasome endogenous) vs Class II (APCs, αβ heterodimer, invariant chain/CLIP/HLA-DM exogenous).
+• Hybridoma Technology: B cells + HGPRT-deficient myeloma cells fused with PEG 1500. HAT medium (Aminopterin blocks de novo DHFR; Hypoxanthine & Thymidine salvage HGPRT).`
+      }
+    ],
+    examTraps: [
+      "Proteolytic cleavage: Papain generates 2 Fab + 1 Fc (3 fragments); Pepsin generates 1 F(ab')2 + degraded Fc.",
+      "12/23 Rule: V(D)J recombination occurs strictly between a 12-bp spacer RSS and a 23-bp spacer RSS.",
+      "HAT Medium selection: Aminopterin blocks de novo synthesis; HGPRT enzyme enables salvage pathway for hybridoma survival."
+    ],
+    pyqs: [
+      {
+        id: 1,
+        question: "GAT-B 2020: The first line of defense in the immune system is:",
+        options: ["Antibodies", "T cells", "Innate immunity", "Memory cells"],
+        correct: 2,
+        explanation: "Innate immunity provides the immediate, germline-encoded non-specific first line of defense against invading pathogens."
+      },
+      {
+        id: 2,
+        question: "GAT-B 2020: Which cells produce antibodies?",
+        options: ["T lymphocytes", "Plasma cells", "Macrophages", "Neutrophils"],
+        correct: 1,
+        explanation: "Plasma cells are fully differentiated effector B lymphocytes specialized for high-rate antibody secretion."
+      },
+      {
+        id: 3,
+        question: "GAT-B 2020: The most abundant immunoglobulin in human serum is:",
+        options: ["IgA", "IgM", "IgE", "IgG"],
+        correct: 3,
+        explanation: "IgG constitutes approximately 75–80% of total human serum immunoglobulins."
+      },
+      {
+        id: 4,
+        question: "GAT-B 2021: Which immunoglobulin is involved in allergic reactions?",
+        options: ["IgG", "IgM", "IgE", "IgD"],
+        correct: 2,
+        explanation: "IgE binds high-affinity FcεRI receptors on mast cells and basophils, triggering immediate Type I hypersensitivity allergic reactions."
+      },
+      {
+        id: 5,
+        question: "GAT-B 2021: MHC molecules are primarily involved in:",
+        options: ["Antibody production", "Antigen presentation", "Phagocytosis", "Complement activation"],
+        correct: 1,
+        explanation: "Major Histocompatibility Complex (MHC) molecules present processed peptide antigens on cell surfaces to T-cell receptors."
+      },
+      {
+        id: 6,
+        question: "GAT-B 2021: Helper T cells mainly express:",
+        options: ["CD4", "CD8", "CD19", "CD20"],
+        correct: 0,
+        explanation: "Helper T cells express the CD4 co-receptor, which specifically binds invariant domains of MHC Class II molecules."
+      },
+      {
+        id: 7,
+        question: "GAT-B 2022: Which immunoglobulin is the first antibody produced during primary immune response?",
+        options: ["IgA", "IgG", "IgM", "IgE"],
+        correct: 2,
+        explanation: "IgM (secreted as a pentamer) is the primary antibody isotype produced during the initial phase of adaptive immune responses."
+      },
+      {
+        id: 8,
+        question: "GAT-B 2022: The cells primarily responsible for phagocytosis are:",
+        options: ["RBCs", "Platelets", "Macrophages and neutrophils", "Plasma cells"],
+        correct: 2,
+        explanation: "Macrophages and neutrophils act as professional phagocytes that ingest and clear microbial pathogens."
+      },
+      {
+        id: 9,
+        question: "GAT-B 2022: Vaccination produces:",
+        options: ["Artificial passive immunity", "Natural passive immunity", "Artificial active immunity", "Natural active immunity"],
+        correct: 2,
+        explanation: "Vaccination artificially introduces attenuated/killed antigens to stimulate the host's immune system to generate active memory immunity."
+      },
+      {
+        id: 10,
+        question: "GAT-B 2023: Which complement pathway is activated directly by pathogens?",
+        options: ["Classical pathway", "Alternative pathway", "Lectin pathway", "Intrinsic pathway"],
+        correct: 1,
+        explanation: "The alternative complement pathway is triggered directly by spontaneous hydrolysis of C3 and interaction with microbial surface structures."
+      },
+      {
+        id: 11,
+        question: "GAT-B 2023: The thymus is the site of maturation of:",
+        options: ["B cells", "T cells", "Plasma cells", "NK cells"],
+        correct: 1,
+        explanation: "Immature progenitor T cells migrate from the bone marrow to the thymus to undergo TCR rearrangement, positive selection, and negative selection."
+      },
+      {
+        id: 12,
+        question: "GAT-B 2023: Antigen-antibody interaction is mainly mediated by:",
+        options: ["Covalent bonds", "Weak non-covalent interactions", "Peptide bonds", "Phosphodiester bonds"],
+        correct: 1,
+        explanation: "Antigen-antibody binding relies entirely on reversible non-covalent forces (hydrogen bonds, electrostatic interactions, hydrophobic forces, Van der Waals)."
+      },
+      {
+        id: 13,
+        question: "GAT-B 2024: Which cytokine is important for antiviral defense?",
+        options: ["Insulin", "Interferon", "Histamine", "Collagen"],
+        correct: 1,
+        explanation: "Interferons (IFN-α, IFN-β, IFN-γ) induce an antiviral state in neighboring host cells to inhibit viral replication."
+      },
+      {
+        id: 14,
+        question: "GAT-B 2024: Memory B cells are responsible for:",
+        options: ["Immediate innate immunity", "Secondary immune response", "Phagocytosis", "Complement activation"],
+        correct: 1,
+        explanation: "Memory B cells persist long-term after primary infection, mounting a rapid, high-affinity secondary antibody response upon re-exposure."
+      },
+      {
+        id: 15,
+        question: "GAT-B 2024: Which immunoglobulin can cross the placenta?",
+        options: ["IgA", "IgM", "IgG", "IgE"],
+        correct: 2,
+        explanation: "IgG is the only antibody class actively transported across the placenta via neonatal Fc receptors (FcRn) to provide passive neonatal immunity."
+      },
+      {
+        id: 16,
+        question: "GAT-B 2020: ELISA is mainly used for:",
+        options: ["DNA sequencing", "Antigen-antibody detection", "Protein purification", "PCR amplification"],
+        correct: 1,
+        explanation: "Enzyme-Linked Immunosorbent Assay (ELISA) is a core immunodiagnostic technique used to quantify specific antigens or antibodies in liquid samples."
+      },
+      {
+        id: 17,
+        question: "GAT-B 2020: Monoclonal antibodies are produced using:",
+        options: ["Hybridoma technology", "PCR", "Southern blotting", "Electrophoresis"],
+        correct: 0,
+        explanation: "Hybridoma technology fuses B cells with HGPRT-deficient myeloma cells to produce single-clone monoclonal antibodies."
+      },
+      {
+        id: 18,
+        question: "GAT-B 2020: Flow cytometry is used to analyze:",
+        options: ["DNA replication only", "Cell properties and populations", "Protein crystallization", "Restriction digestion"],
+        correct: 1,
+        explanation: "Flow cytometry measures physical and fluorescent properties of individual cells in suspension as they pass through a laser beam."
+      },
+      {
+        id: 19,
+        question: "GAT-B 2021: Western blotting is mainly used for detection of:",
+        options: ["DNA", "RNA", "Protein", "Lipids"],
+        correct: 2,
+        explanation: "Western blotting separates proteins via SDS-PAGE, transfers them to a membrane, and detects specific target proteins using labeled antibodies."
+      },
+      {
+        id: 20,
+        question: "GAT-B 2021: The principle of ELISA is based on:",
+        options: ["DNA hybridization", "Antigen-antibody interaction", "Protein sequencing", "Centrifugation"],
+        correct: 1,
+        explanation: "ELISA relies on specific immunological binding between antigens and enzyme-conjugated antibodies to generate a measurable colorimetric signal."
+      },
+      {
+        id: 21,
+        question: "GAT-B 2021: In hybridoma technology, myeloma cells are fused with:",
+        options: ["RBCs", "Plasma/B cells", "T cells", "Stem cells"],
+        correct: 1,
+        explanation: "HGPRT-deficient myeloma cells are fused with antibody-secreting primary splenic B/plasma cells."
+      },
+      {
+        id: 22,
+        question: "GAT-B 2022: Fluorescently labeled antibodies are commonly used in:",
+        options: ["PCR", "Flow cytometry", "Gel electrophoresis", "Chromatography"],
+        correct: 1,
+        explanation: "Fluorochrome-conjugated antibodies bind surface markers (CD markers) for multiparameter single-cell analysis in flow cytometry."
+      },
+      {
+        id: 23,
+        question: "GAT-B 2022: Which technique is used for quantification of cytokines?",
+        options: ["ELISA", "Southern blot", "Northern blot", "DNA fingerprinting"],
+        correct: 0,
+        explanation: "Sandwich ELISA is the standard quantitative immunoassay used to measure cytokine concentrations in biological fluids."
+      },
+      {
+        id: 24,
+        question: "GAT-B 2022: HAT medium is used in:",
+        options: ["PCR", "Hybridoma selection", "Protein purification", "Gel electrophoresis"],
+        correct: 1,
+        explanation: "HAT (Hypoxanthine, Aminopterin, Thymidine) selective medium isolates successful hybridoma fusion cells by blocking de novo nucleotide synthesis."
+      },
+      {
+        id: 25,
+        question: "GAT-B 2023: Polyclonal antibodies are produced by:",
+        options: ["Single B-cell clone", "Multiple B-cell clones", "Hybridoma only", "T lymphocytes"],
+        correct: 1,
+        explanation: "Polyclonal antibodies are heterogeneous mixtures secreted by multiple distinct B-cell clones recognizing various epitopes on an antigen."
+      },
+      {
+        id: 26,
+        question: "GAT-B 2023: Which immunotechnique uses enzyme-labeled antibodies?",
+        options: ["PCR", "ELISA", "PAGE", "Chromatography"],
+        correct: 1,
+        explanation: "ELISA uses enzyme-linked secondary or primary detection antibodies (e.g., HRP or AP) to convert colorless substrates into colored products."
+      },
+      {
+        id: 27,
+        question: "GAT-B 2023: The instrument used in flow cytometry mainly employs:",
+        options: ["UV spectroscopy", "Laser beam detection", "Electron microscopy", "Centrifugation"],
+        correct: 1,
+        explanation: "Flow cytometers use focused laser beams to excite fluorescent dyes and measure light scattering (FSC/SSC) of single cells."
+      },
+      {
+        id: 28,
+        question: "GAT-B 2024: Monoclonal antibodies are highly specific because they are produced from:",
+        options: ["Multiple plasma cells", "Single B-cell clone", "Multiple T-cell clones", "Stem cells"],
+        correct: 1,
+        explanation: "Monoclonal antibodies are homogeneous immunoglobulins derived from a single ancestral B-cell clone targeting a single specific epitope."
+      },
+      {
+        id: 29,
+        question: "GAT-B 2024: Immunofluorescence technique uses:",
+        options: ["Radioactive labels", "Fluorescent dyes", "DNA probes", "Restriction enzymes"],
+        correct: 1,
+        explanation: "Immunofluorescence attaches fluorescent dyes (FITC, PE, Texas Red) to antibodies to visualize cellular antigen localization under fluorescence microscopy."
+      },
+      {
+        id: 30,
+        question: "GAT-B 2024: Which technique separates proteins based on molecular weight before immunodetection?",
+        options: ["Agarose gel electrophoresis", "SDS-PAGE", "PCR", "Southern blot"],
+        correct: 1,
+        explanation: "In Western blotting, proteins are first resolved according to molecular weight by SDS-PAGE before being blotted and detected with antibodies."
+      }
+    ]
   }
 ];
 
@@ -1542,6 +1811,16 @@ const CHALLENGES = {
     xp: 250,
     timeLimit: 1000,
     questions: COURSE_TOPICS[7].pyqs
+  }
+,
+  immunology: {
+    title: "Immunology & Immunotechnology PYQs",
+    subject: "Immunology & Immunotechnology (GAT-B 2020-2024)",
+    color: "#E11D48",
+    bg: "#FFE4E6",
+    xp: 300,
+    timeLimit: 1200,
+    questions: COURSE_TOPICS[8].pyqs
   }
 };
 
@@ -3900,6 +4179,280 @@ const FULL_CELL_BIOLOGY_10_PAGES = [
 </div>`
 ];
 
+const FULL_IMMUNOLOGY_22_PAGES = [
+  `<h1 style="font-size:22px; color:#e11d48; margin:0 0 10px; border-bottom:2px solid #e11d48; padding-bottom:8px;">ADVANCED ACADEMIC SERIES IN BIOTECHNOLOGY: IMMUNOLOGY</h1>
+<p style="font-style:italic; color:#475569; font-size:13.5px; margin-bottom:24px;">Comprehensive, High-Yield Core Guide Designed for B.Tech Core Examinations and GATE Preparation</p>
+<div style="background:#ffe4e6; border-left:4px solid #e11d48; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9f1239;">
+  Module 1: History of Immunology &amp; Foundations of Immunity
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">1.1 Historical Landmarks in Immunology</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Edward Jenner (1796):</strong> Principles of cross-immunity using cowpox (vaccinia) to protect against smallpox (variola). Founded modern vaccinology.<br/>
+  • <strong>Louis Pasteur (1880–1885):</strong> Developed pathogen attenuation for avian cholera, anthrax, and rabies vaccines.<br/>
+  • <strong>Emil von Behring &amp; Kitasato Shibasaburo (1890):</strong> Discovered humorally mediated immunity using serum "antitoxins" (antibodies) against diphtheria.<br/>
+  • <strong>Paul Ehrlich (1897):</strong> Side-Chain Theory for antibody-antigen interaction.<br/>
+  • <strong>Elie Metchnikoff (1883):</strong> Discovered phagocytosis in <em>Daphnia</em> leukocytes (cellular immunology).<br/>
+  • <strong>Burnet &amp; Jerne (1955–1957):</strong> Clonal Selection Theory of adaptive immunity.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">1.2 Innate vs. Adaptive Immunity Comparison</h3>
+<table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#e11d48; color:#fff; text-align:left;">
+      <th style="padding:6px;">Characteristic Feature</th>
+      <th style="padding:6px;">Innate Immune System</th>
+      <th style="padding:6px;">Adaptive Immune System</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fff1f2;"><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">Specificity</td><td style="padding:6px; border:1px solid #fecdd3;">Non-specific; broad patterns (PAMPs).</td><td style="padding:6px; border:1px solid #fecdd3;">Highly specific; structural epitopes.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">Kinetics / Response</td><td style="padding:6px; border:1px solid #fecdd3;">Immediate (minutes to hours).</td><td style="padding:6px; border:1px solid #fecdd3;">Delayed lag phase (5–7 days).</td></tr>
+    <tr style="background:#fff1f2;"><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">Receptor Lineage</td><td style="padding:6px; border:1px solid #fecdd3;">Germline-encoded (TLRs, PRRs).</td><td style="padding:6px; border:1px solid #fecdd3;">V(D)J somatic recombination (BCR, TCR).</td></tr>
+    <tr><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">Immunological Memory</td><td style="padding:6px; border:1px solid #fecdd3;">Absent (uniform re-exposure).</td><td style="padding:6px; border:1px solid #fecdd3;">Present; faster, stronger secondary response.</td></tr>
+    <tr style="background:#fff1f2;"><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">Cellular Operators</td><td style="padding:6px; border:1px solid #fecdd3;">Macrophages, Neutrophils, NK cells.</td><td style="padding:6px; border:1px solid #fecdd3;">B &amp; T Lymphocytes (CD4+ Th, CD8+ Tc).</td></tr>
+  </tbody>
+</table>
+<div style="background:#ffe4e6; border-left:4px solid #e11d48; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9f1239;">
+  1.3 Humoral vs. Cell-Mediated Immunity (CMI)
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Humoral Immunity:</strong> B cells &amp; secreted antibodies targeting extracellular pathogens (neutralization, opsonization, complement).<br/>
+  • <strong>Cell-Mediated Immunity (CMI):</strong> T cells (CD4+, CD8+) targeting intracellular pathogens (<em>M. tuberculosis</em>, viruses) via perforin/granzyme and IFN-γ.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">1.4 PRRs &amp; TLR4 Mechanics &amp; Phagocytosis Protocol</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>TLR4 Signaling:</strong> Pattern Recognition Receptors (PRRs) bind PAMPs. TLR4 + MD-2 + CD14 binds Gram-negative LPS ➔ activates NF-κB ➔ pro-inflammatory cytokines (IL-1, IL-6, TNF-α).<br/>
+  • <strong>Clonal Expansion Kinetics:</strong> N(t) = N₀ · 2^(t / g), where g is mean generation time.
+</p>
+<div style="background:#fff1f2; border:1px solid #fecdd3; border-radius:10px; padding:16px; margin-top:16px;">
+  <h4 style="margin:0 0 8px; color:#9f1239; font-size:14px;">PROTOCOL: PHAGOCYTOSIS (6 STEPS)</h4>
+  <div style="font-size:13px; color:#881337; line-height:1.6;">
+    1. <strong>Chemotaxis:</strong> C5a, IL-8 ➔ 2. <strong>Adherence &amp; Opsonization:</strong> IgG (FcγR) or C3b (CR1) ➔ 3. <strong>Engulfment:</strong> Phagosome ➔ 4. <strong>Phagolysosome Fusion:</strong> Lysosomal cathepsins ➔ 5. <strong>Intracellular Respiratory Burst:</strong> NADPH Oxidase generates ROS (2 O₂ + NADPH ➔ 2 O₂°⁻ ➔ H₂O₂ ➔ HOCl via myeloperoxidase) &amp; iNOS RNS ➔ 6. <strong>Exocytosis / MHC II Presentation</strong>.
+  </div>
+</div>`,
+  `<div style="background:#fff1f2; border:1px solid #fda4af; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#9f1239; font-size:14px;">Module 1 Question Bank: Self vs. Non-Self Discrimination (5 Marks)</h4>
+  <div style="font-size:13px; color:#881337; line-height:1.6;">
+    • <strong>Innate Self/Non-Self:</strong> Germline PRRs (TLRs, NLRs) recognize invariant PAMPs absent on host cells. Absolute discrimination.<br/>
+    • <strong>Adaptive Self/Non-Self:</strong> Stochastic V(D)J recombination generates random BCR/TCRs. Self-tolerance is enforced via <strong>central tolerance</strong> (deletion in bone marrow/thymus) and <strong>peripheral tolerance</strong> (anergy, Tregs).
+  </div>
+</div>
+<div style="background:#ffe4e6; border:1px solid #fecdd3; border-radius:8px; padding:12px; font-size:13px; color:#9f1239;">
+  <strong>FAQ: Common Gamma Chain (γc) Deficiency:</strong> Shared subunit for IL-2, IL-4, IL-7, IL-15, IL-21 receptors. Absence of IL-7 signaling halts early lymphocyte V(D)J rearrangement, causing X-linked Severe Combined Immunodeficiency (X-SCID).
+</div>`,
+  `<h1 style="font-size:20px; color:#e11d48; margin:0 0 10px; border-bottom:2px solid #e11d48; padding-bottom:8px;">MODULE 2: ANTIGENS, EPITOPES, AND HAPTENS</h1>
+<div style="background:#ffe4e6; border-left:4px solid #e11d48; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9f1239;">
+  2.1 Definitions &amp; 2.2 Factors Influencing Immunogenicity
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Immunogenicity vs. Antigenicity:</strong> Immunogenicity is the capacity to induce a de novo adaptive immune response. Antigenicity is the narrower capacity to bind specifically with antibodies/TCRs. All immunogens are antigens, but not all antigens are immunogens.<br/>
+  • <strong>Core Factors:</strong> 1. <strong>Foreignness</strong> (phylogenetic distance); 2. <strong>Molecular Size</strong> (Mw &gt; 100,000 Da strong, &lt; 10,000 Da weak); 3. <strong>Chemical Complexity</strong> (heteropolymers with aromatic amino acids like Tyr/Trp); 4. <strong>Degradability &amp; Presentability</strong> (D-amino acid polymers cannot be processed for MHC loading).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">2.3 B-Cell vs. T-Cell Epitopes Comparison</h3>
+<table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#e11d48; color:#fff; text-align:left;">
+      <th style="padding:6px;">Parameter</th>
+      <th style="padding:6px;">B-Cell Epitopes (BCR)</th>
+      <th style="padding:6px;">T-Cell Epitopes (TCR)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fff1f2;"><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">Topography</td><td style="padding:6px; border:1px solid #fecdd3;">Hydrophilic exterior; linear or conformational.</td><td style="padding:6px; border:1px solid #fecdd3;">Mainly linear, internal hydrophobic peptides.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">Binding Matrix</td><td style="padding:6px; border:1px solid #fecdd3;">Binds free, soluble intact macromolecules.</td><td style="padding:6px; border:1px solid #fecdd3;">Must be processed &amp; presented on self-MHC.</td></tr>
+    <tr style="background:#fff1f2;"><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">Size Limits</td><td style="padding:6px; border:1px solid #fecdd3;">15–22 amino acids or 5–7 monosaccharides.</td><td style="padding:6px; border:1px solid #fecdd3;">8–11 aa (MHC I) or 13–18 aa (MHC II).</td></tr>
+  </tbody>
+</table>
+<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">2.4 Haptens &amp; Carbodiimide Coupling Protocol</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    Hapten (Mw &lt; 5,000 Da) has antigenicity but lacks immunogenicity.<br/>
+    <strong>EDC Coupling Protocol:</strong> 1. Solubilize carrier (BSA) in MES buffer pH 4.7-6.0 ➔ 2. Activate -COOH with EDC ➔ 3. Primary amine (-NH2) attack forming stable amide bond ➔ 4. Quench with glycine ➔ 5. PBS Dialysis.
+  </div>
+</div>`,
+  `<div style="background:#fff1f2; border:1px solid #fda4af; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#9f1239; font-size:14px;">Module 2 Question Bank: Hapten-Carrier Mechanism &amp; Conjugate Vaccines (5 Marks)</h4>
+  <div style="font-size:13px; color:#881337; line-height:1.6;">
+    1. Naive B cell binds hapten via BCR, internalizes conjugate ➔ 2. Presents processed carrier peptides on MHC Class II ➔ 3. Carrier-primed CD4+ T-helper cell binds peptide-MHC II, upregulating CD40L and IL-4/IL-21 ➔ 4. Drives hapten-specific B cell clonal expansion &amp; high-affinity IgG production.<br/>
+    <strong>Conjugate Vaccines (Hib):</strong> Coupling T-independent capsular polysaccharides (acting as haptens) to tetanus/diphtheria toxoid carriers converts response to T-dependent, inducing high IgG titers &amp; memory in infants.
+  </div>
+</div>
+<div style="background:#ffe4e6; border:1px solid #fecdd3; border-radius:8px; padding:12px; font-size:13px; color:#9f1239;">
+  <strong>FAQ: Superantigens (TSST-1):</strong> Cross-link lateral faces of MHC Class II &amp; Vβ domain of TCR outside peptide cleft, activating up to 20% of systemic T cells ➔ cytokine storm (IL-2, IFN-γ, TNF-α).
+</div>`,
+  `<h1 style="font-size:20px; color:#e11d48; margin:0 0 10px; border-bottom:2px solid #e11d48; padding-bottom:8px;">MODULE 3: LYMPHOID ORGANS &amp; CELLULAR COMPONENTS</h1>
+<div style="background:#ffe4e6; border-left:4px solid #e11d48; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9f1239;">
+  3.1 Primary vs. Secondary Lymphoid Organs &amp; 3.2 Cell Markers
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Primary Lymphoid Organs (PLOs):</strong> Bone Marrow (B cell hematopoiesis/central tolerance) &amp; Thymus (T cell maturation/selection).<br/>
+  • <strong>Secondary Lymphoid Organs (SLOs):</strong> Spleen, Lymph Nodes, MALT (site of antigen-dependent activation).
+</p>
+<table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#e11d48; color:#fff; text-align:left;">
+      <th style="padding:6px;">Cell Type</th>
+      <th style="padding:6px;">Cluster of Differentiation (CD) Markers</th>
+      <th style="padding:6px;">Core Functions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fff1f2;"><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">B Lymphocytes</td><td style="padding:6px; border:1px solid #fecdd3;">CD19, CD20, CD21, CD40, surface IgM/IgD</td><td style="padding:6px; border:1px solid #fecdd3;">Plasma cell differentiation; professional APCs.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">Helper T Cells (Th)</td><td style="padding:6px; border:1px solid #fecdd3;">CD3, CD4, CD28</td><td style="padding:6px; border:1px solid #fecdd3;">Recognize MHC Class II; secrete cytokines.</td></tr>
+    <tr style="background:#fff1f2;"><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">Cytotoxic T Cells (Tc)</td><td style="padding:6px; border:1px solid #fecdd3;">CD3, CD8</td><td style="padding:6px; border:1px solid #fecdd3;">Recognize MHC Class I; perforin/granzyme lysis.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">NK Cells</td><td style="padding:6px; border:1px solid #fecdd3;">CD16, CD56 (Lack CD3)</td><td style="padding:6px; border:1px solid #fecdd3;">Innate lysis of cells lacking MHC Class I.</td></tr>
+  </tbody>
+</table>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">3.3 Thymic Selection &amp; PBMC Isolation Protocol</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Positive Selection (Thymic Cortex):</strong> cTECs present self-peptide-MHC to CD4+CD8+ thymocytes. Moderate affinity binding survives (restricted to self-MHC).<br/>
+  • <strong>Negative Selection (Thymic Medulla):</strong> mTECs express <strong>AIRE gene</strong> driving peripheral self-antigens. High-affinity binding thymocytes undergo apoptosis (deletes autoreactive clones).
+</p>
+<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-top:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">PROTOCOL: PBMC ISOLATION VIA FICOLL-PAQUE DENSITY GRADIENT</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    1. Dilute blood 1:1 with PBS ➔ 2. Layer over Ficoll-Paque (1.077 g/mL) ➔ 3. Centrifuge at 400xg for 30 min without brake ➔ 4. Harvest cloudy PBMC interphase ring (lymphocytes &amp; monocytes) between plasma and Ficoll ➔ 5. Wash twice with PBS at 250xg.
+  </div>
+</div>`,
+  `<div style="background:#fff1f2; border:1px solid #fda4af; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#9f1239; font-size:14px;">Module 3 Question Bank: Lymph Node Microenvironments (5 Marks)</h4>
+  <div style="font-size:13px; color:#881337; line-height:1.6;">
+    • <strong>Cortex:</strong> B-cell follicles with central germinal centers for somatic hypermutation.<br/>
+    • <strong>Paracortex:</strong> T-cell zone containing High Endothelial Venules (HEVs expressing PNAd binding L-selectin/CD62L on naive lymphocytes).<br/>
+    • <strong>Medulla:</strong> Medullary cords with plasma cells and macrophages.<br/>
+    • <strong>Trafficking:</strong> Antigens enter via <em>afferent lymphatics</em>; lymphocytes enter via HEVs and exit via <em>efferent lymphatics</em>.
+  </div>
+</div>
+<h1 style="font-size:20px; color:#e11d48; margin:16px 0 10px; border-bottom:2px solid #e11d48; padding-bottom:8px;">MODULE 4: ANTIBODY STRUCTURE, FUNCTION, AND SYNTHESIS</h1>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Antibodies are 150 kDa glycoproteins with 2 Heavy (50 kDa) &amp; 2 Light (25 kDa) chains linked by disulfide bonds. Paratope CDR1/2/3 hypervariable loops bind epitopes.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">4.2 Proteolytic Cleavage Mapping of Immunoglobulins</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Papain Digestion:</strong> Cleaves amino-terminal side of hinge disulfide bonds ➔ yields <strong>two monovalent Fab fragments (50 kDa each)</strong> and <strong>one crystalline Fc fragment (50 kDa)</strong>.<br/>
+  • <strong>Pepsin Digestion:</strong> Cleaves carboxy-terminal side of hinge disulfide bonds ➔ yields <strong>one bivalent F(ab')2 fragment (110 kDa)</strong> and degraded Fc peptides.<br/>
+  • <strong>β-Mercaptoethanol Reduction + SDS-PAGE:</strong> Reduces interchain disulfide bonds ➔ yields two distinct SDS-PAGE bands: <strong>Heavy chain (50 kDa)</strong> and <strong>Light chain (25 kDa)</strong>.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">4.3 Characteristics of Immunoglobulin Isotypes</h3>
+<table style="width:100%; border-collapse:collapse; font-size:11.5px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#e11d48; color:#fff; text-align:left;">
+      <th style="padding:6px;">Isotype</th>
+      <th style="padding:6px;">Heavy Chain</th>
+      <th style="padding:6px;">Structural State</th>
+      <th style="padding:6px;">% Serum</th>
+      <th style="padding:6px;">Core Effector Properties</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fff1f2;"><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">IgG</td><td style="padding:6px; border:1px solid #fecdd3;">Gamma (γ)</td><td style="padding:6px; border:1px solid #fecdd3;">Monomer</td><td style="padding:6px; border:1px solid #fecdd3;">75–80%</td><td style="padding:6px; border:1px solid #fecdd3;">Dominates secondary response; opsonization; <strong>only class that crosses placenta</strong>.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">IgM</td><td style="padding:6px; border:1px solid #fecdd3;">Mu (μ)</td><td style="padding:6px; border:1px solid #fecdd3;">Pentamer (J-chain)</td><td style="padding:6px; border:1px solid #fecdd3;">5–10%</td><td style="padding:6px; border:1px solid #fecdd3;">Primary response master; high valency (n=10); potent classical complement.</td></tr>
+    <tr style="background:#fff1f2;"><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">IgA</td><td style="padding:6px; border:1px solid #fecdd3;">Alpha (α)</td><td style="padding:6px; border:1px solid #fecdd3;">Dimer (secretory piece)</td><td style="padding:6px; border:1px solid #fecdd3;">10–15%</td><td style="padding:6px; border:1px solid #fecdd3;">Mucosal immunity in tears, saliva, colostrum; pIgR transcytosis.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">IgE</td><td style="padding:6px; border:1px solid #fecdd3;">Epsilon (ε)</td><td style="padding:6px; border:1px solid #fecdd3;">Monomer</td><td style="padding:6px; border:1px solid #fecdd3;">0.002%</td><td style="padding:6px; border:1px solid #fecdd3;">Binds FcεRI on mast cells/basophils; Type I allergy &amp; helminth defense.</td></tr>
+    <tr style="background:#fff1f2;"><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">IgD</td><td style="padding:6px; border:1px solid #fecdd3;">Delta (δ)</td><td style="padding:6px; border:1px solid #fecdd3;">Monomer</td><td style="padding:6px; border:1px solid #fecdd3;">0.2%</td><td style="padding:6px; border:1px solid #fecdd3;">Co-expressed with IgM on naive B cells; BCR signaling.</td></tr>
+  </tbody>
+</table>`,
+  `<h1 style="font-size:20px; color:#e11d48; margin:0 0 10px; border-bottom:2px solid #e11d48; padding-bottom:8px;">MODULE 5: MOLECULAR BASIS OF ANTIBODY DIVERSITY</h1>
+<div style="background:#ffe4e6; border-left:4px solid #e11d48; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9f1239;">
+  5.1 V(D)J Recombination &amp; 5.2 The 12/23 Rule
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>The 12/23 Rule:</strong> Recombination Signal Sequences (RSSs) consist of a conserved heptamer (5'-CACAGTG-3') and nonamer (5'-ACAAAAACC-3') separated by a 12-bp or 23-bp spacer. Recombination occurs exclusively between a 12-bp spacer RSS and a 23-bp spacer RSS, preventing direct V-to-J joining without D in heavy chains.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">5.3 Sources of Diversity &amp; 5.4 Recombination Cascade</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>5 Mechanisms:</strong> 1. Combinatorial V(D)J joining; 2. Heavy-Light pairing; 3. Junctional flexibility; 4. P-nucleotides (Artemis hairpin cleavage); 5. N-nucleotides (TDT terminal transferase); 6. Somatic Hypermutation (AID enzyme in germinal centers).<br/>
+  • <strong>Cascade:</strong> RAG-1/2 synapsis &amp; nicking ➔ NHEJ signal end ligation ➔ Artemis:DNA-PKcs hairpin opening ➔ TDT N-addition ➔ Ligase IV sealing.
+</p>
+<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-top:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">GATE COMBINATORIAL DIVERSITY CALCULATION</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    For a heavy chain locus with 40 V, 25 D, and 6 J segments:<br/>
+    <strong style="color:#15803d; font-size:14.5px;">N = V × D × J = 40 × 25 × 6 = 6,000 unique heavy chain combinations</strong>.
+  </div>
+</div>`,
+  `<h1 style="font-size:20px; color:#e11d48; margin:0 0 10px; border-bottom:2px solid #e11d48; padding-bottom:8px;">MODULE 6: ANTIGEN-ANTIBODY REACTIONS &amp; DIAGNOSTICS</h1>
+<div style="background:#ffe4e6; border-left:4px solid #e11d48; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9f1239;">
+  6.1 Heidelberger-Kendall Curve &amp; 6.2 Scatchard Equation
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Precipitation Zones:</strong> Prozone (Antibody excess, no lattice) ➔ Equivalence Zone (optimal cross-linked insoluble lattice) ➔ Postzone (Antigen excess, lattice breakdown).<br/>
+  • <strong>Scatchard Equation:</strong> <strong style="color:#e11d48; font-size:14.5px;">r / c = Ka · (n - r)</strong>, where r = bound antigen/mAb, c = free antigen, Ka = affinity constant, n = valency (n=2 for IgG).<br/>
+  • <strong>Scatchard Plots:</strong> Monoclonal antibody yields a <strong>straight line</strong> (slope = -Ka); Polyclonal antiserum yields a <strong>downward-curving line</strong> (heterogeneous affinities).
+</p>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">PROTOCOL: SANDWICH ELISA (6 STEPS)</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    1. Coat capture antibody (carbonate buffer pH 9.6) ➔ 2. Wash with PBST ➔ 3. Block non-specific sites with 5% BSA ➔ 4. Incubate antigen sample ➔ 5. Add HRP-linked primary detection antibody ➔ 6. Add TMB substrate, stop with 2 M H2SO4, read OD450 nm.
+  </div>
+</div>
+<h1 style="font-size:20px; color:#e11d48; margin:16px 0 10px; border-bottom:2px solid #e11d48; padding-bottom:8px;">MODULE 7: THE COMPLEMENT SYSTEM</h1>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Classical Pathway:</strong> C1qrs binds antigen-bound IgG/IgM ➔ C4b2a (C3 convertase) ➔ C4b2a3b (C5 convertase).<br/>
+  • <strong>Alternative Pathway:</strong> Spontaneous C3 tick-over ➔ C3bBb (C3 convertase) ➔ C3bBb3b.<br/>
+  • <strong>Lectin Pathway:</strong> MBL/MASP binds microbial mannose ➔ C4b2a.<br/>
+  • <strong>MAC Pore:</strong> C5b recruits C6, C7, C8, polymerizing 10–16 C9 molecules into membrane attack complex. DAF (CD55) decays convertases; CD59 (Protectin) blocks C9.
+</p>`,
+  `<h1 style="font-size:20px; color:#e11d48; margin:0 0 10px; border-bottom:2px solid #e11d48; padding-bottom:8px;">MODULE 8: MAJOR HISTOCOMPATIBILITY COMPLEX (MHC)</h1>
+<table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#e11d48; color:#fff; text-align:left;">
+      <th style="padding:6px;">Parameter</th>
+      <th style="padding:6px;">MHC Class I</th>
+      <th style="padding:6px;">MHC Class II</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fff1f2;"><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">Cellular Expression</td><td style="padding:6px; border:1px solid #fecdd3;">All nucleated cells and platelets.</td><td style="padding:6px; border:1px solid #fecdd3;">Professional APCs (Dendritic, Macrophages, B cells).</td></tr>
+    <tr><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">Chain Composition</td><td style="padding:6px; border:1px solid #fecdd3;">Polymorphic α chain + invariant β2-microglobulin.</td><td style="padding:6px; border:1px solid #fecdd3;">Polymorphic α chain + β chain heterodimer.</td></tr>
+    <tr style="background:#fff1f2;"><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">Peptide Cleft &amp; Size</td><td style="padding:6px; border:1px solid #fecdd3;">α1/α2 closed ends; 8–11 amino acids.</td><td style="padding:6px; border:1px solid #fecdd3;">α1/β1 open ends; 13–18 amino acids.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #fecdd3; font-weight:700;">T-Cell Interaction</td><td style="padding:6px; border:1px solid #fecdd3;">CD8+ Cytotoxic T cells.</td><td style="padding:6px; border:1px solid #fecdd3;">CD4+ Helper T cells.</td></tr>
+  </tbody>
+</table>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Endogenous Pathway (MHC I):</strong> Proteasome 26S degrades cytosolic proteins ➔ TAP1/2 pumps peptides into ER ➔ loaded onto MHC I.<br/>
+  • <strong>Exogenous Pathway (MHC II):</strong> Endolysosomal cathepsins degrade extracellular proteins ➔ Invariant chain cleaved to CLIP ➔ HLA-DM exchanges CLIP for peptide on MHC II.
+</p>`,
+  `<h1 style="font-size:20px; color:#e11d48; margin:0 0 10px; border-bottom:2px solid #e11d48; padding-bottom:8px;">MODULE 9: MONOCLONAL &amp; POLYCLONAL ANTIBODIES</h1>
+<div style="background:#ffe4e6; border-left:4px solid #e11d48; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#9f1239;">
+  9.1 Hybridoma Technology &amp; 9.2 HAT Selection Mechanism
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Fuses short-lived B cells with immortal HGPRT-deficient myeloma cells using PEG 1500.<br/>
+  • <strong>HAT Medium Selection:</strong> <strong>Aminopterin</strong> blocks <em>de novo</em> nucleotide synthesis by inhibiting DHFR. Cells must use the salvage pathway requiring <strong>Hypoxanthine</strong>, <strong>Thymidine</strong>, and functional <strong>HGPRT</strong> enzyme.<br/>
+  • Unfused Myelomas (HGPRT⁻) die (cannot use salvage). Unfused B cells (HGPRT⁺) die naturally (finite lifespan). <strong>Hybridomas survive</strong> (inherit HGPRT from B cells and immortality from myelomas).
+</p>`,
+  `<h1 style="font-size:20px; color:#e11d48; margin:0 0 10px; border-bottom:2px solid #e11d48; padding-bottom:8px;">MODULE 10: IMMUNOLOGICAL TOLERANCE &amp; REGULATION</h1>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Central Tolerance:</strong> Deletion of autoreactive immature lymphocytes in bone marrow &amp; thymus.<br/>
+  • <strong>Peripheral Tolerance:</strong> Safety net for mature autoreactive cells in periphery via Anergy, Suppression (Tregs CD4+CD25+FoxP3+ secreting IL-10/TGF-β), and Deletion.<br/>
+  • <strong>Two-Signal Hypothesis:</strong> Signal 1 (TCR binding peptide-MHC) + Signal 2 (Co-stimulatory B7 CD80/CD86 on APC binding CD28 on T cell). <strong>Signal 1 without Signal 2 induces immunological ANERGY</strong>.
+</p>`,
+  `<h1 style="font-size:20px; color:#e11d48; margin:0 0 10px; border-bottom:2px solid #e11d48; padding-bottom:8px;">MODULE 11: HYPERSENSITIVITY, AUTOIMMUNITY, AND GRAFT REJECTION</h1>
+<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">11.1 Gell and Coombs Classification</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Type I (Immediate):</strong> IgE bound to FcεRI on mast cells. Allergen cross-linking causes histamine release (anaphylaxis, asthma).<br/>
+  • <strong>Type II (Cytotoxic):</strong> IgG/IgM binding fixed cell surface antigens (transfusion reactions, Rh disease, Goodpasture).<br/>
+  • <strong>Type III (Immune Complex):</strong> Soluble antigen-antibody complexes depositing in vessel walls (SLE, Arthus reaction).<br/>
+  • <strong>Type IV (Delayed-Type):</strong> T-cell mediated (48-72h lag, tuberculin test, contact dermatitis).
+</p>`,
+  `<div style="background:#fff1f2; border:1px solid #fda4af; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#9f1239; font-size:14px;">Module 11 Question Bank: Type I Hypersensitivity Mechanism (5 Marks)</h4>
+  <div style="font-size:13px; color:#881337; line-height:1.6;">
+    1. Initial exposure skews to Th2 pathway, prompting B cells to produce IgE ➔ 2. IgE sensitizes mast cells via high-affinity FcεRI receptors ➔ 3. Re-exposure cross-links bound IgE ➔ 4. Ca²⁺ influx triggers immediate degranulation of pre-formed <strong>histamine</strong> (vasodilation, smooth muscle contraction) within minutes ➔ 5. Late-phase response (6-24h) driven by newly synthesized leukotrienes &amp; cytokines recruiting eosinophils.
+  </div>
+</div>`,
+  `<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#0f172a; font-size:14px;">🎓 Final GATE-Focused Checklist for Immunology</h4>
+  <ol style="font-size:12.5px; color:#334155; line-height:1.6; padding-left:20px; margin:0;">
+    <li>Papain cleaves above hinge (2 Fab + 1 Fc); Pepsin cleaves below hinge (1 F(ab')2 + degraded Fc).</li>
+    <li>IgG is the only antibody class crossing placenta; IgM is a pentamer with J-chain in primary response.</li>
+    <li>12/23 rule: Recombination occurs only between 12-bp spacer RSS and 23-bp spacer RSS.</li>
+    <li>HAT Medium: Aminopterin blocks de novo pathway; HGPRT enables salvage pathway for hybridomas.</li>
+    <li>Scatchard plot: Monoclonal antibody gives a straight line; Polyclonal gives a downward curve.</li>
+  </ol>
+</div>`
+];
+
 /* ── Continuous Scroll PDF Document Viewer Component ── */
 function ContinuousPdfViewer({ topic }) {
   function handleOpenNewWindow() {
@@ -4019,6 +4572,20 @@ function ContinuousPdfViewer({ topic }) {
           <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 10</span></div>
         </div>
       `).join("");
+    } else if (topic.id === "topic-10") {
+      pagesHtml = FULL_IMMUNOLOGY_22_PAGES.map((pgContent, idx) => `
+        <div class="page">
+          <div class="header">
+            <div>
+              <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
+              <h2 class="title">${topic.name}</h2>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${idx + 1} OF 22</span>
+          </div>
+          ${pgContent}
+          <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 22</span></div>
+        </div>
+      `).join("");
     } else {
       pagesHtml = topic.sections.map((sec, idx) => `
         <div class="page">
@@ -4113,7 +4680,7 @@ function ContinuousPdfViewer({ topic }) {
           <div>
             <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#fff" }}>{topic.pdfTitle}</h3>
             <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>
-              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : topic.id === "topic-07" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : topic.id === "topic-08" ? "Executive Syllabus Summary • Full 16-Page PDF Document Available below" : topic.id === "topic-09" ? "Executive Syllabus Summary • Full 10-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
+              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : topic.id === "topic-07" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : topic.id === "topic-08" ? "Executive Syllabus Summary • Full 16-Page PDF Document Available below" : topic.id === "topic-09" ? "Executive Syllabus Summary • Full 10-Page PDF Document Available below" : topic.id === "topic-10" ? "Executive Syllabus Summary • Full 22-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
             </p>
           </div>
         </div>
@@ -4127,10 +4694,10 @@ function ContinuousPdfViewer({ topic }) {
             cursor: "pointer", display: "flex", alignItems: "center", gap: "6px",
             boxShadow: "0 3px 12px " + topic.color + "40", transition: "all 0.2s"
           }}
-          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-08" ? "Click to open full 16-page PDF document in a new browser tab/window" : topic.id === "topic-09" ? "Click to open full 10-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
+          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-08" ? "Click to open full 16-page PDF document in a new browser tab/window" : topic.id === "topic-09" ? "Click to open full 10-page PDF document in a new browser tab/window" : topic.id === "topic-10" ? "Click to open full 22-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
         >
           <span>↗️</span>
-          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : topic.id === "topic-08" ? "Open Full 16-Page PDF" : topic.id === "topic-09" ? "Open Full 10-Page PDF" : "Open PDF in New Window"}</span>
+          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : topic.id === "topic-08" ? "Open Full 16-Page PDF" : topic.id === "topic-09" ? "Open Full 10-Page PDF" : topic.id === "topic-10" ? "Open Full 22-Page PDF" : "Open PDF in New Window"}</span>
         </button>
       </div>
 
@@ -4146,7 +4713,7 @@ function ContinuousPdfViewer({ topic }) {
           paddingRight: "8px",
           cursor: "pointer"
         }}
-        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : topic.id === "topic-07" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : topic.id === "topic-08" ? "Click anywhere on the study notes viewer to open full 16-page PDF document in new window" : topic.id === "topic-09" ? "Click anywhere on the study notes viewer to open full 10-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
+        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : topic.id === "topic-07" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : topic.id === "topic-08" ? "Click anywhere on the study notes viewer to open full 16-page PDF document in new window" : topic.id === "topic-09" ? "Click anywhere on the study notes viewer to open full 10-page PDF document in new window" : topic.id === "topic-10" ? "Click anywhere on the study notes viewer to open full 22-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
       >
         {topic.sections.map((sec, idx) => (
           <div key={idx} style={{
