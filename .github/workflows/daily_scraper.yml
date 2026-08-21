@@ -1,9 +1,9 @@
-name: Daily BioConnect AI Event Scraper
+name: BioConnect Automated AI Event Scraper
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs automatically every night at 00:00 UTC
-  workflow_dispatch:     # Allows manual trigger from GitHub UI
+    - cron: '0 */8 * * *'  # Runs automatically every 8 hours (00:00, 08:00, 16:00 UTC)
+  workflow_dispatch:        # Allows manual trigger from GitHub UI
 
 jobs:
   scrape-and-sync:

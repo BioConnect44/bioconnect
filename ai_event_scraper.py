@@ -238,12 +238,15 @@ def sync_to_firestore(events: List[EventModel]):
 def run_pipeline(queries: List[str] = None):
     """
     Execute full scraping, extraction, validation, backup, and sync pipeline.
+    Runs every 8 hours via GitHub Actions.
     """
     if queries is None:
         queries = [
-            "site:academicworldresearch.org biotechnology conference India 2026 2027",
+            "biotechnology conference Gujarat Ahmedabad Gandhinagar Vadodara 2026 2027",
+            "site:academicworldresearch.org biotechnology conference Gujarat India 2026 2027",
+            "Gujarat Biotechnology University GBU GSBTM NIPER Ahmedabad conference 2026 2027",
             "academicworldresearch.org biomedical genomics healthcare research conference 2026 2027",
-            "upcoming biotechnology genomics biomedical conferences India IIT IISc 2026 2027",
+            "upcoming biotechnology genomics biomedical conferences India IIT IISc AIIMS 2026 2027",
             "international biotechnology healthcare conference 2026 2027"
         ]
 
