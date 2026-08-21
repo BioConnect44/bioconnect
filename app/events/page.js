@@ -302,6 +302,9 @@ export default function EventsPage() {
   }
 
   useEffect(() => {
+    let intervalId = null;
+    let channel = null;
+
     async function load() {
       try {
         const { data: { user } } = await supabase.auth.getUser();
@@ -309,11 +312,29 @@ export default function EventsPage() {
         const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
         setProfile(data);
         await loadEvents();
+
+        // 1. Set up automatic background refresh polling every 30s so newly scraped events appear automatically
+        intervalId = setInterval(() => {
+          loadEvents();
+        }, 30000);
+
+        // 2. Set up Supabase Realtime channel subscription for instant event insertion updates
+        channel = supabase.channel("realtime-events")
+          .on("postgres_changes", { event: "*", schema: "public", table: "events" }, () => {
+            loadEvents();
+          })
+          .subscribe();
+
       } catch (e) {
         console.error(e);
       }
     }
     load();
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+      if (channel) supabase.removeChannel(channel);
+    };
   }, []);
 
   async function handleAdd(e) {
@@ -393,7 +414,7 @@ export default function EventsPage() {
           <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px" }}>
             <h1 style={{ fontSize: "24px", fontWeight: 800, color: "#1B2B3A", margin: 0 }}>Events & Networking</h1>
             <span style={{ fontSize: "11px", fontWeight: 700, background: "#E0F2FE", color: "#0284C7", padding: "3px 9px", borderRadius: "12px", border: "1px solid #BAE6FD" }}>
-              ⚡ Interactive Event Calendar Live
+              ⚡ Auto-Scraped Real-Time Sync Active
             </span>
           </div>
           <p style={{ fontSize: "14px", color: "#6B8A9A", margin: 0 }}>Discover upcoming biotech, biomedical & genomics conferences from C-CAMP, IISc, NCBS, IIT Bombay, ABLE, BIRAC, Eventbrite & Unstop.</p>
