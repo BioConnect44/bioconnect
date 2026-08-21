@@ -966,6 +966,16 @@ const CHALLENGES = {
     timeLimit: 1000,
     questions: COURSE_TOPICS[4].pyqs
   }
+,
+  secondary: {
+    title: "Secondary Metabolites PYQs",
+    subject: "Secondary Metabolites & Industrial Biotechnology (GAT-B 2020-2024)",
+    color: "#8B5CF6",
+    bg: "#F3F0FF",
+    xp: 250,
+    timeLimit: 900,
+    questions: COURSE_TOPICS[5].pyqs
+  }
 };
 
 /* ── 19-Page Master Textbook Pages for Biomolecules, Membranes, Enzymes, Metabolism & Bioenergetics ── */
@@ -2762,6 +2772,242 @@ const FULL_PLANT_BIOTECH_20_PAGES = [
 </div>`
 ];
 
+const FULL_SECONDARY_METABOLITES_21_PAGES = [
+  `<h1 style="font-size:22px; color:#7c3aed; margin:0 0 10px; border-bottom:2px solid #7c3aed; padding-bottom:8px;">ADVANCED BIOTECHNOLOGY STUDY &amp; GATE PREPARATION GUIDE</h1>
+<p style="font-style:italic; color:#475569; font-size:13.5px; margin-bottom:24px;">High-Yield Technical Notes, Kinetics, Protocols, and Integrated Question Banks — Secondary Metabolites &amp; Transgenics Series</p>
+<div style="background:#f3e8ff; border-left:4px solid #8b5cf6; padding:16px; border-radius:8px; margin-bottom:20px;">
+  <h3 style="margin:0 0 8px; color:#5b21b6; font-size:16px;">Comprehensive Master Textbook Overview</h3>
+  <p style="font-size:13.5px; color:#4c1d95; line-height:1.7; margin:0;">
+    This 21-page study guide provides exhaustive technical coverage of plant secondary metabolites, cell suspension culture kinetics, <em>Agrobacterium rhizogenes</em> hairy root technology, disarmed binary transformation vectors, biolistic particle bombardment, and industrial product extraction frameworks (Shikonin, Taxol, Artemisinin).
+  </p>
+</div>`,
+  `<h1 style="font-size:20px; color:#7c3aed; margin:0 0 10px; border-bottom:2px solid #7c3aed; padding-bottom:8px;">MODULE 1: PRODUCTION OF SECONDARY METABOLITES BY PLANT SUSPENSION CULTURES</h1>
+<div style="background:#f3e8ff; border-left:4px solid #8b5cf6; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#5b21b6;">
+  1.1 Definition and Biological Core Concept
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Plants synthesize primary metabolites (amino acids, lipids, carbohydrates) directly required for cell division and growth, as well as specialized <strong>secondary metabolites</strong> (alkaloids, terpenoids, phenolics) for defense against herbivores, pathogens, allelopathy, and pollinator attraction.<br/><br/>
+  Industrial secondary metabolites include high-value pharmaceuticals (antivirals, anticancer agents, antibiotics), fragrances, and biopesticides. Plant cell suspension cultures isolate single cells or small aggregates in liquid medium under sterile, agitated conditions, overcoming field agriculture limits like seasonal climate variations and low natural yields.
+</p>
+<div style="background:#faf5ff; border:1px solid #d8b4fe; border-radius:8px; padding:12px; margin-top:16px; font-size:13px; color:#5b21b6;">
+  <strong>GATE INSIGHT: TOTIPOTENCY AND DE-DIFFERENTIATION:</strong><br/>
+  Secondary metabolism is typically repressed during rapid cell division phases (log phase) and strongly up-regulated during stationary or deceleration growth phases.
+</div>`,
+  `<div style="background:#f3e8ff; border-left:4px solid #8b5cf6; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#5b21b6;">
+  1.2 Working Principle of Suspension Cultures &amp; 1.3 Types
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Callus Induction:</strong> High auxins (e.g., 2,4-D) and low cytokinins induce friable callus on agar media.<br/>
+  • <strong>Dispersion in Liquid:</strong> Transfer into liquid MS media on orbital shakers (110–130 rpm) shears callus into single cells.<br/>
+  • <strong>Culture Modalities:</strong> Batch (closed system), Continuous (chemostat/turbidostat open system), and Immobilized Cell Cultures (calcium alginate beads, polyurethane foam).
+</p>
+<div style="background:#f3e8ff; border-left:4px solid #8b5cf6; padding:12px 16px; margin-top:20px; margin-bottom:20px; font-weight:700; color:#5b21b6;">
+  1.4 Kinetics and Mathematical Formulations for GATE
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Plant cells exhibit lower maximum specific growth rates (μ_max) and longer doubling times (t_d = 20 to 60 hours). Specific growth rate: <strong>dX/dt = μ · X</strong>.<br/>
+  Integration yields: <strong style="color:#7c3aed;">X = X₀ · e^(μ · t)</strong>  or  <strong style="color:#7c3aed;">ln(X / X₀) = μ · t</strong>.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">Biomass Doubling Time &amp; Chemostat Steady-State Mass Balance</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Doubling time derivation (when X = 2 X₀):<br/>
+  <strong style="color:#7c3aed; font-size:14.5px;">t_d = ln(2) / μ = 0.693 / μ</strong><br/><br/>
+  In continuous chemostat cultures, dilution rate D = F / V (volumetric flow rate F divided by reactor working volume V).<br/>
+  At steady state (dX/dt = 0):<br/>
+  <strong>Accumulation = Input - Output + Growth</strong><br/>
+  0 = 0 - F · X + V · μ · X  ⟹  0 = -D · X + μ · X  ⟹  <strong style="color:#7c3aed; font-size:14.5px;">μ = D</strong><br/><br/>
+  <strong>Washout Kinetics:</strong> If external dilution rate D &gt; μ_max, the rate of cell removal exceeds cell division, leading to process washout.
+</p>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">STEP-BY-STEP TECHNICAL PROTOCOL: INITIATION OF SUSPENSION CULTURE</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    1. <strong>Explant Sterilization:</strong> Submerge leaf sheets in 70% ethanol for 60s, then 0.1% HgCl2 for 8 min. Rinse 5x with sterile water.<br/>
+    2. <strong>Callus Induction:</strong> Slice 5x5 mm explants onto solid MS agar with 3.0 mg/L 2,4-D + 0.5 mg/L Kinetin at 25°C in dark for 3-4 weeks.<br/>
+    3. <strong>Liquid Phase Transfer:</strong> Transfer 3-5g friable callus to 50 mL liquid MS with 2.0 mg/L NAA + 0.2 mg/L BAP.<br/>
+    4. <strong>Agitation &amp; Sub-culturing:</strong> Shake at 110-130 rpm. Sieve through 500-micron mesh every 14 days and sub-culture 10 mL into 40 mL fresh media.
+  </div>
+</div>
+<div style="background:#fef3c7; border:1px solid #fde68a; border-radius:8px; padding:12px; margin-bottom:16px; font-size:13px; color:#92400e;">
+  <strong>MNEMONIC FOR GROWTH PHASES IN BATCH CULTURE:</strong><br/>
+  <em>Let's Explore Linear Dynamics Soon</em> ➔ <strong>L</strong>ag, <strong>E</strong>xponential/Log, <strong>L</strong>inear, <strong>D</strong>eceleration, <strong>S</strong>tationary phase.
+</div>`,
+  `<div style="background:#f3e8ff; border:1px solid #c084fc; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#6b21a8; font-size:14px;">Typical 5-Mark Question: Define "Elicitation" and explain the two-stage culture strategy.</h4>
+  <div style="font-size:13px; color:#581c87; line-height:1.6;">
+    <strong>Model Answer:</strong><br/>
+    • <strong>Elicitation:</strong> Deliberate addition of trace signal agents to stimulate defense pathways and boost secondary metabolite synthesis.<br/>
+    • <strong>Biotic Elicitors:</strong> Chitin, chitosan, β-glucans, fungal extracts.<br/>
+    • <strong>Abiotic Elicitors:</strong> Heavy metals (AgNO3, CdCl2), UV-C, methyl jasmonate, salicylic acid.<br/>
+    • <strong>Two-Stage Strategy:</strong> Stage 1 (Growth Phase) uses high auxins (2,4-D) and phosphate for rapid biomass. Stage 2 (Production Phase) transfers cells to auxin-free, low-phosphate media + elicitor to shift flux toward secondary metabolites.
+  </div>
+</div>
+<div style="background:#faf5ff; border:1px solid #d8b4fe; border-radius:8px; padding:12px; font-size:13px; color:#5b21b6;">
+  <strong>FAQ: Why is 2,4-D excluded from production media?</strong><br/>
+  2,4-D is a strong auxin for callus induction but acts as a direct transcriptional repressor for key enzymes in secondary metabolic pathways (like PAL).
+</div>`,
+  `<div style="background:#faf5ff; border:1px solid #d8b4fe; border-radius:8px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#5b21b6; font-size:14px;">FAQ 2: Physiological Cause of Washout in Continuous Chemostat Cultures</h4>
+  <p style="font-size:13px; color:#4c1d95; line-height:1.6; margin:0;">
+    <strong>Answer:</strong> Washout occurs when external dilution rate D = F / V exceeds maximum specific growth rate μ_max. At steady state, biomass balance dictates μ = D. If D &gt; μ_max, cell removal via overflow exceeds the cell division rate, causing dX/dt = (μ - D)X to turn negative and biomass X to drop exponentially to zero.
+  </p>
+</div>`,
+  `<h1 style="font-size:20px; color:#7c3aed; margin:0 0 10px; border-bottom:2px solid #7c3aed; padding-bottom:8px;">MODULE 2: HAIRY ROOT CULTURE TECHNOLOGY</h1>
+<div style="background:#f3e8ff; border-left:4px solid #8b5cf6; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#5b21b6;">
+  2.1 Definition &amp; Ri Plasmid Architecture
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Hairy root culture is an organ-based in vitro culture system featuring hyper-branched, genetically stable adventitious roots induced by <em>Agrobacterium rhizogenes</em> infection carrying the <strong>Ri (Root-inducing) plasmid</strong>.<br/><br/>
+  • <strong>rol Genes:</strong> The T-DNA region of the Ri plasmid contains <em>rolA, rolB, rolC, rolD</em> oncogenes. <strong>rolB is the most vital gene</strong>, altering hormone sensitivity to drive auxin-independent lateral root proliferation.<br/>
+  • <strong>Transformation Cascade:</strong> Chemotaxis (Acetosyringone) ➔ Sensor VirA autophosphorylates ➔ Activates response regulator VirG ➔ VirD1/VirD2 nick borders ➔ VirE2 coats ssDNA T-strand ➔ Exported via VirB T4SS ➔ NHEJ host chromosome integration.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">2.3 Advantages of Hairy Root Cultures over Suspension Cultures</h3>
+<table style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#7c3aed; color:#fff; text-align:left;">
+      <th style="padding:6px;">Property</th>
+      <th style="padding:6px;">Plant Suspension Cultures</th>
+      <th style="padding:6px;">Hairy Root Cultures</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#faf5ff;"><td style="padding:6px; border:1px solid #ddd6fe; font-weight:700;">Genetic Stability</td><td style="padding:6px; border:1px solid #ddd6fe;">Low; prone to somaclonal variations.</td><td style="padding:6px; border:1px solid #ddd6fe;">Extremely high; karyotypic stability maintained for years.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #ddd6fe; font-weight:700;">Growth Dynamics</td><td style="padding:6px; border:1px solid #ddd6fe;">Requires continuous synthetic hormones.</td><td style="padding:6px; border:1px solid #ddd6fe;">Hormone-independent growth in simple media.</td></tr>
+    <tr style="background:#faf5ff;"><td style="padding:6px; border:1px solid #ddd6fe; font-weight:700;">Metabolite Yield</td><td style="padding:6px; border:1px solid #ddd6fe;">Unpredictable or low; declines over time.</td><td style="padding:6px; border:1px solid #ddd6fe;">High and consistent; matches intact plant profile.</td></tr>
+  </tbody>
+</table>
+<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">PROTOCOL: ESTABLISHING HAIRY ROOT CULTURES</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    1. Infect explants with <em>A. rhizogenes</em> (OD600 = 0.6-0.8) + 100 μM acetosyringone.<br/>
+    2. Co-cultivate on MS agar in dark at 25°C for 2-3 days.<br/>
+    3. Clear bacteria using Cefotaxime (250-500 mg/L).<br/>
+    4. Isolate plagiotropic, fast-growing hairy roots emerging within 2-4 weeks onto hormone-free media.
+  </div>
+</div>`,
+  `<div style="background:#fef3c7; border:1px solid #fde68a; border-radius:8px; padding:12px; margin-bottom:16px; font-size:13px; color:#92400e;">
+  <strong>MNEMONIC FOR VIRULENCE GENE OPERONS (TI/RI PLASMIDS):</strong><br/>
+  <em>Virgins Always Build Castles During Early Geology</em><br/>
+  • <strong>VirA:</strong> Sensor kinase (Acetosyringone receptor)<br/>
+  • <strong>VirB:</strong> Type IV Secretion System structural channel<br/>
+  • <strong>VirC:</strong> Stimulates transfer efficiency<br/>
+  • <strong>VirD:</strong> VirD1/VirD2 endonuclease nicking assembly<br/>
+  • <strong>VirE:</strong> VirE2 single-stranded binding protein coating<br/>
+  • <strong>VirG:</strong> Response regulator transcription factor
+</div>
+<div style="background:#f3e8ff; border:1px solid #c084fc; border-radius:8px; padding:12px; font-size:13px; color:#5b21b6;">
+  <strong>Hairy Root Key Takeaways:</strong> <strong>rolB</strong> is the master oncogene trigger. Hairy roots exhibit <strong>plagiotropism</strong> (horizontal non-geotropic growth) and are <strong>genetically invariant</strong>.
+</div>`,
+  `<div style="background:#f3e8ff; border:1px solid #c084fc; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#6b21a8; font-size:14px;">Module 2 Question Bank: T-DNA Transfer Mechanism (5 Marks)</h4>
+  <div style="font-size:13px; color:#581c87; line-height:1.6;">
+    1. <strong>Chemotaxis:</strong> Acetosyringone binds VirA ➔ autophosphorylation ➔ activates VirG.<br/>
+    2. <strong>Excision:</strong> VirD1/VirD2 nicks 25-bp Left/Right borders; VirD2 attaches to 5' end of T-strand.<br/>
+    3. <strong>T-Complex &amp; Export:</strong> VirE2 coats ssDNA T-strand; exported via VirB T4SS channel.<br/>
+    4. <strong>Nuclear Import:</strong> NLS on VirD2/VirE2 interacts with importin-α ➔ integrates via NHEJ.
+  </div>
+</div>
+<div style="background:#faf5ff; border:1px solid #d8b4fe; border-radius:8px; padding:12px; font-size:13px; color:#5b21b6;">
+  <strong>FAQ: Why is acetosyringone added during monocot transformation?</strong><br/>
+  Monocots naturally release low levels of phenolic signaling molecules, so synthetic acetosyringone must be supplemented to induce <em>vir</em> genes.
+</div>`,
+  `<div style="background:#faf5ff; border:1px solid #d8b4fe; border-radius:16px; padding:20px;">
+  <h4 style="margin:0 0 8px; color:#5b21b6; font-size:14px;">FAQ 2: What are Opines, and why are they absent in normal plant cells?</h4>
+  <p style="font-size:13px; color:#4c1d95; line-height:1.6; margin:0;">
+    <strong>Answer:</strong> Opines (octopine, nopaline) are condensation products of amino acids and sugars encoded by opine synthase genes on the T-DNA. Normal plant cells lack these genes and cannot synthesize opines. Transformed plants secrete opines into the extracellular matrix, where <em>Agrobacterium</em> uses specialized plasmid-encoded opine catabolism genes to digest them as exclusive carbon and nitrogen sources.
+  </p>
+</div>`,
+  `<h1 style="font-size:20px; color:#7c3aed; margin:0 0 10px; border-bottom:2px solid #7c3aed; padding-bottom:8px;">MODULE 3: TRANSGENIC PLANTS (GENETIC ENGINEERING FRAMEWORKS)</h1>
+<div style="background:#f3e8ff; border-left:4px solid #8b5cf6; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#5b21b6;">
+  3.1 Definition &amp; 3.2 Gene Transfer Methods
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Transgenic plants carry stably integrated exogenous DNA sequences conferring novel phenotypes.<br/><br/>
+  • <strong>Agrobacterium Disarmed Vectors:</strong> Oncogenes deleted from T-DNA while preserving Left/Right 25-bp borders and <em>vir</em> region.<br/>
+  • <strong>Biolistics (Particle Bombardment):</strong> Heavy microprojectiles (0.6–1.0 μm gold/tungsten) coated with plasmid DNA accelerated by high-pressure helium blasts (900–1500 psi).<br/>
+  • <strong>Kinetic Energy Equation:</strong> E_k = ½ m v² (striking velocity v inversely proportional to particle size and gas flow resistance).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">3.3 Markers &amp; 3.4 Commercial Transgenic Examples</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Selectable Markers:</strong> <em>nptII</em> (kanamycin resistance), <em>hpt</em> (hygromycin), <em>bar</em> (glufosinate).<br/>
+  • <strong>Reporter Genes:</strong> <em>gusA / uidA</em> (X-Gluc substrate turns blue) &amp; <em>gfp</em> (green fluorescence under UV).<br/>
+  • <strong>Bt Cotton:</strong> Expresses <em>cry1Ac</em> delta-endotoxin protoxin; solubilized in alkaline midgut (pH &gt; 9.0) forming lytic pores.<br/>
+  • <strong>Golden Rice:</strong> Synthesizes β-carotene via <em>psy</em> (daffodil), <em>crtI</em> (Erwinia), and <em>lcy-b</em>.<br/>
+  • <strong>Roundup Ready Soybean:</strong> Expresses bacterial <em>cp4-EPSPS</em> resistant to glyphosate.
+</p>
+<div style="background:#fef3c7; border:1px solid #fde68a; border-radius:8px; padding:12px; font-size:13px; color:#92400e;">
+  <strong>GOLDEN RICE TRANSGENES MNEMONIC:</strong><br/>
+  <em>Plants Can Live Golden</em> ➔ <strong>P</strong>sy (Phytoene Synthase), <strong>C</strong>rtI (Phytoene Desaturase), <strong>L</strong>cy-b (Lycopene Beta-Cyclase), <strong>G</strong>GPP.
+</div>`,
+  `<div style="background:#f3e8ff; border:1px solid #c084fc; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#6b21a8; font-size:14px;">Module 3 Question Bank: Co-integrate vs. Binary Vector Systems (5 Marks)</h4>
+  <div style="font-size:13px; color:#581c87; line-height:1.6;">
+    • <strong>Co-integrate Vector System:</strong> Historical single-plasmid system requiring homologous recombination between intermediate <em>E. coli</em> vector and resident disarmed Ti plasmid. Cumbersome.<br/>
+    • <strong>Binary Vector System:</strong> Modern two-plasmid system:<br/>
+    1. <em>Helper Plasmid:</em> Disarmed Ti plasmid with functional <em>vir</em> operon, lacking T-DNA.<br/>
+    2. <em>Binary Cloning Vector:</em> Small shuttle plasmid replicating in <em>E. coli</em> &amp; <em>Agrobacterium</em>, flanked by 25-bp borders.
+  </div>
+</div>`,
+  `<div style="background:#faf5ff; border:1px solid #d8b4fe; border-radius:16px; padding:20px;">
+  <h4 style="margin:0 0 8px; color:#5b21b6; font-size:14px;">FAQ: Why is GFP superior to GUS for real-time validation?</h4>
+  <p style="font-size:13px; color:#4c1d95; line-height:1.6; margin:0;">
+    <strong>Answer:</strong> The β-glucuronidase (GUS) assay is destructive, requiring X-Gluc incubation and cell fixation which kills tissues. GFP requires no chemical substrate or cell fixation; it absorbs blue light and emits green fluorescence natively, enabling real-time gene expression monitoring in live, intact transgenic tissues.
+  </p>
+</div>`,
+  `<h1 style="font-size:20px; color:#7c3aed; margin:0 0 10px; border-bottom:2px solid #7c3aed; padding-bottom:8px;">MODULE 4: PLANT PRODUCTS OF INDUSTRIAL IMPORTANCE</h1>
+<div style="background:#f3e8ff; border-left:4px solid #8b5cf6; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#5b21b6;">
+  4.1 Overview of Specialized Secondary Metabolites
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Plant secondary metabolites are divided into three chemical classes:<br/>
+  1. <strong>Alkaloids:</strong> Nitrogenous compounds (Taxol, Vincristine, Berberine).<br/>
+  2. <strong>Terpenoids:</strong> Isoprene units (Artemisinin, Paclitaxel).<br/>
+  3. <strong>Phenolics:</strong> Phenylpropanoids &amp; Naphthoquinones (Shikonin).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">4.2 Comprehensive Matrix of Industrial Plant Products</h3>
+<table style="width:100%; border-collapse:collapse; font-size:11.5px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#7c3aed; color:#fff; text-align:left;">
+      <th style="padding:6px;">Compound</th>
+      <th style="padding:6px;">Class</th>
+      <th style="padding:6px;">Source Plant</th>
+      <th style="padding:6px;">Application</th>
+      <th style="padding:6px;">Mechanism of Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#faf5ff;"><td style="padding:6px; border:1px solid #ddd6fe; font-weight:700;">Shikonin</td><td style="padding:6px; border:1px solid #ddd6fe;">Naphthoquinone</td><td style="padding:6px; border:1px solid #ddd6fe;"><em>Lithospermum erythrorhizon</em></td><td style="padding:6px; border:1px solid #ddd6fe;">Red dye, anti-inflammatory</td><td style="padding:6px; border:1px solid #ddd6fe;">Phenylpropanoid/isoprenoid pathway; first 2-stage commercial process.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #ddd6fe; font-weight:700;">Taxol (Paclitaxel)</td><td style="padding:6px; border:1px solid #ddd6fe;">Diterpenoid Alkaloid</td><td style="padding:6px; border:1px solid #ddd6fe;"><em>Taxus brevifolia</em></td><td style="padding:6px; border:1px solid #ddd6fe;">Breast/lung anticancer</td><td style="padding:6px; border:1px solid #ddd6fe;">Binds β-tubulin, hyper-stabilizes microtubules preventing mitosis.</td></tr>
+    <tr style="background:#faf5ff;"><td style="padding:6px; border:1px solid #ddd6fe; font-weight:700;">Berberine</td><td style="padding:6px; border:1px solid #ddd6fe;">Isoquinoline Alkaloid</td><td style="padding:6px; border:1px solid #ddd6fe;"><em>Coptis japonica</em></td><td style="padding:6px; border:1px solid #ddd6fe;">Antimicrobial</td><td style="padding:6px; border:1px solid #ddd6fe;">Accumulates in vacuolar compartments of suspension cultures.</td></tr>
+    <tr><td style="padding:6px; border:1px solid #ddd6fe; font-weight:700;">Vincristine / Vinblastine</td><td style="padding:6px; border:1px solid #ddd6fe;">Indole Alkaloids</td><td style="padding:6px; border:1px solid #ddd6fe;"><em>Catharanthus roseus</em></td><td style="padding:6px; border:1px solid #ddd6fe;">Hodgkin's lymphoma</td><td style="padding:6px; border:1px solid #ddd6fe;">Binds tubulin dimers, inhibiting microtubule polymerization.</td></tr>
+    <tr style="background:#faf5ff;"><td style="padding:6px; border:1px solid #ddd6fe; font-weight:700;">Artemisinin</td><td style="padding:6px; border:1px solid #ddd6fe;">Sesquiterpene Lactone</td><td style="padding:6px; border:1px solid #ddd6fe;"><em>Artemisia annua</em></td><td style="padding:6px; border:1px solid #ddd6fe;">Antimalarial</td><td style="padding:6px; border:1px solid #ddd6fe;">Unique endoperoxide bridge generates cytotoxic free radicals.</td></tr>
+  </tbody>
+</table>`,
+  `<div style="background:#fef3c7; border:1px solid #fde68a; border-radius:8px; padding:12px; margin-bottom:16px; font-size:13px; color:#92400e;">
+  <strong>ANTICANCER DRUG MECHANISMS MNEMONIC:</strong><br/>
+  <em>Taxol Tightens; Vinca Vanishes</em><br/>
+  • <strong>Taxol:</strong> Tubulin Polymerization Stabilizer (locks spindle together, preventing depolymerization).<br/>
+  • <strong>Vinca Alkaloids:</strong> Vacates Polymerization (prevents tubulin dimer aggregation, blocking spindle formation).
+</div>
+<div style="background:#f3e8ff; border:1px solid #c084fc; border-radius:8px; padding:12px; font-size:13px; color:#5b21b6;">
+  <strong>Core Takeaways:</strong> Shikonin is the historical baseline for industrial plant tissue culture. Artemisinin function relies on its rare <strong>endoperoxide bridge</strong>. Precursor feeding adds early intermediates to clear rate-limiting barriers.
+</div>`,
+  `<div style="background:#f3e8ff; border:1px solid #c084fc; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#6b21a8; font-size:14px;">Module 4 Question Bank: Shikonin Two-Stage Production Process (5 Marks)</h4>
+  <div style="font-size:13px; color:#581c87; line-height:1.6;">
+    • <strong>Metabolic Problem:</strong> High ammonium ions and 2,4-D in standard media promote rapid cell division but completely inhibit Shikonin biosynthesis.<br/>
+    • <strong>Stage 1 (Biomass Accumulation):</strong> Inoculate in <strong>MG-5 medium</strong> (high ammonium &amp; auxins) to maximize dry weight. No shikonin is synthesized.<br/>
+    • <strong>Stage 2 (Production Phase):</strong> Filter biomass into <strong>M-9 medium</strong> (nitrate ions instead of ammonium, no auxins, plus Cu²⁺ abiotic elicitor) to induce intense shikonin secretion.<br/>
+    • <strong>Downstream Recovery:</strong> Extract secreted lipophilic shikonin directly from medium using organic solvents.
+  </div>
+</div>`,
+  `<div style="background:#faf5ff; border:1px solid #d8b4fe; border-radius:16px; padding:20px;">
+  <h4 style="margin:0 0 8px; color:#5b21b6; font-size:14px;">FAQ: What is precursor feeding and how does it boost Taxol yields in Taxus suspension lines?</h4>
+  <p style="font-size:13px; color:#4c1d95; line-height:1.6; margin:0;">
+    <strong>Answer:</strong> Precursor feeding is an optimization strategy where cheap, early-stage intermediate molecules from a target metabolic pathway are added to the culture medium. This bypasses early rate-limiting enzymatic steps, driving metabolic flux toward the end product. In <em>Taxus brevifolia</em> cell suspensions, adding amino acid precursors like <strong>phenylalanine</strong> (which forms the paclitaxel side-chain) significantly increases overall Taxol yields.
+  </p>
+</div>`
+];
+
 /* ── Continuous Scroll PDF Document Viewer Component ── */
 function ContinuousPdfViewer({ topic }) {
   function handleOpenNewWindow() {
@@ -2837,6 +3083,20 @@ function ContinuousPdfViewer({ topic }) {
           </div>
           ${pgContent}
           <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 20</span></div>
+        </div>
+      `).join("");
+    } else if (topic.id === "topic-07") {
+      pagesHtml = FULL_SECONDARY_METABOLITES_21_PAGES.map((pgContent, idx) => `
+        <div class="page">
+          <div class="header">
+            <div>
+              <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
+              <h2 class="title">${topic.name}</h2>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${idx + 1} OF 21</span>
+          </div>
+          ${pgContent}
+          <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 21</span></div>
         </div>
       `).join("");
     } else {
@@ -2933,7 +3193,7 @@ function ContinuousPdfViewer({ topic }) {
           <div>
             <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#fff" }}>{topic.pdfTitle}</h3>
             <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>
-              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
+              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : topic.id === "topic-07" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
             </p>
           </div>
         </div>
@@ -2947,10 +3207,10 @@ function ContinuousPdfViewer({ topic }) {
             cursor: "pointer", display: "flex", alignItems: "center", gap: "6px",
             boxShadow: "0 3px 12px " + topic.color + "40", transition: "all 0.2s"
           }}
-          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
+          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
         >
           <span>↗️</span>
-          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : "Open PDF in New Window"}</span>
+          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : "Open PDF in New Window"}</span>
         </button>
       </div>
 
@@ -2966,7 +3226,7 @@ function ContinuousPdfViewer({ topic }) {
           paddingRight: "8px",
           cursor: "pointer"
         }}
-        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
+        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : topic.id === "topic-07" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
       >
         {topic.sections.map((sec, idx) => (
           <div key={idx} style={{
