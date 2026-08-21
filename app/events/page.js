@@ -510,7 +510,7 @@ export default function EventsPage() {
               </div>
 
               <div style={{ marginBottom: "24px" }}>
-                <h4 style={{ fontSize: "14px", fontWeight 700, color: "#0F172A", marginBottom: "6px" }}>Executive Event Overview & Agenda</h4>
+                <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#0F172A", marginBottom: "6px" }}>Executive Event Overview & Agenda</h4>
                 <p style={{ fontSize: "13.5px", color: "#334155", lineHeight: "1.6", margin: 0 }}>
                   {selectedEvent.description || "Join fellow researchers, students, and biotechnology leaders for this key academic conference."}
                 </p>
