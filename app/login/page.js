@@ -36,8 +36,8 @@ export default function LoginPage() {
         <div style={S.imgPanel}>
           <div style={S.imgOverlay}></div>
           <img
-            src="/dna-helix.jpg"
-            alt="BioConnect DNA Helix Research"
+            src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80"
+            alt="Biotechnology Scientist Laboratory Research"
             style={S.img}
           />
         </div>
