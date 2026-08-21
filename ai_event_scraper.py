@@ -26,51 +26,65 @@ BACKUP_FILE = "scraped_events_backup.json"
 GEMINI_ENDPOINT = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key={GEMINI_API_KEY}"
 
 
-# --- URL Post-Processing & Validation ---
+# --- 1. HARDCODED PYTHON URL FILTER (THE SAFETY NET) ---
 
-def validate_and_clean_url(url: str) -> Optional[str]:
+def is_valid_registration_url(url: str) -> bool:
     """
-    Validates and cleans extracted event registration URLs.
+    Hardcoded Safety Net Filter:
+    Validates whether a URL is a specific, deep-link event registration/details page.
     
     STRICT RULES:
-    1. Must be a valid HTTP/HTTPS URL.
-    2. Cannot be a Google Search link (e.g. google.com/search).
-    3. CANNOT be a generic homepage domain root (e.g. 'https://academicworldresearch.org' or 'https://gbu.edu.in/').
-    4. Must contain a deep path or query parameter pointing directly to the event details/form.
-    
-    Returns the cleaned deep-link URL or None if invalid.
+    1. Must start with http:// or https://
+    2. Cannot be a Google search link (e.g. google.com/search).
+    3. Rejects homepage domain roots (e.g., domain.com, domain.edu, domain.org).
+    4. Path length MUST be at least 5 characters (len(parsed.path) >= 5).
+    5. Path MUST NOT be generic root endpoints like /home, /index, /index.html, /index.php, /default.aspx.
+    6. Must contain deep path structure (more than 1 slash in path, e.g. domain.com/events/crispr-2026/register)
+       or explicit event subpath keywords ('register', 'event', 'conf', 'ticket', 'symposium', 'conclave', 'workshop', 'form', 'apply').
     """
     if not url or not isinstance(url, str):
-        return None
+        return False
 
     url = url.strip()
     if not (url.startswith("http://") or url.startswith("https://")):
-        return None
+        return False
 
     try:
         parsed = urlparse(url)
         domain = parsed.netloc.lower()
         path = parsed.path.rstrip("/")
 
-        # Rule 1: Reject Google search results
+        # Reject Google search links
         if "google.com" in domain and "/search" in path:
-            return None
+            return False
 
-        # Rule 2: Reject generic homepage domain roots (e.g. https://domain.com or https://domain.com/)
-        if not path or path in ["", "/", "/home", "/index.html", "/index.php", "/default.aspx"]:
-            if not parsed.query:
-                # No deep path and no query parameters -> generic domain root!
-                return None
+        # Reject homepage roots or paths shorter than 5 chars
+        if not path or len(path) < 5 or path in ["/home", "/index", "/index.html", "/index.php", "/default.aspx"]:
+            if not parsed.query:  # If no query string exists, it's a homepage domain!
+                return False
 
-        # Rule 3: Academic World Research specific deep link requirement
-        if "academicworldresearch.org" in domain:
-            if not path or path in ["", "/", "/home", "/index.html"]:
-                if not parsed.query:
-                    return None
+        # Split path segments to evaluate depth
+        path_segments = [seg for seg in path.split("/") if seg]
 
-        return url
+        # Keywords indicating a specific registration / event detail subpath
+        event_keywords = [
+            "register", "registration", "event", "events", "conf", "conference",
+            "symposium", "conclave", "workshop", "ticket", "tickets", "apply",
+            "form", "expo", "summit", "meeting", "seminar"
+        ]
+
+        path_or_query_lower = (path + "?" + parsed.query).lower()
+        has_event_keyword = any(kw in path_or_query_lower for kw in event_keywords)
+
+        # A valid deep link must EITHER have multiple path segments (>= 2) OR contain explicit event keywords
+        if len(path_segments) >= 2 or (len(path_segments) >= 1 and has_event_keyword):
+            return True
+
+        # Single segment path without any event keywords (e.g. domain.com/about) -> reject!
+        return False
+
     except Exception:
-        return None
+        return False
 
 
 # --- Pydantic Data Models ---
@@ -95,12 +109,10 @@ class PricingAndRegistration(BaseModel):
     registration_url: str = Field(description="Direct deep-link official registration URL")
 
     @field_validator("registration_url")
-
     def check_deep_link(cls, v: str) -> str:
-        cleaned = validate_and_clean_url(v)
-        if not cleaned:
+        if not is_valid_registration_url(v):
             raise ValueError(f"Registration URL '{v}' is a generic homepage domain or invalid link. A deep link is required.")
-        return cleaned
+        return v
 
 
 class Details(BaseModel):
@@ -134,9 +146,23 @@ def generate_slug(text: str) -> str:
     return slug or "biotech-event-2026"
 
 
+# --- 2. BROAD & OPTIMIZED SEARCH TARGETS ---
+
+SEARCH_TARGETS = [
+    "upcoming biotech conferences India 2026 registration",
+    "genomics symposium 2027 tickets apply to attend",
+    "biomedical summit 2026 apply to attend India",
+    "healthtech eventbrite India 2026 2027",
+    "synthetic biology research conference 2026 register",
+    "site:academicworldresearch.org/Conference/ 2026 2027 biotechnology conference registration",
+    "site:events.iitgn.ac.in/ 2026 2027 register",
+    "site:btm.gujarat.gov.in/ 2026 2027 biotech summit register"
+]
+
+
 def call_gemini_with_search(query: str, max_retries: int = 3) -> Optional[Dict[str, Any]]:
     """
-    Call Gemini API with Search Grounding enabled and strict deep-link prompt instructions.
+    Call Gemini API with Search Grounding enabled and AGGRESSIVE LLM PROMPT CONSTRAINTS.
     """
     if not GEMINI_API_KEY:
         print("[WARNING] GEMINI_API_KEY is not set in environment.")
@@ -145,13 +171,10 @@ def call_gemini_with_search(query: str, max_retries: int = 3) -> Optional[Dict[s
     prompt_text = f"""
 You are an expert Web Scraping & AI Data Extraction Agent for BioConnect.
 Search Google for upcoming 2026-2027 biotechnology, biomedical, genomics, healthcare, and life sciences conferences/events.
-Target query: {query}
+Search Query: {query}
 
-CRITICAL RULES FOR `registration_url`:
-1. Do NOT return generic homepage domain URLs (e.g., 'https://academicworldresearch.org' or 'https://gbu.edu.in/').
-2. The `registration_url` MUST be a CANONICAL DEEP LINK leading directly to the specific event detail page or direct registration form (e.g., 'https://academicworldresearch.org/Conf/2026/CRISPR-Conclave-Mumbai/' or 'https://events.iitgn.ac.in/2026/bio-expo/register/').
-3. For academicworldresearch.org specifically, fetch the full conference URL (e.g., academicworldresearch.org/Conf/2026/...) rather than the base portal domain.
-4. Extract ONLY real, upcoming events scheduled in 2026 or 2027. Discard past or expired events.
+AGGRESSIVE DEEP-LINK MANDATE:
+You MUST find the exact, direct URL where a user can buy tickets or register for the event. If you can only find the homepage of the host institution (e.g., domain.com or domain.edu), YOU MUST DISCARD THE EVENT entirely. DO NOT include it in the JSON. The `registration_url` MUST be a deep link containing specific event paths (e.g., domain.com/events/crispr-2026/register).
 
 Format the output as a valid JSON object with an "events" key containing an array of events:
 {{
@@ -175,7 +198,7 @@ Format the output as a valid JSON object with an "events" key containing an arra
       "pricing_and_registration": {{
         "is_free": false,
         "entry_fee": "Free for Students / ₹2,500 Professionals",
-        "registration_url": "https://academicworldresearch.org/Conf/2026/CRISPR-Conclave-Mumbai/register"
+        "registration_url": "https://academicworldresearch.org/Conference/2026/CRISPR-Conclave-Mumbai/register"
       }},
       "details": {{
         "description": "2-3 sentence executive summary of the event.",
@@ -438,18 +461,14 @@ def sync_to_firestore(events: List[EventModel]):
     print(f"[FIRESTORE SYNC] Completed sync for {success_count}/{len(events)} event documents.")
 
 
+# --- 3. HARDCODED PYTHON SAFETY NET PIPELINE ---
+
 def run_pipeline(queries: List[str] = None):
     """
-    Execute full scraping, extraction, strict deep-link URL validation, backup, and sync pipeline.
+    Execute full scraping, extraction, strict Python URL validation, backup, and sync pipeline.
     """
     if queries is None:
-        queries = [
-            "site:academicworldresearch.org/Conference/ 2026 2027 biotechnology conference",
-            "biotechnology conference deep link Gujarat Ahmedabad Gandhinagar 2026 2027",
-            "Gujarat Biotechnology University GBU GSBTM NIPER Ahmedabad conference 2026 2027",
-            "academicworldresearch.org biomedical genomics healthcare research conference 2026 2027",
-            "upcoming biotechnology genomics biomedical conferences India IIT IISc AIIMS 2026 2027"
-        ]
+        queries = SEARCH_TARGETS
 
     all_events: Dict[str, EventModel] = {}
 
@@ -468,18 +487,29 @@ def run_pipeline(queries: List[str] = None):
                 print(f"[INFO] Discovered {len(raw_list)} raw events for query '{q}'.")
                 for item in raw_list:
                     try:
+                        # Validate registration URL with hardcoded Python safety net
+                        reg_url = item.get("pricing_and_registration", {}).get("registration_url", "")
+                        if not is_valid_registration_url(reg_url):
+                            print(f"[SAFETY NET DROPPED] Dropping event '{item.get('title')}' because URL '{reg_url}' is a generic homepage or non-deep link.")
+                            continue
+
                         evt = EventModel(**item)
                         if not evt.event_id:
                             evt.event_id = generate_slug(evt.title)
                         all_events[evt.event_id] = evt
                     except Exception as ve:
-                        print(f"[STRICT URL VALIDATION DISCARD] Skipping invalid or generic domain event: {ve}")
+                        print(f"[SAFETY NET DROPPED] Dropping invalid event item: {ve}")
     else:
         print("[INFO] GEMINI_API_KEY not present in local env. Running pipeline with verified deep-link dataset.")
 
     # 2. Add/Validate Verified Deep-Link Sample Dataset
     sample_events = get_verified_sample_deep_link_events()
     for s_item in sample_events:
+        reg_url = s_item.get("pricing_and_registration", {}).get("registration_url", "")
+        if not is_valid_registration_url(reg_url):
+            print(f"[SAFETY NET DROPPED] Dropping sample item due to invalid URL: {reg_url}")
+            continue
+
         try:
             evt = EventModel(**s_item)
             if evt.event_id not in all_events:
@@ -487,29 +517,31 @@ def run_pipeline(queries: List[str] = None):
         except Exception as ve:
             print(f"[VALIDATION WARNING] Skipping sample item: {ve}")
 
-    event_list = list(all_events.values())
-    print(f"\n[PIPELINE SUMMARY] Successfully extracted & validated {len(event_list)} unique deep-linked events.")
+    # 3. Final Hardcoded Python URL Filter Audit
+    validated_events: List[EventModel] = []
+    for evt in all_events.values():
+        if is_valid_registration_url(evt.pricing_and_registration.registration_url):
+            validated_events.append(evt)
+        else:
+            print(f"[SAFETY NET AUDIT DROPPED] Dropped '{evt.title}' with URL '{evt.pricing_and_registration.registration_url}'")
+
+    print(f"\n[PIPELINE SUMMARY] Successfully extracted & validated {len(validated_events)} unique deep-linked events.")
 
     # Save to local backup JSON
-    backup_data = [e.model_dump() for e in event_list]
+    backup_data = [e.model_dump() for e in validated_events]
     with open(BACKUP_FILE, "w", encoding="utf-8") as f:
         json.dump(backup_data, f, indent=2, ensure_ascii=False)
     print(f"[LOCAL BACKUP] Saved backup to '{BACKUP_FILE}' ({len(backup_data)} records).")
 
     # Sync to Firestore
-    if event_list:
-        sync_to_firestore(event_list)
+    if validated_events:
+        sync_to_firestore(validated_events)
 
-    # PRINT SAMPLE JSON OUTPUT EXPLICITLY HIGHLIGHTING registration_url DEEP LINKS
+    # PRINT FULL CONSOLE OUTPUT OF ALL DISCOVERED DEEP LINKS
     print("\n" + "=" * 75)
-    print("📋 SAMPLE EXTRACTED EVENTS (HIGHLIGHTING SPECIFIC DEEP-LINK `registration_url`):")
+    print("📋 FINAL JSON OUTPUT - ALL DISCOVERED EVENTS WITH VERIFIED DEEP-LINK URLs:")
     print("=" * 75)
-    for idx, e_dict in enumerate(backup_data[:5], 1):
-        print(f"\n--- EVENT #{idx}: {e_dict['title']} ---")
-        print(f"📍 Organizer: {e_dict['organizer']}")
-        print(f"📅 Schedule: {e_dict['schedule']['start_date']} to {e_dict['schedule']['end_date']}")
-        print(f"🔗 DEEP-LINK REGISTRATION URL: {e_dict['pricing_and_registration']['registration_url']}")
-        print(f"✅ Deep-Link Status: VALIDATED (Not a generic domain root)")
+    print(json.dumps(backup_data, indent=2, ensure_ascii=False))
 
     print("\n✅ AI EVENT SCRAPER PIPELINE EXECUTION COMPLETED SUCCESSFULLY.")
     return backup_data
