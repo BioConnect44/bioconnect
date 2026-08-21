@@ -60,7 +60,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-10-10T09:00:00.000Z",
     end_date: "2026-10-12T17:30:00.000Z",
-    registration_url: "https://iar.ac.in/events/",
+    registration_url: "https://www.google.com/search?q=site:iar.ac.in+%22National+Symposium+on+Plant+Genomics%22",
     entry_fee: "Free for IAR Students / ₹500 External Scholars",
     description: "National scientific symposium on crop gene editing, plant tissue culture, functional genomics, and agricultural bio-innovation at Institute of Advanced Research (IAR Gandhinagar).",
     profiles: { full_name: "Institute of Advanced Research (IAR Gandhinagar)" }
@@ -73,7 +73,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-11-25T09:30:00.000Z",
     end_date: "2026-11-27T17:30:00.000Z",
-    registration_url: "https://pdpu.ac.in/events-news.admin",
+    registration_url: "https://www.google.com/search?q=site:pdpu.ac.in+%22Bio-Energy+and+Clean+Bioprocessing%22",
     entry_fee: "₹800 Students / ₹2,000 Industry",
     description: "International conclave focusing on biofuels, microbial fuel cells, biowaste conversion, and sustainable bioprocessing organized by Pandit Deendayal Energy University (PDEU / PDPU Gandhinagar).",
     profiles: { full_name: "Pandit Deendayal Energy University (PDEU / PDPU)" }
@@ -86,7 +86,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-12-18T09:00:00.000Z",
     end_date: "2026-12-19T17:00:00.000Z",
-    registration_url: "https://sxca.edu.in/events/",
+    registration_url: "https://www.google.com/search?q=site:sxca.edu.in+%22Bio-Sciences+and+Life+Sciences%22",
     entry_fee: "₹300 Delegates",
     description: "Annual life sciences symposium and hands-on workshop covering molecular diagnostics, immunology assays, and bioinformatics tools at St. Xavier's College Ahmedabad.",
     profiles: { full_name: "Department of Biotechnology, St. Xavier's College" }
@@ -99,7 +99,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2026-10-05T09:00:00.000Z",
     end_date: "2026-10-07T17:00:00.000Z",
-    registration_url: "https://pharmacy.nirmauni.ac.in/events/",
+    registration_url: "https://www.google.com/search?q=site:nirmauni.ac.in+%22National+Symposium+on+Molecular+Biology+and+Cancer+Therapeutics%22",
     entry_fee: "₹750 Students / ₹1,800 Professionals",
     description: "National symposium bringing together oncology researchers, molecular biologists, and pharmacologists exploring targeted cancer immunotherapies at Nirma University.",
     profiles: { full_name: "Institute of Pharmacy & Science, Nirma University" }
@@ -190,7 +190,7 @@ const DEFAULT_EVENTS = [
     region: "gujarat",
     event_date: "2027-01-15T10:00:00.000Z",
     end_date: "2027-01-16T17:00:00.000Z",
-    registration_url: "https://www.msubaroda.ac.in/Academics/Events",
+    registration_url: "https://www.google.com/search?q=site:msubaroda.ac.in+%22National+Genomics+and+Proteomics+Symposium%22",
     entry_fee: "Free for MSU Students / ₹800 External Candidates",
     description: "National academic symposium on next-generation sequencing (NGS), structural biology, and functional proteomics in plant & animal systems.",
     profiles: { full_name: "Faculty of Science, MSU Baroda" }
