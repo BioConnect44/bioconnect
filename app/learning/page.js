@@ -1750,6 +1750,170 @@ const COURSE_TOPICS = [
         explanation: "In Western blotting, proteins are first resolved according to molecular weight by SDS-PAGE before being blotted and detected with antibodies."
       }
     ]
+  },
+  {
+    id: "topic-11",
+    topicNum: "TOPIC 11",
+    name: "Bioinformatics & Computational Biology",
+    shortName: "Bioinformatics",
+    icon: "💻",
+    color: "#06B6D4",
+    notesCount: "30 pages",
+    module: "Module 4 of 4",
+    progress: 80,
+    tagline: "Full 30-Page Master Textbook: Repositories, BLAST, alignment algorithms, substitution matrices, NGS & MD simulations.",
+    pdfTitle: "Topic 11 - Bioinformatics & Computational Biology.pdf",
+    sections: [
+      {
+        title: "1. Major Bioinformatics Resources & Search Tools",
+        content: `• Primary Archival Repositories: Direct uncurated submissions (GenBank NCBI, ENA EMBL-EBI, DDBJ Japan). INSDC 24h synchronization.
+• Secondary Curation Systems: Value-added curated repositories (UniProtKB/Swiss-Prot manually curated, Pfam HMM domain families, PROSITE patterns). Composite engines (Entrez, SRS).
+• BLAST Pipeline: Word Segmentation (W=11 nuc, W=3 prot) → Seeding Phase (T threshold BLOSUM62) → Bidirectional Extension Phase (drop limit X) → High-Scoring Segment Pairs (HSPs). E-value statistical significance.`
+      },
+      {
+        title: "2. Sequence and Structure Databases (CATH vs. SCOP)",
+        content: `• Storage Schemas: 1D linear character arrays vs 3D spatial atomic coordinates (X, Y, Z) in PDB.
+• SCOP Classification: Manual expert visual review across Class → Fold → Superfamily → Family.
+• CATH Classification: Semi-automated computational approach across Class (C) → Architecture (A, gross shape e.g. barrel/sandwich without loop connectivity) → Topology (T, fold & loop connectivity via SSAP algorithm) → Homology (H).`
+      },
+      {
+        title: "3. Sequence Analysis, Alignment & Phylogeny",
+        content: `• Formats: FASTA (> header line) & GenBank Flat-File (LOCUS, ACCESSION, FEATURES, ORIGIN //).
+• Substitution Matrices: PAM (Margaret Dayhoff, 1% mutation, PAM250 distant) vs BLOSUM (Henikoff, BLOCKS log-odds, BLOSUM62 default, BLOSUM45 distant, BLOSUM80 close).
+• Alignment Algorithms: Affine gap penalty W(g) = -d - (k-1)e. Needleman-Wunsch global dynamic programming vs Smith-Waterman local alignment (resets negative scores to 0).
+• ClustalW & Phylogeny: Progressive MSA (Pairwise global alignment → NJ Guide Tree → Progressive cluster alignment). ClustalW limitation: 'Once a gap, always a gap'. Phenetic UPGMA (strict molecular clock, rooted) & Neighbor-Joining (NJ, unrooted) vs Cladistic Maximum Parsimony & Maximum Likelihood.`
+      },
+      {
+        title: "4. Data Mining for Genomics & Proteomics",
+        content: `• NGS Quality Scoring: Phred Quality Score Q = -10·log10(P) (Q30 = 99.9% accuracy/0.1% error, Q40 = 99.99% accuracy/0.01% error). Burrows-Wheeler Transform (BWT) read mapping compression.
+• Gene Prediction: Ab Initio intrinsic HMMs searching for ORFs & GT-AG donor/acceptor intron rule vs Homology-Based extrinsic (BLASTx).
+• Mass Spectrometry Informatics: Peptide Mass Fingerprinting (PMF Mascot trypsin digest weights) vs Tandem Mass Spectrometry (MS/MS letter-by-letter sequence decoding). Trypsin cleaves C-terminal to Lys (K) / Arg (R) except before Pro (P).`
+      },
+      {
+        title: "5. Molecular Dynamics and Simulations",
+        content: `• Newtonian Physics: F = m·a integrated with 2 femtosecond time steps. Force field equation Vtotal = Vbond + Vangle + Vdihedral + VvdW + Velectrostatic.
+• Lennard-Jones 12-6 Potential: 4ε[(σ/r)¹² - (σ/r)⁶] (r⁻⁶ long-range dispersion attraction vs r⁻¹² short-range electronic repulsion).
+• MD Simulation Protocol: System preparation (PDB) → Solvation & Neutralization (TIP3P, Na⁺/Cl⁻) → Energy Minimization (Steepest Descent/Conjugate Gradient) → NVT (constant volume) & NPT (constant pressure) Equilibration → Production Run (Verlet/Leap-frog 2 fs) → Trajectory Analysis (RMSD, RMSF).`
+      },
+      {
+        title: "6. Exam Evaluative Questions & Numerical Solutions",
+        content: `• Needleman-Wunsch Matrix Computation: Global alignment grid calculation for GATT vs GATC yields Total Alignment Score = 2.
+• Phred Score Conversion: Q = 40 yields base error probability P = 10⁻⁴ = 0.0001 (0.01% error).
+• NVT vs NPT Ensembles: NVT maintains fixed volume during early thermal equilibration; NPT maintains constant pressure allowing volume changes to mimic atmospheric experimental conditions.`
+      }
+    ],
+    examTraps: [
+      "Swiss-Prot curation: UniProtKB/Swiss-Prot is classified as a secondary database because it relies on human expert curation over raw primary deposits.",
+      "Local alignment rule: Smith-Waterman resets negative score accumulations to zero to initiate new local alignment boundaries.",
+      "Lennard-Jones potential: The r⁻⁶ term calculates long-range attraction; the r⁻¹² term calculates short-range repulsion."
+    ],
+    pyqs: [
+      {
+        id: 1,
+        question: "GAT-B 2020: BLAST is primarily used for:",
+        options: ["Protein purification", "Sequence similarity search", "PCR amplification", "Restriction digestion"],
+        correct: 1,
+        explanation: "BLAST (Basic Local Alignment Search Tool) is a heuristic sequence alignment tool used to search databases for local sequence similarity."
+      },
+      {
+        id: 2,
+        question: "GAT-B 2020: FASTA format is used for:",
+        options: ["Protein crystallization", "Sequence storage", "Gel electrophoresis", "DNA ligation"],
+        correct: 1,
+        explanation: "FASTA format is a text-based format for representing nucleotide or peptide sequences, starting with a '>' header line."
+      },
+      {
+        id: 3,
+        question: "GAT-B 2020: Which database stores protein sequence information?",
+        options: ["GenBank", "PDB", "SWISS-PROT", "EMBL"],
+        correct: 2,
+        explanation: "SWISS-PROT (UniProtKB/Swiss-Prot) is the premier manually curated protein sequence database."
+      },
+      {
+        id: 4,
+        question: "GAT-B 2021: The Protein Data Bank (PDB) contains:",
+        options: ["Genome sequences", "Protein 3D structures", "Metabolic pathways", "DNA primers"],
+        correct: 1,
+        explanation: "The Protein Data Bank (PDB) is the primary repository for 3D structural coordinates of biological macromolecules."
+      },
+      {
+        id: 5,
+        question: "GAT-B 2021: Global sequence alignment is best represented by:",
+        options: ["BLAST", "Smith-Waterman algorithm", "Needleman-Wunsch algorithm", "FASTA"],
+        correct: 2,
+        explanation: "The Needleman-Wunsch algorithm performs global dynamic programming sequence alignment across the entire length of two sequences."
+      },
+      {
+        id: 6,
+        question: "GAT-B 2021: Which bioinformatics tool predicts open reading frames?",
+        options: ["ORF Finder", "ClustalW", "BLASTP", "RasMol"],
+        correct: 0,
+        explanation: "NCBI ORF Finder scans nucleotide sequences to identify open reading frames starting with ATG start codons."
+      },
+      {
+        id: 7,
+        question: "GAT-B 2022: Which database is primarily used for nucleotide sequences?",
+        options: ["SWISS-PROT", "GenBank", "PDB", "KEGG"],
+        correct: 1,
+        explanation: "GenBank (NCBI) is the primary archival repository for nucleotide sequences."
+      },
+      {
+        id: 8,
+        question: "GAT-B 2022: Phylogenetic trees are used to study:",
+        options: ["Protein purification", "Evolutionary relationships", "PCR reactions", "Restriction mapping"],
+        correct: 1,
+        explanation: "Phylogenetic trees model evolutionary relationships and historical lines of descent among species or genes."
+      },
+      {
+        id: 9,
+        question: "GAT-B 2022: Multiple sequence alignment is commonly performed using:",
+        options: ["ClustalW", "BLAST", "PyMOL", "Primer3"],
+        correct: 0,
+        explanation: "ClustalW is a widely used progressive alignment tool for Multiple Sequence Alignment (MSA)."
+      },
+      {
+        id: 10,
+        question: "GAT-B 2023: The branch of bioinformatics dealing with proteins is called:",
+        options: ["Genomics", "Transcriptomics", "Proteomics", "Metabolomics"],
+        correct: 2,
+        explanation: "Proteomics is the large-scale study of protein structures, functions, interactions, and expression."
+      },
+      {
+        id: 11,
+        question: "GAT-B 2023: Which algorithm is used for local alignment?",
+        options: ["Needleman-Wunsch", "Smith-Waterman", "BLASTN", "FASTA"],
+        correct: 1,
+        explanation: "The Smith-Waterman algorithm is the exact dynamic programming method for local sequence alignment."
+      },
+      {
+        id: 12,
+        question: "GAT-B 2023: KEGG database is mainly associated with:",
+        options: ["Protein structures", "Metabolic pathways", "DNA cloning", "Viral genomes"],
+        correct: 1,
+        explanation: "Kyoto Encyclopedia of Genes and Genomes (KEGG) is a database resource for understanding high-level biological systems and metabolic pathways."
+      },
+      {
+        id: 13,
+        question: "GAT-B 2024: BLASTP compares:",
+        options: ["DNA vs DNA", "Protein vs Protein", "RNA vs RNA", "DNA vs Protein"],
+        correct: 1,
+        explanation: "BLASTP takes an amino acid query sequence and compares it against a protein sequence database."
+      },
+      {
+        id: 14,
+        question: "GAT-B 2024: Which file format is commonly used for protein structures?",
+        options: ["FASTA", "PDB", "CSV", "DOCX"],
+        correct: 1,
+        explanation: "PDB format files store 3D spatial atomic coordinate positions (X, Y, Z) of macromolecular structures."
+      },
+      {
+        id: 15,
+        question: "GAT-B 2024: Genome annotation refers to:",
+        options: ["DNA sequencing only", "Identification of genes and functional elements", "Protein purification", "Restriction digestion"],
+        correct: 1,
+        explanation: "Genome annotation is the process of identifying gene locations, coding regions, introns/exons, and functional elements within a raw genome sequence."
+      }
+    ]
   }
 ];
 
@@ -1821,6 +1985,16 @@ const CHALLENGES = {
     xp: 300,
     timeLimit: 1200,
     questions: COURSE_TOPICS[8].pyqs
+  }
+,
+  bioinformatics: {
+    title: "Bioinformatics & Computational Biology PYQs",
+    subject: "Bioinformatics & Computational Biology (GAT-B 2020-2024)",
+    color: "#06B6D4",
+    bg: "#ECFEFF",
+    xp: 250,
+    timeLimit: 1000,
+    questions: COURSE_TOPICS[9].pyqs
   }
 };
 
@@ -4453,6 +4627,281 @@ const FULL_IMMUNOLOGY_22_PAGES = [
 </div>`
 ];
 
+const FULL_BIOINFORMATICS_30_PAGES = [
+  `<h1 style="font-size:22px; color:#06b6d4; margin:0 0 10px; border-bottom:2px solid #06b6d4; padding-bottom:8px;">COMPREHENSIVE LECTURE REFERENCE MANUAL: BIOINFORMATICS</h1>
+<p style="font-style:italic; color:#475569; font-size:13.5px; margin-bottom:24px;">Definitive High-Yield Core Guide Designed for B.Tech Core Examinations and GATE Preparation</p>
+<div style="background:#ecfeff; border-left:4px solid #06b6d4; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#155e75;">
+  Module 1: Major Bioinformatics Resources and Search Tools
+</div>
+<h3 style="font-size:15px; color:#0f172a; margin:16px 0 6px;">1.1 Epistemology &amp; 1.2 Taxonomy of Global Repositories</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>1.2.1 Primary Archival Repositories:</strong> Open storage systems for raw direct laboratory submissions under strict non-intervention rules. High data redundancy.<br/>
+  - <strong>GenBank (NCBI, USA):</strong> Baseline repository for nucleotide sequence strings.<br/>
+  - <strong>European Nucleotide Archive (ENA, EMBL-EBI):</strong> European baseline data capture grid.<br/>
+  - <strong>DDBJ (Japan):</strong> Asian baseline data collection grid.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">1.2.2 Secondary Curation Systems &amp; 1.2.3 Composite Engines</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Secondary Value-Added Systems:</strong> Process raw primary records using human expert review &amp; pattern-recognition algorithms.<br/>
+  - <strong>UniProtKB/Swiss-Prot:</strong> Premier manually curated protein sequence reference standard.<br/>
+  - <strong>Pfam:</strong> Protein families and conserved domains using Hidden Markov Models (HMMs).<br/>
+  - <strong>PROSITE:</strong> Structural motifs using regular expressions.<br/>
+  • <strong>1.2.3 Composite Systems:</strong> Integrated cross-platform search engines like <strong>NCBI Entrez</strong> and <strong>SRS</strong>.
+</p>
+<div style="background:#ecfeff; border:1px solid #a5f3fc; border-radius:8px; padding:12px; font-size:13px; color:#155e75;">
+  <strong>Mnemonic:</strong> Primary = Publicly deposited Raw numbers (GenBank, PDB); Secondary = Scientifically Verified functional notes (Swiss-Prot, Pfam).
+</div>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">1.3 Algorithmic Mechanics of the BLAST Pipeline</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Basic Local Alignment Search Tool (BLAST) heuristic search pipeline (3 steps):<br/>
+  1. <strong>Word Segmentation Phase:</strong> Query sequence split into overlapping words of size W (W=11 for BLASTn, W=3 for BLASTp).<br/>
+  2. <strong>Seeding Phase:</strong> Database scanned for exact word matches exceeding threshold score T (calculated via BLOSUM62).<br/>
+  3. <strong>Bidirectional Extension Phase:</strong> Seed matches extended outward until cumulative score drops by more than limit X below peak, returning High-Scoring Segment Pairs (HSPs).
+</p>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:16px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">PROTOCOL: HIGH-STRINGENCY NCBI SEQUENCE ISOLATION</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    1. Select domain in Entrez ➔ 2. Query with Boolean filters: <code>("Homo sapiens"[Organism] AND "Insulin"[Protein]) NOT "partial"</code> ➔ 3. Verify Accession ID ➔ 4. Export FASTA or GenBank Flat-File format.
+  </div>
+</div>
+<div style="background:#ecfeff; border-left:4px solid #06b6d4; padding:12px 16px; font-weight:700; color:#155e75;">
+  INSDC Collaboration Data Sync: NCBI, EMBL-EBI, and DDBJ synchronize uploads within 24 hours using immutable global Accession Numbers.
+</div>`,
+  `<div style="background:#ecfeff; border:1px solid #a5f3fc; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#155e75; font-size:14px;">Module 1 Question Bank: Database Classification &amp; Curation Rationale (5 Marks)</h4>
+  <div style="font-size:13px; color:#0e7490; line-height:1.6;">
+    • <strong>Primary vs. Secondary:</strong> Primary databases (GenBank, PDB) store raw uncurated experimental deposits exactly as submitted. Secondary databases (Swiss-Prot, Pfam) derive value-added curated entries by resolving duplicates and adding functional domain notes.<br/>
+    • <strong>Swiss-Prot Rationale:</strong> Although it stores amino acid sequence records, Swiss-Prot does not accept direct unverified submissions. It extracts translations from primary archives and applies expert human curation (PTMs, catalytic sites, literature citations), classifying it as a secondary database.
+  </div>
+</div>
+<div style="background:#fefce8; border:1px solid #fef08a; border-radius:8px; padding:12px; font-size:13px; color:#854d0e;">
+  <strong>FAQ: BLAST Expect Value (E-value):</strong> E-value estimates the number of matching sequences expected by chance in a database of a given size. Lower E-values (near zero) indicate statistically significant biological homology.
+</div>`,
+  `<h1 style="font-size:20px; color:#06b6d4; margin:0 0 10px; border-bottom:2px solid #06b6d4; padding-bottom:8px;">MODULE 2: SEQUENCE AND STRUCTURE DATABASES</h1>
+<div style="background:#ecfeff; border-left:4px solid #06b6d4; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#155e75;">
+  2.1 Storage Schemas &amp; 2.2 Core Database Mapping
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Sequence Schemas:</strong> 1D linear character string arrays stored in flat-file or relational systems optimized for text string matching.<br/>
+  • <strong>Structure Schemas:</strong> 3D spatial atomic coordinates (X, Y, Z) from X-ray crystallography, NMR, or Cryo-EM stored in Protein Data Bank (PDB) ATOM records.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">2.2 Comprehensive Mapping of Core Databases</h3>
+<table style="width:100%; border-collapse:collapse; font-size:11.5px; margin-bottom:16px;">
+  <thead>
+    <tr style="background:#06b6d4; color:#fff; text-align:left;">
+      <th style="padding:6px;">Database</th>
+      <th style="padding:6px;">Primary Informatic Content</th>
+      <th style="padding:6px;">Curation Framework</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#ecfeff;"><td style="padding:6px; border:1px solid #a5f3fc; font-weight:700;">GenBank (NCBI)</td><td style="padding:6px; border:1px solid #a5f3fc;">Nucleotide sequence submissions &amp; flat files.</td><td style="padding:6px; border:1px solid #a5f3fc;">Archival / Uncurated</td></tr>
+    <tr><td style="padding:6px; border:1px solid #a5f3fc; font-weight:700;">NCBI RefSeq</td><td style="padding:6px; border:1px solid #a5f3fc;">Non-redundant genomic DNA, transcripts, proteins.</td><td style="padding:6px; border:1px solid #a5f3fc;">Highly Curated Standards</td></tr>
+    <tr style="background:#ecfeff;"><td style="padding:6px; border:1px solid #a5f3fc; font-weight:700;">UniProtKB/Swiss-Prot</td><td style="padding:6px; border:1px solid #a5f3fc;">Protein sequences with manual literature annotations.</td><td style="padding:6px; border:1px solid #a5f3fc;">Manual Expert Review</td></tr>
+    <tr><td style="padding:6px; border:1px solid #a5f3fc; font-weight:700;">UniProtKB/TrEMBL</td><td style="padding:6px; border:1px solid #a5f3fc;">Computer-translated nucleotide records awaiting review.</td><td style="padding:6px; border:1px solid #a5f3fc;">Automated Annotation</td></tr>
+    <tr style="background:#ecfeff;"><td style="padding:6px; border:1px solid #a5f3fc; font-weight:700;">PDB (Protein Data Bank)</td><td style="padding:6px; border:1px solid #a5f3fc;">3D atomic coordinates (X,Y,Z) via X-ray/NMR/Cryo-EM.</td><td style="padding:6px; border:1px solid #a5f3fc;">Primary Physical Coordinates</td></tr>
+    <tr><td style="padding:6px; border:1px solid #a5f3fc; font-weight:700;">Pfam</td><td style="padding:6px; border:1px solid #a5f3fc;">Protein domains &amp; families categorized by HMMs.</td><td style="padding:6px; border:1px solid #a5f3fc;">Secondary Statistical Models</td></tr>
+  </tbody>
+</table>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">2.3 SCOP Structural Classification</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  <strong>SCOP (Structural Classification of Proteins):</strong> Relies on manual expert review and visual assessment by structural biologists across 4 layers:<br/>
+  1. <strong>Class:</strong> Secondary structure composition (all-alpha, all-beta, alpha/beta).<br/>
+  2. <strong>Fold:</strong> Common spatial core arrangement of structural elements.<br/>
+  3. <strong>Superfamily:</strong> Low sequence identity sharing structural/functional traits (common ancestor).<br/>
+  4. <strong>Family:</strong> High sequence identity (≥ 30%) with clear evolutionary link.
+</p>
+<div style="background:#ecfeff; border:1px solid #a5f3fc; border-radius:8px; padding:12px; font-size:13px; color:#155e75;">
+  <strong>Mnemonic for SCOP:</strong> "Clever Biologists Fold Super Families" ➔ Class, Fold, Superfamily, Family.
+</div>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">2.3.2 CATH Structural Classification</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  <strong>CATH:</strong> Semi-automated computational approach using scoring algorithms (SSAP) across 4 layers:<br/>
+  • <strong>Class (C):</strong> Percentage of α-helices and β-sheets.<br/>
+  • <strong>Architecture (A):</strong> Gross spatial arrangement of secondary structures without considering loop connectivity (e.g., Barrel, Sandwich, Roll).<br/>
+  • <strong>Topology (T):</strong> Explicit fold type and loop connectivity wired together.<br/>
+  • <strong>Homologous Superfamily (H):</strong> High sequence similarity or functional signatures.
+</p>
+<div style="background:#ecfeff; border:1px solid #a5f3fc; border-radius:8px; padding:12px; font-size:13px; color:#155e75;">
+  <strong>CATH vs. SCOP Contrast:</strong> CATH includes an explicit "Architecture" layer and uses automated algorithms (SSAP), whereas SCOP relies on manual expert visual appraisal.
+</div>`,
+  `<div style="background:#ecfeff; border:1px solid #a5f3fc; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#155e75; font-size:14px;">Module 2 Question Bank: CATH Structural Layers (5 Marks)</h4>
+  <div style="font-size:13px; color:#0e7490; line-height:1.6;">
+    • <strong>Class (C):</strong> Secondary structure composition (Mainly α, Mainly β, α-β).<br/>
+    • <strong>Architecture (A):</strong> Gross spatial orientation of secondary structures (barrels, sandwiches) ignoring loop connectivity.<br/>
+    • <strong>Topology (T):</strong> Spatial fold arrangement plus explicit loop connectivity (SSAP alignment).<br/>
+    • <strong>Homology (H):</strong> Confirms common evolutionary ancestry.<br/>
+    • <strong>Contrast:</strong> SCOP skips Architecture entirely and relies on manual human inspection rather than automated SSAP scoring algorithms.
+  </div>
+</div>`,
+  `<div style="background:#fefce8; border:1px solid #fef08a; border-radius:8px; padding:12px; font-size:13px; color:#854d0e; margin-bottom:16px;">
+  <strong>FAQ: Architecture vs. Topology in CATH:</strong> Two proteins can share identical Architecture (e.g., both are α/β barrels) but belong to different Topology groups if their interconnecting polypeptide loops link the strands in different sequential paths.
+</div>
+<h1 style="font-size:20px; color:#06b6d4; margin:0 0 10px; border-bottom:2px solid #06b6d4; padding-bottom:8px;">MODULE 3: SEQUENCE ANALYSIS &amp; ALIGNMENT</h1>
+<div style="background:#ecfeff; border-left:4px solid #06b6d4; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#155e75;">
+  3.1 File Formats: FASTA &amp; GenBank Flat-File
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>FASTA:</strong> Raw sequence format beginning with single-line description header <code>&gt;Header_Text</code> followed by single-letter codes.<br/>
+  • <strong>GenBank Flat-File:</strong> Detailed annotation blocks including LOCUS, DEFINITION, ACCESSION, VERSION, FEATURES (introns, exons, promoters), and ORIGIN closed by <code>//</code>.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">3.2 Substitution Matrices: PAM vs. BLOSUM</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>PAM (Point Accepted Mutation):</strong> Margaret Dayhoff. Based on observed mutations in closely related proteins (≥ 85% identity). PAM1 = 1 mutation per 100 aa. Matrix_PAM_n = (Matrix_PAM_1)^n. <strong>Higher PAM index = greater evolutionary distance</strong> (PAM250 models distant ~20% identity).<br/>
+  • <strong>BLOSUM (Blocks Substitution Matrix):</strong> Henikoff &amp; Henikoff. Based on un-gapped alignments of conserved domains in BLOCKS database. Log-odds score formula: Score(i,j) = λ · log10 [ q(i,j) / (p(i) · p(j)) ]. <strong>Lower BLOSUM index = greater evolutionary distance</strong> (BLOSUM45 distant, BLOSUM62 default, BLOSUM80 close).
+</p>
+<div style="background:#ecfeff; border:1px solid #a5f3fc; border-radius:8px; padding:12px; font-size:13px; color:#155e75;">
+  <strong>Mnemonic:</strong> "Distant Partners Need High-PAM or Low-BLOSUM" (Distant: PAM250 / BLOSUM45; Close: PAM30 / BLOSUM80).
+</div>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">3.3 Mathematics of Sequence Alignment</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Affine Gap Penalty Model:</strong> W(g) = -d - (k - 1) · e, where d is gap opening penalty (high negative value to prevent excessive gaps), e is gap extension penalty, and k is gap length.<br/>
+  • <strong>Needleman-Wunsch Global Alignment:</strong> Exact dynamic programming algorithm. Recurrence relation:<br/>
+  <strong style="color:#06b6d4; font-size:14px;">F(i,j) = Max [ F(i-1,j-1) + S(A_i, B_j), F(i-1,j) + d, F(i,j-1) + d ]</strong><br/><br/>
+  • <strong>Smith-Waterman Local Alignment:</strong> Finds conserved local motifs. Resets negative scores to zero:<br/>
+  <strong style="color:#06b6d4; font-size:14px;">H(i,j) = Max [ 0, H(i-1,j-1) + S(A_i, B_j), H(i-1,j) + d, H(i,j-1) + d ]</strong>
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">3.4 ClustalW Multiple Sequence Alignment &amp; 3.5 Phylogeny</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>ClustalW Progressive Alignment (3 Steps):</strong> 1. Pairwise distance matrix (Needleman-Wunsch) ➔ 2. Neighbor-Joining Guide Tree ➔ 3. Progressive cluster alignment from tips inward. Limitation: <em>"Once a gap, always a gap"</em>.<br/>
+  • <strong>Phylogenetic Tree Methods:</strong><br/>
+  - <strong>Phenetic (Distance-based):</strong> UPGMA (assumes strict molecular clock, rooted ultrametric tree) vs. Neighbor-Joining (NJ, unrooted tree, handles variable mutation rates).<br/>
+  - <strong>Cladistic (Character-based):</strong> Maximum Parsimony (fewest evolutionary mutations, Occam's razor) vs. Maximum Likelihood (probabilistic mutation models).
+</p>`,
+  `<div style="background:#ecfeff; border:1px solid #a5f3fc; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#155e75; font-size:14px;">Module 3 Question Bank: Needleman-Wunsch Matrix Calculation (5 Marks)</h4>
+  <div style="font-size:13px; color:#0e7490; line-height:1.6;">
+    <strong>Problem:</strong> Align A: GATT and B: GATC with match=+1, mismatch=-1, gap=-1.<br/>
+    Initial 5x5 grid with gap row/col (0, -1, -2, -3, -4).<br/>
+    Diagonal matches: G-G (+1), A-A (+2), T-T (+3), T-C mismatch (3-1 = 2).<br/>
+    <strong style="color:#0891b2;">Final Alignment: GATT / GATC with Total Alignment Score = 2</strong>.
+  </div>
+</div>`,
+  `<div style="background:#fefce8; border:1px solid #fef08a; border-radius:8px; padding:12px; font-size:13px; color:#854d0e; margin-bottom:16px;">
+  <strong>FAQ: Gap Opening vs. Gap Extension Penalty:</strong> Opening a new gap represents a rare mutational indel event, so it receives a high negative penalty (-d). Extending an existing gap represents a single multi-base indel event, receiving a smaller negative penalty (-e).
+</div>
+<h1 style="font-size:20px; color:#06b6d4; margin:0 0 10px; border-bottom:2px solid #06b6d4; padding-bottom:8px;">MODULE 4: GENOMIC &amp; PROTEOMIC DATA MINING</h1>
+<div style="background:#ecfeff; border-left:4px solid #06b6d4; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#155e75;">
+  4.1 NGS Phred Quality Scores &amp; Gene Prediction
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Phred Quality Score Formula:</strong> <strong style="color:#06b6d4; font-size:14.5px;">Q = -10 · log10(P)</strong>, where P is base-calling error probability.<br/>
+  - Q30 ➔ P = 0.001 (99.9% accuracy, 0.1% error).<br/>
+  - Q40 ➔ P = 0.0001 (99.99% accuracy, 0.01% error).<br/>
+  • <strong>Burrows-Wheeler Transform (BWT):</strong> Read mapping compression shortcut for NGS reference alignment.
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 6px;">4.1.2 Gene Prediction Approaches &amp; 4.2 Mass Spectrometry</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Gene Prediction:</strong> 1. <em>Ab Initio</em> (Intrinsic HMMs searching for ORFs &amp; <strong>GT-AG intron rule</strong>); 2. Homology-Based (Extrinsic BLASTx comparison); 3. Comparative Genomics.<br/>
+  • <strong>Mass Spectrometry Informatics:</strong><br/>
+  - <strong>Peptide Mass Fingerprinting (PMF):</strong> Trypsin digest peptide weights matched against database fingerprints (Mascot).<br/>
+  - <strong>Tandem Mass Spectrometry (MS/MS):</strong> Breaks individual peptide fragments to determine amino acid sequence directly letter-by-letter.<br/>
+  - <strong>Trypsin Cleavage Rule:</strong> Cleaves carboxyl side of Lysine (K) and Arginine (R), unless followed by Proline (P).
+</p>`,
+  `<div style="background:#ecfeff; border:1px solid #a5f3fc; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#155e75; font-size:14px;">Module 4 Question Bank: Phred Score Conversion (5 Marks)</h4>
+  <div style="font-size:13px; color:#0e7490; line-height:1.6;">
+    <strong>Problem:</strong> Calculate base-calling error probability P for Q = 40.<br/>
+    40 = -10 · log10(P)  ⟹  -4 = log10(P)  ⟹  <strong style="color:#0891b2;">P = 10⁻⁴ = 0.0001 (0.01% error)</strong>.<br/>
+    <strong>Biological Significance:</strong> High-throughput sequencers introduce chemistry decay toward read ends. Filtering low Phred scores prevents assembly algorithms from mistaking sequencing errors for true genetic variants.
+  </div>
+</div>`,
+  `<h1 style="font-size:20px; color:#06b6d4; margin:0 0 10px; border-bottom:2px solid #06b6d4; padding-bottom:8px;">MODULE 5: MOLECULAR DYNAMICS AND SIMULATIONS</h1>
+<div style="background:#ecfeff; border-left:4px solid #06b6d4; padding:12px 16px; margin-bottom:20px; font-weight:700; color:#155e75;">
+  5.1 Newtonian Mechanics &amp; 5.2 Force Field Potential Energy
+</div>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  Models atomic movements over time by numerically integrating Newton's equation of motion (<strong>F = m · a</strong>) using a <strong>2 femtosecond time step</strong>.<br/>
+  • <strong>Force Field Total Potential Energy Equation:</strong><br/>
+  <strong style="color:#06b6d4; font-size:14px;">V_total = V_bond + V_angle + V_dihedral + V_vdW + V_electrostatic</strong>
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">5.2.1 Potential Energy Terms Breakdown</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  1. <strong>V_bond:</strong> ∑ k_b · (b - b₀)² (harmonic spring covalent bond stretching).<br/>
+  2. <strong>V_angle:</strong> ∑ k_θ · (θ - θ₀)² (valence angle bending).<br/>
+  3. <strong>V_dihedral:</strong> ∑ k_ϕ · [1 + cos(n·ϕ - δ)] (torsional rotation).<br/>
+  4. <strong>V_vdW (Lennard-Jones 12-6):</strong> ∑ 4ε · [ (σ / r)¹² - (σ / r)⁶ ].<br/>
+  5. <strong>V_electrostatic (Coulomb's Law):</strong> ∑ (q_i · q_j) / (4πε₀ · r).
+</p>
+<div style="background:#ecfeff; border:1px solid #a5f3fc; border-radius:8px; padding:12px; font-size:13px; color:#155e75;">
+  <strong>Lennard-Jones 12-6 Scaling:</strong> The <strong>r⁻⁶ term</strong> models long-range induced dipole dispersion attraction; the <strong>r⁻¹² term</strong> models steep short-range electronic repulsion preventing electron cloud overlap.
+</div>`,
+  `<div style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#166534; font-size:14px;">PROTOCOL: STANDARD MOLECULAR DYNAMICS SIMULATION (6 STEPS)</h4>
+  <div style="font-size:13px; color:#14532d; line-height:1.6;">
+    1. <strong>System Preparation:</strong> PDB coordinates ➔ 2. <strong>Solvation &amp; Neutralization:</strong> TIP3P water box &amp; Na⁺/Cl⁻ counter-ions ➔ 3. <strong>Energy Minimization:</strong> Steepest Descent / Conjugate Gradient to fix steric clashes ➔ 4. <strong>Equilibration:</strong> NVT (constant volume) ➔ NPT (constant pressure) ➔ 5. <strong>Production Run:</strong> Verlet/Leap-frog algorithm with 2 fs time steps ➔ 6. <strong>Trajectory Analysis:</strong> RMSD (structural stability) &amp; RMSF (residue flexibility).
+  </div>
+</div>`,
+  `<div style="background:#ecfeff; border:1px solid #a5f3fc; border-radius:10px; padding:16px; margin-bottom:20px;">
+  <h4 style="margin:0 0 8px; color:#155e75; font-size:14px;">Module 5 Question Bank: Force Field Decoupling &amp; Ensembles (5 Marks)</h4>
+  <div style="font-size:13px; color:#0e7490; line-height:1.6;">
+    • <strong>NVT vs. NPT Ensembles:</strong> NVT keeps Number of particles, Volume, and Temperature constant (early thermal equilibration). NPT keeps Number of particles, Pressure, and Temperature constant, allowing volume to adjust (mimics real atmospheric experimental conditions).<br/>
+    • <strong>Energy Minimization Necessity:</strong> Raw PDB coordinates contain minor geometric distortions or overlapping atoms. Running MD without minimization causes calculated repulsive forces to spike to infinity, crashing numerical integration algorithms.
+  </div>
+</div>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Key Summary of Algorithms &amp; Databases</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>GenBank / ENA / DDBJ:</strong> Primary open archives (INSDC 24h sync).<br/>
+  • <strong>Swiss-Prot:</strong> Secondary manually curated protein reference standard.<br/>
+  • <strong>BLAST:</strong> Heuristic local alignment tool (W=11 nuc, W=3 prot).<br/>
+  • <strong>Needleman-Wunsch:</strong> Global alignment dynamic programming.<br/>
+  • <strong>Smith-Waterman:</strong> Local alignment dynamic programming (resets negative scores to 0).<br/>
+  • <strong>ClustalW:</strong> Progressive MSA (Pairwise ➔ NJ Guide Tree ➔ Cluster alignment).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Phylogenetic Analysis &amp; Matrices Reference</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>PAM vs. BLOSUM:</strong> PAM1 = 1% mutation; PAM250 = distant. BLOSUM62 = default; BLOSUM45 = distant.<br/>
+  • <strong>UPGMA:</strong> Assumes strict molecular clock ➔ rooted ultrametric tree.<br/>
+  • <strong>Neighbor-Joining (NJ):</strong> Handles unequal mutation rates ➔ unrooted tree.<br/>
+  • <strong>Maximum Parsimony:</strong> Fewest total evolutionary changes (Occam's razor).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">NGS Quality &amp; Proteomics Reference</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Phred Quality Score:</strong> Q30 = 99.9% accuracy; Q40 = 99.99% accuracy.<br/>
+  • <strong>Gene Prediction:</strong> <em>Ab initio</em> uses HMMs and GT-AG donor/acceptor intron rule.<br/>
+  • <strong>Mass Spectrometry:</strong> PMF matches whole peptide mass lists; MS/MS sequences fragment ions letter-by-letter.<br/>
+  • <strong>Trypsin:</strong> Cleaves C-terminal to Lys (K) / Arg (R), except before Pro (P).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Molecular Dynamics Force Fields Deep-Dive</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Newtonian Mechanics:</strong> F = m · a integrated at 2 fs time steps.<br/>
+  • <strong>Bonded Terms:</strong> V_bond (harmonic spring) + V_angle (valence bending) + V_dihedral (torsional rotation).<br/>
+  • <strong>Non-Bonded Terms:</strong> V_vdW (Lennard-Jones 12-6 dispersion/repulsion) + V_electrostatic (Coulomb's law).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Simulation Protocols &amp; Ensembles</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Solvation:</strong> TIP3P explicit water model with Na⁺/Cl⁻ counter-ions.<br/>
+  • <strong>Minimization:</strong> Steepest Descent / Conjugate Gradient.<br/>
+  • <strong>Ensembles:</strong> NVT (constant volume) ➔ NPT (constant pressure).<br/>
+  • <strong>Metrics:</strong> RMSD (structural stability) &amp; RMSF (residue flexibility).
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">GATE High-Yield Equation Summary</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>Phred Score:</strong> Q = -10 · log10(P).<br/>
+  • <strong>Affine Gap Penalty:</strong> W(g) = -d - (k - 1) · e.<br/>
+  • <strong>BLOSUM Log-Odds:</strong> Score(i,j) = λ · log10 [ q(i,j) / (p(i)p(j)) ].<br/>
+  • <strong>Lennard-Jones:</strong> V_vdW = 4ε [ (σ/r)¹² - (σ/r)⁶ ].
+</p>`,
+  `<h3 style="font-size:15px; color:#0f172a; margin:0 0 8px;">Structural Repositories &amp; Classification Cheat Sheet</h3>
+<p style="font-size:13.5px; color:#334155; line-height:1.7;">
+  • <strong>PDB:</strong> 3D atomic coordinates (X,Y,Z).<br/>
+  • <strong>SCOP:</strong> Class ➔ Fold ➔ Superfamily ➔ Family (Manual Expert).<br/>
+  • <strong>CATH:</strong> Class ➔ Architecture ➔ Topology ➔ Homology (Automated SSAP).
+</p>`,
+  `<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px;">
+  <h4 style="margin:0 0 8px; color:#0f172a; font-size:14px;">🎓 Final GATE-Focused Checklist for Bioinformatics</h4>
+  <ol style="font-size:12.5px; color:#334155; line-height:1.6; padding-left:20px; margin:0;">
+    <li>GenBank/ENA/DDBJ are primary uncurated databases; Swiss-Prot is secondary manually curated.</li>
+    <li>Needleman-Wunsch is global alignment; Smith-Waterman is local alignment (resets negative scores to 0).</li>
+    <li>BLOSUM62 is default for BLAST; BLOSUM45 is for distant alignments; BLOSUM80 for close alignments.</li>
+    <li>ClustalW MSA limitation: "Once a gap, always a gap".</li>
+    <li>Phred score Q30 means 0.1% error probability; Q40 means 0.01% error probability.</li>
+    <li>Lennard-Jones potential: r⁻⁶ is long-range attraction; r⁻¹² is short-range repulsion.</li>
+  </ol>
+</div>`
+];
+
 /* ── Continuous Scroll PDF Document Viewer Component ── */
 function ContinuousPdfViewer({ topic }) {
   function handleOpenNewWindow() {
@@ -4586,6 +5035,20 @@ function ContinuousPdfViewer({ topic }) {
           <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 22</span></div>
         </div>
       `).join("");
+    } else if (topic.id === "topic-11") {
+      pagesHtml = FULL_BIOINFORMATICS_30_PAGES.map((pgContent, idx) => `
+        <div class="page">
+          <div class="header">
+            <div>
+              <div class="badge">B.TECH BIOTECHNOLOGY · GATE MASTER STUDY GUIDE</div>
+              <h2 class="title">${topic.name}</h2>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; color: #64748b;">PAGE ${idx + 1} OF 30</span>
+          </div>
+          ${pgContent}
+          <div class="footer"><span>BioConnect Academic Series</span><span>Page ${idx + 1} of 30</span></div>
+        </div>
+      `).join("");
     } else {
       pagesHtml = topic.sections.map((sec, idx) => `
         <div class="page">
@@ -4680,7 +5143,7 @@ function ContinuousPdfViewer({ topic }) {
           <div>
             <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#fff" }}>{topic.pdfTitle}</h3>
             <p style={{ fontSize: "12px", color: "#94A3B8", margin: "2px 0 0" }}>
-              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : topic.id === "topic-07" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : topic.id === "topic-08" ? "Executive Syllabus Summary • Full 16-Page PDF Document Available below" : topic.id === "topic-09" ? "Executive Syllabus Summary • Full 10-Page PDF Document Available below" : topic.id === "topic-10" ? "Executive Syllabus Summary • Full 22-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
+              {topic.id === "topic-01" ? "Executive Syllabus Summary • Full 19-Page PDF Document Available below" : topic.id === "topic-02" ? "Executive Syllabus Summary • Full 23-Page PDF Document Available below" : topic.id === "topic-04" ? "Executive Syllabus Summary • Full 18-Page PDF Document Available below" : topic.id === "topic-05" ? "Executive Syllabus Summary • Full 25-Page PDF Document Available below" : topic.id === "topic-06" ? "Executive Syllabus Summary • Full 20-Page PDF Document Available below" : topic.id === "topic-07" ? "Executive Syllabus Summary • Full 21-Page PDF Document Available below" : topic.id === "topic-08" ? "Executive Syllabus Summary • Full 16-Page PDF Document Available below" : topic.id === "topic-09" ? "Executive Syllabus Summary • Full 10-Page PDF Document Available below" : topic.id === "topic-10" ? "Executive Syllabus Summary • Full 22-Page PDF Document Available below" : topic.id === "topic-11" ? "Executive Syllabus Summary • Full 30-Page PDF Document Available below" : `Continuous Straight Scroll View • (${topic.sections.length + 1} Pages)`}
             </p>
           </div>
         </div>
@@ -4694,10 +5157,10 @@ function ContinuousPdfViewer({ topic }) {
             cursor: "pointer", display: "flex", alignItems: "center", gap: "6px",
             boxShadow: "0 3px 12px " + topic.color + "40", transition: "all 0.2s"
           }}
-          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-08" ? "Click to open full 16-page PDF document in a new browser tab/window" : topic.id === "topic-09" ? "Click to open full 10-page PDF document in a new browser tab/window" : topic.id === "topic-10" ? "Click to open full 22-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
+          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-08" ? "Click to open full 16-page PDF document in a new browser tab/window" : topic.id === "topic-09" ? "Click to open full 10-page PDF document in a new browser tab/window" : topic.id === "topic-10" ? "Click to open full 22-page PDF document in a new browser tab/window" : topic.id === "topic-11" ? "Click to open full 30-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
         >
           <span>↗️</span>
-          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : topic.id === "topic-08" ? "Open Full 16-Page PDF" : topic.id === "topic-09" ? "Open Full 10-Page PDF" : topic.id === "topic-10" ? "Open Full 22-Page PDF" : "Open PDF in New Window"}</span>
+          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : topic.id === "topic-08" ? "Open Full 16-Page PDF" : topic.id === "topic-09" ? "Open Full 10-Page PDF" : topic.id === "topic-10" ? "Open Full 22-Page PDF" : topic.id === "topic-11" ? "Open Full 30-Page PDF" : "Open PDF in New Window"}</span>
         </button>
       </div>
 
@@ -4713,7 +5176,7 @@ function ContinuousPdfViewer({ topic }) {
           paddingRight: "8px",
           cursor: "pointer"
         }}
-        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : topic.id === "topic-07" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : topic.id === "topic-08" ? "Click anywhere on the study notes viewer to open full 16-page PDF document in new window" : topic.id === "topic-09" ? "Click anywhere on the study notes viewer to open full 10-page PDF document in new window" : topic.id === "topic-10" ? "Click anywhere on the study notes viewer to open full 22-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
+        title={topic.id === "topic-01" ? "Click anywhere on the study notes viewer to open full 19-page PDF document in new window" : topic.id === "topic-02" ? "Click anywhere on the study notes viewer to open full 23-page PDF document in new window" : topic.id === "topic-04" ? "Click anywhere on the study notes viewer to open full 18-page PDF document in new window" : topic.id === "topic-05" ? "Click anywhere on the study notes viewer to open full 25-page PDF document in new window" : topic.id === "topic-06" ? "Click anywhere on the study notes viewer to open full 20-page PDF document in new window" : topic.id === "topic-07" ? "Click anywhere on the study notes viewer to open full 21-page PDF document in new window" : topic.id === "topic-08" ? "Click anywhere on the study notes viewer to open full 16-page PDF document in new window" : topic.id === "topic-09" ? "Click anywhere on the study notes viewer to open full 10-page PDF document in new window" : topic.id === "topic-10" ? "Click anywhere on the study notes viewer to open full 22-page PDF document in new window" : topic.id === "topic-11" ? "Click anywhere on the study notes viewer to open full 30-page PDF document in new window" : "Click anywhere on the PDF viewer to open full document in new window"}
       >
         {topic.sections.map((sec, idx) => (
           <div key={idx} style={{
