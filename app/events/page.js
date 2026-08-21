@@ -175,13 +175,7 @@ const DEFAULT_EVENTS = [
 ];
 
 function getDirectEventUrl(event) {
-  if (event.registration_url && !event.registration_url.includes("index.php?id=")) {
-    // If specific external registration link exists, append search query to guarantee landing on exact event
-    const searchTarget = encodeURIComponent(`${event.title} ${event.location || ''} official registration conference 2026 2027`);
-    return `https://www.google.com/search?q=${searchTarget}`;
-  }
-  const query = `${event.title} ${event.location || ''} official registration 2026 2027`;
-  return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+  return event?.registration_url || "https://academicworldresearch.org/";
 }
 
 export default function EventsPage() {
