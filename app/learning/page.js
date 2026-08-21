@@ -761,6 +761,179 @@ const COURSE_TOPICS = [
         explanation: "When Thiele Modulus ϕ > 3, the system is in the strong diffusion-limited regime where effectiveness factor η ≈ 1 / ϕ = 1 / 12 = 0.0833 (8.3%)."
       }
     ]
+  },
+  {
+    id: "topic-06",
+    topicNum: "TOPIC 06",
+    name: "Plant Biotechnology & Genetic Engineering",
+    shortName: "Plant Biotechnology",
+    icon: "🌱",
+    color: "#10B981",
+    notesCount: "20 pages",
+    module: "Module 4 of 4",
+    progress: 50,
+    tagline: "Full 20-Page Master Textbook: Tissue culture, micropropagation, organelle DNA, plant transformation & transgenics.",
+    pdfTitle: "Topic 06 - Plant Biotechnology & Genetic Engineering.pdf",
+    sections: [
+      {
+        title: "1. Plant Tissue Culture & Micropropagation Foundations",
+        content: `• Totipotency & Dedifferentiation: Inherent genetic potential of nucleated plant cells to regenerate whole plants. Excised explants form unorganized callus.
+• Morphogenesis Kinetics: θ = [Cytokinin] / [Auxin]. θ >> 1 → Shoot bud (caulogenesis); θ << 1 → Root bud (rhizogenesis); θ ≈ 1 → Callus.
+• MS Medium: Macronutrients (>0.5 mmol/L, NH4NO3, KNO3), Micronutrients (<0.5 mmol/L, Fe-EDTA chelate prevents ferric hydroxide precipitation at pH 5.8), 3% Sucrose.
+• Autoclave Thermal Kinetics: ln(Nt/N0) = -k·t. k ≈ 2.3 min⁻¹ at 121°C, 15 psi. Target survival probability ≤ 10⁻⁶.
+• Micropropagation Stages: Stage 0 (Selection), Stage I (Establishment/Axenic), Stage II (Shoot Multiplication), Stage III (Rooting), Stage IV (Acclimatization to autotrophic state).`
+      },
+      {
+        title: "2. Meristem Culture & Production of Virus-Free Plants",
+        content: `• Shoot Apical Meristem (0.1-0.5 mm): Devoid of vascular traces, highly active cell division.
+• Virus Eradication Basis: Lack of vascular network (no phloem transport), high metabolic/mitotic turnover outpacing viral replication, elevated endogenous IAA levels.
+• Excision Kinetics: Virus eradication Ev ∝ 1/d (explant diameter d). Operational compromise: 0.2-0.3 mm dome + 1-2 leaf primordia.
+• Thermotherapy: Exposing stock plants to 37°C-40°C slows viral replication and widens virus-free apical zone before meristem excision.`
+      },
+      {
+        title: "3. Advanced Haploid, Embryo & Somatic Cell Technologies",
+        content: `• Anther & Microspore Culture (Androgenesis): Uninucleate microspore stage offers optimal responsiveness. Haploids (n) doubled using Colchicine (inhibits α/β tubulin assembly) to produce fertile Doubled Haploids (DH 2n).
+• Embryo Rescue: Prevents post-zygotic incompatibility abortion in wide distant crosses. Osmotic pressure Π = i·C·R·T (young embryos require 8-12% sucrose hypertonic medium to prevent precocious germination).
+• Protoplasts & Somatic Hybridization: Wall degradation using Cellulase (1-2%) + Macerozyme/Pectinase (0.1-0.5%) in 0.4-0.7 M Mannitol osmoticum.
+• Fusogens & Cybrids: PEG 6000 (25-40%) or Electrofusion. Cybrids retain one parent's nucleus with mixed/donor chloroplast and mitochondrial genomes (CMS).`
+      },
+      {
+        title: "4. Somaclonal Variation, Synthetic Seeds & Cryopreservation",
+        content: `• Somaclonal Variation: Genetic/epigenetic modifications from long-term tissue culture (chromosomal aberrations, SNPs, transposon activation, methylation shifts).
+• Synthetic Seeds (Artificial Seeds): Somatic embryos encapsulated in Sodium Alginate (2-3%) + Calcium Chloride (50-100 mM) via divalent Ca²⁺ ion-exchange forming Egg-Box gel network.
+• Vitrification Cryopreservation (-196°C LN2): Ultra-fast flash cooling with PVS2 (30% glycerol, 15% ethylene glycol, 15% DMSO in sucrose). Prevents ice crystals. Thawing at 40°C prevents recrystallization.`
+      },
+      {
+        title: "5. Molecular Biology, Organelle DNA & Gene Expression",
+        content: `• Organelle Genomes: cpDNA (120-170 kb, circular, inverted repeats IR_A & IR_B flanking LSC & SSC, rbcL gene); mtDNA (200-2400 kb, dynamic circular/linear conformations).
+• Repetitive DNA: Satellite (tandem 100-500 bp, CsCl density bands), Minisatellites (10-60 bp VNTRs), Microsatellites (SSRs 1-6 bp tandem), Interspersed (transposons up to 80% genome).
+• Cot Curve Kinetics: C/C0 = 1 / (1 + k·C0·t). Highly repetitive satellite DNA reassociates rapidly at low C0·t.
+• DNA Repair: Photolyase (FADH⁻ chromophore breaks pyrimidine dimers CPDs via blue light), NER (excinuclease releases 24-30 nt fragment), NHEJ (Ku70/Ku80, error-prone), HR (RAD51, error-free).`
+      },
+      {
+        title: "6. Gene Regulation & Recombinant DNA Components",
+        content: `• Transcriptional Regulation: Light G-box element (5'-CACGTG-3') binds bZIP TF HY5 → recruits RNA Pol II. In dark, E3 ligase COP1 degrades HY5 via 26S proteasome.
+• Epigenetic Control: HATs neutralize positive charges (euchromatin activation); HDACs & DNA methyltransferases (MET1) condense chromatin.
+• Restriction Enzymes: Type II cleave palindromic DNA without ATP (e.g. EcoRI: 5'-G|AATTC-3' sticky ends).
+• Binary Vector System: Helper plasmid (vir operon virA-virG) + Binary cloning vector (LB/RB 25-bp repeats, nptII marker, CaMV 35S promoter).`
+      },
+      {
+        title: "7. Agrobacterium & Direct Plant Transformation",
+        content: `• Agrobacterium Mechanism: Wounded cells release Acetosyringone → VirA sensor autophosphorylates VirG → VirD1/VirD2 nick 25-bp T-DNA borders → VirD2 attaches to 5' ssDNA → VirE2 SSB coating → T4SS export via virB → Host nuclear import (VIP1/importin) → Chromosomal integration via NHEJ.
+• Biolistic Particle Bombardment: Gold/Tungsten micro-carriers (0.6-1.0 µm) accelerated by helium gas (900-1500 psi).
+• Selectable Markers vs Reporters: Selectable (nptII Kanamycin, hpt Hygromycin) vs Reporter/Scorable (GUS blue X-Gluc cleavage, GFP fluorescent UV).`
+      },
+      {
+        title: "8. Agricultural Transgenics: Stress Tolerance & GURTs",
+        content: `• Biotic Stress: Bt Technology (cry1Ac protoxin dissolved at midgut pH > 9.0 → binds cadherin receptors → lytic pores); Glyphosate Resistance (cp4 EPSPS gene insensitizes shikimate pathway).
+• Abiotic Stress: AtNHX1 (vacuolar Na⁺/H⁺ antiporter for salinity/drought); codA (choline oxidase produces glycine betaine).
+• GURTs / Terminator Technology: Tripartite cascade — LEA promoter + LoxP-flanked spacer + Barnase/Sarin lethal gene + Cre recombinase + Tetracycline repressor. Tetracycline removes repressor → Cre excises spacer → lethal gene aborts F1 embryo.
+• Refugia Strategy: Planting non-Bt crop borders to maintain susceptible insect populations.`
+      },
+      {
+        title: "9. RNA Interference & Nanotechnology in Agriculture",
+        content: `• RNAi Nematode Resistance: Transgenic plant produces hairpin dsRNA targeting nematode essential gene (rps4) → ingested by Meloidogyne incognita → Dicer-RISC cleaves target mRNA.
+• Nano-Agriculture: Smart nano-fertilizers (controlled silica release), nano-pesticides (UV protection), nanolistic delivery (CNTs / silica nanoparticles).
+• DNA Fingerprinting: RFLP & SSR PCR marker capillary electrophoresis. Jaccard's Similarity Coefficient: SJ = a / (a + b + c) (a = shared bands, b/c = unique bands).`
+      },
+      {
+        title: "10. Appendix: High-Yield GATE Concepts & Assays",
+        content: `• Somatic Embryogenesis Synchronization: Critical cell density threshold 10⁴ cells/mL for arabinogalactan protein paracrine signaling.
+• qPCR Plasmid Copy Number: Ratio = (1 + E_target)^(ΔCt_target) / (1 + E_ref)^(ΔCt_ref).
+• Cryopreservation Viability Assay: TTC (2,3,5-Triphenyltetrazolium chloride) reduced by mitochondrial dehydrogenases to red formazan crystals (485 nm).`
+      }
+    ],
+    examTraps: [
+      "Morphogenesis rule: θ = [Cytokinin]/[Auxin] >> 1 gives shoots (caulogenesis); θ << 1 gives roots (rhizogenesis).",
+      "Terminator technology (GURTs): Tetracycline activates Cre recombinase to excise spacer and express lethal gene (Barnase).",
+      "Agrobacterium T-DNA transfer: VirD2 nicks border and covalently binds 5' ssDNA; VirE2 coats ssDNA during T4SS export."
+    ],
+    pyqs: [
+      {
+        id: 1,
+        question: "GAT-B 2020: The ability of a plant cell to regenerate into a whole plant is called:",
+        options: ["Differentiation", "Totipotency", "Transformation", "Hybridization"],
+        correct: 1,
+        explanation: "Totipotency is the inherent capacity of a nucleated plant cell to divide and differentiate into a complete functional organism."
+      },
+      {
+        id: 2,
+        question: "GAT-B 2020: Who proposed the concept of totipotency in plants?",
+        options: ["Robert Hooke", "Gottlieb Haberlandt", "Louis Pasteur", "Gregor Mendel"],
+        correct: 1,
+        explanation: "Gottlieb Haberlandt (1902) first hypothesized cellular totipotency and is regarded as the father of plant tissue culture."
+      },
+      {
+        id: 3,
+        question: "GAT-B 2020: The nutrient medium most commonly used in plant tissue culture is:",
+        options: ["LB medium", "Nutrient agar", "Murashige and Skoog (MS) medium", "MacConkey agar"],
+        correct: 2,
+        explanation: "Murashige and Skoog (MS) medium (1962) is the standard synthetic medium formulation used for plant cell and tissue culture."
+      },
+      {
+        id: 4,
+        question: "GAT-B 2021: Auxin to cytokinin ratio controls:",
+        options: ["Protein synthesis", "Organ differentiation", "DNA sequencing", "Respiration"],
+        correct: 1,
+        explanation: "The relative ratio of auxin and cytokinin governs organogenesis: high cytokinin promotes shoots, high auxin promotes roots."
+      },
+      {
+        id: 5,
+        question: "GAT-B 2021: Callus is:",
+        options: ["Differentiated tissue", "Unorganized mass of cells", "Embryo", "Meristematic tissue only"],
+        correct: 1,
+        explanation: "Callus is an unorganized, proliferating mass of parenchymatous cells formed during dedifferentiation of explants."
+      },
+      {
+        id: 6,
+        question: "GAT-B 2021: Somatic embryogenesis refers to development of embryos from:",
+        options: ["Zygotes only", "Somatic cells", "Pollen grains only", "Seeds only"],
+        correct: 1,
+        explanation: "Somatic embryogenesis is the process where bipolar embryo structures develop directly or indirectly from non-gametic somatic cells."
+      },
+      {
+        id: 7,
+        question: "GAT-B 2022: Micropropagation is mainly used for:",
+        options: ["Mutation induction", "Rapid clonal multiplication", "Protein purification", "Hybridoma production"],
+        correct: 1,
+        explanation: "Micropropagation enables true-to-type, rapid clonal multiplication of elite plant species in vitro."
+      },
+      {
+        id: 8,
+        question: "GAT-B 2022: Anther culture is used to produce:",
+        options: ["Polyploid plants", "Haploid plants", "Sterile plants", "Hybridoma cells"],
+        correct: 1,
+        explanation: "Anther and microspore culture diverts microspore development (androgenesis) to produce haploid (n) plants."
+      },
+      {
+        id: 9,
+        question: "GAT-B 2022: The hardening step in tissue culture refers to:",
+        options: ["Sterilization", "Acclimatization of plantlets", "DNA replication", "Callus formation"],
+        correct: 1,
+        explanation: "Hardening (acclimatization) transitions fragile in vitro plantlets from high humidity/heterotrophic growth to autotrophic field conditions."
+      },
+      {
+        id: 10,
+        question: "GAT-B 2023: Synthetic seeds are generally produced using:",
+        options: ["Somatic embryos", "Zygotes", "Protoplasts", "Meristems"],
+        correct: 0,
+        explanation: "Synthetic (artificial) seeds are produced by encapsulating somatic embryos inside a sodium alginate gel matrix."
+      },
+      {
+        id: 11,
+        question: "GAT-B 2023: Protoplasts are plant cells without:",
+        options: ["Nucleus", "Cytoplasm", "Cell wall", "Vacuole"],
+        correct: 2,
+        explanation: "Protoplasts are naked plant cells isolated by enzymatically removing the cellulose, hemicellulose, and pectin cell walls."
+      },
+      {
+        id: 12,
+        question: "GAT-B 2023: Cybrids are produced through:",
+        options: ["Hybridoma technology", "Protoplast fusion", "PCR", "Electrophoresis"],
+        correct: 1,
+        explanation: "Cybrids (cytoplasmic hybrids) are created via protoplast fusion where one parental nucleus is inactivated by irradiation prior to fusion."
+      }
+    ]
   }
 ];
 
