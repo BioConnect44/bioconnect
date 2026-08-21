@@ -329,7 +329,7 @@ export default function EventsPage() {
             <div style={{ display: "inline-flex", gap: "4px", background: "#FEF3C7", borderRadius: "12px", padding: "4px", border: "1px solid #FDE68A" }}>
               {[
                 { id: "all", label: "All Regions" },
-                { id: "gujarat", label: "🦁 Gujarat Special" },
+                { id: "gujarat", label: "📍 Gujarat Special" },
                 { id: "india", label: "🇮🇳 India" },
                 { id: "global", label: "🌐 Global" }
               ].map(r => (
@@ -351,46 +351,46 @@ export default function EventsPage() {
             </div>
           </div>
 
-          {/* HIGH-CONTRAST FEATURED EVENT BANNER (Fixes dark text overlap issue) */}
+          {/* HIGH-CONTRAST FEATURED EVENT BANNER (Perfect vertical spacing & no overlap) */}
           {featured && filter === "upcoming" && (
-            <div style={{ position: "relative", borderRadius: "20px", overflow: "hidden", marginBottom: "24px", boxShadow: "0 12px 30px rgba(15,23,42,0.15)", minHeight: "270px" }}>
-              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80" alt="" style={{ width: "100%", height: "270px", objectFit: "cover", display: "block" }}/>
+            <div style={{ position: "relative", borderRadius: "20px", overflow: "hidden", marginBottom: "28px", boxShadow: "0 12px 32px rgba(15,23,42,0.16)", minHeight: "310px" }}>
+              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80" alt="" style={{ width: "100%", height: "100%", minHeight: "310px", objectFit: "cover", display: "block" }}/>
               
               {/* High-Contrast Gradient Backdrop Overlay */}
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.85) 50%, rgba(13, 148, 136, 0.5) 100%)", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "28px 32px" }}>
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.88) 55%, rgba(13, 148, 136, 0.45) 100%)", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "32px 36px" }}>
                 <div>
-                  <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+                  <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap", marginBottom: "16px" }}>
                     <span style={{ fontSize: "12px", color: "#FFFFFF", fontWeight: 800, background: "#14B8A6", padding: "5px 14px", borderRadius: "20px", textTransform: "uppercase", letterSpacing: "0.5px", boxShadow: "0 2px 8px rgba(20,184,166,0.4)" }}>
                       {safeFormatDate(featured.event_date, { month: "short", day: "numeric" }, "UPCOMING").toUpperCase()}
                     </span>
                     {(featured.location || "").toLowerCase().includes("gujarat") && (
                       <span style={{ fontSize: "12px", color: "#FFFFFF", fontWeight: 800, background: "#F59E0B", padding: "5px 14px", borderRadius: "20px", boxShadow: "0 2px 8px rgba(245,158,11,0.4)" }}>
-                        🦁 GUJARAT EVENT
+                        📍 GUJARAT EVENT
                       </span>
                     )}
-                    <span style={{ fontSize: "12px", color: "#FFFFFF", fontWeight: 700, background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)", padding: "5px 12px", borderRadius: "20px" }}>
+                    <span style={{ fontSize: "12px", color: "#FFFFFF", fontWeight: 700, background: "rgba(255,255,255,0.18)", backdropFilter: "blur(4px)", padding: "5px 12px", borderRadius: "20px" }}>
                       {(featured.event_type || "CONFERENCE").toUpperCase()}
                     </span>
                   </div>
 
-                  <h2 style={{ fontSize: "23px", fontWeight: 800, color: "#FFFFFF", margin: "14px 0 8px", maxWidth: "680px", lineHeight: "1.3", textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}>
+                  <h2 style={{ fontSize: "24px", fontWeight: 800, color: "#FFFFFF", margin: "0 0 14px", maxWidth: "700px", lineHeight: "1.35", textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}>
                     {featured.title}
                   </h2>
 
-                  <p style={{ fontSize: "14px", color: "#F1F5F9", marginBottom: "6px", fontWeight: 600, display: "flex", alignItems: "center", gap: "6px" }}>
+                  <p style={{ fontSize: "14px", color: "#F1F5F9", marginBottom: "8px", fontWeight: 600, display: "flex", alignItems: "center", gap: "8px" }}>
                     <span>📍 {featured.location || "Online"}</span>
-                    <span>•</span>
+                    <span style={{ color: "#94A3B8" }}>•</span>
                     <span>⏰ {safeFormatTime(featured.event_date, { hour: "2-digit", minute: "2-digit" }, "09:00 AM")} IST</span>
                   </p>
 
-                  <p style={{ fontSize: "13px", color: "#94A3B8", margin: 0, fontWeight: 500 }}>
-                    Hosted by <span style={{ color: "#CBD5E1", fontWeight: 600 }}>{featured.profiles?.full_name || "BioConnect Academic Network"}</span>
+                  <p style={{ fontSize: "13.5px", color: "#CBD5E1", margin: "0 0 20px", fontWeight: 500 }}>
+                    Hosted by <span style={{ color: "#FFFFFF", fontWeight: 700 }}>{featured.profiles?.full_name || "BioConnect Academic Network"}</span>
                   </p>
                 </div>
 
-                <div style={{ marginTop: "16px", paddingTop: "12px" }}>
+                <div>
                   {featured.registration_url && (
-                    <a href={featured.registration_url} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFFFFF", padding: "12px 30px", borderRadius: "12px", fontSize: "14.5px", fontWeight: 700, textDecoration: "none", boxShadow: "0 4px 16px rgba(20,184,166,0.5)", border: "none" }}>
+                    <a href={featured.registration_url} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFFFFF", padding: "12px 28px", borderRadius: "12px", fontSize: "14px", fontWeight: 700, textDecoration: "none", boxShadow: "0 4px 16px rgba(20,184,166,0.5)", border: "none" }}>
                       <span>Register Now</span>
                       <span style={{ fontSize: "16px" }}>→</span>
                     </a>
@@ -420,7 +420,7 @@ export default function EventsPage() {
                       </span>
                       {isGujarat && (
                         <span style={{ fontSize: "11px", fontWeight: 800, color: "#D97706", background: "#FEF3C7", padding: "2px 8px", borderRadius: "6px" }}>
-                          🦁 GUJARAT
+                          📍 GUJARAT
                         </span>
                       )}
                     </div>
@@ -459,7 +459,7 @@ export default function EventsPage() {
 
           {/* Gujarat Biotech Hub Quick Info Card */}
           <div style={{ background: "linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)", borderRadius: "16px", padding: "20px", border: "1px solid #F59E0B" }}>
-            <div style={{ fontSize: "20px", marginBottom: "6px" }}>🦁</div>
+            <div style={{ fontSize: "20px", marginBottom: "6px" }}>📍</div>
             <h3 style={{ fontSize: "15px", fontWeight: 800, color: "#92400E", marginBottom: "6px" }}>Gujarat Biotech Hub</h3>
             <p style={{ fontSize: "12px", color: "#78350F", lineHeight: "1.5", margin: 0 }}>
               Featuring research summits from <strong>GBU Gandhinagar</strong>, <strong>GSBTM Ahmedabad</strong>, <strong>NIPER Palaj</strong>, <strong>IIT Gandhinagar</strong>, and <strong>MSU Baroda</strong>.
