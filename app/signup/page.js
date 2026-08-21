@@ -39,7 +39,7 @@ export default function SignupPage() {
         {/* Left */}
         <div style={S.imgPanel}>
           <div style={S.imgOverlay}></div>
-          <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&q=80" alt="" style={S.img}/>
+          <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80" alt="Biotechnology & Life Sciences Research" style={S.img}/>
         </div>
         {/* Right */}
         <div style={S.formPanel}>
