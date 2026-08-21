@@ -565,7 +565,7 @@ export default function EventsPage() {
                     Your official seat for <strong>{selectedEvent.title}</strong> is reserved. Entry pass & confirmation details have been synced to your BioConnect account.
                   </p>
 
-                  <div style={{ background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: "14px", padding: "16px", marginBottom: "24px", textAlign: "left" }}>
+                  <div style={{ background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: "14px", padding: "16px", marginBottom: "16px", textAlign: "left" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
                       <span style={{ fontSize: "12px", color: "#166534", fontWeight: 600 }}>PASS NUMBER:</span>
                       <span style={{ fontSize: "12px", color: "#15803D", fontWeight: 800, fontFamily: "monospace" }}>BC-2026-REG-{selectedEvent.id.slice(0, 6).toUpperCase()}</span>
@@ -579,6 +579,10 @@ export default function EventsPage() {
                       <span style={{ fontSize: "12px", color: "#15803D", fontWeight: 700 }}>{regForm.university}</span>
                     </div>
                   </div>
+
+                  <p style={{ fontSize: "12px", color: "#475569", background: "#F1F5F9", padding: "10px 14px", borderRadius: "10px", margin: "0 0 20px", textAlign: "left", lineHeight: "1.4" }}>
+                    ℹ️ <strong>Note:</strong> This RSVP saves your delegate entry pass on BioConnect. If the host institution ({selectedEvent.profiles?.full_name || "Organizers"}) requires an additional campus registration, click <strong>"Open Host Portal Site 🔗"</strong> below.
+                  </p>
 
                   <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
                     <button onClick={() => setSelectedEvent(null)} style={{ padding: "10px 24px", borderRadius: "10px", border: "1px solid #CBD5E1", background: "#FFF", color: "#475569", fontSize: "14px", fontWeight: 600, cursor: "pointer" }}>
@@ -630,13 +634,20 @@ export default function EventsPage() {
                       <input required value={regForm.university} onChange={e => setRegForm({...regForm, university: e.target.value})} style={I} placeholder="e.g. Gujarat University / GBU Gandhinagar"/>
                     </div>
 
-                    <div style={{ marginTop: "12px", display: "flex", gap: "10px", justifyContent: "flex-end", alignItems: "center" }}>
-                      <button type="button" onClick={() => setSelectedEvent(null)} style={{ padding: "10px 20px", borderRadius: "10px", border: "1px solid #CBD5E1", background: "#FFF", color: "#475569", fontSize: "13.5px", fontWeight: 600, cursor: "pointer" }}>
-                        Cancel
-                      </button>
-                      <button type="submit" style={{ padding: "11px 28px", borderRadius: "10px", border: "none", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFF", fontSize: "14px", fontWeight: 700, cursor: "pointer", boxShadow: "0 4px 14px rgba(20,184,166,0.4)" }}>
-                        Submit Official Event Registration 🎉
-                      </button>
+                    <div style={{ marginTop: "12px", display: "flex", gap: "10px", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
+                      {selectedEvent.registration_url && (
+                        <a href={selectedEvent.registration_url} target="_blank" rel="noopener noreferrer" style={{ fontSize: "12.5px", color: "#0D9488", fontWeight: 600, textDecoration: "underline" }}>
+                          Open Host Institution Website 🔗
+                        </a>
+                      )}
+                      <div style={{ display: "flex", gap: "8px", marginLeft: "auto" }}>
+                        <button type="button" onClick={() => setSelectedEvent(null)} style={{ padding: "10px 18px", borderRadius: "10px", border: "1px solid #CBD5E1", background: "#FFF", color: "#475569", fontSize: "13.5px", fontWeight: 600, cursor: "pointer" }}>
+                          Cancel
+                        </button>
+                        <button type="submit" style={{ padding: "11px 24px", borderRadius: "10px", border: "none", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFF", fontSize: "14px", fontWeight 700, cursor: "pointer", boxShadow: "0 4px 14px rgba(20,184,166,0.4)" }}>
+                          Confirm BioConnect RSVP 🎉
+                        </button>
+                      </div>
                     </div>
                   </form>
                 </div>
