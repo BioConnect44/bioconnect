@@ -644,7 +644,7 @@ export default function EventsPage() {
                         <button type="button" onClick={() => setSelectedEvent(null)} style={{ padding: "10px 18px", borderRadius: "10px", border: "1px solid #CBD5E1", background: "#FFF", color: "#475569", fontSize: "13.5px", fontWeight: 600, cursor: "pointer" }}>
                           Cancel
                         </button>
-                        <button type="submit" style={{ padding: "11px 24px", borderRadius: "10px", border: "none", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFF", fontSize: "14px", fontWeight 700, cursor: "pointer", boxShadow: "0 4px 14px rgba(20,184,166,0.4)" }}>
+                        <button type="submit" style={{ padding: "11px 24px", borderRadius: "10px", border: "none", background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#FFF", fontSize: "14px", fontWeight: 700, cursor: "pointer", boxShadow: "0 4px 14px rgba(20,184,166,0.4)" }}>
                           Confirm BioConnect RSVP 🎉
                         </button>
                       </div>
