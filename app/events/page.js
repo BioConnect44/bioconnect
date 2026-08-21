@@ -94,9 +94,9 @@ const DEFAULT_EVENTS = [
     event_type: "seminar",
     location: "IIT Gandhinagar Campus, Palaj, Gandhinagar, Gujarat",
     region: "gujarat",
-    event_date: "2026-09-28T09:00:00.000Z",
+    event_date: "2026-09-28T09:30:00.000Z",
     end_date: "2026-09-29T17:00:00.000Z",
-    registration_url: "https://iitgn.ac.in/",
+    registration_url: "https://events.iitgn.ac.in/",
     description: "Showcase of novel biomedical devices, tissue engineering prototypes, neural interfaces, and diagnostic AI solutions developed by IIT Gandhinagar research labs.",
     profiles: { full_name: "IIT Gandhinagar Department of Bioengineering" }
   },
@@ -108,7 +108,7 @@ const DEFAULT_EVENTS = [
     region: "india",
     event_date: "2026-09-15T09:00:00.000Z",
     end_date: "2026-09-17T17:00:00.000Z",
-    registration_url: "https://academicworldresearch.org/",
+    registration_url: "https://academicworldresearch.org/Conferences",
     description: "Premier international gathering of genomics researchers and biotechnology engineers discussing recent advancements in CRISPR-Cas9 base editing, prime editing, and therapeutic delivery platforms.",
     profiles: { full_name: "Academic World Research / IIT Bombay" }
   },
@@ -120,7 +120,7 @@ const DEFAULT_EVENTS = [
     region: "india",
     event_date: "2026-11-04T08:30:00.000Z",
     end_date: "2026-11-06T18:00:00.000Z",
-    registration_url: "https://academicworldresearch.org/",
+    registration_url: "https://academicworldresearch.org/Conferences",
     description: "Leading conference bringing together biomedical scientists, clinical researchers, and AI engineers to explore artificial intelligence applications in clinical diagnostics and drug discovery.",
     profiles: { full_name: "Academic World Research / AIIMS Delhi" }
   },
@@ -156,7 +156,7 @@ const DEFAULT_EVENTS = [
     region: "india",
     event_date: "2026-12-12T09:00:00.000Z",
     end_date: "2026-12-14T17:00:00.000Z",
-    registration_url: "https://iisc.ac.in/",
+    registration_url: "https://iisc.ac.in/events/",
     description: "High-level research symposium on stem cell lineage tracing, organoid morphogenesis, and clinical translation of cell therapies.",
     profiles: { full_name: "IISc / NCBS Bengaluru" }
   },
@@ -168,14 +168,14 @@ const DEFAULT_EVENTS = [
     region: "global",
     event_date: "2027-02-20T10:00:00.000Z",
     end_date: "2027-02-22T16:00:00.000Z",
-    registration_url: "https://academicworldresearch.org/",
+    registration_url: "https://academicworldresearch.org/Conferences",
     description: "A 3-day global virtual event featuring keynote lectures from Nobel laureates and industry pioneers on metabolic engineering, microbial cell factories, and bioprocess scaling.",
     profiles: { full_name: "International Society of Biotechnology" }
   }
 ];
 
 function getDirectEventUrl(event) {
-  return event?.registration_url || "https://academicworldresearch.org/";
+  return event?.registration_url || "https://academicworldresearch.org/Conferences";
 }
 
 export default function EventsPage() {
