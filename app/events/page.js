@@ -25,7 +25,7 @@ function safeFormatTime(dateStr, options, fallback = "") {
   }
 }
 
-function MiniCalendar({ events = [], onSelectDate }) {
+function MiniCalendar({ events = [], selectedDate, onSelectDate }) {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const year = currentDate.getFullYear();
@@ -98,23 +98,26 @@ function MiniCalendar({ events = [], onSelectDate }) {
           const dayEvents = eventDateMap[dateKey] || [];
           const hasEvent = dayEvents.length > 0;
           const isToday = isCurrentMonth && d === now.getDate();
+          const isSelected = selectedDate === dateKey;
 
           return (
             <div
               key={i}
               title={hasEvent ? `📅 Events on ${dateKey}:\n• ${dayEvents.join('\n• ')}` : ""}
-              onClick={() => hasEvent && onSelectDate && onSelectDate(dateKey)}
+              onClick={() => onSelectDate && onSelectDate(dateKey)}
               style={{
                 position: "relative",
                 fontSize: "13px",
                 padding: "8px 4px",
                 borderRadius: "10px",
-                cursor: d ? "pointer" : "default",
-                background: isToday ? "#14B8A6" : hasEvent ? "#F0FDF4" : "transparent",
-                color: isToday ? "#ffffff" : hasEvent ? "#15803D" : "#374151",
-                fontWeight: isToday || hasEvent ? 700 : 400,
-                border: hasEvent && !isToday ? "1px solid #BBF7D0" : "1px solid transparent",
-                transition: "all 0.15s ease"
+                cursor: "pointer",
+                background: isSelected ? "#0D9488" : isToday ? "#14B8A6" : hasEvent ? "#F0FDF4" : "transparent",
+                color: isSelected || isToday ? "#ffffff" : hasEvent ? "#15803D" : "#374151",
+                fontWeight: isSelected || isToday || hasEvent ? 700 : 400,
+                border: isSelected ? "2px solid #0F766E" : hasEvent && !isToday ? "1px solid #BBF7D0" : "1px solid transparent",
+                transform: isSelected ? "scale(1.05)" : "scale(1)",
+                transition: "all 0.15s ease",
+                boxShadow: isSelected ? "0 4px 12px rgba(13,148,136,0.3)" : "none"
               }}
             >
               {d}
@@ -129,7 +132,7 @@ function MiniCalendar({ events = [], onSelectDate }) {
                     width: "5px",
                     height: "5px",
                     borderRadius: "50%",
-                    background: isToday ? "#FFFFFF" : "#16A34A",
+                    background: isSelected || isToday ? "#FFFFFF" : "#16A34A",
                     boxShadow: "0 0 4px rgba(22, 163, 74, 0.6)"
                   }}
                 />
@@ -140,9 +143,14 @@ function MiniCalendar({ events = [], onSelectDate }) {
       </div>
 
       {/* Event Legend */}
-      <div style={{ marginTop: "14px", paddingTop: "12px", borderTop: "1px dashed #E2EEF0", display: "flex", alignItems: "center", gap: "6px", fontSize: "11.5px", color: "#64748B", fontWeight: 600 }}>
-        <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#16A34A", display: "inline-block" }} />
-        <span>Days with scheduled events</span>
+      <div style={{ marginTop: "14px", paddingTop: "12px", borderTop: "1px dashed #E2EEF0", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "11.5px", color: "#64748B", fontWeight: 600 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#16A34A", display: "inline-block" }} />
+          <span>Days with scheduled events</span>
+        </div>
+        {selectedDate && (
+          <span style={{ color: "#0D9488", cursor: "pointer", fontWeight: 700 }} onClick={() => onSelectDate(null)}>Clear ✕</span>
+        )}
       </div>
     </div>
   );
@@ -264,6 +272,7 @@ export default function EventsPage() {
 
   const [filter, setFilter] = useState("upcoming");
   const [regionFilter, setRegionFilter] = useState("all");
+  const [selectedDate, setSelectedDate] = useState(null); // Filter by specific date string YYYY-MM-DD
   const [searchQuery, setSearchQuery] = useState("");
   const [showAdd, setShowAdd] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -320,12 +329,12 @@ export default function EventsPage() {
   const isEducator = profile?.role === "educator" || profile?.role === "researcher";
   const now = new Date();
 
-  // Filter logic: Status + Region + Search Query
+  // Filter logic: Status + Region + Selected Date + Search Query
   const filteredEvents = events.filter(e => {
     if (e.event_date) {
       const d = new Date(e.event_date);
-      if (filter === "upcoming" && d < now) return false;
-      if (filter === "past" && d >= now) return false;
+      if (filter === "upcoming" && d < now && !selectedDate) return false;
+      if (filter === "past" && d >= now && !selectedDate) return false;
     }
 
     if (regionFilter === "gujarat") {
@@ -337,6 +346,27 @@ export default function EventsPage() {
     } else if (regionFilter === "global") {
       const loc = (e.location || "").toLowerCase();
       if (!loc.includes("virtual") && !loc.includes("online") && e.region !== "global") return false;
+    }
+
+    // Specific Date Filter
+    if (selectedDate && e.event_date) {
+      try {
+        const parts = selectedDate.split("-");
+        const targetYear = parseInt(parts[0], 10);
+        const targetMonth = parseInt(parts[1], 10) - 1;
+        const targetDay = parseInt(parts[2], 10);
+
+        const evStart = new Date(e.event_date);
+        const evEnd = e.end_date ? new Date(e.end_date) : new Date(evStart);
+
+        const targetTime = new Date(targetYear, targetMonth, targetDay, 12, 0, 0).getTime();
+        const startTime = new Date(evStart.getFullYear(), evStart.getMonth(), evStart.getDate(), 0, 0, 0).getTime();
+        const endTime = new Date(evEnd.getFullYear(), evEnd.getMonth(), evEnd.getDate(), 23, 59, 59).getTime();
+
+        if (targetTime < startTime || targetTime > endTime) return false;
+      } catch (ex) {
+        return false;
+      }
     }
 
     if (searchQuery.trim()) {
@@ -431,11 +461,23 @@ export default function EventsPage() {
             </div>
           </div>
 
+          {/* ACTIVE DATE FILTER BAR */}
+          {selectedDate && (
+            <div style={{ background: "#E0F2FE", border: "1px solid #BAE6FD", borderRadius: "14px", padding: "12px 18px", marginBottom: "20px", display: "flex", justifyContent: "space-between", alignItems: "center", boxShadow: "0 2px 8px rgba(2,132,199,0.08)" }}>
+              <span style={{ fontSize: "13.5px", fontWeight: 700, color: "#0369A1", display: "flex", alignItems: "center", gap: "8px" }}>
+                <span>📅 Showing scheduled events for date: <strong style={{ color: "#0284C7" }}>{safeFormatDate(selectedDate, { month: "long", day: "numeric", year: "numeric" })}</strong></span>
+              </span>
+              <button onClick={() => setSelectedDate(null)} style={{ background: "#0284C7", color: "#FFFFFF", border: "none", padding: "6px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: 700, cursor: "pointer", fontFamily: "inherit", boxShadow: "0 2px 6px rgba(2,132,199,0.3)" }}>
+                Clear Date Filter ✕
+              </button>
+            </div>
+          )}
+
           {/* HIGH-CONTRAST FEATURED EVENT BANNER */}
-          {featured && filter === "upcoming" && (
+          {featured && filter === "upcoming" && !selectedDate && (
             <div style={{ position: "relative", borderRadius: "20px", overflow: "hidden", marginBottom: "24px", boxShadow: "0 10px 28px rgba(15,23,42,0.14)" }}>
               <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}/>
-              
+
               {/* Overlay */}
               <div style={{ position: "relative", zIndex: 1, background: "linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.88) 55%, rgba(13, 148, 136, 0.45) 100%)", padding: "26px 30px" }}>
                 <div>
@@ -485,7 +527,7 @@ export default function EventsPage() {
 
           {/* Events list */}
           <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-            {filteredEvents.filter(e => e !== featured || filter === "past" || regionFilter !== "all" || searchQuery).map(ev => {
+            {filteredEvents.filter(e => (e !== featured || filter === "past" || regionFilter !== "all" || searchQuery || selectedDate)).map(ev => {
               const isPast = ev.event_date ? new Date(ev.event_date) < now : false;
               const tc = typeColors[ev.event_type] || typeColors.other;
               const isGujarat = (ev.location || "").toLowerCase().includes("gujarat") || ev.region === "gujarat";
@@ -532,8 +574,13 @@ export default function EventsPage() {
             {filteredEvents.length === 0 && (
               <div style={{ textAlign: "center", padding: "60px 20px", background: "#fff", borderRadius: "16px", border: "1px solid #E2EEF0", color: "#9CA3AF" }}>
                 <div style={{ fontSize: "32px", marginBottom: "8px" }}>🔍</div>
-                <h3 style={{ fontSize: "16px", fontWeight: 600, color: "#374151" }}>No events found</h3>
-                <p style={{ fontSize: "13px" }}>Try searching for other keywords or switching region filters.</p>
+                <h3 style={{ fontSize: "16px", fontWeight: 600, color: "#374151" }}>No events scheduled for this date</h3>
+                <p style={{ fontSize: "13px" }}>Try selecting another date on the calendar or click 'Clear Date Filter'.</p>
+                {selectedDate && (
+                  <button onClick={() => setSelectedDate(null)} style={{ marginTop: "12px", background: "#14B8A6", color: "#FFF", border: "none", padding: "8px 18px", borderRadius: "8px", fontSize: "13px", fontWeight: 700, cursor: "pointer" }}>
+                    Clear Date Filter
+                  </button>
+                )}
               </div>
             )}
           </div>
@@ -541,10 +588,14 @@ export default function EventsPage() {
 
         {/* Right sidebar */}
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          {/* Dynamic Interactive Event Calendar with Green Event Dots */}
-          <MiniCalendar events={events} onSelectDate={(dateKey) => {
-            setSearchQuery(dateKey);
-          }} />
+          {/* Dynamic Interactive Event Calendar with Date Filter Selection */}
+          <MiniCalendar
+            events={events}
+            selectedDate={selectedDate}
+            onSelectDate={(dateKey) => {
+              setSelectedDate(prev => prev === dateKey ? null : dateKey);
+            }}
+          />
 
           {/* Direct Ticket & Registration Portals */}
           <div style={{ background: "#fff", borderRadius: "16px", padding: "20px", border: "1px solid #E2EEF0" }}>
