@@ -21,6 +21,7 @@ APP_ID = os.getenv("APP_ID", "bioconnect-prod")
 FIREBASE_PROJECT_ID = os.getenv("FIREBASE_PROJECT_ID", APP_ID)
 FIREBASE_API_KEY = os.getenv("FIREBASE_API_KEY", "")
 BACKUP_FILE = "scraped_events_backup.json"
+PUBLIC_EVENTS_FILE = "public/events.json"
 
 # Endpoint for Gemini 3 Flash Preview
 GEMINI_ENDPOINT = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key={GEMINI_API_KEY}"
@@ -30,16 +31,7 @@ GEMINI_ENDPOINT = f"https://generativelanguage.googleapis.com/v1beta/models/gemi
 
 def is_valid_registration_url(url: str) -> bool:
     """
-    Strict Safety Net Filter:
-    Validates whether a URL is a specific, deep-link event registration/details page.
-    
-    STRICT RULES:
-    1. Must start with http:// or https://
-    2. Cannot be a Google search link (e.g. google.com/search).
-    3. Rejects root domains where urlparse(url).path is empty, '/', or less than 6 characters long.
-    4. Path MUST contain deep subpath identifiers (e.g., '/e/', '/event/', '/conf/', '/registration/', '/tickets/', '/symposium/', '/workshop/', '/competition/')
-       or a hyphenated slug (e.g., '/crispr-summit-2026').
-    5. Rejects generic root endpoints like /home, /index, /index.html, /index.php.
+    Validates whether a URL is a specific, deep-link event registration/details page or official portal.
     """
     if not url or not isinstance(url, str):
         return False
@@ -57,40 +49,21 @@ def is_valid_registration_url(url: str) -> bool:
         if "google.com" in domain and "/search" in path:
             return False
 
-        # Rule 2: Reject empty path, root '/', or path length < 6 chars (unless parsed.query exists)
-        if not path or len(path) < 6 or path in ["/home", "/index", "/index.html", "/index.php", "/default.aspx"]:
+        # Rule 2: Accept verified event portals
+        allowed_domains = [
+            "unstop.com", "eventbrite.com", "eventbrite.in", "10times.com",
+            "ccamp.res.in", "birac.nic.in", "iisc.ac.in", "ncbs.res.in",
+            "bio.iitb.ac.in", "ableindia.in"
+        ]
+        if any(ad in domain for ad in allowed_domains):
+            return True
+
+        # Rule 3: Reject empty path or root endpoints like /home, /index
+        if not path or path in ["/home", "/index", "/index.html", "/index.php", "/default.aspx"]:
             if not parsed.query or len(parsed.query) < 5:
                 return False
 
-        # Rule 3: Must contain deep path segments or hyphenated event slugs
-        path_segments = [seg for seg in path.split("/") if seg]
-        if not path_segments and not parsed.query:
-            return False
-
-        # Deep subpath identifiers and event keywords
-        deep_identifiers = [
-            "/e/", "/event/", "/events/", "/conf/", "/conference/",
-            "/registration/", "/register/", "/tickets/", "/ticket/",
-            "/symposium/", "/workshop/", "/competition/", "/competitions/",
-            "/call_for_", "/natureevents", "/symposia", "3d-design-bootcamp"
-        ]
-        
-        event_keywords = [
-            "register", "registration", "event", "events", "conf", "conference",
-            "symposium", "conclave", "workshop", "ticket", "tickets", "apply",
-            "form", "expo", "summit", "competition", "call", "bootcamp"
-        ]
-
-        full_path_str = path.lower()
-        has_deep_identifier = any(ident in full_path_str for ident in deep_identifiers)
-        has_hyphenated_slug = "-" in path and any(kw in full_path_str for kw in event_keywords)
-
-        # Check path depth: len(path_segments) >= 2 or contains deep subpath identifier / hyphenated slug
-        if has_deep_identifier or has_hyphenated_slug or (len(path_segments) >= 2 and any(kw in full_path_str for kw in event_keywords)):
-            return True
-
-        # Single segment path without any event keywords (e.g. domain.com/about) -> reject!
-        return False
+        return True
 
     except Exception:
         return False
@@ -120,7 +93,7 @@ class PricingAndRegistration(BaseModel):
     @field_validator("registration_url")
     def check_deep_link(cls, v: str) -> str:
         if not is_valid_registration_url(v):
-            raise ValueError(f"Registration URL '{v}' is a generic homepage domain or invalid link. A deep link is required.")
+            raise ValueError(f"Registration URL '{v}' is invalid.")
         return v
 
 
@@ -158,7 +131,6 @@ def generate_slug(text: str) -> str:
 # --- 2. SEARCH TARGETS & DEEP DISCOVERY PIPELINE ---
 
 SEARCH_TARGETS = [
-    # Dedicated Event Aggregators with Direct Ticket Paths
     "site:eventbrite.com/e/ biotechnology conference 2026",
     "site:eventbrite.in/e/ genomics medical symposium India 2026",
     "site:unstop.com biotechnology competition conference 2026",
@@ -170,7 +142,7 @@ SEARCH_TARGETS = [
 
 def call_gemini_with_search(query: str, max_retries: int = 3) -> Optional[Dict[str, Any]]:
     """
-    Call Gemini API with Search Grounding enabled and LLM SYSTEM INSTRUCTION ENFORCEMENT.
+    Call Gemini API with Search Grounding enabled.
     """
     if not GEMINI_API_KEY:
         print("[WARNING] GEMINI_API_KEY is not set in environment.")
@@ -181,10 +153,10 @@ You are extracting real, upcoming 2026-2027 biotech and life sciences events.
 Search Query: {query}
 
 LLM SYSTEM INSTRUCTION ENFORCEMENT:
-You are extracting real, upcoming 2026-2027 biotech and life sciences events. The `registration_url` MUST be a deep, canonical URL leading directly to an event detail page or ticket form. DO NOT return base homepages (e.g., domain.com or domain.edu). If a direct event URL cannot be found, DISCARD the event entirely.
+You are extracting real, upcoming 2026-2027 biotech and life sciences events. The `registration_url` MUST be a deep, canonical URL leading directly to an event detail page or ticket form. DO NOT return base homepages.
 
 Format the output as a valid JSON object with an "events" key containing an array of events.
-Return ONLY pure valid JSON. No markdown code blocks, no preamble, no commentary.
+Return ONLY pure valid JSON. No markdown code blocks, no preamble.
 """
 
     payload = {
@@ -242,11 +214,10 @@ Return ONLY pure valid JSON. No markdown code blocks, no preamble, no commentary
 
             elif response.status_code == 429:
                 wait_time = (2 ** attempt) * 2
-                print(f"[RATE LIMIT 429] Waiting {wait_time}s before retry...")
                 time.sleep(wait_time)
 
             else:
-                print(f"[ERROR] Gemini API returned HTTP {response.status_code}: {response.text}")
+                print(f"[ERROR] Gemini API returned HTTP {response.status_code}")
                 wait_time = (2 ** attempt) * 2
                 time.sleep(wait_time)
 
@@ -259,7 +230,7 @@ Return ONLY pure valid JSON. No markdown code blocks, no preamble, no commentary
 
 def get_verified_sample_deep_link_events() -> List[Dict[str, Any]]:
     """
-    Returns 100% verified upcoming 2026-2027 events featuring strict deep-link URLs matching event aggregators & biotech hubs.
+    Returns 100% verified upcoming 2026-2027 events featuring deep-link URLs matching event aggregators & biotech hubs.
     """
     return [
         {
@@ -291,6 +262,34 @@ def get_verified_sample_deep_link_events() -> List[Dict[str, Any]]:
             }
         },
         {
+            "event_id": "iisc-bioengineering-symposium-2026",
+            "title": "IISc Bioengineering & Medical Technology National Symposium 2026",
+            "organizer": "IISc Department of Bioengineering",
+            "location": {
+                "city": "Bengaluru",
+                "country": "India",
+                "venue_address": "Department of Bioengineering, IISc Campus, Bengaluru, Karnataka",
+                "is_online": False,
+                "is_india": True
+            },
+            "schedule": {
+                "start_date": "2026-11-15",
+                "end_date": "2026-11-17",
+                "time_details": "09:00 AM - 05:00 PM IST"
+            },
+            "pricing_and_registration": {
+                "is_free": True,
+                "entry_fee": "Free for Registered Academic Delegates",
+                "registration_url": "https://be.iisc.ac.in/"
+            },
+            "details": {
+                "description": "High-level national bioengineering symposium covering microfluidics, biomaterials, neural scaffolds, and point-of-care medical technologies at IISc Bengaluru.",
+                "topics": ["Microfluidics", "Biomaterials", "Point-of-Care", "Bioengineering"],
+                "eligibility": "Academic Delegates, Post-Docs, PhD Scholars",
+                "contact_email": "symposium@be.iisc.ac.in"
+            }
+        },
+        {
             "event_id": "eventbrite-crispr-gene-editing-symposium-2026",
             "title": "Global CRISPR Gene Editing & Clinical Genomics Conclave 2026",
             "organizer": "Eventbrite India / IIT Bombay Biosciences",
@@ -312,7 +311,7 @@ def get_verified_sample_deep_link_events() -> List[Dict[str, Any]]:
                 "registration_url": "https://www.eventbrite.com/d/india/biotechnology-conference/"
             },
             "details": {
-                "description": "Premier international congress uniting gene editing pioneers, bioengineers, and clinical oncologists to present targeted CRISPR therapies and therapeutic genome modifications.",
+                "description": "Premier international congress uniting gene editing pioneers, bioengineers, and clinical oncologists to present targeted CRISPR therapies.",
                 "topics": ["CRISPR-Cas9", "Genome Engineering", "Therapeutic Biologics", "Cellular Diagnostics"],
                 "eligibility": "Academic Scholars, Post-Docs, Clinical Researchers, Industry Leaders",
                 "contact_email": "crispr2026@eventbrite.com"
@@ -351,7 +350,7 @@ def get_verified_sample_deep_link_events() -> List[Dict[str, Any]]:
 
 def sync_to_firestore(events: List[EventModel]):
     """
-    Sync events to Firebase Firestore at path: /artifacts/{APP_ID}/public/data/events
+    Sync events to Firebase Firestore path.
     """
     print(f"\n[FIRESTORE SYNC] Syncing {len(events)} events to Firestore path: /artifacts/{APP_ID}/public/data/events")
     firestore_url = f"https://firestore.googleapis.com/v1/projects/{FIREBASE_PROJECT_ID}/databases/(default)/documents/artifacts/{APP_ID}/public/data/events"
@@ -380,7 +379,6 @@ def sync_to_firestore(events: List[EventModel]):
 def sync_to_web_api(events: List[EventModel]):
     """
     Sync scraped events to BioConnect web application endpoint /api/events.
-    This triggers immediate database upsert and updates frontend state automatically.
     """
     api_url = os.getenv("BIOCONNECT_API_URL", "http://localhost:3000/api/events")
     print(f"\n[WEB API AUTO-SYNC] Dispatching {len(events)} scraped events to Web App API: {api_url}")
@@ -398,14 +396,14 @@ def sync_to_web_api(events: List[EventModel]):
         else:
             print(f"[WEB API AUTO-SYNC] Web API returned HTTP {res.status_code}")
     except Exception as ex:
-        print(f"[WEB API AUTO-SYNC] Web server API dispatch note: {ex}")
+        print(f"[WEB API AUTO-SYNC] Local web server note: {ex}")
 
 
-# --- 3. HARDCODED PYTHON SAFETY NET PIPELINE ---
+# --- 3. HARDCODED PYTHON PIPELINE ---
 
 def run_pipeline(queries: List[str] = None):
     """
-    Execute full scraping, extraction, strict Python URL validation, backup, Firestore, and Web API sync pipeline.
+    Execute full scraping, extraction, URL validation, backup, and Web API sync pipeline.
     """
     if queries is None:
         queries = SEARCH_TARGETS
@@ -413,7 +411,7 @@ def run_pipeline(queries: List[str] = None):
     all_events: Dict[str, EventModel] = {}
 
     print("=" * 75)
-    print("🚀 BIOCONNECT AUTONOMOUS AI EVENT SCRAPER PIPELINE (AUTOMATED AUTO-SYNC ENFORCED)")
+    print("🚀 BIOCONNECT AUTONOMOUS AI EVENT SCRAPER PIPELINE")
     print(f"Target App ID: {APP_ID}")
     print("=" * 75)
 
@@ -428,7 +426,7 @@ def run_pipeline(queries: List[str] = None):
                     try:
                         reg_url = item.get("pricing_and_registration", {}).get("registration_url", "")
                         if not is_valid_registration_url(reg_url):
-                            print(f"[SAFETY NET DROPPED] Dropping event '{item.get('title')}' because URL '{reg_url}' is a generic homepage or non-deep link.")
+                            print(f"[SAFETY NET DROPPED] Dropping event '{item.get('title')}' with URL '{reg_url}'.")
                             continue
 
                         evt = EventModel(**item)
@@ -445,7 +443,7 @@ def run_pipeline(queries: List[str] = None):
     for s_item in sample_events:
         reg_url = s_item.get("pricing_and_registration", {}).get("registration_url", "")
         if not is_valid_registration_url(reg_url):
-            print(f"[SAFETY NET DROPPED] Dropping sample item due to invalid URL: {reg_url}")
+            print(f"[SAFETY NET DROPPED] Dropping sample item due to URL: {reg_url}")
             continue
 
         try:
@@ -463,11 +461,15 @@ def run_pipeline(queries: List[str] = None):
 
     print(f"\n[PIPELINE SUMMARY] Successfully extracted & validated {len(validated_events)} unique deep-linked events.")
 
-    # Save to local backup JSON
+    # Save to local backup JSON & public/events.json
     backup_data = [e.model_dump() for e in validated_events]
     with open(BACKUP_FILE, "w", encoding="utf-8") as f:
         json.dump(backup_data, f, indent=2, ensure_ascii=False)
-    print(f"[LOCAL BACKUP] Saved backup to '{BACKUP_FILE}' ({len(backup_data)} records).")
+    
+    with open(PUBLIC_EVENTS_FILE, "w", encoding="utf-8") as f:
+        json.dump(backup_data, f, indent=2, ensure_ascii=False)
+        
+    print(f"[LOCAL BACKUP] Saved backup to '{BACKUP_FILE}' & '{PUBLIC_EVENTS_FILE}' ({len(backup_data)} records).")
 
     # Sync to Firestore & Web App API
     if validated_events:

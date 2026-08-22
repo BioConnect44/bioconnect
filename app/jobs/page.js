@@ -93,10 +93,6 @@ export default function JobsPage() {
   const [form, setForm] = useState({ title: "", company: "", location: "India", job_type: "Full-time", experience: "", salary: "", description: "", skills: "", apply_url: "", category: "Research" });
 
   async function loadAll() {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) { window.location.href = "/login"; return; }
-    const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
-    setProfile(data);
     let scraped = [];
     try {
       const res = await fetch("/api/jobs?limit=500");
@@ -117,38 +113,52 @@ export default function JobsPage() {
       });
       setLastUpdated(d.last_updated);
     } catch (e) {}
-    const { data: manual } = await supabase
-      .from("manual_jobs")
-      .select("*, profiles(full_name)")
-      .eq("is_active", true)
-      .order("created_at", { ascending: false });
-    const manualJobs = (manual || []).map((j) => {
-      const company = getDisplayCompany(j);
-      const location = getDisplayLocation({ ...j, company });
-      const salary = getDisplaySalary(j);
-      return {
-        title: j.title,
-        company,
-        location,
-        job_type: j.job_type,
-        experience: j.experience,
-        salary,
-        description: j.description,
-        skills: j.skills || [],
-        url: j.apply_url,
-        category: j.category || detectCategory(j),
-        posted_by: j.posted_by,
-        posted_by_name: j.profiles?.full_name,
-        _source: "manual",
-        _id: j.id,
-        _supabaseId: j.id,
-      };
-    });
+
+    let manualJobs = [];
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
+        if (data) setProfile(data);
+        const { data: manual } = await supabase
+          .from("manual_jobs")
+          .select("*, profiles(full_name)")
+          .eq("is_active", true)
+          .order("created_at", { ascending: false });
+        manualJobs = (manual || []).map((j) => {
+          const company = getDisplayCompany(j);
+          const location = getDisplayLocation({ ...j, company });
+          const salary = getDisplaySalary(j);
+          return {
+            title: j.title,
+            company,
+            location,
+            job_type: j.job_type,
+            experience: j.experience,
+            salary,
+            description: j.description,
+            skills: j.skills || [],
+            url: j.apply_url,
+            category: j.category || detectCategory(j),
+            posted_by: j.posted_by,
+            posted_by_name: j.profiles?.full_name,
+            _source: "manual",
+            _id: j.id,
+            _supabaseId: j.id,
+          };
+        });
+      }
+    } catch (e) {}
+
     setAllJobs([...manualJobs, ...scraped]);
     setLoading(false);
   }
 
-  useEffect(() => { loadAll(); }, []);
+  useEffect(() => {
+    loadAll();
+    const interval = setInterval(loadAll, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   async function handleAddJob(e) {
     e.preventDefault();
@@ -289,6 +299,25 @@ export default function JobsPage() {
               {showAdd ? "Cancel" : "+ Post Job"}
             </button>
           )}
+          <button
+            onClick={loadAll}
+            style={{
+              background: "#F0F7F8",
+              color: "#0D9488",
+              border: "1px solid #CCFBF1",
+              padding: "9px 16px",
+              borderRadius: "10px",
+              fontSize: "13.5px",
+              fontWeight: 600,
+              cursor: "pointer",
+              fontFamily: "inherit",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px"
+            }}
+          >
+            🔄 Refresh Jobs
+          </button>
           <div
             style={{
               display: "flex",
@@ -311,7 +340,7 @@ export default function JobsPage() {
             <span
               style={{ fontSize: "12px", color: "#6B8A9A", fontWeight: 500 }}
             >
-              Auto-updated
+              Auto-scraped Live
             </span>
           </div>
         </div>
