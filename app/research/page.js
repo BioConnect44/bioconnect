@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import AppShell from "@/components/AppShell";
+import ResearchSummaryWidget from "@/components/ResearchSummaryWidget";
 
 export default function ResearchPage() {
   const supabase = createClient();
@@ -137,6 +138,9 @@ export default function ResearchPage() {
           </button>
         )}
       </div>
+
+      {/* PubMed AI Research Summary Widget */}
+      <ResearchSummaryWidget userId={profile?.id} />
 
       {/* Search */}
       <div style={{ position: "relative", marginBottom: "16px" }}>
