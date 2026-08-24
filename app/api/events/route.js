@@ -74,9 +74,9 @@ export async function GET(req) {
     });
 
     combined.sort((a, b) => new Date(a.event_date) - new Date(b.event_date));
-    return NextResponse.json({ events: combined, total: combined.length }, { status: 200 });
+    return NextResponse.json({ events: combined, total: combined.length, last_updated: new Date().toISOString() }, { status: 200 });
   } catch (err) {
-    return NextResponse.json({ events: getLocalEvents(), error: err.message }, { status: 200 });
+    return NextResponse.json({ events: getLocalEvents(), error: err.message, last_updated: new Date().toISOString() }, { status: 200 });
   }
 }
 

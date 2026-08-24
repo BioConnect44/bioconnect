@@ -276,15 +276,18 @@ export default function EventsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [showAdd, setShowAdd] = useState(false);
   const [isScraping, setIsScraping] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState(null);
 
   async function handleRefreshEventsScraper() {
     setIsScraping(true);
     try {
-      await fetch("/api/events", {
+      const res = await fetch("/api/events", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "trigger_scrape" }),
       });
+      const d = await res.json();
+      if (d.last_updated) setLastUpdated(d.last_updated);
     } catch (e) {
       console.error(e);
     }
@@ -294,10 +297,16 @@ export default function EventsPage() {
 
   async function loadEvents() {
     try {
+      const apiRes = await fetch("/api/events");
+      const apiData = await apiRes.json();
+      if (apiData.last_updated) setLastUpdated(apiData.last_updated);
+
       const { data, error } = await supabase.from("events").select("*, profiles(full_name)").order("event_date", { ascending: true });
       let loaded = [];
       if (!error && data && data.length > 0) {
         loaded = data;
+      } else if (apiData.events && apiData.events.length > 0) {
+        loaded = apiData.events;
       } else {
         const { data: simpleData } = await supabase.from("events").select("*").order("event_date", { ascending: true });
         loaded = simpleData && simpleData.length > 0 ? simpleData : [];
@@ -494,6 +503,23 @@ export default function EventsPage() {
                 style={{ width: "100%", padding: "8px 14px", borderRadius: "10px", border: "1.5px solid #E2EEF0", fontSize: "13px", fontFamily: "inherit", outline: "none", background: "#fff", color: "#1B2B3A" }}
               />
             </div>
+          </div>
+
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+            <span style={{ fontSize: "14px", color: "#6B8A9A" }}>
+              Showing <strong style={{ color: "#1B2B3A" }}>{filteredEvents.length}</strong> biotech opportunities & conferences
+            </span>
+            {lastUpdated && (
+              <span style={{ fontSize: "12px", color: "#9CA3AF" }}>
+                Last scraped{" "}
+                {new Date(lastUpdated).toLocaleDateString("en-IN", {
+                  day: "numeric",
+                  month: "short",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </span>
+            )}
           </div>
 
           {/* ACTIVE DATE FILTER BAR */}
