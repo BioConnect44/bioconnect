@@ -48,7 +48,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
     if (!q || !q.trim()) return;
 
     setLoading(true);
-    setStatusMessage("⚡ Fetching PubMed.ai research & generating AI summary...");
+    setStatusMessage("⚡ Fetching PubMed.ai research & generating structured summary...");
 
     try {
       const response = await fetch("/api/pubmed-summary", {
@@ -61,7 +61,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
 
       if (data.success && data.summary) {
         setActiveSummary(data.summary);
-        setStatusMessage(data.saved_to_db ? "✅ Summary generated & saved to Supabase!" : "✅ Live PubMed summary generated!");
+        setStatusMessage(data.saved_to_db ? "✅ Structured summary generated & saved to Supabase!" : "✅ Live PubMed summary generated!");
         fetchStoredSummaries();
       } else {
         setStatusMessage("⚠️ Failed to generate summary. Please try again.");
@@ -75,31 +75,84 @@ export default function ResearchSummaryWidget({ userId = null }) {
     }
   }
 
-  // Format markdown headers into clean paragraphs
+  // Render formatted 7-part schema markdown into clean structured cards
   function renderFormattedSummary(text) {
     if (!text) return null;
-    const lines = text.split("\n");
-    return lines.map((line, idx) => {
-      if (line.startsWith("### ")) {
-        return (
-          <h4 key={idx} style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginTop: "16px", marginBottom: "8px" }}>
-            {line.replace("### ", "")}
-          </h4>
-        );
-      }
-      if (line.startsWith("- ") || line.startsWith("1. ") || line.startsWith("2. ") || line.startsWith("3. ")) {
-        return (
-          <div key={idx} style={{ display: "flex", gap: "8px", fontSize: "13.5px", color: "#334155", marginBottom: "6px", lineHeight: "1.5" }}>
-            <span style={{ color: "#14B8A6", fontWeight: 700 }}>•</span>
-            <span>{line.replace(/^(- |\d+\. )/, "")}</span>
-          </div>
-        );
-      }
-      if (line.trim().length === 0) return null;
+
+    const sections = text.split(/(?=### \d+\. )/g);
+
+    return sections.map((sec, secIdx) => {
+      if (!sec.trim()) return null;
+
+      const lines = sec.trim().split("\n");
+      const titleLine = lines[0].replace("### ", "").trim();
+      const contentLines = lines.slice(1);
+
       return (
-        <p key={idx} style={{ fontSize: "13.5px", color: "#334155", lineHeight: "1.6", marginBottom: "10px" }}>
-          {line}
-        </p>
+        <div
+          key={secIdx}
+          style={{
+            background: "#ffffff",
+            borderRadius: "12px",
+            padding: "16px 20px",
+            border: "1px solid #E2EEF0",
+            marginBottom: "14px",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.02)"
+          }}
+        >
+          <h4
+            style={{
+              fontSize: "14px",
+              fontWeight: 700,
+              color: "#0D9488",
+              marginTop: 0,
+              marginBottom: "10px",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              borderBottom: "1px solid #F0F7F8",
+              paddingBottom: "8px"
+            }}
+          >
+            <span>📌</span>
+            <span>{titleLine}</span>
+          </h4>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            {contentLines.map((line, lIdx) => {
+              const trimmed = line.trim();
+              if (!trimmed) return null;
+
+              if (trimmed.startsWith("- **")) {
+                const parts = trimmed.replace("- **", "").split("**: ");
+                const label = parts[0];
+                const value = parts.slice(1).join("**: ");
+
+                return (
+                  <div key={lIdx} style={{ fontSize: "13px", lineHeight: "1.6", color: "#1B2B3A" }}>
+                    <strong style={{ color: "#0F766E", fontWeight: 700 }}>{label}: </strong>
+                    <span style={{ color: "#334155" }}>{value}</span>
+                  </div>
+                );
+              }
+
+              if (trimmed.startsWith("- ") || trimmed.startsWith("1. ") || trimmed.startsWith("2. ") || trimmed.startsWith("3. ")) {
+                return (
+                  <div key={lIdx} style={{ display: "flex", gap: "8px", fontSize: "13px", color: "#334155", lineHeight: "1.5" }}>
+                    <span style={{ color: "#14B8A6", fontWeight: 700 }}>•</span>
+                    <span>{trimmed.replace(/^(- |\d+\. )/, "")}</span>
+                  </div>
+                );
+              }
+
+              return (
+                <p key={lIdx} style={{ fontSize: "13px", color: "#334155", lineHeight: "1.6", margin: 0 }}>
+                  {trimmed}
+                </p>
+              );
+            })}
+          </div>
+        </div>
       );
     });
   }
@@ -131,7 +184,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <span style={{ fontSize: "20px" }}>🔬</span>
             <h2 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>
-              PubMed.ai Research Summarizer
+              PubMed.ai Research Summarizer (7-Part Schema)
             </h2>
             <span
               style={{
@@ -147,7 +200,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
             </span>
           </div>
           <p style={{ fontSize: "13px", color: "#6B8A9A", margin: "4px 0 0" }}>
-            Search peer-reviewed literature & automatically generate detailed AI executive summaries stored in Supabase.
+            Search peer-reviewed literature & automatically generate standardized 7-part research paper summaries stored in Supabase.
           </p>
         </div>
 
@@ -227,7 +280,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
               gap: "6px"
             }}
           >
-            {loading ? "⚡ Analyzing PubMed..." : "Generate Summary ✨"}
+            {loading ? "⚡ Generating 7-Part Summary..." : "Generate Summary ✨"}
           </button>
         </form>
 
@@ -272,7 +325,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
           }}
         >
           <p style={{ fontSize: "14px", fontWeight: 600, margin: 0 }}>
-            ⚡ Connecting to PubMed.ai server, retrieving peer-reviewed studies & generating detailed AI summary...
+            ⚡ Connecting to PubMed.ai server, retrieving peer-reviewed studies & structuring 7-part schema summary...
           </p>
         </div>
       ) : activeSummary ? (
@@ -314,39 +367,18 @@ export default function ResearchSummaryWidget({ userId = null }) {
           </div>
 
           {/* Title */}
-          <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A", margin: "0 0 8px", lineHeight: "1.4" }}>
+          <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A", margin: "0 0 16px", lineHeight: "1.4" }}>
             {activeSummary.title}
           </h3>
 
-          {/* Authors */}
-          {activeSummary.authors && (
-            <p style={{ fontSize: "12px", color: "#6B8A9A", marginBottom: "16px" }}>
-              <strong style={{ color: "#1B2B3A" }}>Authors:</strong> {activeSummary.authors}
-            </p>
-          )}
-
-          {/* Detailed Multi-Section AI Summary Box */}
-          <div
-            style={{
-              background: "#fff",
-              padding: "20px",
-              borderRadius: "12px",
-              border: "1px solid rgba(20,184,166,0.2)",
-              marginBottom: "16px"
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "12px" }}>
-              <span style={{ fontSize: "14px" }}>✨</span>
-              <span style={{ fontSize: "12px", fontWeight: 700, color: "#0D9488", textTransform: "uppercase", letterSpacing: "0.5px" }}>
-                Comprehensive AI Literature Synthesis
-              </span>
-            </div>
+          {/* Render 7-Part Schema Cards */}
+          <div>
             {renderFormattedSummary(activeSummary.summary_text)}
           </div>
 
           {/* Citations List */}
           {activeSummary.citations && Array.isArray(activeSummary.citations) && activeSummary.citations.length > 0 && (
-            <div style={{ marginBottom: "16px" }}>
+            <div style={{ marginBottom: "16px", marginTop: "16px" }}>
               <h4 style={{ fontSize: "12px", fontWeight: 700, color: "#6B8A9A", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "8px" }}>
                 Referenced PubMed Citations ({activeSummary.citations.length})
               </h4>
@@ -424,7 +456,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
         >
           <span style={{ fontSize: "28px", display: "block", marginBottom: "6px" }}>🧬</span>
           <p style={{ fontSize: "13.5px", color: "#6B8A9A", margin: 0 }}>
-            Search any research topic above to fetch detailed PubMed AI literature summaries.
+            Search any research topic above to fetch detailed 7-part schema PubMed AI summaries.
           </p>
         </div>
       )}
