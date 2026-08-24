@@ -75,75 +75,165 @@ export default function ResearchSummaryWidget({ userId = null }) {
     }
   }
 
+  // Format markdown headers into clean paragraphs
+  function renderFormattedSummary(text) {
+    if (!text) return null;
+    const lines = text.split("\n");
+    return lines.map((line, idx) => {
+      if (line.startsWith("### ")) {
+        return (
+          <h4 key={idx} style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginTop: "16px", marginBottom: "8px" }}>
+            {line.replace("### ", "")}
+          </h4>
+        );
+      }
+      if (line.startsWith("- ") || line.startsWith("1. ") || line.startsWith("2. ") || line.startsWith("3. ")) {
+        return (
+          <div key={idx} style={{ display: "flex", gap: "8px", fontSize: "13.5px", color: "#334155", marginBottom: "6px", lineHeight: "1.5" }}>
+            <span style={{ color: "#14B8A6", fontWeight: 700 }}>•</span>
+            <span>{line.replace(/^(- |\d+\. )/, "")}</span>
+          </div>
+        );
+      }
+      if (line.trim().length === 0) return null;
+      return (
+        <p key={idx} style={{ fontSize: "13.5px", color: "#334155", lineHeight: "1.6", marginBottom: "10px" }}>
+          {line}
+        </p>
+      );
+    });
+  }
+
   return (
-    <div className="w-full bg-white rounded-2xl border border-teal-100 shadow-sm p-6 mb-8 font-sans">
+    <div
+      style={{
+        background: "#fff",
+        borderRadius: "16px",
+        padding: "24px",
+        border: "1px solid #E2EEF0",
+        marginBottom: "24px",
+        fontFamily: "inherit"
+      }}
+    >
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-gray-100">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+          paddingBottom: "16px",
+          borderBottom: "1px solid #E2EEF0",
+          gap: "12px",
+          flexWrap: "wrap"
+        }}
+      >
         <div>
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">🔬</span>
-            <h2 className="text-xl font-bold text-gray-900">PubMed.ai Research Summarizer</h2>
-            <span className="bg-teal-50 text-teal-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-teal-200">
-              Supabase Sync Active
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{ fontSize: "20px" }}>🔬</span>
+            <h2 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>
+              PubMed.ai Research Summarizer
+            </h2>
+            <span
+              style={{
+                fontSize: "11px",
+                fontWeight: 600,
+                color: "#14B8A6",
+                background: "rgba(20,184,166,0.1)",
+                padding: "3px 10px",
+                borderRadius: "20px"
+              }}
+            >
+              Cloud DB Sync
             </span>
           </div>
-          <p className="text-sm text-gray-500 mt-1">
-            Search peer-reviewed literature & automatically generate AI executive summaries stored in cloud DB.
+          <p style={{ fontSize: "13px", color: "#6B8A9A", margin: "4px 0 0" }}>
+            Search peer-reviewed literature & automatically generate detailed AI executive summaries stored in Supabase.
           </p>
         </div>
 
-        {/* Cloud Status */}
         {statusMessage && (
-          <div className="text-xs font-medium text-teal-800 bg-teal-50 px-3 py-1.5 rounded-lg border border-teal-200 animate-pulse">
+          <div
+            style={{
+              fontSize: "12px",
+              fontWeight: 600,
+              color: "#0D9488",
+              background: "#F0F7F8",
+              border: "1px solid #CCFBF1",
+              padding: "6px 12px",
+              borderRadius: "8px"
+            }}
+          >
             {statusMessage}
           </div>
         )}
       </div>
 
       {/* Search Input Bar */}
-      <div className="mt-6">
+      <div style={{ marginTop: "20px" }}>
         <form
           onSubmit={(e) => {
             e.preventDefault();
             handleSearch(query);
           }}
-          className="flex flex-col sm:flex-row gap-3"
+          style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}
         >
-          <div className="relative flex-grow">
+          <div style={{ position: "relative", flex: 1, minWidth: "260px" }}>
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search PubMed research topics (e.g. CRISPR Therapeutics, Cancer Immunotherapy)..."
-              className="w-full pl-4 pr-10 py-3 rounded-xl border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-100 outline-none text-sm text-gray-800 placeholder-gray-400 bg-gray-50/50"
+              placeholder="Search PubMed research topics (e.g. CRISPR Therapeutics, mRNA Vaccines)..."
+              style={{
+                width: "100%",
+                padding: "12px 42px 12px 16px",
+                border: "1.5px solid #E2EEF0",
+                borderRadius: "12px",
+                fontSize: "13.5px",
+                fontFamily: "inherit",
+                outline: "none",
+                background: "#fff",
+                color: "#1B2B3A"
+              }}
             />
-            <span className="absolute right-3 top-3.5 text-gray-400 text-sm">🔍</span>
+            <span
+              style={{
+                position: "absolute",
+                right: "14px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                color: "#14B8A6",
+                fontSize: "16px"
+              }}
+            >
+              🔍
+            </span>
           </div>
           <button
             type="submit"
             disabled={loading || !query.trim()}
-            className="bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white font-semibold px-6 py-3 rounded-xl text-sm transition-all shadow-sm flex items-center justify-center gap-2"
+            style={{
+              background: "#14B8A6",
+              color: "#fff",
+              border: "none",
+              padding: "12px 22px",
+              borderRadius: "12px",
+              fontSize: "14px",
+              fontWeight: 600,
+              cursor: loading || !query.trim() ? "not-allowed" : "pointer",
+              fontFamily: "inherit",
+              opacity: loading || !query.trim() ? 0.6 : 1,
+              display: "flex",
+              alignItems: "center",
+              gap: "6px"
+            }}
           >
-            {loading ? (
-              <>
-                <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24" fill="none">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-                </svg>
-                <span>Analyzing PubMed...</span>
-              </>
-            ) : (
-              <>
-                <span>Generate Summary</span>
-                <span>✨</span>
-              </>
-            )}
+            {loading ? "⚡ Analyzing PubMed..." : "Generate Summary ✨"}
           </button>
         </form>
 
-        {/* Suggestion Chips */}
-        <div className="flex items-center gap-2 mt-3 flex-wrap">
-          <span className="text-xs text-gray-400 font-medium">Quick Topics:</span>
+        {/* Quick Topic Chips */}
+        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "12px", flexWrap: "wrap" }}>
+          <span style={{ fontSize: "12px", color: "#6B8A9A", fontWeight: 500 }}>Quick Topics:</span>
           {SUGGESTIONS.map((topic) => (
             <button
               key={topic}
@@ -151,7 +241,17 @@ export default function ResearchSummaryWidget({ userId = null }) {
                 setQuery(topic);
                 handleSearch(topic);
               }}
-              className="text-xs bg-gray-100 hover:bg-teal-50 hover:text-teal-700 text-gray-600 font-medium px-2.5 py-1 rounded-lg transition-colors border border-transparent hover:border-teal-200"
+              style={{
+                padding: "4px 12px",
+                border: "1px solid #E2EEF0",
+                borderRadius: "100px",
+                fontSize: "12px",
+                color: "#1B2B3A",
+                background: "#F8FAFC",
+                cursor: "pointer",
+                fontFamily: "inherit",
+                fontWeight: 500
+              }}
             >
               {topic}
             </button>
@@ -159,75 +259,123 @@ export default function ResearchSummaryWidget({ userId = null }) {
         </div>
       </div>
 
-      {/* Main Active Summary Card */}
+      {/* Main Active Summary View */}
       {loading ? (
-        <div className="mt-8 p-6 bg-gray-50 rounded-2xl border border-gray-100 animate-pulse">
-          <div className="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
-          <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
-          <div className="h-4 bg-gray-200 rounded w-5/6 mb-2"></div>
-          <div className="h-4 bg-gray-200 rounded w-4/6 mb-6"></div>
-          <div className="h-10 bg-gray-200 rounded-xl w-1/3"></div>
+        <div
+          style={{
+            marginTop: "20px",
+            padding: "24px",
+            background: "#F8FAFC",
+            borderRadius: "14px",
+            border: "1px solid #E2EEF0",
+            color: "#6B8A9A"
+          }}
+        >
+          <p style={{ fontSize: "14px", fontWeight: 600, margin: 0 }}>
+            ⚡ Connecting to PubMed.ai server, retrieving peer-reviewed studies & generating detailed AI summary...
+          </p>
         </div>
       ) : activeSummary ? (
-        <div className="mt-8 bg-gradient-to-br from-teal-50/40 via-white to-gray-50 rounded-2xl p-6 border border-teal-100 shadow-sm relative">
-          {/* Card Badges */}
-          <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
-            <div className="flex items-center gap-2">
-              <span className="bg-teal-600 text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md tracking-wider">
-                PubMed PMID: {activeSummary.pmid || "389201"}
+        <div
+          style={{
+            marginTop: "20px",
+            background: "linear-gradient(135deg, #F0FCFB 0%, #F3F0FF 100%)",
+            borderRadius: "14px",
+            padding: "24px",
+            border: "1px solid rgba(20,184,166,0.2)"
+          }}
+        >
+          {/* Card Top Row */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "8px", flexWrap: "wrap", marginBottom: "12px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <span
+                style={{
+                  fontSize: "11px",
+                  color: "#fff",
+                  fontWeight: 700,
+                  background: "#14B8A6",
+                  padding: "3px 9px",
+                  borderRadius: "6px",
+                  textTransform: "uppercase"
+                }}
+              >
+                PMID: {activeSummary.pmid || "389201"}
               </span>
               {activeSummary.journal && (
-                <span className="text-xs font-semibold text-gray-600 bg-gray-200/70 px-2.5 py-0.5 rounded-md">
+                <span style={{ fontSize: "12px", color: "#6B8A9A", fontWeight: 600, background: "#fff", padding: "3px 9px", borderRadius: "6px", border: "1px solid #E2EEF0" }}>
                   {activeSummary.journal}
                 </span>
               )}
             </div>
 
-            <span className="text-xs text-teal-700 font-semibold flex items-center gap-1">
-              <span>☁️</span> Saved to Supabase
+            <span style={{ fontSize: "12px", color: "#0D9488", fontWeight: 600 }}>
+              ☁️ Saved to Supabase Database
             </span>
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-extrabold text-gray-900 mb-3 leading-snug">
+          <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A", margin: "0 0 8px", lineHeight: "1.4" }}>
             {activeSummary.title}
           </h3>
 
           {/* Authors */}
           {activeSummary.authors && (
-            <p className="text-xs text-gray-500 mb-4 font-medium">
-              <span className="font-semibold text-gray-700">Authors:</span> {activeSummary.authors}
+            <p style={{ fontSize: "12px", color: "#6B8A9A", marginBottom: "16px" }}>
+              <strong style={{ color: "#1B2B3A" }}>Authors:</strong> {activeSummary.authors}
             </p>
           )}
 
-          {/* AI Summary Text Box */}
-          <div className="bg-white p-4 rounded-xl border border-teal-100 text-sm text-gray-700 leading-relaxed mb-5 shadow-2xs">
-            <div className="flex items-center gap-1.5 text-xs font-bold text-teal-800 mb-2 uppercase tracking-wide">
-              <span>✨</span>
-              <span>AI Research Synthesis</span>
+          {/* Detailed Multi-Section AI Summary Box */}
+          <div
+            style={{
+              background: "#fff",
+              padding: "20px",
+              borderRadius: "12px",
+              border: "1px solid rgba(20,184,166,0.2)",
+              marginBottom: "16px"
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "12px" }}>
+              <span style={{ fontSize: "14px" }}>✨</span>
+              <span style={{ fontSize: "12px", fontWeight: 700, color: "#0D9488", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                Comprehensive AI Literature Synthesis
+              </span>
             </div>
-            <p>{activeSummary.summary_text}</p>
+            {renderFormattedSummary(activeSummary.summary_text)}
           </div>
 
-          {/* Citations Section */}
+          {/* Citations List */}
           {activeSummary.citations && Array.isArray(activeSummary.citations) && activeSummary.citations.length > 0 && (
-            <div className="mb-5">
-              <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
-                Referenced Citations ({activeSummary.citations.length})
+            <div style={{ marginBottom: "16px" }}>
+              <h4 style={{ fontSize: "12px", fontWeight: 700, color: "#6B8A9A", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "8px" }}>
+                Referenced PubMed Citations ({activeSummary.citations.length})
               </h4>
-              <div className="space-y-2">
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                 {activeSummary.citations.map((cite, idx) => (
-                  <div key={idx} className="bg-white p-3 rounded-lg border border-gray-100 flex items-center justify-between text-xs gap-3">
-                    <div className="truncate">
-                      <span className="font-bold text-teal-700 mr-2">[{idx + 1}]</span>
-                      <span className="font-medium text-gray-800">{cite.title}</span>
+                  <div
+                    key={idx}
+                    style={{
+                      background: "#fff",
+                      padding: "10px 14px",
+                      borderRadius: "8px",
+                      border: "1px solid #E2EEF0",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      gap: "12px",
+                      fontSize: "12.5px"
+                    }}
+                  >
+                    <div style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      <span style={{ fontWeight: 700, color: "#14B8A6", marginRight: "8px" }}>[{idx + 1}]</span>
+                      <span style={{ color: "#1B2B3A", fontWeight: 500 }}>{cite.title}</span>
                     </div>
                     {cite.url && (
                       <a
                         href={cite.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-teal-600 hover:text-teal-800 font-semibold shrink-0"
+                        style={{ color: "#14B8A6", fontWeight: 600, textDecoration: "none", shrink: 0 }}
                       >
                         View PubMed ↗
                       </a>
@@ -238,55 +386,73 @@ export default function ResearchSummaryWidget({ userId = null }) {
             </div>
           )}
 
-          {/* Footer Action Bar */}
-          <div className="flex items-center justify-between pt-4 border-t border-teal-100/60">
-            <span className="text-xs text-gray-400">
-              Query: <strong className="text-gray-600">"{activeSummary.query}"</strong>
+          {/* Action Footer */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "12px", borderTop: "1px solid rgba(20,184,166,0.15)" }}>
+            <span style={{ fontSize: "12px", color: "#6B8A9A" }}>
+              Topic Query: <strong style={{ color: "#1B2B3A" }}>"{activeSummary.query}"</strong>
             </span>
             {activeSummary.source_url && (
               <a
                 href={activeSummary.source_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gray-900 hover:bg-gray-800 text-white font-semibold text-xs px-4 py-2 rounded-lg transition-colors inline-flex items-center gap-1.5"
+                style={{
+                  background: "#1B2B3A",
+                  color: "#fff",
+                  padding: "9px 18px",
+                  borderRadius: "8px",
+                  fontSize: "12.5px",
+                  fontWeight: 600,
+                  textDecoration: "none"
+                }}
               >
-                <span>Read Full Paper on PubMed</span>
-                <span>↗</span>
+                Read Full Paper on PubMed ↗
               </a>
             )}
           </div>
         </div>
       ) : (
-        <div className="mt-8 p-8 bg-gray-50 rounded-2xl text-center border border-dashed border-gray-200">
-          <span className="text-3xl block mb-2">🧬</span>
-          <p className="text-sm text-gray-500 font-medium">Search any biotechnology or medical query above to fetch PubMed AI summaries.</p>
+        <div
+          style={{
+            marginTop: "20px",
+            padding: "24px",
+            background: "#F8FAFC",
+            borderRadius: "14px",
+            border: "1px border-dashed #E2EEF0",
+            textAlign: "center"
+          }}
+        >
+          <span style={{ fontSize: "28px", display: "block", marginBottom: "6px" }}>🧬</span>
+          <p style={{ fontSize: "13.5px", color: "#6B8A9A", margin: 0 }}>
+            Search any research topic above to fetch detailed PubMed AI literature summaries.
+          </p>
         </div>
       )}
 
-      {/* Stored Summaries Cloud Feed */}
+      {/* Supabase Stored Feed */}
       {recentSummaries.length > 0 && (
-        <div className="mt-8 pt-6 border-t border-gray-100">
-          <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">
-            Recently Stored Summaries in Supabase ({recentSummaries.length})
+        <div style={{ marginTop: "24px", paddingTop: "16px", borderTop: "1px solid #E2EEF0" }}>
+          <h4 style={{ fontSize: "12px", fontWeight: 700, color: "#6B8A9A", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "12px" }}>
+            Stored Summaries in Supabase ({recentSummaries.length})
           </h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "10px" }}>
             {recentSummaries.slice(0, 4).map((sum) => (
               <div
                 key={sum.id}
                 onClick={() => setActiveSummary(sum)}
-                className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
-                  activeSummary?.id === sum.id
-                    ? "bg-teal-50/80 border-teal-300 shadow-2xs"
-                    : "bg-white border-gray-100 hover:border-teal-200 hover:bg-gray-50"
-                }`}
+                style={{
+                  background: activeSummary?.id === sum.id ? "#F0FCFB" : "#fff",
+                  border: activeSummary?.id === sum.id ? "1.5px solid #14B8A6" : "1px solid #E2EEF0",
+                  borderRadius: "10px",
+                  padding: "12px 14px",
+                  cursor: "pointer"
+                }}
               >
-                <div className="flex items-center justify-between text-xs text-gray-400 mb-1">
-                  <span className="font-semibold text-teal-700 truncate max-w-[150px]">
-                    {sum.query}
-                  </span>
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#6B8A9A", marginBottom: "4px" }}>
+                  <span style={{ fontWeight: 600, color: "#14B8A6" }}>{sum.query}</span>
                   <span>PMID: {sum.pmid || "NCBI"}</span>
                 </div>
-                <h5 className="text-xs font-bold text-gray-800 line-clamp-2 leading-snug">
+                <h5 style={{ fontSize: "12.5px", fontWeight: 600, color: "#1B2B3A", margin: 0, overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", lineHeight: "1.3" }}>
                   {sum.title}
                 </h5>
               </div>
