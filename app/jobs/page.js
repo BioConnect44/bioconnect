@@ -83,7 +83,24 @@ export default function JobsPage() {
   const supabase = createClient();
   const [profile, setProfile] = useState(null);
   const [allJobs, setAllJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [isScraping, setIsScraping] = useState(false);
+
+  async function handleRefreshScraper() {
+    setIsScraping(true);
+    try {
+      const res = await fetch("/api/jobs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "trigger_scrape" }),
+      });
+      const d = await res.json();
+      if (d.last_updated) setLastUpdated(d.last_updated);
+    } catch (e) {
+      console.error(e);
+    }
+    await loadAll();
+    setIsScraping(false);
+  }
   const [lastUpdated, setLastUpdated] = useState(null);
   const [search, setSearch] = useState("");
   const [selectedCats, setSelectedCats] = useState([]);
@@ -300,23 +317,25 @@ export default function JobsPage() {
             </button>
           )}
           <button
-            onClick={loadAll}
+            onClick={handleRefreshScraper}
+            disabled={isScraping}
             style={{
-              background: "#F0F7F8",
+              background: isScraping ? "#E2EEF0" : "#F0F7F8",
               color: "#0D9488",
               border: "1px solid #CCFBF1",
               padding: "9px 16px",
               borderRadius: "10px",
               fontSize: "13.5px",
               fontWeight: 600,
-              cursor: "pointer",
+              cursor: isScraping ? "wait" : "pointer",
               fontFamily: "inherit",
               display: "flex",
               alignItems: "center",
-              gap: "6px"
+              gap: "6px",
+              opacity: isScraping ? 0.7 : 1,
             }}
           >
-            🔄 Refresh Jobs
+            {isScraping ? "⚡ Scraping & Refreshing..." : "🔄 Refresh Jobs"}
           </button>
           <div
             style={{

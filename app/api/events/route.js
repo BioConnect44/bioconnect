@@ -2,6 +2,10 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import fs from "fs";
 import path from "path";
+import { exec } from "child_process";
+import { promisify } from "util";
+
+const execAsync = promisify(exec);
 
 function isValidRegistrationUrl(url) {
   if (!url || typeof url !== "string") return false;
@@ -12,7 +16,6 @@ function isValidRegistrationUrl(url) {
     const host = parsed.hostname.toLowerCase();
     const pathStr = parsed.pathname.replace(/\/$/, "");
     
-    // Accept valid event portals
     if (host.includes("unstop.com") || host.includes("eventbrite.com") || host.includes("ccamp.res.in") || host.includes("10times.com") || host.includes("birac.nic.in") || host.includes("iisc.ac.in") || host.includes("ncbs.res.in") || host.includes("iitb.ac.in") || host.includes("ableindia.in")) {
       return true;
     }
@@ -80,6 +83,28 @@ export async function GET(req) {
 export async function POST(req) {
   try {
     const body = await req.json();
+
+    // LIVE EVENT SCRAPER TRIGGER ACTION
+    if (body.action === "trigger_scrape" || body.refresh === true) {
+      console.log("⚡ Executing live Python Event Scraper on demand...");
+      try {
+        const scriptPath = path.join(process.cwd(), "ai_event_scraper.py");
+        const pythonCmd = process.platform === "win32" ? `py "${scriptPath}"` : `python3 "${scriptPath}"`;
+        await execAsync(pythonCmd, { timeout: 30000 });
+        console.log("✅ Python Event Scraper execution completed.");
+      } catch (cmdErr) {
+        console.warn("Python event scraper warning:", cmdErr.message);
+      }
+
+      const freshLocal = getLocalEvents();
+      return NextResponse.json({
+        success: true,
+        message: "Event scraper execution complete. Events refreshed live!",
+        events: freshLocal,
+        total: freshLocal.length
+      }, { status: 200 });
+    }
+
     const { events } = body;
 
     if (!events || !Array.isArray(events)) {

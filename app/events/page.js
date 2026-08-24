@@ -275,8 +275,22 @@ export default function EventsPage() {
   const [selectedDate, setSelectedDate] = useState(null); // Filter by specific date string YYYY-MM-DD
   const [searchQuery, setSearchQuery] = useState("");
   const [showAdd, setShowAdd] = useState(false);
-  const [saving, setSaving] = useState(false);
-  const [form, setForm] = useState({ title: "", description: "", event_type: "conference", location: "", event_date: "", end_date: "", registration_url: "" });
+  const [isScraping, setIsScraping] = useState(false);
+
+  async function handleRefreshEventsScraper() {
+    setIsScraping(true);
+    try {
+      await fetch("/api/events", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "trigger_scrape" }),
+      });
+    } catch (e) {
+      console.error(e);
+    }
+    await loadEvents();
+    setIsScraping(false);
+  }
 
   async function loadEvents() {
     try {
@@ -420,8 +434,8 @@ export default function EventsPage() {
           <p style={{ fontSize: "14px", color: "#6B8A9A", margin: 0 }}>Discover upcoming biotech, biomedical & genomics conferences from C-CAMP, IISc, NCBS, IIT Bombay, ABLE, BIRAC, Eventbrite & Unstop.</p>
         </div>
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          <button onClick={loadEvents} style={{ background: "#F0F7F8", color: "#0D9488", border: "1px solid #CCFBF1", padding: "10px 16px", borderRadius: "10px", fontSize: "13.5px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: "6px" }}>
-            🔄 Refresh
+          <button onClick={handleRefreshEventsScraper} disabled={isScraping} style={{ background: isScraping ? "#E2EEF0" : "#F0F7F8", color: "#0D9488", border: "1px solid #CCFBF1", padding: "10px 16px", borderRadius: "10px", fontSize: "13.5px", fontWeight: 600, cursor: isScraping ? "wait" : "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: "6px", opacity: isScraping ? 0.7 : 1 }}>
+            {isScraping ? "⚡ Scraping & Refreshing..." : "🔄 Refresh Events"}
           </button>
           {isEducator && <button onClick={() => setShowAdd(!showAdd)} style={{ background: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)", color: "#fff", border: "none", padding: "10px 20px", borderRadius: "10px", fontSize: "14px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit", boxShadow: "0 4px 12px rgba(20,184,166,0.3)" }}>{showAdd ? "Cancel" : "+ Host Event"}</button>}
         </div>
