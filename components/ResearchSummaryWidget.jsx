@@ -184,7 +184,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <span style={{ fontSize: "20px" }}>🔬</span>
             <h2 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>
-              PubMed.ai Research Summarizer (7-Part Schema)
+              PubMed.ai Research Summarizer
             </h2>
             <span
               style={{
@@ -200,7 +200,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
             </span>
           </div>
           <p style={{ fontSize: "13px", color: "#6B8A9A", margin: "4px 0 0" }}>
-            Search peer-reviewed literature & automatically generate standardized 7-part research paper summaries stored in Supabase.
+            Search peer-reviewed literature & automatically generate comprehensive executive research paper summaries stored in Supabase.
           </p>
         </div>
 
@@ -280,7 +280,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
               gap: "6px"
             }}
           >
-            {loading ? "⚡ Generating 7-Part Summary..." : "Generate Summary ✨"}
+            {loading ? "⚡ Generating AI Summary..." : "Generate Summary ✨"}
           </button>
         </form>
 
@@ -325,7 +325,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
           }}
         >
           <p style={{ fontSize: "14px", fontWeight: 600, margin: 0 }}>
-            ⚡ Connecting to PubMed.ai server, retrieving peer-reviewed studies & structuring 7-part schema summary...
+            ⚡ Connecting to PubMed.ai server, retrieving peer-reviewed studies & generating detailed research summary...
           </p>
         </div>
       ) : activeSummary ? (
@@ -456,7 +456,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
         >
           <span style={{ fontSize: "28px", display: "block", marginBottom: "6px" }}>🧬</span>
           <p style={{ fontSize: "13.5px", color: "#6B8A9A", margin: 0 }}>
-            Search any research topic above to fetch detailed 7-part schema PubMed AI summaries.
+            Search any research topic above to fetch detailed PubMed AI summaries.
           </p>
         </div>
       )}
