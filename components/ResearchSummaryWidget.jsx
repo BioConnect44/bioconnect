@@ -215,18 +215,6 @@ export default function ResearchSummaryWidget({ userId = null }) {
             <h2 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>
               PubMed.ai Research Summarizer
             </h2>
-            <span
-              style={{
-                fontSize: "11px",
-                fontWeight: 600,
-                color: "#14B8A6",
-                background: "rgba(20,184,166,0.1)",
-                padding: "3px 10px",
-                borderRadius: "20px"
-              }}
-            >
-              Cloud DB Sync
-            </span>
           </div>
           <p style={{ fontSize: "13px", color: "#6B8A9A", margin: "4px 0 0" }}>
             Search peer-reviewed literature & automatically generate comprehensive executive research paper summaries stored in Supabase.
@@ -389,10 +377,6 @@ export default function ResearchSummaryWidget({ userId = null }) {
                 </span>
               )}
             </div>
-
-            <span style={{ fontSize: "12px", color: "#0D9488", fontWeight: 600 }}>
-              ☁️ Saved to Supabase Database
-            </span>
           </div>
 
           {/* Title */}
