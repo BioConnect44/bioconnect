@@ -66,7 +66,7 @@ function generateAISummary(query, articles) {
 - **Journal & Publication Date**: PubMed Central Index, ${currentYear}
 - **Identifiers**: PMID: 389201 (https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(query)})
 
-### 2. Executive Takeaway / TL;DR (1–2 Sentences)
+### 2. Executive Takeaway / TL;DR
 - **Core Breakthrough**: Demonstrates high-precision targeted bio-engineering and locus-specific molecular optimization for ${query}.
 - **Primary Value Proposition**: Achieves an 85% reduction in off-target cellular events while maintaining >98.4% target site cleavage efficiency.
 
@@ -122,7 +122,7 @@ function generateAISummary(query, articles) {
 - **Journal & Publication Date**: ${primary.source}, ${primary.pubdate}
 - **Identifiers**: PMID: ${primary.pmid} (URL: ${primary.url})
 
-### 2. Executive Takeaway / TL;DR (1–2 Sentences)
+### 2. Executive Takeaway / TL;DR
 - **Core Breakthrough**: High-impact investigation on ${query} published in ${primary.source} revealing essential mechanisms and locus targeting gains.
 - **Primary Value Proposition**: Demonstrates up to 85% reduction in off-target events with >98.4% target site specificity.
 

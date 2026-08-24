@@ -75,6 +75,35 @@ export default function ResearchSummaryWidget({ userId = null }) {
     }
   }
 
+  function renderTextWithClickableLinks(textStr) {
+    if (!textStr || typeof textStr !== "string") return textStr;
+    const urlRegex = /(https?:\/\/[^\s\)\>]+)/g;
+    const parts = textStr.split(urlRegex);
+
+    return parts.map((part, i) => {
+      if (part.match(/^https?:\/\//)) {
+        const cleanUrl = part.replace(/[\)\>\,]+$/, "");
+        return (
+          <a
+            key={i}
+            href={cleanUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: "#0D9488",
+              fontWeight: 600,
+              textDecoration: "underline",
+              wordBreak: "break-all"
+            }}
+          >
+            {cleanUrl} ↗
+          </a>
+        );
+      }
+      return part;
+    });
+  }
+
   // Render formatted 7-part schema markdown into clean structured cards
   function renderFormattedSummary(text) {
     if (!text) return null;
@@ -131,7 +160,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
                 return (
                   <div key={lIdx} style={{ fontSize: "13px", lineHeight: "1.6", color: "#1B2B3A" }}>
                     <strong style={{ color: "#0F766E", fontWeight: 700 }}>{label}: </strong>
-                    <span style={{ color: "#334155" }}>{value}</span>
+                    <span style={{ color: "#334155" }}>{renderTextWithClickableLinks(value)}</span>
                   </div>
                 );
               }
@@ -140,14 +169,14 @@ export default function ResearchSummaryWidget({ userId = null }) {
                 return (
                   <div key={lIdx} style={{ display: "flex", gap: "8px", fontSize: "13px", color: "#334155", lineHeight: "1.5" }}>
                     <span style={{ color: "#14B8A6", fontWeight: 700 }}>•</span>
-                    <span>{trimmed.replace(/^(- |\d+\. )/, "")}</span>
+                    <span>{renderTextWithClickableLinks(trimmed.replace(/^(- |\d+\. )/, ""))}</span>
                   </div>
                 );
               }
 
               return (
                 <p key={lIdx} style={{ fontSize: "13px", color: "#334155", lineHeight: "1.6", margin: 0 }}>
-                  {trimmed}
+                  {renderTextWithClickableLinks(trimmed)}
                 </p>
               );
             })}
