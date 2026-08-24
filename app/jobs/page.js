@@ -83,6 +83,7 @@ export default function JobsPage() {
   const supabase = createClient();
   const [profile, setProfile] = useState(null);
   const [allJobs, setAllJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isScraping, setIsScraping] = useState(false);
 
   async function handleRefreshScraper() {
