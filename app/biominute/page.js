@@ -179,7 +179,24 @@ export default function BioMinutePage() {
                         borderColor: submitted
                           ? (i === art.quiz.answer ? "#14B8A6" : i === selected ? "#EF4444" : "#E2EEF0")
                           : selected === i ? "#14B8A6" : "#E2EEF0",
-                        textAlign: "left"
+                        textAlign: "left",
+                        transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!submitted && selected !== i) {
+                          e.currentTarget.style.background = "#F0FCFB";
+                          e.currentTarget.style.borderColor = "#99F6E4";
+                          e.currentTarget.style.transform = "translateY(-1.5px)";
+                          e.currentTarget.style.boxShadow = "0 4px 12px rgba(20,184,166,0.08)";
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!submitted && selected !== i) {
+                          e.currentTarget.style.background = "#fff";
+                          e.currentTarget.style.borderColor = "#E2EEF0";
+                          e.currentTarget.style.transform = "none";
+                          e.currentTarget.style.boxShadow = "none";
+                        }
                       }}
                     >
                       <div
@@ -187,12 +204,13 @@ export default function BioMinutePage() {
                           width: 20,
                           height: 20,
                           borderRadius: "50%",
-                          border: `2px solid ${selected === i || (submitted && i === art.quiz.answer) ? "#14B8A6" : "#E2EEF0"}`,
+                          border: `2px solid ${selected === i || (submitted && i === art.quiz.answer) ? "#14B8A6" : "#CBD5E1"}`,
                           background: selected === i || (submitted && i === art.quiz.answer) ? "#14B8A6" : "#fff",
-                          flexShrink: 0
+                          flexShrink: 0,
+                          transition: "all 0.2s ease"
                         }}
                       />
-                      <span style={{ fontSize: "14px", color: "#374151" }}>{opt}</span>
+                      <span style={{ fontSize: "14px", color: "#374151", fontWeight: selected === i ? 600 : 500 }}>{opt}</span>
                     </button>
                   ))}
                 </div>
@@ -216,7 +234,21 @@ export default function BioMinutePage() {
                       fontSize: "15px",
                       fontWeight: 600,
                       cursor: selected !== null ? "pointer" : "default",
-                      fontFamily: "inherit"
+                      fontFamily: "inherit",
+                      boxShadow: selected !== null ? "0 4px 14px rgba(20,184,166,0.25)" : "none",
+                      transition: "all 0.2s ease"
+                    }}
+                    onMouseEnter={(e) => {
+                      if (selected !== null && !submitted) {
+                        e.currentTarget.style.background = "#0D9488";
+                        e.currentTarget.style.transform = "translateY(-1px)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (selected !== null && !submitted) {
+                        e.currentTarget.style.background = "#14B8A6";
+                        e.currentTarget.style.transform = "none";
+                      }
                     }}
                   >
                     Submit Answer

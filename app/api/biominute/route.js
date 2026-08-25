@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 function decodeEntities(str) {
   if (!str) return "";
   return str
