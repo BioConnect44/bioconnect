@@ -7,6 +7,66 @@ import DailyBioChallenge from "@/components/DailyBioChallenge";
 /* ── Student Dashboard ── */
 function StudentDashboard({ profile }) {
   const [selectedOpt, setSelectedOpt] = useState(null);
+  const [liveEvents, setLiveEvents] = useState([]);
+  const [liveUpdates, setLiveUpdates] = useState([]);
+
+  useEffect(() => {
+    async function loadDashboardData() {
+      // 1. Fetch live events from /api/events
+      try {
+        const resEv = await fetch("/api/events");
+        const dataEv = await resEv.json();
+        const evList = Array.isArray(dataEv) ? dataEv : dataEv.events || [];
+        if (evList.length > 0) {
+          const parsed = evList.slice(0, 3).map((ev) => {
+            const rawDate = ev.event_date || ev.date || ev.created_at || "2026-08-26";
+            const dt = new Date(rawDate);
+            const valid = !isNaN(dt.getTime());
+            return {
+              month: valid ? dt.toLocaleDateString("en-US", { month: "short" }).toUpperCase() : "AUG",
+              day: valid ? String(dt.getDate()).padStart(2, "0") : "26",
+              title: ev.title || "Biotech Event",
+              loc: ev.location || ev.category || "Virtual / Online",
+              link: ev.registration_url || ev.url || "/events"
+            };
+          });
+          setLiveEvents(parsed);
+        }
+      } catch (err) {
+        console.error("Dashboard events error:", err);
+      }
+
+      // 2. Fetch live updates from /api/biominute & live news
+      try {
+        const resBio = await fetch("/api/biominute");
+        const dataBio = await resBio.json();
+        const articles = dataBio.allArticles || (dataBio.article ? [dataBio.article] : []);
+        if (articles.length > 0) {
+          const updates = articles.slice(0, 3).map((art) => ({
+            title: art.title,
+            time: `${art.category || "BIOTECNIKA NEWS"} • ${art.categoryDate || "Today"}`
+          }));
+          setLiveUpdates(updates);
+        }
+      } catch (err) {
+        console.error("Dashboard updates error:", err);
+      }
+    }
+
+    loadDashboardData();
+  }, []);
+
+  const displayUpdates = liveUpdates.length > 0 ? liveUpdates : [
+    { title: "EcoRI Enzyme Guide", time: "2-mark summary uploaded • 1h ago" },
+    { title: "Protein Purification", time: "5-mark detailed notes • 3h ago" },
+    { title: "Microbial Growth Curves", time: "One-paragraph revision • 1d ago" },
+  ];
+
+  const displayEvents = liveEvents.length > 0 ? liveEvents : [
+    { month: "AUG", day: "14", title: "Annual Biotech Symposium", loc: "Main Auditorium • 10:00 AM", isFirst: true },
+    { month: "SEP", day: "05", title: "National Case Competition", loc: "Group-stage format (36 Teams)" },
+    { month: "SEP", day: "12", title: "Lab Skills Workshop", loc: "Registration closes tomorrow", urgent: true },
+  ];
 
   return (
     <div>
@@ -144,13 +204,11 @@ function StudentDashboard({ profile }) {
         {/* Quick Updates */}
         <div style={{ background: "#fff", borderRadius: "16px", padding: "32px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)" }}>
           <h3 style={{ ...C.cardTitle, marginBottom: "24px", fontSize: "16px", color: "#132D35" }}>Quick Updates</h3>
-          {[
-            { title: "EcoRI Enzyme Guide", time: "2-mark summary uploaded • 1h ago" },
-            { title: "Protein Purification", time: "5-mark detailed notes • 3h ago" },
-            { title: "Microbial Growth Curves", time: "One-paragraph revision • 1d ago" },
-          ].map((u, i) => (
+          {displayUpdates.map((u, i) => (
             <div key={i} style={{ display: "flex", gap: "16px", marginBottom: "24px" }}>
-              <div style={{ width: 40, height: 40, background: "#E0F2FE", borderRadius: "8px", flexShrink: 0 }}></div>
+              <div style={{ width: 40, height: 40, background: "#E0F2FE", borderRadius: "8px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px" }}>
+                📄
+              </div>
               <div><p style={{ fontSize: "14px", fontWeight: 700, color: "#132D35", marginBottom: "4px" }}>{u.title}</p><p style={{ fontSize: "12px", color: "#9CA3AF" }}>{u.time}</p></div>
             </div>
           ))}
@@ -159,19 +217,18 @@ function StudentDashboard({ profile }) {
         {/* Upcoming Events */}
         <div style={{ background: "#fff", borderRadius: "16px", padding: "32px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)" }}>
           <h3 style={{ ...C.cardTitle, marginBottom: "24px", fontSize: "16px", color: "#132D35" }}>Upcoming Events</h3>
-          {[
-            { month: "AUG", day: "14", title: "Annual Biotech Symposium", loc: "Main Auditorium • 10:00 AM", isFirst: true },
-            { month: "SEP", day: "05", title: "National Case Competition", loc: "Group-stage format (36 Teams)" },
-            { month: "SEP", day: "12", title: "Lab Skills Workshop", loc: "Registration closes tomorrow", urgent: true },
-          ].map((ev, i) => (
-            <div key={i} style={{ display: "flex", gap: "16px", padding: ev.isFirst ? "12px" : "0", background: ev.isFirst ? "#E0F2FE" : "transparent", borderRadius: "12px", marginBottom: ev.isFirst ? "16px" : "20px", marginLeft: ev.isFirst ? "-12px" : "0", marginRight: ev.isFirst ? "-12px" : "0" }}>
-              <div style={{ width: 44, height: 44, background: ev.isFirst ? "#fff" : "#E0F2FE", borderRadius: "12px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <div style={{ fontSize: "10px", color: "#14B8A6", fontWeight: 700, textTransform: "uppercase" }}>{ev.month}</div>
-                <div style={{ fontSize: "16px", fontWeight: 800, color: "#132D35" }}>{ev.day}</div>
+          {displayEvents.map((ev, i) => {
+            const isFirst = i === 0;
+            return (
+              <div key={i} style={{ display: "flex", gap: "16px", padding: isFirst ? "12px" : "0", background: isFirst ? "#E0F2FE" : "transparent", borderRadius: "12px", marginBottom: isFirst ? "16px" : "20px", marginLeft: isFirst ? "-12px" : "0", marginRight: isFirst ? "-12px" : "0" }}>
+                <div style={{ width: 44, height: 44, background: isFirst ? "#fff" : "#E0F2FE", borderRadius: "12px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <div style={{ fontSize: "10px", color: "#14B8A6", fontWeight: 700, textTransform: "uppercase" }}>{ev.month}</div>
+                  <div style={{ fontSize: "16px", fontWeight: 800, color: "#132D35" }}>{ev.day}</div>
+                </div>
+                <div><p style={{ fontSize: "14px", fontWeight: 700, color: "#132D35", marginBottom: "4px" }}>{ev.title}</p><p style={{ fontSize: "12px", color: ev.urgent ? "#F97316" : "#9CA3AF" }}>{ev.loc}</p></div>
               </div>
-              <div><p style={{ fontSize: "14px", fontWeight: 700, color: "#132D35", marginBottom: "4px" }}>{ev.title}</p><p style={{ fontSize: "12px", color: ev.urgent ? "#F97316" : "#9CA3AF" }}>{ev.loc}</p></div>
-            </div>
-          ))}
+            );
+          })}
           <a href="/events" style={{ display: "block", textAlign: "right", fontSize: "13px", color: "#14B8A6", fontWeight: 600, marginTop: "24px" }}>View full calendar →</a>
         </div>
       </div>
