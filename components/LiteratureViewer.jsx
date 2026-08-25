@@ -597,10 +597,10 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
             <div style={{ padding: "40px", textAlign: "center", color: "#64748B" }}>
               <span style={{ fontSize: "28px", display: "block", marginBottom: "12px" }}>⚡</span>
               <p style={{ fontSize: "14px", fontWeight: 600, margin: 0 }}>
-                Resolving Open Access Literature Stream via Unpaywall & PubMed Central...
+                Loading In-App Research Workspace & Literature Dossier...
               </p>
             </div>
-          ) : activePdfUrl ? (
+          ) : localPdfBlobUrl ? (
             <div
               style={{
                 width: `${zoomLevel}%`,
@@ -615,13 +615,13 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
               }}
             >
               <iframe
-                src={`${activePdfUrl}#page=${currentPage}`}
+                src={`${localPdfBlobUrl}#page=${currentPage}`}
                 style={{ width: "100%", height: "100%", border: "none" }}
-                title="In-App Literature Reader"
+                title="In-App Local PDF Reader"
               />
             </div>
           ) : (
-            /* ── SOURCE C: IN-APP LOCAL PDF DROPZONE FALLBACK ── */
+            /* ── TRUSTED ACADEMIC DOSSIER & IN-APP LOCAL PDF DROPZONE ── */
             <div style={{ width: "100%", maxWidth: "850px", marginTop: "10px" }}>
               {/* Interactive In-App Dropzone */}
               <div
