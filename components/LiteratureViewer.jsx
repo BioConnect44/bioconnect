@@ -57,6 +57,40 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
     loadReadingHistory();
   }, [paperId]);
 
+  // Listen to browser native fullscreen change
+  useEffect(() => {
+    function handleFullscreenChange() {
+      setIsFullscreen(!!document.fullscreenElement);
+    }
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
+  // Toggle Native HTML5 Fullscreen
+  function toggleNativeFullscreen() {
+    if (!document.fullscreenElement) {
+      if (containerRef.current) {
+        if (containerRef.current.requestFullscreen) {
+          containerRef.current.requestFullscreen().catch((err) => console.warn("Fullscreen error:", err));
+        } else if (containerRef.current.webkitRequestFullscreen) {
+          containerRef.current.webkitRequestFullscreen();
+        }
+      }
+      setIsFullscreen(true);
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().catch((err) => console.warn("Exit fullscreen error:", err));
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+      setIsFullscreen(false);
+    }
+  }
+
   // Cleanup Blob URL on unmount
   useEffect(() => {
     return () => {
@@ -437,6 +471,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
 
   return (
     <div
+      ref={containerRef}
       style={{
         position: "fixed",
         inset: 0,
@@ -523,7 +558,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
 
           {/* Fullscreen Toggle */}
           <button
-            onClick={() => setIsFullscreen(!isFullscreen)}
+            onClick={toggleNativeFullscreen}
             style={{
               background: "#3AA8C1",
               color: "#fff",
