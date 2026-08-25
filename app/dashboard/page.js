@@ -21,49 +21,55 @@ function StudentDashboard({ profile }) {
   const [liveUpdates, setLiveUpdates] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
     async function loadDashboardData() {
       // 1. Fetch live events from /api/events
       try {
         const resEv = await fetch("/api/events");
-        const dataEv = await resEv.json();
-        const evList = Array.isArray(dataEv) ? dataEv : dataEv.events || [];
-        if (evList.length > 0) {
-          const parsed = evList.slice(0, 3).map((ev) => {
-            const rawDate = ev.event_date || ev.date || ev.created_at || "2026-08-26";
-            const dt = new Date(rawDate);
-            const valid = !isNaN(dt.getTime());
-            return {
-              month: valid ? dt.toLocaleDateString("en-US", { month: "short" }).toUpperCase() : "AUG",
-              day: valid ? String(dt.getDate()).padStart(2, "0") : "26",
-              title: ev.title || "Biotech Event",
-              loc: ev.location || ev.category || "Virtual / Online",
-              link: ev.registration_url || ev.url || "/events"
-            };
-          });
-          setLiveEvents(parsed);
+        if (resEv && resEv.ok) {
+          const dataEv = await resEv.json();
+          const evList = Array.isArray(dataEv) ? dataEv : dataEv?.events || [];
+          if (evList.length > 0 && isMounted) {
+            const parsed = evList.slice(0, 3).map((ev) => {
+              const rawDate = ev?.event_date || ev?.date || ev?.created_at || "2026-08-26";
+              const dt = new Date(rawDate);
+              const valid = !isNaN(dt.getTime());
+              return {
+                month: valid ? dt.toLocaleDateString("en-US", { month: "short" }).toUpperCase() : "AUG",
+                day: valid ? String(dt.getDate()).padStart(2, "0") : "26",
+                title: ev?.title || "Biotech Event",
+                loc: ev?.location || ev?.category || "Virtual / Online",
+                link: ev?.registration_url || ev?.url || "/events"
+              };
+            });
+            setLiveEvents(parsed);
+          }
         }
       } catch (err) {
-        console.error("Dashboard events error:", err);
+        console.warn("Dashboard events fetch warning:", err);
       }
 
       // 2. Fetch live updates from /api/biominute & live news
       try {
         const resBio = await fetch("/api/biominute");
-        const dataBio = await resBio.json();
-        const articles = dataBio.allArticles || (dataBio.article ? [dataBio.article] : []);
-        if (articles.length > 0) {
-          const updates = articles.slice(0, 3).map((art) => ({
-            title: art.title,
-            time: `${art.category || "BIOTECNIKA NEWS"} • ${art.categoryDate || "Today"}`
-          }));
-          setLiveUpdates(updates);
+        if (resBio && resBio.ok) {
+          const dataBio = await resBio.json();
+          const articles = dataBio?.allArticles || (dataBio?.article ? [dataBio.article] : []);
+          if (articles.length > 0 && isMounted) {
+            const updates = articles.slice(0, 3).map((art) => ({
+              title: art?.title || "Biomedical Article",
+              time: `${art?.category || "BIOTECNIKA NEWS"} • ${art?.categoryDate || "Today"}`
+            }));
+            setLiveUpdates(updates);
+          }
         }
       } catch (err) {
-        console.error("Dashboard updates error:", err);
+        console.warn("Dashboard updates fetch warning:", err);
       }
     }
 
     loadDashboardData();
+    return () => { isMounted = false; };
   }, []);
 
   const displayUpdates = liveUpdates.length > 0 ? liveUpdates : [
@@ -941,26 +947,29 @@ function ResearcherDashboard({ profile, supabase }) {
 
 /* ── Main Dashboard Page ── */
 export default function DashboardPage() {
-  const supabase = createClient();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function load() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) {
-        window.location.href = "/login";
-        return;
+      try {
+        const supabase = createClient();
+        const { data: authData, error: authErr } = await supabase.auth.getUser();
+        if (authErr || !authData?.user) {
+          window.location.href = "/login";
+          return;
+        }
+        const { data: prof } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", authData.user.id)
+          .single();
+        if (prof) setProfile(prof);
+      } catch (err) {
+        console.warn("Dashboard load warning:", err);
+      } finally {
+        setLoading(false);
       }
-      const { data } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", user.id)
-        .single();
-      setProfile(data);
-      setLoading(false);
     }
     load();
   }, []);
