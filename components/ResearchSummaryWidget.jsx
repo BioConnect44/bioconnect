@@ -442,40 +442,23 @@ export default function ResearchSummaryWidget({ userId = null }) {
               <button
                 onClick={() => setViewingPaper(activeSummary)}
                 style={{
-                  background: "#14B8A6",
+                  background: "#3AA8C1",
                   color: "#fff",
                   border: "none",
-                  padding: "9px 18px",
+                  padding: "10px 20px",
                   borderRadius: "8px",
-                  fontSize: "12.5px",
-                  fontWeight: 600,
+                  fontSize: "13px",
+                  fontWeight: 700,
                   cursor: "pointer",
                   fontFamily: "inherit",
                   display: "flex",
                   alignItems: "center",
-                  gap: "6px"
+                  gap: "6px",
+                  boxShadow: "0 4px 14px rgba(58,168,193,0.3)"
                 }}
               >
                 <span>Read Full Paper 📄</span>
               </button>
-              {activeSummary.source_url && (
-                <a
-                  href={activeSummary.source_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    background: "#1B2B3A",
-                    color: "#fff",
-                    padding: "9px 18px",
-                    borderRadius: "8px",
-                    fontSize: "12.5px",
-                    fontWeight: 600,
-                    textDecoration: "none"
-                  }}
-                >
-                  View on PubMed ↗
-                </a>
-              )}
             </div>
           </div>
         </div>

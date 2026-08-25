@@ -10,10 +10,13 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
   
   // PDF State & Unpaywall Resolution
   const [oaInfo, setOaInfo] = useState({ is_oa: false, pdf_url: null, loading: true });
+  const [localPdfBlobUrl, setLocalPdfBlobUrl] = useState(null);
+  const [localFileName, setLocalFileName] = useState("");
   const [zoomLevel, setZoomLevel] = useState(100);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(12);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   // Active Right Sidebar Tab: 'summary' | 'copilot' | 'notes'
   const [activeTab, setActiveTab] = useState("summary");
@@ -37,9 +40,9 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
   const [copilotInput, setCopilotInput] = useState("");
   const [copilotLoading, setCopilotLoading] = useState(false);
 
-  const containerRef = useRef(null);
+  const fileInputRef = useRef(null);
 
-  // 1. Resolve Open Access PDF URL using Unpaywall & PMC
+  // 1. Resolve Open Access PDF URL
   useEffect(() => {
     async function loadPdfUrl() {
       setOaInfo({ is_oa: false, pdf_url: null, loading: true });
@@ -54,6 +57,15 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
     loadReadingHistory();
   }, [paperId]);
 
+  // Cleanup Blob URL on unmount
+  useEffect(() => {
+    return () => {
+      if (localPdfBlobUrl) {
+        URL.revokeObjectURL(localPdfBlobUrl);
+      }
+    };
+  }, [localPdfBlobUrl]);
+
   // 2. Fetch User Annotations from Supabase
   async function fetchAnnotations() {
     try {
@@ -67,7 +79,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
         setAnnotations(data);
       }
     } catch (err) {
-      console.error("Error fetching annotations:", err);
+      console.warn("Error fetching annotations:", err);
     }
   }
 
@@ -105,8 +117,27 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
     }
   }
 
-  // 4. Handle Text Selection Listener inside Reader
-  function handleMouseUp(e) {
+  // 4. Local PDF File Drag & Drop Handler
+  function handleFileUpload(file) {
+    if (!file || file.type !== "application/pdf") return;
+    if (localPdfBlobUrl) {
+      URL.revokeObjectURL(localPdfBlobUrl);
+    }
+    const blobUrl = URL.createObjectURL(file);
+    setLocalPdfBlobUrl(blobUrl);
+    setLocalFileName(file.name);
+  }
+
+  function handleDrop(e) {
+    e.preventDefault();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFileUpload(e.dataTransfer.files[0]);
+    }
+  }
+
+  // 5. Handle Text Selection Listener
+  function handleMouseUp() {
     const selection = window.getSelection();
     const text = selection ? selection.toString().trim() : "";
 
@@ -127,7 +158,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
     }
   }
 
-  // 5. Action: Explain Selected Snippet
+  // 6. Action: Explain Selected Snippet
   async function handleExplainText() {
     if (!selectedText) return;
     setExplaining(true);
@@ -138,7 +169,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
         body: JSON.stringify({ query: `Explain in simple terms: ${selectedText}` })
       });
       const data = await res.json();
-      setExplanation(data?.summary?.summary_text || `Simplified Context: "${selectedText}" refers to targeted molecular interactions and experimental observations reported in this study.`);
+      setExplanation(data?.summary?.summary_text || `Simplified Context: "${selectedText}" refers to targeted molecular interactions reported in this study.`);
     } catch (err) {
       setExplanation(`Explanation: "${selectedText}" represents key experimental measurements reported in this research.`);
     } finally {
@@ -146,7 +177,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
     }
   }
 
-  // 6. Action: Save Highlight to Supabase
+  // 7. Action: Save Highlight to Supabase
   async function handleSaveHighlight(color = "yellow", noteText = "") {
     if (!selectedText) return;
     const newAnno = {
@@ -173,7 +204,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
     }
   }
 
-  // 7. Action: Send Question to AI Copilot
+  // 8. Action: Send Question to AI Copilot
   async function handleSendCopilot() {
     if (!copilotInput.trim()) return;
     const q = copilotInput.trim();
@@ -221,7 +252,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
       .replace(/&#39;/gi, "'");
   }
 
-  // Render Formatted Summary Cards for Tab 1 & Reader Box
+  // Render Formatted Summary Cards
   function renderFormattedSummary(rawText) {
     if (!rawText) return null;
     const text = decodeHtmlEntities(rawText);
@@ -288,13 +319,15 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
     });
   }
 
+  const activePdfUrl = localPdfBlobUrl || oaInfo.pdf_url;
+
   return (
     <div
       style={{
         position: "fixed",
         inset: 0,
         zIndex: 9999,
-        background: "rgba(16, 42, 48, 0.85)",
+        background: "rgba(16, 42, 48, 0.95)",
         backdropFilter: "blur(8px)",
         display: "flex",
         flexDirection: "column",
@@ -332,7 +365,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
           </button>
           <div style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
             <h3 style={{ fontSize: "15px", fontWeight: 700, margin: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-              📄 {summaryData?.title || "Research Literature Reader"}
+              📄 {localFileName || summaryData?.title || "Research Literature Reader"}
             </h3>
             <span style={{ fontSize: "11px", color: "#3AA8C1" }}>
               PMID: {summaryData?.pmid || "389201"} • {summaryData?.journal || "PubMed Central"} ({summaryData?.publication_date || "2026"})
@@ -390,9 +423,9 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
       </div>
 
       {/* ── SPLIT PANE BODY ── */}
-      <div style={{ display: "flex", flex: 1, overflow: "hidden", position: "relative" }} ref={containerRef}>
+      <div style={{ display: "flex", flex: 1, overflow: "hidden", position: "relative" }}>
         
-        {/* ── LEFT PANE (70% WIDTH) - HIGH-PERFORMANCE READER ── */}
+        {/* ── LEFT PANE (70% WIDTH) - LITERATURE READING WORKSPACE ── */}
         <div
           onMouseUp={handleMouseUp}
           style={{
@@ -407,15 +440,14 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
             position: "relative"
           }}
         >
-          {/* OA PDF Viewer / Fallback Handling */}
           {oaInfo.loading ? (
             <div style={{ padding: "40px", textAlign: "center", color: "#64748B" }}>
               <span style={{ fontSize: "28px", display: "block", marginBottom: "12px" }}>⚡</span>
               <p style={{ fontSize: "14px", fontWeight: 600, margin: 0 }}>
-                Resolving Open Access PDF via Unpaywall & PubMed Central API...
+                Resolving Open Access Literature Stream via Unpaywall & PubMed Central...
               </p>
             </div>
-          ) : oaInfo.is_oa && oaInfo.pdf_url ? (
+          ) : activePdfUrl ? (
             <div
               style={{
                 width: `${zoomLevel}%`,
@@ -430,54 +462,63 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
               }}
             >
               <iframe
-                src={`${oaInfo.pdf_url}#page=${currentPage}`}
+                src={`${activePdfUrl}#page=${currentPage}`}
                 style={{ width: "100%", height: "100%", border: "none" }}
-                title="Open Access PDF Reader"
+                title="In-App Literature Reader"
               />
             </div>
           ) : (
-            /* Paywall Fallback Banner */
-            <div style={{ width: "100%", maxWidth: "800px", marginTop: "20px" }}>
+            /* ── SOURCE C: IN-APP LOCAL PDF DROPZONE FALLBACK ── */
+            <div style={{ width: "100%", maxWidth: "850px", marginTop: "10px" }}>
+              {/* Interactive In-App Dropzone */}
               <div
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  setIsDragging(true);
+                }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={handleDrop}
+                onClick={() => fileInputRef.current?.click()}
                 style={{
-                  background: "#FEF2F2",
-                  border: "1.5px solid #FCA5A5",
-                  borderRadius: "14px",
-                  padding: "20px",
+                  background: isDragging ? "#F0FCFB" : "#fff",
+                  border: isDragging ? "2px dashed #3AA8C1" : "2px dashed #CBD5E1",
+                  borderRadius: "16px",
+                  padding: "28px",
+                  textAlign: "center",
+                  cursor: "pointer",
                   marginBottom: "24px",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  gap: "16px"
+                  transition: "all 0.2s ease"
                 }}
               >
-                <div>
-                  <h4 style={{ fontSize: "15px", fontWeight: 700, color: "#991B1B", margin: "0 0 4px" }}>
-                    🔒 Full PDF locked by publisher paywall
-                  </h4>
-                  <p style={{ fontSize: "13px", color: "#7F1D1D", margin: 0 }}>
-                    Viewing synthesized PubMed AI summary and full research abstract on the right pane.
-                  </p>
-                </div>
-                {oaInfo.publisher_url && (
-                  <a
-                    href={oaInfo.publisher_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      background: "#991B1B",
-                      color: "#fff",
-                      padding: "10px 18px",
-                      borderRadius: "10px",
-                      fontSize: "13px",
-                      fontWeight: 600,
-                      textDecoration: "none",
-                      whiteSpace: "nowrap"
-                    }}
-                  >
-                    View on Publisher Website ↗
-                  </a>
-                )}
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  accept="application/pdf"
+                  onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0])}
+                  style={{ display: "none" }}
+                />
+                <span style={{ fontSize: "32px", display: "block", marginBottom: "8px" }}>📥</span>
+                <h4 style={{ fontSize: "16px", fontWeight: 700, color: "#102A30", margin: "0 0 4px" }}>
+                  Publisher restricts direct stream
+                </h4>
+                <p style={{ fontSize: "13px", color: "#64748B", margin: "0 0 14px" }}>
+                  Drag & drop your local or institutional PDF here, or click to upload and read 100% in-app with full AI Copilot!
+                </p>
+                <button
+                  type="button"
+                  style={{
+                    background: "#3AA8C1",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "8px",
+                    padding: "8px 18px",
+                    fontSize: "13px",
+                    fontWeight: 600,
+                    cursor: "pointer"
+                  }}
+                >
+                  Select Local PDF File 📄
+                </button>
               </div>
 
               {/* Full Abstract Reader Box */}
