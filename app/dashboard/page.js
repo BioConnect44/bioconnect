@@ -23,7 +23,7 @@ function StudentDashboard({ profile }) {
   useEffect(() => {
     let isMounted = true;
     async function loadDashboardData() {
-      // 1. Fetch live events from /api/events
+      // 1. Fetch live events from /api/events safely
       try {
         const resEv = await fetch("/api/events");
         if (resEv && resEv.ok) {
@@ -31,15 +31,27 @@ function StudentDashboard({ profile }) {
           const evList = Array.isArray(dataEv) ? dataEv : dataEv?.events || [];
           if (evList.length > 0 && isMounted) {
             const parsed = evList.slice(0, 3).map((ev) => {
-              const rawDate = ev?.event_date || ev?.date || ev?.created_at || "2026-08-26";
+              const rawDate = ev?.schedule?.start_date || ev?.event_date || ev?.date || ev?.created_at || "2026-08-26";
               const dt = new Date(rawDate);
               const valid = !isNaN(dt.getTime());
+
+              let locText = "Virtual / Online";
+              if (typeof ev?.location === "string") {
+                locText = ev.location;
+              } else if (ev?.location && typeof ev.location === "object") {
+                locText = ev.location.city ? `${ev.location.city}, India` : "India";
+              } else if (typeof ev?.category === "string") {
+                locText = ev.category;
+              }
+
               return {
                 month: valid ? dt.toLocaleDateString("en-US", { month: "short" }).toUpperCase() : "AUG",
                 day: valid ? String(dt.getDate()).padStart(2, "0") : "26",
-                title: ev?.title || "Biotech Event",
-                loc: ev?.location || ev?.category || "Virtual / Online",
-                link: ev?.registration_url || ev?.url || "/events"
+                title: typeof ev?.title === "string" ? ev.title : "Biotech Event",
+                loc: locText,
+                link: typeof ev?.pricing_and_registration?.registration_url === "string" 
+                  ? ev.pricing_and_registration.registration_url 
+                  : (typeof ev?.registration_url === "string" ? ev.registration_url : "/events")
               };
             });
             setLiveEvents(parsed);
@@ -49,7 +61,7 @@ function StudentDashboard({ profile }) {
         console.warn("Dashboard events fetch warning:", err);
       }
 
-      // 2. Fetch live updates from /api/biominute & live news
+      // 2. Fetch live updates from /api/biominute safely
       try {
         const resBio = await fetch("/api/biominute");
         if (resBio && resBio.ok) {
@@ -57,8 +69,8 @@ function StudentDashboard({ profile }) {
           const articles = dataBio?.allArticles || (dataBio?.article ? [dataBio.article] : []);
           if (articles.length > 0 && isMounted) {
             const updates = articles.slice(0, 3).map((art) => ({
-              title: art?.title || "Biomedical Article",
-              time: `${art?.category || "BIOTECNIKA NEWS"} • ${art?.categoryDate || "Today"}`
+              title: typeof art?.title === "string" ? art.title : "Biomedical Article",
+              time: `${typeof art?.category === "string" ? art.category : "BIOTECNIKA NEWS"} • ${typeof art?.categoryDate === "string" ? art.categoryDate : "Today"}`
             }));
             setLiveUpdates(updates);
           }
