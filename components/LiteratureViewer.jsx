@@ -41,6 +41,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
   const [copilotLoading, setCopilotLoading] = useState(false);
 
   const fileInputRef = useRef(null);
+  const containerRef = useRef(null);
 
   // 1. Resolve Open Access PDF URL
   useEffect(() => {
