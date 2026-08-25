@@ -162,7 +162,7 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
       <div
         style={{
           width: "100%",
-          maxWidth: "450px",
+          maxWidth: "360px",
           background: "#FFFFFF",
           display: "flex",
           flexDirection: "column",
@@ -176,48 +176,48 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
           style={{
             background: "#0C2127",
             color: "#FFFFFF",
-            padding: "20px 24px",
+            padding: "14px 18px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             borderBottom: "1px solid rgba(255,255,255,0.08)"
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <div
               style={{
-                width: "42px",
-                height: "42px",
-                borderRadius: "12px",
+                width: "36px",
+                height: "36px",
+                borderRadius: "10px",
                 background: "rgba(0,194,178,0.15)",
                 border: "1px solid rgba(0,194,178,0.3)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: "22px",
+                fontSize: "18px",
                 boxShadow: "0 4px 14px rgba(0,194,178,0.15)"
               }}
             >
               🤖
             </div>
             <div>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <h3 style={{ fontSize: "16px", fontWeight: 700, margin: 0, color: "#00C2B2", letterSpacing: "-0.2px" }}>
-                  BioConnect Help Center AI
+              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                <h3 style={{ fontSize: "14.5px", fontWeight: 700, margin: 0, color: "#00C2B2", letterSpacing: "-0.2px" }}>
+                  Help Center AI
                 </h3>
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "2px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "5px", marginTop: "2px" }}>
                 <span
                   style={{
-                    width: "7px",
-                    height: "7px",
+                    width: "6px",
+                    height: "6px",
                     borderRadius: "50%",
                     background: "#22C55E",
                     display: "inline-block",
                     boxShadow: "0 0 8px #22C55E"
                   }}
                 />
-                <span style={{ fontSize: "11.5px", color: "#7E99A2", fontWeight: 500 }}>Online • 24/7 Platform Support</span>
+                <span style={{ fontSize: "11px", color: "#7E99A2", fontWeight: 500 }}>24/7 AI Support</span>
               </div>
             </div>
           </div>

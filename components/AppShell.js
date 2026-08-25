@@ -262,16 +262,16 @@ export default function AppShell({ children, active }) {
         </div>
 
         {/* Bottom / Help Center AI & Logout */}
-        <div style={{ marginTop: "auto", paddingTop: "16px", display: "flex", flexDirection: "column", gap: "8px" }}>
+        <div style={{ marginTop: "auto", paddingTop: "12px", display: "flex", flexDirection: "column", gap: "6px" }}>
           <button
             onClick={() => setHelpBotOpen(true)}
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "12px",
-              padding: sidebarOpen ? "12px 18px" : "12px",
-              borderRadius: "14px",
-              fontSize: "14px",
+              gap: "8px",
+              padding: sidebarOpen ? "8px 14px" : "8px",
+              borderRadius: "10px",
+              fontSize: "12.5px",
               fontWeight: 600,
               cursor: "pointer",
               border: "1px solid rgba(0, 194, 178, 0.3)",
@@ -282,7 +282,7 @@ export default function AppShell({ children, active }) {
               transition: "all 0.2s ease"
             }}
           >
-            <span style={{ fontSize: "16px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>💬</span>
+            <span style={{ fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>💬</span>
             {sidebarOpen && <span>Help Center AI</span>}
           </button>
 
