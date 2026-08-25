@@ -106,8 +106,25 @@ export default function BioMinutePage() {
                   The 60-Second Summary
                 </p>
                 {art.summary.map((s, i) => (
-                  <div key={i} style={{ display: "flex", gap: "12px", marginBottom: "14px" }}>
-                    <span style={{ fontSize: "18px", flexShrink: 0 }}>{s.icon}</span>
+                  <div key={i} style={{ display: "flex", gap: "12px", marginBottom: "14px", alignItems: "flex-start" }}>
+                    <div
+                      style={{
+                        width: "22px",
+                        height: "22px",
+                        borderRadius: "50%",
+                        background: "#E6F4F4",
+                        color: "#14B8A6",
+                        fontSize: "12px",
+                        fontWeight: 700,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                        marginTop: "2px"
+                      }}
+                    >
+                      {i + 1}
+                    </div>
                     <p style={{ fontSize: "14px", color: "#374151", lineHeight: "1.6", fontWeight: 500, margin: 0 }}>
                       {s.text}
                     </p>

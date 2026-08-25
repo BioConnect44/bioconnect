@@ -80,9 +80,9 @@ function generateDetailedSummary(title, cleanText) {
   }
 
   return [
-    { icon: "🧬", text: point1 },
-    { icon: "⚡", text: point2 },
-    { icon: "🔮", text: point3 }
+    { text: point1 },
+    { text: point2 },
+    { text: point3 }
   ];
 }
 
@@ -228,9 +228,9 @@ export async function GET() {
         impact: "🔴 High Industry Impact",
         title: "Meet 14-Year-Old Millie Pradawong, Using AI and CRISPR to Rethink Biofuel",
         summary: [
-          { icon: "🧬", text: "The Technology: Combines synthetic biology with artificial intelligence algorithms to optimize algal biofuel metabolic pathways." },
-          { icon: "⚡", text: "The Breakthrough: Most teenagers spend their free time on social media or video games, but 14-year-old Millie Pradawong is creating science history by engineering algae to increase lipid yields for green energy." },
-          { icon: "🔮", text: "Future Impact: Provides a scalable, carbon-neutral alternative to fossil fuels while reducing production costs." }
+          { text: "The Technology: Combines synthetic biology with artificial intelligence algorithms to optimize algal biofuel metabolic pathways." },
+          { text: "The Breakthrough: Most teenagers spend their free time on social media or video games, but 14-year-old Millie Pradawong is creating science history by engineering algae to increase lipid yields for green energy." },
+          { text: "Future Impact: Provides a scalable, carbon-neutral alternative to fossil fuels while reducing production costs." }
         ],
         body: "Most teenagers spend their free time scrolling through social media, playing video games or hanging out with friends. Here is a 14-year-old who is creating history with science and technology. Yes, you read it right. Meet Millie Pradawong, who spends her time thinking about algae, gene editing, and how AI can solve global renewable energy challenges. By applying CRISPR tools to algae micro-cultures, her research establishes new benchmarks for sustainable biofuel production.",
         image: "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=800&q=70",
