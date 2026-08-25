@@ -381,7 +381,7 @@ export default function LandingPage() {
             </div>
             {[
               { title: "PLATFORM", links: ["Network", "Research", "Events"] },
-              { title: "RESOURCES", links: ["Blog", "Guides", "Help Center"] },
+              { title: "RESOURCES", links: ["Blog", "Guides", "AI Chatbot"] },
               { title: "LEGAL", links: ["Privacy", "Terms", "Contact"] },
             ].map(col => (
               <div key={col.title}>
@@ -390,9 +390,9 @@ export default function LandingPage() {
                   {col.links.map(link => (
                     <li key={link}>
                       <a
-                        href={link === "Help Center" ? "#" : "#"}
+                        href={link === "AI Chatbot" ? "#" : "#"}
                         onClick={(e) => {
-                          if (link === "Help Center") {
+                          if (link === "AI Chatbot") {
                             e.preventDefault();
                             setHelpBotOpen(true);
                           }
@@ -400,7 +400,7 @@ export default function LandingPage() {
                         style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.9rem", textDecoration: "none", transition: "color 0.2s", cursor: "pointer" }}
                         onMouseEnter={e => { e.currentTarget.style.color = "#2AB4B4"; }}
                         onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.75)"; }}>
-                        {link === "Help Center" ? "Help Center 💬" : link}
+                        {link === "AI Chatbot" ? "AI Chatbot 💬" : link}
                       </a>
                     </li>
                   ))}

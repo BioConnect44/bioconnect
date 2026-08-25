@@ -6,7 +6,7 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
   const [messages, setMessages] = useState([
     {
       sender: "ai",
-      text: "👋 Hello! I am your **BioConnect AI Help Center Assistant**. Ask me anything about searching PubMed AI summaries, reading literature, watching BioMinutes, applying for biotech jobs, or managing your profile!"
+      text: "👋 Hello! I am your **BioConnect AI Chatbot**. Ask me anything about searching PubMed AI summaries, reading literature, watching BioMinutes, applying for biotech jobs, or managing your profile!"
     }
   ]);
   const [input, setInput] = useState("");
@@ -203,7 +203,7 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                 <h3 style={{ fontSize: "14.5px", fontWeight: 700, margin: 0, color: "#00C2B2", letterSpacing: "-0.2px" }}>
-                  Help Center AI
+                  AI Chatbot
                 </h3>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "5px", marginTop: "2px" }}>
@@ -414,7 +414,7 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask Help Center AI a question..."
+              placeholder="Ask AI Chatbot a question..."
               style={{
                 flex: 1,
                 border: isFocused ? "1.5px solid #00C2B2" : "1.5px solid #E2EEF0",
