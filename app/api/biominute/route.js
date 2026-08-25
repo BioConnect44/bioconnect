@@ -205,7 +205,7 @@ export async function GET() {
       source: "Biotecnika News",
       article: {
         ...todayArticle,
-        streak: 5,
+        streak: 1,
         missed: missedArticles
       },
       allArticles: parsedArticles
@@ -240,7 +240,7 @@ export async function GET() {
           answer: 1,
           xp: "+20 XP"
         },
-        streak: 5,
+        streak: 1,
         missed: [
           {
             id: 2,

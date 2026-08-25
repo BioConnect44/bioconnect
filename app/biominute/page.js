@@ -78,7 +78,7 @@ export default function BioMinutePage() {
 
             <div style={{ display: "flex", alignItems: "center", gap: "8px", background: "#FFF3E8", border: "1px solid #FFD4A3", borderRadius: "10px", padding: "8px 16px" }}>
               <span style={{ fontSize: "16px" }}>🔥</span>
-              <span style={{ fontSize: "14px", fontWeight: 700, color: "#F97316" }}>{art.streak || 5} Day Streak!</span>
+              <span style={{ fontSize: "14px", fontWeight: 700, color: "#F97316" }}>{profile?.streak || art?.streak || 1} Day Streak!</span>
             </div>
           </div>
 
