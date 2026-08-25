@@ -4,6 +4,16 @@ import { createClient } from "@/utils/supabase/client";
 import AppShell from "@/components/AppShell";
 import DailyBioChallenge from "@/components/DailyBioChallenge";
 
+const C = {
+  card: {
+    background: "#fff",
+    borderRadius: "16px",
+    padding: "24px",
+    border: "1px solid #E2EEF0",
+  },
+  cardTitle: { fontSize: "15px", fontWeight: 600, color: "#1B2B3A" },
+};
+
 /* ── Student Dashboard ── */
 function StudentDashboard({ profile }) {
   const [selectedOpt, setSelectedOpt] = useState(null);
@@ -973,13 +983,3 @@ export default function DashboardPage() {
     </AppShell>
   );
 }
-
-const C = {
-  card: {
-    background: "#fff",
-    borderRadius: "16px",
-    padding: "24px",
-    border: "1px solid #E2EEF0",
-  },
-  cardTitle: { fontSize: "15px", fontWeight: 600, color: "#1B2B3A" },
-};
