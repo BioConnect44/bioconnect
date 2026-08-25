@@ -43,7 +43,9 @@ function saveJobs(data) {
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const data = loadJobs();
-  let jobs = data.jobs || [];
+  let jobs = (data.jobs || []).filter(
+    (j) => !j.title?.toLowerCase().includes("demo") && !j.description?.toLowerCase().includes("demo")
+  );
 
   const q = (searchParams.get("q") || "").toLowerCase().trim();
   const category = searchParams.get("category") || "";

@@ -115,20 +115,22 @@ export default function JobsPage() {
     try {
       const res = await fetch("/api/jobs?limit=500");
       const d = await res.json();
-      scraped = (d.jobs || []).map((j) => {
-        const company = getDisplayCompany(j);
-        const location = getDisplayLocation({ ...j, company });
-        const salary = getDisplaySalary(j);
-        return {
-          ...j,
-          category: detectCategory(j),
-          company,
-          location,
-          salary,
-          _source: "scraped",
-          _id: j.job_id,
-        };
-      });
+      scraped = (d.jobs || [])
+        .filter((j) => !j.title?.toLowerCase().includes("demo") && !j.description?.toLowerCase().includes("demo"))
+        .map((j) => {
+          const company = getDisplayCompany(j);
+          const location = getDisplayLocation({ ...j, company });
+          const salary = getDisplaySalary(j);
+          return {
+            ...j,
+            category: detectCategory(j),
+            company,
+            location,
+            salary,
+            _source: "scraped",
+            _id: j.job_id,
+          };
+        });
       setLastUpdated(d.last_updated);
     } catch (e) {}
 
@@ -143,28 +145,39 @@ export default function JobsPage() {
           .select("*, profiles(full_name)")
           .eq("is_active", true)
           .order("created_at", { ascending: false });
-        manualJobs = (manual || []).map((j) => {
-          const company = getDisplayCompany(j);
-          const location = getDisplayLocation({ ...j, company });
-          const salary = getDisplaySalary(j);
-          return {
-            title: j.title,
-            company,
-            location,
-            job_type: j.job_type,
-            experience: j.experience,
-            salary,
-            description: j.description,
-            skills: j.skills || [],
-            url: j.apply_url,
-            category: j.category || detectCategory(j),
-            posted_by: j.posted_by,
-            posted_by_name: j.profiles?.full_name,
-            _source: "manual",
-            _id: j.id,
-            _supabaseId: j.id,
-          };
-        });
+
+        // Deactivate any demo job in Supabase
+        const demoJobs = (manual || []).filter(j => j.title?.toLowerCase().includes("demo") || j.description?.toLowerCase().includes("demo"));
+        if (demoJobs.length > 0) {
+          for (const dj of demoJobs) {
+            await supabase.from("manual_jobs").update({ is_active: false }).eq("id", dj.id);
+          }
+        }
+
+        manualJobs = (manual || [])
+          .filter((j) => !j.title?.toLowerCase().includes("demo") && !j.description?.toLowerCase().includes("demo"))
+          .map((j) => {
+            const company = getDisplayCompany(j);
+            const location = getDisplayLocation({ ...j, company });
+            const salary = getDisplaySalary(j);
+            return {
+              title: j.title,
+              company,
+              location,
+              job_type: j.job_type,
+              experience: j.experience,
+              salary,
+              description: j.description,
+              skills: j.skills || [],
+              url: j.apply_url,
+              category: j.category || detectCategory(j),
+              posted_by: j.posted_by,
+              posted_by_name: j.profiles?.full_name,
+              _source: "manual",
+              _id: j.id,
+              _supabaseId: j.id,
+            };
+          });
       }
     } catch (e) {}
 
