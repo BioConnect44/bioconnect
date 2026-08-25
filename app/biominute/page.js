@@ -15,13 +15,11 @@ export default function BioMinutePage() {
 
   useEffect(() => {
     async function loadData() {
-      // 1. Auth check
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) { window.location.href = "/login"; return; }
       const { data: prof } = await supabase.from("profiles").select("*").eq("id", user.id).single();
       setProfile(prof);
 
-      // 2. Fetch live daily article from Biotecnika API
       try {
         const res = await fetch("/api/biominute");
         const json = await res.json();
@@ -43,6 +41,15 @@ export default function BioMinutePage() {
     setCorrect(selected === article.quiz.answer);
   }
 
+  function handleSelectArticle(targetArt) {
+    if (!targetArt) return;
+    setArticle(targetArt);
+    setSelected(null);
+    setSubmitted(false);
+    setCorrect(null);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   const art = article;
 
   return (
@@ -50,7 +57,7 @@ export default function BioMinutePage() {
       {loading || !art ? (
         <div style={{ padding: "60px 0", textAlign: "center", color: "#6B8A9A", fontFamily: "'Poppins', sans-serif" }}>
           <div style={{ fontSize: "32px", marginBottom: "16px", animation: "spin 1.5s linear infinite", display: "inline-block" }}>⏱</div>
-          <p style={{ fontSize: "15px", fontWeight: 600, color: "#1B2B3A" }}>Fetching today&apos;s live news from Biotecnika...</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#1B2B3A" }}>Fetching today&apos;s news from Biotecnika...</p>
           <p style={{ fontSize: "13px", color: "#6B8A9A" }}>Auto-updating daily biotech breakthroughs</p>
           <style>{`
             @keyframes spin {
@@ -63,12 +70,9 @@ export default function BioMinutePage() {
         <>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "24px" }}>
             <div>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
-                <h1 style={{ fontSize: "24px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>Today&apos;s Bio-Minute ⏱</h1>
-                <span style={{ fontSize: "11px", background: "#CCFBF1", color: "#0F766E", fontWeight: 700, padding: "3px 8px", borderRadius: "12px" }}>
-                  LIVE • Biotecnika
-                </span>
-              </div>
+              <h1 style={{ fontSize: "24px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>
+                Today&apos;s Bio-Minute ⏱
+              </h1>
               <p style={{ fontSize: "13px", color: "#6B8A9A" }}>{art.date} • {art.readTime}</p>
             </div>
 
@@ -79,7 +83,7 @@ export default function BioMinutePage() {
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: "24px" }}>
-            {/* Article Main */}
+            {/* Main Article Container */}
             <div style={{ background: "#fff", borderRadius: "20px", padding: "28px", border: "1px solid #E2EEF0" }}>
               {/* Hero image */}
               <div style={{ position: "relative", borderRadius: "14px", overflow: "hidden", marginBottom: "20px" }}>
@@ -89,21 +93,32 @@ export default function BioMinutePage() {
                 </div>
               </div>
 
-              <p style={{ fontSize: "12px", color: "#14B8A6", fontWeight: 700, marginBottom: "10px" }}>{art.category} • {art.categoryDate}</p>
-              <h2 style={{ fontSize: "24px", fontWeight: 800, color: "#1B2B3A", lineHeight: "1.3", marginBottom: "20px" }}>{art.title}</h2>
+              <p style={{ fontSize: "12px", color: "#14B8A6", fontWeight: 700, marginBottom: "10px", letterSpacing: "0.04em" }}>
+                {art.category || "BIOTECNIKA NEWS"} • {art.categoryDate}
+              </p>
+              <h2 style={{ fontSize: "24px", fontWeight: 800, color: "#1B2B3A", lineHeight: "1.35", marginBottom: "20px" }}>
+                {art.title}
+              </h2>
 
-              {/* 60-second summary */}
-              <div style={{ background: "#F8FCFC", borderRadius: "12px", padding: "16px 20px", marginBottom: "20px" }}>
-                <p style={{ fontSize: "14px", fontWeight: 700, color: "#1B2B3A", marginBottom: "14px" }}>The 60-Second Summary</p>
+              {/* 60-Second Summary Card */}
+              <div style={{ background: "#F8FCFC", borderRadius: "14px", padding: "20px", marginBottom: "24px", border: "1px solid #E6F4F4" }}>
+                <p style={{ fontSize: "14px", fontWeight: 700, color: "#1B2B3A", marginBottom: "16px" }}>
+                  The 60-Second Summary
+                </p>
                 {art.summary.map((s, i) => (
-                  <div key={i} style={{ display: "flex", gap: "12px", marginBottom: "12px" }}>
+                  <div key={i} style={{ display: "flex", gap: "12px", marginBottom: "14px" }}>
                     <span style={{ fontSize: "18px", flexShrink: 0 }}>{s.icon}</span>
-                    <p style={{ fontSize: "14px", color: "#374151", lineHeight: "1.6", fontWeight: 500 }}>{s.text}</p>
+                    <p style={{ fontSize: "14px", color: "#374151", lineHeight: "1.6", fontWeight: 500, margin: 0 }}>
+                      {s.text}
+                    </p>
                   </div>
                 ))}
               </div>
 
-              <p style={{ fontSize: "14px", color: "#6B8A9A", lineHeight: "1.8", marginBottom: "20px" }}>{art.body}</p>
+              {/* Detailed Narrative Story Body */}
+              <div style={{ fontSize: "14.5px", color: "#475569", lineHeight: "1.8", marginBottom: "24px" }}>
+                <p style={{ margin: "0 0 14px" }}>{art.body}</p>
+              </div>
 
               {art.link && (
                 <a
@@ -113,16 +128,19 @@ export default function BioMinutePage() {
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: "6px",
+                    gap: "8px",
                     fontSize: "13px",
                     fontWeight: 700,
                     color: "#14B8A6",
                     textDecoration: "none",
                     background: "#F0FCFB",
                     border: "1px solid #CCFBF1",
-                    borderRadius: "8px",
-                    padding: "8px 14px"
+                    borderRadius: "10px",
+                    padding: "10px 16px",
+                    transition: "all 0.2s"
                   }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "#E0F2FE"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "#F0FCFB"; }}
                 >
                   <span>Read Full News Story on Biotecnika</span>
                   <span>↗</span>
@@ -131,14 +149,16 @@ export default function BioMinutePage() {
             </div>
 
             {/* Right Sidebar */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
               {/* Daily Quiz */}
               <div style={{ background: "#fff", borderRadius: "16px", padding: "22px", border: "1px solid #E2EEF0" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
-                  <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#1B2B3A" }}>Daily Quick Quiz</h3>
+                  <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>Daily Quick Quiz</h3>
                   <span style={{ fontSize: "13px", color: "#14B8A6", fontWeight: 700 }}>{art.quiz.xp}</span>
                 </div>
-                <p style={{ fontSize: "14px", color: "#374151", marginBottom: "16px", lineHeight: "1.5" }}>{art.quiz.question}</p>
+                <p style={{ fontSize: "14px", color: "#374151", marginBottom: "16px", lineHeight: "1.5" }}>
+                  {art.quiz.question}
+                </p>
                 <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "16px" }}>
                   {art.quiz.options.map((opt, i) => (
                     <button
@@ -178,7 +198,7 @@ export default function BioMinutePage() {
                 </div>
                 {submitted ? (
                   <div style={{ padding: "12px", borderRadius: "10px", background: correct ? "#F0FCFB" : "#FEF2F2", textAlign: "center" }}>
-                    <p style={{ fontSize: "14px", fontWeight: 600, color: correct ? "#14B8A6" : "#EF4444" }}>
+                    <p style={{ fontSize: "14px", fontWeight: 600, color: correct ? "#14B8A6" : "#EF4444", margin: 0 }}>
                       {correct ? `✅ Correct! ${art.quiz.xp} earned!` : `❌ Not quite. The answer is: ${art.quiz.options[art.quiz.answer]}`}
                     </p>
                   </div>
@@ -204,31 +224,43 @@ export default function BioMinutePage() {
                 )}
               </div>
 
-              {/* Missed Yesterday */}
+              {/* Missed Yesterday? Section (Clean Native Card Hover & Clickable) */}
               <div style={{ background: "#fff", borderRadius: "16px", padding: "22px", border: "1px solid #E2EEF0" }}>
-                <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginBottom: "16px" }}>Missed Yesterday? ⏱</h3>
-                {art.missed && art.missed.map((m, i) => (
-                  <a
-                    key={i}
-                    href={m.link || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: "flex",
-                      gap: "12px",
-                      padding: "10px 0",
-                      borderBottom: i < art.missed.length - 1 ? "1px solid #F0F7F8" : "none",
-                      textDecoration: "none",
-                      color: "inherit"
-                    }}
-                  >
-                    <img src={m.img} alt="" style={{ width: 52, height: 44, borderRadius: "8px", objectFit: "cover", flexShrink: 0 }} />
-                    <div>
-                      <p style={{ fontSize: "11px", color: "#14B8A6", fontWeight: 600, marginBottom: "2px" }}>{m.date}</p>
-                      <p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A", lineHeight: "1.4" }}>{m.title}</p>
+                <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginBottom: "14px", margin: 0 }}>
+                  Missed Yesterday? ⏱
+                </h3>
+                <div style={{ display: "flex", flexDirection: "column", gap: "4px", marginTop: "12px" }}>
+                  {art.missed && art.missed.map((m, i) => (
+                    <div
+                      key={i}
+                      onClick={() => m.fullArticle && handleSelectArticle(m.fullArticle)}
+                      style={{
+                        display: "flex",
+                        gap: "12px",
+                        padding: "10px 12px",
+                        borderRadius: "10px",
+                        cursor: "pointer",
+                        transition: "all 0.2s ease",
+                        border: "1px solid transparent",
+                        background: "transparent"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "#F8FCFC";
+                        e.currentTarget.style.borderColor = "#E2EEF0";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "transparent";
+                        e.currentTarget.style.borderColor = "transparent";
+                      }}
+                    >
+                      <img src={m.img} alt="" style={{ width: 52, height: 44, borderRadius: "8px", objectFit: "cover", flexShrink: 0 }} />
+                      <div>
+                        <p style={{ fontSize: "11px", color: "#14B8A6", fontWeight: 700, marginBottom: "2px", letterSpacing: "0.03em" }}>{m.date}</p>
+                        <p style={{ fontSize: "13px", fontWeight: 600, color: "#1B2B3A", lineHeight: "1.4", margin: 0 }}>{m.title}</p>
+                      </div>
                     </div>
-                  </a>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
