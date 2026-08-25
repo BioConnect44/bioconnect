@@ -205,9 +205,26 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
     }
   }
 
-  // Render Formatted Summary Cards for Tab 1
-  function renderFormattedSummary(text) {
-    if (!text) return null;
+  function decodeHtmlEntities(str) {
+    if (!str || typeof str !== "string") return str || "";
+    return str
+      .replace(/&#x3b2;/gi, "β")
+      .replace(/&#x3b1;/gi, "α")
+      .replace(/&#x3b3;/gi, "γ")
+      .replace(/&#x3b4;/gi, "δ")
+      .replace(/&#x3ba;/gi, "κ")
+      .replace(/&#x3bc;/gi, "μ")
+      .replace(/&gt;/gi, ">")
+      .replace(/&lt;/gi, "<")
+      .replace(/&amp;/gi, "&")
+      .replace(/&quot;/gi, '"')
+      .replace(/&#39;/gi, "'");
+  }
+
+  // Render Formatted Summary Cards for Tab 1 & Reader Box
+  function renderFormattedSummary(rawText) {
+    if (!rawText) return null;
+    const text = decodeHtmlEntities(rawText);
     const sections = text.split(/(?=### \d+\. )/g);
 
     return sections.map((sec, secIdx) => {
@@ -222,29 +239,45 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
           style={{
             background: "#ffffff",
             borderRadius: "12px",
-            padding: "16px",
+            padding: "18px 20px",
             border: "1px solid #E2EEF0",
-            marginBottom: "12px",
+            marginBottom: "14px",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.02)"
           }}
         >
-          <h4 style={{ fontSize: "13px", fontWeight: 700, color: "#3AA8C1", marginTop: 0, marginBottom: "8px" }}>
-            {titleLine}
+          <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#3AA8C1", marginTop: 0, marginBottom: "12px", display: "flex", alignItems: "center", gap: "6px", borderBottom: "1px solid #F0F7F8", paddingBottom: "8px" }}>
+            <span>📌</span>
+            <span>{titleLine}</span>
           </h4>
-          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
             {contentLines.map((line, lIdx) => {
               const trimmed = line.trim();
               if (!trimmed) return null;
+
               if (trimmed.startsWith("- **")) {
                 const parts = trimmed.replace("- **", "").split("**: ");
+                const label = parts[0];
+                const value = parts.slice(1).join("**: ");
+
                 return (
-                  <div key={lIdx} style={{ fontSize: "12.5px", lineHeight: "1.5", color: "#102A30" }}>
-                    <strong style={{ color: "#3AA8C1" }}>{parts[0]}: </strong>
-                    <span style={{ color: "#334155" }}>{parts.slice(1).join("**: ")}</span>
+                  <div key={lIdx} style={{ fontSize: "13px", lineHeight: "1.6", color: "#102A30" }}>
+                    <strong style={{ color: "#0F766E", fontWeight: 700 }}>{label}: </strong>
+                    <span style={{ color: "#334155" }}>{value}</span>
                   </div>
                 );
               }
+
+              if (trimmed.startsWith("- ") || trimmed.startsWith("1. ") || trimmed.startsWith("2. ") || trimmed.startsWith("3. ")) {
+                return (
+                  <div key={lIdx} style={{ display: "flex", gap: "8px", fontSize: "13px", color: "#334155", lineHeight: "1.5" }}>
+                    <span style={{ color: "#3AA8C1", fontWeight: 700 }}>•</span>
+                    <span>{trimmed.replace(/^(- |\d+\. )/, "")}</span>
+                  </div>
+                );
+              }
+
               return (
-                <p key={lIdx} style={{ fontSize: "12.5px", color: "#334155", lineHeight: "1.5", margin: 0 }}>
+                <p key={lIdx} style={{ fontSize: "13px", color: "#334155", lineHeight: "1.6", margin: 0 }}>
                   {trimmed}
                 </p>
               );
@@ -473,12 +506,12 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
                 </p>
 
                 <div style={{ background: "#F8FAFC", padding: "20px", borderRadius: "12px", border: "1px solid #E2EEF0" }}>
-                  <h5 style={{ fontSize: "12px", fontWeight: 700, color: "#3AA8C1", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "10px" }}>
-                    Official Publication Abstract
+                  <h5 style={{ fontSize: "12px", fontWeight: 700, color: "#3AA8C1", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "14px" }}>
+                    Structured Scientific Analysis & Executive Record
                   </h5>
-                  <p style={{ fontSize: "14px", color: "#334155", lineHeight: "1.7", margin: 0 }}>
-                    {summaryData?.summary_text ? summaryData.summary_text.replace(/### \d+\. [^\n]+/g, "").substring(0, 1200) : "Full peer-reviewed text record available on NCBI PubMed Central."}
-                  </p>
+                  <div>
+                    {renderFormattedSummary(summaryData?.summary_text)}
+                  </div>
                 </div>
               </div>
             </div>

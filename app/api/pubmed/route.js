@@ -8,12 +8,31 @@ function getAdminClient() {
   return createClient(supabaseUrl, serviceKey);
 }
 
+function decodeHtmlEntities(str) {
+  if (!str || typeof str !== "string") return str || "";
+  return str
+    .replace(/&#x3b2;/gi, "β")
+    .replace(/&#x3b1;/gi, "α")
+    .replace(/&#x3b3;/gi, "γ")
+    .replace(/&#x3b4;/gi, "δ")
+    .replace(/&#x3ba;/gi, "κ")
+    .replace(/&#x3bc;/gi, "μ")
+    .replace(/&gt;/gi, ">")
+    .replace(/&lt;/gi, "<")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/&#x([0-9a-f]+);/gi, (match, hex) => String.fromCharCode(parseInt(hex, 16)))
+    .replace(/&#(\d+);/gi, (match, dec) => String.fromCharCode(parseInt(dec, 10)));
+}
+
 /**
- * Clean HTML/XML tags from string
+ * Clean HTML/XML tags & decode HTML entities from string
  */
 function stripTags(str) {
   if (!str) return "";
-  return str.replace(/<[^>]*>/g, "").trim();
+  const clean = str.replace(/<[^>]*>/g, "").trim();
+  return decodeHtmlEntities(clean);
 }
 
 /**
