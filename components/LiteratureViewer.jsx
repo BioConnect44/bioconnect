@@ -319,6 +319,30 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
     );
   }
 
+  function renderTextWithClickableUrls(rawText) {
+    if (!rawText) return null;
+    const decoded = decodeHtmlEntities(rawText);
+    const urlRegex = /(https?:\/\/[^\s\)]+)/g;
+    const parts = decoded.split(urlRegex);
+
+    return parts.map((part, i) => {
+      if (part.match(urlRegex)) {
+        return (
+          <a
+            key={i}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#3AA8C1", textDecoration: "underline", fontWeight: 600 }}
+          >
+            {part} ↗
+          </a>
+        );
+      }
+      return part;
+    });
+  }
+
   // Render Formatted Summary Cards
   function renderFormattedSummary(rawText) {
     if (!rawText) return null;
@@ -360,7 +384,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
                 return (
                   <div key={lIdx} style={{ fontSize: "13px", lineHeight: "1.6", color: "#102A30" }}>
                     <strong style={{ color: "#0F766E", fontWeight: 700 }}>{label}: </strong>
-                    <span style={{ color: "#334155" }}>{value}</span>
+                    <span style={{ color: "#334155" }}>{renderTextWithClickableUrls(value)}</span>
                   </div>
                 );
               }
@@ -369,14 +393,14 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
                 return (
                   <div key={lIdx} style={{ display: "flex", gap: "8px", fontSize: "13px", color: "#334155", lineHeight: "1.5" }}>
                     <span style={{ color: "#3AA8C1", fontWeight: 700 }}>•</span>
-                    <span>{trimmed.replace(/^(- |\d+\. )/, "")}</span>
+                    <span>{renderTextWithClickableUrls(trimmed.replace(/^(- |\d+\. )/, ""))}</span>
                   </div>
                 );
               }
 
               return (
                 <p key={lIdx} style={{ fontSize: "13px", color: "#334155", lineHeight: "1.6", margin: 0 }}>
-                  {trimmed}
+                  {renderTextWithClickableUrls(trimmed)}
                 </p>
               );
             })}
@@ -684,7 +708,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
             </div>
           )}
 
-          {/* ── FLOATING POPOVER ON TEXT SELECTION ── */}
+          {/* ── MINIMAL NATIVE FLOATING READER MENU ON TEXT SELECTION ── */}
           {popoverPos && selectedText && (
             <div
               style={{
@@ -692,70 +716,67 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
                 top: popoverPos.top,
                 left: popoverPos.left,
                 zIndex: 10000,
-                background: "#102A30",
-                color: "#fff",
-                borderRadius: "12px",
-                padding: "10px 14px",
-                boxShadow: "0 10px 25px rgba(0,0,0,0.3)",
+                background: "#0F172A",
+                color: "#F8FAFC",
+                borderRadius: "8px",
+                padding: "4px",
+                boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
                 display: "flex",
-                flexDirection: "column",
-                gap: "8px",
-                maxWidth: "320px",
-                border: "1px solid rgba(255,255,255,0.15)"
+                alignItems: "center",
+                gap: "2px",
+                border: "1px solid #334155"
               }}
             >
-              <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-                <button
-                  onClick={handleExplainText}
-                  style={{
-                    background: "#3AA8C1",
-                    color: "#fff",
-                    border: "none",
-                    borderRadius: "6px",
-                    padding: "6px 12px",
-                    fontSize: "12px",
-                    fontWeight: 600,
-                    cursor: "pointer"
-                  }}
-                >
-                  {explaining ? "⚡ Analyzing..." : "✨ Explain"}
-                </button>
-
-                <button
-                  onClick={() => handleSaveHighlight("yellow")}
-                  style={{
-                    background: "#FACC15",
-                    color: "#713F12",
-                    border: "none",
-                    borderRadius: "6px",
-                    padding: "6px 12px",
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    cursor: "pointer"
-                  }}
-                >
-                  🖍️ Highlight
-                </button>
-
-                <button
-                  onClick={() => setNoteModalOpen(true)}
-                  style={{
-                    background: "rgba(255,255,255,0.15)",
-                    color: "#fff",
-                    border: "none",
-                    borderRadius: "6px",
-                    padding: "6px 12px",
-                    fontSize: "12px",
-                    fontWeight: 600,
-                    cursor: "pointer"
-                  }}
-                >
-                  📝 Add Note
-                </button>
-              </div>
+              <button
+                onClick={handleExplainText}
+                style={{
+                  background: "transparent",
+                  color: "#38BDF8",
+                  border: "none",
+                  borderRadius: "5px",
+                  padding: "6px 12px",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  cursor: "pointer"
+                }}
+              >
+                {explaining ? "Analyzing..." : "Explain"}
+              </button>
+              <div style={{ width: "1px", height: "14px", background: "#334155" }} />
+              <button
+                onClick={() => handleSaveHighlight("yellow")}
+                style={{
+                  background: "transparent",
+                  color: "#FDE047",
+                  border: "none",
+                  borderRadius: "5px",
+                  padding: "6px 12px",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  cursor: "pointer"
+                }}
+              >
+                Highlight
+              </button>
+              <div style={{ width: "1px", height: "14px", background: "#334155" }} />
+              <button
+                onClick={() => setNoteModalOpen(true)}
+                style={{
+                  background: "transparent",
+                  color: "#E2E8F0",
+                  border: "none",
+                  borderRadius: "5px",
+                  padding: "6px 12px",
+                  fontSize: "12px",
+                  fontWeight: 500,
+                  cursor: "pointer"
+                }}
+              >
+                Add Note
+              </button>
 
               {explanation && (
-                <div style={{ background: "rgba(255,255,255,0.1)", padding: "8px 10px", borderRadius: "6px", fontSize: "11.5px", lineHeight: "1.4", color: "#E2E8F0" }}>
+                <div style={{ position: "absolute", top: "100%", left: 0, right: 0, background: "#1E293B", padding: "8px 10px", borderRadius: "6px", fontSize: "11.5px", lineHeight: "1.4", color: "#E2E8F0", marginTop: "6px", boxShadow: "0 4px 12px rgba(0,0,0,0.2)" }}>
                   {explanation}
                 </div>
               )}
