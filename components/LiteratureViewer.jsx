@@ -252,19 +252,42 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
       .replace(/&#39;/gi, "'");
   }
 
-  // Extracts clean, professional scientific prose free of raw markdown tags
+  // Extracts clean, professional scientific prose free of raw markdown tags and disjointed metadata lines
   function getCleanAbstractProse(summary) {
     if (summary?.abstract && summary.abstract.trim().length > 30) {
       return decodeHtmlEntities(summary.abstract.trim());
     }
 
     if (summary?.summary_text) {
-      let text = summary.summary_text.replace(/### \d+\. [^\n]+/g, "");
-      text = text.replace(/- \*\*[^*]+\*\*: /g, "");
-      text = text.replace(/^[-\u2022]\s+/gm, "");
-      const lines = text.split("\n").map((l) => l.trim()).filter((l) => l.length > 25);
-      if (lines.length > 0) {
-        return decodeHtmlEntities(lines.join("\n\n"));
+      const sections = summary.summary_text.split(/(?=### \d+\. )/g);
+      const contentParts = [];
+
+      for (const sec of sections) {
+        // Skip Section 1 (Metadata) to avoid duplicating title/author/PMID lines in abstract prose
+        if (sec.includes("### 1. Metadata")) continue;
+
+        const lines = sec.split("\n");
+        for (const l of lines) {
+          const trimmed = l.trim();
+          if (!trimmed || trimmed.startsWith("### ")) continue;
+          
+          let cleanLine = trimmed
+            .replace(/^- \*\*[^*]+\*\*: /, "")
+            .replace(/^[-\u2022]\s+/, "")
+            .replace(/\*\*/g, "")
+            .replace(/\*/g, "");
+
+          if (cleanLine.length > 20 && !cleanLine.startsWith("PMID:") && !cleanLine.startsWith("URL:")) {
+            contentParts.push(cleanLine);
+          }
+        }
+      }
+
+      if (contentParts.length > 0) {
+        const mid = Math.ceil(contentParts.length / 2);
+        const para1 = contentParts.slice(0, mid).join(" ");
+        const para2 = contentParts.slice(mid).join(" ");
+        return decodeHtmlEntities(`${para1}\n\n${para2}`.trim());
       }
     }
 
@@ -643,9 +666,23 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
                   {decodeHtmlEntities(summaryData?.title)}
                 </h2>
 
-                <p style={{ fontSize: "13.5px", color: "#64748B", marginBottom: "24px", lineHeight: "1.5" }}>
+                <p style={{ fontSize: "13.5px", color: "#64748B", marginBottom: "8px", lineHeight: "1.5" }}>
                   <strong>Authors:</strong> {decodeHtmlEntities(summaryData?.authors || "NCBI PubMed Investigators")} • <strong>Journal:</strong> <em style={{ color: "#3AA8C1", fontWeight: 600 }}>{decodeHtmlEntities(summaryData?.journal || "Nature")}</em> ({summaryData?.publication_date || "2026"})
                 </p>
+
+                {summaryData?.pmid && (
+                  <p style={{ fontSize: "12.5px", color: "#64748B", marginBottom: "24px" }}>
+                    <strong>PubMed Record:</strong>{" "}
+                    <a
+                      href={`https://pubmed.ncbi.nlm.nih.gov/${summaryData.pmid}/`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "#3AA8C1", textDecoration: "underline", fontWeight: 600 }}
+                    >
+                      https://pubmed.ncbi.nlm.nih.gov/{summaryData.pmid}/ ↗
+                    </a>
+                  </p>
+                )}
 
                 {/* Official Abstract Prose Box */}
                 <div style={{ background: "#F8FAFC", padding: "24px", borderRadius: "14px", border: "1px solid #E2EEF0", marginBottom: "24px" }}>
