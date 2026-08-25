@@ -160,59 +160,100 @@ export default function BioMinutePage() {
                   {art.quiz.question}
                 </p>
                 <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "16px" }}>
-                  {art.quiz.options.map((opt, i) => (
-                    <button
-                      key={i}
-                      onClick={() => !submitted && setSelected(i)}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "12px",
-                        padding: "13px 16px",
-                        borderRadius: "10px",
-                        border: "1.5px solid",
-                        cursor: submitted ? "default" : "pointer",
-                        fontFamily: "inherit",
-                        background: submitted
-                          ? (i === art.quiz.answer ? "#F0FCFB" : i === selected ? "#FEF2F2" : "#fff")
-                          : selected === i ? "#F0FCFB" : "#fff",
-                        borderColor: submitted
-                          ? (i === art.quiz.answer ? "#14B8A6" : i === selected ? "#EF4444" : "#E2EEF0")
-                          : selected === i ? "#14B8A6" : "#E2EEF0",
-                        textAlign: "left",
-                        transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
-                      }}
-                      onMouseEnter={(e) => {
-                        if (!submitted && selected !== i) {
-                          e.currentTarget.style.background = "#F0FCFB";
-                          e.currentTarget.style.borderColor = "#99F6E4";
-                          e.currentTarget.style.transform = "translateY(-1.5px)";
-                          e.currentTarget.style.boxShadow = "0 4px 12px rgba(20,184,166,0.08)";
-                        }
-                      }}
-                      onMouseLeave={(e) => {
-                        if (!submitted && selected !== i) {
-                          e.currentTarget.style.background = "#fff";
-                          e.currentTarget.style.borderColor = "#E2EEF0";
-                          e.currentTarget.style.transform = "none";
-                          e.currentTarget.style.boxShadow = "none";
-                        }
-                      }}
-                    >
-                      <div
+                  {art.quiz.options.map((opt, i) => {
+                    const isCorrectAnswer = submitted && i === art.quiz.answer;
+                    const isWrongSelected = submitted && i === selected && selected !== art.quiz.answer;
+                    const isSelected = selected === i;
+
+                    let bg = "#FFFFFF";
+                    let border = "#E2EEF0";
+                    let circleBorder = "#CBD5E1";
+                    let circleBg = "#FFFFFF";
+                    let circleIcon = null;
+
+                    if (submitted) {
+                      if (isCorrectAnswer) {
+                        bg = "#F0FCFB";
+                        border = "#14B8A6";
+                        circleBorder = "#14B8A6";
+                        circleBg = "#14B8A6";
+                        circleIcon = "✓";
+                      } else if (isWrongSelected) {
+                        bg = "#FEF2F2";
+                        border = "#EF4444";
+                        circleBorder = "#EF4444";
+                        circleBg = "#EF4444";
+                        circleIcon = "✕";
+                      } else {
+                        bg = "#FFFFFF";
+                        border = "#F1F5F9";
+                        circleBorder = "#E2EEF0";
+                        circleBg = "#FFFFFF";
+                      }
+                    } else if (isSelected) {
+                      bg = "#F0FCFB";
+                      border = "#14B8A6";
+                      circleBorder = "#14B8A6";
+                      circleBg = "#14B8A6";
+                      circleIcon = "✓";
+                    }
+
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => !submitted && setSelected(i)}
                         style={{
-                          width: 20,
-                          height: 20,
-                          borderRadius: "50%",
-                          border: `2px solid ${selected === i || (submitted && i === art.quiz.answer) ? "#14B8A6" : "#CBD5E1"}`,
-                          background: selected === i || (submitted && i === art.quiz.answer) ? "#14B8A6" : "#fff",
-                          flexShrink: 0,
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "12px",
+                          padding: "13px 16px",
+                          borderRadius: "10px",
+                          border: `1.5px solid ${border}`,
+                          background: bg,
+                          cursor: submitted ? "default" : "pointer",
+                          fontFamily: "inherit",
+                          textAlign: "left",
+                          opacity: submitted && !isCorrectAnswer && !isWrongSelected ? 0.6 : 1,
                           transition: "all 0.2s ease"
                         }}
-                      />
-                      <span style={{ fontSize: "14px", color: "#374151", fontWeight: selected === i ? 600 : 500 }}>{opt}</span>
-                    </button>
-                  ))}
+                        onMouseEnter={(e) => {
+                          if (!submitted && !isSelected) {
+                            e.currentTarget.style.background = "#F8FCFC";
+                            e.currentTarget.style.borderColor = "#14B8A6";
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!submitted && !isSelected) {
+                            e.currentTarget.style.background = "#FFFFFF";
+                            e.currentTarget.style.borderColor = "#E2EEF0";
+                          }
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: 22,
+                            height: 22,
+                            borderRadius: "50%",
+                            border: `2px solid ${circleBorder}`,
+                            background: circleBg,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: "#FFFFFF",
+                            fontSize: "12px",
+                            fontWeight: 800,
+                            flexShrink: 0,
+                            transition: "all 0.2s ease"
+                          }}
+                        >
+                          {circleIcon}
+                        </div>
+                        <span style={{ fontSize: "14px", color: isWrongSelected ? "#991B1B" : isCorrectAnswer ? "#0F766E" : "#374151", fontWeight: isSelected || isCorrectAnswer ? 600 : 500 }}>
+                          {opt}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
                 {submitted ? (
                   <div style={{ padding: "12px", borderRadius: "10px", background: correct ? "#F0FCFB" : "#FEF2F2", textAlign: "center" }}>
