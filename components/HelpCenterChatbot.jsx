@@ -157,6 +157,17 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
           transform: translateY(-1.5px);
           box-shadow: 0 4px 12px rgba(0,194,178,0.25);
         }
+        .chips-scroll-container::-webkit-scrollbar {
+          height: 4px;
+        }
+        .chips-scroll-container::-webkit-scrollbar-track {
+          background: #F1F5F9;
+          border-radius: 4px;
+        }
+        .chips-scroll-container::-webkit-scrollbar-thumb {
+          background: #00C2B2;
+          border-radius: 4px;
+        }
       `}</style>
 
       <div
@@ -360,14 +371,21 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
 
         {/* Quick Suggestion Chips */}
         <div
+          onWheel={(e) => {
+            if (e.deltaY) {
+              e.currentTarget.scrollLeft += e.deltaY;
+            }
+          }}
+          className="chips-scroll-container"
           style={{
-            padding: "12px 18px",
+            padding: "10px 16px 14px",
             background: "#FFFFFF",
             borderTop: "1px solid #E2EEF0",
             display: "flex",
             gap: "8px",
             overflowX: "auto",
-            scrollbarWidth: "none"
+            scrollBehavior: "smooth",
+            WebkitOverflowScrolling: "touch"
           }}
         >
           {SUGGESTIONS.map((chip, cIdx) => (
