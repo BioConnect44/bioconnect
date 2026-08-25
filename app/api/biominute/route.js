@@ -44,20 +44,46 @@ function cleanBiotecnikaText(rawHtml, title = "") {
   return clean;
 }
 
-function getHighResImage(title, description, index) {
-  const imgMatch = description ? description.match(/src=["'](https?:\/\/[^"']+\.(?:jpg|jpeg|png|webp))["']/i) : null;
-  if (imgMatch && imgMatch[1] && !imgMatch[1].includes("gravatar") && !imgMatch[1].includes("logo")) {
+function getHighResImage(title, description, content, dateObj = new Date()) {
+  const combinedStr = (description || "") + " " + (content || "");
+  
+  // 1. Try extracting actual image URL from post description or content HTML
+  const imgMatch = combinedStr.match(/src=["'](https?:\/\/[^"']+\.(?:jpg|jpeg|png|webp|gif))["']/i);
+  if (imgMatch && imgMatch[1] && !imgMatch[1].includes("gravatar") && !imgMatch[1].includes("logo") && !imgMatch[1].includes("icon")) {
     return imgMatch[1];
   }
 
-  const STOCK_IMAGES = [
-    "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=800&q=70",
-    "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=70",
-    "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=70",
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=70",
-    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=70"
+  // 2. Keyword-specific high-resolution biotech cover images
+  const lowerTitle = (title || "").toLowerCase();
+  if (lowerTitle.includes("biofuel") || lowerTitle.includes("algae") || lowerTitle.includes("plant") || lowerTitle.includes("environment")) {
+    return "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=900&q=80"; // Algae & Green Biofuel
+  }
+  if (lowerTitle.includes("crispr") || lowerTitle.includes("gene") || lowerTitle.includes("dna") || lowerTitle.includes("genome")) {
+    return "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80"; // DNA & Gene Editing Lab
+  }
+  if (lowerTitle.includes("ai") || lowerTitle.includes("model") || lowerTitle.includes("computational") || lowerTitle.includes("insilico")) {
+    return "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80"; // AI & Tech Biology
+  }
+  if (lowerTitle.includes("virus") || lowerTitle.includes("cell") || lowerTitle.includes("microbiom") || lowerTitle.includes("protein")) {
+    return "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80"; // Fluorescent Cell Microscopy
+  }
+  if (lowerTitle.includes("drug") || lowerTitle.includes("pharma") || lowerTitle.includes("medicine") || lowerTitle.includes("cancer")) {
+    return "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80"; // Drug Discovery & Microplate
+  }
+
+  // 3. Date-seeded dynamic rotation for distinct daily cover images
+  const DYNAMIC_DAILY_IMAGES = [
+    "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80",
+    "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80",
+    "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80",
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80",
+    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80",
+    "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=900&q=80",
+    "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80"
   ];
-  return STOCK_IMAGES[index % STOCK_IMAGES.length];
+  
+  const dayIndex = Math.floor(dateObj.getTime() / 86400000) % DYNAMIC_DAILY_IMAGES.length;
+  return DYNAMIC_DAILY_IMAGES[dayIndex];
 }
 
 function generateDetailedSummary(title, cleanText) {
@@ -162,7 +188,7 @@ export async function GET() {
         day: "numeric"
       }).toUpperCase();
 
-      const image = getHighResImage(title, descRaw || contentRaw, i - 1);
+      const image = getHighResImage(title, descRaw, contentRaw, parsedDate);
       const cleanText = cleanBiotecnikaText(contentRaw || descRaw, title);
       const summary = generateDetailedSummary(title, cleanText);
       const quiz = generateQuiz(title);
