@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter, usePathname } from "next/navigation";
+import HelpCenterChatbot from "@/components/HelpCenterChatbot";
 
 const NAV_ITEMS = [
   {
@@ -89,6 +90,7 @@ export default function AppShell({ children, active }) {
   const pathname = usePathname();
   const [profile, setProfile] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [helpBotOpen, setHelpBotOpen] = useState(false);
 
   useEffect(() => {
     async function loadProfile() {
@@ -259,8 +261,31 @@ export default function AppShell({ children, active }) {
           </nav>
         </div>
 
-        {/* Bottom / Logout */}
-        <div style={{ marginTop: "auto", paddingTop: "16px" }}>
+        {/* Bottom / Help Center AI & Logout */}
+        <div style={{ marginTop: "auto", paddingTop: "16px", display: "flex", flexDirection: "column", gap: "8px" }}>
+          <button
+            onClick={() => setHelpBotOpen(true)}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              padding: sidebarOpen ? "12px 18px" : "12px",
+              borderRadius: "14px",
+              fontSize: "14px",
+              fontWeight: 600,
+              cursor: "pointer",
+              border: "1px solid rgba(0, 194, 178, 0.3)",
+              background: "rgba(0, 194, 178, 0.1)",
+              color: "#00C2B2",
+              width: "100%",
+              justifyContent: sidebarOpen ? "flex-start" : "center",
+              transition: "all 0.2s ease"
+            }}
+          >
+            <span style={{ fontSize: "16px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>💬</span>
+            {sidebarOpen && <span>Help Center AI</span>}
+          </button>
+
           <button 
             className="logout-btn-custom" 
             onClick={handleLogout}
@@ -287,6 +312,9 @@ export default function AppShell({ children, active }) {
           {children}
         </main>
       </div>
+
+      {/* Help Center AI Chatbot Drawer/Modal */}
+      <HelpCenterChatbot isOpen={helpBotOpen} onClose={() => setHelpBotOpen(false)} />
     </div>
   );
 }
