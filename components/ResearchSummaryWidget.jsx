@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
+import LiteratureViewer from "@/components/LiteratureViewer";
 
 export default function ResearchSummaryWidget({ userId = null }) {
   const supabase = createClient();
@@ -10,6 +11,7 @@ export default function ResearchSummaryWidget({ userId = null }) {
   const [activeSummary, setActiveSummary] = useState(null);
   const [recentSummaries, setRecentSummaries] = useState([]);
   const [statusMessage, setStatusMessage] = useState(null);
+  const [viewingPaper, setViewingPaper] = useState(null);
 
   const SUGGESTIONS = [
     "CRISPR Therapeutics",
@@ -432,28 +434,49 @@ export default function ResearchSummaryWidget({ userId = null }) {
           )}
 
           {/* Action Footer */}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "12px", borderTop: "1px solid rgba(20,184,166,0.15)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "12px", borderTop: "1px solid rgba(20,184,166,0.15)", flexWrap: "wrap", gap: "10px" }}>
             <span style={{ fontSize: "12px", color: "#6B8A9A" }}>
               Topic Query: <strong style={{ color: "#1B2B3A" }}>"{activeSummary.query}"</strong>
             </span>
-            {activeSummary.source_url && (
-              <a
-                href={activeSummary.source_url}
-                target="_blank"
-                rel="noopener noreferrer"
+            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+              <button
+                onClick={() => setViewingPaper(activeSummary)}
                 style={{
-                  background: "#1B2B3A",
+                  background: "#14B8A6",
                   color: "#fff",
+                  border: "none",
                   padding: "9px 18px",
                   borderRadius: "8px",
                   fontSize: "12.5px",
                   fontWeight: 600,
-                  textDecoration: "none"
+                  cursor: "pointer",
+                  fontFamily: "inherit",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px"
                 }}
               >
-                Read Full Paper on PubMed ↗
-              </a>
-            )}
+                <span>Read Full Paper 📄</span>
+              </button>
+              {activeSummary.source_url && (
+                <a
+                  href={activeSummary.source_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    background: "#1B2B3A",
+                    color: "#fff",
+                    padding: "9px 18px",
+                    borderRadius: "8px",
+                    fontSize: "12.5px",
+                    fontWeight: 600,
+                    textDecoration: "none"
+                  }}
+                >
+                  View on PubMed ↗
+                </a>
+              )}
+            </div>
           </div>
         </div>
       ) : (
@@ -474,6 +497,14 @@ export default function ResearchSummaryWidget({ userId = null }) {
         </div>
       )}
 
+      {/* Split-Pane Literature Viewer Modal */}
+      {viewingPaper && (
+        <LiteratureViewer
+          summaryData={viewingPaper}
+          onClose={() => setViewingPaper(null)}
+          userId={userId}
+        />
+      )}
     </div>
   );
 }
