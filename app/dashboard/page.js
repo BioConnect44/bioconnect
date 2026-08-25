@@ -130,28 +130,44 @@ function StudentDashboard({ profile }) {
           color: #B91C1C !important;
           background: #FEF2F2 !important;
         }
+
+        .dashboard-three-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 24px;
+          margin-bottom: 32px;
+        }
+
+        .dashboard-two-grid {
+          display: grid;
+          grid-template-columns: 1.6fr 1fr;
+          gap: 24px;
+          margin-bottom: 32px;
+        }
+
+        @media (max-width: 1023px) {
+          .dashboard-hero-illustration { display: none !important; }
+          .dashboard-three-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .dashboard-two-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+        }
+        @media (min-width: 640px) and (max-width: 1023px) {
+          .dashboard-three-grid { grid-template-columns: 1fr 1fr !important; }
+        }
       `}</style>
 
       {/* Hero banner */}
-      <div style={{ background: "#FDF6E3", borderRadius: "24px", padding: "40px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px", position: "relative" }}>
-        <div>
-          <h1 style={{ fontSize: "32px", fontWeight: 800, color: "#132D35", marginBottom: "8px" }}>Welcome Back, {profile?.full_name?.split(" ")[0] || "Name"}!</h1>
-          <p style={{ fontSize: "16px", color: "#6B8A9A", marginBottom: "24px" }}>Your academic journey continues here</p>
-          <a href="/profile" style={{ display: "inline-block", background: "#132D35", color: "#fff", padding: "12px 28px", borderRadius: "100px", fontSize: "15px", fontWeight: 500 }}>View Profile</a>
+      <div style={{ background: "#FDF6E3", borderRadius: "24px", padding: "32px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "relative", zIndex: 2 }}>
+          <h1 style={{ fontSize: "28px", fontWeight: 800, color: "#132D35", marginBottom: "8px" }}>Welcome Back, {profile?.full_name?.split(" ")[0] || "Name"}!</h1>
+          <p style={{ fontSize: "15px", color: "#6B8A9A", marginBottom: "20px" }}>Your academic journey continues here</p>
+          <a href="/profile" style={{ display: "inline-block", background: "#132D35", color: "#fff", padding: "10px 24px", borderRadius: "100px", fontSize: "14px", fontWeight: 500 }}>View Profile</a>
         </div>
-        <div style={{ position: "absolute", right: "-10px", top: "50%", transform: "translateY(-50%)", width: "350px", height: "350px", display: "flex", alignItems: "center", justifyContent: "flex-end", mixBlendMode: "multiply", pointerEvents: "none" }}>
+        <div className="dashboard-hero-illustration" style={{ position: "absolute", right: "-10px", top: "50%", transform: "translateY(-50%)", width: "350px", height: "350px", display: "flex", alignItems: "center", justifyContent: "flex-end", mixBlendMode: "multiply", pointerEvents: "none", zIndex: 1 }}>
            <img src="/banner-illustration.jpg" alt="Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
         </div>
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
-          gap: "24px",
-          marginBottom: "32px",
-        }}
-      >
+      <div className="dashboard-three-grid">
         {/* Learning Progress */}
         <div
           style={{

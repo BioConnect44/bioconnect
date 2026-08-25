@@ -137,7 +137,20 @@ export default function EventsPage() {
         </div>
       )}
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "24px" }}>
+      <style>{`
+        .eventss-layout-grid {
+          display: grid;
+          grid-template-columns: 1fr 280px;
+          gap: 24px;
+        }
+        @media (max-width: 1023px) {
+          .eventss-layout-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+        }
+      `}</style>
+      <div className="eventss-layout-grid">
         <div>
           {/* Tabs - Curved Rectangles */}
           <div style={{ display: "inline-flex", gap: "6px", marginBottom: "20px", background: "#F0F7F8", borderRadius: "14px", padding: "6px", border: "1px solid #E2EEF0" }}>

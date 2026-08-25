@@ -90,13 +90,14 @@ export default function AppShell({ children, active }) {
   const pathname = usePathname();
   const [profile, setProfile] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [helpBotOpen, setHelpBotOpen] = useState(false);
 
   useEffect(() => {
     async function loadProfile() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) { router.push("/login"); return; }
-      const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
+      const { data } = await supabase.from("profiles").select("*").eq("id", user.id).maybeSingle();
       setProfile(data);
     }
     loadProfile();
@@ -110,7 +111,7 @@ export default function AppShell({ children, active }) {
   const currentPath = active || pathname;
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "#0C2127", fontFamily: "'Poppins', sans-serif" }}>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", background: "#0C2127", fontFamily: "'Poppins', sans-serif" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
@@ -183,135 +184,296 @@ export default function AppShell({ children, active }) {
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
         }
 
-        @media (max-width: 900px) {
+        .mobile-top-header { display: none; }
+        .mobile-bottom-nav { display: none; }
+
+        @media (max-width: 1023px) {
           .sidebar-custom { display: none !important; }
-          .main-canvas-wrapper { padding: 12px; }
-          .main-canvas-content { padding: 20px; borderRadius: 16px; }
+          .mobile-top-header { display: flex !important; }
+          .mobile-bottom-nav { display: flex !important; }
+          .main-canvas-wrapper { padding: 12px 12px 76px 12px !important; }
+          .main-canvas-content { padding: 18px !important; border-radius: 16px !important; }
         }
       `}</style>
 
-      {/* LEFT SIDEBAR */}
-      <aside className="sidebar-custom" style={{
-        width: sidebarOpen ? 240 : 72,
-        flexShrink: 0,
+      {/* MOBILE TOP HEADER (< 1024px) */}
+      <header className="mobile-top-header" style={{
         background: "#0C2127",
-        display: "flex",
-        flexDirection: "column",
-        justify: "space-between",
-        transition: "width 0.25s ease",
-        overflow: "hidden",
+        borderBottom: "1px solid #163A43",
+        padding: "12px 16px",
+        alignItems: "center",
+        justifyContent: "space-between",
         position: "sticky",
         top: 0,
-        height: "100vh",
-        padding: sidebarOpen ? "28px 16px 24px 16px" : "28px 8px 24px 8px"
+        zIndex: 40
       }}>
-        {/* Top Header / Logo */}
-        <div>
-          <div style={{
-            padding: "0 12px 32px 12px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between"
-          }}>
-            {sidebarOpen && (
-              <span style={{ fontSize: "22px", fontWeight: 800, color: "#00C2B2", letterSpacing: "-0.4px" }}>
-                BioConnect
-              </span>
-            )}
-            <button 
-              onClick={() => setSidebarOpen(!sidebarOpen)} 
-              title="Toggle sidebar"
-              style={{
-                background: "transparent",
-                border: "none",
-                cursor: "pointer",
-                padding: 4,
-                color: "#7E99A2",
-                fontSize: 16,
-                lineHeight: 1
-              }}
-            >
-              {sidebarOpen ? "←" : "→"}
-            </button>
-          </div>
-
-          {/* Navigation Links */}
-          <nav style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-            {NAV_ITEMS.map(item => {
-              const isEventRoute = item.href === "/events" && (currentPath === "/events" || currentPath === "/eventss");
-              const isActive = isEventRoute || currentPath === item.href || (item.href !== "/dashboard" && currentPath.startsWith(item.href) && item.href !== "/events");
-
-              return (
-                <a 
-                  key={item.href} 
-                  href={item.href} 
-                  className={`sidebar-nav-item${isActive ? " active" : ""}`}
-                  style={{ 
-                    justifyContent: sidebarOpen ? "flex-start" : "center",
-                    padding: sidebarOpen ? "12px 18px" : "12px"
-                  }}
-                >
-                  <span style={{ display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    {item.icon}
-                  </span>
-                  {sidebarOpen && <span>{item.label}</span>}
-                </a>
-              );
-            })}
-          </nav>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <button
+            onClick={() => setMobileDrawerOpen(!mobileDrawerOpen)}
+            style={{ background: "none", border: "none", color: "#00C2B2", fontSize: "22px", cursor: "pointer", padding: "4px" }}
+            aria-label="Toggle Navigation Menu"
+          >
+            ☰
+          </button>
+          <span style={{ fontSize: "20px", fontWeight: 800, color: "#00C2B2", letterSpacing: "-0.4px" }}>
+            BioConnect
+          </span>
         </div>
 
-        {/* Bottom / AI Chatbot & Logout */}
-        <div style={{ marginTop: "auto", paddingTop: "12px", display: "flex", flexDirection: "column", gap: "6px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <button
             onClick={() => setHelpBotOpen(true)}
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "8px",
-              padding: sidebarOpen ? "6px 12px" : "6px 8px",
+              gap: "6px",
+              padding: "6px 12px",
               borderRadius: "8px",
               fontSize: "12px",
               fontWeight: 600,
-              cursor: "pointer",
-              border: "1px solid rgba(0, 194, 178, 0.3)",
-              background: "rgba(0, 194, 178, 0.1)",
+              border: "1px solid rgba(0, 194, 178, 0.4)",
+              background: "rgba(0, 194, 178, 0.15)",
               color: "#00C2B2",
-              width: sidebarOpen ? "fit-content" : "100%",
-              justifyContent: sidebarOpen ? "flex-start" : "center",
-              transition: "all 0.2s ease"
+              cursor: "pointer"
             }}
           >
-            <span style={{ fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>💬</span>
-            {sidebarOpen && <span>AI Chatbot</span>}
-          </button>
-
-          <button 
-            className="logout-btn-custom" 
-            onClick={handleLogout}
-            style={{ 
-              justifyContent: sidebarOpen ? "flex-start" : "center",
-              padding: sidebarOpen ? "12px 18px" : "12px"
-            }}
-          >
-            <span style={{ display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF5B5B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                <polyline points="16 17 21 12 16 7"/>
-                <line x1="21" y1="12" x2="9" y2="12"/>
-              </svg>
-            </span>
-            {sidebarOpen && <span>Logout</span>}
+            💬 AI Chatbot
           </button>
         </div>
-      </aside>
+      </header>
 
-      {/* RIGHT MAIN CONTENT AREA */}
-      <div className="main-canvas-wrapper">
-        <main className="main-canvas-content">
-          {children}
-        </main>
+      {/* MOBILE DRAWER OVERLAY (< 1024px) */}
+      {mobileDrawerOpen && (
+        <div 
+          onClick={() => setMobileDrawerOpen(false)}
+          style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)", zIndex: 99, backdropFilter: "blur(4px)" }}
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "280px",
+              height: "100%",
+              background: "#0C2127",
+              padding: "24px 16px",
+              display: "flex",
+              flexDirection: "column",
+              boxShadow: "4px 0 24px rgba(0,0,0,0.3)"
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px", padding: "0 8px" }}>
+              <span style={{ fontSize: "20px", fontWeight: 800, color: "#00C2B2" }}>BioConnect Menu</span>
+              <button 
+                onClick={() => setMobileDrawerOpen(false)} 
+                style={{ background: "none", border: "none", color: "#7E99A2", fontSize: "20px", cursor: "pointer" }}
+              >
+                ✕
+              </button>
+            </div>
+
+            <nav style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+              {NAV_ITEMS.map(item => {
+                const isEventRoute = item.href === "/events" && (currentPath === "/events" || currentPath === "/eventss");
+                const isActive = isEventRoute || currentPath === item.href || (item.href !== "/dashboard" && currentPath.startsWith(item.href) && item.href !== "/events");
+
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileDrawerOpen(false)}
+                    className={`sidebar-nav-item${isActive ? " active" : ""}`}
+                    style={{ padding: "12px 16px" }}
+                  >
+                    <span>{item.icon}</span>
+                    <span>{item.label}</span>
+                  </a>
+                );
+              })}
+            </nav>
+
+            <div style={{ marginTop: "auto", paddingTop: "16px", borderTop: "1px solid #163A43" }}>
+              <button 
+                className="logout-btn-custom" 
+                onClick={() => { setMobileDrawerOpen(false); handleLogout(); }}
+                style={{ padding: "12px 16px" }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF5B5B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                  <polyline points="16 17 21 12 16 7"/>
+                  <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                <span>Logout</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MAIN CONTAINER */}
+      <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
+        {/* LEFT SIDEBAR (DESKTOP >= 1024px) */}
+        <aside className="sidebar-custom" style={{
+          width: sidebarOpen ? 240 : 72,
+          flexShrink: 0,
+          background: "#0C2127",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          transition: "width 0.25s ease",
+          overflow: "hidden",
+          position: "sticky",
+          top: 0,
+          height: "100vh",
+          padding: sidebarOpen ? "28px 16px 24px 16px" : "28px 8px 24px 8px"
+        }}>
+          {/* Top Header / Logo */}
+          <div>
+            <div style={{
+              padding: "0 12px 32px 12px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between"
+            }}>
+              {sidebarOpen && (
+                <span style={{ fontSize: "22px", fontWeight: 800, color: "#00C2B2", letterSpacing: "-0.4px" }}>
+                  BioConnect
+                </span>
+              )}
+              <button 
+                onClick={() => setSidebarOpen(!sidebarOpen)} 
+                title="Toggle sidebar"
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: 4,
+                  color: "#7E99A2",
+                  fontSize: 16,
+                  lineHeight: 1
+                }}
+              >
+                {sidebarOpen ? "←" : "→"}
+              </button>
+            </div>
+
+            {/* Navigation Links */}
+            <nav style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+              {NAV_ITEMS.map(item => {
+                const isEventRoute = item.href === "/events" && (currentPath === "/events" || currentPath === "/eventss");
+                const isActive = isEventRoute || currentPath === item.href || (item.href !== "/dashboard" && currentPath.startsWith(item.href) && item.href !== "/events");
+
+                return (
+                  <a 
+                    key={item.href} 
+                    href={item.href} 
+                    className={`sidebar-nav-item${isActive ? " active" : ""}`}
+                    style={{ 
+                      justifyContent: sidebarOpen ? "flex-start" : "center",
+                      padding: sidebarOpen ? "12px 18px" : "12px"
+                    }}
+                  >
+                    <span style={{ display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      {item.icon}
+                    </span>
+                    {sidebarOpen && <span>{item.label}</span>}
+                  </a>
+                );
+              })}
+            </nav>
+          </div>
+
+          {/* Bottom / AI Chatbot & Logout */}
+          <div style={{ marginTop: "auto", paddingTop: "12px", display: "flex", flexDirection: "column", gap: "6px" }}>
+            <button
+              onClick={() => setHelpBotOpen(true)}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: sidebarOpen ? "6px 12px" : "6px 8px",
+                borderRadius: "8px",
+                fontSize: "12px",
+                fontWeight: 600,
+                cursor: "pointer",
+                border: "1px solid rgba(0, 194, 178, 0.3)",
+                background: "rgba(0, 194, 178, 0.1)",
+                color: "#00C2B2",
+                width: sidebarOpen ? "fit-content" : "100%",
+                justifyContent: sidebarOpen ? "flex-start" : "center",
+                transition: "all 0.2s ease"
+              }}
+            >
+              <span style={{ fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>💬</span>
+              {sidebarOpen && <span>AI Chatbot</span>}
+            </button>
+
+            <button 
+              className="logout-btn-custom" 
+              onClick={handleLogout}
+              style={{ 
+                justifyContent: sidebarOpen ? "flex-start" : "center",
+                padding: sidebarOpen ? "12px 18px" : "12px"
+              }}
+            >
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF5B5B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                  <polyline points="16 17 21 12 16 7"/>
+                  <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+              </span>
+              {sidebarOpen && <span>Logout</span>}
+            </button>
+          </div>
+        </aside>
+
+        {/* RIGHT MAIN CONTENT AREA */}
+        <div className="main-canvas-wrapper">
+          <main className="main-canvas-content">
+            {children}
+          </main>
+        </div>
       </div>
+
+      {/* MOBILE BOTTOM NAVIGATION BAR (< 1024px) */}
+      <nav className="mobile-bottom-nav" style={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        background: "#0C2127",
+        borderTop: "1px solid #163A43",
+        justifyContent: "space-around",
+        alignItems: "center",
+        padding: "8px 4px",
+        zIndex: 50
+      }}>
+        {NAV_ITEMS.slice(0, 5).concat(NAV_ITEMS.slice(6, 7)).map(item => {
+          const isEventRoute = item.href === "/events" && (currentPath === "/events" || currentPath === "/eventss");
+          const isActive = isEventRoute || currentPath === item.href || (item.href !== "/dashboard" && currentPath.startsWith(item.href) && item.href !== "/events");
+
+          return (
+            <a
+              key={item.href}
+              href={item.href}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "3px",
+                textDecoration: "none",
+                fontSize: "10px",
+                fontWeight: isActive ? 700 : 500,
+                color: isActive ? "#00C2B2" : "#7E99A2"
+              }}
+            >
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {item.icon}
+              </span>
+              <span>{item.label}</span>
+            </a>
+          );
+        })}
+      </nav>
 
       {/* Help Center AI Chatbot Drawer/Modal */}
       <HelpCenterChatbot isOpen={helpBotOpen} onClose={() => setHelpBotOpen(false)} />

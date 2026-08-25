@@ -97,9 +97,23 @@ export default function ProfilePage() {
         .edit-field { transition: border-color 0.2s; }
         .edit-field:focus { border-color: ${rc} !important; outline: none; box-shadow: 0 0 0 3px ${rc}15; }
         .save-btn { transition: all 0.2s; }
-        .save-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(20,184,166,0.3); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in { animation: fadeIn 0.3s ease; }
+        .profile-stats-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 14px;
+          margin: 20px 0;
+        }
+        @media (max-width: 1023px) {
+          .profile-stats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .profile-stats-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
       `}</style>
 
       {/* Cover + avatar row */}
@@ -340,14 +354,7 @@ export default function ProfilePage() {
       </div>
 
       {/* Stats row */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "14px",
-          margin: "20px 0",
-        }}
-      >
+      <div className="profile-stats-grid">
         {stats.map((s) => (
           <div
             key={s.label}

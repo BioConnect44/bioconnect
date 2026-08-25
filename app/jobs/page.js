@@ -287,7 +287,20 @@ export default function JobsPage() {
 
   return (
     <AppShell active="/jobs">
-      <style>{`.job-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.06)}.radio-opt input{accent-color:#14B8A6}`}</style>
+      <style>{`
+        .job-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.06)}.radio-opt input{accent-color:#14B8A6}
+        .jobs-layout-grid {
+          display: grid;
+          grid-template-columns: 220px 1fr;
+          gap: 24px;
+        }
+        @media (max-width: 1023px) {
+          .jobs-layout-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+        }
+      `}</style>
       <div
         style={{
           display: "flex",
@@ -602,13 +615,7 @@ export default function JobsPage() {
         )}
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "220px 1fr",
-          gap: "24px",
-        }}
-      >
+      <div className="jobs-layout-grid">
         {/* Filters */}
         <div
           style={{

@@ -466,7 +466,21 @@ export default function EventsPage() {
         </div>
       )}
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "24px" }}>
+      <style>{`
+        .events-layout-grid {
+          display: grid;
+          grid-template-columns: 1fr 280px;
+          gap: 24px;
+        }
+        @media (max-width: 1023px) {
+          .events-layout-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+        }
+      `}</style>
+
+      <div className="events-layout-grid">
         <div>
           {/* Controls Bar */}
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "12px", marginBottom: "20px" }}>

@@ -68,6 +68,20 @@ export default function BioMinutePage() {
         </div>
       ) : (
         <>
+          <style>{`
+            .biominute-layout-grid {
+              display: grid;
+              grid-template-columns: 1fr 320px;
+              gap: 24px;
+            }
+            @media (max-width: 1023px) {
+              .biominute-layout-grid {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+              }
+            }
+          `}</style>
+
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "24px" }}>
             <div>
               <h1 style={{ fontSize: "24px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>
@@ -82,7 +96,7 @@ export default function BioMinutePage() {
             </div>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: "24px" }}>
+          <div className="biominute-layout-grid">
             {/* Main Article Container */}
             <div style={{ background: "#fff", borderRadius: "20px", padding: "28px", border: "1px solid #E2EEF0" }}>
               {/* Hero image */}
