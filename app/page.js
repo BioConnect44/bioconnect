@@ -99,6 +99,7 @@ function MockCard() {
 
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [hovFeat, setHovFeat] = useState(null);
   const [hovRole, setHovRole] = useState(null);
   const [email, setEmail] = useState("");
@@ -121,6 +122,40 @@ export default function LandingPage() {
         .dna-float { animation: float 4s ease-in-out infinite; }
         .badge-dot { animation: pulse 2.5s ease-in-out infinite; }
         .status-dot { animation: pulse 2.5s ease-in-out infinite; }
+
+        .landing-nav-links { display: flex; gap: 36px; list-style: none; }
+        .landing-nav-actions { display: flex; gap: 12px; align-items: center; }
+        .landing-mobile-menu-btn { display: none; }
+        .landing-hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+        .landing-stats-grid { display: flex; background: rgba(203,232,236,0.45); border: 1px solid #c4dde2; border-radius: 16px; padding: 22px 0; }
+        .landing-three-card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .landing-step-row { display: grid; grid-template-columns: 1fr 60px 1fr; align-items: center; min-height: 100px; }
+        .landing-step-connector { display: grid; grid-template-columns: 1fr 60px 1fr; height: 70px; }
+        .landing-footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 48px; }
+        .landing-footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0; }
+
+        @media (max-width: 1023px) {
+          .landing-nav-links { display: none !important; }
+          .landing-nav-actions { display: none !important; }
+          .landing-mobile-menu-btn { display: flex !important; }
+          .landing-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; text-align: center; }
+          .landing-hero-grid h1 { font-size: 2.2rem !important; }
+          .landing-hero-grid p { max-width: 100% !important; margin-left: auto; margin-right: auto; }
+          .landing-hero-actions { justify-content: center !important; }
+          .landing-hero-actions a { width: 100% !important; text-align: center !important; }
+          .landing-stats-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 16px !important; padding: 20px !important; }
+          .landing-stats-grid > div { border-right: none !important; }
+          .landing-three-card-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .landing-step-row { grid-template-columns: 44px 1fr !important; gap: 16px !important; text-align: left !important; }
+          .landing-step-row > div:first-child { text-align: left !important; padding: 0 !important; }
+          .landing-step-connector { grid-template-columns: 44px 1fr !important; height: 40px !important; }
+          .landing-step-connector > div:nth-child(2) { margin: 0 auto !important; }
+          .landing-footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .landing-footer-bottom { flex-direction: column !important; gap: 16px !important; text-align: center !important; }
+        }
+        @media (min-width: 640px) and (max-width: 1023px) {
+          .landing-three-card-grid { grid-template-columns: 1fr 1fr !important; }
+        }
       `}</style>
 
       {/* NAV */}
@@ -134,7 +169,8 @@ export default function LandingPage() {
       }}>
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 24px", height: 68, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontSize: "1.4rem", fontWeight: 800, color: "#2AB4B4", letterSpacing: "-0.3px", cursor: "pointer" }}>BioConnect</span>
-          <ul style={{ display: "flex", gap: 36, listStyle: "none" }}>
+          
+          <ul className="landing-nav-links">
             {[
               { name: "Features", target: "features" },
               { name: "For You", target: "roles" },
@@ -156,7 +192,8 @@ export default function LandingPage() {
               </li>
             ))}
           </ul>
-          <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+
+          <div className="landing-nav-actions">
             <a href="/login" style={{ background: "none", border: "none", cursor: "pointer", fontSize: "0.95rem", color: "#444", fontWeight: 500, padding: "8px 4px", textDecoration: "none", transition: "color 0.2s" }}
               onMouseEnter={e => { e.currentTarget.style.color = "#2AB4B4"; }}
               onMouseLeave={e => { e.currentTarget.style.color = "#444"; }}>
@@ -168,12 +205,63 @@ export default function LandingPage() {
               Sign Up
             </a>
           </div>
+
+          <button
+            className="landing-mobile-menu-btn"
+            onClick={() => setMobileNavOpen(!mobileNavOpen)}
+            style={{ background: "none", border: "none", fontSize: "24px", color: "#2AB4B4", cursor: "pointer", padding: "4px" }}
+          >
+            {mobileNavOpen ? "✕" : "☰"}
+          </button>
         </div>
+
+        {/* Mobile Drawer */}
+        {mobileNavOpen && (
+          <div style={{ background: "#fff", borderTop: "1px solid #e8eef2", padding: "16px 24px", display: "flex", flexDirection: "column", gap: "14px" }}>
+            <a
+              href="#features"
+              onClick={(e) => {
+                e.preventDefault();
+                setMobileNavOpen(false);
+                document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              style={{ textDecoration: "none", color: "#1a2b3c", fontWeight: 600, fontSize: "1rem" }}
+            >
+              Features
+            </a>
+            <a
+              href="#roles"
+              onClick={(e) => {
+                e.preventDefault();
+                setMobileNavOpen(false);
+                document.getElementById("roles")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              style={{ textDecoration: "none", color: "#1a2b3c", fontWeight: 600, fontSize: "1rem" }}
+            >
+              For You
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                setMobileNavOpen(false);
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              style={{ textDecoration: "none", color: "#1a2b3c", fontWeight: 600, fontSize: "1rem" }}
+            >
+              Contact
+            </a>
+            <div style={{ display: "flex", gap: "10px", marginTop: "8px" }}>
+              <a href="/login" style={{ flex: 1, textAlign: "center", padding: "10px", border: "1.5px solid #2AB4B4", color: "#2AB4B4", borderRadius: "8px", fontWeight: 700, textDecoration: "none" }}>Log in</a>
+              <a href="/signup" style={{ flex: 1, textAlign: "center", padding: "10px", background: "#2AB4B4", color: "#fff", borderRadius: "8px", fontWeight: 700, textDecoration: "none" }}>Sign Up</a>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* HERO */}
       <section style={{ background: "#eef6f8", paddingTop: 90 }}>
-        <div style={{ maxWidth: 1400, margin: "0 auto", padding: "60px 24px 0", display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 48, alignItems: "center" }}>
+        <div className="landing-hero-grid" style={{ maxWidth: 1400, margin: "0 auto", padding: "60px 24px 0" }}>
           <div>
             <FadeUp delay={0}>
               <div className="live-badge">
@@ -192,7 +280,7 @@ export default function LandingPage() {
               </p>
             </FadeUp>
             <FadeUp delay={0.3}>
-              <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+              <div className="landing-hero-actions" style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
                 <a href="/signup" style={{ background: "#2AB4B4", color: "#fff", border: "none", borderRadius: 8, padding: "14px 28px", fontSize: "1rem", fontWeight: 700, cursor: "pointer", transition: "all 0.25s", textDecoration: "none", display: "inline-block" }}
                   onMouseEnter={e => { e.currentTarget.style.background = "#1f9e9e"; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(42,180,180,0.35)"; }}
                   onMouseLeave={e => { e.currentTarget.style.background = "#2AB4B4"; e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
@@ -216,7 +304,7 @@ export default function LandingPage() {
         {/* STATS */}
         <FadeUp delay={0.4}>
           <div style={{ maxWidth: 1400, margin: "0 auto", padding: "28px 24px 48px" }}>
-            <div style={{ background: "rgba(203,232,236,0.45)", border: "1px solid #c4dde2", borderRadius: 16, padding: "22px 0", display: "flex" }}>
+            <div className="landing-stats-grid">
               {STATS.map(([num, label], i) => (
                 <div key={i} style={{ flex: 1, textAlign: "center", padding: "0 12px", borderRight: i < STATS.length - 1 ? "1px solid #b8d5da" : "none" }}>
                   <div style={{ fontSize: "1.25rem", fontWeight: 800, color: "#1a2b3c" }}>{num}</div>
@@ -238,7 +326,7 @@ export default function LandingPage() {
               <div style={{ color: "#6b8a9a", fontSize: "1rem" }}>Comprehensive tools designed specifically for India&apos;s biotech community</div>
             </div>
           </FadeUp>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}>
+          <div className="landing-three-card-grid">
             {FEATURES.map((f, i) => (
               <FadeUp key={i} delay={i * 0.07}>
                 <div
@@ -267,7 +355,7 @@ export default function LandingPage() {
               <div style={{ color: "#6b8a9a", fontSize: "1rem" }}>Connect, learn, and scale your impact.</div>
             </div>
           </FadeUp>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}>
+          <div className="landing-three-card-grid">
             {ROLES.map((r, i) => (
               <FadeUp key={i} delay={i * 0.1}>
                 <div
@@ -305,7 +393,7 @@ export default function LandingPage() {
           {STEPS.map((step, i) => (
             <FadeUp key={i} delay={i * 0.15}>
               <div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 1fr", alignItems: "center", minHeight: 100 }}>
+                <div className="landing-step-row">
                   {step.side === "left" ? (
                     <>
                       <div style={{ padding: "0 24px", textAlign: "right" }}>
@@ -331,7 +419,7 @@ export default function LandingPage() {
                   )}
                 </div>
                 {i < STEPS.length - 1 && (
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 1fr", height: 70 }}>
+                  <div className="landing-step-connector">
                     <div /><div style={{ borderLeft: "2px dashed #b0cdd8", margin: "0 auto" }} /><div />
                   </div>
                 )}
@@ -365,7 +453,7 @@ export default function LandingPage() {
       {/* FOOTER */}
       <footer id="contact" style={{ background: "linear-gradient(160deg,#0f2e38 0%,#1A4A55 50%,#0f2e38 100%)", padding: "64px 24px 0" }}>
         <div style={{ maxWidth: 1400, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1fr", gap: 40, paddingBottom: 48 }}>
+          <div className="landing-footer-grid">
             <div>
               <span style={{ fontSize: "1.4rem", fontWeight: 800, color: "#2AB4B4", display: "block", marginBottom: 20 }}>BioConnect</span>
               <div style={{ fontSize: "2.2rem", fontWeight: 800, color: "#fff", lineHeight: 1.2, marginBottom: 32 }}>Accelerating the future<br />of biotech.</div>
@@ -408,7 +496,7 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", padding: "20px 0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div className="landing-footer-bottom">
             <div style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.5)" }}>© 2026 BioConnect. All rights reserved.</div>
             <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.82rem", color: "rgba(255,255,255,0.5)" }}>
               <div className="status-dot" style={{ width: 7, height: 7, borderRadius: "50%", background: "#22c55e", display: "inline-block" }} />
