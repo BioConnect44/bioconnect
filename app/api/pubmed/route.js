@@ -246,16 +246,16 @@ function generateAISummary(query, articles) {
 - **Database Indexing**: Fully indexed on NCBI PubMed Central repository under PMID ${primary.pmid}
 
 ### 2. Executive Takeaway
-- **Core Scientific Discovery**: Primary peer-reviewed study directly addressing **"${query}"** published in **${primary.journal}** (Title: *${cleanTitle}*).
+- **Core Scientific Discovery**: Primary peer-reviewed study directly addressing "${query}" published in ${primary.journal} (Title: ${cleanTitle}).
 - **Primary Value Proposition**: ${introPart}
 - **Target Mechanism & Specificity**: Establishes site-specific locus targeting while minimizing off-target cellular toxicity.
 - **Key Bio-Engineering Gain**: Achieves significant performance improvements over traditional wild-type baseline parameters.
-- **Translational Relevance**: Provides a validated framework for molecular characterization and therapeutic development regarding **"${query}"**.
+- **Translational Relevance**: Provides a validated framework for molecular characterization and therapeutic development regarding "${query}".
 
 ### 3. Background & Objective (The "Why")
-- **The Research Gap**: Addresses unsolved scientific questions and functional mechanisms surrounding **"${query}"**.
+- **The Research Gap**: Addresses unsolved scientific questions and functional mechanisms surrounding "${query}".
 - **Scientific Rationale**: Solves critical vector degradation, locus accessibility, and cellular bioavailability bottlenecks.
-- **Author Hypothesis & Goal**: Authors (*${primary.authors}*) evaluated targeted cellular response, locus accessibility, and catalytic pathways in *${primary.journal}*.
+- **Author Hypothesis & Goal**: Authors (${primary.authors}) evaluated targeted cellular response, locus accessibility, and catalytic pathways in ${primary.journal}.
 - **Target Locus Focus**: Investigates catalytic specificity and locus accessibility in host cellular models.
 - **Study Objectives**: Validates pre-clinical outcomes across independent experimental cohorts reported in PMID ${primary.pmid}.
 

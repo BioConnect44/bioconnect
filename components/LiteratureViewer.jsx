@@ -380,20 +380,56 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
   function renderTextWithClickableUrls(rawText) {
     if (!rawText) return null;
     const decoded = decodeHtmlEntities(rawText);
-    const urlRegex = /(https?:\/\/[^\s\)]+)/g;
-    const parts = decoded.split(urlRegex);
 
-    return parts.map((part, i) => {
-      if (part.match(urlRegex)) {
+    // Split by bold tags **text**
+    const boldParts = decoded.split(/(\*\*[^*]+\*\*)/g);
+
+    return boldParts.map((bPart, bIdx) => {
+      if (bPart.startsWith("**") && bPart.endsWith("**")) {
+        const inner = bPart.slice(2, -2);
+        return (
+          <strong key={`b-${bIdx}`} style={{ fontWeight: 700, color: "#102A30" }}>
+            {renderItalicsAndUrlsViewer(inner)}
+          </strong>
+        );
+      }
+      return <span key={`n-${bIdx}`}>{renderItalicsAndUrlsViewer(bPart)}</span>;
+    });
+  }
+
+  function renderItalicsAndUrlsViewer(text) {
+    // Split by italic tags *text*
+    const italicParts = text.split(/(\*[^*]+\*)/g);
+
+    return italicParts.map((iPart, iIdx) => {
+      if (iPart.startsWith("*") && iPart.endsWith("*") && !iPart.startsWith("**")) {
+        const inner = iPart.slice(1, -1);
+        return (
+          <em key={`i-${iIdx}`} style={{ fontStyle: "italic", color: "#3AA8C1" }}>
+            {renderUrlsOnlyViewer(inner)}
+          </em>
+        );
+      }
+      return <span key={`u-${iIdx}`}>{renderUrlsOnlyViewer(iPart)}</span>;
+    });
+  }
+
+  function renderUrlsOnlyViewer(str) {
+    const urlRegex = /(https?:\/\/[^\s\)\>]+)/g;
+    const parts = str.split(urlRegex);
+
+    return parts.map((part, pIdx) => {
+      if (part.match(/^https?:\/\//)) {
+        const cleanUrl = part.replace(/[\)\>\,]+$/, "");
         return (
           <a
-            key={i}
-            href={part}
+            key={`url-${pIdx}`}
+            href={cleanUrl}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: "#3AA8C1", textDecoration: "underline", fontWeight: 600 }}
+            style={{ color: "#3AA8C1", textDecoration: "underline", fontWeight: 600, wordBreak: "break-all" }}
           >
-            {part} ↗
+            {cleanUrl} ↗
           </a>
         );
       }

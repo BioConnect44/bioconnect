@@ -79,15 +79,50 @@ export default function ResearchSummaryWidget({ userId = null }) {
 
   function renderTextWithClickableLinks(textStr) {
     if (!textStr || typeof textStr !== "string") return textStr;
-    const urlRegex = /(https?:\/\/[^\s\)\>]+)/g;
-    const parts = textStr.split(urlRegex);
 
-    return parts.map((part, i) => {
+    // Split by bold tags **text**
+    const boldParts = textStr.split(/(\*\*[^*]+\*\*)/g);
+
+    return boldParts.map((bPart, bIdx) => {
+      if (bPart.startsWith("**") && bPart.endsWith("**")) {
+        const inner = bPart.slice(2, -2);
+        return (
+          <strong key={`b-${bIdx}`} style={{ fontWeight: 700, color: "#1B2B3A" }}>
+            {renderItalicsAndUrls(inner)}
+          </strong>
+        );
+      }
+      return <span key={`n-${bIdx}`}>{renderItalicsAndUrls(bPart)}</span>;
+    });
+  }
+
+  function renderItalicsAndUrls(text) {
+    // Split by italic tags *text*
+    const italicParts = text.split(/(\*[^*]+\*)/g);
+
+    return italicParts.map((iPart, iIdx) => {
+      if (iPart.startsWith("*") && iPart.endsWith("*") && !iPart.startsWith("**")) {
+        const inner = iPart.slice(1, -1);
+        return (
+          <em key={`i-${iIdx}`} style={{ fontStyle: "italic", color: "#0D9488" }}>
+            {renderUrlsOnly(inner)}
+          </em>
+        );
+      }
+      return <span key={`u-${iIdx}`}>{renderUrlsOnly(iPart)}</span>;
+    });
+  }
+
+  function renderUrlsOnly(str) {
+    const urlRegex = /(https?:\/\/[^\s\)\>]+)/g;
+    const parts = str.split(urlRegex);
+
+    return parts.map((part, pIdx) => {
       if (part.match(/^https?:\/\//)) {
         const cleanUrl = part.replace(/[\)\>\,]+$/, "");
         return (
           <a
-            key={i}
+            key={`url-${pIdx}`}
             href={cleanUrl}
             target="_blank"
             rel="noopener noreferrer"
