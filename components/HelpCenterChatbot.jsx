@@ -6,11 +6,12 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
   const [messages, setMessages] = useState([
     {
       sender: "ai",
-      text: "👋 Hello! I am your **BioConnect AI Help Center Assistant**. Ask me anything about using PubMed AI summaries, reading papers, watching BioMinutes, applying for jobs, or managing your profile!"
+      text: "👋 Hello! I am your **BioConnect AI Help Center Assistant**. Ask me anything about searching PubMed AI summaries, reading literature, watching BioMinutes, applying for biotech jobs, or managing your profile!"
     }
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const messagesEndRef = useRef(null);
 
   const SUGGESTIONS = [
@@ -25,7 +26,7 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
     if (isOpen) {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages, isOpen]);
+  }, [messages, isOpen, loading]);
 
   if (!isOpen) return null;
 
@@ -67,13 +68,13 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
     const lines = rawText.split("\n").filter((l) => l.trim().length > 0);
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
         {lines.map((line, idx) => {
           const trimmed = line.trim();
 
           if (trimmed.startsWith("### ")) {
             return (
-              <h4 key={idx} style={{ fontSize: "14px", fontWeight: 700, color: "#00C2B2", margin: "6px 0 2px" }}>
+              <h4 key={idx} style={{ fontSize: "14.5px", fontWeight: 700, color: "#00C2B2", margin: "8px 0 4px", borderBottom: "1px solid #F0F7F8", paddingBottom: "4px" }}>
                 {trimmed.replace("### ", "")}
               </h4>
             );
@@ -102,15 +103,15 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
 
           if (isBullet) {
             return (
-              <div key={idx} style={{ display: "flex", gap: "6px", fontSize: "13px", color: "#334155", lineHeight: "1.5" }}>
-                <span style={{ color: "#00C2B2", fontWeight: 700 }}>•</span>
+              <div key={idx} style={{ display: "flex", gap: "8px", fontSize: "13px", color: "#334155", lineHeight: "1.6" }}>
+                <span style={{ color: "#00C2B2", fontWeight: 700, fontSize: "14px" }}>•</span>
                 <span>{parsed}</span>
               </div>
             );
           }
 
           return (
-            <p key={idx} style={{ fontSize: "13px", color: "#334155", lineHeight: "1.5", margin: 0 }}>
+            <p key={idx} style={{ fontSize: "13px", color: "#334155", lineHeight: "1.6", margin: 0 }}>
               {parsed}
             </p>
           );
@@ -126,56 +127,123 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
         inset: 0,
         zIndex: 99999,
         background: "rgba(12, 33, 39, 0.75)",
-        backdropFilter: "blur(6px)",
+        backdropFilter: "blur(8px)",
         display: "flex",
         justifyContent: "flex-end",
-        alignItems: "stretch"
+        alignItems: "stretch",
+        animation: "fadeIn 0.25s ease-out"
       }}
     >
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideLeft {
+          from { transform: translateX(100%); }
+          to { transform: translateX(0); }
+        }
+        @keyframes pulseDot {
+          0%, 100% { opacity: 0.3; transform: scale(0.8); }
+          50% { opacity: 1; transform: scale(1.1); }
+        }
+        .chip-btn {
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .chip-btn:hover {
+          background: #00C2B2 !important;
+          color: #FFFFFF !important;
+          border-color: #00C2B2 !important;
+          transform: translateY(-1.5px);
+          box-shadow: 0 4px 12px rgba(0,194,178,0.25);
+        }
+      `}</style>
+
       <div
         style={{
           width: "100%",
-          maxWidth: "440px",
+          maxWidth: "450px",
           background: "#FFFFFF",
           display: "flex",
           flexDirection: "column",
-          boxShadow: "-8px 0 32px rgba(0,0,0,0.2)",
-          fontFamily: "'Poppins', sans-serif"
+          boxShadow: "-12px 0 40px rgba(0,0,0,0.25)",
+          fontFamily: "'Poppins', sans-serif",
+          animation: "slideLeft 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
         }}
       >
-        {/* Top Drawer Header */}
+        {/* Top Header Bar */}
         <div
           style={{
             background: "#0C2127",
             color: "#FFFFFF",
-            padding: "18px 24px",
+            padding: "20px 24px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            borderBottom: "1px solid rgba(255,255,255,0.1)"
+            borderBottom: "1px solid rgba(255,255,255,0.08)"
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <span style={{ fontSize: "22px" }}>🤖</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <div
+              style={{
+                width: "42px",
+                height: "42px",
+                borderRadius: "12px",
+                background: "rgba(0,194,178,0.15)",
+                border: "1px solid rgba(0,194,178,0.3)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "22px",
+                boxShadow: "0 4px 14px rgba(0,194,178,0.15)"
+              }}
+            >
+              🤖
+            </div>
             <div>
-              <h3 style={{ fontSize: "16px", fontWeight: 700, margin: 0, color: "#00C2B2" }}>
-                BioConnect Help Center AI
-              </h3>
-              <span style={{ fontSize: "11px", color: "#7E99A2" }}>24/7 Platform Support & Guidance</span>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <h3 style={{ fontSize: "16px", fontWeight: 700, margin: 0, color: "#00C2B2", letterSpacing: "-0.2px" }}>
+                  BioConnect Help Center AI
+                </h3>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "2px" }}>
+                <span
+                  style={{
+                    width: "7px",
+                    height: "7px",
+                    borderRadius: "50%",
+                    background: "#22C55E",
+                    display: "inline-block",
+                    boxShadow: "0 0 8px #22C55E"
+                  }}
+                />
+                <span style={{ fontSize: "11.5px", color: "#7E99A2", fontWeight: 500 }}>Online • 24/7 Platform Support</span>
+              </div>
             </div>
           </div>
 
           <button
             onClick={onClose}
             style={{
-              background: "rgba(255,255,255,0.1)",
-              color: "#FFFFFF",
-              border: "none",
-              borderRadius: "8px",
-              padding: "6px 12px",
+              background: "rgba(255,255,255,0.08)",
+              color: "#E2E8F0",
+              border: "1px solid rgba(255,255,255,0.12)",
+              borderRadius: "10px",
+              padding: "7px 14px",
               cursor: "pointer",
-              fontSize: "13px",
-              fontWeight: 600
+              fontSize: "12.5px",
+              fontWeight: 600,
+              transition: "all 0.2s"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(255,91,91,0.2)";
+              e.currentTarget.style.color = "#FF5B5B";
+              e.currentTarget.style.borderColor = "rgba(255,91,91,0.4)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+              e.currentTarget.style.color = "#E2E8F0";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
             }}
           >
             ✕ Close
@@ -187,11 +255,11 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
           style={{
             flex: 1,
             overflowY: "auto",
-            padding: "20px",
+            padding: "24px 20px",
             background: "#F8FAFC",
             display: "flex",
             flexDirection: "column",
-            gap: "14px"
+            gap: "18px"
           }}
         >
           {messages.map((msg, idx) => (
@@ -199,40 +267,90 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
               key={idx}
               style={{
                 display: "flex",
-                justifyContent: msg.sender === "user" ? "flex-end" : "flex-start"
+                gap: "10px",
+                flexDirection: msg.sender === "user" ? "row-reverse" : "row",
+                alignItems: "flex-start"
               }}
             >
+              {/* Avatar Icon */}
               <div
                 style={{
-                  maxWidth: "88%",
-                  background: msg.sender === "user" ? "#00C2B2" : "#FFFFFF",
-                  color: msg.sender === "user" ? "#FFFFFF" : "#102A30",
-                  borderRadius: msg.sender === "user" ? "14px 14px 2px 14px" : "14px 14px 14px 2px",
-                  padding: "12px 16px",
-                  fontSize: "13px",
-                  lineHeight: "1.6",
-                  border: msg.sender === "user" ? "none" : "1px solid #E2EEF0",
-                  boxShadow: msg.sender === "user" ? "0 4px 12px rgba(0,194,178,0.2)" : "0 2px 8px rgba(0,0,0,0.03)"
+                  width: "32px",
+                  height: "32px",
+                  borderRadius: "50%",
+                  background: msg.sender === "user" ? "#00C2B2" : "#0C2127",
+                  color: "#FFFFFF",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "15px",
+                  flexShrink: 0,
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
                 }}
               >
-                {msg.sender === "user" ? <span>{msg.text}</span> : renderFormattedText(msg.text)}
+                {msg.sender === "user" ? "👤" : "🤖"}
+              </div>
+
+              {/* Message Bubble */}
+              <div
+                style={{
+                  maxWidth: "82%",
+                  background: msg.sender === "user" ? "#00C2B2" : "#FFFFFF",
+                  color: msg.sender === "user" ? "#FFFFFF" : "#102A30",
+                  borderRadius: msg.sender === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
+                  padding: "14px 18px",
+                  fontSize: "13px",
+                  lineHeight: "1.65",
+                  border: msg.sender === "user" ? "none" : "1px solid #E2EEF0",
+                  boxShadow: msg.sender === "user" ? "0 6px 18px rgba(0,194,178,0.22)" : "0 3px 12px rgba(0,0,0,0.04)"
+                }}
+              >
+                {msg.sender === "user" ? (
+                  <span style={{ fontWeight: 500 }}>{msg.text}</span>
+                ) : (
+                  renderFormattedText(msg.text)
+                )}
               </div>
             </div>
           ))}
 
+          {/* Animated Typing Indicator */}
           {loading && (
-            <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+              <div
+                style={{
+                  width: "32px",
+                  height: "32px",
+                  borderRadius: "50%",
+                  background: "#0C2127",
+                  color: "#FFFFFF",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "15px",
+                  flexShrink: 0
+                }}
+              >
+                🤖
+              </div>
               <div
                 style={{
                   background: "#FFFFFF",
-                  borderRadius: "14px 14px 14px 2px",
-                  padding: "10px 16px",
-                  fontSize: "12.5px",
-                  color: "#7E99A2",
-                  border: "1px solid #E2EEF0"
+                  borderRadius: "18px 18px 18px 4px",
+                  padding: "12px 18px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  border: "1px solid #E2EEF0",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.04)"
                 }}
               >
-                ⚡ BioConnect Help AI is searching knowledge base...
+                <span style={{ fontSize: "12px", color: "#7E99A2", fontWeight: 600, marginRight: "4px" }}>
+                  Searching knowledge base
+                </span>
+                <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#00C2B2", animation: "pulseDot 1s infinite 0.1s" }} />
+                <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#00C2B2", animation: "pulseDot 1s infinite 0.3s" }} />
+                <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#00C2B2", animation: "pulseDot 1s infinite 0.5s" }} />
               </div>
             </div>
           )}
@@ -243,11 +361,11 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
         {/* Quick Suggestion Chips */}
         <div
           style={{
-            padding: "10px 16px",
+            padding: "12px 18px",
             background: "#FFFFFF",
             borderTop: "1px solid #E2EEF0",
             display: "flex",
-            gap: "6px",
+            gap: "8px",
             overflowX: "auto",
             scrollbarWidth: "none"
           }}
@@ -255,17 +373,19 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
           {SUGGESTIONS.map((chip, cIdx) => (
             <button
               key={cIdx}
+              className="chip-btn"
               onClick={() => handleSend(chip)}
               style={{
                 background: "#F0F7F8",
                 color: "#163A43",
                 border: "1px solid #CCFBF1",
                 borderRadius: "20px",
-                padding: "5px 12px",
-                fontSize: "11.5px",
+                padding: "6px 14px",
+                fontSize: "12px",
                 fontWeight: 600,
                 cursor: "pointer",
-                whiteSpace: "nowrap"
+                whiteSpace: "nowrap",
+                fontFamily: "inherit"
               }}
             >
               {chip}
@@ -273,10 +393,10 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
           ))}
         </div>
 
-        {/* Input Footer */}
+        {/* Input Footer Area */}
         <div
           style={{
-            padding: "16px",
+            padding: "18px 20px",
             background: "#FFFFFF",
             borderTop: "1px solid #E2EEF0"
           }}
@@ -286,21 +406,27 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
               e.preventDefault();
               handleSend();
             }}
-            style={{ display: "flex", gap: "8px" }}
+            style={{ display: "flex", gap: "10px", alignItems: "center" }}
           >
             <input
               type="text"
               value={input}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask Help Center AI a question..."
               style={{
                 flex: 1,
-                border: "1.5px solid #E2EEF0",
-                borderRadius: "10px",
-                padding: "10px 14px",
-                fontSize: "13px",
+                border: isFocused ? "1.5px solid #00C2B2" : "1.5px solid #E2EEF0",
+                borderRadius: "12px",
+                padding: "12px 16px",
+                fontSize: "13.5px",
                 outline: "none",
-                fontFamily: "inherit"
+                fontFamily: "inherit",
+                color: "#102A30",
+                background: isFocused ? "#FFFFFF" : "#F8FAFC",
+                boxShadow: isFocused ? "0 0 0 3px rgba(0,194,178,0.15)" : "none",
+                transition: "all 0.2s ease"
               }}
             />
             <button
@@ -310,15 +436,21 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
                 background: "#00C2B2",
                 color: "#FFFFFF",
                 border: "none",
-                borderRadius: "10px",
-                padding: "10px 16px",
-                fontSize: "13px",
+                borderRadius: "12px",
+                padding: "12px 20px",
+                fontSize: "13.5px",
                 fontWeight: 700,
                 cursor: loading || !input.trim() ? "not-allowed" : "pointer",
-                opacity: loading || !input.trim() ? 0.6 : 1
+                opacity: loading || !input.trim() ? 0.5 : 1,
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+                boxShadow: loading || !input.trim() ? "none" : "0 4px 14px rgba(0,194,178,0.3)",
+                transition: "all 0.2s ease"
               }}
             >
-              Send ↗
+              <span>Send</span>
+              <span style={{ fontSize: "14px" }}>↗</span>
             </button>
           </form>
         </div>
