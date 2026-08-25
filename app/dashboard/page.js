@@ -968,7 +968,7 @@ export default function DashboardPage() {
           .from("profiles")
           .select("*")
           .eq("id", authData.user.id)
-          .single();
+          .maybeSingle();
         if (prof) setProfile(prof);
       } catch (err) {
         console.warn("Dashboard load warning:", err);
