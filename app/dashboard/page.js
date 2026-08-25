@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import AppShell from "@/components/AppShell";
+import DailyBioChallenge from "@/components/DailyBioChallenge";
 
 /* ── Student Dashboard ── */
 function StudentDashboard({ profile }) {
@@ -176,75 +177,7 @@ function StudentDashboard({ profile }) {
       </div>
 
       {/* Daily Bio-Challenge */}
-      <div style={{ background: "#fff", borderRadius: "16px", padding: "32px", boxShadow: "0 4px 20px rgba(0,0,0,0.03)", display: "flex", flexDirection: "column", gap: "24px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <span style={{ fontSize: "24px" }}>🎯</span>
-            <span
-              style={{ fontSize: "18px", fontWeight: 800, color: "#132D35" }}
-            >
-              Daily Bio-Challenge
-            </span>
-            <span
-              style={{
-                fontSize: "12px",
-                background: "#FFF3E8",
-                color: "#F97316",
-                padding: "4px 12px",
-                borderRadius: "100px",
-                fontWeight: 700,
-              }}
-            >
-              Expires in 4h
-            </span>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <span
-              style={{ fontSize: "15px", color: "#132D35", fontWeight: 800 }}
-            >
-              Current Streak 🔥 4 Days
-            </span>
-          </div>
-        </div>
-
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
-           <div>
-             <p style={{ fontSize: "14px", color: "#6B8A9A", marginBottom: "16px" }}>What type of DNA overhang is produced by the EcoRI restriction enzyme?</p>
-             <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-               {["5' Sticky", "3' Sticky", "Blunt End"].map((opt) => {
-                 const isSelected = selectedOpt === opt;
-                 const isCorrect = opt === "5' Sticky";
-                 let btnClass = "challenge-opt-btn";
-                 if (isSelected) {
-                   btnClass += isCorrect ? " correct" : " wrong";
-                 }
-                 return (
-                   <button
-                     key={opt}
-                     onClick={() => setSelectedOpt(opt)}
-                     className={btnClass}
-                   >
-                     {opt} {isSelected && (isCorrect ? " ✓" : " ✕")}
-                   </button>
-                 );
-               })}
-               {selectedOpt && (
-                 <span style={{ fontSize: "13px", fontWeight: 700, color: selectedOpt === "5' Sticky" ? "#16A34A" : "#DC2626", marginLeft: "6px" }}>
-                   {selectedOpt === "5' Sticky" ? "🎉 Correct! +50 XP" : "❌ Try again!"}
-                 </span>
-               )}
-             </div>
-           </div>
-           
-           <div style={{ display: "flex", gap: "8px" }}>
-             {[1, 2, 3, 4, 5, 6, 7].map((d, i) => (
-               <div key={i} style={{ width: 32, height: 32, borderRadius: "50%", background: i < 4 ? "#14B8A6" : "#F3F4F6", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: 700, color: i < 4 ? "#fff" : "#9CA3AF" }}>
-                 {i < 4 ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> : d}
-               </div>
-             ))}
-           </div>
-        </div>
-      </div>
+      <DailyBioChallenge />
     </div>
   );
 }
