@@ -197,7 +197,7 @@ function StudentDashboard({ profile }) {
                   stroke="#14B8A6"
                   strokeWidth="12"
                   strokeLinecap="round"
-                  strokeDasharray={`${2 * Math.PI * 48 * 0.68} ${2 * Math.PI * 48 * 0.32}`}
+                  strokeDasharray={`${2 * Math.PI * 48 * 0.73} ${2 * Math.PI * 48 * 0.27}`}
                   strokeDashoffset={2 * Math.PI * 48 * 0.25}
                   transform="rotate(-90 60 60)"
                 />
@@ -214,16 +214,20 @@ function StudentDashboard({ profile }) {
                   color: "#132D35",
                 }}
               >
-                68%
+                73%
               </div>
             </div>
           </div>
           {[
-            { label: "Biochemistry", pct: 80 },
-            { label: "Genetics", pct: 55 },
+            { label: "Biomolecules & Bioenergetics", pct: 85 },
+            { label: "Genetics & Molecular Biology", pct: 75 },
+            { label: "Animal Cell Culture", pct: 60 },
           ].map((s, i) => (
-            <div key={s.label} style={{ marginBottom: i === 0 ? "16px" : "0" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", fontWeight: 700, color: "#132D35", marginBottom: "8px" }}><span>{s.label}</span></div>
+            <div key={s.label} style={{ marginBottom: i < 2 ? "14px" : "0" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12.5px", fontWeight: 700, color: "#132D35", marginBottom: "6px" }}>
+                <span>{s.label}</span>
+                <span style={{ color: "#14B8A6" }}>{s.pct}%</span>
+              </div>
               <div style={{ height: 6, background: "#E2EEF0", borderRadius: "6px" }}><div style={{ height: 6, width: `${s.pct}%`, background: "#14B8A6", borderRadius: "6px" }}></div></div>
             </div>
           ))}
