@@ -28,6 +28,16 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
     }
   }, [messages, isOpen, loading]);
 
+  useEffect(() => {
+    if (isOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prevOverflow || "";
+      };
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   async function handleSend(queryText) {
@@ -266,6 +276,7 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
           style={{
             flex: 1,
             overflowY: "auto",
+            overscrollBehavior: "contain",
             padding: "24px 20px",
             background: "#F8FAFC",
             display: "flex",
@@ -384,6 +395,7 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
             display: "flex",
             gap: "8px",
             overflowX: "auto",
+            overscrollBehavior: "contain",
             scrollBehavior: "smooth",
             WebkitOverflowScrolling: "touch"
           }}
