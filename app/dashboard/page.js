@@ -590,25 +590,30 @@ function EducatorDashboard({ profile }) {
 }
 
 /* ── Researcher Dashboard ── */
-function ResearcherDashboard({ profile, supabase }) {
+function ResearcherDashboard({ profile }) {
   const [papers, setPapers] = useState([]);
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
     async function load() {
-      const { data: p } = await supabase
-        .from("research_papers")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(3);
-      setPapers(p || []);
-      const { data: e } = await supabase
-        .from("events")
-        .select("*")
-        .gte("event_date", new Date().toISOString())
-        .order("event_date")
-        .limit(3);
-      setEvents(e || []);
+      try {
+        const supabase = createClient();
+        const { data: p } = await supabase
+          .from("research_papers")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(3);
+        setPapers(p || []);
+        const { data: e } = await supabase
+          .from("events")
+          .select("*")
+          .gte("event_date", new Date().toISOString())
+          .order("event_date")
+          .limit(3);
+        setEvents(e || []);
+      } catch (err) {
+        console.warn("ResearcherDashboard load error:", err);
+      }
     }
     load();
   }, []);
@@ -985,7 +990,7 @@ export default function DashboardPage() {
       ) : profile?.role === "educator" ? (
         <EducatorDashboard profile={profile} />
       ) : profile?.role === "researcher" ? (
-        <ResearcherDashboard profile={profile} supabase={supabase} />
+        <ResearcherDashboard profile={profile} />
       ) : (
         <StudentDashboard profile={profile} />
       )}
