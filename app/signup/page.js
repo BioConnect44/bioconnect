@@ -131,7 +131,6 @@ export default function SignupPage() {
                 <option value="student">Student</option>
                 <option value="educator">Educator</option>
                 <option value="researcher">Researcher</option>
-                <option value="industry">Industry Professional</option>
               </select>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" strokeWidth="2" style={{ position: "absolute", right: "14px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}><polyline points="6 9 12 15 18 9"/></svg>
             </div>
