@@ -30,10 +30,59 @@ export default function LoginPage() {
 
   return (
     <main style={S.page}>
-      <style>{CSS}</style>
-      <div style={S.card}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        body{background:#EEF7F7;font-family:'Poppins',sans-serif}
+        
+        .auth-card {
+          display: flex;
+          background: #fff;
+          border-radius: 24px;
+          overflow: hidden;
+          width: 100%;
+          max-width: 900px;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+        .auth-img-panel {
+          width: 45%;
+          position: relative;
+          min-height: 520px;
+          flex-shrink: 0;
+        }
+        .auth-form-panel {
+          flex: 1;
+          padding: 48px 44px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          width: 100%;
+        }
+
+        @media (max-width: 1023px) {
+          .auth-card {
+            flex-direction: column !important;
+            max-width: 480px !important;
+            border-radius: 16px !important;
+            margin: 12px 0 !important;
+          }
+          .auth-img-panel {
+            display: none !important;
+          }
+          .auth-form-panel {
+            padding: 32px 24px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .auth-form-panel {
+            padding: 24px 18px !important;
+          }
+        }
+      `}</style>
+      <div className="auth-card">
         {/* Left — image */}
-        <div style={S.imgPanel}>
+        <div className="auth-img-panel">
           <div style={S.imgOverlay}></div>
           <img
             src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80"
@@ -42,7 +91,7 @@ export default function LoginPage() {
           />
         </div>
         {/* Right — form */}
-        <div style={S.formPanel}>
+        <div className="auth-form-panel">
           <Link href="/" style={S.brand}>BioConnect</Link>
           <h1 style={S.h1}>Welcome Back!</h1>
           <p style={S.sub}>Enter your details below</p>
