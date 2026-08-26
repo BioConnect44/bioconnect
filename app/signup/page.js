@@ -160,7 +160,7 @@ const S = {
   img: { width: "100%", height: "100%", objectFit: "cover", display: "block" },
   imgOverlay: { position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(13,45,53,0.3), rgba(13,45,53,0.7))", zIndex: 1 },
   formPanel: { flex: 1, padding: "44px 40px", display: "flex", flexDirection: "column", alignItems: "stretch", justifyContent: "center", width: "100%" },
-  brand: { color: "#0D9488", fontWeight: 700, fontSize: "16px", marginBottom: "20px", display: "block" },
+  brand: { color: "#0D9488", fontWeight: 800, fontSize: "20px", letterSpacing: "-0.3px", marginBottom: "20px", display: "block" },
   h1: { fontSize: "26px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" },
   sub: { fontSize: "13px", color: "#6B8A9A", marginBottom: "24px" },
   input: { width: "100%", padding: "12px 16px", border: "1.5px solid #E2EEF0", borderRadius: "10px", fontSize: "14px", fontFamily: "inherit", outline: "none", color: "#1B2B3A", background: "#fff" },

@@ -189,7 +189,7 @@ export default function VerifyOtpPage() {
                   )}
                 </p>
                 <div style={{ marginTop: "12px" }}>
-                  <Link href="/login" style={{ fontSize: "13px", color: "#6B8A9A", textDecoration: "none" }}>
+                  <Link href="/login" style={{ fontSize: "14px", color: "#0D9488", fontWeight: 600, textDecoration: "none" }}>
                     ← Back to Log In
                   </Link>
                 </div>
@@ -212,8 +212,9 @@ const S = {
   },
   brand: {
     color: "#0D9488",
-    fontWeight: 700,
-    fontSize: "16px",
+    fontWeight: 800,
+    fontSize: "20px",
+    letterSpacing: "-0.3px",
     marginBottom: "20px",
     display: "block",
     textDecoration: "none",

@@ -266,9 +266,10 @@ const S = {
   },
   brand: {
     color: "#0D9488",
-    fontWeight: 700,
-    fontSize: "16px",
-    marginBottom: "24px",
+    fontWeight: 800,
+    fontSize: "20px",
+    letterSpacing: "-0.3px",
+    marginBottom: "20px",
     display: "block",
   },
   h1: {

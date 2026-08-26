@@ -88,11 +88,12 @@ export default function ForgotPasswordPage() {
                 <Link
                   href="/login"
                   style={{
-                    fontSize: "13.5px",
-                    color: "#6B8A9A",
-                    fontWeight: 500,
+                    fontSize: "14px",
+                    color: "#0D9488",
+                    fontWeight: 600,
                     textDecoration: "none",
                     marginTop: "8px",
+                    display: "inline-block",
                   }}
                 >
                   ← Back to Log In
@@ -124,7 +125,7 @@ export default function ForgotPasswordPage() {
               </form>
 
               <div style={{ marginTop: "24px", textAlign: "center", width: "100%" }}>
-                <Link href="/login" style={{ fontSize: "13.5px", color: "#0D9488", fontWeight: 600, textDecoration: "none" }}>
+                <Link href="/login" style={{ fontSize: "14px", color: "#0D9488", fontWeight: 600, textDecoration: "none" }}>
                   ← Back to Log In
                 </Link>
               </div>
@@ -146,8 +147,9 @@ const S = {
   },
   brand: {
     color: "#0D9488",
-    fontWeight: 700,
-    fontSize: "16px",
+    fontWeight: 800,
+    fontSize: "20px",
+    letterSpacing: "-0.3px",
     marginBottom: "20px",
     display: "block",
     textDecoration: "none",
