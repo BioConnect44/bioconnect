@@ -35,7 +35,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
   // Supabase Data State
   const [annotations, setAnnotations] = useState([]);
   const [copilotMessages, setCopilotMessages] = useState([
-    { sender: "ai", text: `Hello! I am your AI Copilot for "${summaryData?.title || 'this paper'}". Ask me any question about the methodology, findings, or clinical impact.` }
+    { sender: "ai", text: `### 🤖 BioConnect AI Copilot (Gemini / Claude / ChatGPT Mode)\nHello! Ask me any specific question about **"${summaryData?.title || 'this paper'}"**—including methodology, quantitative findings, study limitations, or clinical implications.` }
   ]);
   const [copilotInput, setCopilotInput] = useState("");
   const [copilotLoading, setCopilotLoading] = useState(false);
@@ -1060,9 +1060,40 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
                 ))}
                 {copilotLoading && (
                   <div style={{ fontSize: "12px", color: "#3AA8C1", fontWeight: 600 }}>
-                    ⚡ AI Copilot is reading paper context...
+                    ⚡ AI Copilot is synthesizing answer (Gemini / Claude / ChatGPT mode)...
                   </div>
                 )}
+              </div>
+
+              {/* Quick Suggested Prompt Chips */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "8px" }}>
+                {[
+                  "Summarize key findings & results",
+                  "Explain experimental methodology",
+                  "What are the main limitations?",
+                  "What is the clinical & industrial impact?"
+                ].map((promptText) => (
+                  <button
+                    key={promptText}
+                    onClick={() => {
+                      setCopilotInput(promptText);
+                    }}
+                    style={{
+                      background: "#F0F7F8",
+                      color: "#0D9488",
+                      border: "1px solid #CCFBF1",
+                      borderRadius: "8px",
+                      padding: "4px 8px",
+                      fontSize: "11px",
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      fontFamily: "inherit",
+                      transition: "all 0.15s"
+                    }}
+                  >
+                    💡 {promptText}
+                  </button>
+                ))}
               </div>
 
               {/* Copilot Input Bar */}
