@@ -147,9 +147,9 @@ const S = {
   },
   brand: {
     color: "#0D9488",
-    fontWeight: 800,
-    fontSize: "20px",
-    letterSpacing: "-0.3px",
+    fontWeight: 900,
+    fontSize: "24px",
+    letterSpacing: "-0.5px",
     marginBottom: "20px",
     display: "block",
     textDecoration: "none",
