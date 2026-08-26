@@ -12,11 +12,12 @@ export default function ForgotPasswordPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!email) return;
+    const cleanEmail = email.trim();
+    if (!cleanEmail) return;
     setLoading(true);
     setError("");
 
-    const { error: err } = await supabase.auth.resetPasswordForEmail(email, {
+    const { error: err } = await supabase.auth.resetPasswordForEmail(cleanEmail, {
       redirectTo: `${typeof window !== "undefined" ? window.location.origin : ""}/reset-password`,
     });
 
@@ -32,6 +33,11 @@ export default function ForgotPasswordPage() {
 
   return (
     <main className="auth-page-main">
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        body,.auth-page-main{font-family:'Poppins',sans-serif !important}
+      `}</style>
       <div className="auth-card">
         {/* Left — image */}
         <div className="auth-img-panel">
