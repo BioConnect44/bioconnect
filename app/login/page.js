@@ -28,6 +28,17 @@ export default function LoginPage() {
     router.push("/dashboard");
   }
 
+  async function handleGoogleLogin() {
+    setError("");
+    const { error: err } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${typeof window !== "undefined" ? window.location.origin : ""}/auth/callback`,
+      },
+    });
+    if (err) setError(err.message);
+  }
+
   return (
     <main className="auth-page-main">
       <style>{`
@@ -153,17 +164,17 @@ export default function LoginPage() {
                 <input type="checkbox" style={{ accentColor: "#0D9488" }} />
                 Remember me
               </label>
-              <a
-                href="#"
-                style={{ fontSize: "13px", color: "#0D9488", fontWeight: 500 }}
+              <Link
+                href="/forgot-password"
+                style={{ fontSize: "13px", color: "#0D9488", fontWeight: 500, textDecoration: "none" }}
               >
                 Forgot password?
-              </a>
+              </Link>
             </div>
             <button type="submit" disabled={loading} style={S.btn}>
               {loading ? "Signing in..." : "Log in"}
             </button>
-            <button type="button" style={S.googleBtn}>
+            <button type="button" onClick={handleGoogleLogin} style={S.googleBtn}>
               <svg width="18" height="18" viewBox="0 0 24 24">
                 <path
                   fill="#4285F4"
