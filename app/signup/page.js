@@ -114,7 +114,7 @@ export default function SignupPage() {
               </select>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" strokeWidth="2" style={{ position: "absolute", right: "14px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}><polyline points="6 9 12 15 18 9"/></svg>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px", width: "100%" }}>
               <label style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#6B8A9A", cursor: "pointer" }}><input type="checkbox" style={{ accentColor: "#0D9488" }}/>Remember me</label>
               <a href="#" style={{ fontSize: "13px", color: "#0D9488", fontWeight: 500 }}>Forgot password?</a>
             </div>

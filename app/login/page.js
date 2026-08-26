@@ -135,6 +135,9 @@ export default function LoginPage() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
+                flexWrap: "wrap",
+                gap: "8px",
+                width: "100%",
               }}
             >
               <label

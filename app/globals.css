@@ -203,3 +203,60 @@ label:has(input[type="radio"]):hover {
   box-shadow: 0 6px 20px rgba(42, 180, 180, 0.22);
   transform: translateY(-1px);
 }
+
+/* ==========================================================================
+   AUTH PAGES (LOGIN & SIGNUP) MOBILE RESPONSIVENESS OVERHAUL
+   ========================================================================== */
+
+.auth-card {
+  display: flex;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 900px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.auth-img-panel {
+  width: 45%;
+  position: relative;
+  min-height: 520px;
+  flex-shrink: 0;
+}
+
+.auth-form-panel {
+  flex: 1;
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (max-width: 1023px) {
+  .auth-card {
+    flex-direction: column !important;
+    max-width: 480px !important;
+    border-radius: 18px !important;
+    margin: 12px auto !important;
+  }
+  .auth-img-panel {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+  }
+  .auth-form-panel {
+    padding: 32px 24px !important;
+    width: 100 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-form-panel {
+    padding: 24px 18px !important;
+  }
+}
+
