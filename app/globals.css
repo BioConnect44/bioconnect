@@ -230,17 +230,24 @@ label:has(input[type="radio"]):hover {
   padding: 48px 44px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch !important;
   justify-content: center;
-  width: 100%;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.auth-form-panel > * {
+  width: 100% !important;
 }
 
 @media (max-width: 1023px) {
   .auth-card {
     flex-direction: column !important;
-    max-width: 480px !important;
-    border-radius: 18px !important;
+    max-width: 440px !important;
+    width: 100% !important;
+    border-radius: 20px !important;
     margin: 12px auto !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06) !important;
   }
   .auth-img-panel {
     display: none !important;
@@ -250,13 +257,16 @@ label:has(input[type="radio"]):hover {
   }
   .auth-form-panel {
     padding: 32px 24px !important;
-    width: 100 !important;
+    width: 100% !important;
+    align-items: stretch !important;
   }
 }
 
 @media (max-width: 480px) {
+  .auth-card {
+    border-radius: 16px !important;
+  }
   .auth-form-panel {
-    padding: 24px 18px !important;
+    padding: 28px 20px !important;
   }
 }
-

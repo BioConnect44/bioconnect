@@ -230,8 +230,9 @@ const S = {
     padding: "48px 44px",
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-start",
+    alignItems: "stretch",
     justifyContent: "center",
+    width: "100%",
   },
   brand: {
     color: "#0D9488",
