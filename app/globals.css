@@ -211,10 +211,11 @@ label:has(input[type="radio"]):hover {
 .auth-page-main {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center !important;
+  justify-content: center !important;
   background: #EEF7F7;
-  padding: 24px;
+  padding: 24px 16px;
+  box-sizing: border-box;
 }
 
 .auth-card {
@@ -251,15 +252,17 @@ label:has(input[type="radio"]):hover {
 
 @media (max-width: 1023px) {
   .auth-page-main {
-    align-items: flex-start !important;
-    padding: 16px 16px 32px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px 16px !important;
+    min-height: 100vh !important;
   }
   .auth-card {
     flex-direction: column !important;
     max-width: 440px !important;
     width: 100% !important;
     border-radius: 20px !important;
-    margin: 0 auto !important;
+    margin: auto !important;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06) !important;
   }
   .auth-img-panel {
@@ -277,7 +280,7 @@ label:has(input[type="radio"]):hover {
 
 @media (max-width: 480px) {
   .auth-page-main {
-    padding: 12px 12px 24px !important;
+    padding: 16px 14px !important;
   }
   .auth-card {
     border-radius: 16px !important;
@@ -286,4 +289,5 @@ label:has(input[type="radio"]):hover {
     padding: 24px 16px !important;
   }
 }
+
 
