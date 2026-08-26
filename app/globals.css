@@ -126,17 +126,27 @@ textarea:focus {
 
 /* 5. Radio Buttons, Checkboxes & Option Selectors */
 .radio-opt,
-label:has(input[type="checkbox"]),
 label:has(input[type="radio"]) {
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
 .radio-opt:hover,
-label:has(input[type="checkbox"]):hover,
 label:has(input[type="radio"]):hover {
   color: #14B8A6 !important;
   transform: translateX(3px);
+}
+
+.auth-form-panel label,
+label:has(input[type="checkbox"]) {
+  cursor: pointer;
+  transition: none !important;
+}
+
+.auth-form-panel label:hover,
+label:has(input[type="checkbox"]):hover {
+  color: #6B8A9A !important;
+  transform: none !important;
 }
 
 /* 6. Filter Pills, Badges & Tabs */
