@@ -310,7 +310,7 @@ Regarding **"${question}"**, literature evidence indicates that this process is 
 - **Paper Title**: ${primary.title}
 - **Key Abstract Insight**: "${absSnippet}"
 
-#### 📊 Scientific Synthesis (Gemini / Claude / ChatGPT Style)
+#### 📊 Scientific Synthesis
 1. **Biological Mechanism**: Target specificity and binding affinity are driven by structural conformation and cofactor availability.
 2. **Experimental Validation**: Evaluated using quantitative assays (e.g. qPCR, Mass Spectrometry, Western Blot, NGS).
 3. **Translational Impact**: Critical for cell & gene therapy, synthetic biology, and clinical diagnostic pipelines.`;

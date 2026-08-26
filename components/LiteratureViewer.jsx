@@ -35,7 +35,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
   // Supabase Data State
   const [annotations, setAnnotations] = useState([]);
   const [copilotMessages, setCopilotMessages] = useState([
-    { sender: "ai", text: `### 🤖 BioConnect AI Copilot (Gemini / Claude / ChatGPT Mode)\nHello! Ask me any specific question about **"${summaryData?.title || 'this paper'}"**—including methodology, quantitative findings, study limitations, or clinical implications.` }
+    { sender: "ai", text: `### 🤖 BioConnect AI Copilot\nHello! Ask me any specific question about "${summaryData?.title || 'this paper'}"—including methodology, quantitative findings, study limitations, or clinical implications.` }
   ]);
   const [copilotInput, setCopilotInput] = useState("");
   const [copilotLoading, setCopilotLoading] = useState(false);
@@ -337,11 +337,11 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
     return `This primary peer-reviewed scientific paper published in ${summary?.journal || 'NCBI PubMed Repository'} investigates key biological mechanisms, cellular pathways, and experimental outcomes regarding ${summary?.query || 'the targeted research subject'}.`;
   }
 
-  // Helper to format Copilot responses cleanly without clustering
+  // Helper to format Copilot responses cleanly without clustering or raw ** tags
   function renderCopilotMessageText(rawText, sender) {
     if (!rawText) return null;
     if (sender === "user") {
-      return <span>{rawText}</span>;
+      return <span>{renderTextWithClickableUrls(rawText)}</span>;
     }
 
     const text = decodeHtmlEntities(rawText);
@@ -351,33 +351,36 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
         {lines.map((line, lIdx) => {
           const trimmed = line.trim();
-          if (trimmed.startsWith("### ")) {
+          if (trimmed.startsWith("### ") || trimmed.startsWith("#### ")) {
+            const hText = trimmed.replace(/^#{3,4}\s+/, "");
             return (
               <h5 key={lIdx} style={{ fontSize: "13px", fontWeight: 700, color: "#3AA8C1", margin: "6px 0 2px" }}>
-                {trimmed.replace("### ", "")}
+                {renderTextWithClickableUrls(hText)}
               </h5>
             );
           }
           if (trimmed.startsWith("- **")) {
             const parts = trimmed.replace("- **", "").split("**: ");
-            return (
-              <div key={lIdx} style={{ fontSize: "12.5px", lineHeight: "1.5" }}>
-                <strong style={{ color: "#0F766E", fontWeight: 700 }}>{parts[0]}: </strong>
-                <span style={{ color: "#334155" }}>{parts.slice(1).join("**: ")}</span>
-              </div>
-            );
+            if (parts.length > 1) {
+              return (
+                <div key={lIdx} style={{ fontSize: "12.5px", lineHeight: "1.5" }}>
+                  <strong style={{ color: "#0F766E", fontWeight: 700 }}>{renderTextWithClickableUrls(parts[0])}: </strong>
+                  <span style={{ color: "#334155" }}>{renderTextWithClickableUrls(parts.slice(1).join("**: "))}</span>
+                </div>
+              );
+            }
           }
           if (trimmed.startsWith("- ") || trimmed.startsWith("• ")) {
             return (
               <div key={lIdx} style={{ display: "flex", gap: "6px", fontSize: "12.5px", color: "#334155", lineHeight: "1.5" }}>
                 <span style={{ color: "#3AA8C1", fontWeight: 700 }}>•</span>
-                <span>{trimmed.replace(/^(- |• )/, "")}</span>
+                <span>{renderTextWithClickableUrls(trimmed.replace(/^(- |• )/, ""))}</span>
               </div>
             );
           }
           return (
             <p key={lIdx} style={{ fontSize: "12.5px", color: "#334155", lineHeight: "1.6", margin: 0 }}>
-              {trimmed}
+              {renderTextWithClickableUrls(trimmed)}
             </p>
           );
         })}
@@ -389,11 +392,11 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
     if (!rawText) return null;
     const decoded = decodeHtmlEntities(rawText);
 
-    // Split by bold tags **text**
-    const boldParts = decoded.split(/(\*\*[^*]+\*\*)/g);
+    // Split by bold tags **text** (handles quotes, spaces, special characters)
+    const boldParts = decoded.split(/(\*\*[\s\S]+?\*\*)/g);
 
     return boldParts.map((bPart, bIdx) => {
-      if (bPart.startsWith("**") && bPart.endsWith("**")) {
+      if (bPart.startsWith("**") && bPart.endsWith("**") && bPart.length >= 4) {
         const inner = bPart.slice(2, -2);
         return (
           <strong key={`b-${bIdx}`} style={{ fontWeight: 700, color: "#102A30" }}>
@@ -401,7 +404,9 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
           </strong>
         );
       }
-      return <span key={`n-${bIdx}`}>{renderItalicsAndUrlsViewer(bPart)}</span>;
+      // Strip any un-paired leftover ** asterisks so they never render as literal text
+      const cleanPart = bPart.replace(/\*\*/g, "");
+      return <span key={`n-${bIdx}`}>{renderItalicsAndUrlsViewer(cleanPart)}</span>;
     });
   }
 
@@ -1060,7 +1065,7 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
                 ))}
                 {copilotLoading && (
                   <div style={{ fontSize: "12px", color: "#3AA8C1", fontWeight: 600 }}>
-                    ⚡ AI Copilot is synthesizing answer (Gemini / Claude / ChatGPT mode)...
+                    ⚡ AI Copilot is synthesizing answer...
                   </div>
                 )}
               </div>
