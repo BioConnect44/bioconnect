@@ -21,7 +21,7 @@ export default function SignupPage() {
   }
 
   if (success) return (
-    <main style={S.page}><style>{CSS}</style>
+    <main className="auth-page-main"><style>{CSS}</style>
       <div style={{ ...S.card, justifyContent: "center", padding: "60px 44px", textAlign: "center" }}>
         <div style={{ width: 64, height: 64, background: "rgba(20,184,166,0.1)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px" }}>
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#14B8A6" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
@@ -34,7 +34,7 @@ export default function SignupPage() {
   );
 
   return (
-    <main style={S.page}>
+    <main className="auth-page-main">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
