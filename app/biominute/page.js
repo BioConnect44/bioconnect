@@ -24,8 +24,8 @@ export default function BioMinutePage() {
         const res = await fetch("/api/biominute", { cache: "no-store" });
         const json = await res.json();
         if (json && json.article) {
-          const sanitizeImg = (imgUrl) => (!imgUrl || typeof imgUrl !== "string" || imgUrl.includes("1507003211169") || imgUrl.includes("1576086213369"))
-            ? "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80"
+          const sanitizeImg = (imgUrl) => (!imgUrl || typeof imgUrl !== "string" || imgUrl.includes("1507003211169") || imgUrl.includes("1576086213369") || imgUrl.includes("1532187863486"))
+            ? "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80"
             : imgUrl;
 
           const cleanArt = {
@@ -91,10 +91,10 @@ export default function BioMinutePage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  const HERO_IMAGE_FALLBACK = "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80";
+  const HERO_IMAGE_FALLBACK = "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80";
 
   function getCleanImageUrl(url) {
-    if (!url || typeof url !== "string" || url.includes("1507003211169") || url.includes("1576086213369") || url.includes("576086213369")) {
+    if (!url || typeof url !== "string" || url.includes("1507003211169") || url.includes("1576086213369") || url.includes("576086213369") || url.includes("1532187863486")) {
       return HERO_IMAGE_FALLBACK;
     }
     return url;
