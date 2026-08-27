@@ -21,13 +21,13 @@ export default function BioMinutePage() {
       setProfile(prof);
 
       try {
-        const res = await fetch("/api/biominute");
+        const res = await fetch("/api/biominute", { cache: "no-store" });
         const json = await res.json();
         if (json && json.article) {
           setArticle(json.article);
         }
       } catch (err) {
-        console.error("Failed to load live Biotecnika article:", err);
+        console.error("Failed to load BioMinute article:", err);
       } finally {
         setLoading(false);
       }
