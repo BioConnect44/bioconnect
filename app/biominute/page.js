@@ -80,7 +80,11 @@ export default function BioMinutePage() {
 
   function handleSelectArticle(targetArt) {
     if (!targetArt) return;
-    setArticle(targetArt);
+    const cleanArt = {
+      ...targetArt,
+      image: getCleanImageUrl(targetArt.image)
+    };
+    setArticle(cleanArt);
     setSelected(null);
     setSubmitted(false);
     setCorrect(null);
@@ -90,7 +94,7 @@ export default function BioMinutePage() {
   const HERO_IMAGE_FALLBACK = "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80";
 
   function getCleanImageUrl(url) {
-    if (!url || typeof url !== "string" || url.includes("1507003211169") || url.includes("1576086213369")) {
+    if (!url || typeof url !== "string" || url.includes("1507003211169") || url.includes("1576086213369") || url.includes("576086213369")) {
       return HERO_IMAGE_FALLBACK;
     }
     return url;
