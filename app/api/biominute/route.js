@@ -54,7 +54,6 @@ function getHighResImage(title, description = "", content = "", dateObj = new Da
   }
 
   const DYNAMIC_DAILY_IMAGES = [
-    "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80",
     "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80",
     "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80",
     "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80",

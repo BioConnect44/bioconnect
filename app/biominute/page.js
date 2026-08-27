@@ -24,7 +24,23 @@ export default function BioMinutePage() {
         const res = await fetch("/api/biominute", { cache: "no-store" });
         const json = await res.json();
         if (json && json.article) {
-          setArticle(json.article);
+          const sanitizeImg = (imgUrl) => (!imgUrl || typeof imgUrl !== "string" || imgUrl.includes("1507003211169") || imgUrl.includes("1576086213369"))
+            ? "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80"
+            : imgUrl;
+
+          const cleanArt = {
+            ...json.article,
+            image: sanitizeImg(json.article.image),
+            missed: (json.article.missed || []).map((m) => ({
+              ...m,
+              img: sanitizeImg(m.img),
+              fullArticle: m.fullArticle ? {
+                ...m.fullArticle,
+                image: sanitizeImg(m.fullArticle.image)
+              } : m.fullArticle
+            }))
+          };
+          setArticle(cleanArt);
         }
       } catch (err) {
         console.error("Failed to load BioMinute article:", err);
