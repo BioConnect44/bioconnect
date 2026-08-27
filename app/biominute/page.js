@@ -71,6 +71,15 @@ export default function BioMinutePage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  const HERO_IMAGE_FALLBACK = "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80";
+
+  function getCleanImageUrl(url) {
+    if (!url || typeof url !== "string" || url.includes("1507003211169")) {
+      return HERO_IMAGE_FALLBACK;
+    }
+    return url;
+  }
+
   const art = article;
 
   return (
@@ -122,7 +131,7 @@ export default function BioMinutePage() {
             <div style={{ background: "#fff", borderRadius: "20px", padding: "28px", border: "1px solid #E2EEF0" }}>
               {/* Hero image */}
               <div style={{ position: "relative", borderRadius: "14px", overflow: "hidden", marginBottom: "20px" }}>
-                <img src={art.image} alt="" style={{ width: "100%", height: "280px", objectFit: "cover", display: "block" }} />
+                <img src={getCleanImageUrl(art.image)} alt="" style={{ width: "100%", height: "280px", objectFit: "cover", display: "block" }} />
                 <div style={{ position: "absolute", bottom: "14px", left: "14px", background: "rgba(0,0,0,0.75)", backdropFilter: "blur(8px)", borderRadius: "8px", padding: "6px 12px" }}>
                   <span style={{ fontSize: "13px", color: "#fff", fontWeight: 500 }}>{art.impact}</span>
                 </div>
@@ -378,7 +387,7 @@ export default function BioMinutePage() {
                         e.currentTarget.style.borderColor = "transparent";
                       }}
                     >
-                      <img src={m.img} alt="" style={{ width: 52, height: 44, borderRadius: "8px", objectFit: "cover", flexShrink: 0 }} />
+                      <img src={getCleanImageUrl(m.img)} alt="" style={{ width: 52, height: 44, borderRadius: "8px", objectFit: "cover", flexShrink: 0 }} />
                       <div>
                         <p style={{ fontSize: "11px", color: "#14B8A6", fontWeight: 700, marginBottom: "2px", letterSpacing: "0.03em" }}>{m.date}</p>
                         <p style={{ fontSize: "13px", fontWeight: 600, color: "#1B2B3A", lineHeight: "1.4", margin: 0 }}>{cleanText(m.title)}</p>
