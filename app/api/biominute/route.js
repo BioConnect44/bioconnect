@@ -6,6 +6,11 @@ export const dynamic = "force-dynamic";
 function decodeEntities(str) {
   if (!str) return "";
   return str
+    .replace(/&#124;/g, " | ")
+    .replace(/&#x7c;/gi, " | ")
+    .replace(/&vert;/g, " | ")
+    .replace(/&#039;/g, "'")
+    .replace(/&#39;/g, "'")
     .replace(/&#8217;/g, "'")
     .replace(/&#8216;/g, "'")
     .replace(/&#8220;/g, '"')
@@ -19,7 +24,6 @@ function decodeEntities(str) {
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&#x27;/g, "'")
-    .replace(/&#39;/g, "'")
     .replace(/&quot;/g, '"')
     .replace(/<[^>]*>/g, " ")
     .replace(/\s+/g, " ")
@@ -29,12 +33,6 @@ function decodeEntities(str) {
 function getHighResImage(title, description = "", content = "", dateObj = new Date()) {
   const combinedStr = (title || "") + " " + (description || "") + " " + (content || "");
   const lower = combinedStr.toLowerCase();
-
-  // Extract embedded image URL if available
-  const imgMatch = combinedStr.match(/src=["'](https?:\/\/[^"']+\.(?:jpg|jpeg|png|webp|gif))["']/i);
-  if (imgMatch && imgMatch[1] && !imgMatch[1].includes("gravatar") && !imgMatch[1].includes("logo") && !imgMatch[1].includes("icon")) {
-    return imgMatch[1];
-  }
 
   if (lower.includes("biofuel") || lower.includes("algae") || lower.includes("energy") || lower.includes("plant") || lower.includes("environment")) {
     return "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=900&q=80";
@@ -48,21 +46,24 @@ function getHighResImage(title, description = "", content = "", dateObj = new Da
   if (lower.includes("virus") || lower.includes("cell") || lower.includes("microbiom") || lower.includes("protein") || lower.includes("antibody")) {
     return "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80";
   }
-  if (lower.includes("drug") || lower.includes("pharma") || lower.includes("medicine") || lower.includes("cancer") || lower.includes("clinical")) {
-    return "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80";
+  if (lower.includes("microbiology") || lower.includes("bact") || lower.includes("culture") || lower.includes("petri")) {
+    return "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80";
+  }
+  if (lower.includes("job") || lower.includes("vacancy") || lower.includes("hiring") || lower.includes("recruitment") || lower.includes("trainee") || lower.includes("jrf")) {
+    return "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80";
   }
 
   const DYNAMIC_DAILY_IMAGES = [
-    "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80",
     "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80",
     "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80",
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80",
+    "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80",
     "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80",
-    "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=900&q=80",
-    "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80"
+    "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80",
+    "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=900&q=80"
   ];
 
-  const dayIndex = Math.floor(dateObj.getTime() / 86400000) % DYNAMIC_DAILY_IMAGES.length;
+  const charCodeSum = (title || "").split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const dayIndex = (charCodeSum + Math.floor(dateObj.getTime() / 86400000)) % DYNAMIC_DAILY_IMAGES.length;
   return DYNAMIC_DAILY_IMAGES[dayIndex];
 }
 

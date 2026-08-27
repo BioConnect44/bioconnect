@@ -35,6 +35,27 @@ export default function BioMinutePage() {
     loadData();
   }, []);
 
+  function cleanText(str) {
+    if (!str) return "";
+    return str
+      .replace(/&#124;/g, " | ")
+      .replace(/&#x7c;/gi, " | ")
+      .replace(/&vert;/g, " | ")
+      .replace(/&#039;/g, "'")
+      .replace(/&#39;/g, "'")
+      .replace(/&#8217;/g, "'")
+      .replace(/&#8216;/g, "'")
+      .replace(/&#8220;/g, '"')
+      .replace(/&#8221;/g, '"')
+      .replace(/&#8211;/g, "-")
+      .replace(/&#8212;/g, "—")
+      .replace(/&#8230;/g, "...")
+      .replace(/&amp;/g, "&")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"');
+  }
+
   function handleSubmit() {
     if (selected === null || !article) return;
     setSubmitted(true);
@@ -111,7 +132,7 @@ export default function BioMinutePage() {
                 {art.category || "BIOTECNIKA NEWS"} • {art.categoryDate}
               </p>
               <h2 style={{ fontSize: "24px", fontWeight: 800, color: "#1B2B3A", lineHeight: "1.35", marginBottom: "20px" }}>
-                {art.title}
+                {cleanText(art.title)}
               </h2>
 
               {/* 60-Second Summary Card */}
@@ -360,7 +381,7 @@ export default function BioMinutePage() {
                       <img src={m.img} alt="" style={{ width: 52, height: 44, borderRadius: "8px", objectFit: "cover", flexShrink: 0 }} />
                       <div>
                         <p style={{ fontSize: "11px", color: "#14B8A6", fontWeight: 700, marginBottom: "2px", letterSpacing: "0.03em" }}>{m.date}</p>
-                        <p style={{ fontSize: "13px", fontWeight: 600, color: "#1B2B3A", lineHeight: "1.4", margin: 0 }}>{m.title}</p>
+                        <p style={{ fontSize: "13px", fontWeight: 600, color: "#1B2B3A", lineHeight: "1.4", margin: 0 }}>{cleanText(m.title)}</p>
                       </div>
                     </div>
                   ))}
