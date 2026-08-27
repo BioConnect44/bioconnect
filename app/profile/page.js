@@ -762,7 +762,6 @@ export default function ProfilePage() {
             <div className="shortcuts-grid">
               {[
                 { icon: "🔬", title: "NCBI Literature Viewer", desc: "Search PubMed papers & query AI Copilot", link: "/research", badge: "Research Hub", color: "#14B8A6" },
-                { icon: "⚡", title: "BioMinute Shorts", desc: "Watch 60-second biotech video insights", link: "/biominute", badge: "Shorts", color: "#00C2B2" },
                 { icon: "📚", title: "Learning & Courses", desc: "Access Biotech curricula & PYQ quizzes", link: "/learning", badge: "Courses", color: "#8B5CF6" },
                 { icon: "📅", title: "Biotech Events & Webinars", desc: "Interactive mini-calendar & event registration", link: "/events", badge: "Events", color: "#F97316" },
                 { icon: "💼", title: "Job Opportunities", desc: "Explore research fellowships & lab technician roles", link: "/jobs", badge: "Careers", color: "#3B82F6" },
