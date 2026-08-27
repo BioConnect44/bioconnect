@@ -24,19 +24,15 @@ export default function BioMinutePage() {
         const res = await fetch("/api/biominute", { cache: "no-store" });
         const json = await res.json();
         if (json && json.article) {
-          const sanitizeImg = (imgUrl) => (!imgUrl || typeof imgUrl !== "string" || imgUrl.includes("1507003211169") || imgUrl.includes("1576086213369") || imgUrl.includes("1532187863486"))
-            ? "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80"
-            : imgUrl;
-
           const cleanArt = {
             ...json.article,
-            image: sanitizeImg(json.article.image),
+            image: getCleanImageUrl(json.article.image),
             missed: (json.article.missed || []).map((m) => ({
               ...m,
-              img: sanitizeImg(m.img),
+              img: getCleanImageUrl(m.img),
               fullArticle: m.fullArticle ? {
                 ...m.fullArticle,
-                image: sanitizeImg(m.fullArticle.image)
+                image: getCleanImageUrl(m.fullArticle.image)
               } : m.fullArticle
             }))
           };
@@ -91,11 +87,17 @@ export default function BioMinutePage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  const HERO_IMAGE_FALLBACK = "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80";
+  const TRUSTED_BIOTECH_IMAGES = [
+    "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80",
+    "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80",
+    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80",
+    "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80",
+    "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=900&q=80"
+  ];
 
   function getCleanImageUrl(url) {
-    if (!url || typeof url !== "string" || url.includes("1507003211169") || url.includes("1576086213369") || url.includes("576086213369") || url.includes("1532187863486")) {
-      return HERO_IMAGE_FALLBACK;
+    if (!url || typeof url !== "string" || !TRUSTED_BIOTECH_IMAGES.includes(url)) {
+      return TRUSTED_BIOTECH_IMAGES[0];
     }
     return url;
   }

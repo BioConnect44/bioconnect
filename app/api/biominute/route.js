@@ -30,27 +30,23 @@ function decodeEntities(str) {
     .trim();
 }
 
-function getHighResImage(title, description = "", content = "", dateObj = new Date()) {
-  const combinedStr = (title || "") + " " + (description || "") + " " + (content || "");
-  const lower = combinedStr.toLowerCase();
+function getHighResImage(title = "", description = "", content = "", dateObj = new Date()) {
+  const combinedStr = (title || "").toLowerCase();
 
-  if (lower.includes("biofuel") || lower.includes("algae") || lower.includes("energy") || lower.includes("plant") || lower.includes("environment")) {
+  if (combinedStr.includes("biofuel") || combinedStr.includes("algae") || combinedStr.includes("energy") || combinedStr.includes("plant") || combinedStr.includes("forest") || combinedStr.includes("environment")) {
     return "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=900&q=80";
   }
-  if (lower.includes("crispr") || lower.includes("gene") || lower.includes("dna") || lower.includes("genome") || lower.includes("editing")) {
+  if (combinedStr.includes("crispr") || combinedStr.includes("gene") || combinedStr.includes("dna") || combinedStr.includes("genome") || combinedStr.includes("editing")) {
     return "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80";
   }
-  if (lower.includes("ai") || lower.includes("model") || lower.includes("computational") || lower.includes("insilico") || lower.includes("algorithm")) {
+  if (combinedStr.includes("ai") || combinedStr.includes("model") || combinedStr.includes("computational") || combinedStr.includes("insilico") || combinedStr.includes("algorithm")) {
     return "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80";
   }
-  if (lower.includes("virus") || lower.includes("cell") || lower.includes("microbiom") || lower.includes("protein") || lower.includes("antibody")) {
+  if (combinedStr.includes("virus") || combinedStr.includes("cell") || combinedStr.includes("microbiom") || combinedStr.includes("protein") || combinedStr.includes("antibody")) {
     return "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80";
   }
-  if (lower.includes("microbiology") || lower.includes("bact") || lower.includes("culture") || lower.includes("petri")) {
+  if (combinedStr.includes("microbiology") || combinedStr.includes("bact") || combinedStr.includes("culture") || combinedStr.includes("petri")) {
     return "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80";
-  }
-  if (lower.includes("job") || lower.includes("vacancy") || lower.includes("hiring") || lower.includes("recruitment") || lower.includes("trainee") || lower.includes("jrf")) {
-    return "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80";
   }
 
   const DYNAMIC_DAILY_IMAGES = [
@@ -62,7 +58,7 @@ function getHighResImage(title, description = "", content = "", dateObj = new Da
   ];
 
   const charCodeSum = (title || "").split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const dayIndex = (charCodeSum + Math.floor(dateObj.getTime() / 86400000)) % DYNAMIC_DAILY_IMAGES.length;
+  const dayIndex = Math.abs(charCodeSum + Math.floor(dateObj.getTime() / 86400000)) % DYNAMIC_DAILY_IMAGES.length;
   return DYNAMIC_DAILY_IMAGES[dayIndex];
 }
 
