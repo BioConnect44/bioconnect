@@ -38,7 +38,7 @@ function getHighResImage(title, description = "", content = "", dateObj = new Da
     return "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=900&q=80";
   }
   if (lower.includes("crispr") || lower.includes("gene") || lower.includes("dna") || lower.includes("genome") || lower.includes("editing")) {
-    return "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80";
+    return "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80";
   }
   if (lower.includes("ai") || lower.includes("model") || lower.includes("computational") || lower.includes("insilico") || lower.includes("algorithm")) {
     return "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80";
@@ -159,7 +159,7 @@ function getDynamicDailyArticle(dateObj = new Date()) {
         { text: "Clinical Relevance: Offers a flexible therapeutic platform for rapidly responding to emerging viral epidemics." }
       ],
       body: "Unlike traditional CRISPR-Cas9 tools that target double-stranded DNA, Cas13 operates exclusively on single-stranded RNA. This study highlights how transient RNA therapeutics can neutralize viral transcripts safely, leaving host genomic DNA intact.",
-      image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80",
+      image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80",
       quiz: {
         question: "Why is CRISPR-Cas13 considered safer for transient antiviral therapy?",
         options: ["It degrades viral RNA without altering host genomic DNA", "It replaces cellular mitochondria", "It works only in plant tissues"],

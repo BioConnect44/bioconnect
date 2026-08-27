@@ -71,10 +71,10 @@ export default function BioMinutePage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  const HERO_IMAGE_FALLBACK = "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80";
+  const HERO_IMAGE_FALLBACK = "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80";
 
   function getCleanImageUrl(url) {
-    if (!url || typeof url !== "string" || url.includes("1507003211169")) {
+    if (!url || typeof url !== "string" || url.includes("1507003211169") || url.includes("1576086213369")) {
       return HERO_IMAGE_FALLBACK;
     }
     return url;
