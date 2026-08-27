@@ -34,7 +34,7 @@ function getHighResImage(title = "", description = "", content = "", dateObj = n
   const combinedStr = (title || "").toLowerCase();
 
   if (combinedStr.includes("biofuel") || combinedStr.includes("algae") || combinedStr.includes("energy") || combinedStr.includes("plant") || combinedStr.includes("forest") || combinedStr.includes("environment")) {
-    return "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=900&q=80";
+    return "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&q=80";
   }
   if (combinedStr.includes("crispr") || combinedStr.includes("gene") || combinedStr.includes("dna") || combinedStr.includes("genome") || combinedStr.includes("editing")) {
     return "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80";
@@ -54,7 +54,7 @@ function getHighResImage(title = "", description = "", content = "", dateObj = n
     "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80",
     "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80",
     "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80",
-    "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=900&q=80"
+    "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&q=80"
   ];
 
   const charCodeSum = (title || "").split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
@@ -172,7 +172,7 @@ function getDynamicDailyArticle(dateObj = new Date()) {
         { text: "Future Impact: Provides a scalable, drop-in replacement for conventional jet fuels, cutting aviation emissions by up to 70%." }
       ],
       body: "Aviation contributes significantly to global carbon emissions. Bio-engineers have developed a continuous-flow photobioreactor that maximizes photosynthetic light capture, converting atmospheric CO2 into bio-oil at industrial scale.",
-      image: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=900&q=80",
+      image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&q=80",
       quiz: {
         question: "What microorganism strain was optimized for sustainable bio-jet fuel production?",
         options: ["Microalgae (Chlorella pyrenoidosa)", "Baker's Yeast", "E. coli Bacteria"],

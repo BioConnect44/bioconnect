@@ -92,7 +92,7 @@ export default function BioMinutePage() {
     "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80",
     "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80",
     "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80",
-    "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=900&q=80"
+    "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&q=80"
   ];
 
   function getCleanImageUrl(url) {
