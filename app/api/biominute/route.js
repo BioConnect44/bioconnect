@@ -41,7 +41,7 @@ function getHighResImage(title, description = "", content = "", dateObj = new Da
     return "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80";
   }
   if (lower.includes("ai") || lower.includes("model") || lower.includes("computational") || lower.includes("insilico") || lower.includes("algorithm")) {
-    return "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80";
+    return "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80";
   }
   if (lower.includes("virus") || lower.includes("cell") || lower.includes("microbiom") || lower.includes("protein") || lower.includes("antibody")) {
     return "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80";
@@ -141,7 +141,7 @@ function getDynamicDailyArticle(dateObj = new Date()) {
         { text: "Future Impact: Paves the way for circular biomanufacturing and industrial-scale plastic waste recycling." }
       ],
       body: "Researchers have achieved a breakthrough by combining generative AI protein design with high-throughput laboratory screening. The newly engineered enzyme displays 10x higher catalytic efficiency against synthetic polymers, enabling rapid bio-recycling without requiring high energy inputs.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80",
+      image: "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80",
       quiz: {
         question: "What material does the AI-engineered enzyme target for rapid degradation?",
         options: ["Post-Consumer Synthetic Plastics (PET)", "Cellulosic Timber", "Silicate Glass"],
