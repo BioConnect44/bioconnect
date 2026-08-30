@@ -143,7 +143,7 @@ export default function AchievementsBadgesGrid({ userStats = null, userId = null
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                justify.content: "space-between",
+                justifyContent: "space-between",
                 textAlign: "center",
                 transition: "all 0.3s ease",
                 background: "#ffffff",
