@@ -26,6 +26,7 @@ export default function AchievementsBadgesGrid({ userStats = null, userId = null
         quizzesCompleted: userStats.quizzes_completed ?? userStats.quizzesCompleted ?? 10,
         notesAccessed: userStats.notes_accessed ?? userStats.notesAccessed ?? userStats.notesAccessedCount ?? 50,
         perfectQuizzes: userStats.perfect_quizzes ?? userStats.perfectQuizzes ?? 0,
+        eventsRegistered: userStats.events_registered ?? userStats.eventsRegistered ?? 0,
         groupStudiesJoined: userStats.group_studies_joined ?? userStats.groupStudiesJoined ?? 0,
         papersSaved: userStats.papers_saved ?? userStats.papersSaved ?? 0,
         coursesCompleted: userStats.courses_completed ?? userStats.coursesCompleted ?? 0,
