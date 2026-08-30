@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://bio-connect-phi.vercel.app'
+  const baseUrl = 'https://bio-connect-lake.vercel.app'
 
   return [
     {
@@ -18,7 +18,7 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/eventss`,
+      url: `${baseUrl}/events`,
       lastModified: new Date(),
       priority: 0.8,
     },
