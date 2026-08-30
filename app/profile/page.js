@@ -658,7 +658,7 @@ export default function ProfilePage() {
             </h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {[
-                { icon: "📖", color: "#14B8A6", title: "Completed Module 4: Recombinant DNA Technology", time: "2 hours ago", type: "learning", link: "/learning" },
+                { icon: "📖", color: "#14B8A6", title: "Completed", time: "2 hours ago", type: "learning", link: "/learning" },
                 { icon: "⚡", color: "#00C2B2", title: "Synthesized AI Copilot insights for PubMed paper on Enzyme Kinetics", time: "5 hours ago", type: "research", link: "/research" },
                 { icon: "🎯", color: "#F97316", title: "Scored 92% on Molecular Biology Quiz Challenge", time: "Yesterday", type: "quiz", link: "/learning" },
                 { icon: "📅", color: "#8B5CF6", title: "Registered for BioConnect Annual Biotech Symposium 2026", time: "2 days ago", type: "event", link: "/events" },
