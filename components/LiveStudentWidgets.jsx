@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/utils/supabase/client";
+import { recordUserAction } from "@/lib/gamificationEngine";
 
 // ─── Supabase hook ────────────────────────────────────────────────
 function useSupabase() {
@@ -88,9 +89,11 @@ function SmartStudyStreak({ userId }) {
         await supabase.from("user_streaks").update({ streak_count: 1, last_active: today }).eq("user_id", userId);
       }
       setStreakCount(newStreak);
+      if (userId) recordUserAction(userId, "DAILY_STREAK", { days: newStreak }, supabase);
     } else {
       await supabase.from("user_streaks").insert({ user_id: userId, streak_count: 1, last_active: today });
       setStreakCount(1);
+      if (userId) recordUserAction(userId, "DAILY_STREAK", { days: 1 }, supabase);
     }
     setLoading(false);
   }, [userId, supabase, todayIndex]);

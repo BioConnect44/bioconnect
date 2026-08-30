@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { resolveOpenAccessPdf } from "@/lib/unpaywallResolver";
+import { recordUserAction } from "@/lib/gamificationEngine";
 
 export default function LiteratureViewer({ summaryData, onClose, userId = null }) {
   const supabase = createClient();
@@ -56,7 +57,8 @@ export default function LiteratureViewer({ summaryData, onClose, userId = null }
     loadPdfUrl();
     fetchAnnotations();
     loadReadingHistory();
-  }, [paperId]);
+    if (userId) recordUserAction(userId, "READ_PAPER", {}, supabase);
+  }, [paperId, userId]);
 
   // Listen to browser native fullscreen change
   useEffect(() => {

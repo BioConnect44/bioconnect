@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import AppShell from "@/components/AppShell";
 import Link from "next/link";
+import AchievementsBadgesGrid from "@/components/AchievementsBadgesGrid";
 
 export default function ProfilePage() {
   const supabase = createClient();
@@ -711,46 +712,7 @@ export default function ProfilePage() {
 
         {activeTab === "achievements" && (
           <div style={{ background: "#fff", borderRadius: "16px", padding: "28px", border: "1px solid #E2EEF0" }}>
-            <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#1B2B3A", marginBottom: "20px" }}>
-              Achievements & Earned Badges
-            </h3>
-            <div className="achievements-grid">
-              {[
-                { icon: "🔥", label: "Streak Master", desc: "14-day study streak", earned: true, color: "#F97316" },
-                { icon: "🧬", label: "Bio Pioneer", desc: "First PubMed paper read", earned: true, color: "#14B8A6" },
-                { icon: "🎯", label: "Challenge Champion", desc: "10 PYQ quizzes done", earned: true, color: "#8B5CF6" },
-                { icon: "📚", label: "Knowledge Seeker", desc: "50 notes accessed", earned: true, color: "#3B82F6" },
-                { icon: "🏆", label: "Top Scorer", desc: "Score 100% on quiz", earned: false, color: "#F59E0B" },
-                { icon: "🤝", label: "Collaborator", desc: "Join group study", earned: false, color: "#EC4899" },
-                { icon: "⭐", label: "Research Star", desc: "Save 5 papers", earned: false, color: "#14B8A6" },
-                { icon: "🚀", label: "Fast Learner", desc: "Complete 3 courses", earned: false, color: "#6B7280" },
-              ].map((b, i) => (
-                <div
-                  key={i}
-                  style={{
-                    textAlign: "center",
-                    padding: "20px 14px",
-                    borderRadius: "14px",
-                    background: b.earned ? b.color + "08" : "#F9F9F9",
-                    border: `1px solid ${b.earned ? b.color + "25" : "#E2EEF0"}`,
-                    opacity: b.earned ? 1 : 0.5,
-                  }}
-                >
-                  <div style={{ fontSize: "36px", marginBottom: "8px", filter: b.earned ? "none" : "grayscale(100%)" }}>
-                    {b.icon}
-                  </div>
-                  <p style={{ fontSize: "13px", fontWeight: 700, color: b.earned ? "#1B2B3A" : "#9CA3AF", marginBottom: "2px" }}>
-                    {b.label}
-                  </p>
-                  <p style={{ fontSize: "11px", color: "#6B8A9A" }}>{b.desc}</p>
-                  {b.earned && (
-                    <span style={{ display: "inline-block", fontSize: "10px", color: b.color, fontWeight: 800, marginTop: "6px", textTransform: "uppercase" }}>
-                      Earned ✓
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
+            <AchievementsBadgesGrid userId={profile?.id} supabase={supabase} />
           </div>
         )}
 

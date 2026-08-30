@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import AppShell from "@/components/AppShell";
 import LiveStudentWidgets, { markQuestCompleted } from "@/components/LiveStudentWidgets";
+import { recordUserAction } from "@/lib/gamificationEngine";
 
 const COURSE_TOPICS = [
   {
@@ -6166,7 +6167,8 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
   useEffect(() => {
     // Automatically complete "Read 4 pages" quest when opening topic course
     markQuestCompleted("read_pages");
-  }, []);
+    if (profile?.id) recordUserAction(profile.id, "ACCESS_NOTE", {}, supabase);
+  }, [profile?.id]);
 
   function handleSelectOption(optIdx) {
     if (submitted[currentQ] || isFinished) return;
@@ -6197,6 +6199,7 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
           .update({ xp: currentXP + earned })
           .eq("id", profile.id);
         if (onXPUpdate) onXPUpdate(currentXP + earned);
+        recordUserAction(profile.id, "COMPLETE_QUIZ", { xp: earned, isPerfect: correctCount === topic.pyqs.length }, supabase);
       } catch (e) {}
     }
   }
