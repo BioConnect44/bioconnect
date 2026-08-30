@@ -1,0 +1,54 @@
+name: BioConnect Autonomous AI Events Scraper
+
+on:
+  schedule:
+    # Run automatically every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-events:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: ⚡ Run BioConnect AI Event Scraper
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          APP_ID: "bioconnect-prod"
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          BIOCONNECT_API_URL: ${{ secrets.BIOCONNECT_API_URL }}
+        run: |
+          python ai_event_scraper.py
+
+      - name: 📤 Commit & Push Updated Events JSON
+        run: |
+          git config user.name "BioConnect Scraper Bot"
+          git config user.email "bot@bioconnect.org"
+          git add public/events.json scraped_events_backup.json || true
+
+          if git diff --staged --quiet; then
+            echo "No new events found — skipping commit"
+          else
+            EVENTS_COUNT=$(python -c "import json; print(len(json.load(open('public/events.json'))))")
+            git commit -m "⚡ Auto-update: ${EVENTS_COUNT} verified biotech events [$(date -u '+%Y-%m-%d %H:%M UTC')] [skip ci]"
+            git push origin main
+            echo "✅ Pushed ${EVENTS_COUNT} events to repository"
+          fi

@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-teal: #14B8A6;
+  --primary-teal-hover: #0D9488;
+  --accent-cyan: #00C2B2;
 }
 
 @theme inline {
@@ -22,5 +25,279 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
+
+/* ==========================================================================
+   UNIVERSAL HOVER EFFECTS & MICRO-ANIMATIONS FOR ALL BUTTONS & OPTIONS
+   ========================================================================== */
+
+/* 1. Universal Button Hover, Focus & Click Scale Animations */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.btn {
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover:not(:disabled),
+input[type="button"]:hover:not(:disabled),
+input[type="submit"]:hover:not(:disabled),
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(20, 184, 166, 0.18);
+  filter: brightness(1.05);
+}
+
+button:active:not(:disabled),
+input[type="button"]:active:not(:disabled),
+input[type="submit"]:active:not(:disabled),
+.btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.98) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* 2. Anchor Links & Action Button Links Hover Effects */
+a {
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a:hover {
+  filter: brightness(1.1);
+}
+
+a[style*="background"],
+a[style*="border"] {
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+a[style*="background"]:hover,
+a[style*="border"]:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+a[style*="background"]:active,
+a[style*="border"]:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* 3. Form Inputs, Selects, & Textareas Hover & Glow Ring */
+input,
+select,
+textarea {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
+}
+
+input:hover:not(:disabled),
+select:hover:not(:disabled),
+textarea:hover:not(:disabled) {
+  border-color: #14B8A6 !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #14B8A6 !important;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2) !important;
+  outline: none !important;
+}
+
+/* 4. Interactive Cards & Container Lift Animations */
+.job-card,
+.paper-card,
+.course-card,
+.stat-card,
+.card {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease !important;
+}
+
+.job-card:hover,
+.paper-card:hover,
+.course-card:hover,
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(20, 184, 166, 0.4) !important;
+}
+
+/* 5. Radio Buttons, Checkboxes & Option Selectors */
+.radio-opt,
+label:has(input[type="radio"]) {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.radio-opt:hover,
+label:has(input[type="radio"]):hover {
+  color: #14B8A6 !important;
+  transform: translateX(3px);
+}
+
+.auth-form-panel label,
+label:has(input[type="checkbox"]) {
+  cursor: pointer;
+  transition: none !important;
+}
+
+.auth-form-panel label:hover,
+label:has(input[type="checkbox"]):hover {
+  color: #6B8A9A !important;
+  transform: none !important;
+}
+
+/* 6. Filter Pills, Badges & Tabs */
+.filter-badge,
+.tab-btn {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer;
+}
+
+.filter-badge:hover,
+.tab-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+/* 7. Live Indicator Glowing Dot Animation */
+@keyframes liveDotPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(42, 180, 180, 0.7);
+    transform: scale(0.95);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(42, 180, 180, 0);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(42, 180, 180, 0);
+    transform: scale(0.95);
+  }
+}
+
+.live-dot,
+.badge-dot,
+.status-dot {
+  position: relative;
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #2AB4B4;
+  animation: liveDotPulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(42, 180, 180, 0.35);
+  border-radius: 999px;
+  padding: 7px 18px;
+  font-size: 0.85rem;
+  color: #1a2b3c;
+  font-weight: 600;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 16px rgba(42, 180, 180, 0.12);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.live-badge:hover {
+  border-color: rgba(42, 180, 180, 0.6);
+  box-shadow: 0 6px 20px rgba(42, 180, 180, 0.22);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   AUTH PAGES (LOGIN & SIGNUP) MOBILE RESPONSIVENESS OVERHAUL
+   ========================================================================== */
+
+.auth-page-main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #EEF7F7;
+  padding: 24px 16px;
+  box-sizing: border-box;
+}
+
+.auth-card {
+  display: flex;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 900px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.auth-img-panel {
+  width: 45%;
+  position: relative;
+  min-height: 520px;
+  flex-shrink: 0;
+}
+
+.auth-form-panel {
+  flex: 1;
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch !important;
+  justify-content: center;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.auth-form-panel > * {
+  width: 100% !important;
+}
+
+@media (max-width: 1023px) {
+  .auth-page-main {
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px 16px !important;
+    min-height: 100vh !important;
+  }
+  .auth-card {
+    flex-direction: column !important;
+    max-width: 440px !important;
+    width: 100% !important;
+    border-radius: 20px !important;
+    margin: auto !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06) !important;
+  }
+  .auth-img-panel {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+  }
+  .auth-form-panel {
+    padding: 28px 20px !important;
+    width: 100% !important;
+    align-items: stretch !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-page-main {
+    padding: 16px 14px !important;
+  }
+  .auth-card {
+    border-radius: 16px !important;
+  }
+  .auth-form-panel {
+    padding: 24px 16px !important;
+  }
+}
+
+

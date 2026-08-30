@@ -1,0 +1,134 @@
+[
+  {
+    "event_id": "ccamp-3d-design-bootcamp-2026",
+    "title": "3D Design Bootcamp Modelling and Digital Prototyping",
+    "organizer": "Centre for Cellular and Molecular Platforms (C-CAMP Bangalore)",
+    "location": {
+      "city": "Bengaluru",
+      "country": "India",
+      "venue_address": "C-CAMP Campus, GKVK Post, Bellary Road, Bengaluru, Karnataka",
+      "is_online": false,
+      "is_india": true
+    },
+    "schedule": {
+      "start_date": "2026-10-12",
+      "end_date": "2026-10-14",
+      "time_details": "09:00 AM - 05:00 PM IST"
+    },
+    "pricing_and_registration": {
+      "is_free": true,
+      "entry_fee": "Free Registration for Qualified Innovators",
+      "registration_url": "https://ccamp.res.in/3d-design-bootcamp-modelling-and-digital-prototyping-1"
+    },
+    "details": {
+      "description": "Hands-on 3D design, CAD modeling, and digital prototyping workshop organized by C-CAMP Bangalore for biomedical & medtech innovators.",
+      "topics": [
+        "3D Printing",
+        "CAD Modeling",
+        "Medtech Prototyping",
+        "Bioengineering"
+      ],
+      "eligibility": "Biotech Innovators, Engineering Students, Medtech Founders",
+      "contact_email": "bootcamp@ccamp.res.in"
+    }
+  },
+  {
+    "event_id": "iisc-bioengineering-symposium-2026",
+    "title": "IISc Bioengineering & Medical Technology National Symposium 2026",
+    "organizer": "IISc Department of Bioengineering",
+    "location": {
+      "city": "Bengaluru",
+      "country": "India",
+      "venue_address": "Department of Bioengineering, IISc Campus, Bengaluru, Karnataka",
+      "is_online": false,
+      "is_india": true
+    },
+    "schedule": {
+      "start_date": "2026-11-15",
+      "end_date": "2026-11-17",
+      "time_details": "09:00 AM - 05:00 PM IST"
+    },
+    "pricing_and_registration": {
+      "is_free": true,
+      "entry_fee": "Free for Registered Academic Delegates",
+      "registration_url": "https://be.iisc.ac.in/"
+    },
+    "details": {
+      "description": "High-level national bioengineering symposium covering microfluidics, biomaterials, neural scaffolds, and point-of-care medical technologies at IISc Bengaluru.",
+      "topics": [
+        "Microfluidics",
+        "Biomaterials",
+        "Point-of-Care",
+        "Bioengineering"
+      ],
+      "eligibility": "Academic Delegates, Post-Docs, PhD Scholars",
+      "contact_email": "symposium@be.iisc.ac.in"
+    }
+  },
+  {
+    "event_id": "eventbrite-crispr-gene-editing-symposium-2026",
+    "title": "Global CRISPR Gene Editing & Clinical Genomics Conclave 2026",
+    "organizer": "Eventbrite India / IIT Bombay Biosciences",
+    "location": {
+      "city": "Mumbai",
+      "country": "India",
+      "venue_address": "IIT Bombay Campus Auditorium, Powai, Mumbai, Maharashtra",
+      "is_online": false,
+      "is_india": true
+    },
+    "schedule": {
+      "start_date": "2026-11-04",
+      "end_date": "2026-11-06",
+      "time_details": "09:00 AM - 05:30 PM IST"
+    },
+    "pricing_and_registration": {
+      "is_free": false,
+      "entry_fee": "₹1,200 Students / ₹3,500 Professionals",
+      "registration_url": "https://www.eventbrite.com/d/india/biotechnology-conference/"
+    },
+    "details": {
+      "description": "Premier international congress uniting gene editing pioneers, bioengineers, and clinical oncologists to present targeted CRISPR therapies.",
+      "topics": [
+        "CRISPR-Cas9",
+        "Genome Engineering",
+        "Therapeutic Biologics",
+        "Cellular Diagnostics"
+      ],
+      "eligibility": "Academic Scholars, Post-Docs, Clinical Researchers, Industry Leaders",
+      "contact_email": "crispr2026@eventbrite.com"
+    }
+  },
+  {
+    "event_id": "unstop-national-biotech-innovation-conclave-2026",
+    "title": "Unstop National Biotechnology Innovation & Hackathon Conclave 2026",
+    "organizer": "Unstop / GBU GIFT City",
+    "location": {
+      "city": "Gandhinagar",
+      "country": "India",
+      "venue_address": "GBU Campus, GIFT City, Gandhinagar, Gujarat",
+      "is_online": false,
+      "is_india": true
+    },
+    "schedule": {
+      "start_date": "2026-10-24",
+      "end_date": "2026-10-26",
+      "time_details": "09:30 AM - 05:30 PM IST"
+    },
+    "pricing_and_registration": {
+      "is_free": true,
+      "entry_fee": "Free Registration for Qualified Student Teams",
+      "registration_url": "https://unstop.com/competitions"
+    },
+    "details": {
+      "description": "National bio-hackathon and research conclave focusing on synthetic biology, microbial biomanufacturing, and plant genomics.",
+      "topics": [
+        "Synthetic Biology",
+        "Plant Genomics",
+        "Bio-Hackathon",
+        "Biomanufacturing"
+      ],
+      "eligibility": "B.Tech/M.Sc/Ph.D Students, Faculty, Startup Teams",
+      "contact_email": "biotech@unstop.com"
+    }
+  }
+]

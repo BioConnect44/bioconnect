@@ -3,6 +3,28 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import AppShell from "@/components/AppShell";
 
+function safeFormatDate(dateStr, options, fallback = "") {
+  if (!dateStr) return fallback;
+  try {
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return fallback;
+    return d.toLocaleDateString("en-IN", options);
+  } catch (e) {
+    return fallback;
+  }
+}
+
+function safeFormatTime(dateStr, options, fallback = "") {
+  if (!dateStr) return fallback;
+  try {
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return fallback;
+    return d.toLocaleTimeString("en-IN", options);
+  } catch (e) {
+    return fallback;
+  }
+}
+
 function MiniCalendar() {
   const now = new Date();
   const month = now.toLocaleString("en", { month: "long", year: "numeric" });
@@ -19,7 +41,7 @@ function MiniCalendar() {
         <span style={{ fontSize: "14px", fontWeight: 600, color: "#1B2B3A" }}>‹ {month} ›</span>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "4px", textAlign: "center" }}>
-        {days.map(d => <div key={d} style={{ fontSize: "11px", color: "#9CA3AF", fontWeight: 600, padding: "4px" }}>{d}</div>)}
+        {days.map((d, i) => <div key={i} style={{ fontSize: "11px", color: "#9CA3AF", fontWeight: 600, padding: "4px" }}>{d}</div>)}
         {cells.map((d, i) => (
           <div key={i} style={{ fontSize: "13px", padding: "6px 4px", borderRadius: "50%", cursor: d ? "pointer" : "default", background: d === now.getDate() ? "#14B8A6" : "transparent", color: d === now.getDate() ? "#fff" : d ? "#374151" : "transparent", fontWeight: d === now.getDate() ? 700 : 400 }}>{d}</div>
         ))}
@@ -37,21 +59,34 @@ export default function EventsPage() {
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({ title: "", description: "", event_type: "conference", location: "", event_date: "", end_date: "", registration_url: "" });
 
+  async function loadEvents() {
+    try {
+      const { data, error } = await supabase.from("events").select("*, profiles(full_name)").order("event_date", { ascending: true });
+      if (error) {
+        const { data: simpleData } = await supabase.from("events").select("*").order("event_date", { ascending: true });
+        setEvents(simpleData || []);
+      } else {
+        setEvents(data || []);
+      }
+    } catch (e) {
+      setEvents([]);
+    }
+  }
+
   useEffect(() => {
     async function load() {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) { window.location.href = "/login"; return; }
-      const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
-      setProfile(data);
-      await loadEvents();
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) { window.location.href = "/login"; return; }
+        const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
+        setProfile(data);
+        await loadEvents();
+      } catch (e) {
+        console.error(e);
+      }
     }
     load();
   }, []);
-
-  async function loadEvents() {
-    const { data } = await supabase.from("events").select("*, profiles(full_name)").order("event_date", { ascending: true });
-    setEvents(data || []);
-  }
 
   async function handleAdd(e) {
     e.preventDefault(); setSaving(true);
@@ -65,14 +100,19 @@ export default function EventsPage() {
 
   const isEducator = profile?.role === "educator" || profile?.role === "researcher";
   const now = new Date();
-  const featured = events.find(e => new Date(e.event_date) >= now);
-  const filtered = events.filter(e => { if (filter === "upcoming") return new Date(e.event_date) >= now; return new Date(e.event_date) < now; });
-  const myRSVPs = events.filter(e => new Date(e.event_date) >= now).slice(0, 3);
+
+  const featured = events.find(e => e.event_date && new Date(e.event_date) >= now);
+  const filtered = events.filter(e => {
+    if (!e.event_date) return filter === "past";
+    const d = new Date(e.event_date);
+    return filter === "upcoming" ? d >= now : d < now;
+  });
+  const myRSVPs = events.filter(e => e.event_date && new Date(e.event_date) >= now).slice(0, 3);
 
   const typeColors = { conference: "#14B8A6", webinar: "#8B5CF6", workshop: "#F97316", seminar: "#3B82F6", hackathon: "#EC4899", other: "#6B8A9A" };
 
   return (
-    <AppShell active="/eventss">
+    <AppShell active="/events">
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "24px" }}>
         <div>
           <h1 style={{ fontSize: "24px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>Events & Networking</h1>
@@ -97,12 +137,25 @@ export default function EventsPage() {
         </div>
       )}
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "24px" }}>
+      <style>{`
+        .eventss-layout-grid {
+          display: grid;
+          grid-template-columns: 1fr 280px;
+          gap: 24px;
+        }
+        @media (max-width: 1023px) {
+          .eventss-layout-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+        }
+      `}</style>
+      <div className="eventss-layout-grid">
         <div>
-          {/* Tabs */}
-          <div style={{ display: "flex", gap: "4px", marginBottom: "20px", background: "#fff", borderRadius: "12px", padding: "4px", border: "1px solid #E2EEF0", width: "fit-content" }}>
+          {/* Tabs - Curved Rectangles */}
+          <div style={{ display: "inline-flex", gap: "6px", marginBottom: "20px", background: "#F0F7F8", borderRadius: "14px", padding: "6px", border: "1px solid #E2EEF0" }}>
             {["upcoming", "past"].map(f => (
-              <button key={f} onClick={() => setFilter(f)} style={{ padding: "8px 20px", borderRadius: "8px", fontSize: "14px", fontWeight: 500, border: "none", cursor: "pointer", fontFamily: "inherit", background: filter === f ? "#1B2B3A" : "transparent", color: filter === f ? "#fff" : "#6B8A9A" }}>{f.charAt(0).toUpperCase() + f.slice(1)}</button>
+              <button key={f} onClick={() => setFilter(f)} style={{ padding: "10px 22px", borderRadius: "10px", fontSize: "14px", fontWeight: filter === f ? 600 : 500, border: filter === f ? "1px solid #E2EEF0" : "1px solid transparent", cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)", background: filter === f ? "#ffffff" : "transparent", color: filter === f ? "#14B8A6" : "#6B8A9A", boxShadow: filter === f ? "0 4px 14px rgba(0,0,0,0.06)" : "none" }}>{f.charAt(0).toUpperCase() + f.slice(1)}</button>
             ))}
           </div>
 
@@ -112,9 +165,9 @@ export default function EventsPage() {
               <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=60" alt="" style={{ width: "100%", height: "220px", objectFit: "cover", display: "block" }}/>
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)", display: "flex", alignItems: "center", padding: "28px" }}>
                 <div>
-                  <span style={{ fontSize: "12px", color: "#14B8A6", fontWeight: 700, background: "rgba(20,184,166,0.2)", padding: "4px 10px", borderRadius: "6px" }}>{new Date(featured.event_date).toLocaleDateString("en", { month: "short", day: "numeric" }).toUpperCase()}</span>
+                  <span style={{ fontSize: "12px", color: "#14B8A6", fontWeight: 700, background: "rgba(20,184,166,0.2)", padding: "4px 10px", borderRadius: "6px" }}>{safeFormatDate(featured.event_date, { month: "short", day: "numeric" }, "UPCOMING").toUpperCase()}</span>
                   <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#fff", margin: "10px 0 6px", maxWidth: "400px" }}>{featured.title}</h2>
-                  <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.75)", marginBottom: "8px" }}>📍 {featured.location || "Online"} • {new Date(featured.event_date).toLocaleTimeString("en", { hour: "2-digit", minute: "2-digit" })} IST</p>
+                  <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.75)", marginBottom: "8px" }}>📍 {featured.location || "Online"} • {safeFormatTime(featured.event_date, { hour: "2-digit", minute: "2-digit" }, "")} IST</p>
                   <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.65)", marginBottom: "16px" }}>Hosted by {featured.profiles?.full_name || "BioConnect"}</p>
                   {featured.registration_url && <a href={featured.registration_url} target="_blank" rel="noopener noreferrer" style={{ background: "#14B8A6", color: "#fff", padding: "10px 24px", borderRadius: "10px", fontSize: "14px", fontWeight: 600, textDecoration: "none" }}>Register Now</a>}
                 </div>
@@ -125,13 +178,13 @@ export default function EventsPage() {
           {/* Events list */}
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
             {filtered.filter(e => e !== featured || filter === "past").map(ev => {
-              const isPast = new Date(ev.event_date) < now;
+              const isPast = ev.event_date ? new Date(ev.event_date) < now : false;
               const tc = typeColors[ev.event_type] || typeColors.other;
               return (
                 <div key={ev.id} style={{ background: "#fff", borderRadius: "14px", padding: "18px 22px", border: "1px solid #E2EEF0", display: "flex", alignItems: "center", gap: "16px", opacity: isPast ? 0.65 : 1 }}>
                   <div style={{ width: 48, textAlign: "center", flexShrink: 0, background: "#F0F7F8", borderRadius: "10px", padding: "8px 0" }}>
-                    <div style={{ fontSize: "10px", color: "#14B8A6", fontWeight: 700, textTransform: "uppercase" }}>{new Date(ev.event_date).toLocaleString("en", { month: "short" })}</div>
-                    <div style={{ fontSize: "20px", fontWeight: 700, color: "#1B2B3A" }}>{new Date(ev.event_date).getDate()}</div>
+                    <div style={{ fontSize: "10px", color: "#14B8A6", fontWeight: 700, textTransform: "uppercase" }}>{safeFormatDate(ev.event_date, { month: "short" }, "EVENT")}</div>
+                    <div style={{ fontSize: "20px", fontWeight: 700, color: "#1B2B3A" }}>{safeFormatDate(ev.event_date, { day: "numeric" }, "•")}</div>
                   </div>
                   <div style={{ flex: 1 }}>
                     <h3 style={{ fontSize: "15px", fontWeight: 600, color: "#1B2B3A", marginBottom: "3px" }}>{ev.title}</h3>
@@ -162,7 +215,7 @@ export default function EventsPage() {
                     <div style={{ width: 32, height: 32, background: "#EEF7F7", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: "16px" }}>📅</div>
                     <div style={{ flex: 1 }}>
                       <p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A" }}>{ev.title}</p>
-                      <p style={{ fontSize: "11px", color: "#9CA3AF" }}>{new Date(ev.event_date).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</p>
+                      <p style={{ fontSize: "11px", color: "#9CA3AF" }}>{safeFormatDate(ev.event_date, { day: "numeric", month: "short", year: "numeric" })}</p>
                     </div>
                     <button onClick={() => handleDelete(ev.id)} style={{ fontSize: "11px", color: "#EF4444", background: "none", border: "none", cursor: "pointer", fontFamily: "inherit" }}>✕</button>
                   </div>
@@ -172,7 +225,7 @@ export default function EventsPage() {
             {myRSVPs.length === 0 ? <p style={{ fontSize: "13px", color: "#9CA3AF" }}>No RSVPs yet</p> : myRSVPs.map((ev, i) => (
               <div key={i} style={{ display: "flex", gap: "10px", padding: "8px 0", borderBottom: i < myRSVPs.length - 1 ? "1px solid #F0F7F8" : "none" }}>
                 <div style={{ width: 32, height: 32, background: "#EEF7F7", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: "16px" }}>📅</div>
-                <div><p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A" }}>{ev.title}</p><p style={{ fontSize: "11px", color: "#9CA3AF" }}>{new Date(ev.event_date).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</p></div>
+                <div><p style={{ fontSize: "13px", fontWeight: 500, color: "#1B2B3A" }}>{ev.title}</p><p style={{ fontSize: "11px", color: "#9CA3AF" }}>{safeFormatDate(ev.event_date, { day: "numeric", month: "short", year: "numeric" })}</p></div>
               </div>
             ))}
           </div>

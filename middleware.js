@@ -4,10 +4,14 @@ import { NextResponse } from "next/server";
 export async function middleware(request) {
   let supabaseResponse = NextResponse.next({ request });
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    {
+  try {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (!url || !key) {
+      return supabaseResponse;
+    }
+
+    const supabase = createServerClient(url, key, {
       cookies: {
         getAll() {
           return request.cookies.getAll();
@@ -22,34 +26,34 @@ export async function middleware(request) {
           );
         },
       },
+    });
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    // If user is NOT logged in and tries to access /dashboard, redirect to /login
+    if (
+      !user &&
+      request.nextUrl.pathname.startsWith("/dashboard")
+    ) {
+      const redirectUrl = request.nextUrl.clone();
+      redirectUrl.pathname = "/login";
+      return NextResponse.redirect(redirectUrl);
     }
-  );
 
-  // Refresh the session — this is important!
-  // Do NOT remove this line. It keeps the user's session alive.
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  // If user is NOT logged in and tries to access /dashboard, redirect to /login
-  if (
-    !user &&
-    request.nextUrl.pathname.startsWith("/dashboard")
-  ) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/login";
-    return NextResponse.redirect(url);
-  }
-
-  // If user IS logged in and tries to access /login or /signup, redirect to /dashboard
-  if (
-    user &&
-    (request.nextUrl.pathname === "/login" ||
-      request.nextUrl.pathname === "/signup")
-  ) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/dashboard";
-    return NextResponse.redirect(url);
+    // If user IS logged in and tries to access /login or /signup, redirect to /dashboard
+    if (
+      user &&
+      (request.nextUrl.pathname === "/login" ||
+        request.nextUrl.pathname === "/signup")
+    ) {
+      const redirectUrl = request.nextUrl.clone();
+      redirectUrl.pathname = "/dashboard";
+      return NextResponse.redirect(redirectUrl);
+    }
+  } catch (err) {
+    console.error("Middleware session error:", err);
   }
 
   return supabaseResponse;

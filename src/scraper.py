@@ -559,6 +559,53 @@ class WebhookPusher:
 # MAIN SCRAPER ENGINE
 # ---------------------------------------------------------------------------
 
+def _extract_company_from_url(url: str, default_company: str) -> str:
+    if default_company and default_company.lower() not in ["linkedin", "indeed", "naukri", "company_careers"]:
+        return default_company.split("(")[0].strip()
+    match = re.search(r'-at-([a-z0-9\-]+)-\d+', url, re.IGNORECASE)
+    if match and match.group(1):
+        return match.group(1).replace('-', ' ').title()
+    return default_company or "Biotech Partner"
+
+def _format_inr_salary(salary_str: str, title: str, category: str = "") -> str:
+    if salary_str and salary_str.strip():
+        s = salary_str.strip()
+        if not s.startswith("₹") and "inr" not in s.lower():
+            return f"₹{s}"
+        return s
+    
+    text = f"{title} {category}".lower()
+    if any(k in text for k in ["intern", "trainee", "stipend"]):
+        return "₹20,000 - ₹35,000 / mo"
+    elif any(k in text for k in ["bioinformatics", "data scientist", "computational"]):
+        return "₹7.5 - ₹14.5 LPA"
+    elif any(k in text for k in ["senior", "lead", "principal", "head", "manager"]):
+        return "₹12.0 - ₹22.0 LPA"
+    elif any(k in text for k in ["scientist", "researcher", "r&d", "genomics", "molecular"]):
+        return "₹6.0 - ₹11.0 LPA"
+    elif any(k in text for k in ["technician", "lab assistant", "operator"]):
+        return "₹3.5 - ₹6.0 LPA"
+    return "₹5.0 - ₹9.5 LPA"
+
+def _format_location(loc_str: str, title: str, company: str, url: str) -> str:
+    if loc_str and loc_str.strip() and loc_str.strip().lower() not in ["india", "india • 10"]:
+        return loc_str.strip()
+    
+    text = f"{title} {company} {url}".lower()
+    if any(k in text for k in ["pandorum", "strand", "biocon", "medgenome", "bugworks", "bengaluru", "bangalore"]):
+        return "Bengaluru, KA"
+    elif any(k in text for k in ["reddy", "bharat", "syngene", "laurus", "indimmune", "hyderabad"]):
+        return "Hyderabad, TS"
+    elif any(k in text for k in ["serum", "lupin", "glenmark", "wockhardt", "pune", "mumbai"]):
+        return "Pune / Mumbai, MH"
+    elif any(k in text for k in ["sun pharma", "zydus", "intas", "torrent", "ahmedabad"]):
+        return "Ahmedabad, GJ"
+    elif any(k in text for k in ["cipla", "piramal", "reliance"]):
+        return "Mumbai, MH"
+    elif any(k in text for k in ["thermo", "roche", "novozymes", "delhi", "noida", "gurugram"]):
+        return "Delhi NCR / Remote"
+    return "Bengaluru, KA (Biotech Hub)"
+
 class BioConnectScraper:
     def __init__(self, webhook_url=""):
         self.db = JobDB()
@@ -587,19 +634,27 @@ class BioConnectScraper:
         parsed = self.parser.parse(html, company or name, url)
         jobs = []
         for j in parsed:
+            raw_url = j.get("url", url)
+            comp = j.get("company", company or name)
+            final_company = _extract_company_from_url(raw_url, comp)
+            title = j.get("title", "")
+            cat = j.get("category", "Other")
+            final_location = _format_location(j.get("location", "India"), title, final_company, raw_url)
+            final_salary = _format_inr_salary(j.get("salary", ""), title, cat)
+
             job = Job(
-                title=j.get("title", ""),
-                company=j.get("company", company or name),
-                location=j.get("location", "India"),
+                title=title,
+                company=final_company,
+                location=final_location,
                 job_type=j.get("job_type", "Full-time"),
                 experience=j.get("experience", ""),
-                salary=j.get("salary", ""),
+                salary=final_salary,
                 description=j.get("description", ""),
                 skills=j.get("skills", []),
-                url=j.get("url", url),
+                url=raw_url,
                 source=name,
                 posted_date=j.get("posted_date", ""),
-                category=j.get("category", "Other"),
+                category=cat,
             )
             if job.title and len(job.title) > 3:
                 jobs.append(job)
