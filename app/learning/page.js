@@ -6155,6 +6155,232 @@ function ContinuousPdfViewer({ topic }) {
   );
 }
 
+/* ── Extra Reference Books Catalog ── */
+const EXTRA_BOOKS = [
+  {
+    id: "eb-1a",
+    title: "Culture of Animal Cells - Ian Freshney (Vol 1)",
+    filename: "Culture of Animal Cells - Ian Freshney (Vol 1).pdf",
+    url: "/extra-books/Culture of Animal Cells - Ian Freshney (Vol 1).pdf",
+    size: "71.4 MB",
+    format: "PDF",
+    author: "R. Ian Freshney",
+    category: "Animal Cell Culture (Ch 1-10)"
+  },
+  {
+    id: "eb-1b",
+    title: "Culture of Animal Cells - Ian Freshney (Vol 2)",
+    filename: "Culture of Animal Cells - Ian Freshney (Vol 2).pdf",
+    url: "/extra-books/Culture of Animal Cells - Ian Freshney (Vol 2).pdf",
+    size: "51.8 MB",
+    format: "PDF",
+    author: "R. Ian Freshney",
+    category: "Animal Cell Culture (Ch 11-20)"
+  },
+  {
+    id: "eb-1c",
+    title: "Culture of Animal Cells - Ian Freshney (Vol 3)",
+    filename: "Culture of Animal Cells - Ian Freshney (Vol 3).pdf",
+    url: "/extra-books/Culture of Animal Cells - Ian Freshney (Vol 3).pdf",
+    size: "23.1 MB",
+    format: "PDF",
+    author: "R. Ian Freshney",
+    category: "Animal Cell Culture (Ch 21-28)"
+  },
+  {
+    id: "eb-2",
+    title: "Animal Cell Culture Techniques",
+    filename: "Animal Cell Culture Techniques.djvu",
+    url: "/extra-books/Animal Cell Culture Techniques.djvu",
+    size: "4.9 MB",
+    format: "DJVU",
+    author: "Reference Edition",
+    category: "Cell Culture Techniques"
+  },
+  {
+    id: "eb-3",
+    title: "Animal Cell Culture Manual",
+    filename: "Animal cell culture.pdf",
+    url: "/extra-books/Animal cell culture.pdf",
+    size: "52.8 MB",
+    format: "PDF",
+    author: "Standard Manual",
+    category: "Biotechnology & Cell Culture"
+  },
+  {
+    id: "eb-4",
+    title: "Basic Cell Culture Essentials",
+    filename: "Basic cell culture.pdf",
+    url: "/extra-books/Basic cell culture.pdf",
+    size: "37.5 MB",
+    format: "PDF",
+    author: "Practical Guide",
+    category: "Cell Culture Essentials"
+  },
+  {
+    id: "eb-5",
+    title: "Cell and Tissue Culture Laboratory Procedures",
+    filename: "Cell and Tissue Culture Laboratory Procedures - Alan Doyle.pdf",
+    url: "/extra-books/Cell and Tissue Culture Laboratory Procedures - Alan Doyle.pdf",
+    size: "49.8 MB",
+    format: "PDF",
+    author: "Alan Doyle & J.B. Griffiths",
+    category: "Lab Procedures & Protocols"
+  },
+  {
+    id: "eb-6",
+    title: "Cell Culture Protocols",
+    filename: "Cell Culture.pdf",
+    url: "/extra-books/Cell Culture.pdf",
+    size: "11.1 MB",
+    format: "PDF",
+    author: "Biotech Methods",
+    category: "Cell Culture"
+  },
+  {
+    id: "eb-7",
+    title: "Human and Animal Cell Cultures List",
+    filename: "Human and Animal Cell Cultures.List.pdf",
+    url: "/extra-books/Human and Animal Cell Cultures.List.pdf",
+    size: "1.3 MB",
+    format: "PDF",
+    author: "Cell Line Repository",
+    category: "Cell Line Directory"
+  },
+  {
+    id: "eb-8",
+    title: "Introduction to Cell and Tissue Culture",
+    filename: "Introduction to Cell and Tissue Culture.pdf",
+    url: "/extra-books/Introduction to Cell and Tissue Culture.pdf",
+    size: "4.1 MB",
+    format: "PDF",
+    author: "Introductory Series",
+    category: "Tissue Culture"
+  },
+  {
+    id: "eb-9",
+    title: "Panno — The Cell: Evolution of the First Organism",
+    filename: "Panno_The Cell-Evolution of the First Organism-The New Biology.pdf",
+    url: "/extra-books/Panno_The Cell-Evolution of the First Organism-The New Biology.pdf",
+    size: "17.0 MB",
+    format: "PDF",
+    author: "Joseph Panno, Ph.D.",
+    category: "Cell Evolution & New Biology"
+  },
+  {
+    id: "eb-10",
+    title: "Plant Cells (Advances in Biochemical Engineering)",
+    filename: "Plant.Cells.(Advances.In.Biochemical.Engineering-Biotechnolo.pdf",
+    url: "/extra-books/Plant.Cells.(Advances.In.Biochemical.Engineering-Biotechnolo.pdf",
+    size: "2.3 MB",
+    format: "PDF",
+    author: "Biochemical Engineering",
+    category: "Plant Cell Biotechnology"
+  },
+  {
+    id: "eb-11",
+    title: "Schat Virology & Immunology Reference",
+    filename: "Schat9.pdf",
+    url: "/extra-books/Schat9.pdf",
+    size: "0.2 MB",
+    format: "PDF",
+    author: "K.A. Schat et al.",
+    category: "Cell Immunology"
+  },
+  {
+    id: "eb-12",
+    title: "The Biotech Age",
+    filename: "The Biotech Age.pdf",
+    url: "/extra-books/The Biotech Age.pdf",
+    size: "2.7 MB",
+    format: "PDF",
+    author: "Richard B. Oliver",
+    category: "Biotechnology Industry"
+  },
+  {
+    id: "eb-13",
+    title: "The Stem Cell",
+    filename: "The Stem Cell.pdf",
+    url: "/extra-books/The Stem Cell.pdf",
+    size: "0.9 MB",
+    format: "PDF",
+    author: "Stem Cell Biology",
+    category: "Stem Cell Research"
+  },
+  {
+    id: "eb-14",
+    title: "Tissue Engineering Fundamentals",
+    filename: "Tissue Engineering.pdf",
+    url: "/extra-books/Tissue Engineering.pdf",
+    size: "41.2 MB",
+    format: "PDF",
+    author: "Biomedical Engineering",
+    category: "Tissue Engineering"
+  }
+];
+
+/* ── Extra Book Viewer Modal ── */
+function ExtraBookViewerModal({ book, onClose }) {
+  if (!book) return null;
+  const isPdf = book.format === "PDF";
+
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(10, 25, 30, 0.82)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}>
+      <div style={{ background: "#fff", borderRadius: "20px", width: "95%", maxWidth: "1100px", height: "90vh", display: "flex", flexDirection: "column", overflow: "hidden", boxShadow: "0 25px 60px rgba(0,0,0,0.3)" }}>
+        <div style={{ padding: "16px 24px", background: "#102A30", color: "#fff", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <span style={{ fontSize: "24px" }}>📚</span>
+            <div>
+              <h3 style={{ fontSize: "16px", fontWeight: 700, margin: 0, color: "#fff" }}>{book.title}</h3>
+              <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.7)", margin: 0 }}>{book.category} • {book.size} ({book.format})</p>
+            </div>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <a
+              href={book.url}
+              download
+              style={{ background: "#14B8A6", color: "#fff", padding: "8px 16px", borderRadius: "8px", textDecoration: "none", fontSize: "13px", fontWeight: 600 }}
+            >
+              📥 Download File
+            </a>
+            <button
+              onClick={onClose}
+              style={{ background: "rgba(255,255,255,0.15)", border: "none", color: "#fff", width: 34, height: 34, borderRadius: "50%", cursor: "pointer", fontSize: "16px" }}
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+
+        <div style={{ flex: 1, background: "#525659" }}>
+          {isPdf ? (
+            <iframe
+              src={book.url}
+              style={{ width: "100%", height: "100%", border: "none" }}
+              title={book.title}
+            />
+          ) : (
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", color: "#fff", textAlign: "center", padding: "40px" }}>
+              <span style={{ fontSize: "48px", marginBottom: "16px" }}>📄</span>
+              <h3 style={{ fontSize: "20px", fontWeight: 700, marginBottom: "8px" }}>{book.format} Document Viewer</h3>
+              <p style={{ fontSize: "14px", color: "#CBD5E1", maxWidth: "500px", marginBottom: "24px" }}>
+                This reference book is stored in <strong>{book.format}</strong> format ({book.size}). Click below to download and view in your local reader application.
+              </p>
+              <a
+                href={book.url}
+                download
+                style={{ background: "#14B8A6", color: "#fff", padding: "12px 28px", borderRadius: "10px", textDecoration: "none", fontSize: "15px", fontWeight: 700 }}
+              >
+                📥 Download {book.filename}
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ── Interactive Course / Topic Viewer Modal ── */
 function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
   const [activeTab, setActiveTab] = useState("notes"); // "notes" | "pyq"
@@ -6889,7 +7115,15 @@ function ChallengeModal({ challengeKey, onClose, supabase, profile, onXPUpdate }
 function StudentView({ supabase, profile, onXPUpdate }) {
   const [activeChallenge, setActiveChallenge] = useState(null);
   const [activeTopic, setActiveTopic] = useState(null);
+  const [extraBookSearch, setExtraBookSearch] = useState("");
+  const [selectedExtraBook, setSelectedExtraBook] = useState(null);
   const isResearcher = profile?.role === "researcher";
+
+  const filteredExtraBooks = EXTRA_BOOKS.filter(b =>
+    b.title.toLowerCase().includes(extraBookSearch.toLowerCase()) ||
+    b.category.toLowerCase().includes(extraBookSearch.toLowerCase()) ||
+    b.author.toLowerCase().includes(extraBookSearch.toLowerCase())
+  );
 
   return (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "24px" }}>
@@ -6975,6 +7209,123 @@ function StudentView({ supabase, profile, onXPUpdate }) {
             </div>
           ))}
         </div>
+
+        {/* 📚 Extra Books & Reference Library Section */}
+        <div style={{ marginTop: "36px", marginBottom: "28px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
+            <div>
+              <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#102A30", margin: 0 }}>
+                📚 Extra Books & Reference Library
+              </h2>
+              <p style={{ fontSize: "13px", color: "#64748B", marginTop: "2px", margin: 0 }}>
+                Animal Cell Culture, Tissue Engineering & Microbiology Textbooks
+              </p>
+            </div>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "#0284C7", background: "#E0F2FE", padding: "4px 12px", borderRadius: "100px" }}>
+              {EXTRA_BOOKS.length} Volumes Available
+            </span>
+          </div>
+
+          {/* Search Bar */}
+          <div style={{ marginBottom: "16px" }}>
+            <input
+              type="text"
+              placeholder="🔍 Search extra books by title, author, or category..."
+              value={extraBookSearch}
+              onChange={(e) => setExtraBookSearch(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "12px 18px",
+                borderRadius: "12px",
+                border: "1px solid #CBD5E1",
+                fontSize: "14px",
+                outline: "none",
+                background: "#fff",
+                fontFamily: "inherit"
+              }}
+            />
+          </div>
+
+          {/* Grid of Extra Books */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "16px" }}>
+            {filteredExtraBooks.map((book) => (
+              <div
+                key={book.id}
+                style={{
+                  background: "#fff",
+                  borderRadius: "16px",
+                  border: "1px solid #E2EEF0",
+                  padding: "18px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  transition: "all 0.25s ease",
+                  boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                }}
+              >
+                <div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "10px" }}>
+                    <span style={{ fontSize: "28px" }}>📚</span>
+                    <div style={{ display: "flex", gap: "6px" }}>
+                      <span style={{ fontSize: "10px", fontWeight: 800, background: book.format === "PDF" ? "#DCFCE7" : "#FFE4E6", color: book.format === "PDF" ? "#166534" : "#9F1239", padding: "3px 8px", borderRadius: "6px", textTransform: "uppercase" }}>
+                        {book.format}
+                      </span>
+                      <span style={{ fontSize: "10px", fontWeight: 700, background: "#F1F5F9", color: "#475569", padding: "3px 8px", borderRadius: "6px" }}>
+                        {book.size}
+                      </span>
+                    </div>
+                  </div>
+                  <h3 style={{ fontSize: "14px", fontWeight: 700, color: "#1B2B3A", marginBottom: "6px", lineHeight: "1.3" }}>
+                    {book.title}
+                  </h3>
+                  <p style={{ fontSize: "12px", color: "#64748B", marginBottom: "12px" }}>
+                    {book.category} • <span style={{ fontStyle: "italic" }}>{book.author}</span>
+                  </p>
+                </div>
+
+                <div style={{ display: "flex", gap: "8px", marginTop: "12px", paddingTop: "12px", borderTop: "1px solid #F1F5F9" }}>
+                  <button
+                    onClick={() => {
+                      setSelectedExtraBook(book);
+                      if (profile?.id) recordUserAction(profile.id, "ACCESS_NOTE", {}, supabase);
+                    }}
+                    style={{
+                      flex: 1,
+                      background: "#0284C7",
+                      color: "#fff",
+                      border: "none",
+                      padding: "8px 12px",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      fontFamily: "inherit"
+                    }}
+                  >
+                    📖 Read Book
+                  </button>
+                  <a
+                    href={book.url}
+                    download
+                    style={{
+                      background: "#F0F9FF",
+                      color: "#0284C7",
+                      border: "1px solid #BAE6FD",
+                      padding: "8px 12px",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                      fontWeight: 700,
+                      textDecoration: "none",
+                      textAlign: "center"
+                    }}
+                  >
+                    📥 Download
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* RIGHT SIDEBAR — LiveStudentWidgets */}
@@ -7003,11 +7354,157 @@ function StudentView({ supabase, profile, onXPUpdate }) {
           onXPUpdate={onXPUpdate}
         />
       )}
+
+      {/* Extra Book Viewer Modal */}
+      {selectedExtraBook && (
+        <ExtraBookViewerModal
+          book={selectedExtraBook}
+          onClose={() => setSelectedExtraBook(null)}
+        />
+      )}
     </div>
   );
 }
 
 /* ── Educator View ── */
+/* ── Extra Books Section Component ── */
+function ExtraBooksSection({ profile, supabase }) {
+  const [extraBookSearch, setExtraBookSearch] = useState("");
+  const [selectedExtraBook, setSelectedExtraBook] = useState(null);
+
+  const filteredExtraBooks = EXTRA_BOOKS.filter(b =>
+    b.title.toLowerCase().includes(extraBookSearch.toLowerCase()) ||
+    b.category.toLowerCase().includes(extraBookSearch.toLowerCase()) ||
+    b.author.toLowerCase().includes(extraBookSearch.toLowerCase())
+  );
+
+  return (
+    <div style={{ marginTop: "36px", marginBottom: "28px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
+        <div>
+          <h2 style={{ fontSize: "20px", fontWeight: 800, color: "#102A30", margin: 0 }}>
+            📚 Extra Books & Reference Library
+          </h2>
+          <p style={{ fontSize: "13px", color: "#64748B", marginTop: "2px", margin: 0 }}>
+            Animal Cell Culture, Tissue Engineering & Microbiology Textbooks
+          </p>
+        </div>
+        <span style={{ fontSize: "12px", fontWeight: 700, color: "#0284C7", background: "#E0F2FE", padding: "4px 12px", borderRadius: "100px" }}>
+          {EXTRA_BOOKS.length} Volumes Available
+        </span>
+      </div>
+
+      {/* Search Bar */}
+      <div style={{ marginBottom: "16px" }}>
+        <input
+          type="text"
+          placeholder="🔍 Search extra books by title, author, or category..."
+          value={extraBookSearch}
+          onChange={(e) => setExtraBookSearch(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "12px 18px",
+            borderRadius: "12px",
+            border: "1px solid #CBD5E1",
+            fontSize: "14px",
+            outline: "none",
+            background: "#fff",
+            fontFamily: "inherit"
+          }}
+        />
+      </div>
+
+      {/* Grid of Extra Books */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "16px" }}>
+        {filteredExtraBooks.map((book) => (
+          <div
+            key={book.id}
+            style={{
+              background: "#fff",
+              borderRadius: "16px",
+              border: "1px solid #E2EEF0",
+              padding: "18px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              transition: "all 0.25s ease",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+            }}
+          >
+            <div>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "10px" }}>
+                <span style={{ fontSize: "28px" }}>📚</span>
+                <div style={{ display: "flex", gap: "6px" }}>
+                  <span style={{ fontSize: "10px", fontWeight: 800, background: book.format === "PDF" ? "#DCFCE7" : "#FFE4E6", color: book.format === "PDF" ? "#166534" : "#9F1239", padding: "3px 8px", borderRadius: "6px", textTransform: "uppercase" }}>
+                    {book.format}
+                  </span>
+                  <span style={{ fontSize: "10px", fontWeight: 700, background: "#F1F5F9", color: "#475569", padding: "3px 8px", borderRadius: "6px" }}>
+                    {book.size}
+                  </span>
+                </div>
+              </div>
+              <h3 style={{ fontSize: "14px", fontWeight: 700, color: "#1B2B3A", marginBottom: "6px", lineHeight: "1.3" }}>
+                {book.title}
+              </h3>
+              <p style={{ fontSize: "12px", color: "#64748B", marginBottom: "12px" }}>
+                {book.category} • <span style={{ fontStyle: "italic" }}>{book.author}</span>
+              </p>
+            </div>
+
+            <div style={{ display: "flex", gap: "8px", marginTop: "12px", paddingTop: "12px", borderTop: "1px solid #F1F5F9" }}>
+              <button
+                onClick={() => {
+                  setSelectedExtraBook(book);
+                  if (profile?.id) recordUserAction(profile.id, "ACCESS_NOTE", {}, supabase);
+                }}
+                style={{
+                  flex: 1,
+                  background: "#0284C7",
+                  color: "#fff",
+                  border: "none",
+                  padding: "8px 12px",
+                  borderRadius: "8px",
+                  fontSize: "12px",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  fontFamily: "inherit"
+                }}
+              >
+                📖 Read Book
+              </button>
+              <a
+                href={book.url}
+                download
+                style={{
+                  background: "#F0F9FF",
+                  color: "#0284C7",
+                  border: "1px solid #BAE6FD",
+                  padding: "8px 12px",
+                  borderRadius: "8px",
+                  fontSize: "12px",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  textAlign: "center"
+                }}
+              >
+                📥 Download
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Extra Book Viewer Modal */}
+      {selectedExtraBook && (
+        <ExtraBookViewerModal
+          book={selectedExtraBook}
+          onClose={() => setSelectedExtraBook(null)}
+        />
+      )}
+    </div>
+  );
+}
+
 function EducatorView({ supabase, profile, onXPUpdate }) {
   const [activeChallenge, setActiveChallenge] = useState(null);
   const [activeTopic, setActiveTopic] = useState(null);
@@ -7146,6 +7643,7 @@ export default function LearningPage() {
       ) : (
         <StudentView supabase={supabase} profile={profile} onXPUpdate={handleXPUpdate} />
       )}
+      <ExtraBooksSection profile={profile} supabase={supabase} />
     </AppShell>
   );
 }
