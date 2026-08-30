@@ -6889,15 +6889,7 @@ function ChallengeModal({ challengeKey, onClose, supabase, profile, onXPUpdate }
 function StudentView({ supabase, profile, onXPUpdate }) {
   const [activeChallenge, setActiveChallenge] = useState(null);
   const [activeTopic, setActiveTopic] = useState(null);
-  const [extraBookSearch, setExtraBookSearch] = useState("");
-  const [selectedExtraBook, setSelectedExtraBook] = useState(null);
   const isResearcher = profile?.role === "researcher";
-
-  const filteredExtraBooks = EXTRA_BOOKS.filter(b =>
-    b.title.toLowerCase().includes(extraBookSearch.toLowerCase()) ||
-    b.category.toLowerCase().includes(extraBookSearch.toLowerCase()) ||
-    b.author.toLowerCase().includes(extraBookSearch.toLowerCase())
-  );
 
   return (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "24px" }}>
@@ -6983,123 +6975,6 @@ function StudentView({ supabase, profile, onXPUpdate }) {
             </div>
           ))}
         </div>
-
-        {/* 📚 Extra Books & Reference Library Section */}
-        <div style={{ marginTop: "36px", marginBottom: "28px" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
-            <div>
-              <h2 style={{ fontSize: "18px", fontWeight: 800, color: "#102A30", margin: 0 }}>
-                📚 Extra Books & Reference Library
-              </h2>
-              <p style={{ fontSize: "13px", color: "#64748B", marginTop: "2px", margin: 0 }}>
-                Animal Cell Culture, Tissue Engineering & Microbiology Textbooks
-              </p>
-            </div>
-            <span style={{ fontSize: "12px", fontWeight: 700, color: "#0284C7", background: "#E0F2FE", padding: "4px 12px", borderRadius: "100px" }}>
-              {EXTRA_BOOKS.length} Volumes Available
-            </span>
-          </div>
-
-          {/* Search Bar */}
-          <div style={{ marginBottom: "16px" }}>
-            <input
-              type="text"
-              placeholder="🔍 Search extra books by title, author, or category..."
-              value={extraBookSearch}
-              onChange={(e) => setExtraBookSearch(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "12px 18px",
-                borderRadius: "12px",
-                border: "1px solid #CBD5E1",
-                fontSize: "14px",
-                outline: "none",
-                background: "#fff",
-                fontFamily: "inherit"
-              }}
-            />
-          </div>
-
-          {/* Grid of Extra Books */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "16px" }}>
-            {filteredExtraBooks.map((book) => (
-              <div
-                key={book.id}
-                style={{
-                  background: "#fff",
-                  borderRadius: "16px",
-                  border: "1px solid #E2EEF0",
-                  padding: "18px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  transition: "all 0.25s ease",
-                  boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
-                }}
-              >
-                <div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "10px" }}>
-                    <span style={{ fontSize: "28px" }}>📚</span>
-                    <div style={{ display: "flex", gap: "6px" }}>
-                      <span style={{ fontSize: "10px", fontWeight: 800, background: book.format === "PDF" ? "#DCFCE7" : "#FFE4E6", color: book.format === "PDF" ? "#166534" : "#9F1239", padding: "3px 8px", borderRadius: "6px", textTransform: "uppercase" }}>
-                        {book.format}
-                      </span>
-                      <span style={{ fontSize: "10px", fontWeight: 700, background: "#F1F5F9", color: "#475569", padding: "3px 8px", borderRadius: "6px" }}>
-                        {book.size}
-                      </span>
-                    </div>
-                  </div>
-                  <h3 style={{ fontSize: "14px", fontWeight: 700, color: "#1B2B3A", marginBottom: "6px", lineHeight: "1.3" }}>
-                    {book.title}
-                  </h3>
-                  <p style={{ fontSize: "12px", color: "#64748B", marginBottom: "12px" }}>
-                    {book.category} • <span style={{ fontStyle: "italic" }}>{book.author}</span>
-                  </p>
-                </div>
-
-                <div style={{ display: "flex", gap: "8px", marginTop: "12px", paddingTop: "12px", borderTop: "1px solid #F1F5F9" }}>
-                  <button
-                    onClick={() => {
-                      setSelectedExtraBook(book);
-                      if (profile?.id) recordUserAction(profile.id, "ACCESS_NOTE", {}, supabase);
-                    }}
-                    style={{
-                      flex: 1,
-                      background: "#0284C7",
-                      color: "#fff",
-                      border: "none",
-                      padding: "8px 12px",
-                      borderRadius: "8px",
-                      fontSize: "12px",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      fontFamily: "inherit"
-                    }}
-                  >
-                    📖 Read Book
-                  </button>
-                  <a
-                    href={book.url}
-                    download
-                    style={{
-                      background: "#F0F9FF",
-                      color: "#0284C7",
-                      border: "1px solid #BAE6FD",
-                      padding: "8px 12px",
-                      borderRadius: "8px",
-                      fontSize: "12px",
-                      fontWeight: 700,
-                      textDecoration: "none",
-                      textAlign: "center"
-                    }}
-                  >
-                    📥 Download
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* RIGHT SIDEBAR — LiveStudentWidgets */}
@@ -7126,14 +7001,6 @@ function StudentView({ supabase, profile, onXPUpdate }) {
           supabase={supabase}
           profile={profile}
           onXPUpdate={onXPUpdate}
-        />
-      )}
-
-      {/* Extra Book Viewer Modal */}
-      {selectedExtraBook && (
-        <ExtraBookViewerModal
-          book={selectedExtraBook}
-          onClose={() => setSelectedExtraBook(null)}
         />
       )}
     </div>
