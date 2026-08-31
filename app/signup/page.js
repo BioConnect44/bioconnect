@@ -123,7 +123,25 @@ export default function SignupPage() {
             <input value={form.email} onChange={e => setForm({...form, email: e.target.value})} type="email" placeholder="Email Address" required style={S.input}/>
             <div style={{ position: "relative" }}>
               <input value={form.password} onChange={e => setForm({...form, password: e.target.value})} type={showPw ? "text" : "password"} placeholder="Password" required minLength={8} style={S.input}/>
-              <button type="button" onClick={() => setShowPw(!showPw)} style={S.eyeBtn}>{showPw ? "🙈" : "👁"}</button>
+              <button
+                type="button"
+                onClick={() => setShowPw(!showPw)}
+                aria-label={showPw ? "Hide password" : "Show password"}
+                title={showPw ? "Hide password" : "Show password"}
+                style={S.eyeBtn}
+              >
+                {showPw ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D9488" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                  </svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                )}
+              </button>
             </div>
             <div style={{ position: "relative" }}>
               <select value={form.role} onChange={e => setForm({...form, role: e.target.value})} style={{ ...S.input, color: form.role ? "#1B2B3A" : "#9CA3AF", appearance: "none" }}>
@@ -165,6 +183,6 @@ const S = {
   input: { width: "100%", padding: "12px 16px", border: "1.5px solid #E2EEF0", borderRadius: "10px", fontSize: "14px", fontFamily: "inherit", outline: "none", color: "#1B2B3A", background: "#fff" },
   btn: { width: "100%", padding: "13px", background: "#132D35", color: "#fff", border: "none", borderRadius: "10px", fontSize: "15px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" },
   googleBtn: { width: "100%", padding: "12px", background: "#fff", color: "#1B2B3A", border: "1.5px solid #E2EEF0", borderRadius: "10px", fontSize: "14px", fontWeight: 500, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" },
-  eyeBtn: { position: "absolute", right: "14px", top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: "16px" },
+  eyeBtn: { position: "absolute", right: "14px", top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", padding: "4px", display: "flex", alignItems: "center", justifyContent: "center" },
   err: { width: "100%", background: "#FEF2F2", border: "1px solid #FECACA", color: "#DC2626", padding: "10px 14px", borderRadius: "10px", fontSize: "13px", marginBottom: "8px" },
 };
