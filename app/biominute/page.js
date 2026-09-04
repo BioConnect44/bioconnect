@@ -90,18 +90,14 @@ export default function BioMinutePage() {
   const TRUSTED_BIOTECH_IMAGES = [
     "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=1200&q=80",
     "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&q=80",
-    "https://images.unsplash.com/photo-1507668077129-56e32842fceb?w=1200&q=80",
-    "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=1200&q=80",
     "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&q=80",
+    "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=1200&q=80",
     "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80",
-    "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80",
-    "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80",
-    "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80",
-    "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&q=80"
+    "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=1200&q=80"
   ];
 
   function getCleanImageUrl(url) {
-    if (!url || typeof url !== "string") {
+    if (!url || typeof url !== "string" || url.includes("photo-1507668077129")) {
       return TRUSTED_BIOTECH_IMAGES[0];
     }
     if (url.startsWith("http://") || url.startsWith("https://")) {
@@ -168,7 +164,7 @@ export default function BioMinutePage() {
               </div>
 
               <p style={{ fontSize: "12px", color: "#14B8A6", fontWeight: 700, marginBottom: "10px", letterSpacing: "0.04em" }}>
-                {art.category || "BIOTECH BREAKTHROUGHS"} • {art.categoryDate}
+                BIOTECH NEWS • {art.categoryDate}
               </p>
               <h2 style={{ fontSize: "24px", fontWeight: 800, color: "#1B2B3A", lineHeight: "1.35", marginBottom: "20px" }}>
                 {cleanText(art.title)}

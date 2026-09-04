@@ -30,38 +30,38 @@ function decodeEntities(str) {
     .trim();
 }
 
-// Vibrant, High-Resolution Scientific Biotech Photography Collection
-const VIBRANT_BIOTECH_IMAGES = [
-  "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=1200&q=80", // 3D Glowing DNA Double Helix
-  "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&q=80", // Fluorescent Cellular Bio-Assay
-  "https://images.unsplash.com/photo-1507668077129-56e32842fceb?w=1200&q=80", // Computational AI Protein Structure
-  "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=1200&q=80", // Microalgae Photobioreactor Culture
-  "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&q=80", // Fluorescent Laser Microscopy
-  "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80"  // Single-Cell Genomics Assay
+// 100% Genuine Biological, DNA, Microscopy & Genomics Photography (No Lightbulbs)
+const REAL_BIOTECH_IMAGES = [
+  "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=1200&q=80", // Glowing 3D DNA Double Helix
+  "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&q=80", // Fluorescent Bio-Assay Petri Dish
+  "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&q=80", // Laser Fluorescent Microscopy
+  "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=1200&q=80", // Green Microalgae Bioreactor Culture
+  "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80", // Cell Biology Microscope Slide
+  "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=1200&q=80"  // 3D Genomic Molecular Structure
 ];
 
-function getVibrantBiotechImage(title = "", dateObj = new Date()) {
+function getRealBiotechImage(title = "", dateObj = new Date()) {
   const lower = (title || "").toLowerCase();
 
   if (lower.includes("spirulina") || lower.includes("algae") || lower.includes("biofuel") || lower.includes("plant") || lower.includes("crop") || lower.includes("environment")) {
-    return VIBRANT_BIOTECH_IMAGES[3]; // Microalgae culture
+    return REAL_BIOTECH_IMAGES[3]; // Microalgae culture
   }
   if (lower.includes("crispr") || lower.includes("gene") || lower.includes("dna") || lower.includes("genome") || lower.includes("editing") || lower.includes("fossil")) {
-    return VIBRANT_BIOTECH_IMAGES[0]; // DNA Helix
+    return REAL_BIOTECH_IMAGES[0]; // DNA Helix
   }
-  if (lower.includes("ai") || lower.includes("protein") || lower.includes("computational") || lower.includes("algorithm") || lower.includes("predict")) {
-    return VIBRANT_BIOTECH_IMAGES[2]; // AI 3D Protein
+  if (lower.includes("ai") || lower.includes("protein") || lower.includes("computational") || lower.includes("algorithm") || lower.includes("predict") || lower.includes("structure")) {
+    return REAL_BIOTECH_IMAGES[5]; // 3D Genomic Structure
   }
   if (lower.includes("cancer") || lower.includes("drug") || lower.includes("therapy") || lower.includes("tumor") || lower.includes("immune") || lower.includes("antibody")) {
-    return VIBRANT_BIOTECH_IMAGES[4]; // Laser Microscopy
+    return REAL_BIOTECH_IMAGES[2]; // Laser Microscopy
   }
   if (lower.includes("microb") || lower.includes("bacteri") || lower.includes("culture") || lower.includes("enzyme") || lower.includes("mutation")) {
-    return VIBRANT_BIOTECH_IMAGES[1]; // Fluorescent Bio-Assay
+    return REAL_BIOTECH_IMAGES[1]; // Fluorescent Bio-Assay
   }
 
   const charCodeSum = (title || "").split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const index = Math.abs(charCodeSum) % VIBRANT_BIOTECH_IMAGES.length;
-  return VIBRANT_BIOTECH_IMAGES[index];
+  const index = Math.abs(charCodeSum) % REAL_BIOTECH_IMAGES.length;
+  return REAL_BIOTECH_IMAGES[index];
 }
 
 // Generate Detailed, Comprehensive Scientific 60-Second Summaries (5 bullet points)
@@ -225,8 +225,8 @@ export async function GET() {
           day: "numeric"
         }).toUpperCase();
 
-        // Extract media image or fallback to vibrant biotech photography
-        const image = (mediaMatch && mediaMatch[1]) ? mediaMatch[1] : getVibrantBiotechImage(title, parsedDate);
+        // Extract media image or fallback to real DNA/biology photography
+        const image = (mediaMatch && mediaMatch[1]) ? mediaMatch[1] : getRealBiotechImage(title, parsedDate);
         const summary = generateExpandedDetailedSummary(title, cleanDesc);
         const quiz = generateQuiz(title, cleanDesc);
         const body = cleanDesc.length > 600 ? cleanDesc.substring(0, 600) + "..." : cleanDesc;
@@ -239,7 +239,7 @@ export async function GET() {
           fullSourceName: source.name,
           date: dateStr,
           readTime: "2 min read",
-          category: source.name.toUpperCase(),
+          category: "BIOTECH NEWS",
           categoryDate: shortDateStr,
           impact: "🔴 High Impact Discovery",
           summary,
@@ -250,7 +250,6 @@ export async function GET() {
       }
 
       if (parsedArticles.length > 0) {
-        // Automatic Midnight Rotation: Index shifts deterministically every single calendar day
         const todayIndex = daySeed % parsedArticles.length;
         const todayArticle = parsedArticles[todayIndex];
 
@@ -323,7 +322,7 @@ export async function GET() {
               day: "numeric"
             }).toUpperCase();
 
-            const image = getVibrantBiotechImage(title, dateObj);
+            const image = getRealBiotechImage(title, dateObj);
             const summary = generateExpandedDetailedSummary(title, item.source || "");
             const quiz = generateQuiz(title, item.source || "");
 
@@ -335,7 +334,7 @@ export async function GET() {
               fullSourceName: "NCBI PubMed Journal",
               date: dateStr,
               readTime: "2 min read",
-              category: "NCBI PUBMED RESEARCH",
+              category: "BIOTECH NEWS",
               categoryDate: shortDateStr,
               impact: "🔴 High Impact NCBI Study",
               summary,
@@ -395,7 +394,7 @@ export async function GET() {
   const CURATED_TOPICS = [
     {
       title: "Sustainable Spirulina Photobioreactor Engineering Yields Bioactive Vitamin B12",
-      category: "SYNTHETIC BIOLOGY",
+      category: "BIOTECH NEWS",
       summary: [
         { text: "The Innovation: Sustainable Spirulina Photobioreactor Engineering Yields Bioactive Vitamin B12. Researchers produced a form of Spirulina containing active vitamin B12 at levels comparable to beef." },
         { text: "Scientific Mechanism: By controlling spectrum-specific LED light wavelengths during cultivation, researchers stimulated targeted metabolic pathways in Arthrospira platensis." },
@@ -404,7 +403,7 @@ export async function GET() {
         { text: "Broader Impact: Enables carbon-neutral microalgae farming that lowers the environmental footprint of essential nutrient synthesis." }
       ],
       body: "Researchers have achieved a major breakthrough in microalgae biotechnology by producing a bio-active strain of Spirulina containing functional vitamin B12 at levels comparable to beef. By controlling light spectrums and nutrient flow, they solved the long-standing pseudo-B12 absorption problem.",
-      image: VIBRANT_BIOTECH_IMAGES[3],
+      image: REAL_BIOTECH_IMAGES[3],
       quiz: {
         question: "What microalgae strain was engineered to yield active Vitamin B12?",
         options: ["Spirulina (Arthrospira platensis)", "Baker's Yeast", "E. coli"],
@@ -414,7 +413,7 @@ export async function GET() {
     },
     {
       title: "AI-Powered Protein Folding Models Accelerate Enzyme Engineering for Biodegradable Plastics",
-      category: "SYNTHETIC BIOLOGY",
+      category: "BIOTECH NEWS",
       summary: [
         { text: "The Innovation: AI-Powered Protein Folding Models Accelerate Enzyme Engineering for Biodegradable Plastics." },
         { text: "Scientific Mechanism: Employs generative deep learning algorithms to predict tertiary enzyme structures and catalytic binding site stability." },
@@ -423,7 +422,7 @@ export async function GET() {
         { text: "Broader Impact: Establishes a scalable framework for circular biomanufacturing and industrial plastic waste bio-recycling." }
       ],
       body: "Researchers have achieved a breakthrough by combining generative AI protein design with high-throughput laboratory screening. The newly engineered enzyme displays 10x higher catalytic efficiency against synthetic polymers, enabling rapid bio-recycling without requiring high energy inputs.",
-      image: VIBRANT_BIOTECH_IMAGES[2],
+      image: REAL_BIOTECH_IMAGES[5],
       quiz: {
         question: "What material does the AI-engineered enzyme target for rapid degradation?",
         options: ["Post-Consumer Synthetic Plastics (PET)", "Cellulosic Timber", "Silicate Glass"],
