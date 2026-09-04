@@ -144,14 +144,17 @@ export default function ExtraBooksSection({ customBooks }) {
             {selectedFolder && (
               <>
                 <span style={{ color: "#94A3B8", fontSize: "14px" }}>/</span>
-                <span style={{ fontSize: "14px", fontWeight: 800, color: "#102A30" }}>
-                  📁 {selectedFolder}
+                <span style={{ fontSize: "14px", fontWeight: 800, color: "#102A30", display: "inline-flex", alignItems: "center", gap: "5px" }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#102A30" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  {selectedFolder}
                 </span>
               </>
             )}
           </div>
           <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#102A30", margin: "4px 0 0", letterSpacing: "-0.01em" }}>
-            {selectedFolder ? `Folder: ${selectedFolder}` : "Extra Books Library 📁"}
+            {selectedFolder ? `Folder: ${selectedFolder}` : "Extra Books Library"}
           </h2>
           <p style={{ fontSize: "13px", color: "#64748B", marginTop: "4px", margin: 0 }}>
             {selectedFolder
@@ -236,8 +239,10 @@ export default function ExtraBooksSection({ customBooks }) {
 
                 <div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px" }}>
-                    <div style={{ background: "#E0F2FE", color: "#0369A1", width: "54px", height: "54px", borderRadius: "14px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "28px" }}>
-                      📁
+                    <div style={{ background: "#E0F2FE", color: "#0369A1", width: "54px", height: "54px", borderRadius: "14px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0369A1" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                      </svg>
                     </div>
                     <span style={{ fontSize: "12px", fontWeight: 800, background: "#102A30", color: "#ffffff", padding: "5px 12px", borderRadius: "100px" }}>
                       {folderBooks.length} Books
@@ -258,8 +263,8 @@ export default function ExtraBooksSection({ customBooks }) {
                     Formats: {formats}
                   </span>
 
-                  <span style={{ fontSize: "13px", fontWeight: 700, color: "#102A30", display: "inline-flex", alignItems: "center", gap: "4px" }}>
-                    Open Folder 📂 →
+                  <span style={{ fontSize: "13px", fontWeight: 700, color: "#102A30", display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                    Open Folder →
                   </span>
                 </div>
               </div>
@@ -327,8 +332,11 @@ export default function ExtraBooksSection({ customBooks }) {
                         {book.title}
                       </h3>
 
-                      <p style={{ fontSize: "12px", color: "#64748B", marginBottom: "14px", margin: 0 }}>
-                        📁 {book.category} • <span style={{ fontStyle: "italic" }}>{book.author || "Reference"}</span>
+                      <p style={{ fontSize: "12px", color: "#64748B", marginBottom: "14px", margin: 0, display: "flex", alignItems: "center", gap: "4px" }}>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        {book.category} • <span style={{ fontStyle: "italic" }}>{book.author || "Reference"}</span>
                       </p>
                     </div>
 
