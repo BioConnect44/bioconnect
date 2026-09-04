@@ -109,7 +109,7 @@ export default function BioMinutePage() {
       {loading || !art ? (
         <div style={{ padding: "60px 0", textAlign: "center", color: "#6B8A9A", fontFamily: "'Poppins', sans-serif" }}>
           <div style={{ fontSize: "32px", marginBottom: "16px", animation: "spin 1.5s linear infinite", display: "inline-block" }}>⏱</div>
-          <p style={{ fontSize: "15px", fontWeight: 600, color: "#1B2B3A" }}>Fetching today&apos;s news from Biotecnika...</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#1B2B3A" }}>Fetching today&apos;s top biotech breakthroughs...</p>
           <p style={{ fontSize: "13px", color: "#6B8A9A" }}>Auto-updating daily biotech breakthroughs</p>
           <style>{`
             @keyframes spin {
@@ -160,7 +160,7 @@ export default function BioMinutePage() {
               </div>
 
               <p style={{ fontSize: "12px", color: "#14B8A6", fontWeight: 700, marginBottom: "10px", letterSpacing: "0.04em" }}>
-                {art.category || "BIOTECNIKA NEWS"} • {art.categoryDate}
+                {art.category || "BIOTECH BREAKTHROUGHS"} • {art.categoryDate}
               </p>
               <h2 style={{ fontSize: "24px", fontWeight: 800, color: "#1B2B3A", lineHeight: "1.35", marginBottom: "20px" }}>
                 {cleanText(art.title)}
@@ -225,7 +225,7 @@ export default function BioMinutePage() {
                   onMouseEnter={(e) => { e.currentTarget.style.background = "#E0F2FE"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.background = "#F0FCFB"; }}
                 >
-                  <span>Read Full News Story on Biotecnika</span>
+                  <span>Read Full Story on {art.sourceName || "Source"}</span>
                   <span>↗</span>
                 </a>
               )}

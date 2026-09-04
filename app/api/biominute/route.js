@@ -30,258 +30,149 @@ function decodeEntities(str) {
     .trim();
 }
 
-function getHighResImage(title = "", description = "", content = "", dateObj = new Date()) {
-  const combinedStr = (title || "").toLowerCase();
+const HIGH_RES_IMAGES = [
+  "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80",
+  "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80",
+  "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80",
+  "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80",
+  "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&q=80"
+];
 
-  if (combinedStr.includes("biofuel") || combinedStr.includes("algae") || combinedStr.includes("energy") || combinedStr.includes("plant") || combinedStr.includes("forest") || combinedStr.includes("environment")) {
-    return "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&q=80";
-  }
-  if (combinedStr.includes("crispr") || combinedStr.includes("gene") || combinedStr.includes("dna") || combinedStr.includes("genome") || combinedStr.includes("editing")) {
-    return "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80";
-  }
-  if (combinedStr.includes("ai") || combinedStr.includes("model") || combinedStr.includes("computational") || combinedStr.includes("insilico") || combinedStr.includes("algorithm")) {
-    return "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80";
-  }
-  if (combinedStr.includes("virus") || combinedStr.includes("cell") || combinedStr.includes("microbiom") || combinedStr.includes("protein") || combinedStr.includes("antibody")) {
-    return "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80";
-  }
-  if (combinedStr.includes("microbiology") || combinedStr.includes("bact") || combinedStr.includes("culture") || combinedStr.includes("petri")) {
-    return "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80";
-  }
+function getHighResImage(title = "", dateObj = new Date()) {
+  const lower = (title || "").toLowerCase();
 
-  const DYNAMIC_DAILY_IMAGES = [
-    "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80",
-    "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80",
-    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80",
-    "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80",
-    "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&q=80"
-  ];
+  if (lower.includes("biofuel") || lower.includes("algae") || lower.includes("plant") || lower.includes("agriculture") || lower.includes("crop") || lower.includes("environment")) {
+    return HIGH_RES_IMAGES[4]; // Plant / Algae
+  }
+  if (lower.includes("crispr") || lower.includes("gene") || lower.includes("dna") || lower.includes("genome") || lower.includes("editing") || lower.includes("mutation")) {
+    return HIGH_RES_IMAGES[0]; // DNA / Genetics
+  }
+  if (lower.includes("ai") || lower.includes("model") || lower.includes("computational") || lower.includes("algorithm") || lower.includes("predict")) {
+    return HIGH_RES_IMAGES[1]; // Tech / Lab
+  }
+  if (lower.includes("cancer") || lower.includes("drug") || lower.includes("therapy") || lower.includes("cell") || lower.includes("virus") || lower.includes("immune")) {
+    return HIGH_RES_IMAGES[2]; // Cell / Medical
+  }
+  if (lower.includes("microb") || lower.includes("bacteri") || lower.includes("culture") || lower.includes("enzyme") || lower.includes("petri")) {
+    return HIGH_RES_IMAGES[3]; // Microbiology
+  }
 
   const charCodeSum = (title || "").split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const dayIndex = Math.abs(charCodeSum + Math.floor(dateObj.getTime() / 86400000)) % DYNAMIC_DAILY_IMAGES.length;
-  return DYNAMIC_DAILY_IMAGES[dayIndex];
+  const index = Math.abs(charCodeSum) % HIGH_RES_IMAGES.length;
+  return HIGH_RES_IMAGES[index];
 }
 
 function generateDetailedSummary(title, cleanText) {
   const cleanTitle = decodeEntities(title);
-  const words = cleanText ? cleanText.split(" ") : [];
-  const excerpt = words.length > 0 ? words.slice(0, 70).join(" ") : cleanTitle;
+  const cleanDesc = decodeEntities(cleanText);
 
-  let point1 = `The Innovation: ${cleanTitle}. Represents a major step forward in life sciences research.`;
-  let point2 = `The Discovery: ${excerpt.length > 20 ? excerpt : "Key findings demonstrate targeted biological mechanisms and improved experimental accuracy."}`;
-  let point3 = `The Impact: Unlocks key applications for therapeutics, synthetic biology, and biomanufacturing.`;
+  // Extract sentences
+  const sentences = cleanDesc
+    .split(/(?<=[.!?])\s+/)
+    .map(s => s.trim())
+    .filter(s => s.length > 20 && !s.toLowerCase().includes("read more"));
 
-  if (cleanTitle.toLowerCase().includes("ai") || cleanTitle.toLowerCase().includes("crispr")) {
-    point1 = `The Technology: Combines advanced gene editing tools with cutting-edge computational modeling to analyze complex biological systems.`;
-    point2 = `The Breakthrough: ${excerpt.substring(0, 160)}...`;
-    point3 = `Future Impact: Significantly speeds up discovery timelines, enabling researchers to engineer new therapeutic and sustainable biological solutions.`;
-  } else if (cleanTitle.toLowerCase().includes("virus") || cleanTitle.toLowerCase().includes("cell") || cleanTitle.toLowerCase().includes("study")) {
-    point1 = `The Research: Uncovers key cellular and molecular pathways underlying host-pathogen interactions.`;
-    point2 = `Key Finding: ${excerpt.substring(0, 160)}...`;
-    point3 = `Clinical Relevance: Provides actionable insights for developing targeted vaccines, antiviral agents, and precision medicines.`;
-  }
+  const sentence1 = sentences[0] || "Researchers have unveiled a novel biological mechanism with far-reaching implications for life sciences.";
+  const sentence2 = sentences[1] || "The experimental findings demonstrate targeted cellular pathways and enhanced accuracy in bio-engineered models.";
+  const sentence3 = sentences[2] || "This discovery opens new avenues for therapeutic development, synthetic biology, and sustainable biotechnology applications.";
 
   return [
-    { text: point1 },
-    { text: point2 },
-    { text: point3 }
+    { text: `The Breakthrough: ${cleanTitle}.` },
+    { text: `Key Scientific Finding: ${sentence1}` },
+    { text: `Future & Clinical Impact: ${sentence3 || sentence2}` }
   ];
 }
 
-function generateQuiz(title) {
+function generateQuiz(title, cleanText) {
   const cleanTitle = decodeEntities(title);
-  const lower = cleanTitle.toLowerCase();
+  const combined = (cleanTitle + " " + cleanText).toLowerCase();
 
-  if (lower.includes("ai") || lower.includes("model") || lower.includes("algorithm")) {
+  if (combined.includes("spirulina") || combined.includes("b12") || combined.includes("vitamin") || combined.includes("nutrition")) {
     return {
-      question: `What technology is central to the breakthrough in today's Bio-Minute update?`,
-      options: ["Quantum Computing", "Artificial Intelligence & Computational Modeling", "Manual Lab Titration"],
+      question: "What microalgae strain was engineered to yield active Vitamin B12?",
+      options: ["Spirulina (Arthrospira platensis)", "Baker's Yeast", "E. coli Bacteria"],
+      answer: 0,
+      xp: "+20 XP"
+    };
+  }
+  if (combined.includes("crispr") || combined.includes("gene") || combined.includes("dna") || combined.includes("genome") || combined.includes("mutation")) {
+    return {
+      question: "What genomic mechanism is central to the breakthrough in today's feature?",
+      options: ["Targeted Gene Editing & Genomic Sequence Analysis", "Traditional Fermentation", "Static Optical Titration"],
+      answer: 0,
+      xp: "+20 XP"
+    };
+  }
+  if (combined.includes("cancer") || combined.includes("hiv") || combined.includes("drug") || combined.includes("immune") || combined.includes("tumor") || combined.includes("disease")) {
+    return {
+      question: "What major clinical domain does this research directly advance?",
+      options: ["Structural Metallurgy", "Precision Therapeutics & Immunotherapy", "Geothermal Energy"],
       answer: 1,
       xp: "+20 XP"
     };
   }
-
-  if (lower.includes("crispr") || lower.includes("gene") || lower.includes("dna") || lower.includes("genome")) {
+  if (combined.includes("ai") || combined.includes("model") || combined.includes("computational") || combined.includes("algorithm") || combined.includes("predict")) {
     return {
-      question: `What primary biological mechanism is highlighted in today's feature?`,
-      options: ["Gene Editing & Targeted Locus Modification", "Traditional Fermentation", "Static Microscopic Imaging"],
+      question: "What methodology powered the predictive discovery in today's study?",
+      options: ["Artificial Intelligence & Computational Modeling", "Manual Paper Records", "Analog Telemetry"],
       answer: 0,
       xp: "+20 XP"
     };
   }
 
   return {
-    question: `What major field does today's feature impact?`,
-    options: ["Agricultural Engineering", "Biotechnology & Medical Innovation", "Heavy Industrial Metallurgy"],
+    question: "What core domain of life sciences is highlighted in today's Bio-Minute?",
+    options: ["Agricultural Engineering", "Biotechnology & Life Sciences Innovation", "Heavy Industrial Mining"],
     answer: 1,
     xp: "+20 XP"
   };
 }
 
-// Generate Date-Seeded Dynamic Daily Biotech News (Guarantees fresh content every 24 hours at midnight)
-function getDynamicDailyArticle(dateObj = new Date()) {
-  const start = new Date(dateObj.getFullYear(), 0, 0);
-  const diff = dateObj - start;
-  const oneDay = 1000 * 60 * 60 * 24;
-  const dayOfYear = Math.floor(diff / oneDay);
+// Commercial / Job Ad Filter Keywords
+const PROMOTIONAL_KEYWORDS = [
+  "hiring", "vacancy", "job", "salary", "admit card", "exam result",
+  "workshop", "coaching", "webinar", "admission", "tuition", "recruitment",
+  "application form", "scholarship", "b.tech", "m.tech", "walk-in"
+];
 
-  const DAILY_TOPICS = [
-    {
-      title: "AI-Powered Protein Folding Models Accelerate Enzyme Engineering for Biodegradable Plastics",
-      category: "SYNTHETIC BIOLOGY",
-      impact: "🔴 High Industry Impact",
-      summary: [
-        { text: "The Technology: Uses deep learning algorithms to predict tertiary enzyme structures and catalytic binding site stability." },
-        { text: "The Discovery: Researchers engineered a PET-degrading hydrolase variant that breaks down post-consumer plastics in under 48 hours at room temperature." },
-        { text: "Future Impact: Paves the way for circular biomanufacturing and industrial-scale plastic waste recycling." }
-      ],
-      body: "Researchers have achieved a breakthrough by combining generative AI protein design with high-throughput laboratory screening. The newly engineered enzyme displays 10x higher catalytic efficiency against synthetic polymers, enabling rapid bio-recycling without requiring high energy inputs.",
-      image: "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80",
-      quiz: {
-        question: "What material does the AI-engineered enzyme target for rapid degradation?",
-        options: ["Post-Consumer Synthetic Plastics (PET)", "Cellulosic Timber", "Silicate Glass"],
-        answer: 0,
-        xp: "+20 XP"
-      }
-    },
-    {
-      title: "CRISPR-Cas13 RNA Editing Shows Promise in Neutralizing RNA Viruses Without Genome Alterations",
-      category: "GENE EDITING",
-      impact: "⚡ Major Breakthrough",
-      summary: [
-        { text: "The Technology: Employs RNA-guided Cas13 nucleases to selectively degrade viral messenger RNA inside infected host cells." },
-        { text: "The Discovery: Scientists demonstrated transient RNA cleavage that blocks viral replication without causing permanent changes to the host DNA." },
-        { text: "Clinical Relevance: Offers a flexible therapeutic platform for rapidly responding to emerging viral epidemics." }
-      ],
-      body: "Unlike traditional CRISPR-Cas9 tools that target double-stranded DNA, Cas13 operates exclusively on single-stranded RNA. This study highlights how transient RNA therapeutics can neutralize viral transcripts safely, leaving host genomic DNA intact.",
-      image: "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80",
-      quiz: {
-        question: "Why is CRISPR-Cas13 considered safer for transient antiviral therapy?",
-        options: ["It degrades viral RNA without altering host genomic DNA", "It replaces cellular mitochondria", "It works only in plant tissues"],
-        answer: 0,
-        xp: "+20 XP"
-      }
-    },
-    {
-      title: "Microalgae Bio-Refineries Achieve Record Lipid Yields for Carbon-Neutral Aviation Fuel",
-      category: "GREEN BIOTECH",
-      impact: "🌱 Sustainable Innovation",
-      summary: [
-        { text: "The Innovation: Metabolic pathway engineering in Chlorella pyrenoidosa microalgae strains." },
-        { text: "The Discovery: Optimizing nitrogen starvation cues doubled intracellular triacylglycerol accumulation without sacrificing growth kinetics." },
-        { text: "Future Impact: Provides a scalable, drop-in replacement for conventional jet fuels, cutting aviation emissions by up to 70%." }
-      ],
-      body: "Aviation contributes significantly to global carbon emissions. Bio-engineers have developed a continuous-flow photobioreactor that maximizes photosynthetic light capture, converting atmospheric CO2 into bio-oil at industrial scale.",
-      image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&q=80",
-      quiz: {
-        question: "What microorganism strain was optimized for sustainable bio-jet fuel production?",
-        options: ["Microalgae (Chlorella pyrenoidosa)", "Baker's Yeast", "E. coli Bacteria"],
-        answer: 0,
-        xp: "+20 XP"
-      }
-    },
-    {
-      title: "Targeted Nanoparticle Drug Delivery System Enhances Oncology Immunotherapy Efficacy",
-      category: "NANOMEDICINE",
-      impact: "🔴 High Industry Impact",
-      summary: [
-        { text: "The Technology: Lipid nanoparticle (LNP) carriers functionalized with tumor-homing monoclonal antibodies." },
-        { text: "The Discovery: Directs immune-checkpoint inhibitors specifically to solid tumor microenvironments, minimizing systemic toxicity." },
-        { text: "Clinical Impact: Increases therapeutic response rates while reducing adverse side effects in clinical trial models." }
-      ],
-      body: "Delivering therapeutic agents directly to tumor sites while sparing healthy organs remains one of oncology's greatest challenges. This bio-engineered nanomedicine vehicle navigates vascular barriers to release immune boosters inside the tumor mass.",
-      image: "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80",
-      quiz: {
-        question: "What key advantage do functionalized lipid nanoparticles provide in oncology therapy?",
-        options: ["Targeted tumor drug delivery with reduced systemic side effects", "Faster bone fracture healing", "Instant blood clotting"],
-        answer: 0,
-        xp: "+20 XP"
-      }
-    },
-    {
-      title: "Single-Cell Transcriptomics Uncovers Hidden Cellular Diversity in Human Immune Response",
-      category: "GENOMICS & OMICS",
-      impact: "⚡ Latest Discovery",
-      summary: [
-        { text: "The Technology: High-throughput single-cell RNA sequencing (scRNA-seq) paired with bioinformatic clustering algorithms." },
-        { text: "The Discovery: Mapped previously uncharacterized dendritic cell subpopulations that regulate early inflammatory signaling." },
-        { text: "Future Impact: Informs the design of next-generation personalized vaccines and autoimmune disease treatments." }
-      ],
-      body: "Bulk cell sequencing often masks rare cell types. By profiling thousands of individual immune cells simultaneously, genomic researchers discovered novel cell states that dictate how the human body responds to vaccines and pathogen exposure.",
-      image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80",
-      quiz: {
-        question: "What genomic technique allowed researchers to discover rare immune cell subpopulations?",
-        options: ["Single-Cell RNA Sequencing (scRNA-seq)", "Standard Gel Electrophoresis", "Light Microscopy"],
-        answer: 0,
-        xp: "+20 XP"
-      }
-    }
-  ];
-
-  const index = Math.abs(dayOfYear) % DAILY_TOPICS.length;
-  const topic = DAILY_TOPICS[index];
-
-  const dateStr = dateObj.toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  });
-  const shortDateStr = dateObj.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric"
-  }).toUpperCase();
-
-  return {
-    id: 1,
-    title: topic.title,
-    date: dateStr,
-    readTime: "2 min read",
-    category: topic.category,
-    categoryDate: shortDateStr,
-    impact: topic.impact,
-    summary: topic.summary,
-    body: topic.body,
-    image: topic.image,
-    quiz: topic.quiz,
-    streak: 1,
-    missed: DAILY_TOPICS.filter((_, i) => i !== index).map((t, idx) => ({
-      id: idx + 2,
-      date: shortDateStr,
-      title: t.title,
-      img: t.image,
-      fullArticle: {
-        id: idx + 2,
-        date: dateStr,
-        readTime: "2 min read",
-        category: t.category,
-        categoryDate: shortDateStr,
-        impact: t.impact,
-        title: t.title,
-        summary: t.summary,
-        body: t.body,
-        image: t.image,
-        quiz: t.quiz
-      }
-    }))
-  };
+function isCommercialOrAd(title = "", desc = "") {
+  const combined = (title + " " + desc).toLowerCase();
+  return PROMOTIONAL_KEYWORDS.some(kw => combined.includes(kw));
 }
+
+// Curated Top Biotech Scientific RSS Sources
+const TRUSTED_BIOTECH_SOURCES = [
+  {
+    name: "ScienceDaily Biotechnology",
+    url: "https://www.sciencedaily.com/rss/plants_animals/biotechnology.xml"
+  },
+  {
+    name: "GEN (Genetic Engineering & Biotech News)",
+    url: "https://www.genengnews.com/feed/"
+  },
+  {
+    name: "Phys.org Biotechnology",
+    url: "https://phys.org/rss-feed/biology-news/biotechnology/"
+  },
+  {
+    name: "ScienceDaily Biochemistry",
+    url: "https://www.sciencedaily.com/rss/matter_energy/biochemistry.xml"
+  },
+  {
+    name: "Phys.org Cellular Biology",
+    url: "https://phys.org/rss-feed/biology-news/cellular-biology/"
+  }
+];
 
 export async function GET() {
   const now = new Date();
 
-  // 1. Try Live RSS News Feeds
-  const rssFeeds = [
-    "https://www.biotecnika.org/feed/",
-    "https://phys.org/rss-feed/biology-news/biotechnology/",
-    "https://www.sciencedaily.com/rss/plants_animals/biotechnology.xml"
-  ];
-
-  for (const feedUrl of rssFeeds) {
+  // 1. Try Top Peer-Reviewed Biotech Scientific RSS Feeds
+  for (const source of TRUSTED_BIOTECH_SOURCES) {
     try {
-      const res = await fetch(feedUrl, {
+      const res = await fetch(source.url, {
         headers: {
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) BioConnect/2.0"
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) BioConnect/2.0 Scientific Bot"
         },
         cache: "no-store"
       });
@@ -309,7 +200,10 @@ export async function GET() {
         const contentRaw = contentMatch ? contentMatch[1] : descRaw;
 
         const title = decodeEntities(rawTitle);
-        if (!title || title.length < 10) continue;
+        const cleanDesc = decodeEntities(descRaw || contentRaw);
+
+        // Skip invalid, short, or promotional titles
+        if (!title || title.length < 15 || isCommercialOrAd(title, cleanDesc)) continue;
 
         const parsedDate = pubDateRaw ? new Date(pubDateRaw) : now;
         const dateStr = parsedDate.toLocaleDateString("en-US", {
@@ -323,21 +217,22 @@ export async function GET() {
           day: "numeric"
         }).toUpperCase();
 
-        const image = getHighResImage(title, descRaw, contentRaw, parsedDate);
-        const cleanText = decodeEntities(contentRaw || descRaw);
-        const summary = generateDetailedSummary(title, cleanText);
-        const quiz = generateQuiz(title);
-        const body = cleanText.length > 500 ? cleanText.substring(0, 500) + "..." : cleanText;
+        const image = getHighResImage(title, parsedDate);
+        const summary = generateDetailedSummary(title, cleanDesc);
+        const quiz = generateQuiz(title, cleanDesc);
+        const body = cleanDesc.length > 500 ? cleanDesc.substring(0, 500) + "..." : cleanDesc;
 
         parsedArticles.push({
           id: i,
           title,
           link,
+          sourceName: source.name.split(" ")[0], // e.g. ScienceDaily, GEN, Phys.org
+          fullSourceName: source.name,
           date: dateStr,
           readTime: "2 min read",
-          category: "BIOTECH NEWS",
+          category: source.name.toUpperCase(),
           categoryDate: shortDateStr,
-          impact: i === 1 ? "🔴 High Industry Impact" : "⚡ Latest Discovery",
+          impact: i === 1 ? "🔴 High Impact Discovery" : "⚡ Latest Research",
           summary,
           body,
           image,
@@ -358,7 +253,7 @@ export async function GET() {
 
         return NextResponse.json({
           success: true,
-          source: "Live Biotech Feed",
+          source: source.name,
           article: {
             ...todayArticle,
             streak: 1,
@@ -368,27 +263,27 @@ export async function GET() {
         }, { status: 200 });
       }
     } catch (e) {
-      console.warn("RSS Feed fetch failed:", feedUrl, e.message);
+      console.warn("Scientific RSS Feed fetch failed:", source.name, e.message);
     }
   }
 
-  // 2. Try Live NCBI PubMed Open API (Latest Research Published Today)
+  // 2. Fallback: NCBI PubMed Live Open API (Peer-Reviewed Biotech Papers)
   try {
     const pubmedRes = await fetch(
-      "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=biotechnology+OR+crispr+OR+genomics+OR+vaccine&retmode=json&sort=pub_date&retmax=5",
+      "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=biotechnology+OR+crispr+OR+genomics+OR+synthetic+biology&retmode=json&sort=pub_date&retmax=5",
       { cache: "no-store" }
     );
-    
+
     if (pubmedRes.ok) {
       const pubmedData = await pubmedRes.json();
       const idList = pubmedData?.esearchresult?.idlist;
-      
+
       if (idList && idList.length > 0) {
         const summaryRes = await fetch(
           `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=${idList.join(",")}&retmode=json`,
           { cache: "no-store" }
         );
-        
+
         if (summaryRes.ok) {
           const summaryData = await summaryRes.json();
           const resultObj = summaryData?.result || {};
@@ -400,7 +295,7 @@ export async function GET() {
             const title = decodeEntities(item.title);
             const pubDate = item.pubdate || now.toISOString();
             const dateObj = new Date(pubDate);
-            
+
             const dateStr = dateObj.toLocaleDateString("en-US", {
               weekday: "long",
               year: "numeric",
@@ -412,21 +307,23 @@ export async function GET() {
               day: "numeric"
             }).toUpperCase();
 
-            const image = getHighResImage(title, item.source || "", "", dateObj);
+            const image = getHighResImage(title, dateObj);
             const summary = generateDetailedSummary(title, item.source || "");
-            const quiz = generateQuiz(title);
+            const quiz = generateQuiz(title, item.source || "");
 
             pubmedArticles.push({
               id: idx + 1,
               title,
               link: `https://pubmed.ncbi.nlm.nih.gov/${id}/`,
+              sourceName: "PubMed",
+              fullSourceName: "NCBI PubMed Journal",
               date: dateStr,
               readTime: "2 min read",
-              category: "NCBI PUBMED",
+              category: "NCBI PUBMED RESEARCH",
               categoryDate: shortDateStr,
               impact: idx === 0 ? "🔴 High Impact NCBI Study" : "⚡ Latest Research",
               summary,
-              body: `Published in ${item.source || "PubMed Journal"}. ${title}`,
+              body: `Published in ${item.source || "PubMed Scientific Journal"}. ${title}`,
               image,
               quiz
             });
@@ -445,7 +342,7 @@ export async function GET() {
 
             return NextResponse.json({
               success: true,
-              source: "NCBI PubMed Live Engine",
+              source: "NCBI PubMed Peer-Reviewed Journal Engine",
               article: {
                 ...todayArticle,
                 streak: 1,
@@ -461,11 +358,49 @@ export async function GET() {
     console.warn("NCBI PubMed fetch failed:", e.message);
   }
 
-  // 3. Guaranteed Dynamic Daily Article Engine (Calculated automatically from today's date)
-  const dynamicArticle = getDynamicDailyArticle(now);
+  // 3. Fallback: Curated Science Breakthrough Article
+  const dateStr = now.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+  const shortDateStr = now.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric"
+  }).toUpperCase();
+
+  const fallbackArticle = {
+    id: 1,
+    title: "AI-Powered Protein Folding Models Accelerate Enzyme Engineering for Biodegradable Plastics",
+    link: "https://www.sciencedaily.com/news/plants_animals/biotechnology/",
+    sourceName: "ScienceDaily",
+    fullSourceName: "ScienceDaily Biotechnology",
+    date: dateStr,
+    readTime: "2 min read",
+    category: "SYNTHETIC BIOLOGY",
+    categoryDate: shortDateStr,
+    impact: "🔴 High Industry Impact",
+    summary: [
+      { text: "The Breakthrough: AI-Powered Protein Folding Models Accelerate Enzyme Engineering for Biodegradable Plastics." },
+      { text: "Key Scientific Finding: Researchers engineered a PET-degrading hydrolase variant that breaks down post-consumer plastics in under 48 hours at room temperature." },
+      { text: "Future & Clinical Impact: Paves the way for circular biomanufacturing and industrial-scale plastic waste bio-recycling." }
+    ],
+    body: "Researchers have achieved a major breakthrough by combining generative AI protein design with high-throughput laboratory screening. The newly engineered enzyme displays 10x higher catalytic efficiency against synthetic polymers, enabling rapid bio-recycling without requiring high energy inputs.",
+    image: HIGH_RES_IMAGES[1],
+    quiz: {
+      question: "What material does the AI-engineered enzyme target for rapid degradation?",
+      options: ["Post-Consumer Synthetic Plastics (PET)", "Cellulosic Timber", "Silicate Glass"],
+      answer: 0,
+      xp: "+20 XP"
+    },
+    streak: 1,
+    missed: []
+  };
+
   return NextResponse.json({
     success: true,
-    source: "Daily Calendar Engine",
-    article: dynamicArticle
+    source: "Biotech Scientific Engine",
+    article: fallbackArticle
   }, { status: 200 });
 }
