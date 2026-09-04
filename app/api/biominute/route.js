@@ -42,19 +42,19 @@ function getHighResImage(title = "", dateObj = new Date()) {
   const lower = (title || "").toLowerCase();
 
   if (lower.includes("biofuel") || lower.includes("algae") || lower.includes("plant") || lower.includes("agriculture") || lower.includes("crop") || lower.includes("environment")) {
-    return HIGH_RES_IMAGES[4]; // Plant / Algae
+    return HIGH_RES_IMAGES[4];
   }
   if (lower.includes("crispr") || lower.includes("gene") || lower.includes("dna") || lower.includes("genome") || lower.includes("editing") || lower.includes("mutation")) {
-    return HIGH_RES_IMAGES[0]; // DNA / Genetics
+    return HIGH_RES_IMAGES[0];
   }
   if (lower.includes("ai") || lower.includes("model") || lower.includes("computational") || lower.includes("algorithm") || lower.includes("predict")) {
-    return HIGH_RES_IMAGES[1]; // Tech / Lab
+    return HIGH_RES_IMAGES[1];
   }
   if (lower.includes("cancer") || lower.includes("drug") || lower.includes("therapy") || lower.includes("cell") || lower.includes("virus") || lower.includes("immune")) {
-    return HIGH_RES_IMAGES[2]; // Cell / Medical
+    return HIGH_RES_IMAGES[2];
   }
   if (lower.includes("microb") || lower.includes("bacteri") || lower.includes("culture") || lower.includes("enzyme") || lower.includes("petri")) {
-    return HIGH_RES_IMAGES[3]; // Microbiology
+    return HIGH_RES_IMAGES[3];
   }
 
   const charCodeSum = (title || "").split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
@@ -66,7 +66,6 @@ function generateDetailedSummary(title, cleanText) {
   const cleanTitle = decodeEntities(title);
   const cleanDesc = decodeEntities(cleanText);
 
-  // Extract sentences
   const sentences = cleanDesc
     .split(/(?<=[.!?])\s+/)
     .map(s => s.trim())
@@ -140,7 +139,6 @@ function isCommercialOrAd(title = "", desc = "") {
   return PROMOTIONAL_KEYWORDS.some(kw => combined.includes(kw));
 }
 
-// Curated Top Biotech Scientific RSS Sources
 const TRUSTED_BIOTECH_SOURCES = [
   {
     name: "ScienceDaily Biotechnology",
@@ -166,6 +164,10 @@ const TRUSTED_BIOTECH_SOURCES = [
 
 export async function GET() {
   const now = new Date();
+
+  // Calculate day-based integer seed for automatic daily rotation at 00:00 midnight
+  const dateIsoStr = now.toISOString().split("T")[0]; // "YYYY-MM-DD"
+  const daySeed = dateIsoStr.split("-").reduce((acc, val) => acc + parseInt(val, 10), 0);
 
   // 1. Try Top Peer-Reviewed Biotech Scientific RSS Feeds
   for (const source of TRUSTED_BIOTECH_SOURCES) {
@@ -202,7 +204,6 @@ export async function GET() {
         const title = decodeEntities(rawTitle);
         const cleanDesc = decodeEntities(descRaw || contentRaw);
 
-        // Skip invalid, short, or promotional titles
         if (!title || title.length < 15 || isCommercialOrAd(title, cleanDesc)) continue;
 
         const parsedDate = pubDateRaw ? new Date(pubDateRaw) : now;
@@ -226,13 +227,13 @@ export async function GET() {
           id: i,
           title,
           link,
-          sourceName: source.name.split(" ")[0], // e.g. ScienceDaily, GEN, Phys.org
+          sourceName: source.name.split(" ")[0],
           fullSourceName: source.name,
           date: dateStr,
           readTime: "2 min read",
           category: source.name.toUpperCase(),
           categoryDate: shortDateStr,
-          impact: i === 1 ? "🔴 High Impact Discovery" : "⚡ Latest Research",
+          impact: "🔴 High Impact Discovery",
           summary,
           body,
           image,
@@ -241,19 +242,26 @@ export async function GET() {
       }
 
       if (parsedArticles.length > 0) {
-        const todayArticle = parsedArticles[0];
-        const missedArticles = parsedArticles.slice(1, 6).map((art) => ({
-          id: art.id,
-          date: art.categoryDate,
-          title: art.title,
-          img: art.image,
-          link: art.link,
-          fullArticle: art
-        }));
+        // Automatic Midnight Rotation: Index shifts deterministically every single calendar day
+        const todayIndex = daySeed % parsedArticles.length;
+        const todayArticle = parsedArticles[todayIndex];
+
+        const missedArticles = parsedArticles
+          .filter((_, idx) => idx !== todayIndex)
+          .slice(0, 5)
+          .map((art) => ({
+            id: art.id,
+            date: art.categoryDate,
+            title: art.title,
+            img: art.image,
+            link: art.link,
+            fullArticle: art
+          }));
 
         return NextResponse.json({
           success: true,
           source: source.name,
+          rotation: `Auto-updated for ${dateIsoStr}`,
           article: {
             ...todayArticle,
             streak: 1,
@@ -267,10 +275,10 @@ export async function GET() {
     }
   }
 
-  // 2. Fallback: NCBI PubMed Live Open API (Peer-Reviewed Biotech Papers)
+  // 2. Fallback: NCBI PubMed Live Open API
   try {
     const pubmedRes = await fetch(
-      "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=biotechnology+OR+crispr+OR+genomics+OR+synthetic+biology&retmode=json&sort=pub_date&retmax=5",
+      "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=biotechnology+OR+crispr+OR+genomics+OR+synthetic+biology&retmode=json&sort=pub_date&retmax=10",
       { cache: "no-store" }
     );
 
@@ -321,7 +329,7 @@ export async function GET() {
               readTime: "2 min read",
               category: "NCBI PUBMED RESEARCH",
               categoryDate: shortDateStr,
-              impact: idx === 0 ? "🔴 High Impact NCBI Study" : "⚡ Latest Research",
+              impact: "🔴 High Impact NCBI Study",
               summary,
               body: `Published in ${item.source || "PubMed Scientific Journal"}. ${title}`,
               image,
@@ -330,19 +338,25 @@ export async function GET() {
           });
 
           if (pubmedArticles.length > 0) {
-            const todayArticle = pubmedArticles[0];
-            const missedArticles = pubmedArticles.slice(1).map((art) => ({
-              id: art.id,
-              date: art.categoryDate,
-              title: art.title,
-              img: art.image,
-              link: art.link,
-              fullArticle: art
-            }));
+            const todayIndex = daySeed % pubmedArticles.length;
+            const todayArticle = pubmedArticles[todayIndex];
+
+            const missedArticles = pubmedArticles
+              .filter((_, idx) => idx !== todayIndex)
+              .slice(0, 5)
+              .map((art) => ({
+                id: art.id,
+                date: art.categoryDate,
+                title: art.title,
+                img: art.image,
+                link: art.link,
+                fullArticle: art
+              }));
 
             return NextResponse.json({
               success: true,
               source: "NCBI PubMed Peer-Reviewed Journal Engine",
+              rotation: `Auto-updated for ${dateIsoStr}`,
               article: {
                 ...todayArticle,
                 streak: 1,
@@ -358,7 +372,7 @@ export async function GET() {
     console.warn("NCBI PubMed fetch failed:", e.message);
   }
 
-  // 3. Fallback: Curated Science Breakthrough Article
+  // 3. Fallback: Curated Daily Rotating Science Breakthroughs
   const dateStr = now.toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
@@ -370,37 +384,84 @@ export async function GET() {
     day: "numeric"
   }).toUpperCase();
 
-  const fallbackArticle = {
-    id: 1,
-    title: "AI-Powered Protein Folding Models Accelerate Enzyme Engineering for Biodegradable Plastics",
-    link: "https://www.sciencedaily.com/news/plants_animals/biotechnology/",
-    sourceName: "ScienceDaily",
-    fullSourceName: "ScienceDaily Biotechnology",
-    date: dateStr,
-    readTime: "2 min read",
-    category: "SYNTHETIC BIOLOGY",
-    categoryDate: shortDateStr,
-    impact: "🔴 High Industry Impact",
-    summary: [
-      { text: "The Breakthrough: AI-Powered Protein Folding Models Accelerate Enzyme Engineering for Biodegradable Plastics." },
-      { text: "Key Scientific Finding: Researchers engineered a PET-degrading hydrolase variant that breaks down post-consumer plastics in under 48 hours at room temperature." },
-      { text: "Future & Clinical Impact: Paves the way for circular biomanufacturing and industrial-scale plastic waste bio-recycling." }
-    ],
-    body: "Researchers have achieved a major breakthrough by combining generative AI protein design with high-throughput laboratory screening. The newly engineered enzyme displays 10x higher catalytic efficiency against synthetic polymers, enabling rapid bio-recycling without requiring high energy inputs.",
-    image: HIGH_RES_IMAGES[1],
-    quiz: {
-      question: "What material does the AI-engineered enzyme target for rapid degradation?",
-      options: ["Post-Consumer Synthetic Plastics (PET)", "Cellulosic Timber", "Silicate Glass"],
-      answer: 0,
-      xp: "+20 XP"
+  const CURATED_TOPICS = [
+    {
+      title: "AI-Powered Protein Folding Models Accelerate Enzyme Engineering for Biodegradable Plastics",
+      category: "SYNTHETIC BIOLOGY",
+      summary: [
+        { text: "The Breakthrough: AI-Powered Protein Folding Models Accelerate Enzyme Engineering for Biodegradable Plastics." },
+        { text: "Key Scientific Finding: Researchers engineered a PET-degrading hydrolase variant that breaks down post-consumer plastics in under 48 hours at room temperature." },
+        { text: "Future & Clinical Impact: Paves the way for circular biomanufacturing and industrial-scale plastic waste bio-recycling." }
+      ],
+      body: "Researchers have achieved a major breakthrough by combining generative AI protein design with high-throughput laboratory screening. The newly engineered enzyme displays 10x higher catalytic efficiency against synthetic polymers.",
+      image: HIGH_RES_IMAGES[1],
+      quiz: {
+        question: "What material does the AI-engineered enzyme target for rapid degradation?",
+        options: ["Post-Consumer Synthetic Plastics (PET)", "Cellulosic Timber", "Silicate Glass"],
+        answer: 0,
+        xp: "+20 XP"
+      }
     },
-    streak: 1,
-    missed: []
-  };
+    {
+      title: "CRISPR-Cas13 RNA Editing Neutralizes Pathogenic Viruses Without Genomic DNA Alteration",
+      category: "GENE EDITING",
+      summary: [
+        { text: "The Breakthrough: CRISPR-Cas13 RNA Editing Neutralizes Pathogenic Viruses Without Genomic DNA Alteration." },
+        { text: "Key Scientific Finding: Uses transient RNA-guided Cas13 nucleases to selectively degrade viral transcripts inside infected cells." },
+        { text: "Future & Clinical Impact: Offers a versatile antiviral platform that operates without causing permanent host genome modifications." }
+      ],
+      body: "Unlike traditional CRISPR-Cas9 systems that modify double-stranded DNA, Cas13 acts exclusively on single-stranded RNA transcripts, opening a novel therapeutic window for acute viral interventions.",
+      image: HIGH_RES_IMAGES[0],
+      quiz: {
+        question: "Why is CRISPR-Cas13 considered safer for transient antiviral therapeutics?",
+        options: ["It degrades viral RNA without altering host DNA", "It replaces cellular mitochondria", "It functions only in plants"],
+        answer: 0,
+        xp: "+20 XP"
+      }
+    },
+    {
+      title: "Microalgae Bio-Refineries Achieve Record Lipid Yields for Carbon-Neutral Jet Fuels",
+      category: "GREEN BIOTECH",
+      summary: [
+        { text: "The Breakthrough: Microalgae Bio-Refineries Achieve Record Lipid Yields for Carbon-Neutral Jet Fuels." },
+        { text: "Key Scientific Finding: Metabolic pathway engineering in Chlorella microalgae doubled intracellular triacylglycerol accumulation." },
+        { text: "Future & Clinical Impact: Provides a scalable drop-in replacement for conventional aviation fuels, reducing greenhouse gas emissions." }
+      ],
+      body: "Bio-engineers have developed continuous-flow photobioreactors that maximize photosynthetic efficiency, transforming atmospheric CO2 into bio-oil at commercial scale.",
+      image: HIGH_RES_IMAGES[4],
+      quiz: {
+        question: "What organism strain was engineered for sustainable bio-jet fuel production?",
+        options: ["Microalgae (Chlorella pyrenoidosa)", "Baker's Yeast", "E. coli"],
+        answer: 0,
+        xp: "+20 XP"
+      }
+    }
+  ];
+
+  const fallbackIndex = daySeed % CURATED_TOPICS.length;
+  const topic = CURATED_TOPICS[fallbackIndex];
 
   return NextResponse.json({
     success: true,
     source: "Biotech Scientific Engine",
-    article: fallbackArticle
+    rotation: `Auto-updated for ${dateIsoStr}`,
+    article: {
+      id: 1,
+      title: topic.title,
+      link: "https://www.sciencedaily.com/news/plants_animals/biotechnology/",
+      sourceName: "ScienceDaily",
+      fullSourceName: "ScienceDaily Biotechnology",
+      date: dateStr,
+      readTime: "2 min read",
+      category: topic.category,
+      categoryDate: shortDateStr,
+      impact: "🔴 High Impact Discovery",
+      summary: topic.summary,
+      body: topic.body,
+      image: topic.image,
+      quiz: topic.quiz,
+      streak: 1,
+      missed: []
+    }
   }, { status: 200 });
 }
