@@ -40,23 +40,23 @@ const REAL_BIOTECH_IMAGES = [
   "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=1200&q=80"  // 3D Genomic Molecular Structure
 ];
 
-function getRealBiotechImage(title = "", dateObj = new Date()) {
+function getRealBiotechImage(title = "") {
   const lower = (title || "").toLowerCase();
 
   if (lower.includes("spirulina") || lower.includes("algae") || lower.includes("biofuel") || lower.includes("plant") || lower.includes("crop") || lower.includes("environment")) {
-    return REAL_BIOTECH_IMAGES[3]; // Microalgae culture
+    return REAL_BIOTECH_IMAGES[3];
   }
   if (lower.includes("crispr") || lower.includes("gene") || lower.includes("dna") || lower.includes("genome") || lower.includes("editing") || lower.includes("fossil")) {
-    return REAL_BIOTECH_IMAGES[0]; // DNA Helix
+    return REAL_BIOTECH_IMAGES[0];
   }
   if (lower.includes("ai") || lower.includes("protein") || lower.includes("computational") || lower.includes("algorithm") || lower.includes("predict") || lower.includes("structure")) {
-    return REAL_BIOTECH_IMAGES[5]; // 3D Genomic Structure
+    return REAL_BIOTECH_IMAGES[5];
   }
   if (lower.includes("cancer") || lower.includes("drug") || lower.includes("therapy") || lower.includes("tumor") || lower.includes("immune") || lower.includes("antibody")) {
-    return REAL_BIOTECH_IMAGES[2]; // Laser Microscopy
+    return REAL_BIOTECH_IMAGES[2];
   }
   if (lower.includes("microb") || lower.includes("bacteri") || lower.includes("culture") || lower.includes("enzyme") || lower.includes("mutation")) {
-    return REAL_BIOTECH_IMAGES[1]; // Fluorescent Bio-Assay
+    return REAL_BIOTECH_IMAGES[1];
   }
 
   const charCodeSum = (title || "").split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
@@ -171,7 +171,19 @@ const TRUSTED_BIOTECH_SOURCES = [
 export async function GET() {
   const now = new Date();
 
-  // Calculate day-based integer seed for automatic daily rotation at 00:00 midnight
+  // Actual Real-Time Today Date Strings
+  const actualTodayDateStr = now.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  }); // e.g. "Friday, September 4, 2026"
+
+  const actualTodayShortStr = now.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric"
+  }).toUpperCase(); // e.g. "SEP 4"
+
   const dateIsoStr = now.toISOString().split("T")[0]; // "YYYY-MM-DD"
   const daySeed = dateIsoStr.split("-").reduce((acc, val) => acc + parseInt(val, 10), 0);
 
@@ -197,14 +209,12 @@ export async function GET() {
         const block = itemBlocks[i];
         const titleMatch = block.match(/<title>(.*?)<\/title>/s);
         const linkMatch = block.match(/<link>(.*?)<\/link>/s);
-        const pubDateMatch = block.match(/<pubDate>(.*?)<\/pubDate>/s);
         const descMatch = block.match(/<description>(.*?)<\/description>/s);
         const contentMatch = block.match(/<content:encoded>(.*?)<\/content:encoded>/s);
         const mediaMatch = block.match(/url=["']?(https?:\/\/[^"'\s>]+?\.(?:jpg|jpeg|png|webp))["']?/i);
 
         const rawTitle = titleMatch ? titleMatch[1] : "";
         const link = linkMatch ? linkMatch[1] : "";
-        const pubDateRaw = pubDateMatch ? pubDateMatch[1] : "";
         const descRaw = descMatch ? descMatch[1] : "";
         const contentRaw = contentMatch ? contentMatch[1] : descRaw;
 
@@ -213,20 +223,7 @@ export async function GET() {
 
         if (!title || title.length < 15 || isCommercialOrAd(title, cleanDesc)) continue;
 
-        const parsedDate = pubDateRaw ? new Date(pubDateRaw) : now;
-        const dateStr = parsedDate.toLocaleDateString("en-US", {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric"
-        });
-        const shortDateStr = parsedDate.toLocaleDateString("en-US", {
-          month: "short",
-          day: "numeric"
-        }).toUpperCase();
-
-        // Extract media image or fallback to real DNA/biology photography
-        const image = (mediaMatch && mediaMatch[1]) ? mediaMatch[1] : getRealBiotechImage(title, parsedDate);
+        const image = (mediaMatch && mediaMatch[1]) ? mediaMatch[1] : getRealBiotechImage(title);
         const summary = generateExpandedDetailedSummary(title, cleanDesc);
         const quiz = generateQuiz(title, cleanDesc);
         const body = cleanDesc.length > 600 ? cleanDesc.substring(0, 600) + "..." : cleanDesc;
@@ -237,10 +234,10 @@ export async function GET() {
           link,
           sourceName: source.name.split(" ")[0],
           fullSourceName: source.name,
-          date: dateStr,
+          date: actualTodayDateStr,
           readTime: "2 min read",
           category: "BIOTECH NEWS",
-          categoryDate: shortDateStr,
+          categoryDate: actualTodayShortStr,
           impact: "🔴 High Impact Discovery",
           summary,
           body,
@@ -251,19 +248,41 @@ export async function GET() {
 
       if (parsedArticles.length > 0) {
         const todayIndex = daySeed % parsedArticles.length;
-        const todayArticle = parsedArticles[todayIndex];
+        const todayArticle = {
+          ...parsedArticles[todayIndex],
+          date: actualTodayDateStr,
+          categoryDate: actualTodayShortStr
+        };
 
         const missedArticles = parsedArticles
           .filter((_, idx) => idx !== todayIndex)
           .slice(0, 5)
-          .map((art) => ({
-            id: art.id,
-            date: art.categoryDate,
-            title: art.title,
-            img: art.image,
-            link: art.link,
-            fullArticle: art
-          }));
+          .map((art, idx) => {
+            const pastDate = new Date(now.getTime() - (idx + 1) * 24 * 60 * 60 * 1000);
+            const pastShortDateStr = pastDate.toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric"
+            }).toUpperCase();
+            const pastFullDateStr = pastDate.toLocaleDateString("en-US", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+            });
+
+            return {
+              id: art.id,
+              date: pastShortDateStr,
+              title: art.title,
+              img: art.image,
+              link: art.link,
+              fullArticle: {
+                ...art,
+                date: pastFullDateStr,
+                categoryDate: pastShortDateStr
+              }
+            };
+          });
 
         return NextResponse.json({
           success: true,
@@ -308,21 +327,7 @@ export async function GET() {
             const item = resultObj[id];
             if (!item || !item.title) return;
             const title = decodeEntities(item.title);
-            const pubDate = item.pubdate || now.toISOString();
-            const dateObj = new Date(pubDate);
-
-            const dateStr = dateObj.toLocaleDateString("en-US", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric"
-            });
-            const shortDateStr = dateObj.toLocaleDateString("en-US", {
-              month: "short",
-              day: "numeric"
-            }).toUpperCase();
-
-            const image = getRealBiotechImage(title, dateObj);
+            const image = getRealBiotechImage(title);
             const summary = generateExpandedDetailedSummary(title, item.source || "");
             const quiz = generateQuiz(title, item.source || "");
 
@@ -332,10 +337,10 @@ export async function GET() {
               link: `https://pubmed.ncbi.nlm.nih.gov/${id}/`,
               sourceName: "PubMed",
               fullSourceName: "NCBI PubMed Journal",
-              date: dateStr,
+              date: actualTodayDateStr,
               readTime: "2 min read",
               category: "BIOTECH NEWS",
-              categoryDate: shortDateStr,
+              categoryDate: actualTodayShortStr,
               impact: "🔴 High Impact NCBI Study",
               summary,
               body: `Published in ${item.source || "PubMed Scientific Journal"}. ${title}`,
@@ -346,19 +351,41 @@ export async function GET() {
 
           if (pubmedArticles.length > 0) {
             const todayIndex = daySeed % pubmedArticles.length;
-            const todayArticle = pubmedArticles[todayIndex];
+            const todayArticle = {
+              ...pubmedArticles[todayIndex],
+              date: actualTodayDateStr,
+              categoryDate: actualTodayShortStr
+            };
 
             const missedArticles = pubmedArticles
               .filter((_, idx) => idx !== todayIndex)
               .slice(0, 5)
-              .map((art) => ({
-                id: art.id,
-                date: art.categoryDate,
-                title: art.title,
-                img: art.image,
-                link: art.link,
-                fullArticle: art
-              }));
+              .map((art, idx) => {
+                const pastDate = new Date(now.getTime() - (idx + 1) * 24 * 60 * 60 * 1000);
+                const pastShortDateStr = pastDate.toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric"
+                }).toUpperCase();
+                const pastFullDateStr = pastDate.toLocaleDateString("en-US", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric"
+                });
+
+                return {
+                  id: art.id,
+                  date: pastShortDateStr,
+                  title: art.title,
+                  img: art.image,
+                  link: art.link,
+                  fullArticle: {
+                    ...art,
+                    date: pastFullDateStr,
+                    categoryDate: pastShortDateStr
+                  }
+                };
+              });
 
             return NextResponse.json({
               success: true,
@@ -380,17 +407,6 @@ export async function GET() {
   }
 
   // 3. Fallback: Curated Daily Rotating Science Breakthroughs
-  const dateStr = now.toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  });
-  const shortDateStr = now.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric"
-  }).toUpperCase();
-
   const CURATED_TOPICS = [
     {
       title: "Sustainable Spirulina Photobioreactor Engineering Yields Bioactive Vitamin B12",
@@ -445,10 +461,10 @@ export async function GET() {
       link: "https://www.sciencedaily.com/news/plants_animals/biotechnology/",
       sourceName: "ScienceDaily",
       fullSourceName: "ScienceDaily Biotechnology",
-      date: dateStr,
+      date: actualTodayDateStr,
       readTime: "2 min read",
       category: topic.category,
-      categoryDate: shortDateStr,
+      categoryDate: actualTodayShortStr,
       impact: "🔴 High Impact Discovery",
       summary: topic.summary,
       body: topic.body,
