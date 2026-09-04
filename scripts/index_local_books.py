@@ -4,6 +4,7 @@ import argparse
 import shutil
 import json
 import re
+import math
 from pathlib import Path
 
 # Configure UTF-8 encoding for standard output on Windows
@@ -16,7 +17,7 @@ except ImportError:
     pypdf = None
 
 SUPPORTED_EXTENSIONS = {'.pdf', '.epub', '.docx', '.pptx', '.djvu'}
-MAX_FILE_SIZE_BYTES = 90 * 1024 * 1024  # 90 MB limit per individual file for safe git pushing
+MAX_FILE_SIZE_BYTES = 15 * 1024 * 1024  # 15 MB limit per volume for instant 5-second uploads
 
 def slugify(text):
     text = text.lower()
@@ -78,7 +79,7 @@ def process_and_index_folder(source_folder, category_name):
             print(f"[Large PDF] {filename} ({format_file_size(file_size)}). Splitting into volume chunks (< 75MB)...")
             reader = pypdf.PdfReader(str(file_item))
             total_pages = len(reader.pages)
-            num_vols = 3 if file_size > 120 * 1024 * 1024 else 2
+            num_vols = max(2, math.ceil(file_size / (12 * 1024 * 1024)))
             pages_per_vol = total_pages // num_vols
 
             for v in range(num_vols):

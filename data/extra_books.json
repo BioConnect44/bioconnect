@@ -231,26 +231,103 @@
     "file_path": "/assets/books/biochemistry/Basic Concepts in Biochemistry.pdf"
   },
   {
-    "id": "biochemistry-5th-ed-jeremy-m-berg-john-l-tymoczko-lubert-stryer-pdf-biochemistry",
-    "title": "Biochemistry 5th ed - Jeremy M Berg, John L Tymoczko, Lubert Stryer",
-    "filename": "Biochemistry 5th ed - Jeremy M. Berg, John L. Tymoczko, Lubert Stryer.pdf",
+    "id": "biochemistry-5th-ed-jeremy-m-berg-john-l-tymoczko-lubert-stryer-vol-1-pdf-biochemistry",
+    "title": "Biochemistry 5th ed - Jeremy M Berg, John L Tymoczko, Lubert Stryer (Vol 1)",
+    "filename": "Biochemistry 5th ed - Jeremy M. Berg, John L. Tymoczko, Lubert Stryer (Vol 1).pdf",
     "format": "PDF",
-    "file_size": "28.6 MB",
-    "bytes": 29944428,
+    "file_size": "8.7 MB",
+    "bytes": 9087846,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Biochemistry 5th ed - Jeremy M. Berg, John L. Tymoczko, Lubert Stryer.pdf"
+    "file_path": "/assets/books/biochemistry/Biochemistry 5th ed - Jeremy M. Berg, John L. Tymoczko, Lubert Stryer (Vol 1).pdf"
   },
   {
-    "id": "biochemistry-of-lipids-lipoproteins-and-membranes-4th-edition-e-vance-j-e-vance-pdf-biochemistry",
-    "title": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - E Vance, J E Vance",
-    "filename": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance.pdf",
+    "id": "biochemistry-5th-ed-jeremy-m-berg-john-l-tymoczko-lubert-stryer-vol-2-pdf-biochemistry",
+    "title": "Biochemistry 5th ed - Jeremy M Berg, John L Tymoczko, Lubert Stryer (Vol 2)",
+    "filename": "Biochemistry 5th ed - Jeremy M. Berg, John L. Tymoczko, Lubert Stryer (Vol 2).pdf",
     "format": "PDF",
-    "file_size": "68.3 MB",
-    "bytes": 71568879,
+    "file_size": "9.4 MB",
+    "bytes": 9884545,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance.pdf"
+    "file_path": "/assets/books/biochemistry/Biochemistry 5th ed - Jeremy M. Berg, John L. Tymoczko, Lubert Stryer (Vol 2).pdf"
+  },
+  {
+    "id": "biochemistry-5th-ed-jeremy-m-berg-john-l-tymoczko-lubert-stryer-vol-3-pdf-biochemistry",
+    "title": "Biochemistry 5th ed - Jeremy M Berg, John L Tymoczko, Lubert Stryer (Vol 3)",
+    "filename": "Biochemistry 5th ed - Jeremy M. Berg, John L. Tymoczko, Lubert Stryer (Vol 3).pdf",
+    "format": "PDF",
+    "file_size": "8.8 MB",
+    "bytes": 9203846,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biochemistry 5th ed - Jeremy M. Berg, John L. Tymoczko, Lubert Stryer (Vol 3).pdf"
+  },
+  {
+    "id": "biochemistry-of-lipids-lipoproteins-and-membranes-4th-edition-e-vance-j-e-vance-vol-1-pdf-biochemistry",
+    "title": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - E Vance, J E Vance (Vol 1)",
+    "filename": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance (Vol 1).pdf",
+    "format": "PDF",
+    "file_size": "13.3 MB",
+    "bytes": 13927587,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance (Vol 1).pdf"
+  },
+  {
+    "id": "biochemistry-of-lipids-lipoproteins-and-membranes-4th-edition-e-vance-j-e-vance-vol-2-pdf-biochemistry",
+    "title": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - E Vance, J E Vance (Vol 2)",
+    "filename": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance (Vol 2).pdf",
+    "format": "PDF",
+    "file_size": "9.6 MB",
+    "bytes": 10040989,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance (Vol 2).pdf"
+  },
+  {
+    "id": "biochemistry-of-lipids-lipoproteins-and-membranes-4th-edition-e-vance-j-e-vance-vol-3-pdf-biochemistry",
+    "title": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - E Vance, J E Vance (Vol 3)",
+    "filename": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance (Vol 3).pdf",
+    "format": "PDF",
+    "file_size": "9.4 MB",
+    "bytes": 9818611,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance (Vol 3).pdf"
+  },
+  {
+    "id": "biochemistry-of-lipids-lipoproteins-and-membranes-4th-edition-e-vance-j-e-vance-vol-4-pdf-biochemistry",
+    "title": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - E Vance, J E Vance (Vol 4)",
+    "filename": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance (Vol 4).pdf",
+    "format": "PDF",
+    "file_size": "12.1 MB",
+    "bytes": 12719547,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance (Vol 4).pdf"
+  },
+  {
+    "id": "biochemistry-of-lipids-lipoproteins-and-membranes-4th-edition-e-vance-j-e-vance-vol-5-pdf-biochemistry",
+    "title": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - E Vance, J E Vance (Vol 5)",
+    "filename": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance (Vol 5).pdf",
+    "format": "PDF",
+    "file_size": "11.9 MB",
+    "bytes": 12474847,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance (Vol 5).pdf"
+  },
+  {
+    "id": "biochemistry-of-lipids-lipoproteins-and-membranes-4th-edition-e-vance-j-e-vance-vol-6-pdf-biochemistry",
+    "title": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - E Vance, J E Vance (Vol 6)",
+    "filename": "Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance (Vol 6).pdf",
+    "format": "PDF",
+    "file_size": "12.1 MB",
+    "bytes": 12661752,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biochemistry of Lipids, Lipoproteins and Membranes, 4th edition - .E. Vance, J.E. Vance (Vol 6).pdf"
   },
   {
     "id": "biochemistry-of-signal-transduction-and-regulation-3d-ed-gerhard-krauss-copy-pdf-biochemistry",
@@ -275,26 +352,92 @@
     "file_path": "/assets/books/biochemistry/Biochemistry of Signal Transduction and Regulation 3d ed - Gerhard Krauss.pdf"
   },
   {
-    "id": "biochemistry-the-chemical-reactions-of-living-cells-2d-ed-vols-1-2-david-e-metzler-pdf-biochemistry",
-    "title": "Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E Metzler",
-    "filename": "Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E. Metzler.pdf",
+    "id": "biochemistry-the-chemical-reactions-of-living-cells-2d-ed-vols-1-2-david-e-metzler-vol-1-pdf-biochemistry",
+    "title": "Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E Metzler (Vol 1)",
+    "filename": "Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E. Metzler (Vol 1).pdf",
     "format": "PDF",
-    "file_size": "60.0 MB",
-    "bytes": 62868638,
+    "file_size": "14.4 MB",
+    "bytes": 15062940,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E. Metzler.pdf"
+    "file_path": "/assets/books/biochemistry/Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E. Metzler (Vol 1).pdf"
   },
   {
-    "id": "biochemistry-stryer-5th-edition-pdf-biochemistry",
-    "title": "Biochemistry-Stryer-5th-Edition",
-    "filename": "Biochemistry-Stryer-5th-Edition.pdf",
+    "id": "biochemistry-the-chemical-reactions-of-living-cells-2d-ed-vols-1-2-david-e-metzler-vol-2-pdf-biochemistry",
+    "title": "Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E Metzler (Vol 2)",
+    "filename": "Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E. Metzler (Vol 2).pdf",
     "format": "PDF",
-    "file_size": "28.5 MB",
-    "bytes": 29902329,
+    "file_size": "10.0 MB",
+    "bytes": 10523170,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Biochemistry-Stryer-5th-Edition.pdf"
+    "file_path": "/assets/books/biochemistry/Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E. Metzler (Vol 2).pdf"
+  },
+  {
+    "id": "biochemistry-the-chemical-reactions-of-living-cells-2d-ed-vols-1-2-david-e-metzler-vol-3-pdf-biochemistry",
+    "title": "Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E Metzler (Vol 3)",
+    "filename": "Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E. Metzler (Vol 3).pdf",
+    "format": "PDF",
+    "file_size": "14.4 MB",
+    "bytes": 15124999,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E. Metzler (Vol 3).pdf"
+  },
+  {
+    "id": "biochemistry-the-chemical-reactions-of-living-cells-2d-ed-vols-1-2-david-e-metzler-vol-4-pdf-biochemistry",
+    "title": "Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E Metzler (Vol 4)",
+    "filename": "Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E. Metzler (Vol 4).pdf",
+    "format": "PDF",
+    "file_size": "9.9 MB",
+    "bytes": 10416108,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E. Metzler (Vol 4).pdf"
+  },
+  {
+    "id": "biochemistry-the-chemical-reactions-of-living-cells-2d-ed-vols-1-2-david-e-metzler-vol-5-pdf-biochemistry",
+    "title": "Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E Metzler (Vol 5)",
+    "filename": "Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E. Metzler (Vol 5).pdf",
+    "format": "PDF",
+    "file_size": "11.4 MB",
+    "bytes": 11966029,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biochemistry The Chemical Reactions Of Living Cells 2d Ed Vols 1&2 - David E. Metzler (Vol 5).pdf"
+  },
+  {
+    "id": "biochemistry-stryer-5th-edition-vol-1-pdf-biochemistry",
+    "title": "Biochemistry-Stryer-5th-Edition (Vol 1)",
+    "filename": "Biochemistry-Stryer-5th-Edition (Vol 1).pdf",
+    "format": "PDF",
+    "file_size": "8.6 MB",
+    "bytes": 9059833,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biochemistry-Stryer-5th-Edition (Vol 1).pdf"
+  },
+  {
+    "id": "biochemistry-stryer-5th-edition-vol-2-pdf-biochemistry",
+    "title": "Biochemistry-Stryer-5th-Edition (Vol 2)",
+    "filename": "Biochemistry-Stryer-5th-Edition (Vol 2).pdf",
+    "format": "PDF",
+    "file_size": "9.4 MB",
+    "bytes": 9842346,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biochemistry-Stryer-5th-Edition (Vol 2).pdf"
+  },
+  {
+    "id": "biochemistry-stryer-5th-edition-vol-3-pdf-biochemistry",
+    "title": "Biochemistry-Stryer-5th-Edition (Vol 3)",
+    "filename": "Biochemistry-Stryer-5th-Edition (Vol 3).pdf",
+    "format": "PDF",
+    "file_size": "8.8 MB",
+    "bytes": 9246078,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biochemistry-Stryer-5th-Edition (Vol 3).pdf"
   },
   {
     "id": "biochemistry-pdf-biochemistry",
@@ -308,15 +451,59 @@
     "file_path": "/assets/books/biochemistry/Biochemistry.pdf"
   },
   {
-    "id": "biology-6th-ed-raven-johnson-pdf-biochemistry",
-    "title": "Biology 6th ed - Raven Johnson",
-    "filename": "Biology 6th ed - Raven Johnson.pdf",
+    "id": "biology-6th-ed-raven-johnson-vol-1-pdf-biochemistry",
+    "title": "Biology 6th ed - Raven Johnson (Vol 1)",
+    "filename": "Biology 6th ed - Raven Johnson (Vol 1).pdf",
     "format": "PDF",
-    "file_size": "54.0 MB",
-    "bytes": 56673260,
+    "file_size": "10.5 MB",
+    "bytes": 11040873,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Biology 6th ed - Raven Johnson.pdf"
+    "file_path": "/assets/books/biochemistry/Biology 6th ed - Raven Johnson (Vol 1).pdf"
+  },
+  {
+    "id": "biology-6th-ed-raven-johnson-vol-2-pdf-biochemistry",
+    "title": "Biology 6th ed - Raven Johnson (Vol 2)",
+    "filename": "Biology 6th ed - Raven Johnson (Vol 2).pdf",
+    "format": "PDF",
+    "file_size": "14.4 MB",
+    "bytes": 15112935,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biology 6th ed - Raven Johnson (Vol 2).pdf"
+  },
+  {
+    "id": "biology-6th-ed-raven-johnson-vol-3-pdf-biochemistry",
+    "title": "Biology 6th ed - Raven Johnson (Vol 3)",
+    "filename": "Biology 6th ed - Raven Johnson (Vol 3).pdf",
+    "format": "PDF",
+    "file_size": "11.0 MB",
+    "bytes": 11555541,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biology 6th ed - Raven Johnson (Vol 3).pdf"
+  },
+  {
+    "id": "biology-6th-ed-raven-johnson-vol-4-pdf-biochemistry",
+    "title": "Biology 6th ed - Raven Johnson (Vol 4)",
+    "filename": "Biology 6th ed - Raven Johnson (Vol 4).pdf",
+    "format": "PDF",
+    "file_size": "7.7 MB",
+    "bytes": 8057594,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biology 6th ed - Raven Johnson (Vol 4).pdf"
+  },
+  {
+    "id": "biology-6th-ed-raven-johnson-vol-5-pdf-biochemistry",
+    "title": "Biology 6th ed - Raven Johnson (Vol 5)",
+    "filename": "Biology 6th ed - Raven Johnson (Vol 5).pdf",
+    "format": "PDF",
+    "file_size": "10.8 MB",
+    "bytes": 11283371,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Biology 6th ed - Raven Johnson (Vol 5).pdf"
   },
   {
     "id": "biopharmaceuticals-biochemistry-and-biotechnology-walsh-wiley-2e-2003-pdf-biochemistry",
@@ -330,26 +517,48 @@
     "file_path": "/assets/books/biochemistry/Biopharmaceuticals_-_Biochemistry_and_Biotechnology_(Walsh,_Wiley,_2e,_2003).pdf"
   },
   {
-    "id": "biophysics-vasantha-pattabhi-n-gautham-pdf-biochemistry",
-    "title": "Biophysics - Vasantha Pattabhi, N Gautham",
-    "filename": "Biophysics - Vasantha Pattabhi, N. Gautham.pdf",
+    "id": "biophysics-vasantha-pattabhi-n-gautham-vol-1-pdf-biochemistry",
+    "title": "Biophysics - Vasantha Pattabhi, N Gautham (Vol 1)",
+    "filename": "Biophysics - Vasantha Pattabhi, N. Gautham (Vol 1).pdf",
     "format": "PDF",
-    "file_size": "15.5 MB",
-    "bytes": 16298805,
+    "file_size": "6.2 MB",
+    "bytes": 6474986,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Biophysics - Vasantha Pattabhi, N. Gautham.pdf"
+    "file_path": "/assets/books/biochemistry/Biophysics - Vasantha Pattabhi, N. Gautham (Vol 1).pdf"
   },
   {
-    "id": "biophysics-4th-ed-oland-glazer-pdf-biochemistry",
-    "title": "biophysics 4th ed - oland Glazer",
-    "filename": "biophysics 4th ed - oland Glazer.pdf",
+    "id": "biophysics-vasantha-pattabhi-n-gautham-vol-2-pdf-biochemistry",
+    "title": "Biophysics - Vasantha Pattabhi, N Gautham (Vol 2)",
+    "filename": "Biophysics - Vasantha Pattabhi, N. Gautham (Vol 2).pdf",
     "format": "PDF",
-    "file_size": "17.2 MB",
-    "bytes": 18024272,
+    "file_size": "9.4 MB",
+    "bytes": 9851423,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/biophysics 4th ed - oland Glazer.pdf"
+    "file_path": "/assets/books/biochemistry/Biophysics - Vasantha Pattabhi, N. Gautham (Vol 2).pdf"
+  },
+  {
+    "id": "biophysics-4th-ed-oland-glazer-vol-1-pdf-biochemistry",
+    "title": "biophysics 4th ed - oland Glazer (Vol 1)",
+    "filename": "biophysics 4th ed - oland Glazer (Vol 1).pdf",
+    "format": "PDF",
+    "file_size": "8.5 MB",
+    "bytes": 8905765,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/biophysics 4th ed - oland Glazer (Vol 1).pdf"
+  },
+  {
+    "id": "biophysics-4th-ed-oland-glazer-vol-2-pdf-biochemistry",
+    "title": "biophysics 4th ed - oland Glazer (Vol 2)",
+    "filename": "biophysics 4th ed - oland Glazer (Vol 2).pdf",
+    "format": "PDF",
+    "file_size": "8.6 MB",
+    "bytes": 9043780,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/biophysics 4th ed - oland Glazer (Vol 2).pdf"
   },
   {
     "id": "chapter-5-structure-determination-pdf-biochemistry",
@@ -363,26 +572,48 @@
     "file_path": "/assets/books/biochemistry/Chapter 5 Structure Determination.pdf"
   },
   {
-    "id": "color-atlas-of-biochemistry-2d-ed-jan-koolman-klaus-heinrich-rohm-pdf-biochemistry",
-    "title": "Color Atlas Of Biochemistry 2d ed - Jan Koolman, Klaus-Heinrich Rohm",
-    "filename": "Color Atlas Of Biochemistry 2d ed - Jan Koolman, Klaus-Heinrich Rohm.pdf",
+    "id": "color-atlas-of-biochemistry-2d-ed-jan-koolman-klaus-heinrich-rohm-vol-1-pdf-biochemistry",
+    "title": "Color Atlas Of Biochemistry 2d ed - Jan Koolman, Klaus-Heinrich Rohm (Vol 1)",
+    "filename": "Color Atlas Of Biochemistry 2d ed - Jan Koolman, Klaus-Heinrich Rohm (Vol 1).pdf",
     "format": "PDF",
-    "file_size": "15.0 MB",
-    "bytes": 15748506,
+    "file_size": "7.9 MB",
+    "bytes": 8262431,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Color Atlas Of Biochemistry 2d ed - Jan Koolman, Klaus-Heinrich Rohm.pdf"
+    "file_path": "/assets/books/biochemistry/Color Atlas Of Biochemistry 2d ed - Jan Koolman, Klaus-Heinrich Rohm (Vol 1).pdf"
   },
   {
-    "id": "data-mining-multimedia-soft-computing-and-bioinformatics-sushmita-mitra-tinku-acharya-pdf-biochemistry",
-    "title": "Data Mining Multimedia, Soft Computing, and Bioinformatics - Sushmita Mitra, Tinku Acharya",
-    "filename": "Data Mining Multimedia, Soft Computing, and Bioinformatics - Sushmita Mitra, Tinku Acharya.pdf",
+    "id": "color-atlas-of-biochemistry-2d-ed-jan-koolman-klaus-heinrich-rohm-vol-2-pdf-biochemistry",
+    "title": "Color Atlas Of Biochemistry 2d ed - Jan Koolman, Klaus-Heinrich Rohm (Vol 2)",
+    "filename": "Color Atlas Of Biochemistry 2d ed - Jan Koolman, Klaus-Heinrich Rohm (Vol 2).pdf",
     "format": "PDF",
-    "file_size": "20.9 MB",
-    "bytes": 21931487,
+    "file_size": "7.2 MB",
+    "bytes": 7585591,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Data Mining Multimedia, Soft Computing, and Bioinformatics - Sushmita Mitra, Tinku Acharya.pdf"
+    "file_path": "/assets/books/biochemistry/Color Atlas Of Biochemistry 2d ed - Jan Koolman, Klaus-Heinrich Rohm (Vol 2).pdf"
+  },
+  {
+    "id": "data-mining-multimedia-soft-computing-and-bioinformatics-sushmita-mitra-tinku-acharya-vol-1-pdf-biochemistry",
+    "title": "Data Mining Multimedia, Soft Computing, and Bioinformatics - Sushmita Mitra, Tinku Acharya (Vol 1)",
+    "filename": "Data Mining Multimedia, Soft Computing, and Bioinformatics - Sushmita Mitra, Tinku Acharya (Vol 1).pdf",
+    "format": "PDF",
+    "file_size": "10.3 MB",
+    "bytes": 10846558,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Data Mining Multimedia, Soft Computing, and Bioinformatics - Sushmita Mitra, Tinku Acharya (Vol 1).pdf"
+  },
+  {
+    "id": "data-mining-multimedia-soft-computing-and-bioinformatics-sushmita-mitra-tinku-acharya-vol-2-pdf-biochemistry",
+    "title": "Data Mining Multimedia, Soft Computing, and Bioinformatics - Sushmita Mitra, Tinku Acharya (Vol 2)",
+    "filename": "Data Mining Multimedia, Soft Computing, and Bioinformatics - Sushmita Mitra, Tinku Acharya (Vol 2).pdf",
+    "format": "PDF",
+    "file_size": "10.1 MB",
+    "bytes": 10599802,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Data Mining Multimedia, Soft Computing, and Bioinformatics - Sushmita Mitra, Tinku Acharya (Vol 2).pdf"
   },
   {
     "id": "encyclopedia-of-physical-science-and-technology-biochemistry-3rd-ed-pdf-biochemistry",
@@ -418,15 +649,26 @@
     "file_path": "/assets/books/biochemistry/Flavonoids  - Andersen, Markham.pdf"
   },
   {
-    "id": "garrett-r-h-grisham-c-m-biochemistry-2ed-1999-851s-pdf-biochemistry",
-    "title": "Garrett R H , Grisham C M Biochemistry (2ed , 1999)(851s)",
-    "filename": "Garrett_R.H.,_Grisham_C.M._Biochemistry_(2ed.,_1999)(851s).pdf",
+    "id": "garrett-r-h-grisham-c-m-biochemistry-2ed-1999-851s-vol-1-pdf-biochemistry",
+    "title": "Garrett R H , Grisham C M Biochemistry (2ed , 1999)(851s) (Vol 1)",
+    "filename": "Garrett_R.H.,_Grisham_C.M._Biochemistry_(2ed.,_1999)(851s) (Vol 1).pdf",
     "format": "PDF",
-    "file_size": "23.7 MB",
-    "bytes": 24813551,
+    "file_size": "12.7 MB",
+    "bytes": 13325593,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Garrett_R.H.,_Grisham_C.M._Biochemistry_(2ed.,_1999)(851s).pdf"
+    "file_path": "/assets/books/biochemistry/Garrett_R.H.,_Grisham_C.M._Biochemistry_(2ed.,_1999)(851s) (Vol 1).pdf"
+  },
+  {
+    "id": "garrett-r-h-grisham-c-m-biochemistry-2ed-1999-851s-vol-2-pdf-biochemistry",
+    "title": "Garrett R H , Grisham C M Biochemistry (2ed , 1999)(851s) (Vol 2)",
+    "filename": "Garrett_R.H.,_Grisham_C.M._Biochemistry_(2ed.,_1999)(851s) (Vol 2).pdf",
+    "format": "PDF",
+    "file_size": "11.3 MB",
+    "bytes": 11887795,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Garrett_R.H.,_Grisham_C.M._Biochemistry_(2ed.,_1999)(851s) (Vol 2).pdf"
   },
   {
     "id": "glew-clinical-studies-in-medical-biochemistry-3rd-ed-pdf-biochemistry",
@@ -440,15 +682,26 @@
     "file_path": "/assets/books/biochemistry/Glew_Clinical Studies in Medical Biochemistry 3rd ed.pdf"
   },
   {
-    "id": "handbook-of-biochemical-kinetics-a-guide-to-dynamic-processes-in-the-molecular-life-sciences-012-pdf-biochemistry",
-    "title": "Handbook of Biochemical Kinetics A Guide to Dynamic Processes in the Molecular Life Sciences, 012",
-    "filename": "Handbook of Biochemical Kinetics A Guide to Dynamic Processes in the Molecular Life Sciences, 012.pdf",
+    "id": "handbook-of-biochemical-kinetics-a-guide-to-dynamic-processes-in-the-molecular-life-sciences-012-vol-1-pdf-biochemistry",
+    "title": "Handbook of Biochemical Kinetics A Guide to Dynamic Processes in the Molecular Life Sciences, 012 (Vol 1)",
+    "filename": "Handbook of Biochemical Kinetics A Guide to Dynamic Processes in the Molecular Life Sciences, 012 (Vol 1).pdf",
     "format": "PDF",
-    "file_size": "15.8 MB",
-    "bytes": 16523626,
+    "file_size": "9.3 MB",
+    "bytes": 9761938,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Handbook of Biochemical Kinetics A Guide to Dynamic Processes in the Molecular Life Sciences, 012.pdf"
+    "file_path": "/assets/books/biochemistry/Handbook of Biochemical Kinetics A Guide to Dynamic Processes in the Molecular Life Sciences, 012 (Vol 1).pdf"
+  },
+  {
+    "id": "handbook-of-biochemical-kinetics-a-guide-to-dynamic-processes-in-the-molecular-life-sciences-012-vol-2-pdf-biochemistry",
+    "title": "Handbook of Biochemical Kinetics A Guide to Dynamic Processes in the Molecular Life Sciences, 012 (Vol 2)",
+    "filename": "Handbook of Biochemical Kinetics A Guide to Dynamic Processes in the Molecular Life Sciences, 012 (Vol 2).pdf",
+    "format": "PDF",
+    "file_size": "6.6 MB",
+    "bytes": 6907249,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Handbook of Biochemical Kinetics A Guide to Dynamic Processes in the Molecular Life Sciences, 012 (Vol 2).pdf"
   },
   {
     "id": "harper-s-biochemistry-26th-ed-pdf-biochemistry",
@@ -484,26 +737,92 @@
     "file_path": "/assets/books/biochemistry/Inorganic Biochemistry of Iron Metabolism From Molecular Mechanisms to Clinical Consequences, 2nd.pdf"
   },
   {
-    "id": "lehninger-principles-of-biochemistry-fourth-edition-david-pdf-biochemistry",
-    "title": "Lehninger Principles of Biochemistry, Fourth Edition - David",
-    "filename": "Lehninger Principles of Biochemistry, Fourth Edition - David.pdf",
+    "id": "lehninger-principles-of-biochemistry-fourth-edition-david-vol-1-pdf-biochemistry",
+    "title": "Lehninger Principles of Biochemistry, Fourth Edition - David (Vol 1)",
+    "filename": "Lehninger Principles of Biochemistry, Fourth Edition - David (Vol 1).pdf",
     "format": "PDF",
-    "file_size": "34.7 MB",
-    "bytes": 36389674,
+    "file_size": "12.6 MB",
+    "bytes": 13161342,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Lehninger Principles of Biochemistry, Fourth Edition - David.pdf"
+    "file_path": "/assets/books/biochemistry/Lehninger Principles of Biochemistry, Fourth Edition - David (Vol 1).pdf"
   },
   {
-    "id": "marks-basic-medical-biochemistry-a-clinical-approach-2nd-edition-colleen-smith-pdf-biochemistry",
-    "title": "Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith",
-    "filename": "Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith.pdf",
+    "id": "lehninger-principles-of-biochemistry-fourth-edition-david-vol-2-pdf-biochemistry",
+    "title": "Lehninger Principles of Biochemistry, Fourth Edition - David (Vol 2)",
+    "filename": "Lehninger Principles of Biochemistry, Fourth Edition - David (Vol 2).pdf",
     "format": "PDF",
-    "file_size": "52.2 MB",
-    "bytes": 54713584,
+    "file_size": "13.1 MB",
+    "bytes": 13727485,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith.pdf"
+    "file_path": "/assets/books/biochemistry/Lehninger Principles of Biochemistry, Fourth Edition - David (Vol 2).pdf"
+  },
+  {
+    "id": "lehninger-principles-of-biochemistry-fourth-edition-david-vol-3-pdf-biochemistry",
+    "title": "Lehninger Principles of Biochemistry, Fourth Edition - David (Vol 3)",
+    "filename": "Lehninger Principles of Biochemistry, Fourth Edition - David (Vol 3).pdf",
+    "format": "PDF",
+    "file_size": "9.4 MB",
+    "bytes": 9898752,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Lehninger Principles of Biochemistry, Fourth Edition - David (Vol 3).pdf"
+  },
+  {
+    "id": "marks-basic-medical-biochemistry-a-clinical-approach-2nd-edition-colleen-smith-vol-1-pdf-biochemistry",
+    "title": "Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 1)",
+    "filename": "Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 1).pdf",
+    "format": "PDF",
+    "file_size": "4.7 MB",
+    "bytes": 4958347,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 1).pdf"
+  },
+  {
+    "id": "marks-basic-medical-biochemistry-a-clinical-approach-2nd-edition-colleen-smith-vol-2-pdf-biochemistry",
+    "title": "Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 2)",
+    "filename": "Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 2).pdf",
+    "format": "PDF",
+    "file_size": "14.0 MB",
+    "bytes": 14701369,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 2).pdf"
+  },
+  {
+    "id": "marks-basic-medical-biochemistry-a-clinical-approach-2nd-edition-colleen-smith-vol-3-pdf-biochemistry",
+    "title": "Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 3)",
+    "filename": "Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 3).pdf",
+    "format": "PDF",
+    "file_size": "7.2 MB",
+    "bytes": 7521585,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 3).pdf"
+  },
+  {
+    "id": "marks-basic-medical-biochemistry-a-clinical-approach-2nd-edition-colleen-smith-vol-4-pdf-biochemistry",
+    "title": "Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 4)",
+    "filename": "Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 4).pdf",
+    "format": "PDF",
+    "file_size": "18.5 MB",
+    "bytes": 19425609,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 4).pdf"
+  },
+  {
+    "id": "marks-basic-medical-biochemistry-a-clinical-approach-2nd-edition-colleen-smith-vol-5-pdf-biochemistry",
+    "title": "Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 5)",
+    "filename": "Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 5).pdf",
+    "format": "PDF",
+    "file_size": "7.9 MB",
+    "bytes": 8281747,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Marks’ Basic Medical Biochemistry A Clinical Approach, 2nd Edition - Colleen Smith (Vol 5).pdf"
   },
   {
     "id": "mass-spectrometry-of-proteins-and-peptides-pdf-biochemistry",
@@ -517,34 +836,122 @@
     "file_path": "/assets/books/biochemistry/Mass Spectrometry of Proteins and Peptides.pdf"
   },
   {
-    "id": "modern-biology-postlethwait-hopson-pdf-biochemistry",
-    "title": "Modern Biology - Postlethwait , Hopson",
-    "filename": "Modern Biology - Postlethwait , Hopson.pdf",
+    "id": "modern-biology-postlethwait-hopson-vol-1-pdf-biochemistry",
+    "title": "Modern Biology - Postlethwait , Hopson (Vol 1)",
+    "filename": "Modern Biology - Postlethwait , Hopson (Vol 1).pdf",
     "format": "PDF",
-    "file_size": "74.0 MB",
-    "bytes": 77639775,
+    "file_size": "13.1 MB",
+    "bytes": 13690856,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Modern Biology - Postlethwait , Hopson.pdf"
+    "file_path": "/assets/books/biochemistry/Modern Biology - Postlethwait , Hopson (Vol 1).pdf"
   },
   {
-    "id": "new-protein-techniques-pdf-biochemistry",
-    "title": "New Protein Techniques",
-    "filename": "New Protein Techniques.pdf",
+    "id": "modern-biology-postlethwait-hopson-vol-2-pdf-biochemistry",
+    "title": "Modern Biology - Postlethwait , Hopson (Vol 2)",
+    "filename": "Modern Biology - Postlethwait , Hopson (Vol 2).pdf",
     "format": "PDF",
-    "file_size": "26.3 MB",
-    "bytes": 27549097,
+    "file_size": "11.1 MB",
+    "bytes": 11592811,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/New Protein Techniques.pdf"
+    "file_path": "/assets/books/biochemistry/Modern Biology - Postlethwait , Hopson (Vol 2).pdf"
+  },
+  {
+    "id": "modern-biology-postlethwait-hopson-vol-3-pdf-biochemistry",
+    "title": "Modern Biology - Postlethwait , Hopson (Vol 3)",
+    "filename": "Modern Biology - Postlethwait , Hopson (Vol 3).pdf",
+    "format": "PDF",
+    "file_size": "13.3 MB",
+    "bytes": 13933609,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Modern Biology - Postlethwait , Hopson (Vol 3).pdf"
+  },
+  {
+    "id": "modern-biology-postlethwait-hopson-vol-4-pdf-biochemistry",
+    "title": "Modern Biology - Postlethwait , Hopson (Vol 4)",
+    "filename": "Modern Biology - Postlethwait , Hopson (Vol 4).pdf",
+    "format": "PDF",
+    "file_size": "12.0 MB",
+    "bytes": 12556244,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Modern Biology - Postlethwait , Hopson (Vol 4).pdf"
+  },
+  {
+    "id": "modern-biology-postlethwait-hopson-vol-5-pdf-biochemistry",
+    "title": "Modern Biology - Postlethwait , Hopson (Vol 5)",
+    "filename": "Modern Biology - Postlethwait , Hopson (Vol 5).pdf",
+    "format": "PDF",
+    "file_size": "11.5 MB",
+    "bytes": 12108342,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Modern Biology - Postlethwait , Hopson (Vol 5).pdf"
+  },
+  {
+    "id": "modern-biology-postlethwait-hopson-vol-6-pdf-biochemistry",
+    "title": "Modern Biology - Postlethwait , Hopson (Vol 6)",
+    "filename": "Modern Biology - Postlethwait , Hopson (Vol 6).pdf",
+    "format": "PDF",
+    "file_size": "10.8 MB",
+    "bytes": 11300148,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Modern Biology - Postlethwait , Hopson (Vol 6).pdf"
+  },
+  {
+    "id": "modern-biology-postlethwait-hopson-vol-7-pdf-biochemistry",
+    "title": "Modern Biology - Postlethwait , Hopson (Vol 7)",
+    "filename": "Modern Biology - Postlethwait , Hopson (Vol 7).pdf",
+    "format": "PDF",
+    "file_size": "9.0 MB",
+    "bytes": 9424345,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Modern Biology - Postlethwait , Hopson (Vol 7).pdf"
+  },
+  {
+    "id": "new-protein-techniques-vol-1-pdf-biochemistry",
+    "title": "New Protein Techniques (Vol 1)",
+    "filename": "New Protein Techniques (Vol 1).pdf",
+    "format": "PDF",
+    "file_size": "7.8 MB",
+    "bytes": 8131358,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/New Protein Techniques (Vol 1).pdf"
+  },
+  {
+    "id": "new-protein-techniques-vol-2-pdf-biochemistry",
+    "title": "New Protein Techniques (Vol 2)",
+    "filename": "New Protein Techniques (Vol 2).pdf",
+    "format": "PDF",
+    "file_size": "9.4 MB",
+    "bytes": 9832727,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/New Protein Techniques (Vol 2).pdf"
+  },
+  {
+    "id": "new-protein-techniques-vol-3-pdf-biochemistry",
+    "title": "New Protein Techniques (Vol 3)",
+    "filename": "New Protein Techniques (Vol 3).pdf",
+    "format": "PDF",
+    "file_size": "9.3 MB",
+    "bytes": 9796918,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/New Protein Techniques (Vol 3).pdf"
   },
   {
     "id": "oxford-dictionary-of-biochemistry-and-molecular-biology-teresa-atwood-vol-1-pdf-biochemistry",
     "title": "Oxford Dictionary Of Biochemistry And Molecular Biology - Teresa Atwood (Vol 1)",
     "filename": "Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 1).pdf",
     "format": "PDF",
-    "file_size": "47.8 MB",
-    "bytes": 50082254,
+    "file_size": "11.0 MB",
+    "bytes": 11576197,
     "category": "Biochemistry",
     "author": "Reference Library",
     "file_path": "/assets/books/biochemistry/Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 1).pdf"
@@ -554,33 +961,121 @@
     "title": "Oxford Dictionary Of Biochemistry And Molecular Biology - Teresa Atwood (Vol 2)",
     "filename": "Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 2).pdf",
     "format": "PDF",
-    "file_size": "46.3 MB",
-    "bytes": 48534341,
+    "file_size": "12.0 MB",
+    "bytes": 12534128,
     "category": "Biochemistry",
     "author": "Reference Library",
     "file_path": "/assets/books/biochemistry/Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 2).pdf"
   },
   {
-    "id": "panno-the-cell-evolution-of-the-first-organism-the-new-biology-pdf-biochemistry",
-    "title": "Panno The Cell-Evolution of the First Organism-The New Biology",
-    "filename": "Panno_The Cell-Evolution of the First Organism-The New Biology.pdf",
+    "id": "oxford-dictionary-of-biochemistry-and-molecular-biology-teresa-atwood-vol-3-pdf-biochemistry",
+    "title": "Oxford Dictionary Of Biochemistry And Molecular Biology - Teresa Atwood (Vol 3)",
+    "filename": "Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 3).pdf",
     "format": "PDF",
-    "file_size": "17.0 MB",
-    "bytes": 17854931,
-    "category": "Biochemistry",
-    "author": "Joseph Panno, Ph.D.",
-    "file_path": "/assets/books/biochemistry/Panno_The Cell-Evolution of the First Organism-The New Biology.pdf"
-  },
-  {
-    "id": "price-steven-ad-pdf-biochemistry",
-    "title": "price $ steven ad",
-    "filename": "price $ steven ad.pdf",
-    "format": "PDF",
-    "file_size": "21.4 MB",
-    "bytes": 22392239,
+    "file_size": "12.3 MB",
+    "bytes": 12877228,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/price $ steven ad.pdf"
+    "file_path": "/assets/books/biochemistry/Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 3).pdf"
+  },
+  {
+    "id": "oxford-dictionary-of-biochemistry-and-molecular-biology-teresa-atwood-vol-4-pdf-biochemistry",
+    "title": "Oxford Dictionary Of Biochemistry And Molecular Biology - Teresa Atwood (Vol 4)",
+    "filename": "Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 4).pdf",
+    "format": "PDF",
+    "file_size": "12.5 MB",
+    "bytes": 13152156,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 4).pdf"
+  },
+  {
+    "id": "oxford-dictionary-of-biochemistry-and-molecular-biology-teresa-atwood-vol-5-pdf-biochemistry",
+    "title": "Oxford Dictionary Of Biochemistry And Molecular Biology - Teresa Atwood (Vol 5)",
+    "filename": "Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 5).pdf",
+    "format": "PDF",
+    "file_size": "12.1 MB",
+    "bytes": 12650859,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 5).pdf"
+  },
+  {
+    "id": "oxford-dictionary-of-biochemistry-and-molecular-biology-teresa-atwood-vol-6-pdf-biochemistry",
+    "title": "Oxford Dictionary Of Biochemistry And Molecular Biology - Teresa Atwood (Vol 6)",
+    "filename": "Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 6).pdf",
+    "format": "PDF",
+    "file_size": "12.3 MB",
+    "bytes": 12876986,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 6).pdf"
+  },
+  {
+    "id": "oxford-dictionary-of-biochemistry-and-molecular-biology-teresa-atwood-vol-7-pdf-biochemistry",
+    "title": "Oxford Dictionary Of Biochemistry And Molecular Biology - Teresa Atwood (Vol 7)",
+    "filename": "Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 7).pdf",
+    "format": "PDF",
+    "file_size": "12.6 MB",
+    "bytes": 13174902,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 7).pdf"
+  },
+  {
+    "id": "oxford-dictionary-of-biochemistry-and-molecular-biology-teresa-atwood-vol-8-pdf-biochemistry",
+    "title": "Oxford Dictionary Of Biochemistry And Molecular Biology - Teresa Atwood (Vol 8)",
+    "filename": "Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 8).pdf",
+    "format": "PDF",
+    "file_size": "9.4 MB",
+    "bytes": 9889040,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Oxford Dictionary Of Biochemistry And Molecular Biology -  Teresa Atwood (Vol 8).pdf"
+  },
+  {
+    "id": "panno-the-cell-evolution-of-the-first-organism-the-new-biology-vol-1-pdf-biochemistry",
+    "title": "Panno The Cell-Evolution of the First Organism-The New Biology (Vol 1)",
+    "filename": "Panno_The Cell-Evolution of the First Organism-The New Biology (Vol 1).pdf",
+    "format": "PDF",
+    "file_size": "11.1 MB",
+    "bytes": 11673289,
+    "category": "Biochemistry",
+    "author": "Joseph Panno, Ph.D.",
+    "file_path": "/assets/books/biochemistry/Panno_The Cell-Evolution of the First Organism-The New Biology (Vol 1).pdf"
+  },
+  {
+    "id": "panno-the-cell-evolution-of-the-first-organism-the-new-biology-vol-2-pdf-biochemistry",
+    "title": "Panno The Cell-Evolution of the First Organism-The New Biology (Vol 2)",
+    "filename": "Panno_The Cell-Evolution of the First Organism-The New Biology (Vol 2).pdf",
+    "format": "PDF",
+    "file_size": "5.5 MB",
+    "bytes": 5763292,
+    "category": "Biochemistry",
+    "author": "Joseph Panno, Ph.D.",
+    "file_path": "/assets/books/biochemistry/Panno_The Cell-Evolution of the First Organism-The New Biology (Vol 2).pdf"
+  },
+  {
+    "id": "price-steven-ad-vol-1-pdf-biochemistry",
+    "title": "price $ steven ad (Vol 1)",
+    "filename": "price $ steven ad (Vol 1).pdf",
+    "format": "PDF",
+    "file_size": "10.4 MB",
+    "bytes": 10859586,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/price $ steven ad (Vol 1).pdf"
+  },
+  {
+    "id": "price-steven-ad-vol-2-pdf-biochemistry",
+    "title": "price $ steven ad (Vol 2)",
+    "filename": "price $ steven ad (Vol 2).pdf",
+    "format": "PDF",
+    "file_size": "11.0 MB",
+    "bytes": 11534812,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/price $ steven ad (Vol 2).pdf"
   },
   {
     "id": "protein-engineering-protocols-pdf-biochemistry",
@@ -594,15 +1089,37 @@
     "file_path": "/assets/books/biochemistry/Protein  Engineering protocols.pdf"
   },
   {
-    "id": "protein-purification-protocols-pdf-biochemistry",
-    "title": "Protein purification protocols",
-    "filename": "Protein purification protocols.pdf",
+    "id": "protein-purification-protocols-vol-1-pdf-biochemistry",
+    "title": "Protein Purification Protocols (Vol 1)",
+    "filename": "Protein  Purification  Protocols (Vol 1).pdf",
     "format": "PDF",
-    "file_size": "3.6 MB",
-    "bytes": 3767514,
+    "file_size": "8.9 MB",
+    "bytes": 9369957,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Protein purification protocols.pdf"
+    "file_path": "/assets/books/biochemistry/Protein  Purification  Protocols (Vol 1).pdf"
+  },
+  {
+    "id": "protein-purification-protocols-vol-2-pdf-biochemistry",
+    "title": "Protein Purification Protocols (Vol 2)",
+    "filename": "Protein  Purification  Protocols (Vol 2).pdf",
+    "format": "PDF",
+    "file_size": "8.6 MB",
+    "bytes": 9021098,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Protein  Purification  Protocols (Vol 2).pdf"
+  },
+  {
+    "id": "protein-purification-protocols-vol-3-pdf-biochemistry",
+    "title": "Protein Purification Protocols (Vol 3)",
+    "filename": "Protein  Purification  Protocols (Vol 3).pdf",
+    "format": "PDF",
+    "file_size": "8.8 MB",
+    "bytes": 9244662,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Protein  Purification  Protocols (Vol 3).pdf"
   },
   {
     "id": "protein-dna-interactions-pdf-biochemistry",
@@ -627,6 +1144,17 @@
     "file_path": "/assets/books/biochemistry/Protein Arrays, Biochips, and Proteomics - Joanna S. Albala.pdf"
   },
   {
+    "id": "protein-purification-protocols-pdf-biochemistry",
+    "title": "Protein purification protocols",
+    "filename": "Protein purification protocols.pdf",
+    "format": "PDF",
+    "file_size": "3.6 MB",
+    "bytes": 3767514,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Protein purification protocols.pdf"
+  },
+  {
     "id": "protein-sequencing-protocols-pdf-biochemistry",
     "title": "protein sequencing protocols",
     "filename": "protein sequencing protocols.pdf",
@@ -638,15 +1166,26 @@
     "file_path": "/assets/books/biochemistry/protein sequencing protocols.pdf"
   },
   {
-    "id": "proteins-pdf-biochemistry",
-    "title": "Proteins",
-    "filename": "Proteins.pdf",
+    "id": "proteins-vol-1-pdf-biochemistry",
+    "title": "Proteins (Vol 1)",
+    "filename": "Proteins (Vol 1).pdf",
     "format": "PDF",
-    "file_size": "16.8 MB",
-    "bytes": 17637717,
+    "file_size": "8.4 MB",
+    "bytes": 8788016,
     "category": "Biochemistry",
     "author": "Reference Library",
-    "file_path": "/assets/books/biochemistry/Proteins.pdf"
+    "file_path": "/assets/books/biochemistry/Proteins (Vol 1).pdf"
+  },
+  {
+    "id": "proteins-vol-2-pdf-biochemistry",
+    "title": "Proteins (Vol 2)",
+    "filename": "Proteins (Vol 2).pdf",
+    "format": "PDF",
+    "file_size": "8.6 MB",
+    "bytes": 8989497,
+    "category": "Biochemistry",
+    "author": "Reference Library",
+    "file_path": "/assets/books/biochemistry/Proteins (Vol 2).pdf"
   },
   {
     "id": "proteomics-in-practice-a-laboratory-manual-of-proteome-analysis-tom-naven-pdf-biochemistry",
