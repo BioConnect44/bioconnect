@@ -17,7 +17,10 @@ function ExtraBookViewerModal({ book, onClose }) {
         {/* Modal Header */}
         <div style={{ padding: "16px 24px", background: "#102A30", color: "#fff", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minWidth: 0, flex: 1 }}>
-            <span style={{ fontSize: "26px", flexShrink: 0 }}>📚</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3AA8C1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
             <div style={{ minWidth: 0 }}>
               <h3 style={{ fontSize: "16px", fontWeight: 700, margin: 0, color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{book.title}</h3>
               <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.7)", margin: "2px 0 0" }}>{book.category} • {book.file_size || book.size} ({book.format}) • {book.author || "Reference"}</p>
@@ -37,7 +40,7 @@ function ExtraBookViewerModal({ book, onClose }) {
               download
               style={{ background: "#3AA8C1", color: "#fff", padding: "8px 16px", borderRadius: "8px", textDecoration: "none", fontSize: "13px", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: "6px" }}
             >
-              <span>⬇️ Download</span>
+              <span>Download</span>
             </a>
             <button
               onClick={onClose}
@@ -64,8 +67,11 @@ function ExtraBookViewerModal({ book, onClose }) {
             </object>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", color: "#fff", textAlign: "center", padding: "40px", background: "linear-gradient(135deg, #102A30 0%, #1B4A5A 100%)" }}>
-              <div style={{ width: 80, height: 80, borderRadius: "20px", background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "40px", marginBottom: "20px" }}>
-                📖
+              <div style={{ width: 80, height: 80, borderRadius: "20px", background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "20px" }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
               </div>
               <h3 style={{ fontSize: "22px", fontWeight: 700, marginBottom: "8px", maxWidth: "700px" }}>{book.title}</h3>
               <p style={{ fontSize: "14px", color: "#CBD5E1", maxWidth: "560px", marginBottom: "28px", lineHeight: "1.6" }}>
@@ -85,7 +91,7 @@ function ExtraBookViewerModal({ book, onClose }) {
                   download
                   style={{ background: "#3AA8C1", color: "#fff", padding: "12px 26px", borderRadius: "10px", textDecoration: "none", fontSize: "14px", fontWeight: 700, boxShadow: "0 4px 14px rgba(0,0,0,0.15)" }}
                 >
-                  ⬇️ Download {book.format} File
+                  Download {book.format} File
                 </a>
               </div>
             </div>
@@ -134,7 +140,10 @@ export default function ExtraBooksSection({ customBooks }) {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "14px", marginBottom: "20px" }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ fontSize: "20px" }}>📚</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3AA8C1" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
             <span
               onClick={() => { setSelectedFolder(null); setSearchQuery(""); }}
               style={{ fontSize: "14px", fontWeight: 600, color: selectedFolder ? "#3AA8C1" : "#102A30", cursor: selectedFolder ? "pointer" : "default" }}
@@ -190,7 +199,7 @@ export default function ExtraBooksSection({ customBooks }) {
       <div style={{ marginBottom: "24px" }}>
         <input
           type="text"
-          placeholder={selectedFolder ? `🔍 Search inside ${selectedFolder}...` : "🔍 Search all extra books by title, author, or keyword..."}
+          placeholder={selectedFolder ? `Search inside ${selectedFolder}...` : "Search all extra books by title, author, or keyword..."}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           style={{
@@ -304,7 +313,12 @@ export default function ExtraBooksSection({ customBooks }) {
                   >
                     <div>
                       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "14px" }}>
-                        <span style={{ fontSize: "30px" }}>📖</span>
+                        <div style={{ background: "#F0F9FF", color: "#0369A1", width: "42px", height: "42px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid #BAE6FD" }}>
+                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0369A1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                          </svg>
+                        </div>
                         <div style={{ display: "flex", gap: "6px" }}>
                           <span style={{ fontSize: "10px", fontWeight: 800, background: badgeBg, color: badgeColor, padding: "3px 9px", borderRadius: "6px", textTransform: "uppercase" }}>
                             {book.format}
@@ -357,7 +371,7 @@ export default function ExtraBooksSection({ customBooks }) {
                           transition: "background 0.2s"
                         }}
                       >
-                        Read In-App 📄
+                        Read In-App
                       </button>
 
                       <a
@@ -375,7 +389,7 @@ export default function ExtraBooksSection({ customBooks }) {
                           textAlign: "center"
                         }}
                       >
-                        Download ⬇️
+                        Download
                       </a>
                     </div>
                   </div>
