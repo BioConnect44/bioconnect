@@ -57,6 +57,48 @@ def parse_metadata(filename):
         return 'Valves, Piping and Pipelines Handbook', 'T.C. Dickenson'
     if 'printgn' in fn_lower:
         return 'Genetics & Molecular Biology Notes', 'Reference Library'
+    if 'kingston' in fn_lower:
+        return 'ABC of Clinical Genetics', 'Helen M. Kingston'
+    if 'passarge' in fn_lower:
+        return 'Color Atlas of Genetics', 'Eberhard Passarge'
+    if 'maynard smith' in fn_lower:
+        return 'Evolutionary Genetics', 'John Maynard Smith'
+    if 'brownstein' in fn_lower:
+        return 'Functional Genomics', 'Michael J. Brownstein & Arkady B. Khodursky'
+    if 'pierce' in fn_lower:
+        return 'Genetics: A Conceptual Approach', 'Benjamin A. Pierce'
+    if 'weiss' in fn_lower:
+        return 'Genetics and the Logic of Evolution', 'Kenneth M. Weiss'
+    if 'hartl' in fn_lower:
+        return 'Genetics: Principles and Analysis', 'Daniel L. Hartl'
+    if 'ridley' in fn_lower:
+        return 'Genome: The Autobiography of a Species in 23 Chapters', 'Matt Ridley'
+    if 'suhai' in fn_lower:
+        return 'Genomics and Proteomics: Functional and Computational Aspects', 'Sándor Suhai'
+    if 'starkey' in fn_lower:
+        return 'Genomics Protocols', 'Michael P. Starkey & Ramnath Elaswarapu'
+    if 'liebler' in fn_lower:
+        return 'Introduction to Proteomics: Tools for the New Biology', 'Daniel C. Liebler'
+    if 'streips' in fn_lower:
+        return 'Modern Microbial Genetics', 'Uldis N. Streips'
+    if 'cullis' in fn_lower:
+        return 'Plant Genomics and Proteomics', 'Christopher A. Cullis'
+    if 'gillespie' in fn_lower:
+        return 'Population Genetics: A Concise Guide', 'John H. Gillespie'
+    if 'tamarin' in fn_lower:
+        return 'Principles of Genetics', 'Robert H. Tamarin'
+    if 'albala' in fn_lower:
+        return 'Protein Arrays, Biochips, and Proteomics', 'Joanna S. Albala'
+    if 'naven' in fn_lower:
+        return 'Proteomics in Practice: A Laboratory Manual of Proteome Analysis', 'Tom Naven'
+    if 'stansfield' in fn_lower:
+        return "Schaum's Outline of Theory and Problems of Genetics", 'William D. Stansfield'
+    if 'jang' in fn_lower:
+        return 'The Behavioral Genetics of Psychopathology: A Clinical Guide', 'Kerry L. Jang'
+    if 'novartis' in fn_lower:
+        return 'The Genetics and Biology of Sex Determination', 'Novartis Foundation'
+    if 'gina smith' in fn_lower:
+        return 'The Genomics Age: How DNA Technology Is Transforming the Way We Live', 'Gina Smith'
 
     if ' - ' in stem:
         parts = stem.split(' - ')
