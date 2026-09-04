@@ -31,27 +31,21 @@ def format_file_size(bytes_num):
         return f"{bytes_num / 1024:.0f} KB"
     return f"{bytes_num} Bytes"
 
-def clean_title(filename):
-    name_without_ext = Path(filename).stem
-    clean = name_without_ext.replace('_', ' ').replace('.', ' ')
-    clean = re.sub(r'\s+', ' ', clean).strip()
-    return clean
+def parse_metadata(filename):
+    stem = Path(filename).stem
+    if ' - ' in stem:
+        parts = stem.split(' - ')
+        title = parts[0].replace('_', ' ').strip()
+        author = ' - '.join(parts[1:]).replace('_', ' ').strip()
+    else:
+        title = stem.replace('_', ' ').strip()
+        author = "Reference Library"
+    
+    title = re.sub(r'\s+', ' ', title)
+    author = re.sub(r'\s+', ' ', author)
+    return title, author
 
-def infer_author(filename):
-    lower = filename.lower()
-    if 'freshney' in lower:
-        return "R. Ian Freshney"
-    if 'doyle' in lower or 'griffiths' in lower:
-        return "Alan Doyle & J.B. Griffiths"
-    if 'panno' in lower:
-        return "Joseph Panno, Ph.D."
-    if 'schat' in lower:
-        return "K.A. Schat et al."
-    if 'oliver' in lower:
-        return "Richard B. Oliver"
-    return "Reference Library"
-
-def process_and_index_folder(source_folder, category_name):
+def process_and_index_folder(source_folder, category_name, pdf_only=False):
     source_path = Path(source_folder)
     if not source_path.exists():
         print(f"Error: Source directory '{source_folder}' does not exist.")
@@ -61,22 +55,26 @@ def process_and_index_folder(source_folder, category_name):
     dest_dir = Path("public/assets/books") / category_slug
     dest_dir.mkdir(parents=True, exist_ok=True)
 
+    allowed_exts = {'.pdf'} if pdf_only else SUPPORTED_EXTENSIONS
+
     print(f"\nScanning '{source_folder}' for category '{category_name}'...")
+    print(f"Filter: {'PDF files only' if pdf_only else 'All supported formats'}")
     print(f"Destination directory: '{dest_dir}'\n")
 
     new_indexed_items = []
 
     for file_item in sorted(source_path.iterdir()):
-        if file_item.is_dir() or file_item.suffix.lower() not in SUPPORTED_EXTENSIONS:
+        if file_item.is_dir() or file_item.suffix.lower() not in allowed_exts:
             continue
 
         file_size = file_item.stat().st_size
         filename = file_item.name
         ext = file_item.suffix.lower()
+        title, author = parse_metadata(filename)
 
-        # Large PDF splitting safeguard (> 90MB)
+        # Large PDF splitting safeguard (> 15MB)
         if ext == '.pdf' and file_size > MAX_FILE_SIZE_BYTES and pypdf:
-            print(f"[Large PDF] {filename} ({format_file_size(file_size)}). Splitting into volume chunks (< 75MB)...")
+            print(f"[Large PDF] {filename} ({format_file_size(file_size)}). Splitting into volume chunks (< 15MB)...")
             reader = pypdf.PdfReader(str(file_item))
             total_pages = len(reader.pages)
             num_vols = max(2, math.ceil(file_size / (12 * 1024 * 1024)))
@@ -97,17 +95,17 @@ def process_and_index_folder(source_folder, category_name):
 
                 vol_size = vol_dest.stat().st_size
                 item_id = slugify(f"{vol_name}-{category_slug}")
-                title = f"{clean_title(file_item.name)} (Vol {v+1})"
+                vol_title = f"{title} (Vol {v+1})"
 
                 new_indexed_items.append({
                     "id": item_id,
-                    "title": title,
+                    "title": vol_title,
                     "filename": vol_name,
                     "format": "PDF",
                     "file_size": format_file_size(vol_size),
                     "bytes": vol_size,
                     "category": category_name,
-                    "author": infer_author(filename),
+                    "author": author,
                     "file_path": f"/assets/books/{category_slug}/{vol_name}"
                 })
                 print(f"  + Created volume: {vol_name} ({format_file_size(vol_size)})")
@@ -119,13 +117,13 @@ def process_and_index_folder(source_folder, category_name):
 
             new_indexed_items.append({
                 "id": item_id,
-                "title": clean_title(filename),
+                "title": title,
                 "filename": filename,
                 "format": format_str,
                 "file_size": format_file_size(file_size),
                 "bytes": file_size,
                 "category": category_name,
-                "author": infer_author(filename),
+                "author": author,
                 "file_path": f"/assets/books/{category_slug}/{filename}"
             })
             print(f"  + Indexed: {filename} ({format_file_size(file_size)})")
@@ -167,13 +165,14 @@ def process_and_index_folder(source_folder, category_name):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Index local books into BioConnect Extra Books section.")
-    parser.add_argument("--source", type=str, default=r"E:\e books\Animal cell culture", help="Target local folder path")
-    parser.add_argument("--category", type=str, default="Animal Cell Culture", help="Category tag for books")
+    parser.add_argument("--source", type=str, default=r"E:\e books\Bioinformatics", help="Target local folder path")
+    parser.add_argument("--category", type=str, default="Bioinformatics", help="Category tag for books")
+    parser.add_argument("--only-pdf", action="store_true", help="Only index PDF files")
 
     args = parser.parse_args()
 
     source_p = args.source
-    if not os.path.exists(source_p) and os.path.exists(r"E:\Animal Cell Culture"):
-        source_p = r"E:\Animal Cell Culture"
+    if not os.path.exists(source_p) and os.path.exists(r"E:\Bioinformatics"):
+        source_p = r"E:\Bioinformatics"
 
-    process_and_index_folder(source_p, args.category)
+    process_and_index_folder(source_p, args.category, pdf_only=args.only_pdf)
