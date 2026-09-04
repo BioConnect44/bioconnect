@@ -88,18 +88,26 @@ export default function BioMinutePage() {
   }
 
   const TRUSTED_BIOTECH_IMAGES = [
+    "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=1200&q=80",
+    "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&q=80",
+    "https://images.unsplash.com/photo-1507668077129-56e32842fceb?w=1200&q=80",
+    "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=1200&q=80",
+    "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&q=80",
+    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80",
     "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80",
     "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=900&q=80",
-    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80",
     "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80",
     "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&q=80"
   ];
 
   function getCleanImageUrl(url) {
-    if (!url || typeof url !== "string" || !TRUSTED_BIOTECH_IMAGES.includes(url)) {
+    if (!url || typeof url !== "string") {
       return TRUSTED_BIOTECH_IMAGES[0];
     }
-    return url;
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url;
+    }
+    return TRUSTED_BIOTECH_IMAGES[0];
   }
 
   const art = article;
