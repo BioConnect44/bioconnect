@@ -33,6 +33,31 @@ def format_file_size(bytes_num):
 
 def parse_metadata(filename):
     stem = Path(filename).stem
+    fn_lower = filename.lower()
+    
+    if 'doran' in fn_lower:
+        return 'Bioprocess Engineering Principles', 'Pauline M. Doran'
+    if 'stanbury' in fn_lower:
+        return 'Principles of Fermentation Technology', 'P.F. Stanbury, A. Whitaker & S.J. Hall'
+    if 'himmelblau' in fn_lower:
+        return 'Basic Principles and Calculations in Chemical Engineering', 'David M. Himmelblau'
+    if 'villadsen' in fn_lower:
+        return 'Bioreaction Engineering Principles', 'John Villadsen, Jens Nielsen & Gunnar Lidén'
+    if 'waites' in fn_lower:
+        return 'Industrial Microbiology: An Introduction', 'M.J. Waites et al.'
+    if 'pepper' in fn_lower:
+        return 'Environmental Microbiology: A Laboratory Manual', 'Ian L. Pepper'
+    if 'steffe' in fn_lower:
+        return 'Bioprocessing Pipelines, Rheology and Analysis', 'James Freeman Steffe'
+    if 'menon' in fn_lower:
+        return 'Piping Calculations Manual', 'Shashi Menon'
+    if 'shun_lin' in fn_lower:
+        return 'Water and Wastewater Calculations Manual', 'Shun Lin & C. Lee'
+    if 'dickenson' in fn_lower:
+        return 'Valves, Piping and Pipelines Handbook', 'T.C. Dickenson'
+    if 'printgn' in fn_lower:
+        return 'Genetics & Molecular Biology Notes', 'Reference Library'
+
     if ' - ' in stem:
         parts = stem.split(' - ')
         title = parts[0].replace('_', ' ').strip()
@@ -77,7 +102,7 @@ def process_and_index_folder(source_folder, category_name, pdf_only=False):
             print(f"[Large PDF] {filename} ({format_file_size(file_size)}). Splitting into volume chunks (< 15MB)...")
             reader = pypdf.PdfReader(str(file_item))
             total_pages = len(reader.pages)
-            num_vols = max(2, math.ceil(file_size / (12 * 1024 * 1024)))
+            num_vols = max(2, math.ceil(file_size / (6 * 1024 * 1024)))
             pages_per_vol = total_pages // num_vols
 
             for v in range(num_vols):
