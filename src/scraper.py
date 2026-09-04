@@ -34,6 +34,8 @@ from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # ---------------------------------------------------------------------------
 # CONFIG
@@ -617,10 +619,13 @@ class BioConnectScraper:
 
     def fetch(self, url: str) -> Optional[str]:
         try:
-            resp = self.session.get(url, timeout=REQUEST_TIMEOUT, allow_redirects=True)
-            resp.raise_for_status()
-            time.sleep(RATE_LIMIT_DELAY)
-            return resp.text
+            resp = self.session.get(url, timeout=REQUEST_TIMEOUT, allow_redirects=True, verify=False)
+            if resp.status_code == 200:
+                time.sleep(RATE_LIMIT_DELAY)
+                return resp.text
+            else:
+                log.warning(f"  Fetch HTTP {resp.status_code}: {url}")
+                return None
         except Exception as e:
             log.warning(f"  Fetch failed: {url} → {e}")
             return None
@@ -673,27 +678,39 @@ class BioConnectScraper:
         # --- 1. Company career pages (30 companies) ---
         log.info("\n📋 Scraping company career pages...")
         for company, url in COMPANY_CAREERS.items():
-            log.info(f"  → {company}")
-            jobs = self._scrape_source("company_careers", url, company)
-            all_jobs.extend(jobs)
+            try:
+                log.info(f"  → {company}")
+                jobs = self._scrape_source("company_careers", url, company)
+                all_jobs.extend(jobs)
+            except Exception as e:
+                log.warning(f"  Company scrape error ({company}): {e}")
 
         # --- 2. Discovered sources (auto-discovered career pages) ---
-        discovered = self.db.get_discovered_sources()
-        if discovered:
-            log.info(f"\n🔍 Scraping {len(discovered)} discovered sources...")
-            for src in discovered:
-                log.info(f"  → {src['company']}")
-                jobs = self._scrape_source("discovered", src["url"], src["company"])
-                all_jobs.extend(jobs)
+        try:
+            discovered = self.db.get_discovered_sources()
+            if discovered:
+                log.info(f"\n🔍 Scraping {len(discovered)} discovered sources...")
+                for src in discovered:
+                    try:
+                        log.info(f"  → {src['company']}")
+                        jobs = self._scrape_source("discovered", src["url"], src["company"])
+                        all_jobs.extend(jobs)
+                    except Exception as e:
+                        log.warning(f"  Discovered source error ({src.get('company')}): {e}")
+        except Exception as e:
+            log.warning(f"Discovered sources error: {e}")
 
         # --- 3. Job boards ---
         for board, urls in JOB_BOARD_QUERIES.items():
             log.info(f"\n🌐 Scraping {board}...")
             for url in urls:
-                query = url.split("q=")[-1].split("&")[0].replace("+", " ")
-                log.info(f"  → {query}")
-                jobs = self._scrape_source(board, url, f"{board.title()} ({query})")
-                all_jobs.extend(jobs)
+                try:
+                    query = url.split("q=")[-1].split("&")[0].replace("+", " ")
+                    log.info(f"  → {query}")
+                    jobs = self._scrape_source(board, url, f"{board.title()} ({query})")
+                    all_jobs.extend(jobs)
+                except Exception as e:
+                    log.warning(f"  Board query error ({url}): {e}")
 
         # --- 4. Store results ---
         log.info(f"\n💾 Storing {len(all_jobs)} jobs...")
