@@ -4,6 +4,7 @@ import { createClient } from "@/utils/supabase/client";
 import AppShell from "@/components/AppShell";
 import LiveStudentWidgets, { markQuestCompleted } from "@/components/LiveStudentWidgets";
 import { recordUserAction } from "@/lib/gamificationEngine";
+import ExtraBooksSection from "@/components/ExtraBooksSection";
 
 const COURSE_TOPICS = [
   {
@@ -7146,6 +7147,7 @@ export default function LearningPage() {
       ) : (
         <StudentView supabase={supabase} profile={profile} onXPUpdate={handleXPUpdate} />
       )}
+      <ExtraBooksSection />
     </AppShell>
   );
 }
