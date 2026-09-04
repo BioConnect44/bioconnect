@@ -5,57 +5,89 @@ import extraBooksData from "@/data/extra_books.json";
 
 function ExtraBookViewerModal({ book, onClose }) {
   if (!book) return null;
-  const isPdf = book.format === "PDF";
+
+  const rawPath = book.file_path || book.url || "";
+  const encodedPath = encodeURI(rawPath);
+  const ext = (book.format || "").toUpperCase();
+  const isPdf = ext === "PDF" || rawPath.toLowerCase().endsWith(".pdf");
 
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(10, 25, 30, 0.85)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}>
-      <div style={{ background: "#fff", borderRadius: "20px", width: "95%", maxWidth: "1150px", height: "90vh", display: "flex", flexDirection: "column", overflow: "hidden", boxShadow: "0 25px 60px rgba(0,0,0,0.3)" }}>
-        <div style={{ padding: "16px 24px", background: "#102A30", color: "#fff", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <span style={{ fontSize: "24px" }}>📚</span>
-            <div>
-              <h3 style={{ fontSize: "16px", fontWeight: 700, margin: 0, color: "#fff" }}>{book.title}</h3>
-              <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.7)", margin: 0 }}>{book.category} • {book.file_size || book.size} ({book.format})</p>
+    <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(10, 25, 30, 0.85)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "16px" }}>
+      <div style={{ background: "#fff", borderRadius: "20px", width: "96%", maxWidth: "1250px", height: "92vh", display: "flex", flexDirection: "column", overflow: "hidden", boxShadow: "0 25px 60px rgba(0,0,0,0.35)" }}>
+        {/* Modal Header */}
+        <div style={{ padding: "16px 24px", background: "#102A30", color: "#fff", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px", minWidth: 0, flex: 1 }}>
+            <span style={{ fontSize: "26px", flexShrink: 0 }}>📚</span>
+            <div style={{ minWidth: 0 }}>
+              <h3 style={{ fontSize: "16px", fontWeight: 700, margin: 0, color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{book.title}</h3>
+              <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.7)", margin: "2px 0 0" }}>{book.category} • {book.file_size || book.size} ({book.format}) • {book.author || "Reference"}</p>
             </div>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
             <a
-              href={book.file_path || book.url}
-              download
-              style={{ background: "#3AA8C1", color: "#fff", padding: "8px 16px", borderRadius: "8px", textDecoration: "none", fontSize: "13px", fontWeight: 700 }}
+              href={encodedPath}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ background: "rgba(255,255,255,0.15)", color: "#fff", padding: "8px 14px", borderRadius: "8px", textDecoration: "none", fontSize: "13px", fontWeight: 600, display: "inline-flex", alignItems: "center", gap: "6px" }}
             >
-              ⬇️ Download File
+              <span>↗ Open in Tab</span>
+            </a>
+            <a
+              href={encodedPath}
+              download
+              style={{ background: "#3AA8C1", color: "#fff", padding: "8px 16px", borderRadius: "8px", textDecoration: "none", fontSize: "13px", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: "6px" }}
+            >
+              <span>⬇️ Download</span>
             </a>
             <button
               onClick={onClose}
-              style={{ background: "rgba(255,255,255,0.15)", border: "none", color: "#fff", width: 34, height: 34, borderRadius: "50%", cursor: "pointer", fontSize: "16px" }}
+              style={{ background: "rgba(255,255,255,0.2)", border: "none", color: "#fff", width: 34, height: 34, borderRadius: "50%", cursor: "pointer", fontSize: "16px", display: "flex", alignItems: "center", justifyContent: "center" }}
             >
               ✕
             </button>
           </div>
         </div>
 
-        <div style={{ flex: 1, background: "#525659" }}>
+        {/* Modal Content */}
+        <div style={{ flex: 1, background: "#525659", position: "relative" }}>
           {isPdf ? (
-            <iframe
-              src={book.file_path || book.url}
+            <object
+              data={encodedPath}
+              type="application/pdf"
               style={{ width: "100%", height: "100%", border: "none" }}
-              title={book.title}
-            />
+            >
+              <iframe
+                src={encodedPath}
+                style={{ width: "100%", height: "100%", border: "none" }}
+                title={book.title}
+              />
+            </object>
           ) : (
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", color: "#fff", textAlign: "center", padding: "40px" }}>
-              <span style={{ fontSize: "48px", marginBottom: "16px" }}>📄</span>
-              <h3 style={{ fontSize: "20px", fontWeight: 700, marginBottom: "8px" }}>{book.format} Document Viewer</h3>
-              <p style={{ fontSize: "14px", color: "#CBD5E1", maxWidth: "500px", marginBottom: "24px" }}>
-                This reference book is stored in <strong>{book.format}</strong> format ({book.file_size || book.size}). Click below to download and open in your preferred document reader.
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", color: "#fff", textAlign: "center", padding: "40px", background: "linear-gradient(135deg, #102A30 0%, #1B4A5A 100%)" }}>
+              <div style={{ width: 80, height: 80, borderRadius: "20px", background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "40px", marginBottom: "20px" }}>
+                📖
+              </div>
+              <h3 style={{ fontSize: "22px", fontWeight: 700, marginBottom: "8px", maxWidth: "700px" }}>{book.title}</h3>
+              <p style={{ fontSize: "14px", color: "#CBD5E1", maxWidth: "560px", marginBottom: "28px", lineHeight: "1.6" }}>
+                This educational reference file is stored in <strong>{book.format}</strong> format ({book.file_size || book.size}). Browsers require an external reader app or plugin for {book.format} documents. Click below to view directly or download.
               </p>
-              <a
-                href={book.file_path || book.url}
-                download
-                style={{ background: "#3AA8C1", color: "#fff", padding: "12px 28px", borderRadius: "10px", textDecoration: "none", fontSize: "15px", fontWeight: 700 }}
-              >
-                ⬇️ Download {book.filename || book.title}
-              </a>
+              <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", justifyContent: "center" }}>
+                <a
+                  href={encodedPath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ background: "#ffffff", color: "#102A30", padding: "12px 26px", borderRadius: "10px", textDecoration: "none", fontSize: "14px", fontWeight: 700, boxShadow: "0 4px 14px rgba(0,0,0,0.15)" }}
+                >
+                  ↗ Open File in Browser
+                </a>
+                <a
+                  href={encodedPath}
+                  download
+                  style={{ background: "#3AA8C1", color: "#fff", padding: "12px 26px", borderRadius: "10px", textDecoration: "none", fontSize: "14px", fontWeight: 700, boxShadow: "0 4px 14px rgba(0,0,0,0.15)" }}
+                >
+                  ⬇️ Download {book.format} File
+                </a>
+              </div>
             </div>
           )}
         </div>
@@ -86,24 +118,24 @@ export default function ExtraBooksSection({ customBooks }) {
   });
 
   return (
-    <section style={{ marginTop: "36px", marginBottom: "28px" }}>
+    <section style={{ width: "100%", marginTop: "36px", marginBottom: "28px" }}>
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "12px", marginBottom: "16px" }}>
         <div>
-          <h2 style={{ fontSize: "20px", fontWeight: 700, color: "#102A30", margin: 0 }}>
+          <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#102A30", margin: 0, letterSpacing: "-0.01em" }}>
             Extra Books 📚
           </h2>
           <p style={{ fontSize: "13px", color: "#64748B", marginTop: "4px", margin: 0 }}>
             Supplementary reading materials, reference guides, and manuals.
           </p>
         </div>
-        <span style={{ fontSize: "12px", fontWeight: 700, color: "#3AA8C1", background: "#E0F2FE", padding: "5px 14px", borderRadius: "100px" }}>
+        <span style={{ fontSize: "12px", fontWeight: 700, color: "#3AA8C1", background: "#E0F2FE", padding: "6px 16px", borderRadius: "100px" }}>
           {books.length} Books Available
         </span>
       </div>
 
       {/* Category Pills & Search */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "20px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "22px" }}>
         {/* Category Pills */}
         <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
           {categories.map(cat => {
@@ -116,10 +148,10 @@ export default function ExtraBooksSection({ customBooks }) {
                   background: isActive ? "#102A30" : "#F1F5F9",
                   color: isActive ? "#ffffff" : "#475569",
                   border: "none",
-                  padding: "6px 14px",
+                  padding: "7px 16px",
                   borderRadius: "20px",
                   fontSize: "12px",
-                  fontWeight: 600,
+                  fontWeight: 700,
                   cursor: "pointer",
                   fontFamily: "inherit",
                   transition: "all 0.2s ease"
@@ -139,55 +171,56 @@ export default function ExtraBooksSection({ customBooks }) {
           onChange={(e) => setSearchQuery(e.target.value)}
           style={{
             width: "100%",
-            padding: "12px 18px",
-            borderRadius: "12px",
+            padding: "13px 20px",
+            borderRadius: "14px",
             border: "1.5px solid #E2EEF0",
             fontSize: "14px",
             outline: "none",
             background: "#fff",
             color: "#102A30",
             fontFamily: "inherit",
-            boxShadow: "0 2px 6px rgba(0,0,0,0.02)"
+            boxShadow: "0 2px 8px rgba(0,0,0,0.02)"
           }}
         />
       </div>
 
-      {/* Book Grid */}
+      {/* Full-Width Book Grid */}
       {filteredBooks.length === 0 ? (
-        <div style={{ background: "#fff", borderRadius: "16px", padding: "40px", textAlign: "center", border: "1px solid #E2EEF0", color: "#64748B" }}>
-          <p style={{ fontSize: "15px", fontWeight: 600, margin: 0 }}>No matching books found</p>
+        <div style={{ background: "#fff", borderRadius: "16px", padding: "48px", textAlign: "center", border: "1px solid #E2EEF0", color: "#64748B" }}>
+          <p style={{ fontSize: "16px", fontWeight: 700, margin: 0, color: "#102A30" }}>No matching books found</p>
           <p style={{ fontSize: "13px", marginTop: "4px" }}>Try adjusting your search query or category filter.</p>
         </div>
       ) : (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "16px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))", gap: "18px", width: "100%" }}>
           {filteredBooks.map((book) => {
-            const isPdf = book.format === "PDF";
-            const badgeBg = isPdf ? "#DCFCE7" : book.format === "DJVU" ? "#F3E8FF" : "#E0F2FE";
-            const badgeColor = isPdf ? "#166534" : book.format === "DJVU" ? "#6B21A8" : "#0369A1";
+            const ext = (book.format || "").toUpperCase();
+            const isPdf = ext === "PDF";
+            const badgeBg = isPdf ? "#DCFCE7" : ext === "DJVU" ? "#F3E8FF" : "#E0F2FE";
+            const badgeColor = isPdf ? "#166534" : ext === "DJVU" ? "#6B21A8" : "#0369A1";
 
             return (
               <div
                 key={book.id}
                 style={{
                   background: "#fff",
-                  borderRadius: "16px",
+                  borderRadius: "18px",
                   border: "1px solid #E2EEF0",
-                  padding: "18px",
+                  padding: "20px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
                   transition: "all 0.25s ease",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.03)"
+                  boxShadow: "0 2px 10px rgba(0,0,0,0.03)"
                 }}
               >
                 <div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px" }}>
-                    <span style={{ fontSize: "28px" }}>📖</span>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "14px" }}>
+                    <span style={{ fontSize: "30px" }}>📖</span>
                     <div style={{ display: "flex", gap: "6px" }}>
-                      <span style={{ fontSize: "10px", fontWeight: 800, background: badgeBg, color: badgeColor, padding: "3px 8px", borderRadius: "6px", textTransform: "uppercase" }}>
+                      <span style={{ fontSize: "10px", fontWeight: 800, background: badgeBg, color: badgeColor, padding: "3px 9px", borderRadius: "6px", textTransform: "uppercase" }}>
                         {book.format}
                       </span>
-                      <span style={{ fontSize: "10px", fontWeight: 700, background: "#F1F5F9", color: "#475569", padding: "3px 8px", borderRadius: "6px" }}>
+                      <span style={{ fontSize: "10px", fontWeight: 700, background: "#F1F5F9", color: "#475569", padding: "3px 9px", borderRadius: "6px" }}>
                         {book.file_size || book.size}
                       </span>
                     </div>
@@ -196,7 +229,7 @@ export default function ExtraBooksSection({ customBooks }) {
                   <h3
                     title={book.title}
                     style={{
-                      fontSize: "14px",
+                      fontSize: "14.5px",
                       fontWeight: 700,
                       color: "#102A30",
                       marginBottom: "6px",
@@ -215,7 +248,7 @@ export default function ExtraBooksSection({ customBooks }) {
                   </p>
                 </div>
 
-                <div style={{ display: "flex", gap: "8px", marginTop: "14px", paddingTop: "12px", borderTop: "1px solid #F1F5F9" }}>
+                <div style={{ display: "flex", gap: "8px", marginTop: "14px", paddingTop: "14px", borderTop: "1px solid #F1F5F9" }}>
                   <button
                     onClick={() => setActiveViewerBook(book)}
                     style={{
@@ -223,8 +256,8 @@ export default function ExtraBooksSection({ customBooks }) {
                       background: "#102A30",
                       color: "#ffffff",
                       border: "none",
-                      padding: "8px 12px",
-                      borderRadius: "8px",
+                      padding: "9px 12px",
+                      borderRadius: "10px",
                       fontSize: "12px",
                       fontWeight: 700,
                       cursor: "pointer",
@@ -236,14 +269,14 @@ export default function ExtraBooksSection({ customBooks }) {
                   </button>
 
                   <a
-                    href={book.file_path || book.url}
+                    href={encodeURI(book.file_path || book.url)}
                     download
                     style={{
                       background: "#F0F9FF",
                       color: "#3AA8C1",
                       border: "1px solid #BAE6FD",
-                      padding: "8px 12px",
-                      borderRadius: "8px",
+                      padding: "9px 12px",
+                      borderRadius: "10px",
                       fontSize: "12px",
                       fontWeight: 700,
                       textDecoration: "none",
