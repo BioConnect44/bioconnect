@@ -89,8 +89,6 @@ function ExtraBookViewerModal({ book, onClose }) {
                 </a>
               </div>
             </div>
-          )}
-        </div>
       </div>
     </div>
   );
@@ -98,75 +96,96 @@ function ExtraBookViewerModal({ book, onClose }) {
 
 export default function ExtraBooksSection({ customBooks }) {
   const books = customBooks || extraBooksData || [];
+  const [selectedFolder, setSelectedFolder] = useState(null); // null = Folder directory view
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
   const [activeViewerBook, setActiveViewerBook] = useState(null);
 
-  // Extract unique categories
-  const categories = ["All", ...Array.from(new Set(books.map(b => b.category).filter(Boolean)))];
+  // Group books into category folders
+  const folderMap = {};
+  books.forEach((book) => {
+    const folderName = book.category || "General Reference";
+    if (!folderMap[folderName]) {
+      folderMap[folderName] = [];
+    }
+    folderMap[folderName].push(book);
+  });
 
-  const filteredBooks = books.filter(b => {
-    const matchesCategory = selectedCategory === "All" || b.category === selectedCategory;
-    const q = searchQuery.toLowerCase();
-    const matchesSearch = !q ||
+  const folderNames = Object.keys(folderMap);
+
+  // Filter books inside a folder or across folders if searching
+  const filteredBooks = books.filter((b) => {
+    const matchesFolder = !selectedFolder || b.category === selectedFolder;
+    const q = searchQuery.toLowerCase().trim();
+    const matchesSearch =
+      !q ||
       (b.title && b.title.toLowerCase().includes(q)) ||
       (b.author && b.author.toLowerCase().includes(q)) ||
       (b.category && b.category.toLowerCase().includes(q)) ||
       (b.format && b.format.toLowerCase().includes(q));
 
-    return matchesCategory && matchesSearch;
+    return matchesFolder && matchesSearch;
   });
 
   return (
     <section style={{ width: "100%", marginTop: "36px", marginBottom: "28px" }}>
-      {/* Header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "12px", marginBottom: "16px" }}>
+      {/* Top Section Header / Breadcrumb */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "14px", marginBottom: "20px" }}>
         <div>
-          <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#102A30", margin: 0, letterSpacing: "-0.01em" }}>
-            Extra Books 📚
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{ fontSize: "20px" }}>📚</span>
+            <span
+              onClick={() => { setSelectedFolder(null); setSearchQuery(""); }}
+              style={{ fontSize: "14px", fontWeight: 600, color: selectedFolder ? "#3AA8C1" : "#102A30", cursor: selectedFolder ? "pointer" : "default" }}
+            >
+              Extra Books
+            </span>
+            {selectedFolder && (
+              <>
+                <span style={{ color: "#94A3B8", fontSize: "14px" }}>/</span>
+                <span style={{ fontSize: "14px", fontWeight: 800, color: "#102A30" }}>
+                  📁 {selectedFolder}
+                </span>
+              </>
+            )}
+          </div>
+          <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#102A30", margin: "4px 0 0", letterSpacing: "-0.01em" }}>
+            {selectedFolder ? `Folder: ${selectedFolder}` : "Extra Books Library 📁"}
           </h2>
           <p style={{ fontSize: "13px", color: "#64748B", marginTop: "4px", margin: 0 }}>
-            Supplementary reading materials, reference guides, and manuals.
+            {selectedFolder
+              ? `Browsing ${folderMap[selectedFolder]?.length || 0} reference volumes inside ${selectedFolder}`
+              : "Browse curriculum reference folders and educational textbook collections."}
           </p>
         </div>
-        <span style={{ fontSize: "12px", fontWeight: 700, color: "#3AA8C1", background: "#E0F2FE", padding: "6px 16px", borderRadius: "100px" }}>
-          {books.length} Books Available
-        </span>
+
+        {selectedFolder && (
+          <button
+            onClick={() => { setSelectedFolder(null); setSearchQuery(""); }}
+            style={{
+              background: "#F1F5F9",
+              color: "#102A30",
+              border: "1px solid #E2EEF0",
+              padding: "8px 16px",
+              borderRadius: "10px",
+              fontSize: "13px",
+              fontWeight: 700,
+              cursor: "pointer",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px",
+              transition: "all 0.2s"
+            }}
+          >
+            ← Back to All Folders
+          </button>
+        )}
       </div>
 
-      {/* Category Pills & Search */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "22px" }}>
-        {/* Category Pills */}
-        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-          {categories.map(cat => {
-            const isActive = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                style={{
-                  background: isActive ? "#102A30" : "#F1F5F9",
-                  color: isActive ? "#ffffff" : "#475569",
-                  border: "none",
-                  padding: "7px 16px",
-                  borderRadius: "20px",
-                  fontSize: "12px",
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  fontFamily: "inherit",
-                  transition: "all 0.2s ease"
-                }}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Search Input */}
+      {/* Search Input */}
+      <div style={{ marginBottom: "24px" }}>
         <input
           type="text"
-          placeholder="🔍 Search extra books by title, author, format, or category..."
+          placeholder={selectedFolder ? `🔍 Search inside ${selectedFolder}...` : "🔍 Search all extra books by title, author, or keyword..."}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           style={{
@@ -184,112 +203,177 @@ export default function ExtraBooksSection({ customBooks }) {
         />
       </div>
 
-      {/* Full-Width Book Grid */}
-      {filteredBooks.length === 0 ? (
-        <div style={{ background: "#fff", borderRadius: "16px", padding: "48px", textAlign: "center", border: "1px solid #E2EEF0", color: "#64748B" }}>
-          <p style={{ fontSize: "16px", fontWeight: 700, margin: 0, color: "#102A30" }}>No matching books found</p>
-          <p style={{ fontSize: "13px", marginTop: "4px" }}>Try adjusting your search query or category filter.</p>
-        </div>
-      ) : (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))", gap: "18px", width: "100%" }}>
-          {filteredBooks.map((book) => {
-            const ext = (book.format || "").toUpperCase();
-            const isPdf = ext === "PDF";
-            const badgeBg = isPdf ? "#DCFCE7" : ext === "DJVU" ? "#F3E8FF" : "#E0F2FE";
-            const badgeColor = isPdf ? "#166534" : ext === "DJVU" ? "#6B21A8" : "#0369A1";
+      {/* VIEW MODE 1: ROOT FOLDER DIRECTORY VIEW (When no folder is opened and no search query active) */}
+      {!selectedFolder && !searchQuery ? (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: "20px", width: "100%" }}>
+          {folderNames.map((folderName) => {
+            const folderBooks = folderMap[folderName];
+            const formats = Array.from(new Set(folderBooks.map((b) => b.format))).join(", ");
 
             return (
               <div
-                key={book.id}
+                key={folderName}
+                onClick={() => setSelectedFolder(folderName)}
                 style={{
-                  background: "#fff",
-                  borderRadius: "18px",
-                  border: "1px solid #E2EEF0",
-                  padding: "20px",
+                  background: "linear-gradient(135deg, #ffffff 0%, #F8FAFC 100%)",
+                  borderRadius: "20px",
+                  border: "1.5px solid #E2EEF0",
+                  padding: "24px",
+                  cursor: "pointer",
+                  transition: "all 0.25s ease",
+                  boxShadow: "0 4px 14px rgba(0,0,0,0.04)",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  transition: "all 0.25s ease",
-                  boxShadow: "0 2px 10px rgba(0,0,0,0.03)"
+                  position: "relative",
+                  overflow: "hidden"
                 }}
               >
+                {/* Decorative folder glow accent */}
+                <div style={{ position: "absolute", top: "-15px", right: "-15px", width: "90px", height: "90px", background: "rgba(58, 168, 193, 0.08)", borderRadius: "50%", pointerEvents: "none" }} />
+
                 <div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "14px" }}>
-                    <span style={{ fontSize: "30px" }}>📖</span>
-                    <div style={{ display: "flex", gap: "6px" }}>
-                      <span style={{ fontSize: "10px", fontWeight: 800, background: badgeBg, color: badgeColor, padding: "3px 9px", borderRadius: "6px", textTransform: "uppercase" }}>
-                        {book.format}
-                      </span>
-                      <span style={{ fontSize: "10px", fontWeight: 700, background: "#F1F5F9", color: "#475569", padding: "3px 9px", borderRadius: "6px" }}>
-                        {book.file_size || book.size}
-                      </span>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px" }}>
+                    <div style={{ background: "#E0F2FE", color: "#0369A1", width: "54px", height: "54px", borderRadius: "14px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "28px" }}>
+                      📁
                     </div>
+                    <span style={{ fontSize: "12px", fontWeight: 800, background: "#102A30", color: "#ffffff", padding: "5px 12px", borderRadius: "100px" }}>
+                      {folderBooks.length} Books
+                    </span>
                   </div>
 
-                  <h3
-                    title={book.title}
-                    style={{
-                      fontSize: "14.5px",
-                      fontWeight: 700,
-                      color: "#102A30",
-                      marginBottom: "6px",
-                      lineHeight: "1.35",
-                      display: "-webkit-box",
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden"
-                    }}
-                  >
-                    {book.title}
+                  <h3 style={{ fontSize: "17px", fontWeight: 800, color: "#102A30", margin: "0 0 6px", letterSpacing: "-0.01em" }}>
+                    {folderName}
                   </h3>
 
-                  <p style={{ fontSize: "12px", color: "#64748B", marginBottom: "14px", margin: 0 }}>
-                    {book.category} • <span style={{ fontStyle: "italic" }}>{book.author || "Reference"}</span>
+                  <p style={{ fontSize: "13px", color: "#64748B", margin: "0 0 16px", lineHeight: "1.45" }}>
+                    Contains {folderBooks.length} educational textbooks, reference manuals, and laboratory protocols.
                   </p>
                 </div>
 
-                <div style={{ display: "flex", gap: "8px", marginTop: "14px", paddingTop: "14px", borderTop: "1px solid #F1F5F9" }}>
-                  <button
-                    onClick={() => setActiveViewerBook(book)}
-                    style={{
-                      flex: 1,
-                      background: "#102A30",
-                      color: "#ffffff",
-                      border: "none",
-                      padding: "9px 12px",
-                      borderRadius: "10px",
-                      fontSize: "12px",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      fontFamily: "inherit",
-                      transition: "background 0.2s"
-                    }}
-                  >
-                    Read In-App 📄
-                  </button>
+                <div style={{ paddingTop: "14px", borderTop: "1px solid #E2EEF0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: "11px", fontWeight: 700, color: "#3AA8C1", background: "#F0F9FF", padding: "4px 10px", borderRadius: "6px" }}>
+                    Formats: {formats}
+                  </span>
 
-                  <a
-                    href={encodeURI(book.file_path || book.url)}
-                    download
-                    style={{
-                      background: "#F0F9FF",
-                      color: "#3AA8C1",
-                      border: "1px solid #BAE6FD",
-                      padding: "9px 12px",
-                      borderRadius: "10px",
-                      fontSize: "12px",
-                      fontWeight: 700,
-                      textDecoration: "none",
-                      textAlign: "center"
-                    }}
-                  >
-                    Download ⬇️
-                  </a>
+                  <span style={{ fontSize: "13px", fontWeight: 700, color: "#102A30", display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                    Open Folder 📂 →
+                  </span>
                 </div>
               </div>
             );
           })}
         </div>
+      ) : (
+        /* VIEW MODE 2: INSIDE A FOLDER OR SEARCH RESULTS */
+        <>
+          {filteredBooks.length === 0 ? (
+            <div style={{ background: "#fff", borderRadius: "16px", padding: "48px", textAlign: "center", border: "1px solid #E2EEF0", color: "#64748B" }}>
+              <p style={{ fontSize: "16px", fontWeight: 700, margin: 0, color: "#102A30" }}>No matching books found</p>
+              <p style={{ fontSize: "13px", marginTop: "4px" }}>Try adjusting your search query or return to all folders.</p>
+            </div>
+          ) : (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))", gap: "18px", width: "100%" }}>
+              {filteredBooks.map((book) => {
+                const ext = (book.format || "").toUpperCase();
+                const isPdf = ext === "PDF";
+                const badgeBg = isPdf ? "#DCFCE7" : ext === "DJVU" ? "#F3E8FF" : "#E0F2FE";
+                const badgeColor = isPdf ? "#166534" : ext === "DJVU" ? "#6B21A8" : "#0369A1";
+
+                return (
+                  <div
+                    key={book.id}
+                    style={{
+                      background: "#fff",
+                      borderRadius: "18px",
+                      border: "1px solid #E2EEF0",
+                      padding: "20px",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      transition: "all 0.25s ease",
+                      boxShadow: "0 2px 10px rgba(0,0,0,0.03)"
+                    }}
+                  >
+                    <div>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "14px" }}>
+                        <span style={{ fontSize: "30px" }}>📖</span>
+                        <div style={{ display: "flex", gap: "6px" }}>
+                          <span style={{ fontSize: "10px", fontWeight: 800, background: badgeBg, color: badgeColor, padding: "3px 9px", borderRadius: "6px", textTransform: "uppercase" }}>
+                            {book.format}
+                          </span>
+                          <span style={{ fontSize: "10px", fontWeight: 700, background: "#F1F5F9", color: "#475569", padding: "3px 9px", borderRadius: "6px" }}>
+                            {book.file_size || book.size}
+                          </span>
+                        </div>
+                      </div>
+
+                      <h3
+                        title={book.title}
+                        style={{
+                          fontSize: "14.5px",
+                          fontWeight: 700,
+                          color: "#102A30",
+                          marginBottom: "6px",
+                          lineHeight: "1.35",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden"
+                        }}
+                      >
+                        {book.title}
+                      </h3>
+
+                      <p style={{ fontSize: "12px", color: "#64748B", marginBottom: "14px", margin: 0 }}>
+                        📁 {book.category} • <span style={{ fontStyle: "italic" }}>{book.author || "Reference"}</span>
+                      </p>
+                    </div>
+
+                    <div style={{ display: "flex", gap: "8px", marginTop: "14px", paddingTop: "14px", borderTop: "1px solid #F1F5F9" }}>
+                      <button
+                        onClick={() => setActiveViewerBook(book)}
+                        style={{
+                          flex: 1,
+                          background: "#102A30",
+                          color: "#ffffff",
+                          border: "none",
+                          padding: "9px 12px",
+                          borderRadius: "10px",
+                          fontSize: "12px",
+                          fontWeight: 700,
+                          cursor: "pointer",
+                          fontFamily: "inherit",
+                          transition: "background 0.2s"
+                        }}
+                      >
+                        Read In-App 📄
+                      </button>
+
+                      <a
+                        href={encodeURI(book.file_path || book.url)}
+                        download
+                        style={{
+                          background: "#F0F9FF",
+                          color: "#3AA8C1",
+                          border: "1px solid #BAE6FD",
+                          padding: "9px 12px",
+                          borderRadius: "10px",
+                          fontSize: "12px",
+                          fontWeight: 700,
+                          textDecoration: "none",
+                          textAlign: "center"
+                        }}
+                      >
+                        Download ⬇️
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </>
       )}
 
       {/* In-App Reader Modal */}
