@@ -89,6 +89,8 @@ function ExtraBookViewerModal({ book, onClose }) {
                 </a>
               </div>
             </div>
+          )}
+        </div>
       </div>
     </div>
   );
