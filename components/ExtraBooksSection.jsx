@@ -104,7 +104,8 @@ function ExtraBookViewerModal({ book, onClose }) {
 
 export default function ExtraBooksSection({ customBooks }) {
   const books = customBooks || extraBooksData || [];
-  const [selectedFolder, setSelectedFolder] = useState(null); // null = Folder directory view
+  const [selectedFolder, setSelectedFolder] = useState(null); // null = Root folder directory view
+  const [selectedSubfolder, setSelectedSubfolder] = useState(null); // null = Subfolder view (if folder has subfolders)
   const [searchQuery, setSearchQuery] = useState("");
   const [activeViewerBook, setActiveViewerBook] = useState(null);
 
@@ -120,32 +121,67 @@ export default function ExtraBooksSection({ customBooks }) {
 
   const folderNames = Object.keys(folderMap);
 
+  // Check subfolders for selected folder
+  const currentFolderBooks = selectedFolder ? (folderMap[selectedFolder] || []) : [];
+  const subfolderMap = {};
+  if (selectedFolder) {
+    currentFolderBooks.forEach((book) => {
+      if (book.subcategory) {
+        if (!subfolderMap[book.subcategory]) {
+          subfolderMap[book.subcategory] = [];
+        }
+        subfolderMap[book.subcategory].push(book);
+      }
+    });
+  }
+  const subfolderNames = Object.keys(subfolderMap);
+  const hasSubfolders = subfolderNames.length > 0;
+
   // Filter books inside a folder or across folders if searching
   const filteredBooks = books.filter((b) => {
     const matchesFolder = !selectedFolder || b.category === selectedFolder;
+    const matchesSubfolder = !selectedSubfolder || b.subcategory === selectedSubfolder;
     const q = searchQuery.toLowerCase().trim();
     const matchesSearch =
       !q ||
       (b.title && b.title.toLowerCase().includes(q)) ||
       (b.author && b.author.toLowerCase().includes(q)) ||
       (b.category && b.category.toLowerCase().includes(q)) ||
+      (b.subcategory && b.subcategory.toLowerCase().includes(q)) ||
       (b.format && b.format.toLowerCase().includes(q));
 
-    return matchesFolder && matchesSearch;
+    return matchesFolder && matchesSubfolder && matchesSearch;
   });
+
+  const handleResetAll = () => {
+    setSelectedFolder(null);
+    setSelectedSubfolder(null);
+    setSearchQuery("");
+  };
+
+  const handleSelectFolder = (folderName) => {
+    setSelectedFolder(folderName);
+    setSelectedSubfolder(null);
+    setSearchQuery("");
+  };
+
+  const handleSelectSubfolder = (subfolderName) => {
+    setSelectedSubfolder(subfolderName);
+    setSearchQuery("");
+  };
 
   return (
     <section style={{ width: "100%", marginTop: "36px", marginBottom: "28px" }}>
       {/* Top Section Header / Breadcrumb */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "14px", marginBottom: "20px" }}>
         <div>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3AA8C1" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
             </svg>
             <span
-              onClick={() => { setSelectedFolder(null); setSearchQuery(""); }}
+              onClick={handleResetAll}
               style={{ fontSize: "14px", fontWeight: 600, color: selectedFolder ? "#3AA8C1" : "#102A30", cursor: selectedFolder ? "pointer" : "default" }}
             >
               Extra Books
@@ -153,28 +189,78 @@ export default function ExtraBooksSection({ customBooks }) {
             {selectedFolder && (
               <>
                 <span style={{ color: "#94A3B8", fontSize: "14px" }}>/</span>
-                <span style={{ fontSize: "14px", fontWeight: 800, color: "#102A30", display: "inline-flex", alignItems: "center", gap: "5px" }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#102A30" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <span
+                  onClick={() => { setSelectedSubfolder(null); setSearchQuery(""); }}
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: selectedSubfolder ? 600 : 800,
+                    color: selectedSubfolder ? "#3AA8C1" : "#102A30",
+                    cursor: selectedSubfolder ? "pointer" : "default",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "5px"
+                  }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
                   </svg>
                   {selectedFolder}
                 </span>
               </>
             )}
+            {selectedSubfolder && (
+              <>
+                <span style={{ color: "#94A3B8", fontSize: "14px" }}>/</span>
+                <span style={{ fontSize: "14px", fontWeight: 800, color: "#102A30", display: "inline-flex", alignItems: "center", gap: "5px" }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#102A30" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  {selectedSubfolder}
+                </span>
+              </>
+            )}
           </div>
           <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#102A30", margin: "4px 0 0", letterSpacing: "-0.01em" }}>
-            {selectedFolder ? `Folder: ${selectedFolder}` : "Extra Books Library"}
+            {selectedSubfolder
+              ? `Subfolder: ${selectedSubfolder}`
+              : selectedFolder
+              ? `Folder: ${selectedFolder}`
+              : "Extra Books Library"}
           </h2>
           <p style={{ fontSize: "13px", color: "#64748B", marginTop: "4px", margin: 0 }}>
-            {selectedFolder
-              ? `Browsing ${folderMap[selectedFolder]?.length || 0} reference volumes inside ${selectedFolder}`
+            {selectedSubfolder
+              ? `Browsing ${filteredBooks.length} volumes in ${selectedSubfolder}`
+              : selectedFolder
+              ? hasSubfolders
+                ? `Browsing ${subfolderNames.length} standard subfolders inside ${selectedFolder} (${currentFolderBooks.length} volumes total)`
+                : `Browsing ${currentFolderBooks.length} reference volumes inside ${selectedFolder}`
               : "Browse curriculum reference folders and educational textbook collections."}
           </p>
         </div>
 
-        {selectedFolder && (
+        {selectedSubfolder ? (
           <button
-            onClick={() => { setSelectedFolder(null); setSearchQuery(""); }}
+            onClick={() => { setSelectedSubfolder(null); setSearchQuery(""); }}
+            style={{
+              background: "#F1F5F9",
+              color: "#102A30",
+              border: "1px solid #E2EEF0",
+              padding: "8px 16px",
+              borderRadius: "10px",
+              fontSize: "13px",
+              fontWeight: 700,
+              cursor: "pointer",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px",
+              transition: "all 0.2s"
+            }}
+          >
+            ← Back to {selectedFolder}
+          </button>
+        ) : selectedFolder ? (
+          <button
+            onClick={handleResetAll}
             style={{
               background: "#F1F5F9",
               color: "#102A30",
@@ -192,14 +278,20 @@ export default function ExtraBooksSection({ customBooks }) {
           >
             ← Back to All Folders
           </button>
-        )}
+        ) : null}
       </div>
 
       {/* Search Input */}
       <div style={{ marginBottom: "24px" }}>
         <input
           type="text"
-          placeholder={selectedFolder ? `Search inside ${selectedFolder}...` : "Search all extra books by title, author, or keyword..."}
+          placeholder={
+            selectedSubfolder
+              ? `Search inside ${selectedSubfolder}...`
+              : selectedFolder
+              ? `Search inside ${selectedFolder}...`
+              : "Search all extra books by title, author, or keyword..."
+          }
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           style={{
@@ -227,7 +319,7 @@ export default function ExtraBooksSection({ customBooks }) {
             return (
               <div
                 key={folderName}
-                onClick={() => setSelectedFolder(folderName)}
+                onClick={() => handleSelectFolder(folderName)}
                 style={{
                   background: "linear-gradient(135deg, #ffffff 0%, #F8FAFC 100%)",
                   borderRadius: "20px",
@@ -280,8 +372,71 @@ export default function ExtraBooksSection({ customBooks }) {
             );
           })}
         </div>
+      ) : selectedFolder && hasSubfolders && !selectedSubfolder && !searchQuery ? (
+        /* VIEW MODE 2: SUBFOLDER DIRECTORY VIEW (When folder has subfolders and no subfolder or search query selected) */
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "20px", width: "100%" }}>
+          {subfolderNames.map((subName) => {
+            const subBooks = subfolderMap[subName];
+            const count = subBooks.length;
+
+            return (
+              <div
+                key={subName}
+                onClick={() => handleSelectSubfolder(subName)}
+                style={{
+                  background: "linear-gradient(135deg, #ffffff 0%, #F8FAFC 100%)",
+                  borderRadius: "20px",
+                  border: "1.5px solid #E2EEF0",
+                  padding: "24px",
+                  cursor: "pointer",
+                  transition: "all 0.25s ease",
+                  boxShadow: "0 4px 14px rgba(0,0,0,0.04)",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  position: "relative",
+                  overflow: "hidden"
+                }}
+              >
+                {/* Decorative folder glow accent */}
+                <div style={{ position: "absolute", top: "-15px", right: "-15px", width: "90px", height: "90px", background: "rgba(58, 168, 193, 0.08)", borderRadius: "50%", pointerEvents: "none" }} />
+
+                <div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px" }}>
+                    <div style={{ background: "#E0F2FE", color: "#0369A1", width: "54px", height: "54px", borderRadius: "14px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0369A1" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </div>
+                    <span style={{ fontSize: "12px", fontWeight: 800, background: "#102A30", color: "#ffffff", padding: "5px 12px", borderRadius: "100px" }}>
+                      {count} Books
+                    </span>
+                  </div>
+
+                  <h3 style={{ fontSize: "17px", fontWeight: 800, color: "#102A30", margin: "0 0 6px", letterSpacing: "-0.01em" }}>
+                    {subName}
+                  </h3>
+
+                  <p style={{ fontSize: "13px", color: "#64748B", margin: "0 0 16px", lineHeight: "1.45" }}>
+                    Contains {count} textbook chapters and educational materials for {subName}.
+                  </p>
+                </div>
+
+                <div style={{ paddingTop: "14px", borderTop: "1px solid #E2EEF0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: "11px", fontWeight: 700, color: "#3AA8C1", background: "#F0F9FF", padding: "4px 10px", borderRadius: "6px" }}>
+                    Format: PDF
+                  </span>
+
+                  <span style={{ fontSize: "13px", fontWeight: 700, color: "#102A30", display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                    Open Subfolder →
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       ) : (
-        /* VIEW MODE 2: INSIDE A FOLDER OR SEARCH RESULTS */
+        /* VIEW MODE 3: INSIDE A FOLDER / SUBFOLDER OR SEARCH RESULTS */
         <>
           {filteredBooks.length === 0 ? (
             <div style={{ background: "#fff", borderRadius: "16px", padding: "48px", textAlign: "center", border: "1px solid #E2EEF0", color: "#64748B" }}>
@@ -350,7 +505,7 @@ export default function ExtraBooksSection({ customBooks }) {
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
                         </svg>
-                        {book.category} • <span style={{ fontStyle: "italic" }}>{book.author || "Reference"}</span>
+                        {book.subcategory ? `${book.category} / ${book.subcategory}` : book.category} • <span style={{ fontStyle: "italic" }}>{book.author || "Reference"}</span>
                       </p>
                     </div>
 
