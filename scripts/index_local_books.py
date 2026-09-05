@@ -306,7 +306,18 @@ def process_and_index_folder(source_folder, category_name, pdf_only=False):
                 print(f"  + Created volume: {vol_name} ({format_file_size(vol_size)})")
         else:
             dest_file = dest_dir / filename
-            shutil.copy2(str(file_item), str(dest_file))
+            copied = False
+            for attempt in range(3):
+                try:
+                    with open(file_item, 'rb') as src_f, open(dest_file, 'wb') as dst_f:
+                        shutil.copyfileobj(src_f, dst_f)
+                    copied = True
+                    break
+                except Exception:
+                    import time
+                    time.sleep(0.5)
+            if not copied:
+                shutil.copy2(str(file_item), str(dest_file))
             item_id = slugify(f"{filename}-{category_slug}")
             format_str = ext.replace('.', '').upper()
 
