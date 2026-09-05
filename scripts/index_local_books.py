@@ -13,6 +13,8 @@ if hasattr(sys.stdout, 'reconfigure'):
 
 try:
     import pypdf
+    import pypdf.filters
+    pypdf.filters.ZLIB_MAX_OUTPUT_LENGTH = 500 * 1024 * 1024
 except ImportError:
     pypdf = None
 
@@ -31,7 +33,7 @@ def format_file_size(bytes_num):
         return f"{bytes_num / 1024:.0f} KB"
     return f"{bytes_num} Bytes"
 
-def parse_metadata(filename):
+def parse_metadata(filename, filepath=None, root_folder=None):
     stem = Path(filename).stem
     fn_lower = filename.lower()
     
@@ -164,6 +166,60 @@ def parse_metadata(filename):
     if 'turchin' in fn_lower:
         return 'The Phenomenon of Science: A Cybernetic Approach to Human Evolution', 'Valentin F. Turchin'
 
+    # NCERT specific logic
+    if (filepath and 'ncert' in str(filepath).lower()) or 'ncert' in fn_lower or (root_folder and 'ncert' in str(root_folder).lower()):
+        prefix = 'NCERT'
+        parent = ''
+        if filepath and root_folder:
+            try:
+                rel = filepath.relative_to(root_folder)
+                parent = rel.parts[0] if len(rel.parts) > 1 else ''
+            except Exception:
+                parent = ''
+
+        if parent == 'Chemistry XI' or 'kech' in stem:
+            prefix = 'NCERT Class 11 Chemistry'
+        elif parent == 'chemistry XII' or 'lech' in stem:
+            prefix = 'NCERT Class 12 Chemistry'
+        elif 'class8' in parent.lower() or 'class8' in fn_lower:
+            prefix = 'NCERT Class 8 Science'
+        elif 'class9' in parent.lower() or 'class9' in fn_lower:
+            prefix = 'NCERT Class 9 Science'
+        elif 'class10' in parent.lower() or 'class10' in fn_lower:
+            prefix = 'NCERT Class 10 Science'
+        elif 'class11' in parent.lower() or 'class11' in fn_lower:
+            prefix = 'NCERT Class 11 Biology'
+        elif 'class12' in parent.lower() or 'class12' in fn_lower:
+            prefix = 'NCERT Class 12 Biology'
+        else:
+            prefix = 'NCERT Science'
+
+        code_match = re.search(r'[a-z]{4}([0-9])([0-9]{2})', stem, re.IGNORECASE)
+        num_match = re.search(r'(?:Unit|chapter|unit)\s*0*([0-9]+)', stem, re.IGNORECASE)
+        
+        if code_match:
+            part_num = int(code_match.group(1))
+            ch_offset = int(code_match.group(2))
+            ch_num = ch_offset if part_num == 1 else (9 + ch_offset)
+            return f'{prefix} - Chapter {ch_num}', 'NCERT'
+        elif num_match:
+            ch_num = num_match.group(1)
+            bracket_match = re.search(r'\(([0-9]+)\)', stem)
+            if bracket_match and int(bracket_match.group(1)) != int(ch_num):
+                return f'{prefix} - Chapter {bracket_match.group(1)}', 'NCERT'
+            return f'{prefix} - Chapter {ch_num}', 'NCERT'
+        elif 'chapter' in stem.lower():
+            ch_match = re.search(r'chapter\s*([0-9]+)', stem, re.IGNORECASE)
+            if ch_match:
+                return f'{prefix} - Chapter {ch_match.group(1)}', 'NCERT'
+        elif 'index' in stem.lower() or 'toc' in stem.lower():
+            return f'{prefix} - Table of Contents', 'NCERT'
+        elif 'answers' in stem.lower() or 'ans' in stem.lower():
+            return f'{prefix} - Chapter Solutions & Answers', 'NCERT'
+
+        clean_stem = stem.replace('_', ' ').replace('-', ' ').strip()
+        return f'{prefix} - {clean_stem}', 'NCERT'
+
     if ' - ' in stem:
         parts = stem.split(' - ')
         title = parts[0].replace('_', ' ').strip()
@@ -193,22 +249,30 @@ def process_and_index_folder(source_folder, category_name, pdf_only=False):
     print(f"Destination directory: '{dest_dir}'\n")
 
     new_indexed_items = []
+    file_items = [f for f in sorted(source_path.rglob('*')) if f.is_file()]
 
-    for file_item in sorted(source_path.iterdir()):
-        if file_item.is_dir() or file_item.suffix.lower() not in allowed_exts:
+    for file_item in file_items:
+        if file_item.suffix.lower() not in allowed_exts:
             continue
 
         file_size = file_item.stat().st_size
-        filename = file_item.name
         ext = file_item.suffix.lower()
-        title, author = parse_metadata(filename)
+        
+        # Build unique destination filename using relative parent if needed
+        rel = file_item.relative_to(source_path)
+        if len(rel.parts) > 1:
+            filename = f"{slugify(rel.parts[0])}-{file_item.name}"
+        else:
+            filename = file_item.name
+
+        title, author = parse_metadata(file_item.name, filepath=file_item, root_folder=source_path)
 
         # Large PDF splitting safeguard (> 15MB)
         if ext == '.pdf' and file_size > MAX_FILE_SIZE_BYTES and pypdf:
             print(f"[Large PDF] {filename} ({format_file_size(file_size)}). Splitting into volume chunks (< 15MB)...")
             reader = pypdf.PdfReader(str(file_item))
             total_pages = len(reader.pages)
-            num_vols = max(2, math.ceil(file_size / (6 * 1024 * 1024)))
+            num_vols = max(2, math.ceil(file_size / (4 * 1024 * 1024)))
             pages_per_vol = total_pages // num_vols
 
             for v in range(num_vols):
