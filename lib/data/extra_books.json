@@ -4123,5 +4123,60 @@
     "category": "Microbiology",
     "author": "Reference Library",
     "file_path": "/assets/books/microbiology/crugerb.pdf"
+  },
+  {
+    "id": "cooperation-in-primates-and-humans-mechanisms-and-evolution-peter-m-kappeler-pdf-evolution",
+    "title": "Cooperation in Primates and Humans: Mechanisms and Evolution",
+    "filename": "Cooperation in Primates and Humans Mechanisms and Evolution -  Peter M. Kappeler.pdf",
+    "format": "PDF",
+    "file_size": "7.0 MB",
+    "bytes": 7355725,
+    "category": "Evolution",
+    "author": "Peter M. Kappeler",
+    "file_path": "/assets/books/evolution/Cooperation in Primates and Humans Mechanisms and Evolution -  Peter M. Kappeler.pdf"
+  },
+  {
+    "id": "human-evolution-an-illustrated-introduction-5th-edition-roger-lewin-pdf-evolution",
+    "title": "Human Evolution: An Illustrated Introduction (5th Edition)",
+    "filename": "Human Evolution - An Illustrated Introduction, 5th Edition - Roger Lewin.pdf",
+    "format": "PDF",
+    "file_size": "10.5 MB",
+    "bytes": 11014194,
+    "category": "Evolution",
+    "author": "Roger Lewin",
+    "file_path": "/assets/books/evolution/Human Evolution - An Illustrated Introduction, 5th Edition - Roger Lewin.pdf"
+  },
+  {
+    "id": "molecular-population-genetics-and-evolution-masatoshi-nei-pdf-evolution",
+    "title": "Molecular Population Genetics and Evolution",
+    "filename": "Molecular population genetics and evolution - Masatoshi Nei.pdf",
+    "format": "PDF",
+    "file_size": "6.5 MB",
+    "bytes": 6816285,
+    "category": "Evolution",
+    "author": "Masatoshi Nei",
+    "file_path": "/assets/books/evolution/Molecular population genetics and evolution - Masatoshi Nei.pdf"
+  },
+  {
+    "id": "selective-sweep-dmitry-nurminsky-pdf-evolution",
+    "title": "Selective Sweep",
+    "filename": "Selective Sweep - Dmitry Nurminsky.pdf",
+    "format": "PDF",
+    "file_size": "2.4 MB",
+    "bytes": 2482307,
+    "category": "Evolution",
+    "author": "Dmitry Nurminsky",
+    "file_path": "/assets/books/evolution/Selective Sweep - Dmitry Nurminsky.pdf"
+  },
+  {
+    "id": "the-phenomenon-of-science-a-cybernetic-approach-to-human-evolution-turchin-v-f-pdf-evolution",
+    "title": "Piping Calculations Manual",
+    "filename": "The Phenomenon of Science  A cybernetic approach to human evolution - Turchin V.F.pdf",
+    "format": "PDF",
+    "file_size": "1.3 MB",
+    "bytes": 1349108,
+    "category": "Evolution",
+    "author": "Shashi Menon",
+    "file_path": "/assets/books/evolution/The Phenomenon of Science  A cybernetic approach to human evolution - Turchin V.F.pdf"
   }
 ]

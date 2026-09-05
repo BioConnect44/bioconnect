@@ -153,6 +153,16 @@ def parse_metadata(filename):
         return 'PreTest Microbiology', 'Richard C. Tilton'
     if 'bitton' in fn_lower or 'wastewater microbiology' in fn_lower:
         return 'Wastewater Microbiology', 'Gabriel Bitton'
+    if 'kappeler' in fn_lower:
+        return 'Cooperation in Primates and Humans: Mechanisms and Evolution', 'Peter M. Kappeler'
+    if 'lewin' in fn_lower:
+        return 'Human Evolution: An Illustrated Introduction (5th Edition)', 'Roger Lewin'
+    if 'nei' in fn_lower:
+        return 'Molecular Population Genetics and Evolution', 'Masatoshi Nei'
+    if 'nurminsky' in fn_lower:
+        return 'Selective Sweep', 'Dmitry Nurminsky'
+    if 'turchin' in fn_lower:
+        return 'The Phenomenon of Science: A Cybernetic Approach to Human Evolution', 'Valentin F. Turchin'
 
     if ' - ' in stem:
         parts = stem.split(' - ')
