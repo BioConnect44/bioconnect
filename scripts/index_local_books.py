@@ -109,6 +109,50 @@ def parse_metadata(filename):
         return 'Really Essential Immunology', 'Ivan Roitt & Arthur Rabson'
     if 'essential immunology' in fn_lower or 'roitt' in fn_lower:
         return "Roitt's Essential Immunology (10th Edition)", 'Ivan Roitt & Peter Delves'
+    if 'basic lab procedure' in fn_lower:
+        return 'Basic Laboratory Procedures in Clinical Bacteriology', 'World Health Organization'
+    if 'marth' in fn_lower:
+        return 'Applied Dairy Microbiology', 'Elmer H. Marth'
+    if 'atlas' in fn_lower and 'environmental' in fn_lower:
+        return 'Atlas Handbook of Media for Environmental Microbiology', 'Ronald M. Atlas'
+    if 'benson' in fn_lower or 'brown' in fn_lower or 'microbiological applications' in fn_lower:
+        return "Benson's Microbiological Applications Laboratory Manual", 'Alfred E. Brown'
+    if 'bergey' in fn_lower and 'systematic' in fn_lower:
+        return "Bergey's Manual of Systematic Bacteriology", 'David H. Bergey et al.'
+    if 'plant surface' in fn_lower:
+        return 'Plant Surface Microbiology', 'Ajit Varma et al.'
+    if 'wastewater pathogens' in fn_lower or 'gerardi' in fn_lower:
+        return 'Wastewater Pathogens', 'Michael H. Gerardi & Mel C. Zimmerman'
+    if 'cruger' in fn_lower:
+        return 'Biotechnology: A Textbook of Industrial Microbiology', 'Wulf Crueger & Anneliese Crueger'
+    if 'freshwater' in fn_lower:
+        return 'Freshwater Microbiology: Biodiversity and Dynamic Interactions', 'David Sigee'
+    if 'kaplan' in fn_lower:
+        return 'Kaplan Medical USMLE Step 1 Microbiology & Immunology', 'Kaplan Medical'
+    if 'harley' in fn_lower or 'prescott%29' in fn_lower:
+        return 'Laboratory Exercises in Microbiology', 'John P. Harley & Lansing M. Prescott'
+    if 'moat' in fn_lower or 'microbial physiology' in fn_lower:
+        return 'Microbial Physiology', 'Albert G. Moat, John W. Foster & Michael P. Spector'
+    if 'culture media manual' in fn_lower:
+        return 'Microbiology Culture Media Manual', 'Reference Library'
+    if 'demystified' in fn_lower or 'betsy' in fn_lower:
+        return 'Microbiology Demystified', 'Tom Betsy & James Keogh'
+    if 'prescott.pdf' in fn_lower or 'prescott' in fn_lower:
+        return "Prescott's Microbiology", 'Lansing M. Prescott, John P. Harley & Donald A. Klein'
+    if 'tilton' in fn_lower:
+        return 'Microbiology (10th Edition)', 'Richard C. Tilton'
+    if 'microscopy techniques' in fn_lower:
+        return 'Microscopy Techniques in Microbiology', 'Reference Library'
+    if 'modern food' in fn_lower or 'jay' in fn_lower:
+        return 'Modern Food Microbiology', 'James M. Jay'
+    if 'phamic' in fn_lower:
+        return 'Pharmaceutical Microbiology Notes', 'Reference Library'
+    if 'hugo' in fn_lower or 'russell' in fn_lower or 'pharmaceutical microbiology' in fn_lower:
+        return "Hugo and Russell's Pharmaceutical Microbiology", 'W.B. Hugo & A.D. Russell'
+    if 'pretest' in fn_lower:
+        return 'PreTest Microbiology', 'Richard C. Tilton'
+    if 'bitton' in fn_lower or 'wastewater microbiology' in fn_lower:
+        return 'Wastewater Microbiology', 'Gabriel Bitton'
 
     if ' - ' in stem:
         parts = stem.split(' - ')
