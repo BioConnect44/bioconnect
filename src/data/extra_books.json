@@ -6322,5 +6322,65 @@
     "author": "David W. Orr",
     "file_path": "/assets/books/ecology/The Nature Of Design - Oxford University Press.pdf",
     "subcategory": null
+  },
+  {
+    "id": "encyclopedia-of-bioprocess-technology-pdf-dictionaries",
+    "title": "Encyclopedia of Bioprocess Technology",
+    "filename": "Encyclopedia of Bioprocess Technology.pdf",
+    "format": "PDF",
+    "file_size": "27.5 MB",
+    "bytes": 28881310,
+    "category": "Dictionaries & Encyclopedias",
+    "author": "Reference Library",
+    "file_path": "/assets/books/dictionaries/Encyclopedia of Bioprocess Technology.pdf",
+    "subcategory": null
+  },
+  {
+    "id": "glossary-of-biotechnology-terms-third-edition-kimball-nill-pdf-dictionaries",
+    "title": "Glossary of Biotechnology Terms (3rd Edition)",
+    "filename": "Glossary of Biotechnology Terms, Third Edition - Kimball Nill.pdf",
+    "format": "PDF",
+    "file_size": "2.1 MB",
+    "bytes": 2201317,
+    "category": "Dictionaries & Encyclopedias",
+    "author": "Kimball Nill",
+    "file_path": "/assets/books/dictionaries/Glossary of Biotechnology Terms, Third Edition - Kimball Nill.pdf",
+    "subcategory": null
+  },
+  {
+    "id": "glossary-of-biotechnology-terms-1-pdf-dictionaries",
+    "title": "Glossary of Biotechnology Terms",
+    "filename": "Glossary of Biotechnology Terms[1].pdf",
+    "format": "PDF",
+    "file_size": "2.0 MB",
+    "bytes": 2125007,
+    "category": "Dictionaries & Encyclopedias",
+    "author": "Reference Library",
+    "file_path": "/assets/books/dictionaries/Glossary of Biotechnology Terms[1].pdf",
+    "subcategory": null
+  },
+  {
+    "id": "handbook-of-pharmaceutical-biotechnology-s-gad-wiley-2007-pdf-dictionaries",
+    "title": "Handbook of Pharmaceutical Biotechnology",
+    "filename": "Handbook Of Pharmaceutical Biotechnology - S Gad (Wiley, 2007).pdf",
+    "format": "PDF",
+    "file_size": "28.5 MB",
+    "bytes": 29907606,
+    "category": "Dictionaries & Encyclopedias",
+    "author": "Shayne Cox Gad",
+    "file_path": "/assets/books/dictionaries/Handbook Of Pharmaceutical Biotechnology - S Gad (Wiley, 2007).pdf",
+    "subcategory": null
+  },
+  {
+    "id": "the-new-penguin-dictionary-of-biology-m-abercrombie-pdf-dictionaries",
+    "title": "The New Penguin Dictionary of Biology",
+    "filename": "The New Penguin Dictionary Of Biology - M. Abercrombie.pdf",
+    "format": "PDF",
+    "file_size": "19.3 MB",
+    "bytes": 20276701,
+    "category": "Dictionaries & Encyclopedias",
+    "author": "M. Abercrombie",
+    "file_path": "/assets/books/dictionaries/The New Penguin Dictionary Of Biology - M. Abercrombie.pdf",
+    "subcategory": null
   }
 ]
