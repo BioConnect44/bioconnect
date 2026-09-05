@@ -99,6 +99,16 @@ def parse_metadata(filename):
         return 'The Genetics and Biology of Sex Determination', 'Novartis Foundation'
     if 'gina smith' in fn_lower:
         return 'The Genomics Age: How DNA Technology Is Transforming the Way We Live', 'Gina Smith'
+    if 'kuby' in fn_lower and '3rd' in fn_lower:
+        return 'Immunology (3rd Edition)', 'Janis Kuby'
+    if 'kuby' in fn_lower:
+        return 'Kuby Immunology', 'Janis Kuby et al.'
+    if 'fundamental immunology' in fn_lower or 'paul' in fn_lower:
+        return 'Fundamental Immunology', 'William E. Paul'
+    if 'really essential' in fn_lower:
+        return 'Really Essential Immunology', 'Ivan Roitt & Arthur Rabson'
+    if 'essential immunology' in fn_lower or 'roitt' in fn_lower:
+        return "Roitt's Essential Immunology (10th Edition)", 'Ivan Roitt & Peter Delves'
 
     if ' - ' in stem:
         parts = stem.split(' - ')
