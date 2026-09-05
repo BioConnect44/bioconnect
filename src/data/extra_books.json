@@ -6262,5 +6262,65 @@
     "author": "K. Schulten , I. Kosztin",
     "file_path": "/assets/books/biophysics/Lectures in Theoretical Biophysics - K. Schulten , I. Kosztin.pdf",
     "subcategory": null
+  },
+  {
+    "id": "ecology-of-the-planted-aquarium-a-practical-manual-and-scientific-treatise-for-the-home-aquarist-pdf-ecology",
+    "title": "Ecology of the Planted Aquarium: A Practical Manual and Scientific Treatise for the Home Aquarist",
+    "filename": "Ecology of the Planted Aquarium A Practical Manual and Scientific Treatise for the Home Aquarist,.pdf",
+    "format": "PDF",
+    "file_size": "9.8 MB",
+    "bytes": 10276847,
+    "category": "Ecology",
+    "author": "Reference Library",
+    "file_path": "/assets/books/ecology/Ecology of the Planted Aquarium A Practical Manual and Scientific Treatise for the Home Aquarist,.pdf",
+    "subcategory": null
+  },
+  {
+    "id": "plant-ecology-erwin-beck-pdf-ecology",
+    "title": "Plant Ecology",
+    "filename": "Plant Ecology - Erwin Beck.pdf",
+    "format": "PDF",
+    "file_size": "30.7 MB",
+    "bytes": 32159220,
+    "category": "Ecology",
+    "author": "Erwin Beck",
+    "file_path": "/assets/books/ecology/Plant Ecology - Erwin Beck.pdf",
+    "subcategory": null
+  },
+  {
+    "id": "research-techniques-in-animal-ecology-luigi-boitani-pdf-ecology",
+    "title": "Research Techniques in Animal Ecology",
+    "filename": "Research Techniques in Animal Ecology - Luigi Boitani.pdf",
+    "format": "PDF",
+    "file_size": "5.7 MB",
+    "bytes": 5961503,
+    "category": "Ecology",
+    "author": "Luigi Boitani",
+    "file_path": "/assets/books/ecology/Research Techniques in Animal Ecology - Luigi Boitani.pdf",
+    "subcategory": null
+  },
+  {
+    "id": "the-ecology-of-the-cambrian-radiation-andrey-zhuravlev-pdf-ecology",
+    "title": "The Ecology of the Cambrian Radiation",
+    "filename": "The Ecology of the Cambrian Radiation - Andrey Zhuravlev.pdf",
+    "format": "PDF",
+    "file_size": "18.4 MB",
+    "bytes": 19288583,
+    "category": "Ecology",
+    "author": "Andrey Zhuravlev",
+    "file_path": "/assets/books/ecology/The Ecology of the Cambrian Radiation - Andrey Zhuravlev.pdf",
+    "subcategory": null
+  },
+  {
+    "id": "the-nature-of-design-oxford-university-press-pdf-ecology",
+    "title": "The Nature Of Design",
+    "filename": "The Nature Of Design - Oxford University Press.pdf",
+    "format": "PDF",
+    "file_size": "1.1 MB",
+    "bytes": 1201866,
+    "category": "Ecology",
+    "author": "David W. Orr",
+    "file_path": "/assets/books/ecology/The Nature Of Design - Oxford University Press.pdf",
+    "subcategory": null
   }
 ]
