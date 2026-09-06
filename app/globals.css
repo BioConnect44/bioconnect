@@ -32,13 +32,13 @@ body {
    UNIVERSAL HOVER EFFECTS & MICRO-ANIMATIONS FOR ALL BUTTONS & OPTIONS
    ========================================================================== */
 
-/* 1. Universal Button Hover, Focus & Click Scale Animations */
+/* 1. Universal Button Hover & Focus */
 button,
 input[type="button"],
 input[type="submit"],
 input[type="reset"],
 .btn {
-  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: opacity 0.2s ease, filter 0.2s ease;
   cursor: pointer;
   outline: none;
 }
@@ -47,17 +47,14 @@ button:hover:not(:disabled),
 input[type="button"]:hover:not(:disabled),
 input[type="submit"]:hover:not(:disabled),
 .btn:hover:not(:disabled) {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 18px rgba(20, 184, 166, 0.18);
-  filter: brightness(1.05);
+  opacity: 0.92;
 }
 
 button:active:not(:disabled),
 input[type="button"]:active:not(:disabled),
 input[type="submit"]:active:not(:disabled),
 .btn:active:not(:disabled) {
-  transform: translateY(0) scale(0.98) !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  opacity: 1;
 }
 
 /* 2. Anchor Links & Action Button Links Hover Effects */
@@ -69,7 +66,7 @@ a {
 input,
 select,
 textarea {
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 input:hover:not(:disabled),
@@ -86,35 +83,32 @@ textarea:focus {
   outline: none !important;
 }
 
-/* 4. Interactive Cards & Container Lift Animations */
+/* 4. Interactive Cards */
 .job-card,
 .paper-card,
 .course-card,
 .stat-card,
 .card {
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease !important;
+  transition: border-color 0.25s ease !important;
 }
 
 .job-card:hover,
 .paper-card:hover,
 .course-card:hover,
 .stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important;
   border-color: rgba(20, 184, 166, 0.4) !important;
 }
 
 /* 5. Radio Buttons, Checkboxes & Option Selectors */
 .radio-opt,
 label:has(input[type="radio"]) {
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
   cursor: pointer;
 }
 
 .radio-opt:hover,
 label:has(input[type="radio"]):hover {
   color: #14B8A6 !important;
-  transform: translateX(3px);
 }
 
 .auth-form-panel label,
@@ -126,20 +120,18 @@ label:has(input[type="checkbox"]) {
 .auth-form-panel label:hover,
 label:has(input[type="checkbox"]):hover {
   color: #6B8A9A !important;
-  transform: none !important;
 }
 
 /* 6. Filter Pills, Badges & Tabs */
 .filter-badge,
 .tab-btn {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: opacity 0.2s ease !important;
   cursor: pointer;
 }
 
 .filter-badge:hover,
 .tab-btn:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.08);
+  opacity: 0.9;
 }
 
 /* 7. Live Indicator Glowing Dot Animation */
@@ -183,15 +175,7 @@ label:has(input[type="checkbox"]):hover {
   color: #1a2b3c;
   font-weight: 600;
   margin-bottom: 22px;
-  box-shadow: 0 4px 16px rgba(42, 180, 180, 0.12);
-  transition: all 0.3s ease;
   cursor: default;
-}
-
-.live-badge:hover {
-  border-color: rgba(42, 180, 180, 0.6);
-  box-shadow: 0 6px 20px rgba(42, 180, 180, 0.22);
-  transform: translateY(-1px);
 }
 
 /* ==========================================================================
