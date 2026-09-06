@@ -7,6 +7,7 @@ import HelpCenterChatbot from "@/components/HelpCenterChatbot";
 export default function PublicNavbarFooter({ children }) {
   const [helpBotOpen, setHelpBotOpen] = useState(false);
   const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [subscribeMessage, setSubscribeMessage] = useState("");
 
