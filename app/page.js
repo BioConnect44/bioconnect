@@ -457,15 +457,48 @@ export default function LandingPage() {
             <div>
               <span style={{ fontSize: "1.4rem", fontWeight: 800, color: "#2AB4B4", display: "block", marginBottom: 20 }}>BioConnect</span>
               <div style={{ fontSize: "2.2rem", fontWeight: 800, color: "#fff", lineHeight: 1.2, marginBottom: 32 }}>Accelerating the future<br />of biotech.</div>
-              <div style={{ display: "flex", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 999, overflow: "hidden", maxWidth: 340 }}>
-                <input type="email" placeholder="Enter Your University Email..." value={email} onChange={e => setEmail(e.target.value)}
-                  style={{ flex: 1, background: "transparent", border: "none", outline: "none", color: "#fff", padding: "12px 20px", fontSize: "0.875rem" }} />
-                <button style={{ width: 44, height: 44, borderRadius: "50%", background: "#2AB4B4", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", margin: 4, flexShrink: 0 }}
-                  onMouseEnter={e => { e.currentTarget.style.background = "#1f9e9e"; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = "#2AB4B4"; }}>
-                  <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  if (!email || !email.trim()) return;
+                  try {
+                    const res = await fetch("/api/newsletter", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ email: email.trim() })
+                    });
+                    const data = await res.json();
+                    if (res.ok && data.success) {
+                      alert(data.message || "Thank you for subscribing to BioConnect Digest!");
+                      setEmail("");
+                    } else {
+                      alert(data.error || "Failed to subscribe. Please try again.");
+                    }
+                  } catch (err) {
+                    alert("Error submitting subscription. Please try again.");
+                  }
+                }}
+                style={{ display: "flex", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 999, overflow: "hidden", maxWidth: 340 }}
+              >
+                <input
+                  type="email"
+                  required
+                  placeholder="Enter your email address..."
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  style={{ flex: 1, background: "transparent", border: "none", outline: "none", color: "#fff", padding: "12px 20px", fontSize: "0.875rem" }}
+                />
+                <button
+                  type="submit"
+                  style={{ width: 44, height: 44, borderRadius: "50%", background: "#2AB4B4", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", margin: 4, flexShrink: 0 }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "#1f9e9e"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "#2AB4B4"; }}
+                >
+                  <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </button>
-              </div>
+              </form>
             </div>
             {[
               {

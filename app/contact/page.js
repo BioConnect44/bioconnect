@@ -34,17 +34,33 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
 
-  const handleSubmit = (e) => {
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
     setSubmitting(true);
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setSubmitted(true);
+        setSubmitMessage(data.message || "Your inquiry has been sent to bioconnect44@gmail.com!");
+        setFormData({ name: "", email: "", subject: "General Question", message: "" });
+        setTimeout(() => setSubmitted(false), 6000);
+      } else {
+        alert(data.error || "Failed to send message. Please try again.");
+      }
+    } catch (err) {
+      alert("Error submitting form. Please try again.");
+    } finally {
       setSubmitting(false);
-      setSubmitted(true);
-      setFormData({ name: "", email: "", subject: "General Question", message: "" });
-      setTimeout(() => setSubmitted(false), 6000);
-    }, 1000);
+    }
   };
 
   return (

@@ -7,14 +7,33 @@ import HelpCenterChatbot from "@/components/HelpCenterChatbot";
 export default function PublicNavbarFooter({ children }) {
   const [helpBotOpen, setHelpBotOpen] = useState(false);
   const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [subscribeMessage, setSubscribeMessage] = useState("");
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (email.trim()) {
-      setSubscribed(true);
-      setEmail("");
-      setTimeout(() => setSubscribed(false), 4000);
+    if (!email || !email.trim()) return;
+
+    setLoading(true);
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim() })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setSubscribed(true);
+        setSubscribeMessage(data.message || "Thank you! You are subscribed to BioConnect Digest.");
+        setEmail("");
+        setTimeout(() => setSubscribed(false), 5000);
+      } else {
+        alert(data.error || "Failed to subscribe. Please try again.");
+      }
+    } catch (err) {
+      alert("Error connecting to server. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -42,14 +61,15 @@ export default function PublicNavbarFooter({ children }) {
                 <input
                   type="email"
                   required
-                  placeholder="Enter university email..."
+                  placeholder="Enter your email address..."
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   style={{ flex: 1, background: "transparent", border: "none", outline: "none", color: "#fff", padding: "10px 18px", fontSize: "0.875rem" }}
                 />
                 <button
                   type="submit"
-                  style={{ width: 40, height: 40, borderRadius: "50%", background: "#2AB4B4", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", flexShrink: 0 }}
+                  disabled={loading}
+                  style={{ width: 40, height: 40, borderRadius: "50%", background: "#2AB4B4", border: "none", cursor: loading ? "wait" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", flexShrink: 0 }}
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12" />
@@ -59,7 +79,7 @@ export default function PublicNavbarFooter({ children }) {
               </form>
               {subscribed && (
                 <span style={{ fontSize: "0.82rem", color: "#2AB4B4", fontWeight: 600, display: "block", marginTop: 8 }}>
-                  Thank you! You are subscribed to BioConnect Digest.
+                  ✓ {subscribeMessage}
                 </span>
               )}
             </div>
