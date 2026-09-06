@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createClient } from "@/utils/supabase/client";
+import { recordUserAction } from "@/lib/gamificationEngine";
 
 const DAILY_BIO_CHALLENGES = [
   {
@@ -267,7 +269,14 @@ export default function DailyBioChallenge() {
     }
   }, []);
 
-  function handleSelectOption(opt) {
+  const [toastMsg, setToastMsg] = useState(null);
+
+  const triggerToast = (msg) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(null), 3500);
+  };
+
+  async function handleSelectOption(opt) {
     if (!currentChallenge || !dateKey) return;
     setSelectedOpt(opt);
 
@@ -277,6 +286,20 @@ export default function DailyBioChallenge() {
         const newStreak = streakDays + 1;
         setStreakDays(newStreak);
         localStorage.setItem("daily_bio_streak", newStreak.toString());
+
+        const supabase = createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        const result = await recordUserAction(user?.id || "guest", "COMPLETE_QUIZ", { xp: 20, isPerfect: true }, supabase);
+
+        triggerToast("🎉 Correct Answer! +20 XP Earned");
+
+        if (result?.newBadges?.length > 0) {
+          setTimeout(() => {
+            result.newBadges.forEach(b => {
+              triggerToast(`🏅 Achievement Unlocked: ${b.title}! (+${b.xpReward} Bonus XP)`);
+            });
+          }, 1000);
+        }
       }
     } catch (err) {
       console.error("LocalStorage write error:", err);
@@ -298,6 +321,22 @@ export default function DailyBioChallenge() {
         fontFamily: "inherit"
       }}
     >
+      {toastMsg && (
+        <div style={{
+          background: "#102A30",
+          color: "#fff",
+          padding: "10px 16px",
+          borderRadius: "10px",
+          fontSize: "13px",
+          fontWeight: 600,
+          boxShadow: "0 4px 14px rgba(0,0,0,0.15)",
+          display: "flex",
+          alignItems: "center",
+          gap: "8px"
+        }}>
+          {toastMsg}
+        </div>
+      )}
       <style>{`
         .challenge-opt-btn {
           padding: 10px 24px;

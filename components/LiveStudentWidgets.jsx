@@ -319,6 +319,13 @@ function InteractiveQuests({ userId }) {
     return () => window.removeEventListener("bioconnect_quest_completed", handleQuestEvent);
   }, [userId, supabase, loadQuests]);
 
+  const [toastMessage, setToastMessage] = useState(null);
+
+  const showToast = (msg) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 3500);
+  };
+
   async function toggleQuest(key) {
     const today = new Date().toISOString().split("T")[0];
     const quest = quests.find(q => q.key === key);
@@ -335,12 +342,27 @@ function InteractiveQuests({ userId }) {
       localStorage.setItem(storageKey, JSON.stringify(existing));
     } catch (e) {}
 
-    // Persist to Supabase if logged in
+    // Persist to Supabase & Gamification Engine
     if (userId) {
       await supabase.from("user_quests").upsert(
         { user_id: userId, quest_date: today, quest_key: key, completed: newCompleted },
         { onConflict: "user_id,quest_date,quest_key" }
       );
+    }
+
+    if (newCompleted) {
+      const actionType = key === "biominute" ? "ACCESS_NOTE" : key === "read_pages" ? "READ_PAPER" : "COMPLETE_QUIZ";
+      const result = await recordUserAction(userId || "guest", actionType, { xp: quest.xp }, supabase);
+      
+      showToast(`🎉 +${quest.xp} XP Earned for completing "${quest.text}"!`);
+
+      if (result?.newBadges?.length > 0) {
+        setTimeout(() => {
+          result.newBadges.forEach(b => {
+            showToast(`🏅 Achievement Unlocked: ${b.title}! (+${b.xpReward} Bonus XP)`);
+          });
+        }, 1000);
+      }
     }
   }
 
@@ -349,6 +371,24 @@ function InteractiveQuests({ userId }) {
 
   return (
     <div style={W.card}>
+      {toastMessage && (
+        <div style={{
+          background: "#102A30",
+          color: "#fff",
+          padding: "10px 14px",
+          borderRadius: "10px",
+          fontSize: "12px",
+          fontWeight: 600,
+          boxShadow: "0 4px 14px rgba(0,0,0,0.15)",
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          animation: "fadeIn 0.3s ease"
+        }}>
+          {toastMessage}
+        </div>
+      )}
+
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
         <span style={{ fontSize: 20 }}>🎯</span>
         <h2 style={{ fontSize: 15, fontWeight: 700, color: "#102A30" }}>Today's Quests</h2>
