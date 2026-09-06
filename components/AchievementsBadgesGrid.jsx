@@ -88,7 +88,7 @@ export default function AchievementsBadgesGrid({ userStats = null, userId = null
             return (
               <div
                 key={badge.id}
-                className={`h-[180px] rounded-[20px] p-6 flex flex-col items-center justify-between text-center transition-all duration-300 hover:shadow-md ${badge.theme.bg} ${badge.theme.border}`}
+                className={`h-[180px] rounded-[20px] p-6 flex flex-col items-center justify-between text-center ${badge.theme.bg} ${badge.theme.border}`}
                 style={{
                   height: "180px",
                   borderRadius: "20px",
@@ -98,7 +98,7 @@ export default function AchievementsBadgesGrid({ userStats = null, userId = null
                   alignItems: "center",
                   justifyContent: "space-between",
                   textAlign: "center",
-                  transition: "all 0.3s ease",
+                  transition: "none",
                   background: badge.id === "streak-master" ? "#FFF9F5" : badge.id === "bio-pioneer" ? "#F0FDF4" : badge.id === "challenge-champion" ? "#FAF5FF" : badge.id === "knowledge-seeker" ? "#F0F9FF" : badge.theme.activeBg || "#FFF",
                   border: `1px solid ${badge.id === "streak-master" ? "#FED7AA" : badge.id === "bio-pioneer" ? "#A7F3D0" : badge.id === "challenge-champion" ? "#E9D5FF" : badge.id === "knowledge-seeker" ? "#BAE6FD" : badge.theme.activeBorder || "#E2E8F0"}`
                 }}
@@ -136,7 +136,7 @@ export default function AchievementsBadgesGrid({ userStats = null, userId = null
           return (
             <div
               key={badge.id}
-              className="h-[180px] rounded-[20px] p-6 flex flex-col items-center justify-between text-center transition-all duration-300 hover:shadow-md bg-white border border-[#E2E8F0] shadow-sm"
+              className="h-[180px] rounded-[20px] p-6 flex flex-col items-center justify-between text-center bg-white border border-[#E2E8F0] shadow-sm"
               style={{
                 height: "180px",
                 borderRadius: "20px",
@@ -146,7 +146,7 @@ export default function AchievementsBadgesGrid({ userStats = null, userId = null
                 alignItems: "center",
                 justifyContent: "space-between",
                 textAlign: "center",
-                transition: "all 0.3s ease",
+                transition: "none",
                 background: "#ffffff",
                 border: "1px solid #E2E8F0",
                 boxShadow: "0 1px 3px rgba(0,0,0,0.05)"
