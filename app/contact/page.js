@@ -172,7 +172,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <div style={{ fontSize: "0.78rem", fontWeight: 800, color: "#64748B", textTransform: "uppercase" }}>Academic Email</div>
-                <div style={{ fontSize: "1rem", fontWeight: 800, color: "#102A30", marginTop: 2 }}>support@bioconnect.edu.in</div>
+                <div style={{ fontSize: "1rem", fontWeight: 800, color: "#102A30", marginTop: 2 }}>bioconnect44@gmail.com</div>
                 <div style={{ fontSize: "0.8rem", color: "#94A3B8", marginTop: 2 }}>General inquiries & feedback</div>
               </div>
             </div>
@@ -186,9 +186,9 @@ export default function ContactPage() {
                 </svg>
               </div>
               <div>
-                <div style={{ fontSize: "0.78rem", fontWeight: 800, color: "#64748B", textTransform: "uppercase" }}>Headquarters</div>
-                <div style={{ fontSize: "1rem", fontWeight: 800, color: "#102A30", marginTop: 2 }}>BioConnect Research Park</div>
-                <div style={{ fontSize: "0.82rem", color: "#64748B", marginTop: 2 }}>Tech Campus, Outer Ring Road, Bengaluru, KA 560103</div>
+                <div style={{ fontSize: "0.78rem", fontWeight: 800, color: "#64748B", textTransform: "uppercase" }}>Campus Location</div>
+                <div style={{ fontSize: "1rem", fontWeight: 800, color: "#102A30", marginTop: 2 }}>IAR Campus</div>
+                <div style={{ fontSize: "0.82rem", color: "#64748B", marginTop: 2 }}>Gandhinagar, Gujarat</div>
               </div>
             </div>
 

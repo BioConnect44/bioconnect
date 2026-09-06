@@ -166,8 +166,8 @@ export default function PrivacyPage() {
               </p>
               <div style={{ background: "#E0F2FE", borderRadius: 16, padding: 20, border: "1px solid #BAE6FD", color: "#0369A1" }}>
                 <div style={{ fontWeight: 800, fontSize: "1rem", marginBottom: 4 }}>BioConnect Privacy & Compliance Office</div>
-                <div style={{ fontSize: "0.9rem" }}>Email: <strong>privacy@bioconnect.edu.in</strong></div>
-                <div style={{ fontSize: "0.9rem" }}>Address: BioConnect Research Park, Tech Campus, Bengaluru, Karnataka 560103</div>
+                <div style={{ fontSize: "0.9rem" }}>Email: <strong>bioconnect44@gmail.com</strong></div>
+                <div style={{ fontSize: "0.9rem" }}>Address: IAR Campus, Gandhinagar, Gujarat</div>
               </div>
             </section>
           </div>

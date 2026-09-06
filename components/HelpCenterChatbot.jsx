@@ -56,7 +56,7 @@ export default function HelpCenterChatbot({ isOpen, onClose }) {
         body: JSON.stringify({ query: q })
       });
       const data = await res.json();
-      const answer = data?.answer || `Regarding "${q}": BioConnect provides PubMed AI research summaries, 60-second BioMinutes, biotech jobs, and learning modules. Visit our Help Center or email support@bioconnect.ai.`;
+      const answer = data?.answer || `Regarding "${q}": BioConnect provides PubMed AI research summaries, 60-second BioMinutes, biotech jobs, and learning modules. Visit our Help Center or email bioconnect44@gmail.com.`;
 
       setMessages((prev) => [...prev, { sender: "ai", text: answer }]);
     } catch (err) {

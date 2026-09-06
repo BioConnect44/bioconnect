@@ -167,11 +167,12 @@ export default function TermsPage() {
                 8. Governing Law & Contact Details
               </h2>
               <p style={{ color: "#475569", marginBottom: 16 }}>
-                These Terms shall be governed by and construed in accordance with the laws of India. Any legal disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts in Bengaluru, Karnataka.
+                These Terms shall be governed by and construed in accordance with the laws of India. Any legal disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts in Gandhinagar, Gujarat.
               </p>
               <div style={{ background: "#E0F2FE", borderRadius: 16, padding: 20, border: "1px solid #BAE6FD", color: "#0369A1" }}>
                 <div style={{ fontWeight: 800, fontSize: "1rem", marginBottom: 4 }}>BioConnect Legal Affairs</div>
-                <div style={{ fontSize: "0.9rem" }}>Email: <strong>legal@bioconnect.edu.in</strong></div>
+                <div style={{ fontSize: "0.9rem" }}>Email: <strong>bioconnect44@gmail.com</strong></div>
+                <div style={{ fontSize: "0.9rem" }}>Address: IAR Campus, Gandhinagar, Gujarat</div>
               </div>
             </section>
           </div>
