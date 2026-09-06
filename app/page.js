@@ -468,19 +468,40 @@ export default function LandingPage() {
               </div>
             </div>
             {[
-              { title: "PLATFORM", links: ["Network", "Research", "Events"] },
-              { title: "RESOURCES", links: ["Blog", "Guides", "AI Chatbot"] },
-              { title: "LEGAL", links: ["Privacy", "Terms", "Contact"] },
+              {
+                title: "PLATFORM",
+                links: [
+                  { label: "Network", href: "/dashboard" },
+                  { label: "Research", href: "/research" },
+                  { label: "Events", href: "/events" }
+                ]
+              },
+              {
+                title: "RESOURCES",
+                links: [
+                  { label: "Blog", href: "/blog" },
+                  { label: "Guides", href: "/guides" },
+                  { label: "AI Chatbot", href: "#", isChatbot: true }
+                ]
+              },
+              {
+                title: "LEGAL",
+                links: [
+                  { label: "Privacy", href: "/privacy" },
+                  { label: "Terms", href: "/terms" },
+                  { label: "Contact", href: "/contact" }
+                ]
+              },
             ].map(col => (
               <div key={col.title}>
                 <div style={{ color: "#2AB4B4", fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 20 }}>{col.title}</div>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
-                  {col.links.map(link => (
-                    <li key={link}>
+                  {col.links.map(item => (
+                    <li key={item.label}>
                       <a
-                        href={link === "AI Chatbot" ? "#" : "#"}
+                        href={item.href}
                         onClick={(e) => {
-                          if (link === "AI Chatbot") {
+                          if (item.isChatbot) {
                             e.preventDefault();
                             setHelpBotOpen(true);
                           }
@@ -488,7 +509,7 @@ export default function LandingPage() {
                         style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.9rem", textDecoration: "none", transition: "color 0.2s", cursor: "pointer" }}
                         onMouseEnter={e => { e.currentTarget.style.color = "#2AB4B4"; }}
                         onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.75)"; }}>
-                        {link === "AI Chatbot" ? "AI Chatbot 💬" : link}
+                        {item.isChatbot ? "AI Chatbot 💬" : item.label}
                       </a>
                     </li>
                   ))}
