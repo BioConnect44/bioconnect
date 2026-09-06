@@ -17,7 +17,7 @@ const BLOG_POSTS = [
     excerpt: "Explore how prime editing and epigenome modification without double-strand DNA breaks are revolutionizing gene therapy for hereditary conditions in India.",
     content: `
       ### The Evolution of Precision Genome Editing
-      Gene editing has advanced beyond traditional double-stranded breaks. In 2026, **epigenomic editing** and **prime editing 3.0** are allowing scientists to modify gene expression patterns without cutting the DNA backbone.
+      Gene editing has advanced beyond traditional double-stranded breaks. In 2026, epigenomic editing and prime editing 3.0 are allowing scientists to modify gene expression patterns without cutting the DNA backbone.
 
       #### Key Breakthroughs
       1. **Off-Target Minimization**: New Cas variants engineered with machine learning have reduced unintended off-target cleavages by over 99.4%.
@@ -178,43 +178,43 @@ export default function BlogPage() {
 
   return (
     <PublicNavbarFooter>
-      <div style={{ maxWidth: 1300, margin: "0 auto", padding: "48px 24px 80px" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "48px 24px 80px" }}>
         {/* HERO SECTION */}
-        <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#E0F2FE", color: "#0369A1", padding: "6px 16px", borderRadius: 100, fontSize: "0.85rem", fontWeight: 700, marginBottom: 16 }}>
-            <span>📚 BioConnect Insights & Science Blog</span>
+        <div style={{ textAlign: "center", marginBottom: 44 }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#E0F2FE", color: "#0369A1", padding: "6px 16px", borderRadius: 100, fontSize: "0.82rem", fontWeight: 700, marginBottom: 16 }}>
+            <span>BioConnect Science Journal</span>
           </div>
-          <h1 style={{ fontSize: "2.8rem", fontWeight: 800, color: "#102A30", margin: "0 0 16px", letterSpacing: "-0.02em" }}>
-            Biotechnology Trends, Protocols & Career Guides
+          <h1 style={{ fontSize: "2.6rem", fontWeight: 800, color: "#102A30", margin: "0 0 14px", letterSpacing: "-0.02em" }}>
+            Biotechnology Trends, Lab Protocols & Research Insights
           </h1>
-          <p style={{ fontSize: "1.1rem", color: "#64748B", maxWidth: 720, margin: "0 auto 32px", lineHeight: 1.6 }}>
-            Stay ahead with peer-reviewed research insights, step-by-step lab techniques, bioinformatics tutorials, and academic fellowship roadmaps.
+          <p style={{ fontSize: "1.05rem", color: "#64748B", maxWidth: 720, margin: "0 auto 32px", lineHeight: 1.6 }}>
+            Curated articles written by researchers, bioinformatics engineers, and academic advisors across India&apos;s leading biotech institutions.
           </p>
 
-          {/* Search Input */}
-          <div style={{ maxWidth: 600, margin: "0 auto", position: "relative" }}>
+          {/* Search Box */}
+          <div style={{ maxWidth: 580, margin: "0 auto", position: "relative" }}>
             <input
               type="text"
-              placeholder="Search articles by topic, author, or keyword (e.g. CRISPR, AlphaFold, CSIR)..."
+              placeholder="Search articles by topic, author, or keyword..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 width: "100%",
-                padding: "16px 24px",
+                padding: "15px 22px",
                 borderRadius: 100,
                 border: "1.5px solid #CBD5E1",
-                fontSize: "0.95rem",
+                fontSize: "0.92rem",
                 outline: "none",
                 background: "#FFFFFF",
                 color: "#102A30",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.04)"
+                boxShadow: "0 2px 12px rgba(0,0,0,0.03)"
               }}
             />
           </div>
         </div>
 
         {/* CATEGORY FILTER PILLS */}
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center", marginBottom: 48 }}>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center", marginBottom: 44 }}>
           {CATEGORIES.map((cat) => {
             const isSelected = selectedCategory === cat;
             return (
@@ -225,12 +225,12 @@ export default function BlogPage() {
                   background: isSelected ? "#2AB4B4" : "#FFFFFF",
                   color: isSelected ? "#FFFFFF" : "#102A30",
                   border: isSelected ? "none" : "1px solid #E2EEF0",
-                  padding: "9px 20px",
+                  padding: "8px 18px",
                   borderRadius: 100,
-                  fontSize: "0.88rem",
+                  fontSize: "0.85rem",
                   fontWeight: isSelected ? 700 : 500,
                   cursor: "pointer",
-                  boxShadow: isSelected ? "0 4px 14px rgba(42,180,180,0.3)" : "0 2px 6px rgba(0,0,0,0.02)",
+                  boxShadow: isSelected ? "0 4px 12px rgba(42,180,180,0.25)" : "0 2px 4px rgba(0,0,0,0.02)",
                   transition: "all 0.2s ease"
                 }}
               >
@@ -240,51 +240,51 @@ export default function BlogPage() {
           })}
         </div>
 
-        {/* FEATURED BANNER POST (Shown when looking at All or searching) */}
+        {/* FEATURED BANNER POST */}
         {!searchQuery && selectedCategory === "All" && featuredPost && (
           <div
             onClick={() => setActiveArticle(featuredPost)}
             style={{
               background: "linear-gradient(135deg, #102A30 0%, #1A4A55 100%)",
-              borderRadius: 24,
+              borderRadius: 20,
               overflow: "hidden",
-              marginBottom: 56,
-              boxShadow: "0 12px 36px rgba(16,42,48,0.2)",
+              marginBottom: 48,
+              boxShadow: "0 10px 30px rgba(16,42,48,0.15)",
               cursor: "pointer",
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
               alignItems: "center"
             }}
           >
-            <div style={{ padding: "44px 40px", color: "#FFFFFF" }}>
-              <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 16 }}>
-                <span style={{ background: "#2AB4B4", color: "#FFFFFF", padding: "4px 12px", borderRadius: 6, fontSize: "0.78rem", fontWeight: 800, textTransform: "uppercase" }}>
-                  FEATURED ARTICLE
+            <div style={{ padding: "40px 36px", color: "#FFFFFF" }}>
+              <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 14 }}>
+                <span style={{ background: "#2AB4B4", color: "#FFFFFF", padding: "4px 10px", borderRadius: 6, fontSize: "0.75rem", fontWeight: 800, textTransform: "uppercase" }}>
+                  FEATURED
                 </span>
-                <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.7)" }}>• {featuredPost.readTime}</span>
+                <span style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.7)" }}>• {featuredPost.readTime}</span>
               </div>
 
-              <h2 style={{ fontSize: "2rem", fontWeight: 800, lineHeight: 1.3, marginBottom: 16, color: "#FFFFFF" }}>
+              <h2 style={{ fontSize: "1.85rem", fontWeight: 800, lineHeight: 1.3, marginBottom: 14, color: "#FFFFFF" }}>
                 {featuredPost.title}
               </h2>
 
-              <p style={{ fontSize: "0.98rem", color: "#CBD5E1", lineHeight: 1.6, marginBottom: 28 }}>
+              <p style={{ fontSize: "0.95rem", color: "#CBD5E1", lineHeight: 1.6, marginBottom: 24 }}>
                 {featuredPost.excerpt}
               </p>
 
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <div>
-                  <div style={{ fontWeight: 700, fontSize: "0.92rem" }}>{featuredPost.author}</div>
+                  <div style={{ fontWeight: 700, fontSize: "0.9rem" }}>{featuredPost.author}</div>
                   <div style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.65)" }}>{featuredPost.authorRole} • {featuredPost.date}</div>
                 </div>
 
-                <button style={{ background: "#FFFFFF", color: "#102A30", border: "none", padding: "10px 22px", borderRadius: 10, fontWeight: 700, fontSize: "0.88rem" }}>
+                <button style={{ background: "#FFFFFF", color: "#102A30", border: "none", padding: "9px 20px", borderRadius: 8, fontWeight: 700, fontSize: "0.85rem" }}>
                   Read Article →
                 </button>
               </div>
             </div>
 
-            <div style={{ height: "100%", minHeight: 300, position: "relative" }}>
+            <div style={{ height: "100%", minHeight: 280, position: "relative" }}>
               <img
                 src={featuredPost.banner}
                 alt={featuredPost.title}
@@ -295,7 +295,7 @@ export default function BlogPage() {
         )}
 
         {/* ARTICLES GRID */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 28 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(330px, 1fr))", gap: 24 }}>
           {filteredPosts.map((post) => {
             const isBookmarked = bookmarkedIds.includes(post.id);
             return (
@@ -304,68 +304,66 @@ export default function BlogPage() {
                 onClick={() => setActiveArticle(post)}
                 style={{
                   background: "#FFFFFF",
-                  borderRadius: 20,
+                  borderRadius: 18,
                   border: "1px solid #E2EEF0",
                   overflow: "hidden",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
                   cursor: "pointer",
-                  transition: "all 0.25s ease",
-                  boxShadow: "0 4px 16px rgba(0,0,0,0.03)"
+                  transition: "all 0.22s ease",
+                  boxShadow: "0 2px 10px rgba(0,0,0,0.02)"
                 }}
               >
                 <div>
-                  {/* Card Image Banner */}
-                  <div style={{ height: 190, overflow: "hidden", position: "relative" }}>
+                  <div style={{ height: 180, overflow: "hidden", position: "relative" }}>
                     <img
                       src={post.banner}
                       alt={post.title}
-                      style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.3s ease" }}
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
-                    <span style={{ position: "absolute", top: 14, left: 14, background: "#102A30", color: "#FFFFFF", padding: "4px 10px", borderRadius: 6, fontSize: "0.75rem", fontWeight: 800 }}>
+                    <span style={{ position: "absolute", top: 12, left: 12, background: "#102A30", color: "#FFFFFF", padding: "3px 9px", borderRadius: 6, fontSize: "0.72rem", fontWeight: 800 }}>
                       {post.category}
                     </span>
                     <button
                       onClick={(e) => toggleBookmark(post.id, e)}
                       style={{
                         position: "absolute",
-                        top: 14,
-                        right: 14,
-                        background: "rgba(255,255,255,0.9)",
+                        top: 12,
+                        right: 12,
+                        background: "rgba(255,255,255,0.92)",
                         border: "none",
-                        width: 34,
-                        height: 34,
+                        width: 32,
+                        height: 32,
                         borderRadius: "50%",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        fontSize: "1rem",
                         cursor: "pointer"
                       }}
                     >
-                      {isBookmarked ? "🔖" : "📑"}
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill={isBookmarked ? "#2AB4B4" : "none"} stroke={isBookmarked ? "#2AB4B4" : "#102A30"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                      </svg>
                     </button>
                   </div>
 
-                  {/* Card Body */}
-                  <div style={{ padding: 24 }}>
-                    <div style={{ fontSize: "0.78rem", color: "#64748B", marginBottom: 8, display: "flex", gap: 10 }}>
-                      <span>📅 {post.date}</span>
-                      <span>• ⏱️ {post.readTime}</span>
+                  <div style={{ padding: 22 }}>
+                    <div style={{ fontSize: "0.76rem", color: "#64748B", marginBottom: 8 }}>
+                      {post.date} • {post.readTime}
                     </div>
 
-                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#102A30", marginBottom: 10, lineHeight: 1.4 }}>
+                    <h3 style={{ fontSize: "1.15rem", fontWeight: 800, color: "#102A30", marginBottom: 8, lineHeight: 1.4 }}>
                       {post.title}
                     </h3>
 
-                    <p style={{ fontSize: "0.88rem", color: "#64748B", lineHeight: 1.6, marginBottom: 18, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                    <p style={{ fontSize: "0.86rem", color: "#64748B", lineHeight: 1.55, marginBottom: 16, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
                       {post.excerpt}
                     </p>
 
                     <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                       {post.tags.map((tag) => (
-                        <span key={tag} style={{ background: "#F1F5F9", color: "#475569", fontSize: "0.72rem", fontWeight: 700, padding: "3px 9px", borderRadius: 6 }}>
+                        <span key={tag} style={{ background: "#F1F5F9", color: "#475569", fontSize: "0.7rem", fontWeight: 600, padding: "3px 8px", borderRadius: 4 }}>
                           #{tag}
                         </span>
                       ))}
@@ -373,14 +371,13 @@ export default function BlogPage() {
                   </div>
                 </div>
 
-                {/* Card Footer */}
-                <div style={{ padding: "16px 24px", borderTop: "1px solid #F1F5F9", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div style={{ padding: "14px 22px", borderTop: "1px solid #F1F5F9", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <div>
-                    <div style={{ fontSize: "0.84rem", fontWeight: 700, color: "#102A30" }}>{post.author}</div>
+                    <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "#102A30" }}>{post.author}</div>
                     <div style={{ fontSize: "0.72rem", color: "#94A3B8" }}>{post.authorRole}</div>
                   </div>
-                  <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#2AB4B4" }}>
-                    Read →
+                  <span style={{ fontSize: "0.84rem", fontWeight: 700, color: "#2AB4B4" }}>
+                    Read Article →
                   </span>
                 </div>
               </div>
@@ -389,12 +386,12 @@ export default function BlogPage() {
         </div>
 
         {filteredPosts.length === 0 && (
-          <div style={{ background: "#FFFFFF", borderRadius: 20, padding: 60, textAlign: "center", border: "1px solid #E2EEF0", color: "#64748B" }}>
-            <h3 style={{ fontSize: "1.3rem", fontWeight: 800, color: "#102A30", marginBottom: 8 }}>No matching articles found</h3>
-            <p style={{ fontSize: "0.92rem" }}>Try searching for a different keyword or reset your category filter.</p>
+          <div style={{ background: "#FFFFFF", borderRadius: 18, padding: 48, textAlign: "center", border: "1px solid #E2EEF0", color: "#64748B" }}>
+            <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#102A30", marginBottom: 6 }}>No matching articles found</h3>
+            <p style={{ fontSize: "0.9rem" }}>Try adjusting your search query or selected category.</p>
             <button
               onClick={() => { setSelectedCategory("All"); setSearchQuery(""); }}
-              style={{ marginTop: 16, background: "#2AB4B4", color: "#FFF", border: "none", padding: "10px 22px", borderRadius: 10, fontWeight: 700 }}
+              style={{ marginTop: 14, background: "#2AB4B4", color: "#FFF", border: "none", padding: "9px 20px", borderRadius: 8, fontWeight: 700, fontSize: "0.88rem" }}
             >
               Reset Filters
             </button>
@@ -404,60 +401,58 @@ export default function BlogPage() {
 
       {/* ARTICLE READER MODAL */}
       {activeArticle && (
-        <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(10, 25, 30, 0.85)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
-          <div style={{ background: "#FFFFFF", borderRadius: 24, width: "100%", maxWidth: 880, maxHeight: "90vh", display: "flex", flexDirection: "column", overflow: "hidden", boxShadow: "0 25px 60px rgba(0,0,0,0.35)" }}>
-            {/* Modal Header */}
-            <div style={{ padding: "20px 28px", background: "#102A30", color: "#FFFFFF", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(10, 25, 30, 0.82)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
+          <div style={{ background: "#FFFFFF", borderRadius: 20, width: "100%", maxWidth: 840, maxHeight: "88vh", display: "flex", flexDirection: "column", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.3)" }}>
+            <div style={{ padding: "18px 24px", background: "#102A30", color: "#FFFFFF", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ background: "#2AB4B4", padding: "4px 10px", borderRadius: 6, fontSize: "0.75rem", fontWeight: 800, textTransform: "uppercase" }}>
+                <span style={{ background: "#2AB4B4", padding: "3px 9px", borderRadius: 4, fontSize: "0.72rem", fontWeight: 800, textTransform: "uppercase" }}>
                   {activeArticle.category}
                 </span>
-                <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.7)" }}>• {activeArticle.readTime}</span>
+                <span style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.7)" }}>• {activeArticle.readTime}</span>
               </div>
               <button
                 onClick={() => setActiveArticle(null)}
-                style={{ background: "rgba(255,255,255,0.15)", border: "none", color: "#FFF", width: 34, height: 34, borderRadius: "50%", cursor: "pointer", fontSize: "1.1rem" }}
+                style={{ background: "rgba(255,255,255,0.15)", border: "none", color: "#FFF", width: 32, height: 32, borderRadius: "50%", cursor: "pointer", fontSize: "1rem" }}
               >
                 ✕
               </button>
             </div>
 
-            {/* Modal Scrollable Body */}
-            <div style={{ flex: 1, padding: "36px 40px", overflowY: "auto", color: "#102A30" }}>
-              <h1 style={{ fontSize: "2rem", fontWeight: 800, lineHeight: 1.3, marginBottom: 16 }}>
+            <div style={{ flex: 1, padding: "32px 36px", overflowY: "auto", color: "#102A30" }}>
+              <h1 style={{ fontSize: "1.85rem", fontWeight: 800, lineHeight: 1.3, marginBottom: 14 }}>
                 {activeArticle.title}
               </h1>
 
-              <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 28, paddingBottom: 20, borderBottom: "1px solid #E2EEF0" }}>
-                <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#2AB4B4", color: "#FFF", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: "1.1rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24, paddingBottom: 18, borderBottom: "1px solid #E2EEF0" }}>
+                <div style={{ width: 40, height: 40, borderRadius: "50%", background: "#2AB4B4", color: "#FFF", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: "1rem" }}>
                   {activeArticle.author.charAt(0)}
                 </div>
                 <div>
-                  <div style={{ fontWeight: 700, fontSize: "0.95rem" }}>{activeArticle.author}</div>
-                  <div style={{ fontSize: "0.82rem", color: "#64748B" }}>{activeArticle.authorRole} • Published on {activeArticle.date}</div>
+                  <div style={{ fontWeight: 700, fontSize: "0.92rem" }}>{activeArticle.author}</div>
+                  <div style={{ fontSize: "0.8rem", color: "#64748B" }}>{activeArticle.authorRole} • Published on {activeArticle.date}</div>
                 </div>
               </div>
 
-              <div style={{ borderRadius: 16, overflow: "hidden", marginBottom: 28, maxHeight: 340 }}>
+              <div style={{ borderRadius: 14, overflow: "hidden", marginBottom: 24, maxHeight: 300 }}>
                 <img src={activeArticle.banner} alt={activeArticle.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
 
-              <div style={{ fontSize: "1rem", lineHeight: 1.8, color: "#334155" }}>
+              <div style={{ fontSize: "0.98rem", lineHeight: 1.75, color: "#334155" }}>
                 {activeArticle.content.split("\n\n").map((paragraph, idx) => {
                   if (paragraph.trim().startsWith("###")) {
-                    return <h3 key={idx} style={{ fontSize: "1.35rem", fontWeight: 800, color: "#102A30", marginTop: 24, marginBottom: 12 }}>{paragraph.replace("###", "").trim()}</h3>;
+                    return <h3 key={idx} style={{ fontSize: "1.3rem", fontWeight: 800, color: "#102A30", marginTop: 22, marginBottom: 10 }}>{paragraph.replace("###", "").trim()}</h3>;
                   }
                   if (paragraph.trim().startsWith("####")) {
-                    return <h4 key={idx} style={{ fontSize: "1.1rem", fontWeight: 700, color: "#1A4A55", marginTop: 18, marginBottom: 8 }}>{paragraph.replace("####", "").trim()}</h4>;
+                    return <h4 key={idx} style={{ fontSize: "1.05rem", fontWeight: 700, color: "#1A4A55", marginTop: 16, marginBottom: 6 }}>{paragraph.replace("####", "").trim()}</h4>;
                   }
-                  return <p key={idx} style={{ marginBottom: 16 }}>{paragraph.trim()}</p>;
+                  return <p key={idx} style={{ marginBottom: 14 }}>{paragraph.trim()}</p>;
                 })}
               </div>
 
-              <div style={{ marginTop: 36, paddingTop: 24, borderTop: "1px solid #E2EEF0", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 14 }}>
-                <div style={{ display: "flex", gap: 8 }}>
+              <div style={{ marginTop: 32, paddingTop: 20, borderTop: "1px solid #E2EEF0", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+                <div style={{ display: "flex", gap: 6 }}>
                   {activeArticle.tags.map((tag) => (
-                    <span key={tag} style={{ background: "#E0F2FE", color: "#0369A1", fontSize: "0.8rem", fontWeight: 700, padding: "4px 12px", borderRadius: 100 }}>
+                    <span key={tag} style={{ background: "#E0F2FE", color: "#0369A1", fontSize: "0.78rem", fontWeight: 700, padding: "3px 10px", borderRadius: 100 }}>
                       #{tag}
                     </span>
                   ))}
@@ -465,9 +460,9 @@ export default function BlogPage() {
 
                 <button
                   onClick={() => alert("Article link copied to clipboard!")}
-                  style={{ background: "#F1F5F9", color: "#102A30", border: "1px solid #CBD5E1", padding: "8px 18px", borderRadius: 8, fontWeight: 700, fontSize: "0.85rem", cursor: "pointer" }}
+                  style={{ background: "#F1F5F9", color: "#102A30", border: "1px solid #CBD5E1", padding: "7px 16px", borderRadius: 8, fontWeight: 700, fontSize: "0.82rem", cursor: "pointer" }}
                 >
-                  🔗 Share Article
+                  Share Article
                 </button>
               </div>
             </div>

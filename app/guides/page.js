@@ -156,7 +156,7 @@ const GUIDES_DATA = [
   },
   {
     id: "bioprocess-scale-up-fermentation-guide",
-    title: "Bioprocess Scale-Up: Fundamental Calculations & Protocols",
+    title: "Bioprocess Engineering Scale-Up: Fundamental Calculations & Protocols",
     category: "Lab Safety & Protocols",
     level: "Intermediate",
     readTime: "14 min read",
@@ -213,43 +213,43 @@ export default function GuidesPage() {
 
   return (
     <PublicNavbarFooter>
-      <div style={{ maxWidth: 1300, margin: "0 auto", padding: "48px 24px 80px" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "48px 24px 80px" }}>
         {/* HERO SECTION */}
-        <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#E0F2FE", color: "#0369A1", padding: "6px 16px", borderRadius: 100, fontSize: "0.85rem", fontWeight: 700, marginBottom: 16 }}>
-            <span>📖 Student & Researcher Field Guides</span>
+        <div style={{ textAlign: "center", marginBottom: 44 }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#E0F2FE", color: "#0369A1", padding: "6px 16px", borderRadius: 100, fontSize: "0.82rem", fontWeight: 700, marginBottom: 16 }}>
+            <span>Technical Reference Library</span>
           </div>
-          <h1 style={{ fontSize: "2.8rem", fontWeight: 800, color: "#102A30", margin: "0 0 16px", letterSpacing: "-0.02em" }}>
-            Master Practical Biotech & Research Skills
+          <h1 style={{ fontSize: "2.6rem", fontWeight: 800, color: "#102A30", margin: "0 0 14px", letterSpacing: "-0.02em" }}>
+            Student & Researcher Field Guides
           </h1>
-          <p style={{ fontSize: "1.1rem", color: "#64748B", maxWidth: 720, margin: "0 auto 32px", lineHeight: 1.6 }}>
-            Actionable step-by-step guides covering lab safety protocols, research paper drafting, bioinformatics pipelines, and fellowship strategies.
+          <p style={{ fontSize: "1.05rem", color: "#64748B", maxWidth: 720, margin: "0 auto 32px", lineHeight: 1.6 }}>
+            Structured, step-by-step documentation for lab safety protocols, manuscript drafting, bioinformatics pipelines, and fellowship applications.
           </p>
 
           {/* Search Box */}
-          <div style={{ maxWidth: 600, margin: "0 auto" }}>
+          <div style={{ maxWidth: 580, margin: "0 auto" }}>
             <input
               type="text"
-              placeholder="Search guides by title, protocol, or skill (e.g. Autoclave, BLAST, NGS, CSIR)..."
+              placeholder="Search guides by title, protocol, or skill..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 width: "100%",
-                padding: "16px 24px",
+                padding: "15px 22px",
                 borderRadius: 100,
                 border: "1.5px solid #CBD5E1",
-                fontSize: "0.95rem",
+                fontSize: "0.92rem",
                 outline: "none",
                 background: "#FFFFFF",
                 color: "#102A30",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.04)"
+                boxShadow: "0 2px 12px rgba(0,0,0,0.03)"
               }}
             />
           </div>
         </div>
 
         {/* CATEGORY TABS */}
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center", marginBottom: 48 }}>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center", marginBottom: 44 }}>
           {CATEGORIES.map((cat) => {
             const isSelected = selectedCat === cat;
             return (
@@ -260,12 +260,12 @@ export default function GuidesPage() {
                   background: isSelected ? "#2AB4B4" : "#FFFFFF",
                   color: isSelected ? "#FFFFFF" : "#102A30",
                   border: isSelected ? "none" : "1px solid #E2EEF0",
-                  padding: "9px 20px",
+                  padding: "8px 18px",
                   borderRadius: 100,
-                  fontSize: "0.88rem",
+                  fontSize: "0.85rem",
                   fontWeight: isSelected ? 700 : 500,
                   cursor: "pointer",
-                  boxShadow: isSelected ? "0 4px 14px rgba(42,180,180,0.3)" : "0 2px 6px rgba(0,0,0,0.02)",
+                  boxShadow: isSelected ? "0 4px 12px rgba(42,180,180,0.25)" : "0 2px 4px rgba(0,0,0,0.02)",
                   transition: "all 0.2s ease"
                 }}
               >
@@ -276,7 +276,7 @@ export default function GuidesPage() {
         </div>
 
         {/* GUIDES GRID */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 28 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(330px, 1fr))", gap: 24 }}>
           {filteredGuides.map((guide) => {
             const isDone = completedGuideIds.includes(guide.id);
             return (
@@ -285,50 +285,49 @@ export default function GuidesPage() {
                 onClick={() => setActiveGuide(guide)}
                 style={{
                   background: "#FFFFFF",
-                  borderRadius: 20,
-                  border: "1.5px solid #E2EEF0",
-                  padding: 28,
+                  borderRadius: 18,
+                  border: "1px solid #E2EEF0",
+                  padding: 26,
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
                   cursor: "pointer",
-                  transition: "all 0.25s ease",
-                  boxShadow: "0 4px 16px rgba(0,0,0,0.03)",
-                  position: "relative"
+                  transition: "all 0.22s ease",
+                  boxShadow: "0 2px 10px rgba(0,0,0,0.02)"
                 }}
               >
                 <div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-                    <span style={{ background: guide.badgeColor, color: guide.textColor, padding: "4px 12px", borderRadius: 6, fontSize: "0.75rem", fontWeight: 800 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+                    <span style={{ background: guide.badgeColor, color: guide.textColor, padding: "3px 10px", borderRadius: 4, fontSize: "0.72rem", fontWeight: 800 }}>
                       {guide.category}
                     </span>
                     <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                      <span style={{ fontSize: "0.78rem", color: "#64748B", fontWeight: 600 }}>{guide.level}</span>
-                      <span style={{ fontSize: "0.78rem", color: "#94A3B8" }}>• {guide.readTime}</span>
+                      <span style={{ fontSize: "0.76rem", color: "#64748B", fontWeight: 600 }}>{guide.level}</span>
+                      <span style={{ fontSize: "0.76rem", color: "#94A3B8" }}>• {guide.readTime}</span>
                     </div>
                   </div>
 
-                  <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#102A30", marginBottom: 12, lineHeight: 1.4 }}>
+                  <h3 style={{ fontSize: "1.18rem", fontWeight: 800, color: "#102A30", marginBottom: 10, lineHeight: 1.4 }}>
                     {guide.title}
                   </h3>
 
-                  <p style={{ fontSize: "0.88rem", color: "#64748B", lineHeight: 1.6, marginBottom: 20 }}>
+                  <p style={{ fontSize: "0.86rem", color: "#64748B", lineHeight: 1.55, marginBottom: 18 }}>
                     {guide.summary}
                   </p>
 
-                  <div style={{ background: "#F8FAFC", borderRadius: 12, padding: "12px 16px", marginBottom: 20, border: "1px solid #F1F5F9" }}>
-                    <div style={{ fontSize: "0.75rem", fontWeight: 800, color: "#475569", textTransform: "uppercase", marginBottom: 6 }}>
-                      Guide Chapters ({guide.chapters.length})
+                  <div style={{ background: "#F8FAFC", borderRadius: 10, padding: "10px 14px", marginBottom: 18, border: "1px solid #F1F5F9" }}>
+                    <div style={{ fontSize: "0.72rem", fontWeight: 800, color: "#475569", textTransform: "uppercase", marginBottom: 4 }}>
+                      Chapters Overview ({guide.chapters.length})
                     </div>
                     {guide.chapters.map((ch, idx) => (
-                      <div key={idx} style={{ fontSize: "0.82rem", color: "#102A30", fontWeight: 600, padding: "3px 0" }}>
+                      <div key={idx} style={{ fontSize: "0.8rem", color: "#102A30", fontWeight: 600, padding: "2px 0" }}>
                         • {ch.title}
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 16, borderTop: "1px solid #F1F5F9" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 14, borderTop: "1px solid #F1F5F9" }}>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -338,17 +337,17 @@ export default function GuidesPage() {
                       background: isDone ? "#DCFCE7" : "#F1F5F9",
                       color: isDone ? "#166534" : "#475569",
                       border: "none",
-                      padding: "6px 14px",
-                      borderRadius: 8,
-                      fontSize: "0.78rem",
+                      padding: "5px 12px",
+                      borderRadius: 6,
+                      fontSize: "0.76rem",
                       fontWeight: 700,
                       cursor: "pointer"
                     }}
                   >
-                    {isDone ? "✓ Completed Guide" : "+ Mark Completed"}
+                    {isDone ? "Completed" : "Mark Complete"}
                   </button>
 
-                  <span style={{ fontSize: "0.88rem", fontWeight: 800, color: "#2AB4B4" }}>
+                  <span style={{ fontSize: "0.84rem", fontWeight: 800, color: "#2AB4B4" }}>
                     Open Guide →
                   </span>
                 </div>
@@ -358,14 +357,14 @@ export default function GuidesPage() {
         </div>
 
         {filteredGuides.length === 0 && (
-          <div style={{ background: "#FFFFFF", borderRadius: 20, padding: 60, textAlign: "center", border: "1px solid #E2EEF0", color: "#64748B" }}>
-            <h3 style={{ fontSize: "1.3rem", fontWeight: 800, color: "#102A30", marginBottom: 8 }}>No matching guides found</h3>
-            <p style={{ fontSize: "0.92rem" }}>Try searching for a different lab protocol or category.</p>
+          <div style={{ background: "#FFFFFF", borderRadius: 18, padding: 48, textAlign: "center", border: "1px solid #E2EEF0", color: "#64748B" }}>
+            <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#102A30", marginBottom: 6 }}>No matching guides found</h3>
+            <p style={{ fontSize: "0.9rem" }}>Try searching for a different protocol or topic.</p>
             <button
               onClick={() => { setSelectedCat("All Guides"); setSearchQuery(""); }}
-              style={{ marginTop: 16, background: "#2AB4B4", color: "#FFF", border: "none", padding: "10px 22px", borderRadius: 10, fontWeight: 700 }}
+              style={{ marginTop: 14, background: "#2AB4B4", color: "#FFF", border: "none", padding: "9px 20px", borderRadius: 8, fontWeight: 700, fontSize: "0.88rem" }}
             >
-              Reset Guide Filters
+              Reset Filters
             </button>
           </div>
         )}
@@ -373,57 +372,53 @@ export default function GuidesPage() {
 
       {/* INTERACTIVE GUIDE READER MODAL */}
       {activeGuide && (
-        <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(10, 25, 30, 0.85)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
-          <div style={{ background: "#FFFFFF", borderRadius: 24, width: "100%", maxWidth: 880, maxHeight: "90vh", display: "flex", flexDirection: "column", overflow: "hidden", boxShadow: "0 25px 60px rgba(0,0,0,0.35)" }}>
-            {/* Modal Header */}
-            <div style={{ padding: "20px 28px", background: "#102A30", color: "#FFFFFF", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(10, 25, 30, 0.82)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
+          <div style={{ background: "#FFFFFF", borderRadius: 20, width: "100%", maxWidth: 840, maxHeight: "88vh", display: "flex", flexDirection: "column", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.3)" }}>
+            <div style={{ padding: "18px 24px", background: "#102A30", color: "#FFFFFF", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ background: activeGuide.badgeColor, color: activeGuide.textColor, padding: "4px 10px", borderRadius: 6, fontSize: "0.75rem", fontWeight: 800 }}>
+                <span style={{ background: activeGuide.badgeColor, color: activeGuide.textColor, padding: "3px 9px", borderRadius: 4, fontSize: "0.72rem", fontWeight: 800 }}>
                   {activeGuide.category}
                 </span>
-                <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.7)" }}>• {activeGuide.readTime}</span>
+                <span style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.7)" }}>• {activeGuide.readTime}</span>
               </div>
               <button
                 onClick={() => setActiveGuide(null)}
-                style={{ background: "rgba(255,255,255,0.15)", border: "none", color: "#FFF", width: 34, height: 34, borderRadius: "50%", cursor: "pointer", fontSize: "1.1rem" }}
+                style={{ background: "rgba(255,255,255,0.15)", border: "none", color: "#FFF", width: 32, height: 32, borderRadius: "50%", cursor: "pointer", fontSize: "1rem" }}
               >
                 ✕
               </button>
             </div>
 
-            {/* Modal Scrollable Content */}
-            <div style={{ flex: 1, padding: "36px 40px", overflowY: "auto", color: "#102A30" }}>
-              <h1 style={{ fontSize: "2rem", fontWeight: 800, lineHeight: 1.3, marginBottom: 12 }}>
+            <div style={{ flex: 1, padding: "32px 36px", overflowY: "auto", color: "#102A30" }}>
+              <h1 style={{ fontSize: "1.85rem", fontWeight: 800, lineHeight: 1.3, marginBottom: 10 }}>
                 {activeGuide.title}
               </h1>
-              <p style={{ fontSize: "1rem", color: "#64748B", marginBottom: 28, lineHeight: 1.6 }}>
+              <p style={{ fontSize: "0.95rem", color: "#64748B", marginBottom: 24, lineHeight: 1.6 }}>
                 {activeGuide.summary}
               </p>
 
-              {/* Chapters List */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 24, marginBottom: 36 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 20, marginBottom: 32 }}>
                 {activeGuide.chapters.map((ch, idx) => (
-                  <div key={idx} style={{ background: "#F8FAFC", borderRadius: 16, border: "1.5px solid #E2EEF0", padding: 24 }}>
-                    <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#102A30", marginBottom: 10 }}>
+                  <div key={idx} style={{ background: "#F8FAFC", borderRadius: 14, border: "1px solid #E2EEF0", padding: 20 }}>
+                    <h3 style={{ fontSize: "1.1rem", fontWeight: 800, color: "#102A30", marginBottom: 8 }}>
                       {ch.title}
                     </h3>
-                    <p style={{ fontSize: "0.95rem", color: "#334155", lineHeight: 1.7, margin: 0 }}>
+                    <p style={{ fontSize: "0.92rem", color: "#334155", lineHeight: 1.65, margin: 0 }}>
                       {ch.content}
                     </p>
                   </div>
                 ))}
               </div>
 
-              {/* Action Checklist */}
               {activeGuide.checklist && (
-                <div style={{ background: "#E0F2FE", borderRadius: 16, padding: 24, border: "1px solid #BAE6FD" }}>
-                  <h4 style={{ fontSize: "1.05rem", fontWeight: 800, color: "#0369A1", marginBottom: 14 }}>
-                    ✅ Guide Action Checklist
+                <div style={{ background: "#E0F2FE", borderRadius: 14, padding: 20, border: "1px solid #BAE6FD" }}>
+                  <h4 style={{ fontSize: "0.98rem", fontWeight: 800, color: "#0369A1", marginBottom: 12 }}>
+                    Guide Protocol Checklist
                   </h4>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                     {activeGuide.checklist.map((item, idx) => (
-                      <label key={idx} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: "0.9rem", color: "#0F172A", cursor: "pointer" }}>
-                        <input type="checkbox" style={{ width: 18, height: 18, accentColor: "#0284C7" }} />
+                      <label key={idx} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: "0.88rem", color: "#0F172A", cursor: "pointer" }}>
+                        <input type="checkbox" style={{ width: 16, height: 16, accentColor: "#0284C7" }} />
                         <span>{item}</span>
                       </label>
                     ))}
@@ -432,31 +427,28 @@ export default function GuidesPage() {
               )}
             </div>
 
-            {/* Modal Footer */}
-            <div style={{ padding: "20px 28px", background: "#F8FAFC", borderTop: "1px solid #E2EEF0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ padding: "18px 24px", background: "#F8FAFC", borderTop: "1px solid #E2EEF0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <button
-                onClick={() => {
-                  toggleComplete(activeGuide.id);
-                }}
+                onClick={() => toggleComplete(activeGuide.id)}
                 style={{
                   background: completedGuideIds.includes(activeGuide.id) ? "#DCFCE7" : "#102A30",
                   color: completedGuideIds.includes(activeGuide.id) ? "#166534" : "#FFFFFF",
                   border: "none",
-                  padding: "10px 20px",
-                  borderRadius: 10,
-                  fontSize: "0.88rem",
+                  padding: "9px 18px",
+                  borderRadius: 8,
+                  fontSize: "0.85rem",
                   fontWeight: 700,
                   cursor: "pointer"
                 }}
               >
-                {completedGuideIds.includes(activeGuide.id) ? "✓ Marked Complete" : "Mark as Completed"}
+                {completedGuideIds.includes(activeGuide.id) ? "Completed" : "Mark as Completed"}
               </button>
 
               <button
                 onClick={() => alert("Guide PDF checklist downloaded!")}
-                style={{ background: "#2AB4B4", color: "#FFFFFF", border: "none", padding: "10px 22px", borderRadius: 10, fontWeight: 700, fontSize: "0.88rem", cursor: "pointer" }}
+                style={{ background: "#2AB4B4", color: "#FFFFFF", border: "none", padding: "9px 18px", borderRadius: 8, fontWeight: 700, fontSize: "0.85rem", cursor: "pointer" }}
               >
-                📥 Download Checklist PDF
+                Download Checklist
               </button>
             </div>
           </div>
