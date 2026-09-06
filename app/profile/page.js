@@ -180,7 +180,7 @@ export default function ProfilePage() {
           { label: "Papers Read", value: String(gamStats.papers_read), icon: "📄", link: "/research" },
         ];
 
-  const tabs = ["about", "activity", "achievements", "platform shortcuts"];
+  const tabs = ["about", "activity", "achievements"];
 
   return (
     <AppShell active="/profile">
@@ -190,8 +190,6 @@ export default function ProfilePage() {
         .stat-card:hover { transform: none !important; box-shadow: 0 2px 8px rgba(0,0,0,0.03) !important; border-color: #E2EEF0 !important; }
         .edit-field { transition: border-color 0.2s; }
         .edit-field:focus { border-color: ${rc} !important; outline: none; box-shadow: 0 0 0 3px ${rc}15; }
-        .shortcut-card { transition: opacity 0.2s ease; text-decoration: none; }
-        .shortcut-card:hover { transform: none !important; box-shadow: 0 4px 14px rgba(0,0,0,0.04) !important; }
 
         .profile-header-row {
           display: flex;
@@ -764,56 +762,6 @@ export default function ProfilePage() {
         {activeTab === "achievements" && (
           <div style={{ background: "#fff", borderRadius: "16px", padding: "28px", border: "1px solid #E2EEF0" }}>
             <AchievementsBadgesGrid userId={profile?.id} supabase={supabase} />
-          </div>
-        )}
-
-        {activeTab === "platform shortcuts" && (
-          <div style={{ background: "#fff", borderRadius: "16px", padding: "28px", border: "1px solid #E2EEF0" }}>
-            <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#1B2B3A", marginBottom: "20px" }}>
-              Quick Platform Module Shortcuts
-            </h3>
-            <div className="shortcuts-grid">
-              {[
-                { icon: "🔬", title: "NCBI Literature Viewer", desc: "Search PubMed papers & query AI Copilot", link: "/research", badge: "Research Hub", color: "#14B8A6" },
-                { icon: "📚", title: "Learning & Courses", desc: "Access Biotech curricula & PYQ quizzes", link: "/learning", badge: "Courses", color: "#8B5CF6" },
-                { icon: "📅", title: "Biotech Events & Webinars", desc: "Interactive mini-calendar & event registration", link: "/events", badge: "Events", color: "#F97316" },
-                { icon: "💼", title: "Job Opportunities", desc: "Explore research fellowships & lab technician roles", link: "/jobs", badge: "Careers", color: "#3B82F6" },
-                { icon: "📊", title: "Main Platform Dashboard", desc: "Overview of your biotech learning hub", link: "/dashboard", badge: "Dashboard", color: "#0D9488" },
-              ].map((item) => (
-                <Link
-                  key={item.title}
-                  href={item.link}
-                  className="shortcut-card"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    padding: "20px",
-                    borderRadius: "14px",
-                    background: "#F0F7F8",
-                    border: "1px solid #E2EEF0",
-                  }}
-                >
-                  <div>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
-                      <span style={{ fontSize: "28px" }}>{item.icon}</span>
-                      <span style={{ fontSize: "11px", background: item.color + "18", color: item.color, padding: "4px 10px", borderRadius: "100px", fontWeight: 700 }}>
-                        {item.badge}
-                      </span>
-                    </div>
-                    <h4 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", marginBottom: "4px" }}>
-                      {item.title}
-                    </h4>
-                    <p style={{ fontSize: "12px", color: "#6B8A9A", lineHeight: "1.5" }}>
-                      {item.desc}
-                    </p>
-                  </div>
-                  <div style={{ marginTop: "16px", fontSize: "13px", fontWeight: 700, color: item.color }}>
-                    Open Module →
-                  </div>
-                </Link>
-              ))}
-            </div>
           </div>
         )}
       </div>
