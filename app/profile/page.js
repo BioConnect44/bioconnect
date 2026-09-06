@@ -21,6 +21,13 @@ export default function ProfilePage() {
     field_of_study: "",
   });
 
+  const [gamStats, setGamStats] = useState({
+    courses_enrolled: 6,
+    streak_days: 14,
+    badges_earned: 8,
+    papers_read: 23,
+  });
+
   useEffect(() => {
     async function load() {
       const {
@@ -53,6 +60,50 @@ export default function ProfilePage() {
         bio: userProfile?.bio || "",
         field_of_study: userProfile?.field_of_study || "",
       });
+
+      // Load user gamification & activity stats dynamically
+      const { data: gData } = await supabase
+        .from("user_gamification")
+        .select("*")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      let localCourses = 6;
+      let localStreak = 14;
+      let localBadges = 8;
+      let localPapers = 23;
+
+      try {
+        if (typeof window !== "undefined") {
+          const c = localStorage.getItem("bioconnect_courses_enrolled");
+          if (c) localCourses = parseInt(c, 10);
+
+          const s = localStorage.getItem("bioconnect_streak");
+          if (s) localStreak = parseInt(s, 10);
+
+          const b = localStorage.getItem("bioconnect_unlocked_badges");
+          if (b) {
+            const arr = JSON.parse(b);
+            if (Array.isArray(arr)) localBadges = arr.length;
+          }
+
+          const p = localStorage.getItem("bioconnect_papers_read");
+          if (p) localPapers = parseInt(p, 10);
+        }
+      } catch (e) {}
+
+      const coursesVal = gData?.courses_enrolled ?? (gData?.courses_completed || localCourses);
+      const streakVal = gData?.streak_days ?? localStreak;
+      const badgesVal = gData?.unlocked_badge_ids?.length ?? localBadges;
+      const papersVal = gData?.papers_read ?? localPapers;
+
+      setGamStats({
+        courses_enrolled: coursesVal,
+        streak_days: streakVal,
+        badges_earned: badgesVal,
+        papers_read: papersVal,
+      });
+
       setLoading(false);
     }
     load();
@@ -111,22 +162,22 @@ export default function ProfilePage() {
     role === "Educator"
       ? [
           { label: "Enrolled Students", value: "128", icon: "👥", link: "/learning" },
-          { label: "Courses Created", value: "6", icon: "📚", link: "/learning" },
+          { label: "Courses Created", value: String(gamStats.courses_enrolled), icon: "📚", link: "/learning" },
           { label: "Webinars Hosted", value: "4", icon: "📅", link: "/events" },
           { label: "Papers Shared", value: "12", icon: "📄", link: "/research" },
         ]
       : role === "Researcher"
       ? [
-          { label: "Papers Analyzed", value: "28", icon: "🔬", link: "/research" },
+          { label: "Papers Analyzed", value: String(gamStats.papers_read), icon: "🔬", link: "/research" },
           { label: "NCBI Citations", value: "342", icon: "🔗", link: "/research" },
           { label: "Collaborators", value: "7", icon: "👥", link: "/profile" },
           { label: "AI Insights", value: "45", icon: "⚡", link: "/research" },
         ]
       : [
-          { label: "Courses Enrolled", value: "6", icon: "📚", link: "/learning" },
-          { label: "Day Streak", value: "14", icon: "🔥", link: "/biominute" },
-          { label: "Badges Earned", value: "8", icon: "🏅", link: "/profile" },
-          { label: "Papers Read", value: "23", icon: "📄", link: "/research" },
+          { label: "Courses Enrolled", value: String(gamStats.courses_enrolled), icon: "📚", link: "/learning" },
+          { label: "Day Streak", value: String(gamStats.streak_days), icon: "🔥", link: "/biominute" },
+          { label: "Badges Earned", value: String(gamStats.badges_earned), icon: "🏅", link: "/profile" },
+          { label: "Papers Read", value: String(gamStats.papers_read), icon: "📄", link: "/research" },
         ];
 
   const tabs = ["about", "activity", "achievements", "platform shortcuts"];
@@ -134,13 +185,13 @@ export default function ProfilePage() {
   return (
     <AppShell active="/profile">
       <style>{`
-        .tab-btn { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; border: none; font-family: 'Poppins', sans-serif; }
-        .stat-card { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
-        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.07) !important; border-color: ${rc}40 !important; }
+        .tab-btn { transition: opacity 0.2s ease; cursor: pointer; border: none; font-family: 'Poppins', sans-serif; }
+        .stat-card { transition: none !important; }
+        .stat-card:hover { transform: none !important; box-shadow: 0 2px 8px rgba(0,0,0,0.03) !important; border-color: #E2EEF0 !important; }
         .edit-field { transition: border-color 0.2s; }
         .edit-field:focus { border-color: ${rc} !important; outline: none; box-shadow: 0 0 0 3px ${rc}15; }
-        .shortcut-card { transition: all 0.25s ease; text-decoration: none; }
-        .shortcut-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08) !important; }
+        .shortcut-card { transition: opacity 0.2s ease; text-decoration: none; }
+        .shortcut-card:hover { transform: none !important; box-shadow: 0 4px 14px rgba(0,0,0,0.04) !important; }
 
         .profile-header-row {
           display: flex;
