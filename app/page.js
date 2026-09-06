@@ -197,7 +197,7 @@ export default function LandingPage() {
           </ul>
 
           <div className="landing-nav-actions">
-            <a href="/login" style={{ background: "none", border: "none", cursor: "pointer", fontSize: "0.95rem", color: "#444", fontWeight: 500, padding: "8px 4px", textDecoration: "none", transition: "color 0.2s" }}
+            <a href="/login" style={{ cursor: "pointer", fontSize: "0.95rem", color: "#444", fontWeight: 500, padding: "8px 4px", textDecoration: "none", transition: "color 0.2s" }}
               onMouseEnter={e => { e.currentTarget.style.color = "#2AB4B4"; }}
               onMouseLeave={e => { e.currentTarget.style.color = "#444"; }}>
               Log in

@@ -62,27 +62,7 @@ input[type="submit"]:active:not(:disabled),
 
 /* 2. Anchor Links & Action Button Links Hover Effects */
 a {
-  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-a:hover {
-  filter: brightness(1.1);
-}
-
-a[style*="background"],
-a[style*="border"] {
-  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-a[style*="background"]:hover,
-a[style*="border"]:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-}
-
-a[style*="background"]:active,
-a[style*="border"]:active {
-  transform: translateY(0) scale(0.98);
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 /* 3. Form Inputs, Selects, & Textareas Hover & Glow Ring */
