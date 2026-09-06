@@ -28,18 +28,21 @@ const ROLES = [
     subtitle: "Accelerate your learning and jumpstart your career in the biotech industry.",
     points: ["Access high-yield university notes.", "Direct access to top recruiters.", "Read PubMed papers instantly.", "Land your first industry role."],
     btn: "Create Student Profile",
+    role: "student",
   },
   {
     title: "For Educators",
     subtitle: "Expand your academic reach and simplify how you share resources.",
     points: ["Share specialized study materials.", "Boost your event registrations.", "Promote your university webinars.", "Track student engagement easily."],
     btn: "Create Educator Profile",
+    role: "educator",
   },
   {
     title: "For Researchers",
     subtitle: "Accelerate your lab work and showcase your breakthroughs to the world.",
     points: ["Publish and share lab findings.", "Find specialized project collaborators.", "Discover new funding opportunities.", "Top-tier talent for your lab."],
     btn: "Create Researcher Profile",
+    role: "researcher",
   },
 ];
 
@@ -372,7 +375,7 @@ export default function LandingPage() {
                       </li>
                     ))}
                   </ul>
-                  <a href="/signup" style={{ marginTop: "auto", background: hovRole === i ? "#1f9e9e" : "#2AB4B4", color: "#fff", border: "none", borderRadius: 8, padding: 13, fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", transition: "all 0.2s", textAlign: "center", textDecoration: "none", display: "block" }}>
+                  <a href={`/signup?role=${r.role}`} style={{ marginTop: "auto", background: hovRole === i ? "#1f9e9e" : "#2AB4B4", color: "#fff", border: "none", borderRadius: 8, padding: 13, fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", transition: "all 0.2s", textAlign: "center", textDecoration: "none", display: "block" }}>
                     {r.btn}
                   </a>
                 </div>

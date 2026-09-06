@@ -1,15 +1,25 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
 
-export default function SignupPage() {
+function SignupForm() {
   const supabase = createClient();
+  const searchParams = useSearchParams();
+  const roleParam = searchParams.get("role");
+
   const [form, setForm] = useState({ fullName: "", email: "", password: "", role: "" });
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    if (roleParam && ["student", "educator", "researcher"].includes(roleParam.toLowerCase())) {
+      setForm(prev => ({ ...prev, role: roleParam.toLowerCase() }));
+    }
+  }, [roleParam]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -170,6 +180,14 @@ export default function SignupPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense fallback={<div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#EEF7F7", fontFamily: "sans-serif", color: "#6B8A9A" }}>Loading signup form...</div>}>
+      <SignupForm />
+    </Suspense>
   );
 }
 
