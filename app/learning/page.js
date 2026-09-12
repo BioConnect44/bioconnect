@@ -5,6 +5,7 @@ import AppShell from "@/components/AppShell";
 import LiveStudentWidgets, { markQuestCompleted } from "@/components/LiveStudentWidgets";
 import { recordUserAction } from "@/lib/gamificationEngine";
 import ExtraBooksSection from "@/components/ExtraBooksSection";
+import LiveStatsBar from "@/components/LiveStatsBar";
 
 const COURSE_TOPICS = [
   {
@@ -6896,6 +6897,9 @@ function StudentView({ supabase, profile, onXPUpdate }) {
     <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "24px" }}>
       {/* LEFT — main content */}
       <div>
+        {/* Live Stats bar */}
+        <LiveStatsBar courseTopics={COURSE_TOPICS} />
+
         {/* Continue banner */}
         <div style={{ background: "linear-gradient(135deg, #132D35 0%, #1B4A5A 100%)", borderRadius: "20px", padding: "28px 32px", marginBottom: "28px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ flex: 1 }}>
@@ -7016,22 +7020,7 @@ function EducatorView({ supabase, profile, onXPUpdate }) {
   return (
     <div>
       {/* Stats bar */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "14px", marginBottom: "28px" }}>
-        {[
-          { label: "Total Materials", value: "4 Topic Sets", icon: "📚", color: "#14B8A6" },
-          { label: "Subjects", value: "4 Modules", icon: "🧬", color: "#8B5CF6" },
-          { label: "Students Enrolled", value: "250+", icon: "👥", color: "#F97316" },
-          { label: "PYQ Sets", value: "50+ MCQs", icon: "📝", color: "#3B82F6" },
-        ].map(s => (
-          <div key={s.label} style={{ background: "#fff", borderRadius: "14px", padding: "18px 20px", border: "1px solid #E2EEF0", display: "flex", gap: "12px", alignItems: "center" }}>
-            <div style={{ width: 40, height: 40, borderRadius: "10px", background: s.color + "15", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", flexShrink: 0 }}>{s.icon}</div>
-            <div>
-              <p style={{ fontSize: "20px", fontWeight: 700, color: "#1B2B3A" }}>{s.value}</p>
-              <p style={{ fontSize: "12px", color: "#9CA3AF" }}>{s.label}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <LiveStatsBar courseTopics={COURSE_TOPICS} />
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
         {/* My Courses */}
