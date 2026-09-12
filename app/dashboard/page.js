@@ -664,7 +664,7 @@ function ResearcherDashboard({ profile }) {
           gap: "20px",
         }}
       >
-        {/* Research Papers */}
+        {/* Research Digest & NCBI Feed */}
         <div style={C.card}>
           <div
             style={{
@@ -675,104 +675,150 @@ function ResearcherDashboard({ profile }) {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <span>📄</span>
+              <span style={{ fontSize: "18px" }}>🔬</span>
               <h3
                 style={{ fontSize: "16px", fontWeight: 600, color: "#1B2B3A" }}
               >
-                Research Papers
+                Latest Life Sciences Research
               </h3>
             </div>
             <span
               style={{
                 fontSize: "12px",
-                background: "#EEF7F7",
-                color: "#14B8A6",
+                background: "#E0F2FE",
+                color: "#0284C7",
                 padding: "4px 12px",
                 borderRadius: "100px",
                 fontWeight: 600,
               }}
             >
-              5 Unread
+              NCBI & PubMed Feed
             </span>
           </div>
-          {papers.length === 0 ? (
-            <p
-              style={{ fontSize: "14px", color: "#9CA3AF", padding: "20px 0" }}
-            >
-              No papers yet.{" "}
-              <a href="/research" style={{ color: "#14B8A6" }}>
-                Browse research →
-              </a>
-            </p>
-          ) : (
-            papers.map((p, i) => (
-              <div
-                key={i}
+          <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexWrap: "wrap" }}>
+            {["All Fields", "Gene Editing", "Genomics", "Bioprocess"].map((t, i) => (
+              <button
+                key={t}
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "12px",
-                  padding: "12px 0",
-                  borderBottom:
-                    i < papers.length - 1 ? "1px solid #F0F7F8" : "none",
+                  padding: "6px 14px",
+                  borderRadius: "8px",
+                  fontSize: "13px",
+                  border: "1.5px solid",
+                  cursor: "pointer",
+                  fontFamily: "inherit",
+                  background: i === 0 ? "#14B8A6" : "#fff",
+                  color: i === 0 ? "#fff" : "#6B8A9A",
+                  borderColor: i === 0 ? "#14B8A6" : "#E2EEF0",
                 }}
               >
-                <div
+                {t}
+              </button>
+            ))}
+          </div>
+          {[
+            {
+              id: "paper-1",
+              title: "CRISPR-Cas12a Gene Editing Efficiency in Plant Systems",
+              journal: "Nature Biotechnology • 2026",
+              tags: ["Gene Editing", "CRISPR"],
+              link: "/research"
+            },
+            {
+              id: "paper-2",
+              title: "Single-Cell RNA Sequencing Analysis of Microbes",
+              journal: "Cell Genomics • 2026",
+              tags: ["Genomics", "Bioinformatics"],
+              link: "/research"
+            },
+            {
+              id: "paper-3",
+              title: "Continuous Microbial Fermentation for Industrial Enzymes",
+              journal: "Bioprocess & Biochemical Engineering • 2026",
+              tags: ["Bioprocess", "Fermentation"],
+              link: "/research"
+            },
+            {
+              id: "paper-4",
+              title: "Monoclonal Antibody Engineering & Epitope Mapping",
+              journal: "Journal of Immunology • 2026",
+              tags: ["Immunology", "Antibodies"],
+              link: "/research"
+            }
+          ].map((p, i, arr) => (
+            <div
+              key={p.id}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "12px",
+                padding: "12px 0",
+                borderBottom: i < arr.length - 1 ? "1px solid #F0F7F8" : "none",
+              }}
+            >
+              <div style={{ flex: 1 }}>
+                <p
                   style={{
-                    width: 36,
-                    height: 36,
-                    background: "#EEF7F7",
-                    borderRadius: "8px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  📄
-                </div>
-                <div style={{ flex: 1 }}>
-                  <p
-                    style={{
-                      fontSize: "13px",
-                      fontWeight: 500,
-                      color: "#1B2B3A",
-                    }}
-                  >
-                    {p.title?.slice(0, 40)}
-                    {p.title?.length > 40 ? "..." : ""}
-                  </p>
-                  <p style={{ fontSize: "12px", color: "#9CA3AF" }}>
-                    {p.journal || "BioConnect"}
-                  </p>
-                </div>
-                <a
-                  href="/research"
-                  style={{
-                    padding: "6px 14px",
-                    border: "1.5px solid #14B8A6",
-                    borderRadius: "8px",
-                    fontSize: "12px",
+                    fontSize: "14px",
                     fontWeight: 600,
-                    color: "#14B8A6",
+                    color: "#1B2B3A",
+                    marginBottom: "4px"
                   }}
                 >
-                  Read Now
-                </a>
+                  {p.title}
+                </p>
+                <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+                  <span style={{ fontSize: "12px", color: "#6B8A9A" }}>{p.journal}</span>
+                  {p.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      style={{
+                        fontSize: "11px",
+                        background: "rgba(20, 184, 166, 0.1)",
+                        color: "#0D9488",
+                        padding: "2px 8px",
+                        borderRadius: "6px",
+                        fontWeight: 600
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            ))
-          )}
+              <a
+                href={p.link}
+                style={{
+                  padding: "7px 14px",
+                  background: "#fff",
+                  border: "1.5px solid #14B8A6",
+                  borderRadius: "8px",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  color: "#14B8A6",
+                  cursor: "pointer",
+                  fontFamily: "inherit",
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                  flexShrink: 0
+                }}
+              >
+                Summarize →
+              </a>
+            </div>
+          ))}
           <a
             href="/research"
             style={{
-              display: "block",
+              display: "inline-block",
               fontSize: "13px",
               color: "#14B8A6",
-              fontWeight: 500,
+              fontWeight: 600,
               marginTop: "16px",
+              textDecoration: "none"
             }}
           >
-            View All Research Papers →
+            Explore NCBI Literature Viewer & AI Summaries →
           </a>
         </div>
 
