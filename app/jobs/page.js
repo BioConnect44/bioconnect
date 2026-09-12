@@ -325,24 +325,6 @@ export default function JobsPage() {
           </p>
         </div>
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          {isEducator && (
-            <button
-              onClick={() => setShowAdd(!showAdd)}
-              style={{
-                background: "#14B8A6",
-                color: "#fff",
-                border: "none",
-                padding: "10px 20px",
-                borderRadius: "10px",
-                fontSize: "14px",
-                fontWeight: 600,
-                cursor: "pointer",
-                fontFamily: "inherit",
-              }}
-            >
-              {showAdd ? "Cancel" : "+ Post Job"}
-            </button>
-          )}
           <button
             onClick={handleRefreshScraper}
             disabled={isScraping}
