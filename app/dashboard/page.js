@@ -289,42 +289,42 @@ function StudentDashboard({ profile }) {
 
 /* ── Educator Dashboard ── */
 function EducatorDashboard({ profile }) {
-  const submissions = [
+  const researchPapers = [
     {
-      initials: "KT",
-      name: "Krish Topiwala",
-      task: "Lab Report 3 - CRISPR Editing",
-      status: "Due Today",
-      statusColor: "#F97316",
+      id: "paper-1",
+      title: "CRISPR-Cas12a Gene Editing Efficiency in Plant Systems",
+      journal: "Nature Biotechnology • 2026",
+      tags: ["CRISPR", "Gene Editing"],
+      link: "/research"
     },
     {
-      initials: "NM",
-      name: "Neer Marvaniya",
-      task: "Bioinformatics Report",
-      status: "Submitted 1d ago",
-      statusColor: "#6B8A9A",
+      id: "paper-2",
+      title: "Single-Cell RNA Sequencing Analysis of Microbes",
+      journal: "Cell Genomics • 2026",
+      tags: ["Genomics", "Bioinformatics"],
+      link: "/research"
     },
     {
-      initials: "VP",
-      name: "Veer Parsaniya",
-      task: "Microbiology PYQ Quiz",
-      status: "Submitted 2d ago",
-      statusColor: "#6B8A9A",
+      id: "paper-3",
+      title: "Continuous Microbial Fermentation for Industrial Enzymes",
+      journal: "Bioprocess & Biochemical Engineering • 2026",
+      tags: ["Bioprocess", "Fermentation"],
+      link: "/research"
     },
     {
-      initials: "HM",
-      name: "Hemang Mistry",
-      task: "Genetic Engineering Quiz",
-      status: "Due Today",
-      statusColor: "#F97316",
-    },
+      id: "paper-4",
+      title: "Monoclonal Antibody Engineering & Epitope Mapping",
+      journal: "Journal of Immunology • 2026",
+      tags: ["Immunology", "Antibodies"],
+      link: "/research"
+    }
   ];
   return (
     <div>
       <div style={{ background: "linear-gradient(135deg, #F0FDF9 0%, #E8F9F5 100%)", borderRadius: "20px", padding: "32px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px", border: "1px solid #B2EDE1", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "relative", zIndex: 2 }}>
           <h1 style={{ fontSize: "28px", fontWeight: 700, color: "#1B2B3A", marginBottom: "6px" }}>Welcome Back, Professor!</h1>
-          <p style={{ fontSize: "14px", color: "#6B8A9A", marginBottom: "20px" }}>You have 24 new submissions to grade across 3 active courses.</p>
+          <p style={{ fontSize: "14px", color: "#6B8A9A", marginBottom: "20px" }}>Track your active courses, explore recent biotech research, and manage your academic schedule.</p>
           <a href="/profile" style={{ display: "inline-block", background: "#1B2B3A", color: "#fff", padding: "10px 22px", borderRadius: "10px", fontSize: "14px", fontWeight: 500 }}>View Profile</a>
         </div>
         <div style={{ position: "absolute", right: "0px", top: "50%", transform: "translateY(-50%)", width: "280px", height: "280px", mixBlendMode: "multiply", zIndex: 1 }}>
@@ -339,7 +339,7 @@ function EducatorDashboard({ profile }) {
           gap: "20px",
         }}
       >
-        {/* Needs Grading */}
+        {/* Research Digest & NCBI Feed */}
         <div style={C.card}>
           <div
             style={{
@@ -350,28 +350,28 @@ function EducatorDashboard({ profile }) {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <span style={{ fontSize: "18px" }}>📋</span>
+              <span style={{ fontSize: "18px" }}>🔬</span>
               <h3
                 style={{ fontSize: "16px", fontWeight: 600, color: "#1B2B3A" }}
               >
-                Needs Grading
+                Latest Life Sciences Research
               </h3>
             </div>
             <span
               style={{
                 fontSize: "12px",
-                background: "#FFF3E8",
-                color: "#F97316",
+                background: "#E0F2FE",
+                color: "#0284C7",
                 padding: "4px 12px",
                 borderRadius: "100px",
                 fontWeight: 600,
               }}
             >
-              24 Pending
+              NCBI & PubMed Feed
             </span>
           </div>
-          <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
-            {["All (24)", "Bio 101 (14)", "Genetics 202 (10)"].map((t, i) => (
+          <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexWrap: "wrap" }}>
+            {["All Fields", "Gene Editing", "Genomics", "Bioprocess"].map((t, i) => (
               <button
                 key={t}
                 style={{
@@ -390,61 +390,51 @@ function EducatorDashboard({ profile }) {
               </button>
             ))}
           </div>
-          {submissions.map((s, i) => (
+          {researchPapers.map((p, i) => (
             <div
-              key={i}
+              key={p.id}
               style={{
                 display: "flex",
                 alignItems: "center",
+                justifyContent: "space-between",
                 gap: "12px",
                 padding: "12px 0",
                 borderBottom:
-                  i < submissions.length - 1 ? "1px solid #F0F7F8" : "none",
+                  i < researchPapers.length - 1 ? "1px solid #F0F7F8" : "none",
               }}
             >
-              <div
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  background: "#E2EEF0",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "12px",
-                  fontWeight: 600,
-                  color: "#1B2B3A",
-                  flexShrink: 0,
-                }}
-              >
-                {s.initials}
-              </div>
               <div style={{ flex: 1 }}>
                 <p
                   style={{
-                    fontSize: "13px",
-                    fontWeight: 500,
+                    fontSize: "14px",
+                    fontWeight: 600,
                     color: "#1B2B3A",
+                    marginBottom: "4px"
                   }}
                 >
-                  {s.name}
+                  {p.title}
                 </p>
-                <p style={{ fontSize: "12px", color: "#9CA3AF" }}>{s.task}</p>
+                <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+                  <span style={{ fontSize: "12px", color: "#6B8A9A" }}>{p.journal}</span>
+                  {p.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      style={{
+                        fontSize: "11px",
+                        background: "rgba(20, 184, 166, 0.1)",
+                        color: "#0D9488",
+                        padding: "2px 8px",
+                        borderRadius: "6px",
+                        fontWeight: 600
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <span
-                style={{
-                  fontSize: "11px",
-                  color: s.statusColor,
-                  background: s.statusColor + "15",
-                  padding: "3px 10px",
-                  borderRadius: "100px",
-                  fontWeight: 500,
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {s.status}
-              </span>
-              <button
+              <a
+                href={p.link}
                 style={{
                   padding: "7px 14px",
                   background: "#fff",
@@ -455,23 +445,27 @@ function EducatorDashboard({ profile }) {
                   color: "#14B8A6",
                   cursor: "pointer",
                   fontFamily: "inherit",
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                  flexShrink: 0
                 }}
               >
-                Grade Now
-              </button>
+                Summarize →
+              </a>
             </div>
           ))}
           <a
-            href="/learning"
+            href="/research"
             style={{
-              display: "block",
+              display: "inline-block",
               fontSize: "13px",
               color: "#14B8A6",
-              fontWeight: 500,
+              fontWeight: 600,
               marginTop: "16px",
+              textDecoration: "none"
             }}
           >
-            View All Submissions →
+            Explore NCBI Literature Viewer & AI Summaries →
           </a>
         </div>
 
