@@ -11,6 +11,32 @@ export async function middleware(request) {
       return supabaseResponse;
     }
 
+    const pathname = request.nextUrl.pathname;
+
+    // Check if request has any Supabase auth cookies
+    const allCookies = request.cookies.getAll();
+    const hasAuthCookie = allCookies.some(
+      (c) => c.name.startsWith("sb-") || c.name.includes("auth-token")
+    );
+
+    const isProtectedRoute =
+      pathname.startsWith("/dashboard") ||
+      pathname.startsWith("/profile") ||
+      pathname.startsWith("/learning");
+
+    const isAuthRoute = pathname === "/login" || pathname === "/signup";
+
+    // Fast-path: if no auth cookies present
+    if (!hasAuthCookie) {
+      if (isProtectedRoute) {
+        const redirectUrl = request.nextUrl.clone();
+        redirectUrl.pathname = "/login";
+        return NextResponse.redirect(redirectUrl);
+      }
+      return supabaseResponse;
+    }
+
+    // Initialize Supabase SSR client
     const supabase = createServerClient(url, key, {
       cookies: {
         getAll() {
@@ -28,26 +54,33 @@ export async function middleware(request) {
       },
     });
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    // Timeout wrapper for getUser to prevent Vercel 504 Edge timeouts
+    const getUserWithTimeout = async () => {
+      const timeoutPromise = new Promise((resolve) =>
+        setTimeout(() => resolve({ data: { user: null }, error: "timeout" }), 1500)
+      );
+      try {
+        return await Promise.race([
+          supabase.auth.getUser(),
+          timeoutPromise,
+        ]);
+      } catch (e) {
+        return { data: { user: null }, error: e };
+      }
+    };
 
-    // If user is NOT logged in and tries to access /dashboard, redirect to /login
-    if (
-      !user &&
-      request.nextUrl.pathname.startsWith("/dashboard")
-    ) {
+    const res = await getUserWithTimeout();
+    const user = res?.data?.user;
+
+    // If user is NOT logged in and tries to access protected route, redirect to /login
+    if (!user && isProtectedRoute) {
       const redirectUrl = request.nextUrl.clone();
       redirectUrl.pathname = "/login";
       return NextResponse.redirect(redirectUrl);
     }
 
     // If user IS logged in and tries to access /login or /signup, redirect to /dashboard
-    if (
-      user &&
-      (request.nextUrl.pathname === "/login" ||
-        request.nextUrl.pathname === "/signup")
-    ) {
+    if (user && isAuthRoute) {
       const redirectUrl = request.nextUrl.clone();
       redirectUrl.pathname = "/dashboard";
       return NextResponse.redirect(redirectUrl);
@@ -62,7 +95,7 @@ export async function middleware(request) {
 // Tell Next.js which routes this middleware should run on
 export const config = {
   matcher: [
-    // Run on all routes except static files and images
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    // Exclude static files, images, API routes, and favicons
+    "/((?!_next/static|_next/image|favicon.ico|api/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|css|js|ico)$).*)",
   ],
 };
