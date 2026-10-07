@@ -156,14 +156,14 @@ function StudentDashboard({ profile }) {
       `}</style>
 
       {/* Hero banner */}
-      <div style={{ background: "#FDF6E3", borderRadius: "24px", padding: "32px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px", position: "relative", overflow: "hidden" }}>
+      <div style={{ background: "#FDF6E3", borderRadius: "24px", padding: "32px", display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "20px", marginBottom: "36px", position: "relative", overflow: "visible" }}>
         <div style={{ position: "relative", zIndex: 2 }}>
           <h1 style={{ fontSize: "28px", fontWeight: 800, color: "#132D35", marginBottom: "8px" }}>Welcome Back, {profile?.full_name?.split(" ")[0] || "Name"}!</h1>
           <p style={{ fontSize: "15px", color: "#6B8A9A", marginBottom: "20px" }}>Your academic journey continues here</p>
-          <a href="/profile" style={{ display: "inline-block", background: "#132D35", color: "#fff", padding: "10px 24px", borderRadius: "100px", fontSize: "14px", fontWeight: 500 }}>View Profile</a>
+          <a href="/profile" style={{ display: "inline-block", background: "#132D35", color: "#fff", padding: "10px 24px", borderRadius: "100px", fontSize: "14px", fontWeight: 500, textDecoration: "none" }}>View Profile</a>
         </div>
-        <div className="dashboard-hero-illustration" style={{ position: "absolute", right: "-10px", top: "50%", transform: "translateY(-50%)", width: "350px", height: "350px", display: "flex", alignItems: "center", justifyContent: "flex-end", mixBlendMode: "multiply", pointerEvents: "none", zIndex: 1 }}>
-           <img src="/banner-illustration.jpg" alt="Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+        <div className="dashboard-hero-illustration" style={{ position: "absolute", right: "-10px", top: "50%", transform: "translateY(-50%)", width: "350px", height: "350px", display: "flex", alignItems: "center", justifyContent: "flex-end", pointerEvents: "none", zIndex: 5 }}>
+           <img src="/banner-illustration.png" alt="Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
         </div>
       </div>
 
