@@ -327,7 +327,7 @@ function EducatorDashboard({ profile }) {
           <p style={{ fontSize: "14px", color: "#6B8A9A", marginBottom: "20px", maxWidth: "420px", lineHeight: "1.5" }}>You have 24 new submissions to grade across 3 active courses.</p>
           <a href="/profile" style={{ display: "inline-block", background: "#1B2B3A", color: "#fff", padding: "10px 24px", borderRadius: "100px", fontSize: "14px", fontWeight: 500, textDecoration: "none" }}>View Profile</a>
         </div>
-        <div style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", width: "280px", height: "280px", mixBlendMode: "multiply", zIndex: 5, pointerEvents: "none" }}>
+        <div style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", width: "280px", height: "280px", zIndex: 5, pointerEvents: "none" }}>
           <img src="/educator-illustration.png" alt="Educator Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
         </div>
       </div>
