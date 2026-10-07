@@ -25,16 +25,31 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    const { error: err } = await supabase.auth.signInWithPassword({
-      email: form.email,
-      password: form.password,
-    });
-    if (err) {
-      setError(err.message);
+    try {
+      const { error: err } = await supabase.auth.signInWithPassword({
+        email: form.email,
+        password: form.password,
+      });
+      if (err) {
+        if (err.message === "Failed to fetch" || err.message?.toLowerCase().includes("failed to fetch")) {
+          setError(
+            "Unable to connect to the authentication server. Your Supabase project appears to be paused due to inactivity. Please log into your Supabase Dashboard (supabase.com) and click 'Restore project'."
+          );
+        } else {
+          setError(err.message);
+        }
+        setLoading(false);
+        return;
+      }
+      router.push("/dashboard");
+    } catch (e) {
+      setError(
+        e.message?.toLowerCase().includes("failed to fetch")
+          ? "Unable to connect to the authentication server. Your Supabase project appears to be paused due to inactivity. Please log into your Supabase Dashboard (supabase.com) and click 'Restore project'."
+          : (e.message || "An unexpected error occurred.")
+      );
       setLoading(false);
-      return;
     }
-    router.push("/dashboard");
   }
 
   async function handleGoogleLogin() {

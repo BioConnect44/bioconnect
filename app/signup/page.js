@@ -25,9 +25,27 @@ function SignupForm() {
     e.preventDefault();
     if (!form.role) { setError("Please select your role"); return; }
     setLoading(true); setError("");
-    const { error: err } = await supabase.auth.signUp({ email: form.email, password: form.password, options: { data: { full_name: form.fullName, role: form.role } } });
-    if (err) { setError(err.message); setLoading(false); return; }
-    setSuccess(true); setLoading(false);
+    try {
+      const { error: err } = await supabase.auth.signUp({ email: form.email, password: form.password, options: { data: { full_name: form.fullName, role: form.role } } });
+      if (err) {
+        if (err.message === "Failed to fetch" || err.message?.toLowerCase().includes("failed to fetch")) {
+          setError("Unable to connect to the authentication server. Your Supabase project appears to be paused due to inactivity. Please log into your Supabase Dashboard (supabase.com) and click 'Restore project'.");
+        } else {
+          setError(err.message);
+        }
+        setLoading(false);
+        return;
+      }
+      setSuccess(true);
+      setLoading(false);
+    } catch (e) {
+      setError(
+        e.message?.toLowerCase().includes("failed to fetch")
+          ? "Unable to connect to the authentication server. Your Supabase project appears to be paused due to inactivity. Please log into your Supabase Dashboard (supabase.com) and click 'Restore project'."
+          : (e.message || "An unexpected error occurred.")
+      );
+      setLoading(false);
+    }
   }
 
   async function handleGoogleSignup() {
