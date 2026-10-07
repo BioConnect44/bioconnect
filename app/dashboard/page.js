@@ -652,7 +652,7 @@ function ResearcherDashboard({ profile }) {
           <p style={{ fontSize: "14px", color: "#6B8A9A", marginBottom: "20px" }}>Continue your Research Journey here</p>
           <a href="/profile" style={{ display: "inline-block", background: "#1B2B3A", color: "#fff", padding: "10px 24px", borderRadius: "100px", fontSize: "14px", fontWeight: 500, textDecoration: "none" }}>View Profile</a>
         </div>
-        <div style={{ position: "absolute", right: "-10px", top: "50%", transform: "translateY(-50%)", width: "320px", height: "320px", zIndex: 5, pointerEvents: "none" }}>
+        <div style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", width: "420px", height: "280px", zIndex: 5, pointerEvents: "none", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <img src="/researcher-illustration.png" alt="Researcher Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
         </div>
       </div>
