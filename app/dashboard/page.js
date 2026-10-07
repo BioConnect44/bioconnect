@@ -646,13 +646,13 @@ function ResearcherDashboard({ profile }) {
 
   return (
     <div>
-      <div style={{ background: "linear-gradient(135deg, #F0FDF9 0%, #EBF9F6 100%)", borderRadius: "20px", padding: "32px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px", border: "1px solid #B2EDE1", position: "relative", overflow: "hidden" }}>
+      <div style={{ background: "linear-gradient(135deg, #F0FDF9 0%, #EBF9F6 100%)", borderRadius: "20px", padding: "32px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "20px", marginBottom: "36px", border: "1px solid #B2EDE1", position: "relative", overflow: "visible" }}>
         <div style={{ position: "relative", zIndex: 2 }}>
           <h1 style={{ fontSize: "28px", fontWeight: 700, color: "#1B2B3A", marginBottom: "6px" }}>Welcome Back, Dr. {profile?.full_name?.split(" ")[0]}!</h1>
           <p style={{ fontSize: "14px", color: "#6B8A9A", marginBottom: "20px" }}>Continue your Research Journey here</p>
-          <a href="/profile" style={{ display: "inline-block", background: "#1B2B3A", color: "#fff", padding: "10px 22px", borderRadius: "10px", fontSize: "14px", fontWeight: 500 }}>View Profile</a>
+          <a href="/profile" style={{ display: "inline-block", background: "#1B2B3A", color: "#fff", padding: "10px 24px", borderRadius: "100px", fontSize: "14px", fontWeight: 500, textDecoration: "none" }}>View Profile</a>
         </div>
-        <div style={{ position: "absolute", right: "-10px", top: "50%", transform: "translateY(-50%)", width: "320px", height: "320px", mixBlendMode: "multiply", zIndex: 1 }}>
+        <div style={{ position: "absolute", right: "-10px", top: "50%", transform: "translateY(-50%)", width: "320px", height: "320px", zIndex: 5, pointerEvents: "none" }}>
           <img src="/researcher-illustration.png" alt="Researcher Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
         </div>
       </div>
