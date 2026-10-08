@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import AppShell from "@/components/AppShell";
 import DailyBioChallenge from "@/components/DailyBioChallenge";
+import { getAllCourseProgress } from "@/lib/courseProgress";
 
 const C = {
   card: {
@@ -19,6 +20,43 @@ function StudentDashboard({ profile }) {
   const [selectedOpt, setSelectedOpt] = useState(null);
   const [liveEvents, setLiveEvents] = useState([]);
   const [liveUpdates, setLiveUpdates] = useState([]);
+  const [courseProgressMap, setCourseProgressMap] = useState({});
+
+  useEffect(() => {
+    function loadProgress() {
+      setCourseProgressMap(getAllCourseProgress());
+    }
+    loadProgress();
+
+    function handleProgressUpdate(e) {
+      if (e?.detail?.progressMap) {
+        setCourseProgressMap({ ...e.detail.progressMap });
+      } else {
+        loadProgress();
+      }
+    }
+
+    window.addEventListener("bioconnect_course_progress_updated", handleProgressUpdate);
+    window.addEventListener("storage", handleProgressUpdate);
+    return () => {
+      window.removeEventListener("bioconnect_course_progress_updated", handleProgressUpdate);
+      window.removeEventListener("storage", handleProgressUpdate);
+    };
+  }, []);
+
+  const activeDashboardCourses = [
+    { id: "topic-01", label: "Biomolecules & Bioenergetics" },
+    { id: "topic-02", label: "Genetics & Molecular Biology" },
+    { id: "topic-04", label: "Animal Cell Culture" },
+  ].map(item => {
+    const p = courseProgressMap[item.id] || {};
+    const pct = (p.read ? 35 : 0) + (p.downloaded ? 30 : 0) + (p.mcqsCompleted ? 35 : 0);
+    return { ...item, pct };
+  });
+
+  const overallLearningProgress = Math.round(
+    activeDashboardCourses.reduce((sum, c) => sum + c.pct, 0) / activeDashboardCourses.length
+  );
 
   useEffect(() => {
     let isMounted = true;
@@ -213,9 +251,10 @@ function StudentDashboard({ profile }) {
                   stroke="#14B8A6"
                   strokeWidth="12"
                   strokeLinecap="round"
-                  strokeDasharray={`${2 * Math.PI * 48 * 0.73} ${2 * Math.PI * 48 * 0.27}`}
+                  strokeDasharray={`${2 * Math.PI * 48 * (overallLearningProgress / 100)} ${2 * Math.PI * 48 * Math.max(0, 1 - overallLearningProgress / 100)}`}
                   strokeDashoffset={2 * Math.PI * 48 * 0.25}
                   transform="rotate(-90 60 60)"
+                  style={{ transition: "stroke-dasharray 0.5s ease" }}
                 />
               </svg>
               <div
@@ -230,21 +269,19 @@ function StudentDashboard({ profile }) {
                   color: "#132D35",
                 }}
               >
-                73%
+                {overallLearningProgress}%
               </div>
             </div>
           </div>
-          {[
-            { label: "Biomolecules & Bioenergetics", pct: 85 },
-            { label: "Genetics & Molecular Biology", pct: 75 },
-            { label: "Animal Cell Culture", pct: 60 },
-          ].map((s, i) => (
-            <div key={s.label} style={{ marginBottom: i < 2 ? "14px" : "0" }}>
+          {activeDashboardCourses.map((s, i) => (
+            <div key={s.id} style={{ marginBottom: i < activeDashboardCourses.length - 1 ? "14px" : "0" }}>
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12.5px", fontWeight: 700, color: "#132D35", marginBottom: "6px" }}>
                 <span>{s.label}</span>
-                <span style={{ color: "#14B8A6" }}>{s.pct}%</span>
+                <span style={{ color: s.pct === 100 ? "#10B981" : "#14B8A6" }}>{s.pct}%</span>
               </div>
-              <div style={{ height: 6, background: "#E2EEF0", borderRadius: "6px" }}><div style={{ height: 6, width: `${s.pct}%`, background: "#14B8A6", borderRadius: "6px" }}></div></div>
+              <div style={{ height: 6, background: "#E2EEF0", borderRadius: "6px", overflow: "hidden" }}>
+                <div style={{ height: 6, width: `${s.pct}%`, background: s.pct === 100 ? "#10B981" : "#14B8A6", borderRadius: "6px", transition: "width 0.4s ease" }}></div>
+              </div>
             </div>
           ))}
         </div>
