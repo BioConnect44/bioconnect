@@ -175,52 +175,45 @@ export default function ExtraBooksSection({ customBooks }) {
       {/* Top Section Header / Breadcrumb */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "14px", marginBottom: "20px" }}>
         <div>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3AA8C1" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-            </svg>
-            <span
-              onClick={handleResetAll}
-              style={{ fontSize: "14px", fontWeight: 600, color: selectedFolder ? "#3AA8C1" : "#102A30", cursor: selectedFolder ? "pointer" : "default" }}
-            >
-              Extra Books
-            </span>
-            {selectedFolder && (
-              <>
-                <span style={{ color: "#94A3B8", fontSize: "14px" }}>/</span>
-                <span
-                  onClick={() => { setSelectedSubfolder(null); setSearchQuery(""); }}
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: selectedSubfolder ? 600 : 800,
-                    color: selectedSubfolder ? "#3AA8C1" : "#102A30",
-                    cursor: selectedSubfolder ? "pointer" : "default",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "5px"
-                  }}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                  </svg>
-                  {selectedFolder}
-                </span>
-              </>
-            )}
-            {selectedSubfolder && (
-              <>
-                <span style={{ color: "#94A3B8", fontSize: "14px" }}>/</span>
-                <span style={{ fontSize: "14px", fontWeight: 800, color: "#102A30", display: "inline-flex", alignItems: "center", gap: "5px" }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#102A30" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                  </svg>
-                  {selectedSubfolder}
-                </span>
-              </>
-            )}
-          </div>
-          <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#102A30", margin: "4px 0 0", letterSpacing: "-0.01em" }}>
+          {selectedFolder && (
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", marginBottom: "6px" }}>
+              <button
+                onClick={handleResetAll}
+                style={{
+                  background: "none", border: "none", padding: 0,
+                  fontSize: "13px", fontWeight: 600, color: "#3AA8C1",
+                  cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "4px",
+                  fontFamily: "inherit"
+                }}
+              >
+                ← Back to All Folders
+              </button>
+              {selectedSubfolder && (
+                <>
+                  <span style={{ color: "#94A3B8", fontSize: "13px" }}>/</span>
+                  <span
+                    onClick={() => { setSelectedSubfolder(null); setSearchQuery(""); }}
+                    style={{
+                      fontSize: "13px",
+                      fontWeight: 600,
+                      color: "#3AA8C1",
+                      cursor: "pointer",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "4px"
+                    }}
+                  >
+                    {selectedFolder}
+                  </span>
+                  <span style={{ color: "#94A3B8", fontSize: "13px" }}>/</span>
+                  <span style={{ fontSize: "13px", fontWeight: 700, color: "#102A30" }}>
+                    {selectedSubfolder}
+                  </span>
+                </>
+              )}
+            </div>
+          )}
+          <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#102A30", margin: 0, letterSpacing: "-0.01em" }}>
             {selectedSubfolder
               ? `Subfolder: ${selectedSubfolder}`
               : selectedFolder
