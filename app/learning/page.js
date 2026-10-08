@@ -6,6 +6,7 @@ import LiveStudentWidgets, { markQuestCompleted } from "@/components/LiveStudent
 import { recordUserAction } from "@/lib/gamificationEngine";
 import ExtraBooksSection from "@/components/ExtraBooksSection";
 import LiveStatsBar from "@/components/LiveStatsBar";
+import { recordTopicProgress, getTopicProgress, getAllCourseProgress } from "@/lib/courseProgress";
 
 const COURSE_TOPICS = [
   {
@@ -5791,7 +5792,16 @@ const FULL_BIOPHYSICAL_28_PAGES = [
 
 /* ── Continuous Scroll PDF Document Viewer Component ── */
 function ContinuousPdfViewer({ topic }) {
+  useEffect(() => {
+    if (topic?.id) {
+      recordTopicProgress(topic.id, "read");
+    }
+  }, [topic?.id]);
+
   function handleOpenNewWindow() {
+    if (topic?.id) {
+      recordTopicProgress(topic.id, "download");
+    }
     const newWin = window.open("", "_blank");
     if (!newWin) return;
 
@@ -6063,7 +6073,7 @@ function ContinuousPdfViewer({ topic }) {
           </div>
         </div>
 
-        {/* Clickable Button to Open PDF in New Window */}
+        {/* Clickable Button to Open/Download PDF in New Window */}
         <button
           onClick={handleOpenNewWindow}
           style={{
@@ -6072,16 +6082,21 @@ function ContinuousPdfViewer({ topic }) {
             cursor: "pointer", display: "flex", alignItems: "center", gap: "6px",
             boxShadow: "0 3px 12px " + topic.color + "40", transition: "all 0.2s"
           }}
-          title={topic.id === "topic-01" ? "Click to open full 19-page PDF document in a new browser tab/window" : topic.id === "topic-02" ? "Click to open full 23-page PDF document in a new browser tab/window" : topic.id === "topic-04" ? "Click to open full 18-page PDF document in a new browser tab/window" : topic.id === "topic-05" ? "Click to open full 25-page PDF document in a new browser tab/window" : topic.id === "topic-06" ? "Click to open full 20-page PDF document in a new browser tab/window" : topic.id === "topic-07" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-08" ? "Click to open full 16-page PDF document in a new browser tab/window" : topic.id === "topic-09" ? "Click to open full 10-page PDF document in a new browser tab/window" : topic.id === "topic-10" ? "Click to open full 22-page PDF document in a new browser tab/window" : topic.id === "topic-11" ? "Click to open full 30-page PDF document in a new browser tab/window" : topic.id === "topic-12" ? "Click to open full 21-page PDF document in a new browser tab/window" : topic.id === "topic-13" ? "Click to open full 28-page PDF document in a new browser tab/window" : "Click to open full PDF in a new browser tab/window"}
+          title={topic.id === "topic-01" ? "Download or open full 19-page PDF document" : "Download or open full PDF document"}
         >
-          <span>↗️</span>
-          <span>{topic.id === "topic-01" ? "Open Full 19-Page PDF" : topic.id === "topic-02" ? "Open Full 23-Page PDF" : topic.id === "topic-04" ? "Open Full 18-Page PDF" : topic.id === "topic-05" ? "Open Full 25-Page PDF" : topic.id === "topic-06" ? "Open Full 20-Page PDF" : topic.id === "topic-07" ? "Open Full 21-Page PDF" : topic.id === "topic-08" ? "Open Full 16-Page PDF" : topic.id === "topic-09" ? "Open Full 10-Page PDF" : topic.id === "topic-10" ? "Open Full 22-Page PDF" : topic.id === "topic-11" ? "Open Full 30-Page PDF" : topic.id === "topic-12" ? "Open Full 21-Page PDF" : topic.id === "topic-13" ? "Open Full 28-Page PDF" : "Open PDF in New Window"}</span>
+          <span>📥</span>
+          <span>{topic.id === "topic-01" ? "Download / Open Full 19-Page PDF" : topic.id === "topic-02" ? "Download / Open Full 23-Page PDF" : topic.id === "topic-04" ? "Download / Open Full 18-Page PDF" : topic.id === "topic-05" ? "Download / Open Full 25-Page PDF" : topic.id === "topic-06" ? "Download / Open Full 20-Page PDF" : topic.id === "topic-07" ? "Download / Open Full 21-Page PDF" : topic.id === "topic-08" ? "Download / Open Full 16-Page PDF" : topic.id === "topic-09" ? "Download / Open Full 10-Page PDF" : topic.id === "topic-10" ? "Download / Open Full 22-Page PDF" : topic.id === "topic-11" ? "Download / Open Full 30-Page PDF" : topic.id === "topic-12" ? "Download / Open Full 21-Page PDF" : topic.id === "topic-13" ? "Download / Open Full 28-Page PDF" : "Download / Open Full PDF"}</span>
         </button>
       </div>
 
       {/* IN-APP STUDY NOTES SUMMARY VIEWER */}
       <div
         onClick={handleOpenNewWindow}
+        onScroll={(e) => {
+          if (e.currentTarget.scrollTop > 30) {
+            recordTopicProgress(topic.id, "read");
+          }
+        }}
         style={{
           maxHeight: "680px",
           overflowY: "auto",
@@ -6165,12 +6180,25 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
   const [submitted, setSubmitted] = useState({});
   const [isFinished, setIsFinished] = useState(false);
   const [xpEarned, setXpEarned] = useState(0);
+  const [topicProgressState, setTopicProgressState] = useState(() => getTopicProgress(topic.id));
 
   useEffect(() => {
     // Automatically complete "Read 4 pages" quest when opening topic course
     markQuestCompleted("read_pages");
     if (profile?.id) recordUserAction(profile.id, "ACCESS_NOTE", {}, supabase);
-  }, [profile?.id]);
+    const updated = recordTopicProgress(topic.id, "read");
+    if (updated) setTopicProgressState(updated);
+  }, [topic.id, profile?.id]);
+
+  useEffect(() => {
+    function onProgressUpdate(e) {
+      if (e?.detail?.topicId === topic.id && e?.detail?.data) {
+        setTopicProgressState(e.detail.data);
+      }
+    }
+    window.addEventListener("bioconnect_course_progress_updated", onProgressUpdate);
+    return () => window.removeEventListener("bioconnect_course_progress_updated", onProgressUpdate);
+  }, [topic.id]);
 
   function handleSelectOption(optIdx) {
     if (submitted[currentQ] || isFinished) return;
@@ -6192,6 +6220,9 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
 
     const earned = Math.round((correctCount / topic.pyqs.length) * 100);
     setXpEarned(earned);
+
+    const updated = recordTopicProgress(topic.id, "mcq", { score: correctCount, total: topic.pyqs.length });
+    if (updated) setTopicProgressState(updated);
 
     if (profile?.id && earned > 0) {
       try {
@@ -6236,7 +6267,8 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
           borderBottom: "1.5px solid #E2EEF0",
           display: "flex", justifyContent: "space-between", alignItems: "center",
           background: "#F8FCFC",
-          borderTopLeftRadius: "24px", borderTopRightRadius: "24px"
+          borderTopLeftRadius: "24px", borderTopRightRadius: "24px",
+          flexWrap: "wrap", gap: "16px"
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
             <div style={{ width: 48, height: 48, borderRadius: "14px", background: topic.color + "18", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "24px", flexShrink: 0 }}>
@@ -6248,18 +6280,75 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
             </div>
           </div>
 
-          <button
-            onClick={onClose}
-            style={{
-              background: "#E2EEF0", color: "#4A5568", border: "none",
-              width: "38px", height: "38px", borderRadius: "50%",
-              fontSize: "16px", fontWeight: 700, cursor: "pointer",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              flexShrink: 0
-            }}
-          >
-            ✕
-          </button>
+          <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+            {/* Live Topic Progress Indicator */}
+            <div style={{
+              background: "#ffffff",
+              border: "1px solid #E2EEF0",
+              borderRadius: "12px",
+              padding: "7px 14px",
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.03)"
+            }}>
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                  <span style={{ fontSize: "11px", fontWeight: 700, color: "#64748B", textTransform: "uppercase" }}>Progress</span>
+                  <span style={{ fontSize: "13px", fontWeight: 800, color: topicProgressState.percent === 100 ? "#10B981" : topic.color }}>
+                    {topicProgressState.percent}% {topicProgressState.percent === 100 ? "✓" : ""}
+                  </span>
+                </div>
+                <div style={{ width: "90px", height: "5px", background: "#E2EEF0", borderRadius: "3px", overflow: "hidden", marginTop: "4px" }}>
+                  <div style={{
+                    width: `${topicProgressState.percent}%`,
+                    height: "100%",
+                    background: topicProgressState.percent === 100 ? "#10B981" : topic.color,
+                    borderRadius: "3px",
+                    transition: "width 0.4s ease"
+                  }} />
+                </div>
+              </div>
+
+              {/* 3 mini checklist indicators */}
+              <div style={{ display: "flex", gap: "4px" }}>
+                <span title="Study Notes Read (35%)" style={{
+                  fontSize: "11px", fontWeight: 700, padding: "3px 7px", borderRadius: "6px",
+                  background: topicProgressState.read ? "#DCFCE7" : "#F1F5F9",
+                  color: topicProgressState.read ? "#15803D" : "#94A3B8"
+                }}>
+                  📖 {topicProgressState.read ? "✓" : "+35%"}
+                </span>
+                <span title="PDF Downloaded / Saved (30%)" style={{
+                  fontSize: "11px", fontWeight: 700, padding: "3px 7px", borderRadius: "6px",
+                  background: topicProgressState.downloaded ? "#DCFCE7" : "#F1F5F9",
+                  color: topicProgressState.downloaded ? "#15803D" : "#94A3B8"
+                }}>
+                  📥 {topicProgressState.downloaded ? "✓" : "+30%"}
+                </span>
+                <span title="Topic PYQ MCQs Completed (35%)" style={{
+                  fontSize: "11px", fontWeight: 700, padding: "3px 7px", borderRadius: "6px",
+                  background: topicProgressState.mcqsCompleted ? "#DCFCE7" : "#F1F5F9",
+                  color: topicProgressState.mcqsCompleted ? "#15803D" : "#94A3B8"
+                }}>
+                  📝 {topicProgressState.mcqsCompleted ? "✓" : "+35%"}
+                </span>
+              </div>
+            </div>
+
+            <button
+              onClick={onClose}
+              style={{
+                background: "#E2EEF0", color: "#4A5568", border: "none",
+                width: "38px", height: "38px", borderRadius: "50%",
+                fontSize: "16px", fontWeight: 700, cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                flexShrink: 0
+              }}
+            >
+              ✕
+            </button>
+          </div>
         </div>
 
         {/* Tab Switcher */}
@@ -6487,6 +6576,12 @@ function ChallengeModal({ challengeKey, onClose, supabase, profile, onXPUpdate }
 
     const earned = Math.round((correctCount / questions.length) * challenge.xp);
     setXpEarned(earned);
+
+    if (challengeKey === "genetics") {
+      recordTopicProgress("topic-01", "mcq", { score: correctCount, total: questions.length });
+    } else if (challengeKey === "mock") {
+      recordTopicProgress("topic-02", "mcq", { score: correctCount, total: questions.length });
+    }
 
     if (profile?.id && earned > 0) {
       setSavingXP(true);
@@ -6891,7 +6986,37 @@ function ChallengeModal({ challengeKey, onClose, supabase, profile, onXPUpdate }
 function StudentView({ supabase, profile, onXPUpdate }) {
   const [activeChallenge, setActiveChallenge] = useState(null);
   const [activeTopic, setActiveTopic] = useState(null);
+  const [courseProgressMap, setCourseProgressMap] = useState({});
   const isResearcher = profile?.role === "researcher";
+
+  useEffect(() => {
+    setCourseProgressMap(getAllCourseProgress());
+
+    function handleProgressUpdate(e) {
+      if (e?.detail?.progressMap) {
+        setCourseProgressMap({ ...e.detail.progressMap });
+      } else {
+        setCourseProgressMap(getAllCourseProgress());
+      }
+    }
+
+    window.addEventListener("bioconnect_course_progress_updated", handleProgressUpdate);
+    window.addEventListener("storage", handleProgressUpdate);
+    return () => {
+      window.removeEventListener("bioconnect_course_progress_updated", handleProgressUpdate);
+      window.removeEventListener("storage", handleProgressUpdate);
+    };
+  }, []);
+
+  // Compute up-next topic dynamically
+  const upNextTopic = COURSE_TOPICS.find(t => {
+    const p = courseProgressMap[t.id] || {};
+    const percent = (p.read ? 35 : 0) + (p.downloaded ? 30 : 0) + (p.mcqsCompleted ? 35 : 0);
+    return percent < 100;
+  }) || COURSE_TOPICS[1] || COURSE_TOPICS[0];
+
+  const upNextP = courseProgressMap[upNextTopic?.id] || {};
+  const upNextPercent = (upNextP.read ? 35 : 0) + (upNextP.downloaded ? 30 : 0) + (upNextP.mcqsCompleted ? 35 : 0);
 
   return (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "24px" }}>
@@ -6904,19 +7029,19 @@ function StudentView({ supabase, profile, onXPUpdate }) {
         <div style={{ background: "linear-gradient(135deg, #132D35 0%, #1B4A5A 100%)", borderRadius: "20px", padding: "28px 32px", marginBottom: "28px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ flex: 1 }}>
             <span style={{ fontSize: "11px", color: "#14B8A6", fontWeight: 600, textTransform: "uppercase", letterSpacing: "1px", background: "rgba(20,184,166,0.15)", padding: "4px 10px", borderRadius: "6px" }}>UP NEXT</span>
-            <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#fff", margin: "10px 0 6px" }}>Advanced Genetics & Molecular Biology</h2>
-            <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.55)", marginBottom: "20px" }}>Genetics • 4 pages remaining</p>
-            <button onClick={() => { setActiveTopic(COURSE_TOPICS[1]); markQuestCompleted("read_pages"); }} style={{ background: "#fff", color: "#132D35", border: "none", padding: "10px 22px", borderRadius: "10px", fontSize: "14px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Continue Learning →</button>
+            <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#fff", margin: "10px 0 6px" }}>{upNextTopic?.name}</h2>
+            <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.55)", marginBottom: "20px" }}>{upNextTopic?.shortName || upNextTopic?.name} • {upNextPercent}% completed</p>
+            <button onClick={() => { setActiveTopic(upNextTopic); markQuestCompleted("read_pages"); }} style={{ background: "#fff", color: "#132D35", border: "none", padding: "10px 22px", borderRadius: "10px", fontSize: "14px", fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Continue Learning →</button>
           </div>
           <div style={{ position: "relative", width: 100, height: 100, flexShrink: 0 }}>
             <svg width="100" height="100" viewBox="0 0 100 100">
               <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="8"/>
               <circle cx="50" cy="50" r="40" fill="none" stroke="#14B8A6" strokeWidth="8" strokeLinecap="round"
-                strokeDasharray={`${2*Math.PI*40*0.75} ${2*Math.PI*40*0.25}`}
+                strokeDasharray={`${2*Math.PI*40*(upNextPercent/100)} ${2*Math.PI*40*(Math.max(0, 1 - upNextPercent/100))}`}
                 strokeDashoffset={2*Math.PI*40*0.25}
                 transform="rotate(-90 50 50)"/>
             </svg>
-            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", fontWeight: 700, color: "#fff" }}>75%</div>
+            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", fontWeight: 700, color: "#fff" }}>{upNextPercent}%</div>
           </div>
         </div>
 
@@ -6939,7 +7064,7 @@ function StudentView({ supabase, profile, onXPUpdate }) {
           </div>
         </div>
 
-        {/* Active Courses — Updated with PDF topics */}
+        {/* Active Courses — Updated with dynamic real-time progress */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
           <h2 style={{ fontSize: "18px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>Active Courses & Topic Modules</h2>
           <span style={{ fontSize: "12px", fontWeight: 600, color: "#14B8A6", background: "#E6F4F1", padding: "4px 10px", borderRadius: "6px" }}>
@@ -6948,37 +7073,75 @@ function StudentView({ supabase, profile, onXPUpdate }) {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-          {COURSE_TOPICS.map(topic => (
-            <div key={topic.id} style={{ background: "#fff", borderRadius: "16px", border: "1px solid #E2EEF0", padding: "18px 22px", display: "flex", alignItems: "center", gap: "16px", transition: "all 0.2s" }}>
-              <div style={{ width: 44, height: 44, borderRadius: "12px", background: topic.color + "15", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "22px", flexShrink: 0 }}>
-                {topic.icon}
-              </div>
+          {COURSE_TOPICS.map(topic => {
+            const p = courseProgressMap[topic.id] || {};
+            const percent = (p.read ? 35 : 0) + (p.downloaded ? 30 : 0) + (p.mcqsCompleted ? 35 : 0);
 
-              <div style={{ flex: 1 }}>
-                <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>{topic.name}</h3>
-              </div>
-
-              <div style={{ width: "120px", flexShrink: 0 }}>
-                <div style={{ height: 5, background: "#E2EEF0", borderRadius: "4px" }}>
-                  <div style={{ height: 5, width: `${topic.progress}%`, background: topic.color, borderRadius: "4px" }}></div>
+            return (
+              <div key={topic.id} style={{ background: "#fff", borderRadius: "16px", border: "1px solid #E2EEF0", padding: "18px 22px", display: "flex", alignItems: "center", gap: "16px", transition: "all 0.2s" }}>
+                <div style={{ width: 44, height: 44, borderRadius: "12px", background: topic.color + "15", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "22px", flexShrink: 0 }}>
+                  {topic.icon}
                 </div>
-              </div>
 
-              <button
-                onClick={() => { setActiveTopic(topic); markQuestCompleted("read_pages"); }}
-                style={{
-                  background: topic.color + "12", color: topic.color,
-                  border: `1.5px solid ${topic.color}30`,
-                  padding: "8px 16px", borderRadius: "10px",
-                  fontSize: "13px", fontWeight: 700, cursor: "pointer",
-                  fontFamily: "inherit", transition: "all 0.2s",
-                  flexShrink: 0
-                }}
-              >
-                View Course →
-              </button>
-            </div>
-          ))}
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>{topic.name}</h3>
+                  <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "4px", flexWrap: "wrap" }}>
+                    <span style={{ fontSize: "12px", color: "#6B8A9A" }}>{topic.notesCount} • {topic.module}</span>
+                    {p.read && (
+                      <span style={{ fontSize: "11px", color: "#0D9488", background: "#CCFBF1", padding: "1px 6px", borderRadius: "4px", fontWeight: 600 }}>
+                        📖 Notes Read
+                      </span>
+                    )}
+                    {p.downloaded && (
+                      <span style={{ fontSize: "11px", color: "#0284C7", background: "#E0F2FE", padding: "1px 6px", borderRadius: "4px", fontWeight: 600 }}>
+                        📥 PDF Saved
+                      </span>
+                    )}
+                    {p.mcqsCompleted && (
+                      <span style={{ fontSize: "11px", color: "#16A34A", background: "#DCFCE7", padding: "1px 6px", borderRadius: "4px", fontWeight: 600 }}>
+                        📝 MCQs Done
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div style={{ width: "135px", flexShrink: 0 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "5px" }}>
+                    <span style={{ fontSize: "11px", fontWeight: 700, color: percent === 100 ? "#10B981" : "#64748B" }}>
+                      {percent === 100 ? "Completed ✓" : "Progress"}
+                    </span>
+                    <span style={{ fontSize: "12px", fontWeight: 800, color: percent === 100 ? "#10B981" : topic.color }}>
+                      {percent}%
+                    </span>
+                  </div>
+                  <div style={{ height: 6, background: "#E2EEF0", borderRadius: "4px", overflow: "hidden" }}>
+                    <div style={{
+                      height: 6,
+                      width: `${percent}%`,
+                      background: percent === 100 ? "#10B981" : topic.color,
+                      borderRadius: "4px",
+                      transition: "width 0.4s ease"
+                    }}></div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => { setActiveTopic(topic); markQuestCompleted("read_pages"); }}
+                  style={{
+                    background: percent === 100 ? "#F0FDF4" : topic.color + "12",
+                    color: percent === 100 ? "#16A34A" : topic.color,
+                    border: `1.5px solid ${percent === 100 ? "#86EFAC" : topic.color + "30"}`,
+                    padding: "8px 16px", borderRadius: "10px",
+                    fontSize: "13px", fontWeight: 700, cursor: "pointer",
+                    fontFamily: "inherit", transition: "all 0.2s",
+                    flexShrink: 0
+                  }}
+                >
+                  {percent === 100 ? "Review Course" : "View Course →"}
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
 
