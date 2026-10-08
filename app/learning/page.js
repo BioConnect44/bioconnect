@@ -7016,7 +7016,7 @@ function StudentView({ supabase, profile, onXPUpdate }) {
                   <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>{topic.name}</h3>
                   <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "4px", flexWrap: "wrap" }}>
                     <span style={{ fontSize: "12.5px", color: "#6B8A9A", fontWeight: 500 }}>
-                      📄 {TOPIC_PAGES_MAP[topic.id] || topic.pageCount || 20} Pages of Notes
+                      {TOPIC_PAGES_MAP[topic.id] || topic.pageCount || 20} Pages of Notes
                     </span>
                     {p.read && (
                       <span style={{ fontSize: "11px", color: "#0D9488", background: "#CCFBF1", padding: "1px 6px", borderRadius: "4px", fontWeight: 600 }}>
