@@ -307,7 +307,6 @@ export default function ExtraBooksSection({ customBooks }) {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: "20px", width: "100%" }}>
           {folderNames.map((folderName) => {
             const folderBooks = folderMap[folderName];
-            const formats = Array.from(new Set(folderBooks.map((b) => b.format))).join(", ");
 
             return (
               <div
@@ -332,12 +331,7 @@ export default function ExtraBooksSection({ customBooks }) {
                 <div style={{ position: "absolute", top: "-15px", right: "-15px", width: "90px", height: "90px", background: "rgba(58, 168, 193, 0.08)", borderRadius: "50%", pointerEvents: "none" }} />
 
                 <div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px" }}>
-                    <div style={{ background: "#E0F2FE", color: "#0369A1", width: "54px", height: "54px", borderRadius: "14px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0369A1" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                      </svg>
-                    </div>
+                  <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "flex-start", marginBottom: "16px" }}>
                     <span style={{ fontSize: "12px", fontWeight: 800, background: "#102A30", color: "#ffffff", padding: "5px 12px", borderRadius: "100px" }}>
                       {folderBooks.length} Books
                     </span>
@@ -352,11 +346,7 @@ export default function ExtraBooksSection({ customBooks }) {
                   </p>
                 </div>
 
-                <div style={{ paddingTop: "14px", borderTop: "1px solid #E2EEF0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontSize: "11px", fontWeight: 700, color: "#3AA8C1", background: "#F0F9FF", padding: "4px 10px", borderRadius: "6px" }}>
-                    Formats: {formats}
-                  </span>
-
+                <div style={{ paddingTop: "14px", borderTop: "1px solid #E2EEF0", display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
                   <span style={{ fontSize: "13px", fontWeight: 700, color: "#102A30", display: "inline-flex", alignItems: "center", gap: "6px" }}>
                     Open Folder →
                   </span>
@@ -395,12 +385,7 @@ export default function ExtraBooksSection({ customBooks }) {
                 <div style={{ position: "absolute", top: "-15px", right: "-15px", width: "90px", height: "90px", background: "rgba(58, 168, 193, 0.08)", borderRadius: "50%", pointerEvents: "none" }} />
 
                 <div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px" }}>
-                    <div style={{ background: "#E0F2FE", color: "#0369A1", width: "54px", height: "54px", borderRadius: "14px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0369A1" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                      </svg>
-                    </div>
+                  <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "flex-start", marginBottom: "16px" }}>
                     <span style={{ fontSize: "12px", fontWeight: 800, background: "#102A30", color: "#ffffff", padding: "5px 12px", borderRadius: "100px" }}>
                       {count} Books
                     </span>
@@ -415,11 +400,7 @@ export default function ExtraBooksSection({ customBooks }) {
                   </p>
                 </div>
 
-                <div style={{ paddingTop: "14px", borderTop: "1px solid #E2EEF0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontSize: "11px", fontWeight: 700, color: "#3AA8C1", background: "#F0F9FF", padding: "4px 10px", borderRadius: "6px" }}>
-                    Format: PDF
-                  </span>
-
+                <div style={{ paddingTop: "14px", borderTop: "1px solid #E2EEF0", display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
                   <span style={{ fontSize: "13px", fontWeight: 700, color: "#102A30", display: "inline-flex", alignItems: "center", gap: "6px" }}>
                     Open Subfolder →
                   </span>
