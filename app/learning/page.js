@@ -6,7 +6,7 @@ import LiveStudentWidgets, { markQuestCompleted } from "@/components/LiveStudent
 import { recordUserAction } from "@/lib/gamificationEngine";
 import ExtraBooksSection from "@/components/ExtraBooksSection";
 import LiveStatsBar from "@/components/LiveStatsBar";
-import { recordTopicProgress, getTopicProgress, getAllCourseProgress } from "@/lib/courseProgress";
+import { recordTopicProgress, getTopicProgress, getAllCourseProgress, TOPIC_PAGES_MAP } from "@/lib/courseProgress";
 
 const COURSE_TOPICS = [
   {
@@ -16,8 +16,8 @@ const COURSE_TOPICS = [
     shortName: "Biomolecules & Bioenergetics",
     icon: "🧪",
     color: "#14B8A6",
-    notesCount: "5 notes",
-    module: "Module 1 of 4",
+    pageCount: 19,
+    notesCount: "19 pages",
     progress: 85,
     tagline: "Molecular structure determines function: carbohydrates, lipids, proteins, enzymes & metabolic pathways.",
     pdfTitle: "Topic 01 - Biomolecules, Membranes, Enzymes & Bioenergetics.pdf",
@@ -207,8 +207,8 @@ const COURSE_TOPICS = [
     shortName: "Genetics & Molecular Biology",
     icon: "🧬",
     color: "#8B5CF6",
-    notesCount: "4 notes",
-    module: "Module 2 of 4",
+    pageCount: 23,
+    notesCount: "23 pages",
     progress: 75,
     tagline: "DNA compaction, replication machinery, repair pathways & lac operon regulation.",
     pdfTitle: "Master Engineering Course Guide - Advanced Genetics & Molecular Biology.pdf",
@@ -7015,7 +7015,9 @@ function StudentView({ supabase, profile, onXPUpdate }) {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1B2B3A", margin: 0 }}>{topic.name}</h3>
                   <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "4px", flexWrap: "wrap" }}>
-                    <span style={{ fontSize: "12px", color: "#6B8A9A" }}>{topic.notesCount} • {topic.module}</span>
+                    <span style={{ fontSize: "12.5px", color: "#6B8A9A", fontWeight: 500 }}>
+                      📄 {TOPIC_PAGES_MAP[topic.id] || topic.pageCount || 20} Pages of Notes
+                    </span>
                     {p.read && (
                       <span style={{ fontSize: "11px", color: "#0D9488", background: "#CCFBF1", padding: "1px 6px", borderRadius: "4px", fontWeight: 600 }}>
                         📖 Notes Read
