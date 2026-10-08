@@ -6180,25 +6180,13 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
   const [submitted, setSubmitted] = useState({});
   const [isFinished, setIsFinished] = useState(false);
   const [xpEarned, setXpEarned] = useState(0);
-  const [topicProgressState, setTopicProgressState] = useState(() => getTopicProgress(topic.id));
 
   useEffect(() => {
     // Automatically complete "Read 4 pages" quest when opening topic course
     markQuestCompleted("read_pages");
     if (profile?.id) recordUserAction(profile.id, "ACCESS_NOTE", {}, supabase);
-    const updated = recordTopicProgress(topic.id, "read");
-    if (updated) setTopicProgressState(updated);
+    recordTopicProgress(topic.id, "read");
   }, [topic.id, profile?.id]);
-
-  useEffect(() => {
-    function onProgressUpdate(e) {
-      if (e?.detail?.topicId === topic.id && e?.detail?.data) {
-        setTopicProgressState(e.detail.data);
-      }
-    }
-    window.addEventListener("bioconnect_course_progress_updated", onProgressUpdate);
-    return () => window.removeEventListener("bioconnect_course_progress_updated", onProgressUpdate);
-  }, [topic.id]);
 
   function handleSelectOption(optIdx) {
     if (submitted[currentQ] || isFinished) return;
@@ -6221,8 +6209,7 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
     const earned = Math.round((correctCount / topic.pyqs.length) * 100);
     setXpEarned(earned);
 
-    const updated = recordTopicProgress(topic.id, "mcq", { score: correctCount, total: topic.pyqs.length });
-    if (updated) setTopicProgressState(updated);
+    recordTopicProgress(topic.id, "mcq", { score: correctCount, total: topic.pyqs.length });
 
     if (profile?.id && earned > 0) {
       try {
@@ -6267,8 +6254,7 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
           borderBottom: "1.5px solid #E2EEF0",
           display: "flex", justifyContent: "space-between", alignItems: "center",
           background: "#F8FCFC",
-          borderTopLeftRadius: "24px", borderTopRightRadius: "24px",
-          flexWrap: "wrap", gap: "16px"
+          borderTopLeftRadius: "24px", borderTopRightRadius: "24px"
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
             <div style={{ width: 48, height: 48, borderRadius: "14px", background: topic.color + "18", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "24px", flexShrink: 0 }}>
@@ -6280,75 +6266,18 @@ function CourseTopicModal({ topic, onClose, supabase, profile, onXPUpdate }) {
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-            {/* Live Topic Progress Indicator */}
-            <div style={{
-              background: "#ffffff",
-              border: "1px solid #E2EEF0",
-              borderRadius: "12px",
-              padding: "7px 14px",
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.03)"
-            }}>
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                  <span style={{ fontSize: "11px", fontWeight: 700, color: "#64748B", textTransform: "uppercase" }}>Progress</span>
-                  <span style={{ fontSize: "13px", fontWeight: 800, color: topicProgressState.percent === 100 ? "#10B981" : topic.color }}>
-                    {topicProgressState.percent}% {topicProgressState.percent === 100 ? "✓" : ""}
-                  </span>
-                </div>
-                <div style={{ width: "90px", height: "5px", background: "#E2EEF0", borderRadius: "3px", overflow: "hidden", marginTop: "4px" }}>
-                  <div style={{
-                    width: `${topicProgressState.percent}%`,
-                    height: "100%",
-                    background: topicProgressState.percent === 100 ? "#10B981" : topic.color,
-                    borderRadius: "3px",
-                    transition: "width 0.4s ease"
-                  }} />
-                </div>
-              </div>
-
-              {/* 3 mini checklist indicators */}
-              <div style={{ display: "flex", gap: "4px" }}>
-                <span title="Study Notes Read (35%)" style={{
-                  fontSize: "11px", fontWeight: 700, padding: "3px 7px", borderRadius: "6px",
-                  background: topicProgressState.read ? "#DCFCE7" : "#F1F5F9",
-                  color: topicProgressState.read ? "#15803D" : "#94A3B8"
-                }}>
-                  📖 {topicProgressState.read ? "✓" : "+35%"}
-                </span>
-                <span title="PDF Downloaded / Saved (30%)" style={{
-                  fontSize: "11px", fontWeight: 700, padding: "3px 7px", borderRadius: "6px",
-                  background: topicProgressState.downloaded ? "#DCFCE7" : "#F1F5F9",
-                  color: topicProgressState.downloaded ? "#15803D" : "#94A3B8"
-                }}>
-                  📥 {topicProgressState.downloaded ? "✓" : "+30%"}
-                </span>
-                <span title="Topic PYQ MCQs Completed (35%)" style={{
-                  fontSize: "11px", fontWeight: 700, padding: "3px 7px", borderRadius: "6px",
-                  background: topicProgressState.mcqsCompleted ? "#DCFCE7" : "#F1F5F9",
-                  color: topicProgressState.mcqsCompleted ? "#15803D" : "#94A3B8"
-                }}>
-                  📝 {topicProgressState.mcqsCompleted ? "✓" : "+35%"}
-                </span>
-              </div>
-            </div>
-
-            <button
-              onClick={onClose}
-              style={{
-                background: "#E2EEF0", color: "#4A5568", border: "none",
-                width: "38px", height: "38px", borderRadius: "50%",
-                fontSize: "16px", fontWeight: 700, cursor: "pointer",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                flexShrink: 0
-              }}
-            >
-              ✕
-            </button>
-          </div>
+          <button
+            onClick={onClose}
+            style={{
+              background: "#E2EEF0", color: "#4A5568", border: "none",
+              width: "38px", height: "38px", borderRadius: "50%",
+              fontSize: "16px", fontWeight: 700, cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              flexShrink: 0
+            }}
+          >
+            ✕
+          </button>
         </div>
 
         {/* Tab Switcher */}
