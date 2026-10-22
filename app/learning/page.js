@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { createClient } from "@/utils/supabase/client";
 import AppShell from "@/components/AppShell";
 import LiveStudentWidgets, { markQuestCompleted } from "@/components/LiveStudentWidgets";
