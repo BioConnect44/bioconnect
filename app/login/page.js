@@ -132,8 +132,7 @@ export default function LoginPage() {
           <img
             src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80"
             alt="Biotechnology Scientist Laboratory Research"
-            style={S.img}
-          / loading="lazy" decoding="async">
+            style={S.img} loading="lazy" decoding="async" />
         </div>
         {/* Right — form */}
         <div className="auth-form-panel">

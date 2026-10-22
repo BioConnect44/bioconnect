@@ -138,7 +138,7 @@ function SignupForm() {
         {/* Left */}
         <div className="auth-img-panel">
           <div style={S.imgOverlay}></div>
-          <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80" alt="Biotechnology & Life Sciences Research" style={S.img}/ loading="lazy" decoding="async">
+          <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80" alt="Biotechnology & Life Sciences Research" style={S.img} loading="lazy" decoding="async" />
         </div>
         {/* Right */}
         <div className="auth-form-panel">

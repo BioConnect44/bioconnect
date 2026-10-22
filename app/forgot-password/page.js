@@ -45,8 +45,7 @@ export default function ForgotPasswordPage() {
           <img
             src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80"
             alt="Biotechnology Molecular Research"
-            style={S.img}
-          / loading="lazy" decoding="async">
+            style={S.img} loading="lazy" decoding="async" />
         </div>
 
         {/* Right — form */}

@@ -157,7 +157,7 @@ export default function BioMinutePage() {
             <div style={{ background: "#fff", borderRadius: "20px", padding: "28px", border: "1px solid #E2EEF0" }}>
               {/* Hero image */}
               <div style={{ position: "relative", borderRadius: "14px", overflow: "hidden", marginBottom: "20px" }}>
-                <img src={getCleanImageUrl(art.image)} alt="" style={{ width: "100%", height: "280px", objectFit: "cover", display: "block" }} / loading="lazy" decoding="async">
+                <img src={getCleanImageUrl(art.image)} alt="" style={{ width: "100%", height: "280px", objectFit: "cover", display: "block" }} loading="lazy" decoding="async" />
                 <div style={{ position: "absolute", bottom: "14px", left: "14px", background: "rgba(0,0,0,0.75)", backdropFilter: "blur(8px)", borderRadius: "8px", padding: "6px 12px" }}>
                   <span style={{ fontSize: "13px", color: "#fff", fontWeight: 500 }}>{art.impact}</span>
                 </div>
@@ -413,7 +413,7 @@ export default function BioMinutePage() {
                         e.currentTarget.style.borderColor = "transparent";
                       }}
                     >
-                      <img src={getCleanImageUrl(m.img)} alt="" style={{ width: 52, height: 44, borderRadius: "8px", objectFit: "cover", flexShrink: 0 }} / loading="lazy" decoding="async">
+                      <img src={getCleanImageUrl(m.img)} alt="" style={{ width: 52, height: 44, borderRadius: "8px", objectFit: "cover", flexShrink: 0 }} loading="lazy" decoding="async" />
                       <div>
                         <p style={{ fontSize: "11px", color: "#14B8A6", fontWeight: 700, marginBottom: "2px", letterSpacing: "0.03em" }}>{m.date}</p>
                         <p style={{ fontSize: "13px", fontWeight: 600, color: "#1B2B3A", lineHeight: "1.4", margin: 0 }}>{cleanText(m.title)}</p>

@@ -99,8 +99,7 @@ export default function VerifyOtpPage() {
           <img
             src="https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80"
             alt="Device Authentication Security"
-            style={S.img}
-          / loading="lazy" decoding="async">
+            style={S.img} loading="lazy" decoding="async" />
         </div>
 
         {/* Right — form */}

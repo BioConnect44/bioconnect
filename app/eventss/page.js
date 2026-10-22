@@ -162,7 +162,7 @@ export default function EventsPage() {
           {/* Featured event */}
           {featured && filter === "upcoming" && (
             <div style={{ position: "relative", borderRadius: "16px", overflow: "hidden", marginBottom: "16px" }}>
-              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=60" alt="" style={{ width: "100%", height: "220px", objectFit: "cover", display: "block" }}/ loading="lazy" decoding="async">
+              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=60" alt="" style={{ width: "100%", height: "220px", objectFit: "cover", display: "block" }} loading="lazy" decoding="async" />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)", display: "flex", alignItems: "center", padding: "28px" }}>
                 <div>
                   <span style={{ fontSize: "12px", color: "#14B8A6", fontWeight: 700, background: "rgba(20,184,166,0.2)", padding: "4px 10px", borderRadius: "6px" }}>{safeFormatDate(featured.event_date, { month: "short", day: "numeric" }, "UPCOMING").toUpperCase()}</span>

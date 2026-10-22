@@ -58,8 +58,7 @@ export default function ResetPasswordPage() {
           <img
             src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80"
             alt="Biotechnology DNA Research"
-            style={S.img}
-          / loading="lazy" decoding="async">
+            style={S.img} loading="lazy" decoding="async" />
         </div>
 
         {/* Right — form */}

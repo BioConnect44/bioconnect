@@ -201,7 +201,7 @@ function StudentDashboard({ profile }) {
           <a href="/profile" style={{ display: "inline-block", background: "#132D35", color: "#fff", padding: "10px 24px", borderRadius: "100px", fontSize: "14px", fontWeight: 500, textDecoration: "none" }}>View Profile</a>
         </div>
         <div className="dashboard-hero-illustration" style={{ position: "absolute", right: "-10px", top: "50%", transform: "translateY(-50%)", width: "350px", height: "350px", display: "flex", alignItems: "center", justifyContent: "flex-end", pointerEvents: "none", zIndex: 5 }}>
-           <img src="/banner-illustration.png" alt="Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} / loading="lazy" decoding="async">
+           <img src="/banner-illustration.png" alt="Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} loading="lazy" decoding="async" />
         </div>
       </div>
 
@@ -365,7 +365,7 @@ function EducatorDashboard({ profile }) {
           <a href="/profile" style={{ display: "inline-block", background: "#1B2B3A", color: "#fff", padding: "10px 24px", borderRadius: "100px", fontSize: "14px", fontWeight: 500, textDecoration: "none" }}>View Profile</a>
         </div>
         <div style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", width: "280px", height: "280px", zIndex: 5, pointerEvents: "none" }}>
-          <img src="/educator-illustration.png" alt="Educator Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} / loading="lazy" decoding="async">
+          <img src="/educator-illustration.png" alt="Educator Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} loading="lazy" decoding="async" />
         </div>
       </div>
 
@@ -690,7 +690,7 @@ function ResearcherDashboard({ profile }) {
           <a href="/profile" style={{ display: "inline-block", background: "#1B2B3A", color: "#fff", padding: "10px 24px", borderRadius: "100px", fontSize: "14px", fontWeight: 500, textDecoration: "none" }}>View Profile</a>
         </div>
         <div style={{ position: "absolute", right: "20px", top: "50%", transform: "translateY(-50%)", width: "420px", height: "280px", zIndex: 5, pointerEvents: "none", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <img src="/researcher-illustration.png" alt="Researcher Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} / loading="lazy" decoding="async">
+          <img src="/researcher-illustration.png" alt="Researcher Illustration" style={{ width: "100%", height: "100%", objectFit: "contain" }} loading="lazy" decoding="async" />
         </div>
       </div>
 
