@@ -289,7 +289,7 @@ export default function BlogPage() {
                 src={featuredPost.banner}
                 alt={featuredPost.title}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
+              / loading="lazy" decoding="async">
             </div>
           </div>
         )}
@@ -321,7 +321,7 @@ export default function BlogPage() {
                       src={post.banner}
                       alt={post.title}
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
+                    / loading="lazy" decoding="async">
                     <span style={{ position: "absolute", top: 12, left: 12, background: "#102A30", color: "#FFFFFF", padding: "3px 9px", borderRadius: 6, fontSize: "0.72rem", fontWeight: 800 }}>
                       {post.category}
                     </span>
@@ -434,7 +434,7 @@ export default function BlogPage() {
               </div>
 
               <div style={{ borderRadius: 14, overflow: "hidden", marginBottom: 24, maxHeight: 300 }}>
-                <img src={activeArticle.banner} alt={activeArticle.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src={activeArticle.banner} alt={activeArticle.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} / loading="lazy" decoding="async">
               </div>
 
               <div style={{ fontSize: "0.98rem", lineHeight: 1.75, color: "#334155" }}>

@@ -551,7 +551,7 @@ export default function EventsPage() {
           {/* HIGH-CONTRAST FEATURED EVENT BANNER */}
           {featured && filter === "upcoming" && !selectedDate && (
             <div style={{ position: "relative", borderRadius: "20px", overflow: "hidden", marginBottom: "24px", boxShadow: "0 10px 28px rgba(15,23,42,0.14)" }}>
-              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}/>
+              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}/ loading="lazy" decoding="async">
 
               {/* Overlay */}
               <div style={{ position: "relative", zIndex: 1, background: "linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.88) 55%, rgba(13, 148, 136, 0.45) 100%)", padding: "26px 30px" }}>

@@ -1,56 +1,26 @@
 export default function sitemap() {
-  const baseUrl = 'https://bio-connect-lake.vercel.app'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bio-connect-lake.vercel.app";
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/biominute`,
-      lastModified: new Date(),
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/dashboard`,
-      lastModified: new Date(),
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/events`,
-      lastModified: new Date(),
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/jobs`,
-      lastModified: new Date(),
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/learning`,
-      lastModified: new Date(),
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/research`,
-      lastModified: new Date(),
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/login`,
-      lastModified: new Date(),
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/signup`,
-      lastModified: new Date(),
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/profile`,
-      lastModified: new Date(),
-      priority: 0.5,
-    },
-  ]
+  const staticRoutes = [
+    { path: "", priority: 1.0, changeFrequency: "daily" },
+    { path: "/learning", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/research", priority: 0.9, changeFrequency: "daily" },
+    { path: "/jobs", priority: 0.9, changeFrequency: "daily" },
+    { path: "/events", priority: 0.8, changeFrequency: "daily" },
+    { path: "/biominute", priority: 0.8, changeFrequency: "weekly" },
+    { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
+    { path: "/guides", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/contact", priority: 0.5, changeFrequency: "monthly" },
+    { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
+    { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
+    { path: "/login", priority: 0.4, changeFrequency: "monthly" },
+    { path: "/signup", priority: 0.4, changeFrequency: "monthly" },
+  ];
+
+  return staticRoutes.map((route) => ({
+    url: `${baseUrl}${route.path}`,
+    lastModified: new Date(),
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
+  }));
 }

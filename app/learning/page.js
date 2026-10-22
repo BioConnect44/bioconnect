@@ -7231,6 +7231,23 @@ export default function LearningPage() {
         <StudentView supabase={supabase} profile={profile} onXPUpdate={handleXPUpdate} />
       )}
       <ExtraBooksSection />
+      {/* Contextual Internal Hub Links */}
+      <div style={{ maxWidth: 1200, margin: "40px auto 20px", padding: "0 20px", display: "flex", flexWrap: "wrap", gap: 16 }}>
+        <Link href="/research" style={{ flex: "1 1 280px", padding: "16px 20px", background: "#ffffff", borderRadius: "14px", border: "1px solid #E2E8F0", textDecoration: "none", display: "flex", alignItems: "center", gap: 12, color: "#0F172A" }}>
+          <span style={{ fontSize: "1.5rem" }}>🔬</span>
+          <div>
+            <div style={{ fontWeight: 600, fontSize: "0.95rem" }}>Explore PubMed Literature</div>
+            <div style={{ fontSize: "0.8rem", color: "#64748B" }}>Read 35M+ indexed biotechnology publications & abstracts</div>
+          </div>
+        </Link>
+        <Link href="/jobs" style={{ flex: "1 1 280px", padding: "16px 20px", background: "#ffffff", borderRadius: "14px", border: "1px solid #E2E8F0", textDecoration: "none", display: "flex", alignItems: "center", gap: 12, color: "#0F172A" }}>
+          <span style={{ fontSize: "1.5rem" }}>💼</span>
+          <div>
+            <div style={{ fontWeight: 600, fontSize: "0.95rem" }}>Biotech Careers & Fellowships</div>
+            <div style={{ fontSize: "0.8rem", color: "#64748B" }}>Apply your coursework to verified industry internships & roles</div>
+          </div>
+        </Link>
+      </div>
     </AppShell>
   );
 }

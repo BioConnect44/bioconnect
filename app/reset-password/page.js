@@ -47,7 +47,7 @@ export default function ResetPasswordPage() {
   return (
     <main className="auth-page-main">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+        
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         body,.auth-page-main{font-family:'Poppins',sans-serif !important}
       `}</style>
@@ -59,7 +59,7 @@ export default function ResetPasswordPage() {
             src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80"
             alt="Biotechnology DNA Research"
             style={S.img}
-          />
+          / loading="lazy" decoding="async">
         </div>
 
         {/* Right — form */}

@@ -76,7 +76,7 @@ export default function LoginPage() {
   return (
     <main className="auth-page-main">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         body{background:#EEF7F7;font-family:'Poppins',sans-serif}
         
@@ -133,7 +133,7 @@ export default function LoginPage() {
             src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80"
             alt="Biotechnology Scientist Laboratory Research"
             style={S.img}
-          />
+          / loading="lazy" decoding="async">
         </div>
         {/* Right — form */}
         <div className="auth-form-panel">
@@ -253,7 +253,7 @@ export default function LoginPage() {
   );
 }
 
-const CSS = `@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{background:#EEF7F7;font-family:'Poppins',sans-serif}`;
+const CSS = `*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{background:#EEF7F7;font-family:'Poppins',sans-serif}`;
 const S = {
   page: {
     minHeight: "100vh",

@@ -85,7 +85,7 @@ function SignupForm() {
   return (
     <main className="auth-page-main">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         body{background:#EEF7F7;font-family:'Poppins',sans-serif}
         
@@ -138,7 +138,7 @@ function SignupForm() {
         {/* Left */}
         <div className="auth-img-panel">
           <div style={S.imgOverlay}></div>
-          <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80" alt="Biotechnology & Life Sciences Research" style={S.img}/>
+          <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80" alt="Biotechnology & Life Sciences Research" style={S.img}/ loading="lazy" decoding="async">
         </div>
         {/* Right */}
         <div className="auth-form-panel">
@@ -209,7 +209,7 @@ export default function SignupPage() {
   );
 }
 
-const CSS = `@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{background:#EEF7F7;font-family:'Poppins',sans-serif}`;
+const CSS = `*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{background:#EEF7F7;font-family:'Poppins',sans-serif}`;
 const S = {
   page: { minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#EEF7F7", padding: "24px" },
   card: { display: "flex", background: "#fff", borderRadius: "24px", overflow: "hidden", width: "100%", maxWidth: "900px", boxShadow: "0 20px 60px rgba(0,0,0,0.08)" },

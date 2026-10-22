@@ -299,7 +299,7 @@ export default function LandingPage() {
           </div>
           <FadeUp delay={0.2}>
             <div className="dna-float" style={{ width: "100%", borderRadius: 16, overflow: "hidden", aspectRatio: "4/3", background: "#1a4a55" }}>
-              <img src="/dna-helix.jpg" alt="DNA double helix" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 16, display: "block" }} />
+              <img src="/dna-helix.jpg" alt="DNA double helix" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 16, display: "block" }} / loading="lazy" decoding="async">
             </div>
           </FadeUp>
         </div>

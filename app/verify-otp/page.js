@@ -88,7 +88,7 @@ export default function VerifyOtpPage() {
   return (
     <main className="auth-page-main">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+        
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         body,.auth-page-main{font-family:'Poppins',sans-serif !important}
       `}</style>
@@ -100,7 +100,7 @@ export default function VerifyOtpPage() {
             src="https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80"
             alt="Device Authentication Security"
             style={S.img}
-          />
+          / loading="lazy" decoding="async">
         </div>
 
         {/* Right — form */}

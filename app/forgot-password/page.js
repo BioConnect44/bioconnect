@@ -34,7 +34,7 @@ export default function ForgotPasswordPage() {
   return (
     <main className="auth-page-main">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+        
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         body,.auth-page-main{font-family:'Poppins',sans-serif !important}
       `}</style>
@@ -46,7 +46,7 @@ export default function ForgotPasswordPage() {
             src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80"
             alt="Biotechnology Molecular Research"
             style={S.img}
-          />
+          / loading="lazy" decoding="async">
         </div>
 
         {/* Right — form */}
