@@ -50,7 +50,7 @@ const ROLES = [
     points: ["Publish and share lab findings.", "Find specialized project collaborators.", "Discover new funding opportunities.", "Top-tier talent for your lab."],
     btn: "Create Researcher Profile",
     role: "researcher",
-    image: "/assets/roles/researcher.jpg",
+    image: "/assets/roles/researcher-lab.jpg",
     imageAlt: "Biomedical researcher analyzing samples in laboratory",
   },
 ];
@@ -404,6 +404,7 @@ export default function LandingPage() {
                       alignItems: "center",
                       flex: 1,
                       textAlign: "center",
+                      fontFamily: "var(--font-poppins), 'Poppins', sans-serif",
                     }}
                   >
                     <div
@@ -413,29 +414,32 @@ export default function LandingPage() {
                         letterSpacing: "2px",
                         color: "#2AB4B4",
                         textTransform: "uppercase",
-                        marginBottom: 8,
+                        marginBottom: 6,
+                        fontFamily: "var(--font-poppins), 'Poppins', sans-serif",
                       }}
                     >
                       {r.category}
                     </div>
 
-                    <h3
+                    <div
                       style={{
                         fontWeight: 800,
-                        fontSize: "1.35rem",
+                        fontSize: "1.25rem",
                         color: "#1a2b3c",
-                        margin: "0 0 10px",
+                        margin: "0 0 8px",
+                        fontFamily: "var(--font-poppins), 'Poppins', sans-serif",
                       }}
                     >
                       {r.title}
-                    </h3>
+                    </div>
 
                     <p
                       style={{
-                        fontSize: "0.88rem",
+                        fontSize: "0.875rem",
                         color: "#6b8a9a",
                         margin: "0 0 20px",
-                        lineHeight: 1.55,
+                        lineHeight: 1.5,
+                        fontFamily: "var(--font-poppins), 'Poppins', sans-serif",
                       }}
                     >
                       {r.subtitle}
@@ -458,31 +462,15 @@ export default function LandingPage() {
                           key={j}
                           style={{
                             display: "flex",
-                            gap: 10,
+                            gap: 9,
                             alignItems: "flex-start",
-                            fontSize: "0.86rem",
+                            fontSize: "0.875rem",
                             color: "#3a4a5c",
+                            fontFamily: "var(--font-poppins), 'Poppins', sans-serif",
                           }}
                         >
-                          <span
-                            style={{
-                              display: "inline-flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              width: 18,
-                              height: 18,
-                              borderRadius: "50%",
-                              background: "rgba(42,180,180,0.12)",
-                              color: "#2AB4B4",
-                              fontSize: "0.72rem",
-                              fontWeight: 800,
-                              flexShrink: 0,
-                              marginTop: 1,
-                            }}
-                          >
-                            ✓
-                          </span>
-                          <span>{p}</span>
+                          <CheckIcon />
+                          <span style={{ fontFamily: "var(--font-poppins), 'Poppins', sans-serif" }}>{p}</span>
                         </li>
                       ))}
                     </ul>
@@ -496,13 +484,14 @@ export default function LandingPage() {
                         color: hovRole === i ? "#ffffff" : "#2AB4B4",
                         borderRadius: 999,
                         padding: "10px 26px",
-                        fontSize: "0.88rem",
+                        fontSize: "0.875rem",
                         fontWeight: 700,
                         cursor: "pointer",
                         transition: "all 0.25s ease",
                         textAlign: "center",
                         textDecoration: "none",
                         display: "inline-block",
+                        fontFamily: "var(--font-poppins), 'Poppins', sans-serif",
                         boxShadow: hovRole === i ? "0 8px 18px rgba(42,180,180,0.25)" : "none",
                       }}
                     >
