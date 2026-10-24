@@ -50,7 +50,7 @@ const ROLES = [
     points: ["Publish and share lab findings.", "Find specialized project collaborators.", "Discover new funding opportunities.", "Top-tier talent for your lab."],
     btn: "Create Researcher Profile",
     role: "researcher",
-    image: "/assets/roles/researcher-lab.jpg",
+    image: "/assets/roles/researcher-laboratory.jpg",
     imageAlt: "Biomedical researcher analyzing samples in laboratory",
   },
 ];
