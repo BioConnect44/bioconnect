@@ -24,25 +24,34 @@ const FEATURES = [
 
 const ROLES = [
   {
+    category: "STUDENTS",
     title: "For Students",
     subtitle: "Accelerate your learning and jumpstart your career in the biotech industry.",
     points: ["Access high-yield university notes.", "Direct access to top recruiters.", "Read PubMed papers instantly.", "Land your first industry role."],
     btn: "Create Student Profile",
     role: "student",
+    image: "/assets/roles/student.jpg",
+    imageAlt: "Biotechnology students studying and collaborating",
   },
   {
+    category: "EDUCATORS",
     title: "For Educators",
     subtitle: "Expand your academic reach and simplify how you share resources.",
     points: ["Share specialized study materials.", "Boost your event registrations.", "Promote your university webinars.", "Track student engagement easily."],
     btn: "Create Educator Profile",
     role: "educator",
+    image: "/assets/roles/educator.jpg",
+    imageAlt: "University educator mentoring students in classroom",
   },
   {
+    category: "RESEARCHERS",
     title: "For Researchers",
     subtitle: "Accelerate your lab work and showcase your breakthroughs to the world.",
     points: ["Publish and share lab findings.", "Find specialized project collaborators.", "Discover new funding opportunities.", "Top-tier talent for your lab."],
     btn: "Create Researcher Profile",
     role: "researcher",
+    image: "/assets/roles/researcher.jpg",
+    imageAlt: "Biomedical researcher analyzing samples in laboratory",
   },
 ];
 
@@ -89,16 +98,7 @@ function CheckIcon() {
   );
 }
 
-function MockCard() {
-  return (
-    <div style={{ background: "white", borderRadius: 10, padding: "14px 16px", marginBottom: 16, boxShadow: "0 2px 8px rgba(0,0,0,0.07)" }}>
-      <div style={{ height: 8, width: "60%", background: "#e0e0e0", borderRadius: 4, marginBottom: 8 }} />
-      <div style={{ height: 6, width: "80%", background: "#eee", borderRadius: 4, marginBottom: 6 }} />
-      <div style={{ height: 6, width: "50%", background: "#eee", borderRadius: 4, marginBottom: 14 }} />
-      <div style={{ height: 22, width: 64, background: "#2AB4B4", borderRadius: 5 }} />
-    </div>
-  );
-}
+
 
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
@@ -362,22 +362,153 @@ export default function LandingPage() {
             {ROLES.map((r, i) => (
               <FadeUp key={i} delay={i * 0.1}>
                 <div
-                  style={{ background: "#fff", border: `1.5px solid ${hovRole === i ? "#2AB4B4" : "#daeaed"}`, borderRadius: 16, padding: "28px 24px", display: "flex", flexDirection: "column", transition: "all 0.3s ease", transform: hovRole === i ? "translateY(-5px)" : "none", boxShadow: hovRole === i ? "0 14px 32px rgba(42,180,180,0.12)" : "none", height: "100%" }}
+                  style={{
+                    background: "#ffffff",
+                    border: `1.5px solid ${hovRole === i ? "#2AB4B4" : "#daeaed"}`,
+                    borderRadius: 20,
+                    overflow: "hidden",
+                    display: "flex",
+                    flexDirection: "column",
+                    transition: "all 0.3s ease",
+                    transform: hovRole === i ? "translateY(-6px)" : "none",
+                    boxShadow: hovRole === i ? "0 18px 36px rgba(42,180,180,0.15)" : "0 6px 20px rgba(0,0,0,0.04)",
+                    height: "100%",
+                  }}
                   onMouseEnter={() => setHovRole(i)}
-                  onMouseLeave={() => setHovRole(null)}>
-                  <MockCard />
-                  <div style={{ fontWeight: 800, fontSize: "1.1rem", color: "#1a2b3c", margin: "0 0 6px" }}>{r.title}</div>
-                  <div style={{ fontSize: "0.875rem", color: "#6b8a9a", margin: "0 0 18px", lineHeight: 1.5 }}>{r.subtitle}</div>
-                  <ul style={{ listStyle: "none", padding: 0, margin: "0 0 24px", display: "flex", flexDirection: "column", gap: 10 }}>
-                    {r.points.map((p, j) => (
-                      <li key={j} style={{ display: "flex", gap: 8, alignItems: "flex-start", fontSize: "0.875rem", color: "#3a4a5c" }}>
-                        <CheckIcon /><span>{p}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <a href={`/signup?role=${r.role}`} style={{ marginTop: "auto", background: hovRole === i ? "#1f9e9e" : "#2AB4B4", color: "#fff", border: "none", borderRadius: 8, padding: 13, fontSize: "0.9rem", fontWeight: 700, cursor: "pointer", transition: "all 0.2s", textAlign: "center", textDecoration: "none", display: "block" }}>
-                    {r.btn}
-                  </a>
+                  onMouseLeave={() => setHovRole(null)}
+                >
+                  {/* Top Photographic Image */}
+                  <div style={{ width: "100%", height: 210, overflow: "hidden", position: "relative" }}>
+                    <img
+                      src={r.image}
+                      alt={r.imageAlt}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                        transition: "transform 0.5s ease",
+                        transform: hovRole === i ? "scale(1.06)" : "scale(1)",
+                      }}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+
+                  {/* Information Below Image */}
+                  <div
+                    style={{
+                      padding: "26px 24px 28px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      flex: 1,
+                      textAlign: "center",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontSize: "0.76rem",
+                        fontWeight: 700,
+                        letterSpacing: "2px",
+                        color: "#2AB4B4",
+                        textTransform: "uppercase",
+                        marginBottom: 8,
+                      }}
+                    >
+                      {r.category}
+                    </div>
+
+                    <h3
+                      style={{
+                        fontWeight: 800,
+                        fontSize: "1.35rem",
+                        color: "#1a2b3c",
+                        margin: "0 0 10px",
+                      }}
+                    >
+                      {r.title}
+                    </h3>
+
+                    <p
+                      style={{
+                        fontSize: "0.88rem",
+                        color: "#6b8a9a",
+                        margin: "0 0 20px",
+                        lineHeight: 1.55,
+                      }}
+                    >
+                      {r.subtitle}
+                    </p>
+
+                    <ul
+                      style={{
+                        listStyle: "none",
+                        padding: 0,
+                        margin: "0 0 24px",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 10,
+                        width: "100%",
+                        textAlign: "left",
+                      }}
+                    >
+                      {r.points.map((p, j) => (
+                        <li
+                          key={j}
+                          style={{
+                            display: "flex",
+                            gap: 10,
+                            alignItems: "flex-start",
+                            fontSize: "0.86rem",
+                            color: "#3a4a5c",
+                          }}
+                        >
+                          <span
+                            style={{
+                              display: "inline-flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              width: 18,
+                              height: 18,
+                              borderRadius: "50%",
+                              background: "rgba(42,180,180,0.12)",
+                              color: "#2AB4B4",
+                              fontSize: "0.72rem",
+                              fontWeight: 800,
+                              flexShrink: 0,
+                              marginTop: 1,
+                            }}
+                          >
+                            ✓
+                          </span>
+                          <span>{p}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <a
+                      href={`/signup?role=${r.role}`}
+                      style={{
+                        marginTop: "auto",
+                        border: "1.5px solid #2AB4B4",
+                        background: hovRole === i ? "#2AB4B4" : "transparent",
+                        color: hovRole === i ? "#ffffff" : "#2AB4B4",
+                        borderRadius: 999,
+                        padding: "10px 26px",
+                        fontSize: "0.88rem",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        transition: "all 0.25s ease",
+                        textAlign: "center",
+                        textDecoration: "none",
+                        display: "inline-block",
+                        boxShadow: hovRole === i ? "0 8px 18px rgba(42,180,180,0.25)" : "none",
+                      }}
+                    >
+                      {r.btn}
+                    </a>
+                  </div>
                 </div>
               </FadeUp>
             ))}
