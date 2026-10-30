@@ -4,6 +4,8 @@ import fs from "fs";
 import path from "path";
 import { exec } from "child_process";
 import { promisify } from "util";
+import { checkRateLimit, rateLimitResponse } from "@/lib/rate-limit";
+import { isAuthorizedAdmin, safeErrorResponse, sanitizeString } from "@/lib/security";
 
 const execAsync = promisify(exec);
 
@@ -16,7 +18,17 @@ function isValidRegistrationUrl(url) {
     const host = parsed.hostname.toLowerCase();
     const pathStr = parsed.pathname.replace(/\/$/, "");
     
-    if (host.includes("unstop.com") || host.includes("eventbrite.com") || host.includes("ccamp.res.in") || host.includes("10times.com") || host.includes("birac.nic.in") || host.includes("iisc.ac.in") || host.includes("ncbs.res.in") || host.includes("iitb.ac.in") || host.includes("ableindia.in")) {
+    if (
+      host.includes("unstop.com") ||
+      host.includes("eventbrite.com") ||
+      host.includes("ccamp.res.in") ||
+      host.includes("10times.com") ||
+      host.includes("birac.nic.in") ||
+      host.includes("iisc.ac.in") ||
+      host.includes("ncbs.res.in") ||
+      host.includes("iitb.ac.in") ||
+      host.includes("ableindia.in")
+    ) {
       return true;
     }
 
@@ -53,6 +65,11 @@ function saveLocalEvents(events) {
 
 export async function GET(req) {
   try {
+    const rateCheck = checkRateLimit(req, "events_get", 60, 60000);
+    if (!rateCheck.allowed) {
+      return rateLimitResponse(rateCheck.retryAfter);
+    }
+
     const local = getLocalEvents();
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -76,17 +93,29 @@ export async function GET(req) {
     combined.sort((a, b) => new Date(a.event_date) - new Date(b.event_date));
     return NextResponse.json({ events: combined, total: combined.length, last_updated: new Date().toISOString() }, { status: 200 });
   } catch (err) {
-    return NextResponse.json({ events: getLocalEvents(), error: err.message, last_updated: new Date().toISOString() }, { status: 200 });
+    return safeErrorResponse(err, "Failed to retrieve events. Please try again later.");
   }
 }
 
 export async function POST(req) {
   try {
+    const rateCheck = checkRateLimit(req, "events_post", 10, 60000);
+    if (!rateCheck.allowed) {
+      return rateLimitResponse(rateCheck.retryAfter);
+    }
+
     const body = await req.json();
 
-    // LIVE EVENT SCRAPER TRIGGER ACTION
+    // LIVE EVENT SCRAPER TRIGGER ACTION - REQUIRE ADMIN/CRON AUTH
     if (body.action === "trigger_scrape" || body.refresh === true) {
-      console.log("⚡ Executing live Python Event Scraper on demand...");
+      if (!isAuthorizedAdmin(req)) {
+        return NextResponse.json(
+          { error: "Unauthorized. Admin authentication required to trigger live scrapers." },
+          { status: 403 }
+        );
+      }
+
+      console.log("⚡ Executing live Python Event Scraper on demand (Authorized)...");
       try {
         const scriptPath = path.join(process.cwd(), "ai_event_scraper.py");
         const pythonCmd = process.platform === "win32" ? `py "${scriptPath}"` : `python3 "${scriptPath}"`;
@@ -105,6 +134,14 @@ export async function POST(req) {
       }, { status: 200 });
     }
 
+    // Mutating batch events requires Admin Authorization
+    if (!isAuthorizedAdmin(req)) {
+      return NextResponse.json(
+        { error: "Unauthorized. Admin credentials required to modify event catalog." },
+        { status: 403 }
+      );
+    }
+
     const { events } = body;
 
     if (!events || !Array.isArray(events)) {
@@ -119,22 +156,23 @@ export async function POST(req) {
       const regUrl = evt.pricing_and_registration?.registration_url || evt.registration_url;
       
       if (!isValidRegistrationUrl(regUrl)) {
-        skippedEvents.push({ title: evt.title, reason: "Invalid homepage or root domain link" });
+        skippedEvents.push({ title: sanitizeString(evt.title, 100), reason: "Invalid homepage or root domain link" });
         continue;
       }
 
+      const title = sanitizeString(evt.title, 200);
       const eventPayload = {
-        id: evt.event_id || evt.id || evt.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-        title: evt.title,
-        description: evt.details?.description || evt.description || "",
-        event_type: evt.event_type || "conference",
-        location: evt.location?.venue_address || evt.location || "Online",
+        id: sanitizeString(evt.event_id || evt.id || title.toLowerCase().replace(/[^a-z0-9]+/g, "-"), 120),
+        title,
+        description: sanitizeString(evt.details?.description || evt.description || "", 2000),
+        event_type: sanitizeString(evt.event_type || "conference", 50),
+        location: sanitizeString(evt.location?.venue_address || evt.location || "Online", 200),
         region: evt.location?.is_india ? (evt.location?.city === "Gandhinagar" || evt.location?.city === "Ahmedabad" ? "gujarat" : "india") : "global",
         event_date: evt.schedule?.start_date ? `${evt.schedule.start_date}T09:00:00.000Z` : evt.event_date,
         end_date: evt.schedule?.end_date ? `${evt.schedule.end_date}T17:00:00.000Z` : evt.end_date || null,
         registration_url: regUrl,
-        entry_fee: evt.pricing_and_registration?.entry_fee || evt.entry_fee || "Free Registration",
-        profiles: { full_name: evt.organizer || evt.profiles?.full_name || "BioConnect Academic Network" },
+        entry_fee: sanitizeString(evt.pricing_and_registration?.entry_fee || evt.entry_fee || "Free Registration", 60),
+        profiles: { full_name: sanitizeString(evt.organizer || evt.profiles?.full_name || "BioConnect Academic Network", 100) },
         created_at: new Date().toISOString()
       };
 
@@ -151,7 +189,7 @@ export async function POST(req) {
     saveLocalEvents(local);
 
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
     if (supabaseUrl && supabaseKey) {
       try {
         const supabase = createClient(supabaseUrl, supabaseKey);
@@ -170,7 +208,6 @@ export async function POST(req) {
     }, { status: 200 });
 
   } catch (err) {
-    console.error("API Event Scraper Ingestion Error:", err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return safeErrorResponse(err, "Failed to process event update payload.");
   }
 }

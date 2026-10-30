@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { checkRateLimit, rateLimitResponse } from "@/lib/rate-limit";
+import { safeErrorResponse, sanitizeString } from "@/lib/security";
 
 function decodeHtmlEntities(str) {
   if (!str || typeof str !== "string") return str || "";
@@ -116,7 +118,7 @@ async function generateAdvancedHelpAnswer(query) {
 - **Security & RLS**: All your personal data and notes are secured using Supabase Row Level Security (RLS).`;
   }
 
-  // 2. Live PubMed General Intelligence Query Fallback (Like ChatGPT & Gemini for Life Sciences)
+  // 2. Live PubMed General Intelligence Query Fallback
   const pubmedData = await fetchPubMedContext(query);
   if (pubmedData && pubmedData.length > 0) {
     const primary = pubmedData[0];
@@ -148,23 +150,27 @@ Regarding **"${query}"**:
 
 export async function POST(request) {
   try {
-    const body = await request.json();
-    const query = (body.query || body.question || "").trim();
+    const rateCheck = checkRateLimit(request, "help_center", 25, 60000);
+    if (!rateCheck.allowed) {
+      return rateLimitResponse(rateCheck.retryAfter);
+    }
 
-    if (!query) {
+    const body = await request.json();
+    const rawQuery = sanitizeString(body.query || body.question || "", 300);
+
+    if (!rawQuery) {
       return NextResponse.json({ error: "Query parameter is required" }, { status: 400 });
     }
 
-    const answer = await generateAdvancedHelpAnswer(query);
+    const answer = await generateAdvancedHelpAnswer(rawQuery);
 
     return NextResponse.json({
       success: true,
-      query,
+      query: rawQuery,
       answer
     }, { status: 200 });
 
   } catch (err) {
-    console.error("Help Center API Route Error:", err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return safeErrorResponse(err, "Failed to retrieve help answer.");
   }
 }

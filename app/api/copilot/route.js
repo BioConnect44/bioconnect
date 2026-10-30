@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { checkRateLimit, rateLimitResponse } from "@/lib/rate-limit";
+import { safeErrorResponse, sanitizeString } from "@/lib/security";
 
 function decodeHtmlEntities(str) {
   if (!str || typeof str !== "string") return str || "";
@@ -70,12 +72,12 @@ async function callExternalLLM(question, paperContext = {}) {
   const openaiKey = process.env.OPENAI_API_KEY;
   const groqKey = process.env.GROQ_API_KEY;
 
-  const title = paperContext.title || "Research Paper";
-  const abstract = paperContext.abstract || paperContext.summary_text || "";
-  const journal = paperContext.journal || "Peer-Reviewed Journal";
-  const authors = paperContext.authors ? paperContext.authors.join(", ") : "";
+  const title = sanitizeString(paperContext.title || "Research Paper", 200);
+  const abstract = sanitizeString(paperContext.abstract || paperContext.summary_text || "", 4000);
+  const journal = sanitizeString(paperContext.journal || "Peer-Reviewed Journal", 100);
+  const authors = Array.isArray(paperContext.authors) ? paperContext.authors.map(a => sanitizeString(a, 50)).join(", ") : sanitizeString(paperContext.authors || "", 200);
 
-  const systemInstruction = `You are BioConnect AI Copilot, a world-class PhD-level Biomedical & Biotechnology AI Assistant trained to answer questions with the analytical depth of Gemini 1.5 Pro, Claude 3.5 Sonnet, and ChatGPT-4o.
+  const systemInstruction = `You are BioConnect AI Copilot, a world-class PhD-level Biomedical & Biotechnology AI Assistant trained to answer questions with high academic rigor.
 When answering questions about the research literature:
 1. Provide a direct, authoritative, and precise answer to the exact question asked.
 2. Incorporate specific facts, data points, mechanisms, or methodology from the paper provided.
@@ -113,7 +115,7 @@ ${question}`;
         if (text) return text;
       }
     } catch (e) {
-      console.warn("Gemini API call warning:", e);
+      console.warn("Gemini API call warning:", e.message);
     }
   }
 
@@ -141,7 +143,7 @@ ${question}`;
         if (text) return text;
       }
     } catch (e) {
-      console.warn("OpenAI API call warning:", e);
+      console.warn("OpenAI API call warning:", e.message);
     }
   }
 
@@ -168,7 +170,7 @@ ${question}`;
         if (text) return text;
       }
     } catch (e) {
-      console.warn("Groq API call warning:", e);
+      console.warn("Groq API call warning:", e.message);
     }
   }
 
@@ -180,16 +182,14 @@ ${question}`;
  */
 async function generateLocalCopilotAnswer(question, paperContext = {}) {
   const qLower = question.toLowerCase();
-  const title = paperContext.title || "Target Literature Study";
-  const abstract = paperContext.abstract || paperContext.summary_text || "";
-  const journal = paperContext.journal || "PubMed Central";
-  const year = paperContext.publication_date || "Recent";
-  const authors = Array.isArray(paperContext.authors) ? paperContext.authors.join(", ") : (paperContext.authors || "Primary Authors");
+  const title = sanitizeString(paperContext.title || "Target Literature Study", 200);
+  const abstract = sanitizeString(paperContext.abstract || paperContext.summary_text || "", 4000);
+  const journal = sanitizeString(paperContext.journal || "PubMed Central", 100);
+  const year = sanitizeString(paperContext.publication_date || "Recent", 50);
+  const authors = Array.isArray(paperContext.authors) ? paperContext.authors.map(a => sanitizeString(a, 50)).join(", ") : sanitizeString(paperContext.authors || "Primary Authors", 200);
 
-  // Extract sentences from abstract for semantic matching
   const sentences = abstract ? abstract.split(/(?<=[.!?])\s+/) : [];
   
-  // Rank sentences based on keyword match with the user's question
   const qWords = qLower.replace(/[^a-z0-9\s]/g, "").split(/\s+/).filter(w => w.length > 3);
   let bestSentences = [];
   
@@ -334,8 +334,14 @@ Regarding **"${question}"**, the research paper *"_${title}_"* investigates this
 
 export async function POST(request) {
   try {
+    const rateCheck = checkRateLimit(request, "copilot_post", 25, 60000);
+    if (!rateCheck.allowed) {
+      return rateLimitResponse(rateCheck.retryAfter);
+    }
+
     const body = await request.json();
-    const question = (body.question || body.query || "").trim();
+    const rawQuestion = (body.question || body.query || "").trim();
+    const question = sanitizeString(rawQuestion, 500);
     const context = body.context || {};
 
     if (!question) {
@@ -345,7 +351,7 @@ export async function POST(request) {
     // 1. Attempt External LLM Call if API key configured
     let answer = await callExternalLLM(question, context);
 
-    // 2. Fall back to Intelligent Local Gemini/Claude/ChatGPT Synthesis Engine
+    // 2. Fall back to Intelligent Local Synthesis Engine
     if (!answer) {
       answer = await generateLocalCopilotAnswer(question, context);
     }
@@ -357,7 +363,6 @@ export async function POST(request) {
     }, { status: 200 });
 
   } catch (err) {
-    console.error("Copilot API Route Error:", err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return safeErrorResponse(err, "Failed to process Copilot query.");
   }
 }

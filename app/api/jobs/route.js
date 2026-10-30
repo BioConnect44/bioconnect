@@ -3,6 +3,8 @@ import fs from "fs";
 import path from "path";
 import { exec } from "child_process";
 import { promisify } from "util";
+import { checkRateLimit, rateLimitResponse } from "@/lib/rate-limit";
+import { isAuthorizedAdmin, safeErrorResponse, sanitizeString } from "@/lib/security";
 
 const execAsync = promisify(exec);
 
@@ -41,64 +43,84 @@ function saveJobs(data) {
 }
 
 export async function GET(request) {
-  const { searchParams } = new URL(request.url);
-  const data = loadJobs();
-  let jobs = (data.jobs || []).filter(
-    (j) => !j.title?.toLowerCase().includes("demo") && !j.description?.toLowerCase().includes("demo")
-  );
-
-  const q = (searchParams.get("q") || "").toLowerCase().trim();
-  const category = searchParams.get("category") || "";
-  const location = (searchParams.get("location") || "").toLowerCase();
-  const jobType = searchParams.get("job_type") || "";
-  const limit = Math.min(parseInt(searchParams.get("limit")) || 500, 500);
-  const offset = parseInt(searchParams.get("offset")) || 0;
-
-  if (q) {
-    jobs = jobs.filter(
-      (j) =>
-        j.title?.toLowerCase().includes(q) ||
-        j.company?.toLowerCase().includes(q) ||
-        j.description?.toLowerCase().includes(q) ||
-        j.skills?.some((s) => s.toLowerCase().includes(q))
-    );
-  }
-  if (category) jobs = jobs.filter((j) => j.category === category);
-  if (location) jobs = jobs.filter((j) => j.location?.toLowerCase().includes(location));
-  if (jobType) jobs = jobs.filter((j) => j.job_type === jobType);
-
-  const total = jobs.length;
-  const paged = jobs.slice(offset, offset + limit);
-
-  return NextResponse.json(
-    {
-      jobs: paged,
-      total,
-      limit,
-      offset,
-      has_more: offset + limit < total,
-      last_updated: data.last_updated || new Date().toISOString(),
-      next_update: data.next_update || null,
-    },
-    {
-      headers: {
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-      },
+  try {
+    const rateCheck = checkRateLimit(request, "jobs_get", 60, 60000);
+    if (!rateCheck.allowed) {
+      return rateLimitResponse(rateCheck.retryAfter);
     }
-  );
+
+    const { searchParams } = new URL(request.url);
+    const data = loadJobs();
+    let jobs = (data.jobs || []).filter(
+      (j) => !j.title?.toLowerCase().includes("demo") && !j.description?.toLowerCase().includes("demo")
+    );
+
+    const q = sanitizeString(searchParams.get("q") || "", 100).toLowerCase();
+    const category = sanitizeString(searchParams.get("category") || "", 50);
+    const location = sanitizeString(searchParams.get("location") || "", 50).toLowerCase();
+    const jobType = sanitizeString(searchParams.get("job_type") || "", 50);
+    const limit = Math.min(parseInt(searchParams.get("limit"), 10) || 500, 500);
+    const offset = Math.max(0, parseInt(searchParams.get("offset"), 10) || 0);
+
+    if (q) {
+      jobs = jobs.filter(
+        (j) =>
+          j.title?.toLowerCase().includes(q) ||
+          j.company?.toLowerCase().includes(q) ||
+          j.description?.toLowerCase().includes(q) ||
+          j.skills?.some((s) => s.toLowerCase().includes(q))
+      );
+    }
+    if (category) jobs = jobs.filter((j) => j.category === category);
+    if (location) jobs = jobs.filter((j) => j.location?.toLowerCase().includes(location));
+    if (jobType) jobs = jobs.filter((j) => j.job_type === jobType);
+
+    const total = jobs.length;
+    const paged = jobs.slice(offset, offset + limit);
+
+    return NextResponse.json(
+      {
+        jobs: paged,
+        total,
+        limit,
+        offset,
+        has_more: offset + limit < total,
+        last_updated: data.last_updated || new Date().toISOString(),
+        next_update: data.next_update || null,
+      },
+      {
+        headers: {
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+        },
+      }
+    );
+  } catch (err) {
+    return safeErrorResponse(err, "Failed to load jobs list.");
+  }
 }
 
 export async function POST(request) {
   try {
+    const rateCheck = checkRateLimit(request, "jobs_post", 10, 60000);
+    if (!rateCheck.allowed) {
+      return rateLimitResponse(rateCheck.retryAfter);
+    }
+
     const body = await request.json();
 
-    // ON-DEMAND LIVE SCRAPER TRIGGER ACTION
+    // ON-DEMAND LIVE SCRAPER TRIGGER ACTION - REQUIRES ADMIN AUTH
     if (body.action === "trigger_scrape" || body.refresh === true) {
-      console.log("⚡ Executing live Python Job Scraper on demand...");
+      if (!isAuthorizedAdmin(request)) {
+        return NextResponse.json(
+          { error: "Unauthorized. Admin credentials required to trigger job scraper." },
+          { status: 403 }
+        );
+      }
+
+      console.log("⚡ Executing live Python Job Scraper on demand (Authorized)...");
       cachedData = null; // Invalidate cache immediately
 
       try {
-        // Run python scraper script src/scraper.py
         const scriptPath = path.join(process.cwd(), "src", "scraper.py");
         const pythonCmd = process.platform === "win32" ? `py "${scriptPath}"` : `python3 "${scriptPath}"`;
         
@@ -108,7 +130,6 @@ export async function POST(request) {
         console.warn("Python execution warning (falling back to current dataset update):", cmdErr.message);
       }
 
-      // Update timestamp on existing jobs file to reflect current refresh time
       const freshData = loadJobs();
       freshData.last_updated = new Date().toISOString();
       saveJobs(freshData);
@@ -122,6 +143,14 @@ export async function POST(request) {
       }, { status: 200 });
     }
 
+    // Mutating batch jobs requires Admin Authorization
+    if (!isAuthorizedAdmin(request)) {
+      return NextResponse.json(
+        { error: "Unauthorized. Admin credentials required to modify job catalog." },
+        { status: 403 }
+      );
+    }
+
     const incomingJobs = body.jobs || (Array.isArray(body) ? body : []);
 
     if (!Array.isArray(incomingJobs) || incomingJobs.length === 0) {
@@ -132,19 +161,20 @@ export async function POST(request) {
     const existingList = currentData.jobs || [];
 
     for (const ij of incomingJobs) {
-      const id = ij.job_id || ij.id || ij.url || ij.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      const title = sanitizeString(ij.title, 200);
+      const id = sanitizeString(ij.job_id || ij.id || ij.url || title.toLowerCase().replace(/[^a-z0-9]+/g, "-"), 120);
       const jobItem = {
         job_id: id,
-        title: ij.title,
-        company: ij.company || "Biotech Partner",
-        location: ij.location || "India",
-        job_type: ij.job_type || "Full-time",
-        experience: ij.experience || "0-3 Yrs",
-        salary: ij.salary || "₹5.0 - ₹10.0 LPA",
-        description: ij.description || "",
-        skills: ij.skills || ["Biotechnology", "R&D"],
-        url: ij.url || ij.apply_url || "https://bioconnect.org/careers",
-        category: ij.category || "Research",
+        title,
+        company: sanitizeString(ij.company || "Biotech Partner", 100),
+        location: sanitizeString(ij.location || "India", 100),
+        job_type: sanitizeString(ij.job_type || "Full-time", 50),
+        experience: sanitizeString(ij.experience || "0-3 Yrs", 50),
+        salary: sanitizeString(ij.salary || "₹5.0 - ₹10.0 LPA", 50),
+        description: sanitizeString(ij.description || "", 3000),
+        skills: Array.isArray(ij.skills) ? ij.skills.map(s => sanitizeString(s, 50)) : ["Biotechnology", "R&D"],
+        url: sanitizeString(ij.url || ij.apply_url || "https://bioconnect.org/careers", 500),
+        category: sanitizeString(ij.category || "Research", 50),
         scraped_at: new Date().toISOString()
       };
 
@@ -172,7 +202,6 @@ export async function POST(request) {
     }, { status: 200 });
 
   } catch (err) {
-    console.error("Job Scraper API POST Error:", err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return safeErrorResponse(err, "Failed to update jobs listing.");
   }
 }
